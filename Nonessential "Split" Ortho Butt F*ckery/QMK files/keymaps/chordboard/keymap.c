@@ -1,0 +1,8060 @@
+/* Copyright 2020 Solomon Kimrey
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+#include QMK_KEYBOARD_H
+// #include "g/keymap_combo.h"
+// Defines names for use in layer keycodes and the keymap
+
+// Defines the keycodes used by our macros in process_record_user
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    /* Base */
+    [0] = LAYOUT( \
+    KC_MINS, KC_EQUAL, KC_0, KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_MINS, KC_EQUAL, KC_BSPACE, \
+    KC__VOLUP, KC_SLASH, KC_RBRACKET, KC_TAB, KC_TAB, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRACKET, KC_RBRACKET, KC_SLASH, KC__VOLUP, \
+    KC__VOLUP, KC_ENTER, KC_QUOTE, KC_SCOLON, KC_Q, KC_S, KC_D, KC_F, KC_G, KC_H,KC_G, KC_H, KC_J, KC_K, KC_L, KC_P, KC_QUOTE, KC_ENTER, KC_QUOTE, KC__VOLUP, \
+     KC_RSHIFT, KC_SLASH, KC_UP, KC_LSHIFT, KC_A, KC_X, KC_C, KC_V, KC_B, KC_N, KC_V, KC_B, KC_N, KC_M, KC_COMMA, KC_DOT, KC_RSHIFT, KC_SLASH, KC_UP, KC_UP, \
+    KC_LEFT, KC_DOWN, KC_RIGHT, KC_LCTRL, KC_Z, KC_LALT, KC_SPACE, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_M, KC_RGUI, KC_F1, KC_RCTRL, KC_LEFT, KC_DOWN, KC_RIGHT 
+    ),
+
+};
+
+enum combo_events {
+TH_1,
+TH_2,
+TH_3,
+TH_4,
+TH_5,
+TH_6,
+TH_7,
+TH_8,
+TH_9,
+TH_10,
+TH_11,
+TH_12,
+TH_13,
+TH_14,
+TH_15,
+TH_16,
+TH_17,
+TH_18,
+TH_19,
+TH_20,
+TH_21,
+TH_22,
+TH_23,
+TH_24,
+TH_25,
+TH_26,
+TH_27,
+TH_28,
+TH_29,
+TH_30,
+TH_31,
+TH_32,
+TH_33,
+TH_34,
+TH_35,
+TH_36,
+TH_37,
+TH_38,
+TH_39,
+TH_40,
+TH_41,
+TH_42,
+TH_43,
+TH_44,
+TH_45,
+TH_46,
+TH_47,
+TH_48,
+TH_49,
+TH_50,
+TH_51,
+TH_52,
+TH_53,
+TH_54,
+TH_55,
+TH_56,
+TH_57,
+TH_58,
+TH_59,
+TH_60,
+TH_61,
+TH_62,
+TH_63,
+TH_64,
+TH_65,
+TH_66,
+TH_67,
+TH_68,
+TH_69,
+TH_70,
+TH_71,
+TH_72,
+TH_73,
+TH_74,
+TH_75,
+TH_76,
+TH_77,
+TH_78,
+TH_79,
+TH_80,
+TH_81,
+TH_82,
+TH_83,
+TH_84,
+TH_85,
+TH_86,
+TH_87,
+TH_88,
+TH_89,
+TH_90,
+TH_91,
+TH_92,
+TH_93,
+TH_94,
+TH_95,
+TH_96,
+TH_97,
+TH_98,
+TH_99,
+TH_100,
+TH_101,
+TH_102,
+TH_103,
+TH_104,
+TH_105,
+TH_106,
+TH_107,
+TH_108,
+TH_109,
+TH_110,
+TH_111,
+TH_112,
+TH_113,
+TH_114,
+TH_115,
+TH_116,
+TH_117,
+TH_118,
+TH_119,
+TH_120,
+TH_121,
+TH_122,
+TH_123,
+TH_124,
+TH_125,
+TH_126,
+TH_127,
+TH_128,
+TH_129,
+TH_130,
+TH_131,
+TH_132,
+TH_133,
+TH_134,
+TH_135,
+TH_136,
+TH_137,
+TH_138,
+TH_139,
+TH_140,
+TH_141,
+TH_142,
+TH_143,
+TH_144,
+TH_145,
+TH_146,
+TH_147,
+TH_148,
+TH_149,
+TH_150,
+TH_151,
+TH_152,
+TH_153,
+TH_154,
+TH_155,
+TH_156,
+TH_157,
+TH_158,
+TH_159,
+TH_160,
+TH_161,
+TH_162,
+TH_163,
+TH_164,
+TH_165,
+TH_166,
+TH_167,
+TH_168,
+TH_169,
+TH_170,
+TH_171,
+TH_172,
+TH_173,
+TH_174,
+TH_175,
+TH_176,
+TH_177,
+TH_178,
+TH_179,
+TH_180,
+TH_181,
+TH_182,
+TH_183,
+TH_184,
+TH_185,
+TH_186,
+TH_187,
+TH_188,
+TH_189,
+TH_190,
+TH_191,
+TH_192,
+TH_193,
+TH_194,
+TH_195,
+TH_196,
+TH_197,
+TH_198,
+TH_199,
+TH_200,
+TH_201,
+TH_202,
+TH_203,
+TH_204,
+TH_205,
+TH_206,
+TH_207,
+TH_208,
+TH_209,
+TH_210,
+TH_211,
+TH_212,
+TH_213,
+TH_214,
+TH_215,
+TH_216,
+TH_217,
+TH_218,
+TH_219,
+TH_220,
+TH_221,
+TH_222,
+TH_223,
+TH_224,
+TH_225,
+TH_226,
+TH_227,
+TH_228,
+TH_229,
+TH_230,
+TH_231,
+TH_232,
+TH_233,
+TH_234,
+TH_235,
+TH_236,
+TH_237,
+TH_238,
+TH_239,
+TH_240,
+TH_241,
+TH_242,
+TH_243,
+TH_244,
+TH_245,
+TH_246,
+TH_247,
+TH_248,
+TH_249,
+TH_250,
+TH_251,
+TH_252,
+TH_253,
+TH_254,
+TH_255,
+TH_256,
+TH_257,
+TH_258,
+TH_259,
+TH_260,
+TH_261,
+TH_262,
+TH_263,
+TH_264,
+TH_265,
+TH_266,
+TH_267,
+TH_268,
+TH_269,
+TH_270,
+TH_271,
+TH_272,
+TH_273,
+TH_274,
+TH_275,
+TH_276,
+TH_277,
+TH_278,
+TH_279,
+TH_280,
+TH_281,
+TH_282,
+TH_283,
+TH_284,
+TH_285,
+TH_286,
+TH_287,
+TH_288,
+TH_289,
+TH_290,
+TH_291,
+TH_292,
+TH_293,
+TH_294,
+TH_295,
+TH_296,
+TH_297,
+TH_298,
+TH_299,
+TH_300,
+TH_301,
+TH_302,
+TH_303,
+TH_304,
+TH_305,
+TH_306,
+TH_307,
+TH_308,
+TH_309,
+TH_310,
+TH_311,
+TH_312,
+TH_313,
+TH_314,
+TH_315,
+TH_316,
+TH_317,
+TH_318,
+TH_319,
+TH_320,
+TH_321,
+TH_322,
+TH_323,
+TH_324,
+TH_325,
+TH_326,
+TH_327,
+TH_328,
+TH_329,
+TH_330,
+TH_331,
+TH_332,
+TH_333,
+TH_334,
+TH_335,
+TH_336,
+TH_337,
+TH_338,
+TH_339,
+TH_340,
+TH_341,
+TH_342,
+TH_343,
+TH_344,
+TH_345,
+TH_346,
+TH_347,
+TH_348,
+TH_349,
+TH_350,
+TH_351,
+TH_352,
+TH_353,
+TH_354,
+TH_355,
+TH_356,
+TH_357,
+TH_358,
+TH_359,
+TH_360,
+TH_361,
+TH_362,
+TH_363,
+TH_364,
+TH_365,
+TH_366,
+TH_367,
+TH_368,
+TH_369,
+TH_370,
+TH_371,
+TH_372,
+TH_373,
+TH_374,
+TH_375,
+TH_376,
+TH_377,
+TH_378,
+TH_379,
+TH_380,
+TH_381,
+TH_382,
+TH_383,
+TH_384,
+TH_385,
+TH_386,
+TH_387,
+TH_388,
+TH_389,
+TH_390,
+TH_391,
+TH_392,
+TH_393,
+TH_394,
+TH_395,
+TH_396,
+TH_397,
+TH_398,
+TH_399,
+TH_400,
+TH_401,
+TH_402,
+TH_403,
+TH_404,
+TH_405,
+TH_406,
+TH_407,
+TH_408,
+TH_409,
+TH_410,
+TH_411,
+TH_412,
+TH_413,
+TH_414,
+TH_415,
+TH_416,
+TH_417,
+TH_418,
+TH_419,
+TH_420,
+TH_421,
+TH_422,
+TH_423,
+TH_424,
+TH_425,
+TH_426,
+TH_427,
+TH_428,
+TH_429,
+TH_430,
+TH_431,
+TH_432,
+TH_433,
+TH_434,
+TH_435,
+TH_436,
+TH_437,
+TH_438,
+TH_439,
+TH_440,
+TH_441,
+TH_442,
+TH_443,
+TH_444,
+TH_445,
+TH_446,
+TH_447,
+TH_448,
+TH_449,
+TH_450,
+TH_451,
+TH_452,
+TH_453,
+TH_454,
+TH_455,
+TH_456,
+TH_457,
+TH_458,
+TH_459,
+TH_460,
+TH_461,
+TH_462,
+TH_463,
+TH_464,
+TH_465,
+TH_466,
+TH_467,
+TH_468,
+TH_469,
+TH_470,
+TH_471,
+TH_472,
+TH_473,
+TH_474,
+TH_475,
+TH_476,
+TH_477,
+TH_478,
+TH_479,
+TH_480,
+TH_481,
+TH_482,
+TH_483,
+TH_484,
+TH_485,
+TH_486,
+TH_487,
+TH_488,
+TH_489,
+TH_490,
+TH_491,
+TH_492,
+TH_493,
+TH_494,
+TH_495,
+TH_496,
+TH_497,
+TH_498,
+TH_499,
+TH_500,
+TH_501,
+TH_502,
+TH_503,
+TH_504,
+TH_505,
+TH_506,
+TH_507,
+TH_508,
+TH_509,
+TH_510,
+TH_511,
+TH_512,
+TH_513,
+TH_514,
+TH_515,
+TH_516,
+TH_517,
+TH_518,
+TH_519,
+TH_520,
+TH_521,
+TH_522,
+TH_523,
+TH_524,
+TH_525,
+TH_526,
+TH_527,
+TH_528,
+TH_529,
+TH_530,
+TH_531,
+TH_532,
+TH_533,
+TH_534,
+TH_535,
+TH_536,
+TH_537,
+TH_538,
+TH_539,
+TH_540,
+TH_541,
+TH_542,
+TH_543,
+TH_544,
+TH_545,
+TH_546,
+TH_547,
+TH_548,
+TH_549,
+TH_550,
+TH_551,
+TH_552,
+TH_553,
+TH_554,
+TH_555,
+TH_556,
+TH_557,
+TH_558,
+TH_559,
+TH_560,
+TH_561,
+TH_562,
+TH_563,
+TH_564,
+TH_565,
+TH_566,
+TH_567,
+TH_568,
+TH_569,
+TH_570,
+TH_571,
+TH_572,
+TH_573,
+TH_574,
+TH_575,
+TH_576,
+TH_577,
+TH_578,
+TH_579,
+TH_580,
+TH_581,
+TH_582,
+TH_583,
+TH_584,
+TH_585,
+TH_586,
+TH_587,
+TH_588,
+TH_589,
+TH_590,
+TH_591,
+TH_592,
+TH_593,
+TH_594,
+TH_595,
+TH_596,
+TH_597,
+TH_598,
+TH_599,
+TH_600,
+TH_601,
+TH_602,
+TH_603,
+TH_604,
+TH_605,
+TH_606,
+TH_607,
+TH_608,
+TH_609,
+TH_610,
+TH_611,
+TH_612,
+TH_613,
+TH_614,
+TH_615,
+TH_616,
+TH_617,
+TH_618,
+TH_619,
+TH_620,
+TH_621,
+TH_622,
+TH_623,
+TH_624,
+TH_625,
+TH_626,
+TH_627,
+TH_628,
+TH_629,
+TH_630,
+TH_631,
+TH_632,
+TH_633,
+TH_634,
+TH_635,
+TH_636,
+TH_637,
+TH_638,
+TH_639,
+TH_640,
+TH_641,
+TH_642,
+TH_643,
+TH_644,
+TH_645,
+TH_646,
+TH_647,
+TH_648,
+TH_649,
+TH_650,
+TH_651,
+TH_652,
+TH_653,
+TH_654,
+TH_655,
+TH_656,
+TH_657,
+TH_658,
+TH_659,
+TH_660,
+TH_661,
+TH_662,
+TH_663,
+TH_664,
+TH_665,
+TH_666,
+TH_667,
+TH_668,
+TH_669,
+TH_670,
+TH_671,
+TH_672,
+TH_673,
+TH_674,
+TH_675,
+TH_676,
+TH_677,
+TH_678,
+TH_679,
+TH_680,
+TH_681,
+TH_682,
+TH_683,
+TH_684,
+TH_685,
+TH_686,
+TH_687,
+TH_688,
+TH_689,
+TH_690,
+TH_691,
+TH_692,
+TH_693,
+TH_694,
+TH_695,
+TH_696,
+TH_697,
+TH_698,
+TH_699,
+TH_700,
+TH_701,
+TH_702,
+TH_703,
+TH_704,
+TH_705,
+TH_706,
+TH_707,
+TH_708,
+TH_709,
+TH_710,
+TH_711,
+TH_712,
+TH_713,
+TH_714,
+TH_715,
+TH_716,
+TH_717,
+TH_718,
+TH_719,
+TH_720,
+TH_721,
+TH_722,
+TH_723,
+TH_724,
+TH_725,
+TH_726,
+TH_727,
+TH_728,
+TH_729,
+TH_730,
+TH_731,
+TH_732,
+TH_733,
+TH_734,
+TH_735,
+TH_736,
+TH_737,
+TH_738,
+TH_739,
+TH_740,
+TH_741,
+TH_742,
+TH_743,
+TH_744,
+TH_745,
+TH_746,
+TH_747,
+TH_748,
+TH_749,
+TH_750,
+TH_751,
+TH_752,
+TH_753,
+TH_754,
+TH_755,
+TH_756,
+TH_757,
+TH_758,
+TH_759,
+TH_760,
+TH_761,
+TH_762,
+TH_763,
+TH_764,
+TH_765,
+TH_766,
+TH_767,
+TH_768,
+TH_769,
+TH_770,
+TH_771,
+TH_772,
+TH_773,
+TH_774,
+TH_775,
+TH_776,
+TH_777,
+TH_778,
+TH_779,
+TH_780,
+TH_781,
+TH_782,
+TH_783,
+TH_784,
+TH_785,
+TH_786,
+TH_787,
+TH_788,
+TH_789,
+TH_790,
+TH_791,
+TH_792,
+TH_793,
+TH_794,
+TH_795,
+TH_796,
+TH_797,
+TH_798,
+TH_799,
+TH_800,
+TH_801,
+TH_802,
+TH_803,
+TH_804,
+TH_805,
+TH_806,
+TH_807,
+TH_808,
+TH_809,
+TH_810,
+TH_811,
+TH_812,
+TH_813,
+TH_814,
+TH_815,
+TH_816,
+TH_817,
+TH_818,
+TH_819,
+TH_820,
+TH_821,
+TH_822,
+TH_823,
+TH_824,
+TH_825,
+TH_826,
+TH_827,
+TH_828,
+TH_829,
+TH_830,
+TH_831,
+TH_832,
+TH_833,
+TH_834,
+TH_835,
+TH_836,
+TH_837,
+TH_838,
+TH_839,
+TH_840,
+TH_841,
+TH_842,
+TH_843,
+TH_844,
+TH_845,
+TH_846,
+TH_847,
+TH_848,
+TH_849,
+TH_850,
+TH_851,
+TH_852,
+TH_853,
+TH_854,
+TH_855,
+TH_856,
+TH_857,
+TH_858,
+TH_859,
+TH_860,
+TH_861,
+TH_862,
+TH_863,
+TH_864,
+TH_865,
+TH_866,
+TH_867,
+TH_868,
+TH_869,
+TH_870,
+TH_871,
+TH_872,
+TH_873,
+TH_874,
+TH_875,
+TH_876,
+TH_877,
+TH_878,
+TH_879,
+TH_880,
+TH_881,
+TH_882,
+TH_883,
+TH_884,
+TH_885,
+TH_886,
+TH_887,
+TH_888,
+TH_889,
+TH_890,
+TH_891,
+TH_892,
+TH_893,
+TH_894,
+TH_895,
+TH_896,
+TH_897,
+TH_898,
+TH_899,
+TH_900,
+TH_901,
+TH_902,
+TH_903,
+TH_904,
+TH_905,
+TH_906,
+TH_907,
+TH_908,
+TH_909,
+TH_910,
+TH_911,
+TH_912,
+TH_913,
+TH_914,
+TH_915,
+TH_916,
+TH_917,
+TH_918,
+TH_919,
+TH_920,
+TH_921,
+TH_922,
+TH_923,
+TH_924,
+TH_925,
+TH_926,
+TH_927,
+TH_928,
+TH_929,
+TH_930,
+TH_931,
+TH_932,
+TH_933,
+TH_934,
+TH_935,
+TH_936,
+TH_937,
+TH_938,
+TH_939,
+TH_940,
+TH_941,
+TH_942,
+TH_943,
+TH_944,
+TH_945,
+TH_946,
+TH_947,
+TH_948,
+TH_949,
+TH_950,
+TH_951,
+TH_952,
+TH_953,
+TH_954,
+TH_955,
+TH_956,
+TH_957,
+TH_958,
+TH_959,
+TH_960,
+TH_961,
+TH_962,
+TH_963,
+TH_964,
+TH_965,
+TH_966,
+TH_967,
+TH_968,
+TH_969,
+TH_970,
+TH_971,
+TH_972,
+TH_973,
+TH_974,
+TH_975,
+TH_976,
+TH_977,
+TH_978,
+TH_979,
+TH_980,
+TH_981,
+TH_982,
+TH_983,
+TH_984,
+TH_985,
+TH_986,
+TH_987,
+TH_988,
+TH_989,
+TH_990,
+TH_991,
+TH_992,
+TH_993,
+TH_994,
+TH_995,
+TH_996,
+TH_997,
+TH_998,
+TH_999,
+TH_1000,
+};
+ // remove the COMBO_COUNT define and use this instead!
+
+
+const uint16_t PROGMEM T1[] = {KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T2[] = {KC_R,KC_T,COMBO_END};
+const uint16_t PROGMEM T3[] = {KC_O,KC_S,KC_F,COMBO_END};
+const uint16_t PROGMEM T4[] = {KC_E,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T5[] = {KC_T,KC_A,KC_S,KC_F,COMBO_END};
+const uint16_t PROGMEM T6[] = {KC_I,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T7[] = {KC_I,KC_K,COMBO_END};
+const uint16_t PROGMEM T8[] = {KC_S,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T9[] = {KC_S,KC_L,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T10[] = {KC_E,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T11[] = {KC_E,KC_S,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T12[] = {KC_F,KC_H,COMBO_END};
+const uint16_t PROGMEM T13[] = {KC_T,KC_O,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T14[] = {KC_R,KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T15[] = {KC_R,KC_T,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T16[] = {KC_E,KC_R,KC_V,COMBO_END};
+const uint16_t PROGMEM T17[] = {KC_W,KC_T,KC_U,KC_O,COMBO_END};
+const uint16_t PROGMEM T18[] = {KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T19[] = {KC_O,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T20[] = {KC_S,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T21[] = {KC_E,KC_T,KC_A,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T22[] = {KC_W,KC_E,KC_I,KC_S,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T23[] = {KC_W,KC_R,KC_T,KC_V,COMBO_END};
+const uint16_t PROGMEM T24[] = {KC_W,KC_T,KC_V,COMBO_END};
+const uint16_t PROGMEM T25[] = {KC_W,KC_E,KC_R,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T26[] = {KC_E,KC_R,KC_O,KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T27[] = {KC_R,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T28[] = {KC_R,KC_T,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T29[] = {KC_E,KC_R,KC_T,KC_O,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T30[] = {KC_R,KC_S,KC_D,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T31[] = {KC_U,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T32[] = {KC_E,KC_P,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T33[] = {KC_D,KC_M,COMBO_END};
+const uint16_t PROGMEM T34[] = {KC_E,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T35[] = {KC_R,KC_T,KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T36[] = {KC_W,KC_E,KC_O,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T37[] = {KC_E,KC_O,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T38[] = {KC_O,KC_A,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T39[] = {KC_W,KC_R,COMBO_END};
+const uint16_t PROGMEM T40[] = {KC_W,KC_V,COMBO_END};
+const uint16_t PROGMEM T41[] = {KC_A,KC_D,KC_B,COMBO_END};
+const uint16_t PROGMEM T42[] = {KC_A,KC_S,KC_B,COMBO_END};
+const uint16_t PROGMEM T43[] = {KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T44[] = {KC_T,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T45[] = {KC_A,KC_F,KC_G,COMBO_END};
+const uint16_t PROGMEM T46[] = {KC_A,KC_G,COMBO_END};
+const uint16_t PROGMEM T47[] = {KC_A,KC_G,KC_M,COMBO_END};
+const uint16_t PROGMEM T48[] = {KC_T,KC_A,KC_M,COMBO_END};
+const uint16_t PROGMEM T49[] = {KC_R,KC_T,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T50[] = {KC_P,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T51[] = {KC_R,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T52[] = {KC_W,KC_A,COMBO_END};
+const uint16_t PROGMEM T53[] = {KC_G,KC_B,COMBO_END};
+const uint16_t PROGMEM T54[] = {KC_E,KC_G,KC_B,COMBO_END};
+const uint16_t PROGMEM T55[] = {KC_W,KC_T,KC_B,COMBO_END};
+const uint16_t PROGMEM T56[] = {KC_G,KC_C,COMBO_END};
+const uint16_t PROGMEM T57[] = {KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T58[] = {KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T59[] = {KC_P,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T60[] = {KC_P,KC_L,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T61[] = {KC_P,KC_S,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T62[] = {KC_Y,KC_P,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T63[] = {KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T64[] = {KC_T,KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T65[] = {KC_T,KC_O,KC_G,COMBO_END};
+const uint16_t PROGMEM T66[] = {KC_E,KC_T,KC_Y,KC_H,KC_V,COMBO_END};
+const uint16_t PROGMEM T67[] = {KC_I,KC_D,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T68[] = {KC_W,KC_Y,KC_H,COMBO_END};
+const uint16_t PROGMEM T69[] = {KC_G,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T70[] = {KC_A,KC_K,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T71[] = {KC_E,KC_R,KC_I,KC_S,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T72[] = {KC_D,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T73[] = {KC_W,KC_E,KC_F,COMBO_END};
+const uint16_t PROGMEM T74[] = {KC_C,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T75[] = {KC_O,KC_F,KC_C,COMBO_END};
+const uint16_t PROGMEM T76[] = {KC_T,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T77[] = {KC_R,KC_C,COMBO_END};
+const uint16_t PROGMEM T78[] = {KC_T,KC_C,COMBO_END};
+const uint16_t PROGMEM T79[] = {KC_E,KC_D,KC_F,COMBO_END};
+const uint16_t PROGMEM T80[] = {KC_O,KC_D,KC_G,COMBO_END};
+const uint16_t PROGMEM T81[] = {KC_I,KC_D,KC_F,COMBO_END};
+const uint16_t PROGMEM T82[] = {KC_T,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T83[] = {KC_E,KC_I,KC_V,COMBO_END};
+const uint16_t PROGMEM T84[] = {KC_T,KC_G,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T85[] = {KC_E,KC_R,KC_T,KC_O,KC_H,COMBO_END};
+const uint16_t PROGMEM T86[] = {KC_D,KC_L,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T87[] = {KC_W,KC_T,KC_I,KC_A,COMBO_END};
+const uint16_t PROGMEM T88[] = {KC_T,KC_D,KC_X,COMBO_END};
+const uint16_t PROGMEM T89[] = {KC_R,KC_D,KC_G,COMBO_END};
+const uint16_t PROGMEM T90[] = {KC_T,KC_S,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T91[] = {KC_D,KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T92[] = {KC_E,KC_V,KC_B,COMBO_END};
+const uint16_t PROGMEM T93[] = {KC_E,KC_U,KC_D,COMBO_END};
+const uint16_t PROGMEM T94[] = {KC_E,KC_G,COMBO_END};
+const uint16_t PROGMEM T95[] = {KC_Y,KC_S,KC_D,KC_A,COMBO_END};
+const uint16_t PROGMEM T96[] = {KC_E,KC_T,KC_I,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T97[] = {KC_E,KC_A,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T98[] = {KC_T,KC_H,COMBO_END};
+const uint16_t PROGMEM T99[] = {KC_W,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T100[] = {KC_W,KC_E,KC_O,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T101[] = {KC_E,KC_R,COMBO_END};
+const uint16_t PROGMEM T102[] = {KC_E,KC_T,KC_I,KC_V,COMBO_END};
+const uint16_t PROGMEM T103[] = {KC_U,KC_O,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T104[] = {KC_I,KC_P,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T105[] = {KC_I,KC_P,KC_A,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T106[] = {KC_E,KC_O,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T107[] = {KC_E,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T108[] = {KC_E,KC_T,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T109[] = {KC_T,KC_I,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T110[] = {KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T111[] = {KC_T,KC_U,KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T112[] = {KC_E,KC_T,KC_C,COMBO_END};
+const uint16_t PROGMEM T113[] = {KC_T,KC_I,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T114[] = {KC_R,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T115[] = {KC_E,KC_R,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T116[] = {KC_E,KC_H,COMBO_END};
+const uint16_t PROGMEM T117[] = {KC_E,KC_R,KC_H,COMBO_END};
+const uint16_t PROGMEM T118[] = {KC_E,KC_D,KC_V,COMBO_END};
+const uint16_t PROGMEM T119[] = {KC_E,KC_X,COMBO_END};
+const uint16_t PROGMEM T120[] = {KC_E,KC_P,KC_X,COMBO_END};
+const uint16_t PROGMEM T121[] = {KC_D,KC_F,KC_K,KC_B,COMBO_END};
+const uint16_t PROGMEM T122[] = {KC_E,KC_F,COMBO_END};
+const uint16_t PROGMEM T123[] = {KC_R,KC_F,COMBO_END};
+const uint16_t PROGMEM T124[] = {KC_T,KC_F,COMBO_END};
+const uint16_t PROGMEM T125[] = {KC_F,KC_V,COMBO_END};
+const uint16_t PROGMEM T126[] = {KC_D,KC_G,KC_B,COMBO_END};
+const uint16_t PROGMEM T127[] = {KC_A,KC_Z,KC_M,COMBO_END};
+const uint16_t PROGMEM T128[] = {KC_D,KC_G,COMBO_END};
+const uint16_t PROGMEM T129[] = {KC_G,KC_V,COMBO_END};
+const uint16_t PROGMEM T130[] = {KC_R,KC_A,COMBO_END};
+const uint16_t PROGMEM T131[] = {KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T132[] = {KC_P,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T133[] = {KC_P,KC_F,KC_H,COMBO_END};
+const uint16_t PROGMEM T134[] = {KC_H,KC_E,COMBO_END};
+const uint16_t PROGMEM T135[] = {KC_F,KC_B,COMBO_END};
+const uint16_t PROGMEM T136[] = {KC_I,KC_D,KC_K,COMBO_END};
+const uint16_t PROGMEM T137[] = {KC_I,KC_G,COMBO_END};
+const uint16_t PROGMEM T138[] = {KC_I,KC_D,COMBO_END};
+const uint16_t PROGMEM T139[] = {KC_I,KC_L,COMBO_END};
+const uint16_t PROGMEM T140[] = {KC_I,KC_M,COMBO_END};
+const uint16_t PROGMEM T141[] = {KC_I,KC_P,KC_M,COMBO_END};
+const uint16_t PROGMEM T142[] = {KC_I,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T143[] = {KC_U,KC_I,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T144[] = {KC_T,KC_I,KC_N,COMBO_END};
+const uint16_t PROGMEM T145[] = {KC_T,KC_I,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T146[] = {KC_T,KC_I,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T147[] = {KC_T,KC_I,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T148[] = {KC_T,KC_I,KC_O,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T149[] = {KC_T,KC_I,KC_H,COMBO_END};
+const uint16_t PROGMEM T150[] = {KC_E,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T151[] = {KC_Y,KC_P,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T152[] = {KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T153[] = {KC_K,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T154[] = {KC_O,KC_K,COMBO_END};
+const uint16_t PROGMEM T155[] = {KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T156[] = {KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T157[] = {KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T158[] = {KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T159[] = {KC_G,KC_M,COMBO_END};
+const uint16_t PROGMEM T160[] = {KC_G,KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T161[] = {KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T162[] = {KC_D,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T163[] = {KC_D,KC_L,KC_C,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T164[] = {KC_E,KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T165[] = {KC_E,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T166[] = {KC_E,KC_O,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T167[] = {KC_O,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T168[] = {KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T169[] = {KC_P,KC_N,COMBO_END};
+const uint16_t PROGMEM T170[] = {KC_R,KC_P,KC_F,COMBO_END};
+const uint16_t PROGMEM T171[] = {KC_U,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T172[] = {KC_O,KC_V,KC_B,COMBO_END};
+const uint16_t PROGMEM T173[] = {KC_O,KC_F,KC_C,COMBO_END};
+const uint16_t PROGMEM T174[] = {KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T175[] = {KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T176[] = {KC_R,KC_O,KC_G,COMBO_END};
+const uint16_t PROGMEM T177[] = {KC_R,KC_O,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T178[] = {KC_P,KC_G,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T179[] = {KC_P,KC_D,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T180[] = {KC_E,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T181[] = {KC_P,KC_F,COMBO_END};
+const uint16_t PROGMEM T182[] = {KC_P,KC_L,COMBO_END};
+const uint16_t PROGMEM T183[] = {KC_P,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T184[] = {KC_R,KC_P,KC_B,COMBO_END};
+const uint16_t PROGMEM T185[] = {KC_R,KC_O,KC_P,KC_B,COMBO_END};
+const uint16_t PROGMEM T186[] = {KC_P,KC_B,COMBO_END};
+const uint16_t PROGMEM T187[] = {KC_P,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T188[] = {KC_Q,KC_T,KC_L,COMBO_END};
+const uint16_t PROGMEM T189[] = {KC_Q,KC_T,COMBO_END};
+const uint16_t PROGMEM T190[] = {KC_R,KC_L,COMBO_END};
+const uint16_t PROGMEM T191[] = {KC_R,KC_L,KC_Z,COMBO_END};
+const uint16_t PROGMEM T192[] = {KC_R,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T193[] = {KC_R,KC_N,COMBO_END};
+const uint16_t PROGMEM T194[] = {KC_R,KC_P,KC_S,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T195[] = {KC_R,KC_P,KC_S,KC_L,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T196[] = {KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T197[] = {KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T198[] = {KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T199[] = {KC_R,KC_S,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T200[] = {KC_T,KC_U,KC_P,COMBO_END};
+const uint16_t PROGMEM T201[] = {KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T202[] = {KC_E,KC_R,KC_U,KC_S,COMBO_END};
+const uint16_t PROGMEM T203[] = {KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T204[] = {KC_T,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T205[] = {KC_Y,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T206[] = {KC_R,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T207[] = {KC_T,KC_K,KC_M,COMBO_END};
+const uint16_t PROGMEM T208[] = {KC_A,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T209[] = {KC_T,KC_H,KC_B,COMBO_END};
+const uint16_t PROGMEM T210[] = {KC_T,KC_D,COMBO_END};
+const uint16_t PROGMEM T211[] = {KC_T,KC_G,COMBO_END};
+const uint16_t PROGMEM T212[] = {KC_T,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T213[] = {KC_T,KC_I,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T214[] = {KC_T,KC_O,KC_H,COMBO_END};
+const uint16_t PROGMEM T215[] = {KC_R,KC_T,KC_U,KC_H,COMBO_END};
+const uint16_t PROGMEM T216[] = {KC_T,KC_G,KC_K,COMBO_END};
+const uint16_t PROGMEM T217[] = {KC_T,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T218[] = {KC_R,KC_T,KC_O,KC_M,COMBO_END};
+const uint16_t PROGMEM T219[] = {KC_T,KC_S,KC_L,KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T220[] = {KC_E,KC_S,KC_H,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T221[] = {KC_T,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T222[] = {KC_T,KC_G,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T223[] = {KC_R,KC_T,KC_G,COMBO_END};
+const uint16_t PROGMEM T224[] = {KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T225[] = {KC_T,KC_Y,COMBO_END};
+const uint16_t PROGMEM T226[] = {KC_T,KC_Y,KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T227[] = {KC_U,KC_L,COMBO_END};
+const uint16_t PROGMEM T228[] = {KC_T,KC_U,KC_L,COMBO_END};
+const uint16_t PROGMEM T229[] = {KC_U,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T230[] = {KC_R,KC_U,COMBO_END};
+const uint16_t PROGMEM T231[] = {KC_E,KC_T,KC_G,KC_V,COMBO_END};
+const uint16_t PROGMEM T232[] = {KC_U,KC_V,COMBO_END};
+const uint16_t PROGMEM T233[] = {KC_E,KC_U,KC_V,COMBO_END};
+const uint16_t PROGMEM T234[] = {KC_I,KC_O,COMBO_END};
+const uint16_t PROGMEM T235[] = {KC_I,KC_D,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T236[] = {KC_T,KC_H,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T237[] = {KC_D,KC_V,COMBO_END};
+const uint16_t PROGMEM T238[] = {KC_G,KC_V,COMBO_END};
+const uint16_t PROGMEM T239[] = {KC_W,KC_T,COMBO_END};
+const uint16_t PROGMEM T240[] = {KC_W,KC_H,COMBO_END};
+const uint16_t PROGMEM T241[] = {KC_I,KC_S,KC_K,KC_C,COMBO_END};
+const uint16_t PROGMEM T242[] = {KC_E,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T243[] = {KC_T,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T244[] = {KC_R,KC_O,KC_F,KC_M,COMBO_END};
+const uint16_t PROGMEM T245[] = {KC_T,KC_U,KC_B,COMBO_END};
+const uint16_t PROGMEM T246[] = {KC_W,KC_E,KC_H,COMBO_END};
+const uint16_t PROGMEM T247[] = {KC_W,KC_I,KC_L,COMBO_END};
+const uint16_t PROGMEM T248[] = {KC_W,KC_L,COMBO_END};
+const uint16_t PROGMEM T249[] = {KC_W,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T250[] = {KC_W,KC_N,COMBO_END};
+const uint16_t PROGMEM T251[] = {KC_W,KC_O,COMBO_END};
+const uint16_t PROGMEM T252[] = {KC_W,KC_R,COMBO_END};
+const uint16_t PROGMEM T253[] = {KC_W,KC_T,KC_O,COMBO_END};
+const uint16_t PROGMEM T254[] = {KC_W,KC_T,KC_I,COMBO_END};
+const uint16_t PROGMEM T255[] = {KC_W,KC_V,COMBO_END};
+const uint16_t PROGMEM T256[] = {KC_W,KC_R,KC_V,COMBO_END};
+const uint16_t PROGMEM T257[] = {KC_X,KC_C,COMBO_END};
+const uint16_t PROGMEM T258[] = {KC_L,KC_X,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T259[] = {KC_T,KC_L,KC_X,KC_N,COMBO_END};
+const uint16_t PROGMEM T260[] = {KC_P,KC_L,KC_X,KC_M,COMBO_END};
+const uint16_t PROGMEM T261[] = {KC_P,KC_X,COMBO_END};
+const uint16_t PROGMEM T262[] = {KC_D,KC_X,COMBO_END};
+const uint16_t PROGMEM T263[] = {KC_G,KC_X,COMBO_END};
+const uint16_t PROGMEM T264[] = {KC_L,KC_X,COMBO_END};
+const uint16_t PROGMEM T265[] = {KC_R,KC_A,KC_X,COMBO_END};
+const uint16_t PROGMEM T266[] = {KC_Y,KC_A,KC_L,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T267[] = {KC_Y,KC_D,COMBO_END};
+const uint16_t PROGMEM T268[] = {KC_Y,KC_K,COMBO_END};
+const uint16_t PROGMEM T269[] = {KC_R,KC_Y,COMBO_END};
+const uint16_t PROGMEM T270[] = {KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T271[] = {KC_A,KC_B,COMBO_END};
+const uint16_t PROGMEM T272[] = {KC_A,KC_M,COMBO_END};
+const uint16_t PROGMEM T273[] = {KC_W,KC_T,KC_A,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T274[] = {KC_R,KC_T,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T275[] = {KC_Y,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T276[] = {KC_Y,KC_A,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T277[] = {KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T278[] = {KC_E,KC_I,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T279[] = {KC_E,KC_A,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T280[] = {KC_T,KC_A,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T281[] = {KC_W,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T282[] = {KC_W,KC_E,KC_V,COMBO_END};
+const uint16_t PROGMEM T283[] = {KC_A,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T284[] = {KC_U,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T285[] = {KC_A,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T286[] = {KC_E,KC_T,KC_I,KC_O,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T287[] = {KC_E,KC_A,KC_F,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T288[] = {KC_E,KC_I,KC_S,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T289[] = {KC_E,KC_R,KC_T,KC_A,KC_G,COMBO_END};
+const uint16_t PROGMEM T290[] = {KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T291[] = {KC_T,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T292[] = {KC_E,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T293[] = {KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T294[] = {KC_E,KC_T,KC_A,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T295[] = {KC_E,KC_A,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T296[] = {KC_I,KC_F,KC_X,COMBO_END};
+const uint16_t PROGMEM T297[] = {KC_E,KC_T,KC_A,KC_G,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T298[] = {KC_H,KC_V,COMBO_END};
+const uint16_t PROGMEM T299[] = {KC_A,KC_S,KC_D,KC_K,COMBO_END};
+const uint16_t PROGMEM T300[] = {KC_E,KC_A,KC_S,KC_D,KC_K,COMBO_END};
+const uint16_t PROGMEM T301[] = {KC_E,KC_T,COMBO_END};
+const uint16_t PROGMEM T302[] = {KC_W,KC_T,KC_A,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T303[] = {KC_W,KC_E,KC_T,KC_A,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T304[] = {KC_W,KC_K,COMBO_END};
+const uint16_t PROGMEM T305[] = {KC_W,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T306[] = {KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T307[] = {KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T308[] = {KC_I,KC_N,COMBO_END};
+const uint16_t PROGMEM T309[] = {KC_G,KC_L,COMBO_END};
+const uint16_t PROGMEM T310[] = {KC_T,KC_O,COMBO_END};
+const uint16_t PROGMEM T311[] = {KC_E,KC_T,KC_O,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T312[] = {KC_E,KC_R,KC_A,COMBO_END};
+const uint16_t PROGMEM T313[] = {KC_E,KC_A,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T314[] = {KC_E,KC_R,KC_U,COMBO_END};
+const uint16_t PROGMEM T315[] = {KC_E,KC_R,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T316[] = {KC_T,KC_A,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T317[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T318[] = {KC_T,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T319[] = {KC_T,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T320[] = {KC_E,KC_F,KC_G,KC_L,COMBO_END};
+const uint16_t PROGMEM T321[] = {KC_E,KC_R,KC_T,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T322[] = {KC_E,KC_R,KC_A,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T323[] = {KC_R,KC_O,KC_L,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T324[] = {KC_E,KC_R,KC_T,KC_I,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T325[] = {KC_E,KC_R,KC_T,KC_I,KC_P,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T326[] = {KC_E,KC_R,KC_T,KC_I,KC_P,KC_A,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T327[] = {KC_E,KC_R,KC_T,KC_I,KC_P,KC_H,COMBO_END};
+const uint16_t PROGMEM T328[] = {KC_E,KC_R,KC_I,KC_D,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T329[] = {KC_E,KC_R,KC_Y,COMBO_END};
+const uint16_t PROGMEM T330[] = {KC_E,KC_A,KC_S,KC_K,KC_M,COMBO_END};
+const uint16_t PROGMEM T331[] = {KC_E,KC_R,KC_T,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T332[] = {KC_E,KC_T,KC_I,KC_M,COMBO_END};
+const uint16_t PROGMEM T333[] = {KC_E,KC_R,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T334[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T335[] = {KC_Y,KC_U,KC_G,COMBO_END};
+const uint16_t PROGMEM T336[] = {KC_R,KC_M,COMBO_END};
+const uint16_t PROGMEM T337[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T338[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T339[] = {KC_E,KC_R,KC_F,COMBO_END};
+const uint16_t PROGMEM T340[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T341[] = {KC_I,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T342[] = {KC_T,KC_A,KC_G,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T343[] = {KC_E,KC_R,KC_A,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T344[] = {KC_W,KC_E,KC_N,COMBO_END};
+const uint16_t PROGMEM T345[] = {KC_W,KC_Y,KC_A,COMBO_END};
+const uint16_t PROGMEM T346[] = {KC_I,KC_G,KC_B,COMBO_END};
+const uint16_t PROGMEM T347[] = {KC_W,KC_Y,KC_L,COMBO_END};
+const uint16_t PROGMEM T348[] = {KC_E,KC_Y,KC_S,COMBO_END};
+const uint16_t PROGMEM T349[] = {KC_W,KC_R,KC_T,COMBO_END};
+const uint16_t PROGMEM T350[] = {KC_W,KC_E,KC_R,KC_T,KC_I,COMBO_END};
+const uint16_t PROGMEM T351[] = {KC_W,KC_R,KC_O,KC_K,COMBO_END};
+const uint16_t PROGMEM T352[] = {KC_W,KC_R,KC_K,COMBO_END};
+const uint16_t PROGMEM T353[] = {KC_W,KC_O,KC_D,COMBO_END};
+const uint16_t PROGMEM T354[] = {KC_W,KC_I,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T355[] = {KC_W,KC_E,KC_O,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T356[] = {KC_R,KC_T,KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T357[] = {KC_R,KC_T,KC_I,KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T358[] = {KC_O,KC_J,KC_B,COMBO_END};
+const uint16_t PROGMEM T359[] = {KC_R,KC_S,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T360[] = {KC_U,KC_I,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T361[] = {KC_T,KC_O,KC_H,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T362[] = {KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T363[] = {KC_E,KC_I,KC_A,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T364[] = {KC_E,KC_T,KC_I,KC_O,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T365[] = {KC_E,KC_V,COMBO_END};
+const uint16_t PROGMEM T366[] = {KC_W,KC_E,KC_K,COMBO_END};
+const uint16_t PROGMEM T367[] = {KC_E,KC_Y,KC_V,COMBO_END};
+const uint16_t PROGMEM T368[] = {KC_E,KC_O,KC_V,COMBO_END};
+const uint16_t PROGMEM T369[] = {KC_E,KC_T,KC_H,COMBO_END};
+const uint16_t PROGMEM T370[] = {KC_E,KC_U,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T371[] = {KC_A,KC_D,KC_G,KC_C,COMBO_END};
+const uint16_t PROGMEM T372[] = {KC_E,KC_D,COMBO_END};
+const uint16_t PROGMEM T373[] = {KC_R,KC_T,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T374[] = {KC_D,KC_L,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T375[] = {KC_E,KC_O,KC_S,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T376[] = {KC_E,KC_P,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T377[] = {KC_Q,KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T378[] = {KC_E,KC_P,KC_S,KC_C,KC_L,COMBO_END};
+const uint16_t PROGMEM T379[] = {KC_E,KC_R,KC_T,KC_O,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T380[] = {KC_W,KC_E,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T381[] = {KC_W,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T382[] = {KC_W,KC_I,KC_O,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T383[] = {KC_W,KC_I,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T384[] = {KC_W,KC_E,KC_T,KC_I,KC_H,COMBO_END};
+const uint16_t PROGMEM T385[] = {KC_W,KC_H,KC_E,KC_N,COMBO_END};
+const uint16_t PROGMEM T386[] = {KC_W,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T387[] = {KC_W,KC_S,COMBO_END};
+const uint16_t PROGMEM T388[] = {KC_P,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T389[] = {KC_D,KC_G,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T390[] = {KC_W,KC_E,KC_R,COMBO_END};
+const uint16_t PROGMEM T391[] = {KC_W,KC_E,KC_T,KC_N,COMBO_END};
+const uint16_t PROGMEM T392[] = {KC_W,KC_E,COMBO_END};
+const uint16_t PROGMEM T393[] = {KC_W,KC_E,KC_R,KC_T,KC_A,COMBO_END};
+const uint16_t PROGMEM T394[] = {KC_W,KC_T,KC_A,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T395[] = {KC_W,KC_T,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T396[] = {KC_W,KC_A,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T397[] = {KC_W,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T398[] = {KC_T,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T399[] = {KC_W,KC_R,KC_A,KC_M,COMBO_END};
+const uint16_t PROGMEM T400[] = {KC_E,KC_X,KC_C,COMBO_END};
+const uint16_t PROGMEM T401[] = {KC_W,KC_A,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T402[] = {KC_E,KC_R,KC_Y,KC_V,COMBO_END};
+const uint16_t PROGMEM T403[] = {KC_E,KC_U,KC_S,COMBO_END};
+const uint16_t PROGMEM T404[] = {KC_U,KC_S,COMBO_END};
+const uint16_t PROGMEM T405[] = {KC_U,KC_O,KC_P,KC_N,COMBO_END};
+const uint16_t PROGMEM T406[] = {KC_U,KC_P,COMBO_END};
+const uint16_t PROGMEM T407[] = {KC_E,KC_R,KC_U,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T408[] = {KC_R,KC_T,KC_Y,COMBO_END};
+const uint16_t PROGMEM T409[] = {KC_E,KC_R,KC_T,COMBO_END};
+const uint16_t PROGMEM T410[] = {KC_T,KC_Y,KC_O,COMBO_END};
+const uint16_t PROGMEM T411[] = {KC_T,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T412[] = {KC_T,KC_O,COMBO_END};
+const uint16_t PROGMEM T413[] = {KC_E,KC_T,KC_O,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T414[] = {KC_T,KC_Y,KC_D,COMBO_END};
+const uint16_t PROGMEM T415[] = {KC_E,KC_T,KC_I,KC_M,COMBO_END};
+const uint16_t PROGMEM T416[] = {KC_T,KC_I,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T417[] = {KC_T,KC_M,COMBO_END};
+const uint16_t PROGMEM T418[] = {KC_K,KC_M,COMBO_END};
+const uint16_t PROGMEM T419[] = {KC_G,KC_K,KC_M,COMBO_END};
+const uint16_t PROGMEM T420[] = {KC_T,KC_I,KC_H,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T421[] = {KC_T,KC_H,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T422[] = {KC_E,KC_T,KC_Y,KC_H,COMBO_END};
+const uint16_t PROGMEM T423[] = {KC_E,KC_T,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T424[] = {KC_E,KC_R,KC_T,KC_H,KC_S,COMBO_END};
+const uint16_t PROGMEM T425[] = {KC_T,KC_O,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T426[] = {KC_I,KC_D,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T427[] = {KC_E,KC_T,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T428[] = {KC_F,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T429[] = {KC_W,KC_S,KC_F,COMBO_END};
+const uint16_t PROGMEM T430[] = {KC_E,KC_A,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T431[] = {KC_T,KC_I,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T432[] = {KC_E,KC_T,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T433[] = {KC_E,KC_T,KC_A,KC_M,COMBO_END};
+const uint16_t PROGMEM T434[] = {KC_E,KC_R,KC_T,KC_Y,KC_H,COMBO_END};
+const uint16_t PROGMEM T435[] = {KC_R,KC_P,KC_G,KC_M,COMBO_END};
+const uint16_t PROGMEM T436[] = {KC_E,KC_R,KC_T,KC_I,KC_H,COMBO_END};
+const uint16_t PROGMEM T437[] = {KC_T,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T438[] = {KC_T,KC_A,KC_H,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T439[] = {KC_E,KC_T,KC_A,KC_K,COMBO_END};
+const uint16_t PROGMEM T440[] = {KC_E,KC_T,KC_A,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T441[] = {KC_U,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T442[] = {KC_I,KC_V,COMBO_END};
+const uint16_t PROGMEM T443[] = {KC_S,KC_T,COMBO_END};
+const uint16_t PROGMEM T444[] = {KC_T,KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T445[] = {KC_T,KC_I,KC_S,KC_K,KC_C,COMBO_END};
+const uint16_t PROGMEM T446[] = {KC_Q,KC_R,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T447[] = {KC_O,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T448[] = {KC_O,KC_S,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T449[] = {KC_E,KC_O,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T450[] = {KC_W,KC_O,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T451[] = {KC_A,KC_S,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T452[] = {KC_E,KC_P,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T453[] = {KC_S,KC_L,KC_P,COMBO_END};
+const uint16_t PROGMEM T454[] = {KC_E,KC_R,KC_T,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T455[] = {KC_I,KC_S,KC_G,KC_N,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T456[] = {KC_I,KC_S,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T457[] = {KC_W,KC_O,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T458[] = {KC_E,KC_O,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T459[] = {KC_E,KC_P,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T460[] = {KC_A,KC_S,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T461[] = {KC_E,KC_S,COMBO_END};
+const uint16_t PROGMEM T462[] = {KC_O,KC_S,KC_H,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T463[] = {KC_W,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T464[] = {KC_I,KC_A,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T465[] = {KC_R,KC_U,KC_N,COMBO_END};
+const uint16_t PROGMEM T466[] = {KC_E,KC_P,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T467[] = {KC_Y,KC_P,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T468[] = {KC_I,KC_P,KC_G,COMBO_END};
+const uint16_t PROGMEM T469[] = {KC_R,KC_T,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T470[] = {KC_I,KC_P,KC_K,KC_C,COMBO_END};
+const uint16_t PROGMEM T471[] = {KC_R,KC_T,KC_Y,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T472[] = {KC_E,KC_R,KC_P,KC_A,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T473[] = {KC_W,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T474[] = {KC_E,KC_R,KC_O,KC_V,COMBO_END};
+const uint16_t PROGMEM T475[] = {KC_T,KC_U,KC_O,COMBO_END};
+const uint16_t PROGMEM T476[] = {KC_R,KC_U,KC_O,COMBO_END};
+const uint16_t PROGMEM T477[] = {KC_O,KC_P,KC_N,COMBO_END};
+const uint16_t PROGMEM T478[] = {KC_Y,KC_O,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T479[] = {KC_E,KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T480[] = {KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T481[] = {KC_W,KC_O,KC_S,KC_H,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T482[] = {KC_W,KC_E,KC_R,KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T483[] = {KC_T,KC_I,KC_D,KC_QUOTE,KC_N,COMBO_END};
+const uint16_t PROGMEM T484[] = {KC_E,KC_T,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T485[] = {KC_T,KC_QUOTE,KC_N,COMBO_END};
+const uint16_t PROGMEM T486[] = {KC_W,KC_T,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T487[] = {KC_D,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T488[] = {KC_O,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T489[] = {KC_E,KC_T,KC_P,KC_K,COMBO_END};
+const uint16_t PROGMEM T490[] = {KC_E,KC_I,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T491[] = {KC_O,KC_F,COMBO_END};
+const uint16_t PROGMEM T492[] = {KC_E,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T493[] = {KC_T,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T494[] = {KC_T,KC_I,KC_G,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T495[] = {KC_E,KC_R,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T496[] = {KC_E,KC_T,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T497[] = {KC_E,KC_Y,KC_S,KC_F,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T498[] = {KC_S,KC_F,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T499[] = {KC_Y,KC_M,COMBO_END};
+const uint16_t PROGMEM T500[] = {KC_W,KC_E,KC_R,KC_H,COMBO_END};
+
+const uint16_t PROGMEM T501[] = {KC_T,KC_S,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T502[] = {KC_T,KC_U,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T503[] = {KC_U,KC_H,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T504[] = {KC_E,KC_R,KC_T,KC_O,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T505[] = {KC_R,KC_O,KC_G,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T506[] = {KC_E,KC_Y,KC_O,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T507[] = {KC_I,KC_K,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T508[] = {KC_E,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T509[] = {KC_Y,KC_A,KC_M,COMBO_END};
+const uint16_t PROGMEM T510[] = {KC_Y,KC_A,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T511[] = {KC_A,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T512[] = {KC_E,KC_A,KC_K,KC_M,COMBO_END};
+const uint16_t PROGMEM T513[] = {KC_E,KC_A,KC_D,KC_M,COMBO_END};
+const uint16_t PROGMEM T514[] = {KC_O,KC_K,KC_L,COMBO_END};
+const uint16_t PROGMEM T515[] = {KC_O,KC_K,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T516[] = {KC_O,KC_G,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T517[] = {KC_E,KC_I,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T518[] = {KC_I,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T519[] = {KC_E,KC_T,KC_I,KC_L,COMBO_END};
+const uint16_t PROGMEM T520[] = {KC_T,KC_I,KC_G,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T521[] = {KC_E,KC_R,KC_T,KC_L,COMBO_END};
+const uint16_t PROGMEM T522[] = {KC_E,KC_T,KC_L,COMBO_END};
+const uint16_t PROGMEM T523[] = {KC_E,KC_G,KC_L,COMBO_END};
+const uint16_t PROGMEM T524[] = {KC_U,KC_A,KC_G,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T525[] = {KC_U,KC_A,KC_G,KC_L,COMBO_END};
+const uint16_t PROGMEM T526[] = {KC_W,KC_O,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T527[] = {KC_T,KC_Y,KC_I,KC_K,COMBO_END};
+const uint16_t PROGMEM T528[] = {KC_I,KC_D,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T529[] = {KC_E,KC_P,KC_K,COMBO_END};
+const uint16_t PROGMEM T530[] = {KC_E,KC_P,KC_A,KC_K,COMBO_END};
+const uint16_t PROGMEM T531[] = {KC_U,KC_P,KC_J,KC_M,COMBO_END};
+const uint16_t PROGMEM T532[] = {KC_P,KC_J,KC_M,COMBO_END};
+const uint16_t PROGMEM T533[] = {KC_I,KC_N,COMBO_END};
+const uint16_t PROGMEM T534[] = {KC_I,KC_F,COMBO_END};
+const uint16_t PROGMEM T535[] = {KC_W,KC_O,KC_H,COMBO_END};
+const uint16_t PROGMEM T536[] = {KC_E,KC_U,KC_O,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T537[] = {KC_E,KC_R,KC_O,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T538[] = {KC_E,KC_O,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T539[] = {KC_O,KC_D,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T540[] = {KC_I,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T541[] = {KC_I,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T542[] = {KC_I,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T543[] = {KC_E,KC_P,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T544[] = {KC_E,KC_A,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T545[] = {KC_E,KC_A,KC_H,KC_V,COMBO_END};
+const uint16_t PROGMEM T546[] = {KC_A,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T547[] = {KC_A,KC_D,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T548[] = {KC_A,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T549[] = {KC_W,KC_R,KC_O,KC_G,COMBO_END};
+const uint16_t PROGMEM T550[] = {KC_R,KC_U,KC_O,KC_D,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T551[] = {KC_D,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T552[] = {KC_T,KC_I,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T553[] = {KC_E,KC_T,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T554[] = {KC_T,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T555[] = {KC_O,KC_C,COMBO_END};
+const uint16_t PROGMEM T556[] = {KC_O,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T557[] = {KC_R,KC_T,KC_O,KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T558[] = {KC_R,KC_T,KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T559[] = {KC_E,KC_N,COMBO_END};
+const uint16_t PROGMEM T560[] = {KC_E,KC_X,COMBO_END};
+const uint16_t PROGMEM T561[] = {KC_E,KC_R,KC_T,KC_A,KC_X,COMBO_END};
+const uint16_t PROGMEM T562[] = {KC_E,KC_R,KC_T,KC_O,COMBO_END};
+const uint16_t PROGMEM T563[] = {KC_O,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T564[] = {KC_E,KC_O,KC_H,KC_M,COMBO_END};
+const uint16_t PROGMEM T565[] = {KC_E,KC_R,KC_Y,KC_P,KC_H,COMBO_END};
+const uint16_t PROGMEM T566[] = {KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T567[] = {KC_E,KC_R,KC_T,KC_I,KC_N,COMBO_END};
+const uint16_t PROGMEM T568[] = {KC_R,KC_T,KC_I,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T569[] = {KC_R,KC_T,KC_I,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T570[] = {KC_R,KC_O,KC_A,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T571[] = {KC_R,KC_I,KC_O,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T572[] = {KC_O,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T573[] = {KC_I,KC_O,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T574[] = {KC_E,KC_R,KC_P,COMBO_END};
+const uint16_t PROGMEM T575[] = {KC_R,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T576[] = {KC_Y,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T577[] = {KC_Y,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T578[] = {KC_I,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T579[] = {KC_R,KC_T,KC_I,COMBO_END};
+const uint16_t PROGMEM T580[] = {KC_U,KC_N,COMBO_END};
+const uint16_t PROGMEM T581[] = {KC_U,KC_I,KC_N,COMBO_END};
+const uint16_t PROGMEM T582[] = {KC_Y,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T583[] = {KC_E,KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T584[] = {KC_E,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T585[] = {KC_O,KC_D,KC_M,COMBO_END};
+const uint16_t PROGMEM T586[] = {KC_E,KC_R,COMBO_END};
+const uint16_t PROGMEM T587[] = {KC_K,KC_C,COMBO_END};
+const uint16_t PROGMEM T588[] = {KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T589[] = {KC_A,KC_K,KC_C,COMBO_END};
+const uint16_t PROGMEM T590[] = {KC_I,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T591[] = {KC_L,KC_V,KC_B,COMBO_END};
+const uint16_t PROGMEM T592[] = {KC_E,KC_T,KC_U,KC_I,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T593[] = {KC_P,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T594[] = {KC_P,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T595[] = {KC_P,KC_G,COMBO_END};
+const uint16_t PROGMEM T596[] = {KC_T,KC_P,COMBO_END};
+const uint16_t PROGMEM T597[] = {KC_F,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T598[] = {KC_Y,KC_F,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T599[] = {KC_T,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T600[] = {KC_C,KC_M,KC_G,COMBO_END};
+const uint16_t PROGMEM T601[] = {KC_D,KC_G,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T602[] = {KC_R,KC_T,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T603[] = {KC_T,KC_A,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T604[] = {KC_E,KC_R,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T605[] = {KC_T,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T606[] = {KC_R,KC_T,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T607[] = {KC_D,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T608[] = {KC_T,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T609[] = {KC_T,KC_I,KC_B,COMBO_END};
+const uint16_t PROGMEM T610[] = {KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T611[] = {KC_R,KC_D,COMBO_END};
+const uint16_t PROGMEM T612[] = {KC_W,KC_I,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T613[] = {KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T614[] = {KC_P,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T615[] = {KC_E,KC_R,KC_T,KC_B,COMBO_END};
+const uint16_t PROGMEM T616[] = {KC_R,KC_T,KC_M,COMBO_END};
+const uint16_t PROGMEM T617[] = {KC_E,KC_T,KC_G,COMBO_END};
+const uint16_t PROGMEM T618[] = {KC_E,KC_I,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T619[] = {KC_T,KC_G,KC_M,COMBO_END};
+const uint16_t PROGMEM T620[] = {KC_E,KC_T,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T621[] = {KC_O,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T622[] = {KC_F,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T623[] = {KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T624[] = {KC_R,KC_T,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T625[] = {KC_T,KC_P,KC_D,COMBO_END};
+const uint16_t PROGMEM T626[] = {KC_A,KC_F,COMBO_END};
+const uint16_t PROGMEM T627[] = {KC_O,KC_D,COMBO_END};
+const uint16_t PROGMEM T628[] = {KC_T,KC_Y,KC_I,COMBO_END};
+const uint16_t PROGMEM T629[] = {KC_E,KC_T,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T630[] = {KC_I,KC_P,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T631[] = {KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T632[] = {KC_I,KC_O,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T633[] = {KC_T,KC_I,KC_G,COMBO_END};
+const uint16_t PROGMEM T634[] = {KC_E,KC_T,KC_A,COMBO_END};
+const uint16_t PROGMEM T635[] = {KC_O,KC_A,COMBO_END};
+const uint16_t PROGMEM T636[] = {KC_E,KC_N,COMBO_END};
+const uint16_t PROGMEM T637[] = {KC_Y,KC_I,KC_F,COMBO_END};
+const uint16_t PROGMEM T638[] = {KC_E,KC_I,KC_Z,COMBO_END};
+const uint16_t PROGMEM T639[] = {KC_S,KC_QUOTE,COMBO_END};
+const uint16_t PROGMEM T640[] = {KC_E,KC_B,COMBO_END};
+const uint16_t PROGMEM T641[] = {KC_T,KC_O,KC_L,COMBO_END};
+const uint16_t PROGMEM T642[] = {KC_A,KC_S,KC_K,COMBO_END};
+const uint16_t PROGMEM T643[] = {KC_L,COMBO_END};
+const uint16_t PROGMEM T644[] = {KC_W,KC_E,KC_I,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T645[] = {KC_W,KC_T,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T646[] = {KC_T,KC_U,KC_S,KC_F,COMBO_END};
+const uint16_t PROGMEM T647[] = {KC_T,KC_A,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T648[] = {KC_T,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T649[] = {KC_A,KC_D,KC_F,COMBO_END};
+const uint16_t PROGMEM T650[] = {KC_E,KC_O,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T651[] = {KC_T,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T652[] = {KC_P,KC_L,KC_C,KC_B,COMBO_END};
+const uint16_t PROGMEM T653[] = {KC_E,KC_R,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T654[] = {KC_E,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T655[] = {KC_E,KC_A,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T656[] = {KC_E,KC_I,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T657[] = {KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T658[] = {KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T659[] = {KC_E,KC_A,KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T660[] = {KC_Q,KC_E,KC_U,KC_S,COMBO_END};
+const uint16_t PROGMEM T661[] = {KC_U,KC_I,KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T662[] = {KC_U,KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T663[] = {KC_I,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T664[] = {KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T665[] = {KC_E,KC_S,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T666[] = {KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T667[] = {KC_U,KC_O,COMBO_END};
+const uint16_t PROGMEM T668[] = {KC_E,KC_A,COMBO_END};
+const uint16_t PROGMEM T669[] = {KC_I,KC_S,KC_D,COMBO_END};
+const uint16_t PROGMEM T670[] = {KC_E,KC_T,KC_N,COMBO_END};
+const uint16_t PROGMEM T671[] = {KC_I,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T672[] = {KC_W,KC_Y,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T673[] = {KC_E,KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T674[] = {KC_E,KC_R,KC_S,COMBO_END};
+const uint16_t PROGMEM T675[] = {KC_T,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T676[] = {KC_R,KC_H,COMBO_END};
+const uint16_t PROGMEM T677[] = {KC_W,KC_R,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T678[] = {KC_W,KC_G,KC_K,COMBO_END};
+const uint16_t PROGMEM T679[] = {KC_T,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T680[] = {KC_T,KC_K,COMBO_END};
+const uint16_t PROGMEM T681[] = {KC_T,KC_G,KC_K,COMBO_END};
+const uint16_t PROGMEM T682[] = {KC_E,KC_T,KC_O,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T683[] = {KC_C,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T684[] = {KC_T,KC_I,COMBO_END};
+const uint16_t PROGMEM T685[] = {KC_T,KC_A,COMBO_END};
+const uint16_t PROGMEM T686[] = {KC_O,KC_G,COMBO_END};
+const uint16_t PROGMEM T687[] = {KC_Q,KC_T,KC_U,KC_I,COMBO_END};
+const uint16_t PROGMEM T688[] = {KC_Q,KC_T,KC_I,COMBO_END};
+const uint16_t PROGMEM T689[] = {KC_Q,KC_E,KC_T,KC_U,KC_I,COMBO_END};
+const uint16_t PROGMEM T690[] = {KC_Y,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T691[] = {KC_T,KC_I,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T692[] = {KC_E,KC_R,KC_O,KC_P,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T693[] = {KC_W,KC_T,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T694[] = {KC_R,KC_Y,KC_S,COMBO_END};
+const uint16_t PROGMEM T695[] = {KC_R,KC_Y,KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T696[] = {KC_E,KC_R,KC_T,KC_H,COMBO_END};
+const uint16_t PROGMEM T697[] = {KC_R,KC_O,COMBO_END};
+const uint16_t PROGMEM T698[] = {KC_E,KC_M,COMBO_END};
+const uint16_t PROGMEM T699[] = {KC_W,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T700[] = {KC_W,KC_E,KC_L,COMBO_END};
+const uint16_t PROGMEM T701[] = {KC_W,KC_T,KC_O,KC_N,COMBO_END};
+const uint16_t PROGMEM T702[] = {KC_R,KC_P,KC_S,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T703[] = {KC_T,KC_I,KC_O,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T704[] = {KC_D,KC_R,KC_G,COMBO_END};
+const uint16_t PROGMEM T705[] = {KC_B,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T706[] = {KC_B,KC_S,KC_C,KC_L,COMBO_END};
+const uint16_t PROGMEM T707[] = {KC_U,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T708[] = {KC_U,KC_I,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T709[] = {KC_W,KC_P,KC_N,COMBO_END};
+const uint16_t PROGMEM T710[] = {KC_W,KC_R,KC_T,KC_G,COMBO_END};
+const uint16_t PROGMEM T711[] = {KC_G,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T712[] = {KC_T,KC_I,KC_Z,COMBO_END};
+const uint16_t PROGMEM T713[] = {KC_T,KC_U,KC_A,COMBO_END};
+const uint16_t PROGMEM T714[] = {KC_W,KC_T,KC_H,COMBO_END};
+const uint16_t PROGMEM T715[] = {KC_U,KC_A,COMBO_END};
+const uint16_t PROGMEM T716[] = {KC_I,KC_A,COMBO_END};
+const uint16_t PROGMEM T717[] = {KC_E,KC_I,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T718[] = {KC_E,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T719[] = {KC_Y,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T720[] = {KC_W,KC_Y,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T721[] = {KC_E,KC_T,KC_X,KC_N,COMBO_END};
+const uint16_t PROGMEM T722[] = {KC_E,KC_I,KC_C,COMBO_END};
+const uint16_t PROGMEM T723[] = {KC_E,KC_T,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T724[] = {KC_R,KC_T,KC_I,KC_O,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T725[] = {KC_E,KC_Y,KC_S,KC_F,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T726[] = {KC_E,KC_T,KC_M,COMBO_END};
+const uint16_t PROGMEM T727[] = {KC_T,KC_U,KC_A,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T728[] = {KC_E,KC_O,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T729[] = {KC_E,KC_A,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T730[] = {KC_E,KC_A,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T731[] = {KC_E,KC_U,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T732[] = {KC_I,KC_S,KC_F,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T733[] = {KC_W,KC_E,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T734[] = {KC_Y,KC_I,KC_A,KC_F,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T735[] = {KC_E,KC_R,KC_A,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T736[] = {KC_E,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T737[] = {KC_E,KC_T,KC_M,COMBO_END};
+const uint16_t PROGMEM T738[] = {KC_A,KC_S,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T739[] = {KC_E,KC_T,KC_U,KC_S,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T740[] = {KC_T,KC_U,KC_O,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T741[] = {KC_E,KC_T,KC_A,KC_H,KC_L,COMBO_END};
+const uint16_t PROGMEM T742[] = {KC_I,KC_D,KC_H,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T743[] = {KC_R,KC_I,KC_D,KC_H,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T744[] = {KC_W,KC_E,KC_I,KC_V,COMBO_END};
+const uint16_t PROGMEM T745[] = {KC_R,KC_T,KC_U,KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T746[] = {KC_I,KC_S,KC_D,KC_K,COMBO_END};
+const uint16_t PROGMEM T747[] = {KC_E,KC_R,KC_O,KC_P,KC_A,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T748[] = {KC_I,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T749[] = {KC_Y,KC_L,COMBO_END};
+const uint16_t PROGMEM T750[] = {KC_E,KC_A,KC_G,COMBO_END};
+const uint16_t PROGMEM T751[] = {KC_E,KC_T,KC_U,KC_A,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T752[] = {KC_E,KC_O,KC_P,KC_N,COMBO_END};
+const uint16_t PROGMEM T753[] = {KC_U,KC_S,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T754[] = {KC_T,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T755[] = {KC_E,KC_I,KC_D,COMBO_END};
+const uint16_t PROGMEM T756[] = {KC_R,KC_P,KC_D,KC_V,COMBO_END};
+const uint16_t PROGMEM T757[] = {KC_R,KC_I,KC_G,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T758[] = {KC_R,KC_B,COMBO_END};
+const uint16_t PROGMEM T759[] = {KC_E,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T760[] = {KC_R,KC_A,KC_D,KC_H,COMBO_END};
+const uint16_t PROGMEM T761[] = {KC_E,KC_T,KC_A,KC_D,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T762[] = {KC_E,KC_K,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T763[] = {KC_E,KC_I,KC_S,KC_G,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T764[] = {KC_E,KC_T,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T765[] = {KC_U,KC_O,KC_S,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T766[] = {KC_R,KC_T,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T767[] = {KC_R,KC_O,KC_P,KC_D,COMBO_END};
+const uint16_t PROGMEM T768[] = {KC_E,KC_P,KC_A,KC_G,COMBO_END};
+const uint16_t PROGMEM T769[] = {KC_E,KC_R,KC_A,KC_S,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T770[] = {KC_R,KC_T,KC_I,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T771[] = {KC_R,KC_U,KC_I,KC_O,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T772[] = {KC_T,KC_Y,KC_I,KC_A,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T773[] = {KC_T,KC_Y,KC_I,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T774[] = {KC_E,KC_T,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T775[] = {KC_E,KC_T,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T776[] = {KC_O,KC_P,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T777[] = {KC_R,KC_T,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T778[] = {KC_W,KC_E,KC_R,KC_T,KC_H,COMBO_END};
+const uint16_t PROGMEM T779[] = {KC_E,KC_T,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T780[] = {KC_R,KC_O,KC_P,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T781[] = {KC_R,KC_U,KC_P,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T782[] = {KC_U,KC_O,KC_S,KC_F,KC_C,COMBO_END};
+const uint16_t PROGMEM T783[] = {KC_W,KC_O,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T784[] = {KC_R,KC_O,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T785[] = {KC_E,KC_T,KC_O,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T786[] = {KC_R,KC_G,KC_B,COMBO_END};
+const uint16_t PROGMEM T787[] = {KC_T,KC_O,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T788[] = {KC_E,KC_I,KC_G,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T789[] = {KC_E,KC_I,KC_G,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T790[] = {KC_I,KC_K,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T791[] = {KC_U,KC_O,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T792[] = {KC_E,KC_T,KC_I,KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T793[] = {KC_R,KC_A,KC_D,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T794[] = {KC_R,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T795[] = {KC_Y,KC_B,COMBO_END};
+const uint16_t PROGMEM T796[] = {KC_T,KC_A,KC_F,KC_C,COMBO_END};
+const uint16_t PROGMEM T797[] = {KC_R,KC_O,KC_S,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T798[] = {KC_R,KC_T,KC_O,KC_B,COMBO_END};
+const uint16_t PROGMEM T799[] = {KC_W,KC_R,KC_O,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T800[] = {KC_S,KC_G,KC_M,COMBO_END};
+const uint16_t PROGMEM T801[] = {KC_W,KC_T,KC_I,KC_S,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T802[] = {KC_W,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T803[] = {KC_E,KC_R,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T804[] = {KC_E,KC_T,KC_P,KC_X,KC_C,COMBO_END};
+const uint16_t PROGMEM T805[] = {KC_T,KC_O,KC_H,KC_B,COMBO_END};
+const uint16_t PROGMEM T806[] = {KC_E,KC_P,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T807[] = {KC_E,KC_T,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T808[] = {KC_R,KC_I,KC_A,KC_F,COMBO_END};
+const uint16_t PROGMEM T809[] = {KC_W,KC_E,KC_A,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T810[] = {KC_E,KC_T,KC_O,KC_P,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T811[] = {KC_E,KC_I,KC_A,KC_G,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T812[] = {KC_E,KC_R,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T813[] = {KC_E,KC_O,KC_P,KC_H,COMBO_END};
+const uint16_t PROGMEM T814[] = {KC_U,KC_D,COMBO_END};
+const uint16_t PROGMEM T815[] = {KC_W,KC_R,KC_O,KC_D,COMBO_END};
+const uint16_t PROGMEM T816[] = {KC_U,KC_S,KC_B,COMBO_END};
+const uint16_t PROGMEM T817[] = {KC_S,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T818[] = {KC_E,KC_A,KC_G,KC_H,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T819[] = {KC_E,KC_U,KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T820[] = {KC_W,KC_E,KC_T,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T821[] = {KC_E,KC_I,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T822[] = {KC_R,KC_O,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T823[] = {KC_R,KC_O,KC_G,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T824[] = {KC_E,KC_T,KC_U,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T825[] = {KC_E,KC_R,KC_A,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T826[] = {KC_Y,KC_O,KC_A,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T827[] = {KC_E,KC_P,KC_A,KC_S,KC_K,COMBO_END};
+const uint16_t PROGMEM T828[] = {KC_E,KC_A,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T829[] = {KC_T,KC_I,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T830[] = {KC_E,KC_R,KC_U,KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T831[] = {KC_E,KC_O,KC_P,KC_D,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T832[] = {KC_R,KC_T,KC_U,KC_A,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T833[] = {KC_E,KC_T,KC_O,KC_S,KC_H,KC_N,COMBO_END};
+const uint16_t PROGMEM T834[] = {KC_E,KC_R,KC_A,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T835[] = {KC_R,KC_U,KC_I,KC_O,KC_A,KC_S,KC_V,COMBO_END};
+const uint16_t PROGMEM T836[] = {KC_T,KC_Y,KC_I,KC_A,KC_C,KC_V,COMBO_END};
+const uint16_t PROGMEM T837[] = {KC_O,KC_F,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T838[] = {KC_E,KC_R,KC_I,KC_O,KC_S,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T839[] = {KC_E,KC_R,KC_I,KC_S,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T840[] = {KC_E,KC_U,KC_O,KC_S,KC_F,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T841[] = {KC_I,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T842[] = {KC_E,KC_A,KC_S,KC_V,COMBO_END};
+const uint16_t PROGMEM T843[] = {KC_E,KC_R,KC_T,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T844[] = {KC_E,KC_T,KC_X,COMBO_END};
+const uint16_t PROGMEM T845[] = {KC_T,KC_U,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T846[] = {KC_S,KC_V,COMBO_END};
+const uint16_t PROGMEM T847[] = {KC_T,KC_U,KC_O,KC_B,KC_N,COMBO_END};
+const uint16_t PROGMEM T848[] = {KC_S,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T849[] = {KC_R,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T850[] = {KC_R,KC_U,KC_O,KC_P,KC_G,COMBO_END};
+const uint16_t PROGMEM T851[] = {KC_E,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T852[] = {KC_Y,KC_U,KC_B,COMBO_END};
+const uint16_t PROGMEM T853[] = {KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T854[] = {KC_O,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T855[] = {KC_E,KC_T,KC_Y,KC_P,COMBO_END};
+const uint16_t PROGMEM T856[] = {KC_E,KC_I,KC_D,KC_F,KC_N,COMBO_END};
+const uint16_t PROGMEM T857[] = {KC_E,KC_P,KC_S,KC_D,KC_N,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T858[] = {KC_R,KC_U,KC_O,KC_H,COMBO_END};
+const uint16_t PROGMEM T859[] = {KC_E,KC_R,KC_A,KC_G,COMBO_END};
+const uint16_t PROGMEM T860[] = {KC_E,KC_R,KC_T,KC_U,KC_I,KC_P,KC_C,COMBO_END};
+const uint16_t PROGMEM T861[] = {KC_U,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T862[] = {KC_Y,KC_U,KC_A,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T863[] = {KC_W,KC_T,KC_D,COMBO_END};
+const uint16_t PROGMEM T864[] = {KC_T,KC_P,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T865[] = {KC_E,KC_R,KC_T,KC_I,KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T866[] = {KC_E,KC_R,KC_T,KC_M,COMBO_END};
+const uint16_t PROGMEM T867[] = {KC_A,KC_L,KC_V,KC_B,COMBO_END};
+const uint16_t PROGMEM T868[] = {KC_E,KC_T,KC_A,KC_H,COMBO_END};
+const uint16_t PROGMEM T869[] = {KC_P,KC_L,KC_X,KC_N,COMBO_END};
+const uint16_t PROGMEM T870[] = {KC_E,KC_A,KC_G,KC_V,COMBO_END};
+const uint16_t PROGMEM T871[] = {KC_E,KC_R,KC_I,KC_D,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T872[] = {KC_E,KC_R,KC_I,KC_O,KC_P,KC_V,KC_M,COMBO_END};
+const uint16_t PROGMEM T873[] = {KC_E,KC_T,KC_H,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T874[] = {KC_E,KC_T,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T875[] = {KC_E,KC_R,KC_T,KC_O,KC_S,COMBO_END};
+const uint16_t PROGMEM T876[] = {KC_T,KC_U,KC_O,KC_A,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T877[] = {KC_E,KC_R,KC_I,KC_O,KC_P,KC_A,COMBO_END};
+const uint16_t PROGMEM T878[] = {KC_T,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T879[] = {KC_E,KC_R,KC_T,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T880[] = {KC_E,KC_U,KC_A,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T881[] = {KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T882[] = {KC_E,KC_R,KC_T,KC_I,KC_A,KC_L,KC_C,KC_V,COMBO_END};
+const uint16_t PROGMEM T883[] = {KC_E,KC_R,KC_I,KC_D,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T884[] = {KC_U,KC_I,KC_O,KC_F,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T885[] = {KC_E,KC_T,KC_Y,KC_S,KC_M,COMBO_END};
+const uint16_t PROGMEM T886[] = {KC_E,KC_A,KC_S,KC_B,COMBO_END};
+const uint16_t PROGMEM T887[] = {KC_E,KC_T,KC_I,KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T888[] = {KC_E,KC_I,KC_O,KC_L,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T889[] = {KC_Q,KC_E,KC_U,KC_I,KC_P,COMBO_END};
+const uint16_t PROGMEM T890[] = {KC_I,KC_O,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T891[] = {KC_E,KC_T,KC_O,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T892[] = {KC_R,KC_Y,KC_A,COMBO_END};
+const uint16_t PROGMEM T893[] = {KC_E,KC_R,KC_T,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T894[] = {KC_Y,KC_I,KC_L,COMBO_END};
+const uint16_t PROGMEM T895[] = {KC_E,KC_R,KC_A,KC_L,COMBO_END};
+const uint16_t PROGMEM T896[] = {KC_I,KC_O,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T897[] = {KC_E,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T898[] = {KC_S,KC_D,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T899[] = {KC_E,KC_A,KC_G,KC_H,KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T900[] = {KC_E,KC_R,KC_P,KC_A,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T901[] = {KC_T,KC_P,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T902[] = {KC_E,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T903[] = {KC_E,KC_R,KC_Y,KC_U,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T904[] = {KC_E,KC_R,KC_I,KC_D,KC_L,KC_V,COMBO_END};
+const uint16_t PROGMEM T905[] = {KC_E,KC_T,KC_I,KC_P,KC_A,KC_N,COMBO_END};
+const uint16_t PROGMEM T906[] = {KC_T,KC_O,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T907[] = {KC_T,KC_U,KC_O,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T908[] = {KC_E,KC_R,KC_I,KC_F,KC_B,COMBO_END};
+const uint16_t PROGMEM T909[] = {KC_R,KC_A,KC_F,KC_K,KC_N,COMBO_END};
+const uint16_t PROGMEM T910[] = {KC_R,KC_Y,KC_A,KC_F,KC_K,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T911[] = {KC_T,KC_A,KC_S,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T912[] = {KC_E,KC_R,KC_T,KC_I,KC_A,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T913[] = {KC_R,KC_T,KC_I,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T914[] = {KC_R,KC_T,KC_C,COMBO_END};
+const uint16_t PROGMEM T915[] = {KC_E,KC_R,KC_O,KC_L,COMBO_END};
+const uint16_t PROGMEM T916[] = {KC_I,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T917[] = {KC_E,KC_I,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T918[] = {KC_E,KC_T,KC_Y,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T919[] = {KC_E,KC_T,KC_I,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T920[] = {KC_E,KC_P,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T921[] = {KC_O,KC_A,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T922[] = {KC_E,KC_T,KC_I,KC_A,KC_C,KC_V,COMBO_END};
+const uint16_t PROGMEM T923[] = {KC_E,KC_S,KC_K,COMBO_END};
+const uint16_t PROGMEM T924[] = {KC_U,KC_I,KC_O,KC_S,KC_L,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T925[] = {KC_W,KC_R,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T926[] = {KC_E,KC_O,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T927[] = {KC_T,KC_U,KC_I,KC_O,KC_A,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T928[] = {KC_R,KC_T,KC_L,KC_C,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T929[] = {KC_R,KC_T,KC_I,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T930[] = {KC_I,KC_O,KC_J,KC_N,COMBO_END};
+const uint16_t PROGMEM T931[] = {KC_T,KC_I,KC_S,KC_G,KC_H,COMBO_END};
+const uint16_t PROGMEM T932[] = {KC_E,KC_R,KC_A,KC_G,KC_L,COMBO_END};
+const uint16_t PROGMEM T933[] = {KC_T,KC_I,KC_S,KC_D,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T934[] = {KC_E,KC_R,KC_O,KC_C,KC_V,COMBO_END};
+const uint16_t PROGMEM T935[] = {KC_E,KC_T,KC_P,KC_D,KC_N,COMBO_END};
+const uint16_t PROGMEM T936[] = {KC_E,KC_R,KC_T,KC_U,KC_S,KC_L,COMBO_END};
+const uint16_t PROGMEM T937[] = {KC_E,KC_R,KC_O,KC_P,KC_S,KC_G,COMBO_END};
+const uint16_t PROGMEM T938[] = {KC_E,KC_R,KC_I,KC_O,KC_P,KC_D,KC_V,COMBO_END};
+const uint16_t PROGMEM T939[] = {KC_E,KC_R,KC_O,KC_D,KC_C,COMBO_END};
+const uint16_t PROGMEM T940[] = {KC_E,KC_R,KC_T,KC_U,KC_F,COMBO_END};
+const uint16_t PROGMEM T941[] = {KC_E,KC_T,KC_I,KC_S,KC_X,COMBO_END};
+const uint16_t PROGMEM T942[] = {KC_E,KC_T,KC_Y,KC_O,KC_S,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T943[] = {KC_E,KC_R,KC_U,KC_P,KC_S,COMBO_END};
+const uint16_t PROGMEM T944[] = {KC_T,KC_U,KC_O,KC_S,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T945[] = {KC_W,KC_E,KC_I,KC_D,COMBO_END};
+const uint16_t PROGMEM T946[] = {KC_E,KC_R,KC_A,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T947[] = {KC_R,KC_O,KC_A,KC_D,KC_B,COMBO_END};
+const uint16_t PROGMEM T948[] = {KC_E,KC_R,KC_I,KC_O,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T949[] = {KC_E,KC_R,KC_I,KC_O,KC_V,KC_N,COMBO_END};
+const uint16_t PROGMEM T950[] = {KC_G,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T951[] = {KC_E,KC_A,KC_G,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T952[] = {KC_W,KC_E,KC_I,KC_D,COMBO_END};
+const uint16_t PROGMEM T953[] = {KC_R,KC_I,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T954[] = {KC_I,KC_O,KC_A,KC_C,COMBO_END};
+const uint16_t PROGMEM T955[] = {KC_E,KC_T,KC_O,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T956[] = {KC_E,KC_R,KC_O,KC_P,KC_L,KC_B,KC_M,COMBO_END};
+const uint16_t PROGMEM T957[] = {KC_R,KC_P,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T958[] = {KC_E,KC_U,KC_I,KC_S,COMBO_END};
+const uint16_t PROGMEM T959[] = {KC_R,KC_U,KC_O,KC_C,COMBO_END};
+const uint16_t PROGMEM T960[] = {KC_E,KC_R,KC_T,KC_I,KC_O,KC_A,KC_D,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T961[] = {KC_R,KC_T,KC_I,KC_O,KC_D,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T962[] = {KC_E,KC_I,KC_D,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T963[] = {KC_E,KC_T,KC_A,KC_S,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T964[] = {KC_E,KC_A,KC_F,KC_C,COMBO_END};
+const uint16_t PROGMEM T965[] = {KC_E,KC_R,KC_T,KC_P,KC_S,KC_N,KC_DOT,COMBO_END};
+const uint16_t PROGMEM T966[] = {KC_E,KC_R,KC_T,KC_P,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T967[] = {KC_E,KC_T,KC_I,KC_A,KC_V,COMBO_END};
+const uint16_t PROGMEM T968[] = {KC_E,KC_T,KC_U,KC_I,KC_P,KC_A,KC_D,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T969[] = {KC_T,KC_U,KC_I,KC_P,KC_D,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T970[] = {KC_E,KC_R,KC_T,KC_Y,KC_N,COMBO_END};
+const uint16_t PROGMEM T971[] = {KC_R,KC_O,KC_P,KC_D,COMBO_END};
+const uint16_t PROGMEM T972[] = {KC_T,KC_A,KC_H,KC_C,COMBO_END};
+const uint16_t PROGMEM T973[] = {KC_Y,KC_I,KC_A,KC_S,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T974[] = {KC_P,KC_S,KC_L,KC_B,COMBO_END};
+const uint16_t PROGMEM T975[] = {KC_E,KC_T,KC_S,KC_L,KC_C,COMBO_END};
+const uint16_t PROGMEM T976[] = {KC_E,KC_O,KC_C,COMBO_END};
+const uint16_t PROGMEM T977[] = {KC_Q,KC_E,KC_R,KC_U,KC_I,COMBO_END};
+const uint16_t PROGMEM T978[] = {KC_U,KC_P,KC_S,KC_H,COMBO_END};
+const uint16_t PROGMEM T979[] = {KC_O,KC_G,KC_N,COMBO_END};
+const uint16_t PROGMEM T980[] = {KC_E,KC_R,KC_T,KC_S,COMBO_END};
+const uint16_t PROGMEM T981[] = {KC_E,KC_R,KC_T,KC_N,COMBO_END};
+const uint16_t PROGMEM T982[] = {KC_E,KC_I,KC_D,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T983[] = {KC_T,KC_P,KC_A,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T984[] = {KC_R,KC_O,KC_M,COMBO_END};
+const uint16_t PROGMEM T985[] = {KC_I,KC_P,KC_A,KC_D,COMBO_END};
+const uint16_t PROGMEM T986[] = {KC_E,KC_A,KC_L,KC_N,COMBO_END};
+const uint16_t PROGMEM T987[] = {KC_E,KC_R,KC_T,KC_U,KC_A,KC_F,KC_C,KC_N,KC_M,COMBO_END};
+const uint16_t PROGMEM T988[] = {KC_Q,KC_E,KC_U,KC_O,KC_S,KC_C,KC_N,COMBO_END};
+const uint16_t PROGMEM T989[] = {KC_T,KC_Y,KC_I,KC_L,COMBO_END};
+const uint16_t PROGMEM T990[] = {KC_E,KC_Y,KC_A,KC_S,COMBO_END};
+const uint16_t PROGMEM T991[] = {KC_I,KC_A,KC_L,KC_C,KC_M,COMBO_END};
+const uint16_t PROGMEM T992[] = {KC_U,KC_I,KC_S,KC_N,COMBO_END};
+const uint16_t PROGMEM T993[] = {KC_E,KC_R,KC_A,KC_D,KC_F,KC_L,COMBO_END};
+const uint16_t PROGMEM T994[] = {KC_E,KC_Y,KC_K,COMBO_END};
+const uint16_t PROGMEM T995[] = {KC_E,KC_R,KC_U,KC_O,KC_S,KC_C,COMBO_END};
+const uint16_t PROGMEM T996[] = {KC_U,KC_O,KC_P,COMBO_END};
+const uint16_t PROGMEM T997[] = {KC_U,KC_I,KC_P,KC_D,KC_L,COMBO_END};
+const uint16_t PROGMEM T998[] = {KC_T,KC_P,KC_L,KC_M,COMBO_END};
+const uint16_t PROGMEM T999[] = {KC_E,KC_I,KC_P,COMBO_END};
+const uint16_t PROGMEM T1000[] = {KC_Y,KC_P,KC_A,COMBO_END};
+combo_t key_combos[] = {
+  [TH_1] = COMBO_ACTION(T1),
+[TH_2] = COMBO_ACTION(T2),
+[TH_3] = COMBO_ACTION(T3),
+[TH_4] = COMBO_ACTION(T4),
+[TH_5] = COMBO_ACTION(T5),
+[TH_6] = COMBO_ACTION(T6),
+[TH_7] = COMBO_ACTION(T7),
+[TH_8] = COMBO_ACTION(T8),
+[TH_9] = COMBO_ACTION(T9),
+[TH_10] = COMBO_ACTION(T10),
+[TH_11] = COMBO_ACTION(T11),
+[TH_12] = COMBO_ACTION(T12),
+[TH_13] = COMBO_ACTION(T13),
+[TH_14] = COMBO_ACTION(T14),
+[TH_15] = COMBO_ACTION(T15),
+[TH_16] = COMBO_ACTION(T16),
+[TH_17] = COMBO_ACTION(T17),
+[TH_18] = COMBO_ACTION(T18),
+[TH_19] = COMBO_ACTION(T19),
+[TH_20] = COMBO_ACTION(T20),
+[TH_21] = COMBO_ACTION(T21),
+[TH_22] = COMBO_ACTION(T22),
+[TH_23] = COMBO_ACTION(T23),
+[TH_24] = COMBO_ACTION(T24),
+[TH_25] = COMBO_ACTION(T25),
+[TH_26] = COMBO_ACTION(T26),
+[TH_27] = COMBO_ACTION(T27),
+[TH_28] = COMBO_ACTION(T28),
+[TH_29] = COMBO_ACTION(T29),
+[TH_30] = COMBO_ACTION(T30),
+[TH_31] = COMBO_ACTION(T31),
+[TH_32] = COMBO_ACTION(T32),
+[TH_33] = COMBO_ACTION(T33),
+[TH_34] = COMBO_ACTION(T34),
+[TH_35] = COMBO_ACTION(T35),
+[TH_36] = COMBO_ACTION(T36),
+[TH_37] = COMBO_ACTION(T37),
+[TH_38] = COMBO_ACTION(T38),
+[TH_39] = COMBO_ACTION(T39),
+[TH_40] = COMBO_ACTION(T40),
+[TH_41] = COMBO_ACTION(T41),
+[TH_42] = COMBO_ACTION(T42),
+[TH_43] = COMBO_ACTION(T43),
+[TH_44] = COMBO_ACTION(T44),
+[TH_45] = COMBO_ACTION(T45),
+[TH_46] = COMBO_ACTION(T46),
+[TH_47] = COMBO_ACTION(T47),
+[TH_48] = COMBO_ACTION(T48),
+[TH_49] = COMBO_ACTION(T49),
+[TH_50] = COMBO_ACTION(T50),
+[TH_51] = COMBO_ACTION(T51),
+[TH_52] = COMBO_ACTION(T52),
+[TH_53] = COMBO_ACTION(T53),
+[TH_54] = COMBO_ACTION(T54),
+[TH_55] = COMBO_ACTION(T55),
+[TH_56] = COMBO_ACTION(T56),
+[TH_57] = COMBO_ACTION(T57),
+[TH_58] = COMBO_ACTION(T58),
+[TH_59] = COMBO_ACTION(T59),
+[TH_60] = COMBO_ACTION(T60),
+[TH_61] = COMBO_ACTION(T61),
+[TH_62] = COMBO_ACTION(T62),
+[TH_63] = COMBO_ACTION(T63),
+[TH_64] = COMBO_ACTION(T64),
+[TH_65] = COMBO_ACTION(T65),
+[TH_66] = COMBO_ACTION(T66),
+[TH_67] = COMBO_ACTION(T67),
+[TH_68] = COMBO_ACTION(T68),
+[TH_69] = COMBO_ACTION(T69),
+[TH_70] = COMBO_ACTION(T70),
+[TH_71] = COMBO_ACTION(T71),
+[TH_72] = COMBO_ACTION(T72),
+[TH_73] = COMBO_ACTION(T73),
+[TH_74] = COMBO_ACTION(T74),
+[TH_75] = COMBO_ACTION(T75),
+[TH_76] = COMBO_ACTION(T76),
+[TH_77] = COMBO_ACTION(T77),
+[TH_78] = COMBO_ACTION(T78),
+[TH_79] = COMBO_ACTION(T79),
+[TH_80] = COMBO_ACTION(T80),
+[TH_81] = COMBO_ACTION(T81),
+[TH_82] = COMBO_ACTION(T82),
+[TH_83] = COMBO_ACTION(T83),
+[TH_84] = COMBO_ACTION(T84),
+[TH_85] = COMBO_ACTION(T85),
+[TH_86] = COMBO_ACTION(T86),
+[TH_87] = COMBO_ACTION(T87),
+[TH_88] = COMBO_ACTION(T88),
+[TH_89] = COMBO_ACTION(T89),
+[TH_90] = COMBO_ACTION(T90),
+[TH_91] = COMBO_ACTION(T91),
+[TH_92] = COMBO_ACTION(T92),
+[TH_93] = COMBO_ACTION(T93),
+[TH_94] = COMBO_ACTION(T94),
+[TH_95] = COMBO_ACTION(T95),
+[TH_96] = COMBO_ACTION(T96),
+[TH_97] = COMBO_ACTION(T97),
+[TH_98] = COMBO_ACTION(T98),
+[TH_99] = COMBO_ACTION(T99),
+[TH_100] = COMBO_ACTION(T100),
+[TH_101] = COMBO_ACTION(T101),
+[TH_102] = COMBO_ACTION(T102),
+[TH_103] = COMBO_ACTION(T103),
+[TH_104] = COMBO_ACTION(T104),
+[TH_105] = COMBO_ACTION(T105),
+[TH_106] = COMBO_ACTION(T106),
+[TH_107] = COMBO_ACTION(T107),
+[TH_108] = COMBO_ACTION(T108),
+[TH_109] = COMBO_ACTION(T109),
+[TH_110] = COMBO_ACTION(T110),
+[TH_111] = COMBO_ACTION(T111),
+[TH_112] = COMBO_ACTION(T112),
+[TH_113] = COMBO_ACTION(T113),
+[TH_114] = COMBO_ACTION(T114),
+[TH_115] = COMBO_ACTION(T115),
+[TH_116] = COMBO_ACTION(T116),
+[TH_117] = COMBO_ACTION(T117),
+[TH_118] = COMBO_ACTION(T118),
+[TH_119] = COMBO_ACTION(T119),
+[TH_120] = COMBO_ACTION(T120),
+[TH_121] = COMBO_ACTION(T121),
+[TH_122] = COMBO_ACTION(T122),
+[TH_123] = COMBO_ACTION(T123),
+[TH_124] = COMBO_ACTION(T124),
+[TH_125] = COMBO_ACTION(T125),
+[TH_126] = COMBO_ACTION(T126),
+[TH_127] = COMBO_ACTION(T127),
+[TH_128] = COMBO_ACTION(T128),
+[TH_129] = COMBO_ACTION(T129),
+[TH_130] = COMBO_ACTION(T130),
+[TH_131] = COMBO_ACTION(T131),
+[TH_132] = COMBO_ACTION(T132),
+[TH_133] = COMBO_ACTION(T133),
+[TH_134] = COMBO_ACTION(T134),
+[TH_135] = COMBO_ACTION(T135),
+[TH_136] = COMBO_ACTION(T136),
+[TH_137] = COMBO_ACTION(T137),
+[TH_138] = COMBO_ACTION(T138),
+[TH_139] = COMBO_ACTION(T139),
+[TH_140] = COMBO_ACTION(T140),
+[TH_141] = COMBO_ACTION(T141),
+[TH_142] = COMBO_ACTION(T142),
+[TH_143] = COMBO_ACTION(T143),
+[TH_144] = COMBO_ACTION(T144),
+[TH_145] = COMBO_ACTION(T145),
+[TH_146] = COMBO_ACTION(T146),
+[TH_147] = COMBO_ACTION(T147),
+[TH_148] = COMBO_ACTION(T148),
+[TH_149] = COMBO_ACTION(T149),
+[TH_150] = COMBO_ACTION(T150),
+[TH_151] = COMBO_ACTION(T151),
+[TH_152] = COMBO_ACTION(T152),
+[TH_153] = COMBO_ACTION(T153),
+[TH_154] = COMBO_ACTION(T154),
+[TH_155] = COMBO_ACTION(T155),
+[TH_156] = COMBO_ACTION(T156),
+[TH_157] = COMBO_ACTION(T157),
+[TH_158] = COMBO_ACTION(T158),
+[TH_159] = COMBO_ACTION(T159),
+[TH_160] = COMBO_ACTION(T160),
+[TH_161] = COMBO_ACTION(T161),
+[TH_162] = COMBO_ACTION(T162),
+[TH_163] = COMBO_ACTION(T163),
+[TH_164] = COMBO_ACTION(T164),
+[TH_165] = COMBO_ACTION(T165),
+[TH_166] = COMBO_ACTION(T166),
+[TH_167] = COMBO_ACTION(T167),
+[TH_168] = COMBO_ACTION(T168),
+[TH_169] = COMBO_ACTION(T169),
+[TH_170] = COMBO_ACTION(T170),
+[TH_171] = COMBO_ACTION(T171),
+[TH_172] = COMBO_ACTION(T172),
+[TH_173] = COMBO_ACTION(T173),
+[TH_174] = COMBO_ACTION(T174),
+[TH_175] = COMBO_ACTION(T175),
+[TH_176] = COMBO_ACTION(T176),
+[TH_177] = COMBO_ACTION(T177),
+[TH_178] = COMBO_ACTION(T178),
+[TH_179] = COMBO_ACTION(T179),
+[TH_180] = COMBO_ACTION(T180),
+[TH_181] = COMBO_ACTION(T181),
+[TH_182] = COMBO_ACTION(T182),
+[TH_183] = COMBO_ACTION(T183),
+[TH_184] = COMBO_ACTION(T184),
+[TH_185] = COMBO_ACTION(T185),
+[TH_186] = COMBO_ACTION(T186),
+[TH_187] = COMBO_ACTION(T187),
+[TH_188] = COMBO_ACTION(T188),
+[TH_189] = COMBO_ACTION(T189),
+[TH_190] = COMBO_ACTION(T190),
+[TH_191] = COMBO_ACTION(T191),
+[TH_192] = COMBO_ACTION(T192),
+[TH_193] = COMBO_ACTION(T193),
+[TH_194] = COMBO_ACTION(T194),
+[TH_195] = COMBO_ACTION(T195),
+[TH_196] = COMBO_ACTION(T196),
+[TH_197] = COMBO_ACTION(T197),
+[TH_198] = COMBO_ACTION(T198),
+[TH_199] = COMBO_ACTION(T199),
+[TH_200] = COMBO_ACTION(T200),
+[TH_201] = COMBO_ACTION(T201),
+[TH_202] = COMBO_ACTION(T202),
+[TH_203] = COMBO_ACTION(T203),
+[TH_204] = COMBO_ACTION(T204),
+[TH_205] = COMBO_ACTION(T205),
+[TH_206] = COMBO_ACTION(T206),
+[TH_207] = COMBO_ACTION(T207),
+[TH_208] = COMBO_ACTION(T208),
+[TH_209] = COMBO_ACTION(T209),
+[TH_210] = COMBO_ACTION(T210),
+[TH_211] = COMBO_ACTION(T211),
+[TH_212] = COMBO_ACTION(T212),
+[TH_213] = COMBO_ACTION(T213),
+[TH_214] = COMBO_ACTION(T214),
+[TH_215] = COMBO_ACTION(T215),
+[TH_216] = COMBO_ACTION(T216),
+[TH_217] = COMBO_ACTION(T217),
+[TH_218] = COMBO_ACTION(T218),
+[TH_219] = COMBO_ACTION(T219),
+[TH_220] = COMBO_ACTION(T220),
+[TH_221] = COMBO_ACTION(T221),
+[TH_222] = COMBO_ACTION(T222),
+[TH_223] = COMBO_ACTION(T223),
+[TH_224] = COMBO_ACTION(T224),
+[TH_225] = COMBO_ACTION(T225),
+[TH_226] = COMBO_ACTION(T226),
+[TH_227] = COMBO_ACTION(T227),
+[TH_228] = COMBO_ACTION(T228),
+[TH_229] = COMBO_ACTION(T229),
+[TH_230] = COMBO_ACTION(T230),
+[TH_231] = COMBO_ACTION(T231),
+[TH_232] = COMBO_ACTION(T232),
+[TH_233] = COMBO_ACTION(T233),
+[TH_234] = COMBO_ACTION(T234),
+[TH_235] = COMBO_ACTION(T235),
+[TH_236] = COMBO_ACTION(T236),
+[TH_237] = COMBO_ACTION(T237),
+[TH_238] = COMBO_ACTION(T238),
+[TH_239] = COMBO_ACTION(T239),
+[TH_240] = COMBO_ACTION(T240),
+[TH_241] = COMBO_ACTION(T241),
+[TH_242] = COMBO_ACTION(T242),
+[TH_243] = COMBO_ACTION(T243),
+[TH_244] = COMBO_ACTION(T244),
+[TH_245] = COMBO_ACTION(T245),
+[TH_246] = COMBO_ACTION(T246),
+[TH_247] = COMBO_ACTION(T247),
+[TH_248] = COMBO_ACTION(T248),
+[TH_249] = COMBO_ACTION(T249),
+[TH_250] = COMBO_ACTION(T250),
+[TH_251] = COMBO_ACTION(T251),
+[TH_252] = COMBO_ACTION(T252),
+[TH_253] = COMBO_ACTION(T253),
+[TH_254] = COMBO_ACTION(T254),
+[TH_255] = COMBO_ACTION(T255),
+[TH_256] = COMBO_ACTION(T256),
+[TH_257] = COMBO_ACTION(T257),
+[TH_258] = COMBO_ACTION(T258),
+[TH_259] = COMBO_ACTION(T259),
+[TH_260] = COMBO_ACTION(T260),
+[TH_261] = COMBO_ACTION(T261),
+[TH_262] = COMBO_ACTION(T262),
+[TH_263] = COMBO_ACTION(T263),
+[TH_264] = COMBO_ACTION(T264),
+[TH_265] = COMBO_ACTION(T265),
+[TH_266] = COMBO_ACTION(T266),
+[TH_267] = COMBO_ACTION(T267),
+[TH_268] = COMBO_ACTION(T268),
+[TH_269] = COMBO_ACTION(T269),
+[TH_270] = COMBO_ACTION(T270),
+[TH_271] = COMBO_ACTION(T271),
+[TH_272] = COMBO_ACTION(T272),
+[TH_273] = COMBO_ACTION(T273),
+[TH_274] = COMBO_ACTION(T274),
+[TH_275] = COMBO_ACTION(T275),
+[TH_276] = COMBO_ACTION(T276),
+[TH_277] = COMBO_ACTION(T277),
+[TH_278] = COMBO_ACTION(T278),
+[TH_279] = COMBO_ACTION(T279),
+[TH_280] = COMBO_ACTION(T280),
+[TH_281] = COMBO_ACTION(T281),
+[TH_282] = COMBO_ACTION(T282),
+[TH_283] = COMBO_ACTION(T283),
+[TH_284] = COMBO_ACTION(T284),
+[TH_285] = COMBO_ACTION(T285),
+[TH_286] = COMBO_ACTION(T286),
+[TH_287] = COMBO_ACTION(T287),
+[TH_288] = COMBO_ACTION(T288),
+[TH_289] = COMBO_ACTION(T289),
+[TH_290] = COMBO_ACTION(T290),
+[TH_291] = COMBO_ACTION(T291),
+[TH_292] = COMBO_ACTION(T292),
+[TH_293] = COMBO_ACTION(T293),
+[TH_294] = COMBO_ACTION(T294),
+[TH_295] = COMBO_ACTION(T295),
+[TH_296] = COMBO_ACTION(T296),
+[TH_297] = COMBO_ACTION(T297),
+[TH_298] = COMBO_ACTION(T298),
+[TH_299] = COMBO_ACTION(T299),
+[TH_300] = COMBO_ACTION(T300),
+[TH_301] = COMBO_ACTION(T301),
+[TH_302] = COMBO_ACTION(T302),
+[TH_303] = COMBO_ACTION(T303),
+[TH_304] = COMBO_ACTION(T304),
+[TH_305] = COMBO_ACTION(T305),
+[TH_306] = COMBO_ACTION(T306),
+[TH_307] = COMBO_ACTION(T307),
+[TH_308] = COMBO_ACTION(T308),
+[TH_309] = COMBO_ACTION(T309),
+[TH_310] = COMBO_ACTION(T310),
+[TH_311] = COMBO_ACTION(T311),
+[TH_312] = COMBO_ACTION(T312),
+[TH_313] = COMBO_ACTION(T313),
+[TH_314] = COMBO_ACTION(T314),
+[TH_315] = COMBO_ACTION(T315),
+[TH_316] = COMBO_ACTION(T316),
+[TH_317] = COMBO_ACTION(T317),
+[TH_318] = COMBO_ACTION(T318),
+[TH_319] = COMBO_ACTION(T319),
+[TH_320] = COMBO_ACTION(T320),
+[TH_321] = COMBO_ACTION(T321),
+[TH_322] = COMBO_ACTION(T322),
+[TH_323] = COMBO_ACTION(T323),
+[TH_324] = COMBO_ACTION(T324),
+[TH_325] = COMBO_ACTION(T325),
+[TH_326] = COMBO_ACTION(T326),
+[TH_327] = COMBO_ACTION(T327),
+[TH_328] = COMBO_ACTION(T328),
+[TH_329] = COMBO_ACTION(T329),
+[TH_330] = COMBO_ACTION(T330),
+[TH_331] = COMBO_ACTION(T331),
+[TH_332] = COMBO_ACTION(T332),
+[TH_333] = COMBO_ACTION(T333),
+[TH_334] = COMBO_ACTION(T334),
+[TH_335] = COMBO_ACTION(T335),
+[TH_336] = COMBO_ACTION(T336),
+[TH_337] = COMBO_ACTION(T337),
+[TH_338] = COMBO_ACTION(T338),
+[TH_339] = COMBO_ACTION(T339),
+[TH_340] = COMBO_ACTION(T340),
+[TH_341] = COMBO_ACTION(T341),
+[TH_342] = COMBO_ACTION(T342),
+[TH_343] = COMBO_ACTION(T343),
+[TH_344] = COMBO_ACTION(T344),
+[TH_345] = COMBO_ACTION(T345),
+[TH_346] = COMBO_ACTION(T346),
+[TH_347] = COMBO_ACTION(T347),
+[TH_348] = COMBO_ACTION(T348),
+[TH_349] = COMBO_ACTION(T349),
+[TH_350] = COMBO_ACTION(T350),
+[TH_351] = COMBO_ACTION(T351),
+[TH_352] = COMBO_ACTION(T352),
+[TH_353] = COMBO_ACTION(T353),
+[TH_354] = COMBO_ACTION(T354),
+[TH_355] = COMBO_ACTION(T355),
+[TH_356] = COMBO_ACTION(T356),
+[TH_357] = COMBO_ACTION(T357),
+[TH_358] = COMBO_ACTION(T358),
+[TH_359] = COMBO_ACTION(T359),
+[TH_360] = COMBO_ACTION(T360),
+[TH_361] = COMBO_ACTION(T361),
+[TH_362] = COMBO_ACTION(T362),
+[TH_363] = COMBO_ACTION(T363),
+[TH_364] = COMBO_ACTION(T364),
+[TH_365] = COMBO_ACTION(T365),
+[TH_366] = COMBO_ACTION(T366),
+[TH_367] = COMBO_ACTION(T367),
+[TH_368] = COMBO_ACTION(T368),
+[TH_369] = COMBO_ACTION(T369),
+[TH_370] = COMBO_ACTION(T370),
+[TH_371] = COMBO_ACTION(T371),
+[TH_372] = COMBO_ACTION(T372),
+[TH_373] = COMBO_ACTION(T373),
+[TH_374] = COMBO_ACTION(T374),
+[TH_375] = COMBO_ACTION(T375),
+[TH_376] = COMBO_ACTION(T376),
+[TH_377] = COMBO_ACTION(T377),
+[TH_378] = COMBO_ACTION(T378),
+[TH_379] = COMBO_ACTION(T379),
+[TH_380] = COMBO_ACTION(T380),
+[TH_381] = COMBO_ACTION(T381),
+[TH_382] = COMBO_ACTION(T382),
+[TH_383] = COMBO_ACTION(T383),
+[TH_384] = COMBO_ACTION(T384),
+[TH_385] = COMBO_ACTION(T385),
+[TH_386] = COMBO_ACTION(T386),
+[TH_387] = COMBO_ACTION(T387),
+[TH_388] = COMBO_ACTION(T388),
+[TH_389] = COMBO_ACTION(T389),
+[TH_390] = COMBO_ACTION(T390),
+[TH_391] = COMBO_ACTION(T391),
+[TH_392] = COMBO_ACTION(T392),
+[TH_393] = COMBO_ACTION(T393),
+[TH_394] = COMBO_ACTION(T394),
+[TH_395] = COMBO_ACTION(T395),
+[TH_396] = COMBO_ACTION(T396),
+[TH_397] = COMBO_ACTION(T397),
+[TH_398] = COMBO_ACTION(T398),
+[TH_399] = COMBO_ACTION(T399),
+[TH_400] = COMBO_ACTION(T400),
+[TH_401] = COMBO_ACTION(T401),
+[TH_402] = COMBO_ACTION(T402),
+[TH_403] = COMBO_ACTION(T403),
+[TH_404] = COMBO_ACTION(T404),
+[TH_405] = COMBO_ACTION(T405),
+[TH_406] = COMBO_ACTION(T406),
+[TH_407] = COMBO_ACTION(T407),
+[TH_408] = COMBO_ACTION(T408),
+[TH_409] = COMBO_ACTION(T409),
+[TH_410] = COMBO_ACTION(T410),
+[TH_411] = COMBO_ACTION(T411),
+[TH_412] = COMBO_ACTION(T412),
+[TH_413] = COMBO_ACTION(T413),
+[TH_414] = COMBO_ACTION(T414),
+[TH_415] = COMBO_ACTION(T415),
+[TH_416] = COMBO_ACTION(T416),
+[TH_417] = COMBO_ACTION(T417),
+[TH_418] = COMBO_ACTION(T418),
+[TH_419] = COMBO_ACTION(T419),
+[TH_420] = COMBO_ACTION(T420),
+[TH_421] = COMBO_ACTION(T421),
+[TH_422] = COMBO_ACTION(T422),
+[TH_423] = COMBO_ACTION(T423),
+[TH_424] = COMBO_ACTION(T424),
+[TH_425] = COMBO_ACTION(T425),
+[TH_426] = COMBO_ACTION(T426),
+[TH_427] = COMBO_ACTION(T427),
+[TH_428] = COMBO_ACTION(T428),
+[TH_429] = COMBO_ACTION(T429),
+[TH_430] = COMBO_ACTION(T430),
+[TH_431] = COMBO_ACTION(T431),
+[TH_432] = COMBO_ACTION(T432),
+[TH_433] = COMBO_ACTION(T433),
+[TH_434] = COMBO_ACTION(T434),
+[TH_435] = COMBO_ACTION(T435),
+[TH_436] = COMBO_ACTION(T436),
+[TH_437] = COMBO_ACTION(T437),
+[TH_438] = COMBO_ACTION(T438),
+[TH_439] = COMBO_ACTION(T439),
+[TH_440] = COMBO_ACTION(T440),
+[TH_441] = COMBO_ACTION(T441),
+[TH_442] = COMBO_ACTION(T442),
+[TH_443] = COMBO_ACTION(T443),
+[TH_444] = COMBO_ACTION(T444),
+[TH_445] = COMBO_ACTION(T445),
+[TH_446] = COMBO_ACTION(T446),
+[TH_447] = COMBO_ACTION(T447),
+[TH_448] = COMBO_ACTION(T448),
+[TH_449] = COMBO_ACTION(T449),
+[TH_450] = COMBO_ACTION(T450),
+[TH_451] = COMBO_ACTION(T451),
+[TH_452] = COMBO_ACTION(T452),
+[TH_453] = COMBO_ACTION(T453),
+[TH_454] = COMBO_ACTION(T454),
+[TH_455] = COMBO_ACTION(T455),
+[TH_456] = COMBO_ACTION(T456),
+[TH_457] = COMBO_ACTION(T457),
+[TH_458] = COMBO_ACTION(T458),
+[TH_459] = COMBO_ACTION(T459),
+[TH_460] = COMBO_ACTION(T460),
+[TH_461] = COMBO_ACTION(T461),
+[TH_462] = COMBO_ACTION(T462),
+[TH_463] = COMBO_ACTION(T463),
+[TH_464] = COMBO_ACTION(T464),
+[TH_465] = COMBO_ACTION(T465),
+[TH_466] = COMBO_ACTION(T466),
+[TH_467] = COMBO_ACTION(T467),
+[TH_468] = COMBO_ACTION(T468),
+[TH_469] = COMBO_ACTION(T469),
+[TH_470] = COMBO_ACTION(T470),
+[TH_471] = COMBO_ACTION(T471),
+[TH_472] = COMBO_ACTION(T472),
+[TH_473] = COMBO_ACTION(T473),
+[TH_474] = COMBO_ACTION(T474),
+[TH_475] = COMBO_ACTION(T475),
+[TH_476] = COMBO_ACTION(T476),
+[TH_477] = COMBO_ACTION(T477),
+[TH_478] = COMBO_ACTION(T478),
+[TH_479] = COMBO_ACTION(T479),
+[TH_480] = COMBO_ACTION(T480),
+[TH_481] = COMBO_ACTION(T481),
+[TH_482] = COMBO_ACTION(T482),
+[TH_483] = COMBO_ACTION(T483),
+[TH_484] = COMBO_ACTION(T484),
+[TH_485] = COMBO_ACTION(T485),
+[TH_486] = COMBO_ACTION(T486),
+[TH_487] = COMBO_ACTION(T487),
+[TH_488] = COMBO_ACTION(T488),
+[TH_489] = COMBO_ACTION(T489),
+[TH_490] = COMBO_ACTION(T490),
+[TH_491] = COMBO_ACTION(T491),
+[TH_492] = COMBO_ACTION(T492),
+[TH_493] = COMBO_ACTION(T493),
+[TH_494] = COMBO_ACTION(T494),
+[TH_495] = COMBO_ACTION(T495),
+[TH_496] = COMBO_ACTION(T496),
+[TH_497] = COMBO_ACTION(T497),
+[TH_498] = COMBO_ACTION(T498),
+[TH_499] = COMBO_ACTION(T499),
+[TH_500] = COMBO_ACTION(T500),
+[TH_501] = COMBO_ACTION(T501),
+[TH_502] = COMBO_ACTION(T502),
+[TH_503] = COMBO_ACTION(T503),
+[TH_504] = COMBO_ACTION(T504),
+[TH_505] = COMBO_ACTION(T505),
+[TH_506] = COMBO_ACTION(T506),
+[TH_507] = COMBO_ACTION(T507),
+[TH_508] = COMBO_ACTION(T508),
+[TH_509] = COMBO_ACTION(T509),
+[TH_510] = COMBO_ACTION(T510),
+[TH_511] = COMBO_ACTION(T511),
+[TH_512] = COMBO_ACTION(T512),
+[TH_513] = COMBO_ACTION(T513),
+[TH_514] = COMBO_ACTION(T514),
+[TH_515] = COMBO_ACTION(T515),
+[TH_516] = COMBO_ACTION(T516),
+[TH_517] = COMBO_ACTION(T517),
+[TH_518] = COMBO_ACTION(T518),
+[TH_519] = COMBO_ACTION(T519),
+[TH_520] = COMBO_ACTION(T520),
+[TH_521] = COMBO_ACTION(T521),
+[TH_522] = COMBO_ACTION(T522),
+[TH_523] = COMBO_ACTION(T523),
+[TH_524] = COMBO_ACTION(T524),
+[TH_525] = COMBO_ACTION(T525),
+[TH_526] = COMBO_ACTION(T526),
+[TH_527] = COMBO_ACTION(T527),
+[TH_528] = COMBO_ACTION(T528),
+[TH_529] = COMBO_ACTION(T529),
+[TH_530] = COMBO_ACTION(T530),
+[TH_531] = COMBO_ACTION(T531),
+[TH_532] = COMBO_ACTION(T532),
+[TH_533] = COMBO_ACTION(T533),
+[TH_534] = COMBO_ACTION(T534),
+[TH_535] = COMBO_ACTION(T535),
+[TH_536] = COMBO_ACTION(T536),
+[TH_537] = COMBO_ACTION(T537),
+[TH_538] = COMBO_ACTION(T538),
+[TH_539] = COMBO_ACTION(T539),
+[TH_540] = COMBO_ACTION(T540),
+[TH_541] = COMBO_ACTION(T541),
+[TH_542] = COMBO_ACTION(T542),
+[TH_543] = COMBO_ACTION(T543),
+[TH_544] = COMBO_ACTION(T544),
+[TH_545] = COMBO_ACTION(T545),
+[TH_546] = COMBO_ACTION(T546),
+[TH_547] = COMBO_ACTION(T547),
+[TH_548] = COMBO_ACTION(T548),
+[TH_549] = COMBO_ACTION(T549),
+[TH_550] = COMBO_ACTION(T550),
+[TH_551] = COMBO_ACTION(T551),
+[TH_552] = COMBO_ACTION(T552),
+[TH_553] = COMBO_ACTION(T553),
+[TH_554] = COMBO_ACTION(T554),
+[TH_555] = COMBO_ACTION(T555),
+[TH_556] = COMBO_ACTION(T556),
+[TH_557] = COMBO_ACTION(T557),
+[TH_558] = COMBO_ACTION(T558),
+[TH_559] = COMBO_ACTION(T559),
+[TH_560] = COMBO_ACTION(T560),
+[TH_561] = COMBO_ACTION(T561),
+[TH_562] = COMBO_ACTION(T562),
+[TH_563] = COMBO_ACTION(T563),
+[TH_564] = COMBO_ACTION(T564),
+[TH_565] = COMBO_ACTION(T565),
+[TH_566] = COMBO_ACTION(T566),
+[TH_567] = COMBO_ACTION(T567),
+[TH_568] = COMBO_ACTION(T568),
+[TH_569] = COMBO_ACTION(T569),
+[TH_570] = COMBO_ACTION(T570),
+[TH_571] = COMBO_ACTION(T571),
+[TH_572] = COMBO_ACTION(T572),
+[TH_573] = COMBO_ACTION(T573),
+[TH_574] = COMBO_ACTION(T574),
+[TH_575] = COMBO_ACTION(T575),
+[TH_576] = COMBO_ACTION(T576),
+[TH_577] = COMBO_ACTION(T577),
+[TH_578] = COMBO_ACTION(T578),
+[TH_579] = COMBO_ACTION(T579),
+[TH_580] = COMBO_ACTION(T580),
+[TH_581] = COMBO_ACTION(T581),
+[TH_582] = COMBO_ACTION(T582),
+[TH_583] = COMBO_ACTION(T583),
+[TH_584] = COMBO_ACTION(T584),
+[TH_585] = COMBO_ACTION(T585),
+[TH_586] = COMBO_ACTION(T586),
+[TH_587] = COMBO_ACTION(T587),
+[TH_588] = COMBO_ACTION(T588),
+[TH_589] = COMBO_ACTION(T589),
+[TH_590] = COMBO_ACTION(T590),
+[TH_591] = COMBO_ACTION(T591),
+[TH_592] = COMBO_ACTION(T592),
+[TH_593] = COMBO_ACTION(T593),
+[TH_594] = COMBO_ACTION(T594),
+[TH_595] = COMBO_ACTION(T595),
+[TH_596] = COMBO_ACTION(T596),
+[TH_597] = COMBO_ACTION(T597),
+[TH_598] = COMBO_ACTION(T598),
+[TH_599] = COMBO_ACTION(T599),
+[TH_600] = COMBO_ACTION(T600),
+[TH_601] = COMBO_ACTION(T601),
+[TH_602] = COMBO_ACTION(T602),
+[TH_603] = COMBO_ACTION(T603),
+[TH_604] = COMBO_ACTION(T604),
+[TH_605] = COMBO_ACTION(T605),
+[TH_606] = COMBO_ACTION(T606),
+[TH_607] = COMBO_ACTION(T607),
+[TH_608] = COMBO_ACTION(T608),
+[TH_609] = COMBO_ACTION(T609),
+[TH_610] = COMBO_ACTION(T610),
+[TH_611] = COMBO_ACTION(T611),
+[TH_612] = COMBO_ACTION(T612),
+[TH_613] = COMBO_ACTION(T613),
+[TH_614] = COMBO_ACTION(T614),
+[TH_615] = COMBO_ACTION(T615),
+[TH_616] = COMBO_ACTION(T616),
+[TH_617] = COMBO_ACTION(T617),
+[TH_618] = COMBO_ACTION(T618),
+[TH_619] = COMBO_ACTION(T619),
+[TH_620] = COMBO_ACTION(T620),
+[TH_621] = COMBO_ACTION(T621),
+[TH_622] = COMBO_ACTION(T622),
+[TH_623] = COMBO_ACTION(T623),
+[TH_624] = COMBO_ACTION(T624),
+[TH_625] = COMBO_ACTION(T625),
+[TH_626] = COMBO_ACTION(T626),
+[TH_627] = COMBO_ACTION(T627),
+[TH_628] = COMBO_ACTION(T628),
+[TH_629] = COMBO_ACTION(T629),
+[TH_630] = COMBO_ACTION(T630),
+[TH_631] = COMBO_ACTION(T631),
+[TH_632] = COMBO_ACTION(T632),
+[TH_633] = COMBO_ACTION(T633),
+[TH_634] = COMBO_ACTION(T634),
+[TH_635] = COMBO_ACTION(T635),
+[TH_636] = COMBO_ACTION(T636),
+[TH_637] = COMBO_ACTION(T637),
+[TH_638] = COMBO_ACTION(T638),
+[TH_639] = COMBO_ACTION(T639),
+[TH_640] = COMBO_ACTION(T640),
+[TH_641] = COMBO_ACTION(T641),
+[TH_642] = COMBO_ACTION(T642),
+[TH_643] = COMBO_ACTION(T643),
+[TH_644] = COMBO_ACTION(T644),
+[TH_645] = COMBO_ACTION(T645),
+[TH_646] = COMBO_ACTION(T646),
+[TH_647] = COMBO_ACTION(T647),
+[TH_648] = COMBO_ACTION(T648),
+[TH_649] = COMBO_ACTION(T649),
+[TH_650] = COMBO_ACTION(T650),
+[TH_651] = COMBO_ACTION(T651),
+[TH_652] = COMBO_ACTION(T652),
+[TH_653] = COMBO_ACTION(T653),
+[TH_654] = COMBO_ACTION(T654),
+[TH_655] = COMBO_ACTION(T655),
+[TH_656] = COMBO_ACTION(T656),
+[TH_657] = COMBO_ACTION(T657),
+[TH_658] = COMBO_ACTION(T658),
+[TH_659] = COMBO_ACTION(T659),
+[TH_660] = COMBO_ACTION(T660),
+[TH_661] = COMBO_ACTION(T661),
+[TH_662] = COMBO_ACTION(T662),
+[TH_663] = COMBO_ACTION(T663),
+[TH_664] = COMBO_ACTION(T664),
+[TH_665] = COMBO_ACTION(T665),
+[TH_666] = COMBO_ACTION(T666),
+[TH_667] = COMBO_ACTION(T667),
+[TH_668] = COMBO_ACTION(T668),
+[TH_669] = COMBO_ACTION(T669),
+[TH_670] = COMBO_ACTION(T670),
+[TH_671] = COMBO_ACTION(T671),
+[TH_672] = COMBO_ACTION(T672),
+[TH_673] = COMBO_ACTION(T673),
+[TH_674] = COMBO_ACTION(T674),
+[TH_675] = COMBO_ACTION(T675),
+[TH_676] = COMBO_ACTION(T676),
+[TH_677] = COMBO_ACTION(T677),
+[TH_678] = COMBO_ACTION(T678),
+[TH_679] = COMBO_ACTION(T679),
+[TH_680] = COMBO_ACTION(T680),
+[TH_681] = COMBO_ACTION(T681),
+[TH_682] = COMBO_ACTION(T682),
+[TH_683] = COMBO_ACTION(T683),
+[TH_684] = COMBO_ACTION(T684),
+[TH_685] = COMBO_ACTION(T685),
+[TH_686] = COMBO_ACTION(T686),
+[TH_687] = COMBO_ACTION(T687),
+[TH_688] = COMBO_ACTION(T688),
+[TH_689] = COMBO_ACTION(T689),
+[TH_690] = COMBO_ACTION(T690),
+[TH_691] = COMBO_ACTION(T691),
+[TH_692] = COMBO_ACTION(T692),
+[TH_693] = COMBO_ACTION(T693),
+[TH_694] = COMBO_ACTION(T694),
+[TH_695] = COMBO_ACTION(T695),
+[TH_696] = COMBO_ACTION(T696),
+[TH_697] = COMBO_ACTION(T697),
+[TH_698] = COMBO_ACTION(T698),
+[TH_699] = COMBO_ACTION(T699),
+[TH_700] = COMBO_ACTION(T700),
+[TH_701] = COMBO_ACTION(T701),
+[TH_702] = COMBO_ACTION(T702),
+[TH_703] = COMBO_ACTION(T703),
+[TH_704] = COMBO_ACTION(T704),
+[TH_705] = COMBO_ACTION(T705),
+[TH_706] = COMBO_ACTION(T706),
+[TH_707] = COMBO_ACTION(T707),
+[TH_708] = COMBO_ACTION(T708),
+[TH_709] = COMBO_ACTION(T709),
+[TH_710] = COMBO_ACTION(T710),
+[TH_711] = COMBO_ACTION(T711),
+[TH_712] = COMBO_ACTION(T712),
+[TH_713] = COMBO_ACTION(T713),
+[TH_714] = COMBO_ACTION(T714),
+[TH_715] = COMBO_ACTION(T715),
+[TH_716] = COMBO_ACTION(T716),
+[TH_717] = COMBO_ACTION(T717),
+[TH_718] = COMBO_ACTION(T718),
+[TH_719] = COMBO_ACTION(T719),
+[TH_720] = COMBO_ACTION(T720),
+[TH_721] = COMBO_ACTION(T721),
+[TH_722] = COMBO_ACTION(T722),
+[TH_723] = COMBO_ACTION(T723),
+[TH_724] = COMBO_ACTION(T724),
+[TH_725] = COMBO_ACTION(T725),
+[TH_726] = COMBO_ACTION(T726),
+[TH_727] = COMBO_ACTION(T727),
+[TH_728] = COMBO_ACTION(T728),
+[TH_729] = COMBO_ACTION(T729),
+[TH_730] = COMBO_ACTION(T730),
+[TH_731] = COMBO_ACTION(T731),
+[TH_732] = COMBO_ACTION(T732),
+[TH_733] = COMBO_ACTION(T733),
+[TH_734] = COMBO_ACTION(T734),
+[TH_735] = COMBO_ACTION(T735),
+[TH_736] = COMBO_ACTION(T736),
+[TH_737] = COMBO_ACTION(T737),
+[TH_738] = COMBO_ACTION(T738),
+[TH_739] = COMBO_ACTION(T739),
+[TH_740] = COMBO_ACTION(T740),
+[TH_741] = COMBO_ACTION(T741),
+[TH_742] = COMBO_ACTION(T742),
+[TH_743] = COMBO_ACTION(T743),
+[TH_744] = COMBO_ACTION(T744),
+[TH_745] = COMBO_ACTION(T745),
+[TH_746] = COMBO_ACTION(T746),
+[TH_747] = COMBO_ACTION(T747),
+[TH_748] = COMBO_ACTION(T748),
+[TH_749] = COMBO_ACTION(T749),
+[TH_750] = COMBO_ACTION(T750),
+[TH_751] = COMBO_ACTION(T751),
+[TH_752] = COMBO_ACTION(T752),
+[TH_753] = COMBO_ACTION(T753),
+[TH_754] = COMBO_ACTION(T754),
+[TH_755] = COMBO_ACTION(T755),
+[TH_756] = COMBO_ACTION(T756),
+[TH_757] = COMBO_ACTION(T757),
+[TH_758] = COMBO_ACTION(T758),
+[TH_759] = COMBO_ACTION(T759),
+[TH_760] = COMBO_ACTION(T760),
+[TH_761] = COMBO_ACTION(T761),
+[TH_762] = COMBO_ACTION(T762),
+[TH_763] = COMBO_ACTION(T763),
+[TH_764] = COMBO_ACTION(T764),
+[TH_765] = COMBO_ACTION(T765),
+[TH_766] = COMBO_ACTION(T766),
+[TH_767] = COMBO_ACTION(T767),
+[TH_768] = COMBO_ACTION(T768),
+[TH_769] = COMBO_ACTION(T769),
+[TH_770] = COMBO_ACTION(T770),
+[TH_771] = COMBO_ACTION(T771),
+[TH_772] = COMBO_ACTION(T772),
+[TH_773] = COMBO_ACTION(T773),
+[TH_774] = COMBO_ACTION(T774),
+[TH_775] = COMBO_ACTION(T775),
+[TH_776] = COMBO_ACTION(T776),
+[TH_777] = COMBO_ACTION(T777),
+[TH_778] = COMBO_ACTION(T778),
+[TH_779] = COMBO_ACTION(T779),
+[TH_780] = COMBO_ACTION(T780),
+[TH_781] = COMBO_ACTION(T781),
+[TH_782] = COMBO_ACTION(T782),
+[TH_783] = COMBO_ACTION(T783),
+[TH_784] = COMBO_ACTION(T784),
+[TH_785] = COMBO_ACTION(T785),
+[TH_786] = COMBO_ACTION(T786),
+[TH_787] = COMBO_ACTION(T787),
+[TH_788] = COMBO_ACTION(T788),
+[TH_789] = COMBO_ACTION(T789),
+[TH_790] = COMBO_ACTION(T790),
+[TH_791] = COMBO_ACTION(T791),
+[TH_792] = COMBO_ACTION(T792),
+[TH_793] = COMBO_ACTION(T793),
+[TH_794] = COMBO_ACTION(T794),
+[TH_795] = COMBO_ACTION(T795),
+[TH_796] = COMBO_ACTION(T796),
+[TH_797] = COMBO_ACTION(T797),
+[TH_798] = COMBO_ACTION(T798),
+[TH_799] = COMBO_ACTION(T799),
+[TH_800] = COMBO_ACTION(T800),
+[TH_801] = COMBO_ACTION(T801),
+[TH_802] = COMBO_ACTION(T802),
+[TH_803] = COMBO_ACTION(T803),
+[TH_804] = COMBO_ACTION(T804),
+[TH_805] = COMBO_ACTION(T805),
+[TH_806] = COMBO_ACTION(T806),
+[TH_807] = COMBO_ACTION(T807),
+[TH_808] = COMBO_ACTION(T808),
+[TH_809] = COMBO_ACTION(T809),
+[TH_810] = COMBO_ACTION(T810),
+[TH_811] = COMBO_ACTION(T811),
+[TH_812] = COMBO_ACTION(T812),
+[TH_813] = COMBO_ACTION(T813),
+[TH_814] = COMBO_ACTION(T814),
+[TH_815] = COMBO_ACTION(T815),
+[TH_816] = COMBO_ACTION(T816),
+[TH_817] = COMBO_ACTION(T817),
+[TH_818] = COMBO_ACTION(T818),
+[TH_819] = COMBO_ACTION(T819),
+[TH_820] = COMBO_ACTION(T820),
+[TH_821] = COMBO_ACTION(T821),
+[TH_822] = COMBO_ACTION(T822),
+[TH_823] = COMBO_ACTION(T823),
+[TH_824] = COMBO_ACTION(T824),
+[TH_825] = COMBO_ACTION(T825),
+[TH_826] = COMBO_ACTION(T826),
+[TH_827] = COMBO_ACTION(T827),
+[TH_828] = COMBO_ACTION(T828),
+[TH_829] = COMBO_ACTION(T829),
+[TH_830] = COMBO_ACTION(T830),
+[TH_831] = COMBO_ACTION(T831),
+[TH_832] = COMBO_ACTION(T832),
+[TH_833] = COMBO_ACTION(T833),
+[TH_834] = COMBO_ACTION(T834),
+[TH_835] = COMBO_ACTION(T835),
+[TH_836] = COMBO_ACTION(T836),
+[TH_837] = COMBO_ACTION(T837),
+[TH_838] = COMBO_ACTION(T838),
+[TH_839] = COMBO_ACTION(T839),
+[TH_840] = COMBO_ACTION(T840),
+[TH_841] = COMBO_ACTION(T841),
+[TH_842] = COMBO_ACTION(T842),
+[TH_843] = COMBO_ACTION(T843),
+[TH_844] = COMBO_ACTION(T844),
+[TH_845] = COMBO_ACTION(T845),
+[TH_846] = COMBO_ACTION(T846),
+[TH_847] = COMBO_ACTION(T847),
+[TH_848] = COMBO_ACTION(T848),
+[TH_849] = COMBO_ACTION(T849),
+[TH_850] = COMBO_ACTION(T850),
+[TH_851] = COMBO_ACTION(T851),
+[TH_852] = COMBO_ACTION(T852),
+[TH_853] = COMBO_ACTION(T853),
+[TH_854] = COMBO_ACTION(T854),
+[TH_855] = COMBO_ACTION(T855),
+[TH_856] = COMBO_ACTION(T856),
+[TH_857] = COMBO_ACTION(T857),
+[TH_858] = COMBO_ACTION(T858),
+[TH_859] = COMBO_ACTION(T859),
+[TH_860] = COMBO_ACTION(T860),
+[TH_861] = COMBO_ACTION(T861),
+[TH_862] = COMBO_ACTION(T862),
+[TH_863] = COMBO_ACTION(T863),
+[TH_864] = COMBO_ACTION(T864),
+[TH_865] = COMBO_ACTION(T865),
+[TH_866] = COMBO_ACTION(T866),
+[TH_867] = COMBO_ACTION(T867),
+[TH_868] = COMBO_ACTION(T868),
+[TH_869] = COMBO_ACTION(T869),
+[TH_870] = COMBO_ACTION(T870),
+[TH_871] = COMBO_ACTION(T871),
+[TH_872] = COMBO_ACTION(T872),
+[TH_873] = COMBO_ACTION(T873),
+[TH_874] = COMBO_ACTION(T874),
+[TH_875] = COMBO_ACTION(T875),
+[TH_876] = COMBO_ACTION(T876),
+[TH_877] = COMBO_ACTION(T877),
+[TH_878] = COMBO_ACTION(T878),
+[TH_879] = COMBO_ACTION(T879),
+[TH_880] = COMBO_ACTION(T880),
+[TH_881] = COMBO_ACTION(T881),
+[TH_882] = COMBO_ACTION(T882),
+[TH_883] = COMBO_ACTION(T883),
+[TH_884] = COMBO_ACTION(T884),
+[TH_885] = COMBO_ACTION(T885),
+[TH_886] = COMBO_ACTION(T886),
+[TH_887] = COMBO_ACTION(T887),
+[TH_888] = COMBO_ACTION(T888),
+[TH_889] = COMBO_ACTION(T889),
+[TH_890] = COMBO_ACTION(T890),
+[TH_891] = COMBO_ACTION(T891),
+[TH_892] = COMBO_ACTION(T892),
+[TH_893] = COMBO_ACTION(T893),
+[TH_894] = COMBO_ACTION(T894),
+[TH_895] = COMBO_ACTION(T895),
+[TH_896] = COMBO_ACTION(T896),
+[TH_897] = COMBO_ACTION(T897),
+[TH_898] = COMBO_ACTION(T898),
+[TH_899] = COMBO_ACTION(T899),
+[TH_900] = COMBO_ACTION(T900),
+[TH_901] = COMBO_ACTION(T901),
+[TH_902] = COMBO_ACTION(T902),
+[TH_903] = COMBO_ACTION(T903),
+[TH_904] = COMBO_ACTION(T904),
+[TH_905] = COMBO_ACTION(T905),
+[TH_906] = COMBO_ACTION(T906),
+[TH_907] = COMBO_ACTION(T907),
+[TH_908] = COMBO_ACTION(T908),
+[TH_909] = COMBO_ACTION(T909),
+[TH_910] = COMBO_ACTION(T910),
+[TH_911] = COMBO_ACTION(T911),
+[TH_912] = COMBO_ACTION(T912),
+[TH_913] = COMBO_ACTION(T913),
+[TH_914] = COMBO_ACTION(T914),
+[TH_915] = COMBO_ACTION(T915),
+[TH_916] = COMBO_ACTION(T916),
+[TH_917] = COMBO_ACTION(T917),
+[TH_918] = COMBO_ACTION(T918),
+[TH_919] = COMBO_ACTION(T919),
+[TH_920] = COMBO_ACTION(T920),
+[TH_921] = COMBO_ACTION(T921),
+[TH_922] = COMBO_ACTION(T922),
+[TH_923] = COMBO_ACTION(T923),
+[TH_924] = COMBO_ACTION(T924),
+[TH_925] = COMBO_ACTION(T925),
+[TH_926] = COMBO_ACTION(T926),
+[TH_927] = COMBO_ACTION(T927),
+[TH_928] = COMBO_ACTION(T928),
+[TH_929] = COMBO_ACTION(T929),
+[TH_930] = COMBO_ACTION(T930),
+[TH_931] = COMBO_ACTION(T931),
+[TH_932] = COMBO_ACTION(T932),
+[TH_933] = COMBO_ACTION(T933),
+[TH_934] = COMBO_ACTION(T934),
+[TH_935] = COMBO_ACTION(T935),
+[TH_936] = COMBO_ACTION(T936),
+[TH_937] = COMBO_ACTION(T937),
+[TH_938] = COMBO_ACTION(T938),
+[TH_939] = COMBO_ACTION(T939),
+[TH_940] = COMBO_ACTION(T940),
+[TH_941] = COMBO_ACTION(T941),
+[TH_942] = COMBO_ACTION(T942),
+[TH_943] = COMBO_ACTION(T943),
+[TH_944] = COMBO_ACTION(T944),
+[TH_945] = COMBO_ACTION(T945),
+[TH_946] = COMBO_ACTION(T946),
+[TH_947] = COMBO_ACTION(T947),
+[TH_948] = COMBO_ACTION(T948),
+[TH_949] = COMBO_ACTION(T949),
+[TH_950] = COMBO_ACTION(T950),
+[TH_951] = COMBO_ACTION(T951),
+[TH_952] = COMBO_ACTION(T952),
+[TH_953] = COMBO_ACTION(T953),
+[TH_954] = COMBO_ACTION(T954),
+[TH_955] = COMBO_ACTION(T955),
+[TH_956] = COMBO_ACTION(T956),
+[TH_957] = COMBO_ACTION(T957),
+[TH_958] = COMBO_ACTION(T958),
+[TH_959] = COMBO_ACTION(T959),
+[TH_960] = COMBO_ACTION(T960),
+[TH_961] = COMBO_ACTION(T961),
+[TH_962] = COMBO_ACTION(T962),
+[TH_963] = COMBO_ACTION(T963),
+[TH_964] = COMBO_ACTION(T964),
+[TH_965] = COMBO_ACTION(T965),
+[TH_966] = COMBO_ACTION(T966),
+[TH_967] = COMBO_ACTION(T967),
+[TH_968] = COMBO_ACTION(T968),
+[TH_969] = COMBO_ACTION(T969),
+[TH_970] = COMBO_ACTION(T970),
+[TH_971] = COMBO_ACTION(T971),
+[TH_972] = COMBO_ACTION(T972),
+[TH_973] = COMBO_ACTION(T973),
+[TH_974] = COMBO_ACTION(T974),
+[TH_975] = COMBO_ACTION(T975),
+[TH_976] = COMBO_ACTION(T976),
+[TH_977] = COMBO_ACTION(T977),
+[TH_978] = COMBO_ACTION(T978),
+[TH_979] = COMBO_ACTION(T979),
+[TH_980] = COMBO_ACTION(T980),
+[TH_981] = COMBO_ACTION(T981),
+[TH_982] = COMBO_ACTION(T982),
+[TH_983] = COMBO_ACTION(T983),
+[TH_984] = COMBO_ACTION(T984),
+[TH_985] = COMBO_ACTION(T985),
+[TH_986] = COMBO_ACTION(T986),
+[TH_987] = COMBO_ACTION(T987),
+[TH_988] = COMBO_ACTION(T988),
+[TH_989] = COMBO_ACTION(T989),
+[TH_990] = COMBO_ACTION(T990),
+[TH_991] = COMBO_ACTION(T991),
+[TH_992] = COMBO_ACTION(T992),
+[TH_993] = COMBO_ACTION(T993),
+[TH_994] = COMBO_ACTION(T994),
+[TH_995] = COMBO_ACTION(T995),
+[TH_996] = COMBO_ACTION(T996),
+[TH_997] = COMBO_ACTION(T997),
+[TH_998] = COMBO_ACTION(T998),
+[TH_999] = COMBO_ACTION(T999),
+[TH_1000] = COMBO_ACTION(T1000),
+};
+/* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case TH_1:
+      if (pressed) {
+        SEND_STRING("because ");
+      }
+      break;
+    case TH_2:
+      if (pressed) {
+        SEND_STRING("right ");
+      }
+      break;
+case TH_3:
+      if (pressed) {
+        SEND_STRING("sort of ");
+      }
+      break;
+case TH_4:
+      if (pressed) {
+        SEND_STRING("feel ");
+      }
+      break;
+case TH_5:
+      if (pressed) {
+        SEND_STRING("fast ");
+      }
+      break;
+case TH_6:
+      if (pressed) {
+        SEND_STRING("igh ");
+      }
+      break;
+case TH_7:
+      if (pressed) {
+        SEND_STRING("I know ");
+      }
+      break;
+case TH_8:
+      if (pressed) {
+        SEND_STRING("basic ");
+      }
+      break;
+case TH_9:
+      if (pressed) {
+        SEND_STRING("basically ");
+      }
+      break;
+case TH_10:
+      if (pressed) {
+        SEND_STRING("else ");
+      }
+      break;
+case TH_11:
+      if (pressed) {
+        SEND_STRING("feels ");
+      }
+      break;
+case TH_12:
+      if (pressed) {
+        SEND_STRING("helpful ");
+      }
+      break;
+case TH_13:
+      if (pressed) {
+        SEND_STRING("don't ");
+      }
+      break;
+case TH_14:
+      if (pressed) {
+        SEND_STRING("start ");
+      }
+      break;
+case TH_15:
+      if (pressed) {
+        SEND_STRING("starting ");
+      }
+      break;
+case TH_16:
+      if (pressed) {
+        SEND_STRING("ever ");
+      }
+      break;
+case TH_17:
+      if (pressed) {
+        SEND_STRING("without ");
+      }
+      break;
+case TH_18:
+      if (pressed) {
+        SEND_STRING("some ");
+      }
+      break;
+case TH_19:
+      if (pressed) {
+        SEND_STRING("someone ");
+      }
+      break;
+case TH_20:
+      if (pressed) {
+        SEND_STRING("somebody ");
+      }
+      break;
+case TH_21:
+      if (pressed) {
+        SEND_STRING("hated ");
+      }
+      break;
+case TH_22:
+      if (pressed) {
+        SEND_STRING("wished ");
+      }
+      break;
+case TH_23:
+      if (pressed) {
+        SEND_STRING("whatever ");
+      }
+      break;
+case TH_24:
+      if (pressed) {
+        SEND_STRING("whatever ");
+      }
+      break;
+case TH_25:
+      if (pressed) {
+        SEND_STRING("we're ");
+      }
+      break;
+case TH_26:
+      if (pressed) {
+        SEND_STRING("reason ");
+      }
+      break;
+case TH_27:
+      if (pressed) {
+        SEND_STRING("reason ");
+      }
+      break;
+case TH_28:
+      if (pressed) {
+        SEND_STRING("together ");
+      }
+      break;
+case TH_29:
+      if (pressed) {
+        SEND_STRING("together ");
+      }
+      break;
+case TH_30:
+      if (pressed) {
+        SEND_STRING("describe ");
+      }
+      break;
+case TH_31:
+      if (pressed) {
+        SEND_STRING("ful ");
+      }
+      break;
+case TH_32:
+      if (pressed) {
+        SEND_STRING("place ");
+      }
+      break;
+case TH_33:
+      if (pressed) {
+        SEND_STRING("made ");
+      }
+      break;
+case TH_34:
+      if (pressed) {
+        SEND_STRING("sense ");
+      }
+      break;
+case TH_35:
+      if (pressed) {
+        SEND_STRING("sort ");
+      }
+      break;
+case TH_36:
+      if (pressed) {
+        SEND_STRING("whole ");
+      }
+      break;
+case TH_37:
+      if (pressed) {
+        SEND_STRING("code ");
+      }
+      break;
+case TH_38:
+      if (pressed) {
+        SEND_STRING("going to ");
+      }
+      break;
+case TH_39:
+      if (pressed) {
+        SEND_STRING("we're ");
+      }
+      break;
+case TH_40:
+      if (pressed) {
+        SEND_STRING("we've ");
+      }
+      break;
+case TH_41:
+      if (pressed) {
+        SEND_STRING("anybody ");
+      }
+      break;
+case TH_42:
+      if (pressed) {
+        SEND_STRING("absolutely ");
+      }
+      break;
+case TH_43:
+      if (pressed) {
+        SEND_STRING("actually ");
+      }
+      break;
+case TH_44:
+      if (pressed) {
+        SEND_STRING("actually ");
+      }
+      break;
+case TH_45:
+      if (pressed) {
+        SEND_STRING("affecting ");
+      }
+      break;
+case TH_46:
+      if (pressed) {
+        SEND_STRING("anything ");
+      }
+      break;
+case TH_47:
+      if (pressed) {
+        SEND_STRING("amazing ");
+      }
+      break;
+case TH_48:
+      if (pressed) {
+        SEND_STRING("amount ");
+      }
+      break;
+case TH_49:
+      if (pressed) {
+        SEND_STRING("another ");
+      }
+      break;
+case TH_50:
+      if (pressed) {
+        SEND_STRING("application ");
+      }
+      break;
+case TH_51:
+      if (pressed) {
+        SEND_STRING("appreciate ");
+      }
+      break;
+case TH_52:
+      if (pressed) {
+        SEND_STRING("as well ");
+      }
+      break;
+case TH_53:
+      if (pressed) {
+        SEND_STRING("being ");
+      }
+      break;
+case TH_54:
+      if (pressed) {
+        SEND_STRING("being ");
+      }
+      break;
+case TH_55:
+      if (pressed) {
+        SEND_STRING("by the way ");
+      }
+      break;
+case TH_56:
+      if (pressed) {
+        SEND_STRING("coming ");
+      }
+      break;
+case TH_57:
+      if (pressed) {
+        SEND_STRING("cool ");
+      }
+      break;
+case TH_58:
+      if (pressed) {
+        SEND_STRING("come ");
+      }
+      break;
+case TH_59:
+      if (pressed) {
+        SEND_STRING("company ");
+      }
+      break;
+case TH_60:
+      if (pressed) {
+        SEND_STRING("complete ");
+      }
+      break;
+case TH_61:
+      if (pressed) {
+        SEND_STRING("companies ");
+      }
+      break;
+case TH_62:
+      if (pressed) {
+        SEND_STRING("completely ");
+      }
+      break;
+case TH_63:
+      if (pressed) {
+        SEND_STRING("can ");
+      }
+      break;
+case TH_64:
+      if (pressed) {
+        SEND_STRING("can't ");
+      }
+      break;
+case TH_65:
+      if (pressed) {
+        SEND_STRING("got ");
+      }
+      break;
+case TH_66:
+      if (pressed) {
+        SEND_STRING("they've ");
+      }
+      break;
+case TH_67:
+      if (pressed) {
+        SEND_STRING("find ");
+      }
+      break;
+case TH_68:
+      if (pressed) {
+        SEND_STRING("why ");
+      }
+      break;
+case TH_69:
+      if (pressed) {
+        SEND_STRING("college ");
+      }
+      break;
+case TH_70:
+      if (pressed) {
+        SEND_STRING("back ");
+      }
+      break;
+case TH_71:
+      if (pressed) {
+        SEND_STRING("scribe ");
+      }
+      break;
+case TH_72:
+      if (pressed) {
+        SEND_STRING("couldn't ");
+      }
+      break;
+case TH_73:
+      if (pressed) {
+        SEND_STRING("few ");
+      }
+      break;
+case TH_74:
+      if (pressed) {
+        SEND_STRING("conversation ");
+      }
+      break;
+case TH_75:
+      if (pressed) {
+        SEND_STRING("of course ");
+      }
+      break;
+case TH_76:
+      if (pressed) {
+        SEND_STRING("corporate ");
+      }
+      break;
+case TH_77:
+      if (pressed) {
+        SEND_STRING("crazy ");
+      }
+      break;
+case TH_78:
+      if (pressed) {
+        SEND_STRING("content ");
+      }
+      break;
+case TH_79:
+      if (pressed) {
+        SEND_STRING("definitely ");
+      }
+      break;
+case TH_80:
+      if (pressed) {
+        SEND_STRING("doing ");
+      }
+      break;
+case TH_81:
+      if (pressed) {
+        SEND_STRING("different ");
+      }
+      break;
+case TH_82:
+      if (pressed) {
+        SEND_STRING("don't ");
+      }
+      break;
+case TH_83:
+      if (pressed) {
+        SEND_STRING("I've ");
+      }
+      break;
+case TH_84:
+      if (pressed) {
+        SEND_STRING("management ");
+      }
+      break;
+case TH_85:
+      if (pressed) {
+        SEND_STRING("other ");
+      }
+      break;
+case TH_86:
+      if (pressed) {
+        SEND_STRING("medical ");
+      }
+      break;
+case TH_87:
+      if (pressed) {
+        SEND_STRING("wait ");
+      }
+      break;
+case TH_88:
+      if (pressed) {
+        SEND_STRING("excited ");
+      }
+      break;
+case TH_89:
+      if (pressed) {
+        SEND_STRING("during ");
+      }
+      break;
+case TH_90:
+      if (pressed) {
+        SEND_STRING("doesn't ");
+      }
+      break;
+case TH_91:
+      if (pressed) {
+        SEND_STRING("development ");
+      }
+      break;
+case TH_92:
+      if (pressed) {
+        SEND_STRING("everybody ");
+      }
+      break;
+case TH_93:
+      if (pressed) {
+        SEND_STRING("education ");
+      }
+      break;
+case TH_94:
+      if (pressed) {
+        SEND_STRING("everything ");
+      }
+      break;
+case TH_95:
+      if (pressed) {
+        SEND_STRING("days ");
+      }
+      break;
+case TH_96:
+      if (pressed) {
+        SEND_STRING("times ");
+      }
+      break;
+case TH_97:
+      if (pressed) {
+        SEND_STRING("same ");
+      }
+      break;
+case TH_98:
+      if (pressed) {
+        SEND_STRING("this ");
+      }
+      break;
+case TH_99:
+      if (pressed) {
+        SEND_STRING("whole ");
+      }
+      break;
+case TH_100:
+      if (pressed) {
+        SEND_STRING("whole ");
+      }
+      break;
+case TH_101:
+      if (pressed) {
+        SEND_STRING("re ");
+      }
+      break;
+case TH_102:
+      if (pressed) {
+        SEND_STRING("tive ");
+      }
+      break;
+case TH_103:
+      if (pressed) {
+        SEND_STRING("ough ");
+      }
+      break;
+case TH_104:
+      if (pressed) {
+        SEND_STRING("pain ");
+      }
+      break;
+case TH_105:
+      if (pressed) {
+        SEND_STRING("painful ");
+      }
+      break;
+case TH_106:
+      if (pressed) {
+        SEND_STRING("enough ");
+      }
+      break;
+case TH_107:
+      if (pressed) {
+        SEND_STRING("one ");
+      }
+      break;
+case TH_108:
+      if (pressed) {
+        SEND_STRING("essentially ");
+      }
+      break;
+case TH_109:
+      if (pressed) {
+        SEND_STRING("ight ");
+      }
+      break;
+case TH_110:
+      if (pressed) {
+        SEND_STRING("seen ");
+      }
+      break;
+case TH_111:
+      if (pressed) {
+        SEND_STRING("count ");
+      }
+      break;
+case TH_112:
+      if (pressed) {
+        SEND_STRING("et cetera ");
+      }
+      break;
+case TH_113:
+      if (pressed) {
+        SEND_STRING("interview ");
+      }
+      break;
+case TH_114:
+      if (pressed) {
+        SEND_STRING("remember ");
+      }
+      break;
+case TH_115:
+      if (pressed) {
+        SEND_STRING("remember ");
+      }
+      break;
+case TH_116:
+      if (pressed) {
+        SEND_STRING("he ");
+      }
+      break;
+case TH_117:
+      if (pressed) {
+        SEND_STRING("her ");
+      }
+      break;
+case TH_118:
+      if (pressed) {
+        SEND_STRING("develop ");
+      }
+      break;
+case TH_119:
+      if (pressed) {
+        SEND_STRING("exactly ");
+      }
+      break;
+case TH_120:
+      if (pressed) {
+        SEND_STRING("experience ");
+      }
+      break;
+case TH_121:
+      if (pressed) {
+        SEND_STRING("feedback ");
+      }
+      break;
+case TH_122:
+      if (pressed) {
+        SEND_STRING("for example ");
+      }
+      break;
+case TH_123:
+      if (pressed) {
+        SEND_STRING("from ");
+      }
+      break;
+case TH_124:
+      if (pressed) {
+        SEND_STRING("first ");
+      }
+      break;
+case TH_125:
+      if (pressed) {
+        SEND_STRING("favorite ");
+      }
+      break;
+case TH_126:
+      if (pressed) {
+        SEND_STRING("goodbye ");
+      }
+      break;
+case TH_127:
+      if (pressed) {
+        SEND_STRING("Amazon ");
+      }
+      break;
+case TH_128:
+      if (pressed) {
+        SEND_STRING("good ");
+      }
+      break;
+case TH_129:
+      if (pressed) {
+        SEND_STRING("give ");
+      }
+      break;
+case TH_130:
+      if (pressed) {
+        SEND_STRING("around ");
+      }
+      break;
+case TH_131:
+      if (pressed) {
+        SEND_STRING("having ");
+      }
+      break;
+case TH_132:
+      if (pressed) {
+        SEND_STRING("happening ");
+      }
+      break;
+case TH_133:
+      if (pressed) {
+        SEND_STRING("hopefully ");
+      }
+      break;
+case TH_134:
+      if (pressed) {
+        SEND_STRING("however ");
+      }
+      break;
+case TH_135:
+      if (pressed) {
+        SEND_STRING("before ");
+      }
+      break;
+case TH_136:
+      if (pressed) {
+        SEND_STRING("I don't know ");
+      }
+      break;
+case TH_137:
+      if (pressed) {
+        SEND_STRING("I guess ");
+      }
+      break;
+case TH_138:
+      if (pressed) {
+        SEND_STRING("did ");
+      }
+      break;
+case TH_139:
+      if (pressed) {
+        SEND_STRING("I'll ");
+      }
+      break;
+case TH_140:
+      if (pressed) {
+        SEND_STRING("I'm ");
+      }
+      break;
+case TH_141:
+      if (pressed) {
+        SEND_STRING("important ");
+      }
+      break;
+case TH_142:
+      if (pressed) {
+        SEND_STRING("individual ");
+      }
+      break;
+case TH_143:
+      if (pressed) {
+        SEND_STRING("industry ");
+      }
+      break;
+case TH_144:
+      if (pressed) {
+        SEND_STRING("interest ");
+      }
+      break;
+case TH_145:
+      if (pressed) {
+        SEND_STRING("interesting ");
+      }
+      break;
+case TH_146:
+      if (pressed) {
+        SEND_STRING("didn't ");
+      }
+      break;
+case TH_147:
+      if (pressed) {
+        SEND_STRING("internal ");
+      }
+      break;
+case TH_148:
+      if (pressed) {
+        SEND_STRING("international ");
+      }
+      break;
+case TH_149:
+      if (pressed) {
+        SEND_STRING("I think ");
+      }
+      break;
+case TH_150:
+      if (pressed) {
+        SEND_STRING("second ");
+      }
+      break;
+case TH_151:
+      if (pressed) {
+        SEND_STRING("happy ");
+      }
+      break;
+case TH_152:
+      if (pressed) {
+        SEND_STRING("know ");
+      }
+      break;
+case TH_153:
+      if (pressed) {
+        SEND_STRING("knowledge ");
+      }
+      break;
+case TH_154:
+      if (pressed) {
+        SEND_STRING("kind of ");
+      }
+      break;
+case TH_155:
+      if (pressed) {
+        SEND_STRING("little bit ");
+      }
+      break;
+case TH_156:
+      if (pressed) {
+        SEND_STRING("look ");
+      }
+      break;
+case TH_157:
+      if (pressed) {
+        SEND_STRING("looking ");
+      }
+      break;
+case TH_158:
+      if (pressed) {
+        SEND_STRING("maybe ");
+      }
+      break;
+case TH_159:
+      if (pressed) {
+        SEND_STRING("making ");
+      }
+      break;
+case TH_160:
+      if (pressed) {
+        SEND_STRING("moving ");
+      }
+      break;
+case TH_161:
+      if (pressed) {
+        SEND_STRING("move ");
+      }
+      break;
+case TH_162:
+      if (pressed) {
+        SEND_STRING("nobody ");
+      }
+      break;
+case TH_163:
+      if (pressed) {
+        SEND_STRING("incredible ");
+      }
+      break;
+case TH_164:
+      if (pressed) {
+        SEND_STRING("necessarily ");
+      }
+      break;
+case TH_165:
+      if (pressed) {
+        SEND_STRING("necessary ");
+      }
+      break;
+case TH_166:
+      if (pressed) {
+        SEND_STRING("does ");
+      }
+      break;
+case TH_167:
+      if (pressed) {
+        SEND_STRING("information ");
+      }
+      break;
+case TH_168:
+      if (pressed) {
+        SEND_STRING("nothing ");
+      }
+      break;
+case TH_169:
+      if (pressed) {
+        SEND_STRING("no problem ");
+      }
+      break;
+case TH_170:
+      if (pressed) {
+        SEND_STRING("professional ");
+      }
+      break;
+case TH_171:
+      if (pressed) {
+        SEND_STRING("number ");
+      }
+      break;
+case TH_172:
+      if (pressed) {
+        SEND_STRING("obviously ");
+      }
+      break;
+case TH_173:
+      if (pressed) {
+        SEND_STRING("of course ");
+      }
+      break;
+case TH_174:
+      if (pressed) {
+        SEND_STRING("opportunity ");
+      }
+      break;
+case TH_175:
+      if (pressed) {
+        SEND_STRING("opportunities ");
+      }
+      break;
+case TH_176:
+      if (pressed) {
+        SEND_STRING("organization ");
+      }
+      break;
+case TH_177:
+      if (pressed) {
+        SEND_STRING("organizations ");
+      }
+      break;
+case TH_178:
+      if (pressed) {
+        SEND_STRING("publishing ");
+      }
+      break;
+case TH_179:
+      if (pressed) {
+        SEND_STRING("pandemic ");
+      }
+      break;
+case TH_180:
+      if (pressed) {
+        SEND_STRING("people ");
+      }
+      break;
+case TH_181:
+      if (pressed) {
+        SEND_STRING("perfect ");
+      }
+      break;
+case TH_182:
+      if (pressed) {
+        SEND_STRING("people ");
+      }
+      break;
+case TH_183:
+      if (pressed) {
+        SEND_STRING("please ");
+      }
+      break;
+case TH_184:
+      if (pressed) {
+        SEND_STRING("problem ");
+      }
+      break;
+case TH_185:
+      if (pressed) {
+        SEND_STRING("probably ");
+      }
+      break;
+case TH_186:
+      if (pressed) {
+        SEND_STRING("possible ");
+      }
+      break;
+case TH_187:
+      if (pressed) {
+        SEND_STRING("possibly ");
+      }
+      break;
+case TH_188:
+      if (pressed) {
+        SEND_STRING("quality ");
+      }
+      break;
+case TH_189:
+      if (pressed) {
+        SEND_STRING("question ");
+      }
+      break;
+case TH_190:
+      if (pressed) {
+        SEND_STRING("realize ");
+      }
+      break;
+case TH_191:
+      if (pressed) {
+        SEND_STRING("realize ");
+      }
+      break;
+case TH_192:
+      if (pressed) {
+        SEND_STRING("realized ");
+      }
+      break;
+case TH_193:
+      if (pressed) {
+        SEND_STRING("right now ");
+      }
+      break;
+case TH_194:
+      if (pressed) {
+        SEND_STRING("responsible ");
+      }
+      break;
+case TH_195:
+      if (pressed) {
+        SEND_STRING("responsibility ");
+      }
+      break;
+case TH_196:
+      if (pressed) {
+        SEND_STRING("somebody ");
+      }
+      break;
+case TH_197:
+      if (pressed) {
+        SEND_STRING("something ");
+      }
+      break;
+case TH_198:
+      if (pressed) {
+        SEND_STRING("should ");
+      }
+      break;
+case TH_199:
+      if (pressed) {
+        SEND_STRING("similar ");
+      }
+      break;
+case TH_200:
+      if (pressed) {
+        SEND_STRING("put ");
+      }
+      break;
+case TH_201:
+      if (pressed) {
+        SEND_STRING("answer ");
+      }
+      break;
+case TH_202:
+      if (pressed) {
+        SEND_STRING("sure ");
+      }
+      break;
+case TH_203:
+      if (pressed) {
+        SEND_STRING("specifically ");
+      }
+      break;
+case TH_204:
+      if (pressed) {
+        SEND_STRING("sometimes ");
+      }
+      break;
+case TH_205:
+      if (pressed) {
+        SEND_STRING("saying ");
+      }
+      break;
+case TH_206:
+      if (pressed) {
+        SEND_STRING("process ");
+      }
+      break;
+case TH_207:
+      if (pressed) {
+        SEND_STRING("market ");
+      }
+      break;
+case TH_208:
+      if (pressed) {
+        SEND_STRING("again ");
+      }
+      break;
+case TH_209:
+      if (pressed) {
+        SEND_STRING("to be honest ");
+      }
+      break;
+case TH_210:
+      if (pressed) {
+        SEND_STRING("today ");
+      }
+      break;
+case TH_211:
+      if (pressed) {
+        SEND_STRING("thing ");
+      }
+      break;
+case TH_212:
+      if (pressed) {
+        SEND_STRING("things ");
+      }
+      break;
+case TH_213:
+      if (pressed) {
+        SEND_STRING("this ");
+      }
+      break;
+case TH_214:
+      if (pressed) {
+        SEND_STRING("though ");
+      }
+      break;
+case TH_215:
+      if (pressed) {
+        SEND_STRING("through ");
+      }
+      break;
+case TH_216:
+      if (pressed) {
+        SEND_STRING("taking ");
+      }
+      break;
+case TH_217:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_218:
+      if (pressed) {
+        SEND_STRING("tomorrow ");
+      }
+      break;
+case TH_219:
+      if (pressed) {
+        SEND_STRING("themselves ");
+      }
+      break;
+case TH_220:
+      if (pressed) {
+        SEND_STRING("he's ");
+      }
+      break;
+case TH_221:
+      if (pressed) {
+        SEND_STRING("think ");
+      }
+      break;
+case TH_222:
+      if (pressed) {
+        SEND_STRING("thinking ");
+      }
+      break;
+case TH_223:
+      if (pressed) {
+        SEND_STRING("trying ");
+      }
+      break;
+case TH_224:
+      if (pressed) {
+        SEND_STRING("its ");
+      }
+      break;
+case TH_225:
+      if (pressed) {
+        SEND_STRING("thank you ");
+      }
+      break;
+case TH_226:
+      if (pressed) {
+        SEND_STRING("thank you very much ");
+      }
+      break;
+case TH_227:
+      if (pressed) {
+        SEND_STRING("you'll ");
+      }
+      break;
+case TH_228:
+      if (pressed) {
+        SEND_STRING("ultimately ");
+      }
+      break;
+case TH_229:
+      if (pressed) {
+        SEND_STRING("understand ");
+      }
+      break;
+case TH_230:
+      if (pressed) {
+        SEND_STRING("your ");
+      }
+      break;
+case TH_231:
+      if (pressed) {
+        SEND_STRING("everything ");
+      }
+      break;
+case TH_232:
+      if (pressed) {
+        SEND_STRING("you've ");
+      }
+      break;
+case TH_233:
+      if (pressed) {
+        SEND_STRING("you've ");
+      }
+      break;
+case TH_234:
+      if (pressed) {
+        SEND_STRING("tion ");
+      }
+      break;
+case TH_235:
+      if (pressed) {
+        SEND_STRING("I'd ");
+      }
+      break;
+case TH_236:
+      if (pressed) {
+        SEND_STRING("haven't ");
+      }
+      break;
+case TH_237:
+      if (pressed) {
+        SEND_STRING("everyday ");
+      }
+      break;
+case TH_238:
+      if (pressed) {
+        SEND_STRING("very good ");
+      }
+      break;
+case TH_239:
+      if (pressed) {
+        SEND_STRING("what ");
+      }
+      break;
+case TH_240:
+      if (pressed) {
+        SEND_STRING("who ");
+      }
+      break;
+case TH_241:
+      if (pressed) {
+        SEND_STRING("sick ");
+      }
+      break;
+case TH_242:
+      if (pressed) {
+        SEND_STRING("she ");
+      }
+      break;
+case TH_243:
+      if (pressed) {
+        SEND_STRING("data ");
+      }
+      break;
+case TH_244:
+      if (pressed) {
+        SEND_STRING("form ");
+      }
+      break;
+case TH_245:
+      if (pressed) {
+        SEND_STRING("but ");
+      }
+      break;
+case TH_246:
+      if (pressed) {
+        SEND_STRING("when ");
+      }
+      break;
+case TH_247:
+      if (pressed) {
+        SEND_STRING("will ");
+      }
+      break;
+case TH_248:
+      if (pressed) {
+        SEND_STRING("we'll ");
+      }
+      break;
+case TH_249:
+      if (pressed) {
+        SEND_STRING("walking ");
+      }
+      break;
+case TH_250:
+      if (pressed) {
+        SEND_STRING("network ");
+      }
+      break;
+case TH_251:
+      if (pressed) {
+        SEND_STRING("would ");
+      }
+      break;
+case TH_252:
+      if (pressed) {
+        SEND_STRING("we're ");
+      }
+      break;
+case TH_253:
+      if (pressed) {
+        SEND_STRING("without ");
+      }
+      break;
+case TH_254:
+      if (pressed) {
+        SEND_STRING("within ");
+      }
+      break;
+case TH_255:
+      if (pressed) {
+        SEND_STRING("we've ");
+      }
+      break;
+case TH_256:
+      if (pressed) {
+        SEND_STRING("whatever ");
+      }
+      break;
+case TH_257:
+      if (pressed) {
+        SEND_STRING("executive ");
+      }
+      break;
+case TH_258:
+      if (pressed) {
+        SEND_STRING("excellence ");
+      }
+      break;
+case TH_259:
+      if (pressed) {
+        SEND_STRING("excellent ");
+      }
+      break;
+case TH_260:
+      if (pressed) {
+        SEND_STRING("example ");
+      }
+      break;
+case TH_261:
+      if (pressed) {
+        SEND_STRING("experience ");
+      }
+      break;
+case TH_262:
+      if (pressed) {
+        SEND_STRING("excited ");
+      }
+      break;
+case TH_263:
+      if (pressed) {
+        SEND_STRING("exciting ");
+      }
+      break;
+case TH_264:
+      if (pressed) {
+        SEND_STRING("exactly ");
+      }
+      break;
+case TH_265:
+      if (pressed) {
+        SEND_STRING("extra ");
+      }
+      break;
+case TH_266:
+      if (pressed) {
+        SEND_STRING("y'all ");
+      }
+      break;
+case TH_267:
+      if (pressed) {
+        SEND_STRING("yesterday ");
+      }
+      break;
+case TH_268:
+      if (pressed) {
+        SEND_STRING("you know ");
+      }
+      break;
+case TH_269:
+      if (pressed) {
+        SEND_STRING("year ");
+      }
+      break;
+case TH_270:
+      if (pressed) {
+        SEND_STRING("so ");
+      }
+      break;
+case TH_271:
+      if (pressed) {
+        SEND_STRING("about ");
+      }
+      break;
+case TH_272:
+      if (pressed) {
+        SEND_STRING("am ");
+      }
+      break;
+case TH_273:
+      if (pressed) {
+        SEND_STRING("wanted ");
+      }
+      break;
+case TH_274:
+      if (pressed) {
+        SEND_STRING("alright ");
+      }
+      break;
+case TH_275:
+      if (pressed) {
+        SEND_STRING("say ");
+      }
+      break;
+case TH_276:
+      if (pressed) {
+        SEND_STRING("saying ");
+      }
+      break;
+case TH_277:
+      if (pressed) {
+        SEND_STRING("feel ");
+      }
+      break;
+case TH_278:
+      if (pressed) {
+        SEND_STRING("side ");
+      }
+      break;
+case TH_279:
+      if (pressed) {
+        SEND_STRING("male ");
+      }
+      break;
+case TH_280:
+      if (pressed) {
+        SEND_STRING("that's ");
+      }
+      break;
+case TH_281:
+      if (pressed) {
+        SEND_STRING("somewhere ");
+      }
+      break;
+case TH_282:
+      if (pressed) {
+        SEND_STRING("everywhere ");
+      }
+      break;
+case TH_283:
+      if (pressed) {
+        SEND_STRING("already ");
+      }
+      break;
+case TH_284:
+      if (pressed) {
+        SEND_STRING("computer ");
+      }
+      break;
+case TH_285:
+      if (pressed) {
+        SEND_STRING("almost ");
+      }
+      break;
+case TH_286:
+      if (pressed) {
+        SEND_STRING("committee ");
+      }
+      break;
+case TH_287:
+      if (pressed) {
+        SEND_STRING("female ");
+      }
+      break;
+case TH_288:
+      if (pressed) {
+        SEND_STRING("since ");
+      }
+      break;
+case TH_289:
+      if (pressed) {
+        SEND_STRING("great ");
+      }
+      break;
+case TH_290:
+      if (pressed) {
+        SEND_STRING("should ");
+      }
+      break;
+case TH_291:
+      if (pressed) {
+        SEND_STRING("shouldn't ");
+      }
+      break;
+case TH_292:
+      if (pressed) {
+        SEND_STRING("even ");
+      }
+      break;
+case TH_293:
+      if (pressed) {
+        SEND_STRING("even ");
+      }
+      break;
+case TH_294:
+      if (pressed) {
+        SEND_STRING("teach ");
+      }
+      break;
+case TH_295:
+      if (pressed) {
+        SEND_STRING("each ");
+      }
+      break;
+case TH_296:
+      if (pressed) {
+        SEND_STRING("fix ");
+      }
+      break;
+case TH_297:
+      if (pressed) {
+        SEND_STRING("teaching ");
+      }
+      break;
+case TH_298:
+      if (pressed) {
+        SEND_STRING("have ");
+      }
+      break;
+case TH_299:
+      if (pressed) {
+        SEND_STRING("asked ");
+      }
+      break;
+case TH_300:
+      if (pressed) {
+        SEND_STRING("asked ");
+      }
+      break;
+case TH_301:
+      if (pressed) {
+        SEND_STRING("even though ");
+      }
+      break;
+case TH_302:
+      if (pressed) {
+        SEND_STRING("wanted ");
+      }
+      break;
+case TH_303:
+      if (pressed) {
+        SEND_STRING("wanted ");
+      }
+      break;
+case TH_304:
+      if (pressed) {
+        SEND_STRING("work ");
+      }
+      break;
+case TH_305:
+      if (pressed) {
+        SEND_STRING("walk ");
+      }
+      break;
+case TH_306:
+      if (pressed) {
+        SEND_STRING("is ");
+      }
+      break;
+case TH_307:
+      if (pressed) {
+        SEND_STRING("an ");
+      }
+      break;
+case TH_308:
+      if (pressed) {
+        SEND_STRING("in ");
+      }
+      break;
+case TH_309:
+      if (pressed) {
+        SEND_STRING("learning ");
+      }
+      break;
+case TH_310:
+      if (pressed) {
+        SEND_STRING("to ");
+      }
+      break;
+case TH_311:
+      if (pressed) {
+        SEND_STRING("those ");
+      }
+      break;
+case TH_312:
+      if (pressed) {
+        SEND_STRING("are ");
+      }
+      break;
+case TH_313:
+      if (pressed) {
+        SEND_STRING("name ");
+      }
+      break;
+case TH_314:
+      if (pressed) {
+        SEND_STRING("you're ");
+      }
+      break;
+case TH_315:
+      if (pressed) {
+        SEND_STRING("near ");
+      }
+      break;
+case TH_316:
+      if (pressed) {
+        SEND_STRING("talk ");
+      }
+      break;
+case TH_317:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_318:
+      if (pressed) {
+        SEND_STRING("talk ");
+      }
+      break;
+case TH_319:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_320:
+      if (pressed) {
+        SEND_STRING("feeling ");
+      }
+      break;
+case TH_321:
+      if (pressed) {
+        SEND_STRING("there's ");
+      }
+      break;
+case TH_322:
+      if (pressed) {
+        SEND_STRING("hearing ");
+      }
+      break;
+case TH_323:
+      if (pressed) {
+        SEND_STRING("normal ");
+      }
+      break;
+case TH_324:
+      if (pressed) {
+        SEND_STRING("therapist ");
+      }
+      break;
+case TH_325:
+      if (pressed) {
+        SEND_STRING("therapist ");
+      }
+      break;
+case TH_326:
+      if (pressed) {
+        SEND_STRING("therapist ");
+      }
+      break;
+case TH_327:
+      if (pressed) {
+        SEND_STRING("therapist ");
+      }
+      break;
+case TH_328:
+      if (pressed) {
+        SEND_STRING("friend ");
+      }
+      break;
+case TH_329:
+      if (pressed) {
+        SEND_STRING("every ");
+      }
+      break;
+case TH_330:
+      if (pressed) {
+        SEND_STRING("makes ");
+      }
+      break;
+case TH_331:
+      if (pressed) {
+        SEND_STRING("rather ");
+      }
+      break;
+case TH_332:
+      if (pressed) {
+        SEND_STRING("item ");
+      }
+      break;
+case TH_333:
+      if (pressed) {
+        SEND_STRING("hear ");
+      }
+      break;
+case TH_334:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_335:
+      if (pressed) {
+        SEND_STRING("guy ");
+      }
+      break;
+case TH_336:
+      if (pressed) {
+        SEND_STRING("more ");
+      }
+      break;
+case TH_337:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_338:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_339:
+      if (pressed) {
+        SEND_STRING("free ");
+      }
+      break;
+case TH_340:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_341:
+      if (pressed) {
+        SEND_STRING("ing ");
+      }
+      break;
+case TH_342:
+      if (pressed) {
+        SEND_STRING("talking ");
+      }
+      break;
+case TH_343:
+      if (pressed) {
+        SEND_STRING("learn ");
+      }
+      break;
+case TH_344:
+      if (pressed) {
+        SEND_STRING("new ");
+      }
+      break;
+case TH_345:
+      if (pressed) {
+        SEND_STRING("way ");
+      }
+      break;
+case TH_346:
+      if (pressed) {
+        SEND_STRING("big ");
+      }
+      break;
+case TH_347:
+      if (pressed) {
+        SEND_STRING("yellow ");
+      }
+      break;
+case TH_348:
+      if (pressed) {
+        SEND_STRING("yes ");
+      }
+      break;
+case TH_349:
+      if (pressed) {
+        SEND_STRING("write ");
+      }
+      break;
+case TH_350:
+      if (pressed) {
+        SEND_STRING("write ");
+      }
+      break;
+case TH_351:
+      if (pressed) {
+        SEND_STRING("work ");
+      }
+      break;
+case TH_352:
+      if (pressed) {
+        SEND_STRING("work ");
+      }
+      break;
+case TH_353:
+      if (pressed) {
+        SEND_STRING("wood ");
+      }
+      break;
+case TH_354:
+      if (pressed) {
+        SEND_STRING("wish ");
+      }
+      break;
+case TH_355:
+      if (pressed) {
+        SEND_STRING("whole ");
+      }
+      break;
+case TH_356:
+      if (pressed) {
+        SEND_STRING("trans ");
+      }
+      break;
+case TH_357:
+      if (pressed) {
+        SEND_STRING("transition ");
+      }
+      break;
+case TH_358:
+      if (pressed) {
+        SEND_STRING("job ");
+      }
+      break;
+case TH_359:
+      if (pressed) {
+        SEND_STRING("several ");
+      }
+      break;
+case TH_360:
+      if (pressed) {
+        SEND_STRING("university ");
+      }
+      break;
+case TH_361:
+      if (pressed) {
+        SEND_STRING("month ");
+      }
+      break;
+case TH_362:
+      if (pressed) {
+        SEND_STRING("been ");
+      }
+      break;
+case TH_363:
+      if (pressed) {
+        SEND_STRING("email ");
+      }
+      break;
+case TH_364:
+      if (pressed) {
+        SEND_STRING("mention ");
+      }
+      break;
+case TH_365:
+      if (pressed) {
+        SEND_STRING("ever ");
+      }
+      break;
+case TH_366:
+      if (pressed) {
+        SEND_STRING("week ");
+      }
+      break;
+case TH_367:
+      if (pressed) {
+        SEND_STRING("every ");
+      }
+      break;
+case TH_368:
+      if (pressed) {
+        SEND_STRING("everyone ");
+      }
+      break;
+case TH_369:
+      if (pressed) {
+        SEND_STRING("the ");
+      }
+      break;
+case TH_370:
+      if (pressed) {
+        SEND_STRING("huge ");
+      }
+      break;
+case TH_371:
+      if (pressed) {
+        SEND_STRING("according ");
+      }
+      break;
+case TH_372:
+      if (pressed) {
+        SEND_STRING("ed ");
+      }
+      break;
+case TH_373:
+      if (pressed) {
+        SEND_STRING("started ");
+      }
+      break;
+case TH_374:
+      if (pressed) {
+        SEND_STRING("medical ");
+      }
+      break;
+case TH_375:
+      if (pressed) {
+        SEND_STRING("chose ");
+      }
+      break;
+case TH_376:
+      if (pressed) {
+        SEND_STRING("specific ");
+      }
+      break;
+case TH_377:
+      if (pressed) {
+        SEND_STRING("questions ");
+      }
+      break;
+case TH_378:
+      if (pressed) {
+        SEND_STRING("specifically ");
+      }
+      break;
+case TH_379:
+      if (pressed) {
+        SEND_STRING("testosterone ");
+      }
+      break;
+case TH_380:
+      if (pressed) {
+        SEND_STRING("when ");
+      }
+      break;
+case TH_381:
+      if (pressed) {
+        SEND_STRING("window ");
+      }
+      break;
+case TH_382:
+      if (pressed) {
+        SEND_STRING("window ");
+      }
+      break;
+case TH_383:
+      if (pressed) {
+        SEND_STRING("wind ");
+      }
+      break;
+case TH_384:
+      if (pressed) {
+        SEND_STRING("white ");
+      }
+      break;
+case TH_385:
+      if (pressed) {
+        SEND_STRING("when ");
+      }
+      break;
+case TH_386:
+      if (pressed) {
+        SEND_STRING("when ");
+      }
+      break;
+case TH_387:
+      if (pressed) {
+        SEND_STRING("website ");
+      }
+      break;
+case TH_388:
+      if (pressed) {
+        SEND_STRING("speed ");
+      }
+      break;
+case TH_389:
+      if (pressed) {
+        SEND_STRING("background ");
+      }
+      break;
+case TH_390:
+      if (pressed) {
+        SEND_STRING("were ");
+      }
+      break;
+case TH_391:
+      if (pressed) {
+        SEND_STRING("went ");
+      }
+      break;
+case TH_392:
+      if (pressed) {
+        SEND_STRING("we ");
+      }
+      break;
+case TH_393:
+      if (pressed) {
+        SEND_STRING("water ");
+      }
+      break;
+case TH_394:
+      if (pressed) {
+        SEND_STRING("watch ");
+      }
+      break;
+case TH_395:
+      if (pressed) {
+        SEND_STRING("watch ");
+      }
+      break;
+case TH_396:
+      if (pressed) {
+        SEND_STRING("wash ");
+      }
+      break;
+case TH_397:
+      if (pressed) {
+        SEND_STRING("was ");
+      }
+      break;
+case TH_398:
+      if (pressed) {
+        SEND_STRING("t ");
+      }
+      break;
+case TH_399:
+      if (pressed) {
+        SEND_STRING("warm ");
+      }
+      break;
+case TH_400:
+      if (pressed) {
+        SEND_STRING("excellent ");
+      }
+      break;
+case TH_401:
+      if (pressed) {
+        SEND_STRING("walk ");
+      }
+      break;
+case TH_402:
+      if (pressed) {
+        SEND_STRING("very ");
+      }
+      break;
+case TH_403:
+      if (pressed) {
+        SEND_STRING("use ");
+      }
+      break;
+case TH_404:
+      if (pressed) {
+        SEND_STRING("us ");
+      }
+      break;
+case TH_405:
+      if (pressed) {
+        SEND_STRING("upon ");
+      }
+      break;
+case TH_406:
+      if (pressed) {
+        SEND_STRING("up ");
+      }
+      break;
+case TH_407:
+      if (pressed) {
+        SEND_STRING("under ");
+      }
+      break;
+case TH_408:
+      if (pressed) {
+        SEND_STRING("try ");
+      }
+      break;
+case TH_409:
+      if (pressed) {
+        SEND_STRING("tree ");
+      }
+      break;
+case TH_410:
+      if (pressed) {
+        SEND_STRING("toy ");
+      }
+      break;
+case TH_411:
+      if (pressed) {
+        SEND_STRING("top ");
+      }
+      break;
+case TH_412:
+      if (pressed) {
+        SEND_STRING("too ");
+      }
+      break;
+case TH_413:
+      if (pressed) {
+        SEND_STRING("together ");
+      }
+      break;
+case TH_414:
+      if (pressed) {
+        SEND_STRING("today ");
+      }
+      break;
+case TH_415:
+      if (pressed) {
+        SEND_STRING("time ");
+      }
+      break;
+case TH_416:
+      if (pressed) {
+        SEND_STRING("this ");
+      }
+      break;
+case TH_417:
+      if (pressed) {
+        SEND_STRING("time ");
+      }
+      break;
+case TH_418:
+      if (pressed) {
+        SEND_STRING("make ");
+      }
+      break;
+case TH_419:
+      if (pressed) {
+        SEND_STRING("making ");
+      }
+      break;
+case TH_420:
+      if (pressed) {
+        SEND_STRING("think ");
+      }
+      break;
+case TH_421:
+      if (pressed) {
+        SEND_STRING("think ");
+      }
+      break;
+case TH_422:
+      if (pressed) {
+        SEND_STRING("they ");
+      }
+      break;
+case TH_423:
+      if (pressed) {
+        SEND_STRING("these ");
+      }
+      break;
+case TH_424:
+      if (pressed) {
+        SEND_STRING("there's ");
+      }
+      break;
+case TH_425:
+      if (pressed) {
+        SEND_STRING("most ");
+      }
+      break;
+case TH_426:
+      if (pressed) {
+        SEND_STRING("mind ");
+      }
+      break;
+case TH_427:
+      if (pressed) {
+        SEND_STRING("then ");
+      }
+      break;
+case TH_428:
+      if (pressed) {
+        SEND_STRING("finance ");
+      }
+      break;
+case TH_429:
+      if (pressed) {
+        SEND_STRING("software ");
+      }
+      break;
+case TH_430:
+      if (pressed) {
+        SEND_STRING("came ");
+      }
+      break;
+case TH_431:
+      if (pressed) {
+        SEND_STRING("still ");
+      }
+      break;
+case TH_432:
+      if (pressed) {
+        SEND_STRING("them ");
+      }
+      break;
+case TH_433:
+      if (pressed) {
+        SEND_STRING("team ");
+      }
+      break;
+case TH_434:
+      if (pressed) {
+        SEND_STRING("they're ");
+      }
+      break;
+case TH_435:
+      if (pressed) {
+        SEND_STRING("program ");
+      }
+      break;
+case TH_436:
+      if (pressed) {
+        SEND_STRING("their ");
+      }
+      break;
+case TH_437:
+      if (pressed) {
+        SEND_STRING("that ");
+      }
+      break;
+case TH_438:
+      if (pressed) {
+        SEND_STRING("thank ");
+      }
+      break;
+case TH_439:
+      if (pressed) {
+        SEND_STRING("take ");
+      }
+      break;
+case TH_440:
+      if (pressed) {
+        SEND_STRING("table ");
+      }
+      break;
+case TH_441:
+      if (pressed) {
+        SEND_STRING("sun ");
+      }
+      break;
+case TH_442:
+      if (pressed) {
+        SEND_STRING("iv ");
+      }
+      break;
+case TH_443:
+      if (pressed) {
+        SEND_STRING("street ");
+      }
+      break;
+case TH_444:
+      if (pressed) {
+        SEND_STRING("post ");
+      }
+      break;
+case TH_445:
+      if (pressed) {
+        SEND_STRING("sticks ");
+      }
+      break;
+case TH_446:
+      if (pressed) {
+        SEND_STRING("squirrel ");
+      }
+      break;
+case TH_447:
+      if (pressed) {
+        SEND_STRING("soon ");
+      }
+      break;
+case TH_448:
+      if (pressed) {
+        SEND_STRING("song ");
+      }
+      break;
+case TH_449:
+      if (pressed) {
+        SEND_STRING("some ");
+      }
+      break;
+case TH_450:
+      if (pressed) {
+        SEND_STRING("snow ");
+      }
+      break;
+case TH_451:
+      if (pressed) {
+        SEND_STRING("small ");
+      }
+      break;
+case TH_452:
+      if (pressed) {
+        SEND_STRING("sleep ");
+      }
+      break;
+case TH_453:
+      if (pressed) {
+        SEND_STRING("sleep ");
+      }
+      break;
+case TH_454:
+      if (pressed) {
+        SEND_STRING("sister ");
+      }
+      break;
+case TH_455:
+      if (pressed) {
+        SEND_STRING("sing ");
+      }
+      break;
+case TH_456:
+      if (pressed) {
+        SEND_STRING("sign ");
+      }
+      break;
+case TH_457:
+      if (pressed) {
+        SEND_STRING("show ");
+      }
+      break;
+case TH_458:
+      if (pressed) {
+        SEND_STRING("shoe ");
+      }
+      break;
+case TH_459:
+      if (pressed) {
+        SEND_STRING("sheep ");
+      }
+      break;
+case TH_460:
+      if (pressed) {
+        SEND_STRING("lash ");
+      }
+      break;
+case TH_461:
+      if (pressed) {
+        SEND_STRING("see ");
+      }
+      break;
+case TH_462:
+      if (pressed) {
+        SEND_STRING("school ");
+      }
+      break;
+case TH_463:
+      if (pressed) {
+        SEND_STRING("was ");
+      }
+      break;
+case TH_464:
+      if (pressed) {
+        SEND_STRING("said ");
+      }
+      break;
+case TH_465:
+      if (pressed) {
+        SEND_STRING("run ");
+      }
+      break;
+case TH_466:
+      if (pressed) {
+        SEND_STRING("please ");
+      }
+      break;
+case TH_467:
+      if (pressed) {
+        SEND_STRING("play ");
+      }
+      break;
+case TH_468:
+      if (pressed) {
+        SEND_STRING("pig ");
+      }
+      break;
+case TH_469:
+      if (pressed) {
+        SEND_STRING("picture ");
+      }
+      break;
+case TH_470:
+      if (pressed) {
+        SEND_STRING("pick ");
+      }
+      break;
+case TH_471:
+      if (pressed) {
+        SEND_STRING("party ");
+      }
+      break;
+case TH_472:
+      if (pressed) {
+        SEND_STRING("paper ");
+      }
+      break;
+case TH_473:
+      if (pressed) {
+        SEND_STRING("now ");
+      }
+      break;
+case TH_474:
+      if (pressed) {
+        SEND_STRING("over ");
+      }
+      break;
+case TH_475:
+      if (pressed) {
+        SEND_STRING("out ");
+      }
+      break;
+case TH_476:
+      if (pressed) {
+        SEND_STRING("our ");
+      }
+      break;
+case TH_477:
+      if (pressed) {
+        SEND_STRING("open ");
+      }
+      break;
+case TH_478:
+      if (pressed) {
+        SEND_STRING("only ");
+      }
+      break;
+case TH_479:
+      if (pressed) {
+        SEND_STRING("once ");
+      }
+      break;
+case TH_480:
+      if (pressed) {
+        SEND_STRING("no ");
+      }
+      break;
+case TH_481:
+      if (pressed) {
+        SEND_STRING("who's ");
+      }
+      break;
+case TH_482:
+      if (pressed) {
+        SEND_STRING("answer ");
+      }
+      break;
+case TH_483:
+      if (pressed) {
+        SEND_STRING("didn't ");
+      }
+      break;
+case TH_484:
+      if (pressed) {
+        SEND_STRING("felt ");
+      }
+      break;
+case TH_485:
+      if (pressed) {
+        SEND_STRING("n't ");
+      }
+      break;
+case TH_486:
+      if (pressed) {
+        SEND_STRING("what ");
+      }
+      break;
+case TH_487:
+      if (pressed) {
+        SEND_STRING("d ");
+      }
+      break;
+case TH_488:
+      if (pressed) {
+        SEND_STRING("old ");
+      }
+      break;
+case TH_489:
+      if (pressed) {
+        SEND_STRING("kept ");
+      }
+      break;
+case TH_490:
+      if (pressed) {
+        SEND_STRING("nice ");
+      }
+      break;
+case TH_491:
+      if (pressed) {
+        SEND_STRING("of ");
+      }
+      break;
+case TH_492:
+      if (pressed) {
+        SEND_STRING("need ");
+      }
+      break;
+case TH_493:
+      if (pressed) {
+        SEND_STRING("not ");
+      }
+      break;
+case TH_494:
+      if (pressed) {
+        SEND_STRING("night ");
+      }
+      break;
+case TH_495:
+      if (pressed) {
+        SEND_STRING("never ");
+      }
+      break;
+case TH_496:
+      if (pressed) {
+        SEND_STRING("nest ");
+      }
+      break;
+case TH_497:
+      if (pressed) {
+        SEND_STRING("myself ");
+      }
+      break;
+case TH_498:
+      if (pressed) {
+        SEND_STRING("myself ");
+      }
+      break;
+case TH_499:
+      if (pressed) {
+        SEND_STRING("my ");
+      }
+      break;
+case TH_500:
+      if (pressed) {
+        SEND_STRING("where ");
+      }
+      break;
+      case TH_501:
+      if (pressed) {
+        SEND_STRING("that's ");
+      }
+      break;
+case TH_502:
+      if (pressed) {
+        SEND_STRING("must ");
+      }
+      break;
+case TH_503:
+      if (pressed) {
+        SEND_STRING("much ");
+      }
+      break;
+case TH_504:
+      if (pressed) {
+        SEND_STRING("mother ");
+      }
+      break;
+case TH_505:
+      if (pressed) {
+        SEND_STRING("morning ");
+      }
+      break;
+case TH_506:
+      if (pressed) {
+        SEND_STRING("money ");
+      }
+      break;
+case TH_507:
+      if (pressed) {
+        SEND_STRING("milk ");
+      }
+      break;
+case TH_508:
+      if (pressed) {
+        SEND_STRING("men ");
+      }
+      break;
+case TH_509:
+      if (pressed) {
+        SEND_STRING("may ");
+      }
+      break;
+case TH_510:
+      if (pressed) {
+        SEND_STRING("many ");
+      }
+      break;
+case TH_511:
+      if (pressed) {
+        SEND_STRING("man ");
+      }
+      break;
+case TH_512:
+      if (pressed) {
+        SEND_STRING("make ");
+      }
+      break;
+case TH_513:
+      if (pressed) {
+        SEND_STRING("made ");
+      }
+      break;
+case TH_514:
+      if (pressed) {
+        SEND_STRING("look ");
+      }
+      break;
+case TH_515:
+      if (pressed) {
+        SEND_STRING("lock ");
+      }
+      break;
+case TH_516:
+      if (pressed) {
+        SEND_STRING("long ");
+      }
+      break;
+case TH_517:
+      if (pressed) {
+        SEND_STRING("live ");
+      }
+      break;
+case TH_518:
+      if (pressed) {
+        SEND_STRING("live ");
+      }
+      break;
+case TH_519:
+      if (pressed) {
+        SEND_STRING("little ");
+      }
+      break;
+case TH_520:
+      if (pressed) {
+        SEND_STRING("light ");
+      }
+      break;
+case TH_521:
+      if (pressed) {
+        SEND_STRING("letter ");
+      }
+      break;
+case TH_522:
+      if (pressed) {
+        SEND_STRING("let ");
+      }
+      break;
+case TH_523:
+      if (pressed) {
+        SEND_STRING("leg ");
+      }
+      break;
+case TH_524:
+      if (pressed) {
+        SEND_STRING("laugh ");
+      }
+      break;
+case TH_525:
+      if (pressed) {
+        SEND_STRING("laugh ");
+      }
+      break;
+case TH_526:
+      if (pressed) {
+        SEND_STRING("know ");
+      }
+      break;
+case TH_527:
+      if (pressed) {
+        SEND_STRING("kitty ");
+      }
+      break;
+case TH_528:
+      if (pressed) {
+        SEND_STRING("kind ");
+      }
+      break;
+case TH_529:
+      if (pressed) {
+        SEND_STRING("keep ");
+      }
+      break;
+case TH_530:
+      if (pressed) {
+        SEND_STRING("peak ");
+      }
+      break;
+case TH_531:
+      if (pressed) {
+        SEND_STRING("jump ");
+      }
+      break;
+case TH_532:
+      if (pressed) {
+        SEND_STRING("jump ");
+      }
+      break;
+case TH_533:
+      if (pressed) {
+        SEND_STRING("in ");
+      }
+      break;
+case TH_534:
+      if (pressed) {
+        SEND_STRING("if ");
+      }
+      break;
+case TH_535:
+      if (pressed) {
+        SEND_STRING("how ");
+      }
+      break;
+case TH_536:
+      if (pressed) {
+        SEND_STRING("house ");
+      }
+      break;
+case TH_537:
+      if (pressed) {
+        SEND_STRING("horse ");
+      }
+      break;
+case TH_538:
+      if (pressed) {
+        SEND_STRING("home ");
+      }
+      break;
+case TH_539:
+      if (pressed) {
+        SEND_STRING("hold ");
+      }
+      break;
+case TH_540:
+      if (pressed) {
+        SEND_STRING("his ");
+      }
+      break;
+case TH_541:
+      if (pressed) {
+        SEND_STRING("him ");
+      }
+      break;
+case TH_542:
+      if (pressed) {
+        SEND_STRING("hill ");
+      }
+      break;
+case TH_543:
+      if (pressed) {
+        SEND_STRING("help ");
+      }
+      break;
+case TH_544:
+      if (pressed) {
+        SEND_STRING("head ");
+      }
+      break;
+case TH_545:
+      if (pressed) {
+        SEND_STRING("have ");
+      }
+      break;
+case TH_546:
+      if (pressed) {
+        SEND_STRING("has ");
+      }
+      break;
+case TH_547:
+      if (pressed) {
+        SEND_STRING("hand ");
+      }
+      break;
+case TH_548:
+      if (pressed) {
+        SEND_STRING("had ");
+      }
+      break;
+case TH_549:
+      if (pressed) {
+        SEND_STRING("grow ");
+      }
+      break;
+case TH_550:
+      if (pressed) {
+        SEND_STRING("ground ");
+      }
+      break;
+case TH_551:
+      if (pressed) {
+        SEND_STRING("ground ");
+      }
+      break;
+case TH_552:
+      if (pressed) {
+        SEND_STRING("anti ");
+      }
+      break;
+case TH_553:
+      if (pressed) {
+        SEND_STRING("ante ");
+      }
+      break;
+case TH_554:
+      if (pressed) {
+        SEND_STRING("attention ");
+      }
+      break;
+case TH_555:
+      if (pressed) {
+        SEND_STRING("could ");
+      }
+      break;
+case TH_556:
+      if (pressed) {
+        SEND_STRING("com ");
+      }
+      break;
+case TH_557:
+      if (pressed) {
+        SEND_STRING("contra ");
+      }
+      break;
+case TH_558:
+      if (pressed) {
+        SEND_STRING("contro ");
+      }
+      break;
+case TH_559:
+      if (pressed) {
+        SEND_STRING("en ");
+      }
+      break;
+case TH_560:
+      if (pressed) {
+        SEND_STRING("ex ");
+      }
+      break;
+case TH_561:
+      if (pressed) {
+        SEND_STRING("extra ");
+      }
+      break;
+case TH_562:
+      if (pressed) {
+        SEND_STRING("hetero ");
+      }
+      break;
+case TH_563:
+      if (pressed) {
+        SEND_STRING("homo ");
+      }
+      break;
+case TH_564:
+      if (pressed) {
+        SEND_STRING("homeo ");
+      }
+      break;
+case TH_565:
+      if (pressed) {
+        SEND_STRING("hyper ");
+      }
+      break;
+case TH_566:
+      if (pressed) {
+        SEND_STRING("fine ");
+      }
+      break;
+case TH_567:
+      if (pressed) {
+        SEND_STRING("inter ");
+      }
+      break;
+case TH_568:
+      if (pressed) {
+        SEND_STRING("intra ");
+      }
+      break;
+case TH_569:
+      if (pressed) {
+        SEND_STRING("intro ");
+      }
+      break;
+case TH_570:
+      if (pressed) {
+        SEND_STRING("macro ");
+      }
+      break;
+case TH_571:
+      if (pressed) {
+        SEND_STRING("micro ");
+      }
+      break;
+case TH_572:
+      if (pressed) {
+        SEND_STRING("mono ");
+      }
+      break;
+case TH_573:
+      if (pressed) {
+        SEND_STRING("omni ");
+      }
+      break;
+case TH_574:
+      if (pressed) {
+        SEND_STRING("pre ");
+      }
+      break;
+case TH_575:
+      if (pressed) {
+        SEND_STRING("pro ");
+      }
+      break;
+case TH_576:
+      if (pressed) {
+        SEND_STRING("sym ");
+      }
+      break;
+case TH_577:
+      if (pressed) {
+        SEND_STRING("syn ");
+      }
+      break;
+case TH_578:
+      if (pressed) {
+        SEND_STRING("mis ");
+      }
+      break;
+case TH_579:
+      if (pressed) {
+        SEND_STRING("tri ");
+      }
+      break;
+case TH_580:
+      if (pressed) {
+        SEND_STRING("un ");
+      }
+      break;
+case TH_581:
+      if (pressed) {
+        SEND_STRING("uni ");
+      }
+      break;
+case TH_582:
+      if (pressed) {
+        SEND_STRING("acy ");
+      }
+      break;
+case TH_583:
+      if (pressed) {
+        SEND_STRING("ance ");
+      }
+      break;
+case TH_584:
+      if (pressed) {
+        SEND_STRING("ence ");
+      }
+      break;
+case TH_585:
+      if (pressed) {
+        SEND_STRING("dom ");
+      }
+      break;
+case TH_586:
+      if (pressed) {
+        SEND_STRING("er ");
+      }
+      break;
+case TH_587:
+      if (pressed) {
+        SEND_STRING("ck ");
+      }
+      break;
+case TH_588:
+      if (pressed) {
+        SEND_STRING("ls ");
+      }
+      break;
+case TH_589:
+      if (pressed) {
+        SEND_STRING("ack ");
+      }
+      break;
+case TH_590:
+      if (pressed) {
+        SEND_STRING("ism ");
+      }
+      break;
+case TH_591:
+      if (pressed) {
+        SEND_STRING("believe ");
+      }
+      break;
+case TH_592:
+      if (pressed) {
+        SEND_STRING("minute ");
+      }
+      break;
+case TH_593:
+      if (pressed) {
+        SEND_STRING("couple ");
+      }
+      break;
+case TH_594:
+      if (pressed) {
+        SEND_STRING("hospital ");
+      }
+      break;
+case TH_595:
+      if (pressed) {
+        SEND_STRING("page ");
+      }
+      break;
+case TH_596:
+      if (pressed) {
+        SEND_STRING("point ");
+      }
+      break;
+case TH_597:
+      if (pressed) {
+        SEND_STRING("final ");
+      }
+      break;
+case TH_598:
+      if (pressed) {
+        SEND_STRING("finally ");
+      }
+      break;
+case TH_599:
+      if (pressed) {
+        SEND_STRING("community ");
+      }
+      break;
+case TH_600:
+      if (pressed) {
+        SEND_STRING("coming ");
+      }
+      break;
+case TH_601:
+      if (pressed) {
+        SEND_STRING("building ");
+      }
+      break;
+case TH_602:
+      if (pressed) {
+        SEND_STRING("strategy ");
+      }
+      break;
+case TH_603:
+      if (pressed) {
+        SEND_STRING("against ");
+      }
+      break;
+case TH_604:
+      if (pressed) {
+        SEND_STRING("never ");
+      }
+      break;
+case TH_605:
+      if (pressed) {
+        SEND_STRING("continue ");
+      }
+      break;
+case TH_606:
+      if (pressed) {
+        SEND_STRING("certain ");
+      }
+      break;
+case TH_607:
+      if (pressed) {
+        SEND_STRING("build ");
+      }
+      break;
+case TH_608:
+      if (pressed) {
+        SEND_STRING("built ");
+      }
+      break;
+case TH_609:
+      if (pressed) {
+        SEND_STRING("bit ");
+      }
+      break;
+case TH_610:
+      if (pressed) {
+        SEND_STRING("mean ");
+      }
+      break;
+case TH_611:
+      if (pressed) {
+        SEND_STRING("read ");
+      }
+      break;
+case TH_612:
+      if (pressed) {
+        SEND_STRING("which ");
+      }
+      break;
+case TH_613:
+      if (pressed) {
+        SEND_STRING("as ");
+      }
+      break;
+case TH_614:
+      if (pressed) {
+        SEND_STRING("happen ");
+      }
+      break;
+case TH_615:
+      if (pressed) {
+        SEND_STRING("better ");
+      }
+      break;
+case TH_616:
+      if (pressed) {
+        SEND_STRING("remote ");
+      }
+      break;
+case TH_617:
+      if (pressed) {
+        SEND_STRING("get ");
+      }
+      break;
+case TH_618:
+      if (pressed) {
+        SEND_STRING("idea ");
+      }
+      break;
+case TH_619:
+      if (pressed) {
+        SEND_STRING("meeting ");
+      }
+      break;
+case TH_620:
+      if (pressed) {
+        SEND_STRING("state ");
+      }
+      break;
+case TH_621:
+      if (pressed) {
+        SEND_STRING("also ");
+      }
+      break;
+case TH_622:
+      if (pressed) {
+        SEND_STRING("comfortable ");
+      }
+      break;
+case TH_623:
+      if (pressed) {
+        SEND_STRING("can ");
+      }
+      break;
+case TH_624:
+      if (pressed) {
+        SEND_STRING("part ");
+      }
+      break;
+case TH_625:
+      if (pressed) {
+        SEND_STRING("department ");
+      }
+      break;
+case TH_626:
+      if (pressed) {
+        SEND_STRING("after ");
+      }
+      break;
+case TH_627:
+      if (pressed) {
+        SEND_STRING("do ");
+      }
+      break;
+case TH_628:
+      if (pressed) {
+        SEND_STRING("ity ");
+      }
+      break;
+case TH_629:
+      if (pressed) {
+        SEND_STRING("ment ");
+      }
+      break;
+case TH_630:
+      if (pressed) {
+        SEND_STRING("ship ");
+      }
+      break;
+case TH_631:
+      if (pressed) {
+        SEND_STRING("con ");
+      }
+      break;
+case TH_632:
+      if (pressed) {
+        SEND_STRING("sion ");
+      }
+      break;
+case TH_633:
+      if (pressed) {
+        SEND_STRING("ight ");
+      }
+      break;
+case TH_634:
+      if (pressed) {
+        SEND_STRING("ate ");
+      }
+      break;
+case TH_635:
+      if (pressed) {
+        SEND_STRING("anyone ");
+      }
+      break;
+case TH_636:
+      if (pressed) {
+        SEND_STRING("en ");
+      }
+      break;
+case TH_637:
+      if (pressed) {
+        SEND_STRING("ify ");
+      }
+      break;
+case TH_638:
+      if (pressed) {
+        SEND_STRING("ize ");
+      }
+      break;
+case TH_639:
+      if (pressed) {
+        SEND_STRING("s ");
+      }
+      break;
+case TH_640:
+      if (pressed) {
+        SEND_STRING("be ");
+      }
+      break;
+case TH_641:
+      if (pressed) {
+        SEND_STRING("lot ");
+      }
+      break;
+case TH_642:
+      if (pressed) {
+        SEND_STRING("ask ");
+      }
+      break;
+case TH_643:
+      if (pressed) {
+        SEND_STRING("l");
+      }
+      break;
+case TH_644:
+      if (pressed) {
+        SEND_STRING("while ");
+      }
+      break;
+case TH_645:
+      if (pressed) {
+        SEND_STRING("want ");
+      }
+      break;
+case TH_646:
+      if (pressed) {
+        SEND_STRING("stuff ");
+      }
+      break;
+case TH_647:
+      if (pressed) {
+        SEND_STRING("than ");
+      }
+      break;
+case TH_648:
+      if (pressed) {
+        SEND_STRING("detail ");
+      }
+      break;
+case TH_649:
+      if (pressed) {
+        SEND_STRING("afterwards ");
+      }
+      break;
+case TH_650:
+      if (pressed) {
+        SEND_STRING("done ");
+      }
+      break;
+case TH_651:
+      if (pressed) {
+        SEND_STRING("minute ");
+      }
+      break;
+case TH_652:
+      if (pressed) {
+        SEND_STRING("public ");
+      }
+      break;
+case TH_653:
+      if (pressed) {
+        SEND_STRING("care ");
+      }
+      break;
+case TH_654:
+      if (pressed) {
+        SEND_STRING("ise ");
+      }
+      break;
+case TH_655:
+      if (pressed) {
+        SEND_STRING("able ");
+      }
+      break;
+case TH_656:
+      if (pressed) {
+        SEND_STRING("ible ");
+      }
+      break;
+case TH_657:
+      if (pressed) {
+        SEND_STRING("all ");
+      }
+      break;
+case TH_658:
+      if (pressed) {
+        SEND_STRING("clinical ");
+      }
+      break;
+case TH_659:
+      if (pressed) {
+        SEND_STRING("clean ");
+      }
+      break;
+case TH_660:
+      if (pressed) {
+        SEND_STRING("esque ");
+      }
+      break;
+case TH_661:
+      if (pressed) {
+        SEND_STRING("ious ");
+      }
+      break;
+case TH_662:
+      if (pressed) {
+        SEND_STRING("ous ");
+      }
+      break;
+case TH_663:
+      if (pressed) {
+        SEND_STRING("ish ");
+      }
+      break;
+case TH_664:
+      if (pressed) {
+        SEND_STRING("done ");
+      }
+      break;
+case TH_665:
+      if (pressed) {
+        SEND_STRING("es ");
+      }
+      break;
+case TH_666:
+      if (pressed) {
+        SEND_STRING("st ");
+      }
+      break;
+case TH_667:
+      if (pressed) {
+        SEND_STRING("ou ");
+      }
+      break;
+case TH_668:
+      if (pressed) {
+        SEND_STRING("ea ");
+      }
+      break;
+case TH_669:
+      if (pressed) {
+        SEND_STRING("dis ");
+      }
+      break;
+case TH_670:
+      if (pressed) {
+        SEND_STRING("ent ");
+      }
+      break;
+case TH_671:
+      if (pressed) {
+        SEND_STRING("ion ");
+      }
+      break;
+case TH_672:
+      if (pressed) {
+        SEND_STRING("anywhere ");
+      }
+      break;
+case TH_673:
+      if (pressed) {
+        SEND_STRING("set ");
+      }
+      break;
+case TH_674:
+      if (pressed) {
+        SEND_STRING("res ");
+      }
+      break;
+case TH_675:
+      if (pressed) {
+        SEND_STRING("not ");
+      }
+      break;
+case TH_676:
+      if (pressed) {
+        SEND_STRING("here ");
+      }
+      break;
+case TH_677:
+      if (pressed) {
+        SEND_STRING("wonder ");
+      }
+      break;
+case TH_678:
+      if (pressed) {
+        SEND_STRING("working ");
+      }
+      break;
+case TH_679:
+      if (pressed) {
+        SEND_STRING("it's ");
+      }
+      break;
+case TH_680:
+      if (pressed) {
+        SEND_STRING("take ");
+      }
+      break;
+case TH_681:
+      if (pressed) {
+        SEND_STRING("taking ");
+      }
+      break;
+case TH_682:
+      if (pressed) {
+        SEND_STRING("moment ");
+      }
+      break;
+case TH_683:
+      if (pressed) {
+        SEND_STRING("become ");
+      }
+      break;
+case TH_684:
+      if (pressed) {
+        SEND_STRING("it ");
+      }
+      break;
+case TH_685:
+      if (pressed) {
+        SEND_STRING("at ");
+      }
+      break;
+case TH_686:
+      if (pressed) {
+        SEND_STRING("go ");
+      }
+      break;
+case TH_687:
+      if (pressed) {
+        SEND_STRING("quit ");
+      }
+      break;
+case TH_688:
+      if (pressed) {
+        SEND_STRING("quite ");
+      }
+      break;
+case TH_689:
+      if (pressed) {
+        SEND_STRING("quiet ");
+      }
+      break;
+case TH_690:
+      if (pressed) {
+        SEND_STRING("day ");
+      }
+      break;
+case TH_691:
+      if (pressed) {
+        SEND_STRING("into ");
+      }
+      break;
+case TH_692:
+      if (pressed) {
+        SEND_STRING("person ");
+      }
+      break;
+case TH_693:
+      if (pressed) {
+        SEND_STRING("interview ");
+      }
+      break;
+case TH_694:
+      if (pressed) {
+        SEND_STRING("years ");
+      }
+      break;
+case TH_695:
+      if (pressed) {
+        SEND_STRING("sorry ");
+      }
+      break;
+case TH_696:
+      if (pressed) {
+        SEND_STRING("there ");
+      }
+      break;
+case TH_697:
+      if (pressed) {
+        SEND_STRING("or ");
+      }
+      break;
+case TH_698:
+      if (pressed) {
+        SEND_STRING("me ");
+      }
+      break;
+case TH_699:
+      if (pressed) {
+        SEND_STRING("always ");
+      }
+      break;
+case TH_700:
+      if (pressed) {
+        SEND_STRING("well ");
+      }
+      break;
+case TH_701:
+      if (pressed) {
+        SEND_STRING("won't ");
+      }
+      break;
+case TH_702:
+      if (pressed) {
+        SEND_STRING("respond ");
+      }
+      break;
+case TH_703:
+      if (pressed) {
+        SEND_STRING("ation ");
+      }
+      break;
+case TH_704:
+      if (pressed) {
+        SEND_STRING("during ");
+      }
+      break;
+case TH_705:
+      if (pressed) {
+        SEND_STRING("basic ");
+      }
+      break;
+case TH_706:
+      if (pressed) {
+        SEND_STRING("basically ");
+      }
+      break;
+case TH_707:
+      if (pressed) {
+        SEND_STRING("communicate ");
+      }
+      break;
+case TH_708:
+      if (pressed) {
+        SEND_STRING("communication ");
+      }
+      break;
+case TH_709:
+      if (pressed) {
+        SEND_STRING("newspaper ");
+      }
+      break;
+case TH_710:
+      if (pressed) {
+        SEND_STRING("writing ");
+      }
+      break;
+case TH_711:
+      if (pressed) {
+        SEND_STRING("general ");
+      }
+      break;
+case TH_712:
+      if (pressed) {
+        SEND_STRING("ization ");
+      }
+      break;
+case TH_713:
+      if (pressed) {
+        SEND_STRING("uation ");
+      }
+      break;
+case TH_714:
+      if (pressed) {
+        SEND_STRING("whether ");
+      }
+      break;
+case TH_715:
+      if (pressed) {
+        SEND_STRING("au ");
+      }
+      break;
+case TH_716:
+      if (pressed) {
+        SEND_STRING("ai ");
+      }
+      break;
+case TH_717:
+      if (pressed) {
+        SEND_STRING("decide ");
+      }
+      break;
+case TH_718:
+      if (pressed) {
+        SEND_STRING("end ");
+      }
+      break;
+case TH_719:
+      if (pressed) {
+        SEND_STRING("any ");
+      }
+      break;
+case TH_720:
+      if (pressed) {
+        SEND_STRING("anyway ");
+      }
+      break;
+case TH_721:
+      if (pressed) {
+        SEND_STRING("next ");
+      }
+      break;
+case TH_722:
+      if (pressed) {
+        SEND_STRING("ice ");
+      }
+      break;
+case TH_723:
+      if (pressed) {
+        SEND_STRING("step ");
+      }
+      break;
+case TH_724:
+      if (pressed) {
+        SEND_STRING("introduce ");
+      }
+      break;
+case TH_725:
+      if (pressed) {
+        SEND_STRING("myself ");
+      }
+      break;
+case TH_726:
+      if (pressed) {
+        SEND_STRING("met ");
+      }
+      break;
+case TH_727:
+      if (pressed) {
+        SEND_STRING("aught ");
+      }
+      break;
+case TH_728:
+      if (pressed) {
+        SEND_STRING("love ");
+      }
+      break;
+case TH_729:
+      if (pressed) {
+        SEND_STRING("deal ");
+      }
+      break;
+case TH_730:
+      if (pressed) {
+        SEND_STRING("lead ");
+      }
+      break;
+case TH_731:
+      if (pressed) {
+        SEND_STRING("success ");
+      }
+      break;
+case TH_732:
+      if (pressed) {
+        SEND_STRING("finish ");
+      }
+      break;
+case TH_733:
+      if (pressed) {
+        SEND_STRING("knew ");
+      }
+      break;
+case TH_734:
+      if (pressed) {
+        SEND_STRING("family ");
+      }
+      break;
+case TH_735:
+      if (pressed) {
+        SEND_STRING("heard ");
+      }
+      break;
+case TH_736:
+      if (pressed) {
+        SEND_STRING("led ");
+      }
+      break;
+case TH_737:
+      if (pressed) {
+        SEND_STRING("met ");
+      }
+      break;
+case TH_738:
+      if (pressed) {
+        SEND_STRING("class ");
+      }
+      break;
+case TH_739:
+      if (pressed) {
+        SEND_STRING("student ");
+      }
+      break;
+case TH_740:
+      if (pressed) {
+        SEND_STRING("ought ");
+      }
+      break;
+case TH_741:
+      if (pressed) {
+        SEND_STRING("health ");
+      }
+      break;
+case TH_742:
+      if (pressed) {
+        SEND_STRING("child ");
+      }
+      break;
+case TH_743:
+      if (pressed) {
+        SEND_STRING("children ");
+      }
+      break;
+case TH_744:
+      if (pressed) {
+        SEND_STRING("view ");
+      }
+      break;
+case TH_745:
+      if (pressed) {
+        SEND_STRING("support ");
+      }
+      break;
+case TH_746:
+      if (pressed) {
+        SEND_STRING("kids ");
+      }
+      break;
+case TH_747:
+      if (pressed) {
+        SEND_STRING("compare ");
+      }
+      break;
+case TH_748:
+      if (pressed) {
+        SEND_STRING("significant ");
+      }
+      break;
+case TH_749:
+      if (pressed) {
+        SEND_STRING("ly ");
+      }
+      break;
+case TH_750:
+      if (pressed) {
+        SEND_STRING("age ");
+      }
+      break;
+case TH_751:
+      if (pressed) {
+        SEND_STRING("educate ");
+      }
+      break;
+case TH_752:
+      if (pressed) {
+        SEND_STRING("open ");
+      }
+      break;
+case TH_753:
+      if (pressed) {
+        SEND_STRING("such ");
+      }
+      break;
+case TH_754:
+      if (pressed) {
+        SEND_STRING("last ");
+      }
+      break;
+case TH_755:
+      if (pressed) {
+        SEND_STRING("ide ");
+      }
+      break;
+case TH_756:
+      if (pressed) {
+        SEND_STRING("provide ");
+      }
+      break;
+case TH_757:
+      if (pressed) {
+        SEND_STRING("bring ");
+      }
+      break;
+case TH_758:
+      if (pressed) {
+        SEND_STRING("br ");
+      }
+      break;
+case TH_759:
+      if (pressed) {
+        SEND_STRING("level ");
+      }
+      break;
+case TH_760:
+      if (pressed) {
+        SEND_STRING("hard ");
+      }
+      break;
+case TH_761:
+      if (pressed) {
+        SEND_STRING("dental ");
+      }
+      break;
+case TH_762:
+      if (pressed) {
+        SEND_STRING("neck ");
+      }
+      break;
+case TH_763:
+      if (pressed) {
+        SEND_STRING("single ");
+      }
+      break;
+case TH_764:
+      if (pressed) {
+        SEND_STRING("step ");
+      }
+      break;
+case TH_765:
+      if (pressed) {
+        SEND_STRING("sound ");
+      }
+      break;
+case TH_766:
+      if (pressed) {
+        SEND_STRING("traditional ");
+      }
+      break;
+case TH_767:
+      if (pressed) {
+        SEND_STRING("product ");
+      }
+      break;
+case TH_768:
+      if (pressed) {
+        SEND_STRING("page ");
+      }
+      break;
+case TH_769:
+      if (pressed) {
+        SEND_STRING("search ");
+      }
+      break;
+case TH_770:
+      if (pressed) {
+        SEND_STRING("particular ");
+      }
+      break;
+case TH_771:
+      if (pressed) {
+        SEND_STRING("curious ");
+      }
+      break;
+case TH_772:
+      if (pressed) {
+        SEND_STRING("ability ");
+      }
+      break;
+case TH_773:
+      if (pressed) {
+        SEND_STRING("ibility ");
+      }
+      break;
+case TH_774:
+      if (pressed) {
+        SEND_STRING("site ");
+      }
+      break;
+case TH_775:
+      if (pressed) {
+        SEND_STRING("ities ");
+      }
+      break;
+case TH_776:
+      if (pressed) {
+        SEND_STRING("shop ");
+      }
+      break;
+case TH_777:
+      if (pressed) {
+        SEND_STRING("separate ");
+      }
+      break;
+case TH_778:
+      if (pressed) {
+        SEND_STRING("whether ");
+      }
+      break;
+case TH_779:
+      if (pressed) {
+        SEND_STRING("least ");
+      }
+      break;
+case TH_780:
+      if (pressed) {
+        SEND_STRING("problem ");
+      }
+      break;
+case TH_781:
+      if (pressed) {
+        SEND_STRING("purchase ");
+      }
+      break;
+case TH_782:
+      if (pressed) {
+        SEND_STRING("focus ");
+      }
+      break;
+case TH_783:
+      if (pressed) {
+        SEND_STRING("down ");
+      }
+      break;
+case TH_784:
+      if (pressed) {
+        SEND_STRING("road ");
+      }
+      break;
+case TH_785:
+      if (pressed) {
+        SEND_STRING("often ");
+      }
+      break;
+case TH_786:
+      if (pressed) {
+        SEND_STRING("bring ");
+      }
+      break;
+case TH_787:
+      if (pressed) {
+        SEND_STRING("bottom ");
+      }
+      break;
+case TH_788:
+      if (pressed) {
+        SEND_STRING("begin ");
+      }
+      break;
+case TH_789:
+      if (pressed) {
+        SEND_STRING("beginning ");
+      }
+      break;
+case TH_790:
+      if (pressed) {
+        SEND_STRING("click ");
+      }
+      break;
+case TH_791:
+      if (pressed) {
+        SEND_STRING("loud ");
+      }
+      break;
+case TH_792:
+      if (pressed) {
+        SEND_STRING("notice ");
+      }
+      break;
+case TH_793:
+      if (pressed) {
+        SEND_STRING("brand ");
+      }
+      break;
+case TH_794:
+      if (pressed) {
+        SEND_STRING("brand ");
+      }
+      break;
+case TH_795:
+      if (pressed) {
+        SEND_STRING("by ");
+      }
+      break;
+case TH_796:
+      if (pressed) {
+        SEND_STRING("fact ");
+      }
+      break;
+case TH_797:
+      if (pressed) {
+        SEND_STRING("scroll ");
+      }
+      break;
+case TH_798:
+      if (pressed) {
+        SEND_STRING("obtrusive ");
+      }
+      break;
+case TH_799:
+      if (pressed) {
+        SEND_STRING("world ");
+      }
+      break;
+case TH_800:
+      if (pressed) {
+        SEND_STRING("message ");
+      }
+      break;
+case TH_801:
+      if (pressed) {
+        SEND_STRING("switch ");
+      }
+      break;
+case TH_802:
+      if (pressed) {
+        SEND_STRING("follow ");
+      }
+      break;
+case TH_803:
+      if (pressed) {
+        SEND_STRING("repond ");
+      }
+      break;
+case TH_804:
+      if (pressed) {
+        SEND_STRING("expect ");
+      }
+      break;
+case TH_805:
+      if (pressed) {
+        SEND_STRING("both ");
+      }
+      break;
+case TH_806:
+      if (pressed) {
+        SEND_STRING("depend ");
+      }
+      break;
+case TH_807:
+      if (pressed) {
+        SEND_STRING("tend ");
+      }
+      break;
+case TH_808:
+      if (pressed) {
+        SEND_STRING("fair ");
+      }
+      break;
+case TH_809:
+      if (pressed) {
+        SEND_STRING("awesome ");
+      }
+      break;
+case TH_810:
+      if (pressed) {
+        SEND_STRING("concept ");
+      }
+      break;
+case TH_811:
+      if (pressed) {
+        SEND_STRING("imagine ");
+      }
+      break;
+case TH_812:
+      if (pressed) {
+        SEND_STRING("clear ");
+      }
+      break;
+case TH_813:
+      if (pressed) {
+        SEND_STRING("hope ");
+      }
+      break;
+case TH_814:
+      if (pressed) {
+        SEND_STRING("you'd ");
+      }
+      break;
+case TH_815:
+      if (pressed) {
+        SEND_STRING("word ");
+      }
+      break;
+case TH_816:
+      if (pressed) {
+        SEND_STRING("sub ");
+      }
+      break;
+case TH_817:
+      if (pressed) {
+        SEND_STRING("business ");
+      }
+      break;
+case TH_818:
+      if (pressed) {
+        SEND_STRING("change ");
+      }
+      break;
+case TH_819:
+      if (pressed) {
+        SEND_STRING("suppose ");
+      }
+      break;
+case TH_820:
+      if (pressed) {
+        SEND_STRING("between ");
+      }
+      break;
+case TH_821:
+      if (pressed) {
+        SEND_STRING("piece ");
+      }
+      break;
+case TH_822:
+      if (pressed) {
+        SEND_STRING("original ");
+      }
+      break;
+case TH_823:
+      if (pressed) {
+        SEND_STRING("original ");
+      }
+      break;
+case TH_824:
+      if (pressed) {
+        SEND_STRING("eventually ");
+      }
+      break;
+case TH_825:
+      if (pressed) {
+        SEND_STRING("reach ");
+      }
+      break;
+case TH_826:
+      if (pressed) {
+        SEND_STRING("anymore ");
+      }
+      break;
+case TH_827:
+      if (pressed) {
+        SEND_STRING("speak ");
+      }
+      break;
+case TH_828:
+      if (pressed) {
+        SEND_STRING("case ");
+      }
+      break;
+case TH_829:
+      if (pressed) {
+        SEND_STRING("instead ");
+      }
+      break;
+case TH_830:
+      if (pressed) {
+        SEND_STRING("purpose ");
+      }
+      break;
+case TH_831:
+      if (pressed) {
+        SEND_STRING("develop ");
+      }
+      break;
+case TH_832:
+      if (pressed) {
+        SEND_STRING("brutal ");
+      }
+      break;
+case TH_833:
+      if (pressed) {
+        SEND_STRING("honest ");
+      }
+      break;
+case TH_834:
+      if (pressed) {
+        SEND_STRING("share ");
+      }
+      break;
+case TH_835:
+      if (pressed) {
+        SEND_STRING("various ");
+      }
+      break;
+case TH_836:
+      if (pressed) {
+        SEND_STRING("activity ");
+      }
+      break;
+case TH_837:
+      if (pressed) {
+        SEND_STRING("confirm ");
+      }
+      break;
+case TH_838:
+      if (pressed) {
+        SEND_STRING("description ");
+      }
+      break;
+case TH_839:
+      if (pressed) {
+        SEND_STRING("describe ");
+      }
+      break;
+case TH_840:
+      if (pressed) {
+        SEND_STRING("confuse ");
+      }
+      break;
+case TH_841:
+      if (pressed) {
+        SEND_STRING("option ");
+      }
+      break;
+case TH_842:
+      if (pressed) {
+        SEND_STRING("save ");
+      }
+      break;
+case TH_843:
+      if (pressed) {
+        SEND_STRING("later ");
+      }
+      break;
+case TH_844:
+      if (pressed) {
+        SEND_STRING("external ");
+      }
+      break;
+case TH_845:
+      if (pressed) {
+        SEND_STRING("actual ");
+      }
+      break;
+case TH_846:
+      if (pressed) {
+        SEND_STRING("versus ");
+      }
+      break;
+case TH_847:
+      if (pressed) {
+        SEND_STRING("button ");
+      }
+      break;
+case TH_848:
+      if (pressed) {
+        SEND_STRING("describe ");
+      }
+      break;
+case TH_849:
+      if (pressed) {
+        SEND_STRING("across ");
+      }
+      break;
+case TH_850:
+      if (pressed) {
+        SEND_STRING("group ");
+      }
+      break;
+case TH_851:
+      if (pressed) {
+        SEND_STRING("seem ");
+      }
+      break;
+case TH_852:
+      if (pressed) {
+        SEND_STRING("buy ");
+      }
+      break;
+case TH_853:
+      if (pressed) {
+        SEND_STRING("line ");
+      }
+      break;
+case TH_854:
+      if (pressed) {
+        SEND_STRING("online ");
+      }
+      break;
+case TH_855:
+      if (pressed) {
+        SEND_STRING("type ");
+      }
+      break;
+case TH_856:
+      if (pressed) {
+        SEND_STRING("define ");
+      }
+      break;
+case TH_857:
+      if (pressed) {
+        SEND_STRING("depends ");
+      }
+      break;
+case TH_858:
+      if (pressed) {
+        SEND_STRING("hour ");
+      }
+      break;
+case TH_859:
+      if (pressed) {
+        SEND_STRING("agree ");
+      }
+      break;
+case TH_860:
+      if (pressed) {
+        SEND_STRING("picture ");
+      }
+      break;
+case TH_861:
+      if (pressed) {
+        SEND_STRING("usual ");
+      }
+      break;
+case TH_862:
+      if (pressed) {
+        SEND_STRING("usually ");
+      }
+      break;
+case TH_863:
+      if (pressed) {
+        SEND_STRING("toward ");
+      }
+      break;
+case TH_864:
+      if (pressed) {
+        SEND_STRING("past ");
+      }
+      break;
+case TH_865:
+      if (pressed) {
+        SEND_STRING("certain ");
+      }
+      break;
+case TH_866:
+      if (pressed) {
+        SEND_STRING("term ");
+      }
+      break;
+case TH_867:
+      if (pressed) {
+        SEND_STRING("available ");
+      }
+      break;
+case TH_868:
+      if (pressed) {
+        SEND_STRING("hate ");
+      }
+      break;
+case TH_869:
+      if (pressed) {
+        SEND_STRING("explain ");
+      }
+      break;
+case TH_870:
+      if (pressed) {
+        SEND_STRING("gave ");
+      }
+      break;
+case TH_871:
+      if (pressed) {
+        SEND_STRING("remind ");
+      }
+      break;
+case TH_872:
+      if (pressed) {
+        SEND_STRING("improve ");
+      }
+      break;
+case TH_873:
+      if (pressed) {
+        SEND_STRING("technology ");
+      }
+      break;
+case TH_874:
+      if (pressed) {
+        SEND_STRING("tech ");
+      }
+      break;
+case TH_875:
+      if (pressed) {
+        SEND_STRING("store ");
+      }
+      break;
+case TH_876:
+      if (pressed) {
+        SEND_STRING("account ");
+      }
+      break;
+case TH_877:
+      if (pressed) {
+        SEND_STRING("operation ");
+      }
+      break;
+case TH_878:
+      if (pressed) {
+        SEND_STRING("act ");
+      }
+      break;
+case TH_879:
+      if (pressed) {
+        SEND_STRING("report ");
+      }
+      break;
+case TH_880:
+      if (pressed) {
+        SEND_STRING("value ");
+      }
+      break;
+case TH_881:
+      if (pressed) {
+        SEND_STRING("call ");
+      }
+      break;
+case TH_882:
+      if (pressed) {
+        SEND_STRING("vertical ");
+      }
+      break;
+case TH_883:
+      if (pressed) {
+        SEND_STRING("deliver ");
+      }
+      break;
+case TH_884:
+      if (pressed) {
+        SEND_STRING("function ");
+      }
+      break;
+case TH_885:
+      if (pressed) {
+        SEND_STRING("system ");
+      }
+      break;
+case TH_886:
+      if (pressed) {
+        SEND_STRING("base ");
+      }
+      break;
+case TH_887:
+      if (pressed) {
+        SEND_STRING("client ");
+      }
+      break;
+case TH_888:
+      if (pressed) {
+        SEND_STRING("involve ");
+      }
+      break;
+case TH_889:
+      if (pressed) {
+        SEND_STRING("equip ");
+      }
+      break;
+case TH_890:
+      if (pressed) {
+        SEND_STRING("location ");
+      }
+      break;
+case TH_891:
+      if (pressed) {
+        SEND_STRING("locate ");
+      }
+      break;
+case TH_892:
+      if (pressed) {
+        SEND_STRING("ary ");
+      }
+      break;
+case TH_893:
+      if (pressed) {
+        SEND_STRING("react ");
+      }
+      break;
+case TH_894:
+      if (pressed) {
+        SEND_STRING("ily ");
+      }
+      break;
+case TH_895:
+      if (pressed) {
+        SEND_STRING("real ");
+      }
+      break;
+case TH_896:
+      if (pressed) {
+        SEND_STRING("ision ");
+      }
+      break;
+case TH_897:
+      if (pressed) {
+        SEND_STRING("dec ");
+      }
+      break;
+case TH_898:
+      if (pressed) {
+        SEND_STRING("decision ");
+      }
+      break;
+case TH_899:
+      if (pressed) {
+        SEND_STRING("challenge ");
+      }
+      break;
+case TH_900:
+      if (pressed) {
+        SEND_STRING("replace ");
+      }
+      break;
+case TH_901:
+      if (pressed) {
+        SEND_STRING("postpone ");
+      }
+      break;
+case TH_902:
+      if (pressed) {
+        SEND_STRING("ies ");
+      }
+      break;
+case TH_903:
+      if (pressed) {
+        SEND_STRING("surgery ");
+      }
+      break;
+case TH_904:
+      if (pressed) {
+        SEND_STRING("deliver ");
+      }
+      break;
+case TH_905:
+      if (pressed) {
+        SEND_STRING("patient ");
+      }
+      break;
+case TH_906:
+      if (pressed) {
+        SEND_STRING("cost ");
+      }
+      break;
+case TH_907:
+      if (pressed) {
+        SEND_STRING("touch ");
+      }
+      break;
+case TH_908:
+      if (pressed) {
+        SEND_STRING("brief ");
+      }
+      break;
+case TH_909:
+      if (pressed) {
+        SEND_STRING("frank ");
+      }
+      break;
+case TH_910:
+      if (pressed) {
+        SEND_STRING("frankly ");
+      }
+      break;
+case TH_911:
+      if (pressed) {
+        SEND_STRING("stand ");
+      }
+      break;
+case TH_912:
+      if (pressed) {
+        SEND_STRING("integrate ");
+      }
+      break;
+case TH_913:
+      if (pressed) {
+        SEND_STRING("integrate ");
+      }
+      break;
+case TH_914:
+      if (pressed) {
+        SEND_STRING("create ");
+      }
+      break;
+case TH_915:
+      if (pressed) {
+        SEND_STRING("role ");
+      }
+      break;
+case TH_916:
+      if (pressed) {
+        SEND_STRING("fill ");
+      }
+      break;
+case TH_917:
+      if (pressed) {
+        SEND_STRING("life ");
+      }
+      break;
+case TH_918:
+      if (pressed) {
+        SEND_STRING("style ");
+      }
+      break;
+case TH_919:
+      if (pressed) {
+        SEND_STRING("ethic ");
+      }
+      break;
+case TH_920:
+      if (pressed) {
+        SEND_STRING("pace ");
+      }
+      break;
+case TH_921:
+      if (pressed) {
+        SEND_STRING("load ");
+      }
+      break;
+case TH_922:
+      if (pressed) {
+        SEND_STRING("active ");
+      }
+      break;
+case TH_923:
+      if (pressed) {
+        SEND_STRING("seek ");
+      }
+      break;
+case TH_924:
+      if (pressed) {
+        SEND_STRING("conclusion ");
+      }
+      break;
+case TH_925:
+      if (pressed) {
+        SEND_STRING("draw ");
+      }
+      break;
+case TH_926:
+      if (pressed) {
+        SEND_STRING("oppose ");
+      }
+      break;
+case TH_927:
+      if (pressed) {
+        SEND_STRING("situation ");
+      }
+      break;
+case TH_928:
+      if (pressed) {
+        SEND_STRING("critical ");
+      }
+      break;
+case TH_929:
+      if (pressed) {
+        SEND_STRING("critical ");
+      }
+      break;
+case TH_930:
+      if (pressed) {
+        SEND_STRING("join ");
+      }
+      break;
+case TH_931:
+      if (pressed) {
+        SEND_STRING("sight ");
+      }
+      break;
+case TH_932:
+      if (pressed) {
+        SEND_STRING("large ");
+      }
+      break;
+case TH_933:
+      if (pressed) {
+        SEND_STRING("distinct ");
+      }
+      break;
+case TH_934:
+      if (pressed) {
+        SEND_STRING("cover ");
+      }
+      break;
+case TH_935:
+      if (pressed) {
+        SEND_STRING("dependent ");
+      }
+      break;
+case TH_936:
+      if (pressed) {
+        SEND_STRING("result ");
+      }
+      break;
+case TH_937:
+      if (pressed) {
+        SEND_STRING("progress ");
+      }
+      break;
+case TH_938:
+      if (pressed) {
+        SEND_STRING("provide ");
+      }
+      break;
+case TH_939:
+      if (pressed) {
+        SEND_STRING("record ");
+      }
+      break;
+case TH_940:
+      if (pressed) {
+        SEND_STRING("future ");
+      }
+      break;
+case TH_941:
+      if (pressed) {
+        SEND_STRING("exist ");
+      }
+      break;
+case TH_942:
+      if (pressed) {
+        SEND_STRING("ecosystem ");
+      }
+      break;
+case TH_943:
+      if (pressed) {
+        SEND_STRING("super ");
+      }
+      break;
+case TH_944:
+      if (pressed) {
+        SEND_STRING("custom ");
+      }
+      break;
+case TH_945:
+      if (pressed) {
+        SEND_STRING("wide ");
+      }
+      break;
+case TH_946:
+      if (pressed) {
+        SEND_STRING("range ");
+      }
+      break;
+case TH_947:
+      if (pressed) {
+        SEND_STRING("broad ");
+      }
+      break;
+case TH_948:
+      if (pressed) {
+        SEND_STRING("region ");
+      }
+      break;
+case TH_949:
+      if (pressed) {
+        SEND_STRING("environment ");
+      }
+      break;
+case TH_950:
+      if (pressed) {
+        SEND_STRING("manage ");
+      }
+      break;
+case TH_951:
+      if (pressed) {
+        SEND_STRING("manage ");
+      }
+      break;
+case TH_952:
+      if (pressed) {
+        SEND_STRING("wide ");
+      }
+      break;
+case TH_953:
+      if (pressed) {
+        SEND_STRING("rich ");
+      }
+      break;
+case TH_954:
+      if (pressed) {
+        SEND_STRING("action ");
+      }
+      break;
+case TH_955:
+      if (pressed) {
+        SEND_STRING("connect ");
+      }
+      break;
+case TH_956:
+      if (pressed) {
+        SEND_STRING("problem ");
+      }
+      break;
+case TH_957:
+      if (pressed) {
+        SEND_STRING("problem ");
+      }
+      break;
+case TH_958:
+      if (pressed) {
+        SEND_STRING("issue ");
+      }
+      break;
+case TH_959:
+      if (pressed) {
+        SEND_STRING("occur ");
+      }
+      break;
+case TH_960:
+      if (pressed) {
+        SEND_STRING("coordinate ");
+      }
+      break;
+case TH_961:
+      if (pressed) {
+        SEND_STRING("coordinate ");
+      }
+      break;
+case TH_962:
+      if (pressed) {
+        SEND_STRING("field ");
+      }
+      break;
+case TH_963:
+      if (pressed) {
+        SEND_STRING("stance ");
+      }
+      break;
+case TH_964:
+      if (pressed) {
+        SEND_STRING("face ");
+      }
+      break;
+case TH_965:
+      if (pressed) {
+        SEND_STRING("represent ");
+      }
+      break;
+case TH_966:
+      if (pressed) {
+        SEND_STRING("present ");
+      }
+      break;
+case TH_967:
+      if (pressed) {
+        SEND_STRING("ative ");
+      }
+      break;
+case TH_968:
+      if (pressed) {
+        SEND_STRING("duplicate ");
+      }
+      break;
+case TH_969:
+      if (pressed) {
+        SEND_STRING("duplicate ");
+      }
+      break;
+case TH_970:
+      if (pressed) {
+        SEND_STRING("entry ");
+      }
+      break;
+case TH_971:
+      if (pressed) {
+        SEND_STRING("drop ");
+      }
+      break;
+case TH_972:
+      if (pressed) {
+        SEND_STRING("chat ");
+      }
+      break;
+case TH_973:
+      if (pressed) {
+        SEND_STRING("analysis ");
+      }
+      break;
+case TH_974:
+      if (pressed) {
+        SEND_STRING("possible ");
+      }
+      break;
+case TH_975:
+      if (pressed) {
+        SEND_STRING("select ");
+      }
+      break;
+case TH_976:
+      if (pressed) {
+        SEND_STRING("eco ");
+      }
+      break;
+case TH_977:
+      if (pressed) {
+        SEND_STRING("require ");
+      }
+      break;
+case TH_978:
+      if (pressed) {
+        SEND_STRING("push ");
+      }
+      break;
+case TH_979:
+      if (pressed) {
+        SEND_STRING("gone ");
+      }
+      break;
+case TH_980:
+      if (pressed) {
+        SEND_STRING("rest ");
+      }
+      break;
+case TH_981:
+      if (pressed) {
+        SEND_STRING("enter ");
+      }
+      break;
+case TH_982:
+      if (pressed) {
+        SEND_STRING("field ");
+      }
+      break;
+case TH_983:
+      if (pressed) {
+        SEND_STRING("plant ");
+      }
+      break;
+case TH_984:
+      if (pressed) {
+        SEND_STRING("room ");
+      }
+      break;
+case TH_985:
+      if (pressed) {
+        SEND_STRING("paid ");
+      }
+      break;
+case TH_986:
+      if (pressed) {
+        SEND_STRING("lean ");
+      }
+      break;
+case TH_987:
+      if (pressed) {
+        SEND_STRING("manufacture ");
+      }
+      break;
+case TH_988:
+      if (pressed) {
+        SEND_STRING("consequence ");
+      }
+      break;
+case TH_989:
+      if (pressed) {
+        SEND_STRING("ility ");
+      }
+      break;
+case TH_990:
+      if (pressed) {
+        SEND_STRING("easy ");
+      }
+      break;
+case TH_991:
+      if (pressed) {
+        SEND_STRING("claim ");
+      }
+      break;
+case TH_992:
+      if (pressed) {
+        SEND_STRING("insurance ");
+      }
+      break;
+case TH_993:
+      if (pressed) {
+        SEND_STRING("federal ");
+      }
+      break;
+case TH_994:
+      if (pressed) {
+        SEND_STRING("key ");
+      }
+      break;
+case TH_995:
+      if (pressed) {
+        SEND_STRING("source ");
+      }
+      break;
+case TH_996:
+      if (pressed) {
+        SEND_STRING("popu ");
+      }
+      break;
+case TH_997:
+      if (pressed) {
+        SEND_STRING("dupli ");
+      }
+      break;
+case TH_998:
+      if (pressed) {
+        SEND_STRING("multiple ");
+      }
+      break;
+case TH_999:
+      if (pressed) {
+        SEND_STRING("pipe ");
+      }
+      break;
+case TH_1000:
+      if (pressed) {
+        SEND_STRING("pay ");
+      }
+      break;
+  }
+}
+/*
+void matrix_init_user(void) {
+
+}
+
+void matrix_scan_user(void) {
+
+}
+
+bool led_update_user(led_t led_state) {
+    return true;
+}
+*/
