@@ -22,19 +22,21 @@ Logic Outline
 
 Full Words: Just hit the letters in the word! how (how), their (their)
 
-Subtracted Vowels Unless Vowel is First Letter (Words without vowels that sound close enough): multiple (mltpl -> mltp), again (agn)
+Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc) 
 
-Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words*: ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing)
+Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound close enough): multiple (mltpl -> mltp), again (agn), examine (xmn)
+
+Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words*: ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing), right (rt) all (al) -> all right (alrt)
 
 Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik)
 
-Common Abbreviations: because (bc), about (ab)
+Common Abbreviations: because (bc), about (ab), department (dpt)
 
 Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)  
 
 Weird stuff: 
 - barring multiple letters is new
-- no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. 
+- no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. Similarly, trying (trg) rather than (tryg) because the Y gummed up the works and made it two handed.
 - Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
 - going to (gonna -> gona), got you (gotcha).
 Common Compensations: thought (though (tho) + backspace + t) or (th (th.) + ought (ought)), brought (br (br) + ought)
