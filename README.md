@@ -24,21 +24,25 @@ Full Words: Just hit the letters in the word! how (how), their (their)
 
 Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc) 
 
-Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound close enough): multiple (mltpl -> mltp), again (agn), examine (xmn)
+Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound/look close enough): multiple (mltpl -> mltp), again (agn), examine (xmn), relation (rltn)
 
-Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words*: ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing), right (rt) all (al) -> all right (alrt)
+Word Chunks *Suffixes that end full roots (moral + ity) automatically backspace to compensate for the space at the end of words*: {backspace}ity (ity), ought (ought), br (br) , {backspace}tion (io), {backspace}ship (ship), {backspace}ing (ing)
 
-Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik)
+Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik),  all (al) right (rt) -> all right (alrt)
 
 Common Abbreviations: because (bc), about (ab), department (dpt)
 
-Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)  
+Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)
+
+Plural/Apostrophe *Automatically backspace to compensate for the space at the end of words*: {backspace}n't (n't), {backspace}'s ('s), {backspace}s (s.)
 
 Weird stuff: 
+- SENDDOT (words including .) use period as a modifier for words with common spellings. This can be extended to other punctuation so long as SENDs are added accordingly (update the sorting that starts at line 83 with something like SENDSLASH (positioning must be according to QWERTY order), and then also add SENDSLASH below following the same format as the other SENDs)
 - barring multiple letters is new
 - no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. Similarly, trying (trg) rather than (tryg) because the Y gummed up the works and made it two handed.
 - Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
 - going to (gonna -> gona), got you (gotcha).
+- 
 Common Compensations: thought (though (tho) + backspace + t) or (th (th.) + ought (ought)), brought (br (br) + ought)
 
 These are just examples, I can't generate a comprehensive explanation at this point so ctrl F is really going to be your friend.
