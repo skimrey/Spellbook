@@ -15,7 +15,7 @@ The only addiition I made to the code beyond my words is I branched the SENDs by
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
 Additional Notes
-- I built this with an ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY keyboard as I am not typing as much as I am editing these days. I still use chords for most words, so I am confident you don't need anything crazy. You will find there are some longer multicharacter spellings that work better when you can barre keys with a single finger
+- I built this with a split ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY keyboard as I am not typing as much as I am editing these days and I like my laptop for quick mouse pad access (+ using a mouse with most inputs destroyed my home row). I still use chords for most words, so I am confident you don't need anything crazy to get going. You will find there are still some longer multicharacter spellings where you need to barre keys with a single finger though, which ortho lends itself to. I also found the split ortho layout+keymap+pedals to be great for maintaining homerow. 
 
 Logic Outline
 - Please reference this article for more comprehensive theory https://griffonagedotcom.wordpress.com/2018/11/20/shorthand-on-the-qwerty-keyboard-1875-1917/
@@ -32,7 +32,9 @@ Common Abbreviations: because (bc), about (ab)
 
 Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)  
 
-Weird stuff: no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. 
+Weird stuff: barring multiple letters
+
+no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. 
 
 Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
 
