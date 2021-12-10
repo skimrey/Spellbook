@@ -1,15 +1,1 @@
-# Guiboard
-
-![Guiboard](imgur.com image replace me!)
-
-A short description of the keyboard/project
-
-* Keyboard Maintainer: [Solomon Kimrey](https://github.com/yourusername)
-* Hardware Supported: The PCBs, controllers supported
-* Hardware Availability: Links to where you can find this hardware
-
-Make example for this keyboard (after setting up your build environment):
-
-    make Guiboard:default
-
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+Custom build, you'll probably just want to take the keymap. It is 5 rows, 20 columns using one PCB hopped to another rather than a true split configuration. It uses a teensy 2.0 ++ so you could do a handwire using the pins in config along with one of those.  Otherwise, if you want to use all the files just remember to edit rules to match your microprocessor as well as config for your new pins.
