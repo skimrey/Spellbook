@@ -1,1 +1,1 @@
-
+Custom build. You'll want to edit the config for your pins and change the rules for your microprocessor. Probably taking the keymap would be most effective. I used 5 rows, 20 columns (I actually just hopped one PCB to another PCB from a custom ortho project)  with a teensy 2.0 ++. You can also handwire according to the config file. 
