@@ -1,4 +1,4 @@
-# stenotypy
+# stenotypy AKA Spellbook
 
 QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
