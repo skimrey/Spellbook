@@ -32,12 +32,11 @@ Common Abbreviations: because (bc), about (ab)
 
 Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)  
 
-Weird stuff: barring multiple letters
-
-no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. 
-
-Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
-
+Weird stuff: 
+- barring multiple letters is new
+- no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. 
+- Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
+- going to (gonna -> gona), got you (gotcha).
 Common Compensations: thought (though (tho) + backspace + t) or (th (th.) + ought (ought)), brought (br (br) + ought)
 
 These are just examples, I can't generate a comprehensive explanation at this point so ctrl F is really going to be your friend.
