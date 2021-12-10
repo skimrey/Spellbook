@@ -26,7 +26,7 @@ Subtracted Vowels Unless Vowel is First Letter (Words without vowels that sound 
 
 Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words*: ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing)
 
-Phrases: I don't know (idk), Oh my god. (omg)
+Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik)
 
 Common Abbreviations: because (bc), about (ab)
 
