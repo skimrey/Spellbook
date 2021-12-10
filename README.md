@@ -4,13 +4,15 @@ QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/
 
 - Please note some keyboards will not work completely based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well so YMMV
 
-This is a dictionary I built for myself to work faster as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosynchratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve, simple compensation for library holes, and pidgin typing where you swap between techniques.
+This is a dictionary I built for myself to work faster and less fatigued as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosynchratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve, simple compensation for library holes, and pidgin typing where you swap between techniques.
 
 If you disagree on the spellings I've chosen or observe some of the many holes in entries, please fork the repository and share what you've come up with that works better!
 
 Technical Stuff and Rules
 - Please Read Laszlo's post at the top
-Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script the syntax is fairly clear.
+The only addiition I made to the code beyond my words is I branched the SENDs by word to avoid hitting the recursion limit and keep things neater. Starting at line 83 you can see how each word is checked to see what letter it begins with (the QWERTY spelling, not the word/chord (jump = upjm)). When adding words, they must be put in the corresponding "chapter." SENDDOT is used for words containing . 
+-  There is a chunk at line 72 which determines what time period in ms your inputs are chunked by, which will impact single letter typing speed and chord ease inversely.
+- Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
 Additional Notes
 - I built this with an ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY keyboard as I am not typing as much as I am editing these days. I still use chords for most words, so I am confident you don't need anything crazy. You will find there are some longer multicharacter spellings that work better when you can barre keys with a single finger
@@ -22,7 +24,7 @@ Full Words: Just hit the letters in the word! how (how), their (their)
 
 Subtracted Vowels Unless Vowel is First Letter (Words without vowels that sound close enough): multiple (mltpl -> mltp), again (agn)
 
-Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words): ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing)
+Word Chunks *Suffixes automatically backspace to compensate for the space at the end of words*: ity (ity), ought (ought), br (br) , tion (io), relation (rltn), ship (ship), ing (ing)
 
 Phrases: I don't know (idk), Oh my god. (omg)
 
