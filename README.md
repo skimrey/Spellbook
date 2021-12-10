@@ -30,9 +30,9 @@ Word Chunks *Suffixes that end full roots (moral + ity) automatically backspace 
 
 Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik),  all (al) right (rt) -> all right (alrt)
 
-Common Abbreviations: because (bc), about (ab) 
+Common Abbreviations: because (bc), about (ab), Instagram (ig.), I guess (ig)
 
-Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.), wouldn't (wdn)
+Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.), wouldn't (wdn), before (bf)
 
 Plural/Apostrophe *Automatically backspace to compensate for the space at the end of words*: {backspace}n't (n't), {backspace}'s ('s), {backspace}s (s.)
 
