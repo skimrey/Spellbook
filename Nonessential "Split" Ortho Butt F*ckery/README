@@ -1,8 +1,8 @@
-So I say "Split" because this is in fact code for a single large keyboard and I just hopped one PCB to another directly. It can be replicated easily if you have a real split board with 1/8" though. 
+So I say "Split" because this is in fact code for a single large keyboard and I just hopped one PCB to another directly. It can be replicated easily if you have a proper split board with 1/8" though. 
 
 THE FEET
 So I bound backspace to my left foot down and space to right foot up and down. You can do this by either:
-- wiring sustain pedals to a microntroller and using them as keyswitches, then augmenting that with an AHK script (included)
+- wiring sustain pedals to a microntroller (ideally with a 1/4" jack) and using them as keyswitches (wiring is exactly the same, switches be switching), then augmenting that with an AHK script (included)
 or
 - Using Bome's Midi Translator with your existing sustain inputs from Midi controllers to map backspace to note on for the left pedal CC, and then space to both note on and note off for the right foot. 
 
