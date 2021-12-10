@@ -1,6 +1,6 @@
 # stenotypy AKA Spellbook
 
-QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
+AHK QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
 - Please note some keyboards will not work completely based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well so YMMV
 
