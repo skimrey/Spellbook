@@ -14,9 +14,6 @@ The only addiition I made to the code beyond my words is I branched the SENDs us
 -  There is a chunk at line 72 which determines what time period in ms your inputs are chunked by, which will impact single letter typing speed and chord ease inversely.
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
-Additional Notes
-- I initially built this with a split ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY layout as I am not typing as much as I am editing these days and I like my laptop for quick mouse pad access (+ using a mouse with most inputs destroyed my home row). I still use chords for most words, so I am confident you don't need anything crazy to get going. You will find there are still some longer multicharacter spellings where you need to barre keys with a single finger though, which ortho lends itself to. I also found the split ortho layout+keymap+pedals to be great for maintaining homerow. 
-
 Logic Outline
 - Please reference this article for more comprehensive theory https://griffonagedotcom.wordpress.com/2018/11/20/shorthand-on-the-qwerty-keyboard-1875-1917/
 
