@@ -2,7 +2,7 @@
 
 AHK QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
-- Please note some keyboards will not work completely based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well so YMMV
+- Please note some keyboards will not work completely based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
 
 This is a dictionary I built for myself to work faster and less fatigued as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosynchratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve, simple compensation for library holes, and pidgin typing where you swap between techniques.
 
