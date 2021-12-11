@@ -4,13 +4,13 @@ AHK QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/bo
 
 - Please note some keyboards will not completely work based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
 
-This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosyncratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve, simple compensation for library holes, and pidgin typing where you swap between techniques.
+This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosyncratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes.
 
 If you disagree on the spellings I've chosen or observe some of the many holes in entries, please fork the repository and share what you've come up with that works better!
 
 Technical Stuff and Rules
 - Please Read Laszlo's post at the top
-The only addiition I made to the code beyond my words is I branched the SENDs by word to avoid hitting the recursion limit and keep things neater. Starting at line 83 you can see how each word is checked to see what letter it begins with (the QWERTY spelling, not the word/chord (jump = upjm)). When adding words, they must be put in the corresponding "chapter." SENDDOT is used for words containing . 
+The only addiition I made to the code beyond my words is I branched the SENDs using first letters to avoid hitting the recursion limit and keep things neater. Starting at line 83 you can see how each word is checked to see what letter it begins with (the QWERTY spelling, not the word/chord (jump = upjm)). When adding words, they must be put in the corresponding "chapter." SENDDOT is used for words containing . 
 -  There is a chunk at line 72 which determines what time period in ms your inputs are chunked by, which will impact single letter typing speed and chord ease inversely.
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
