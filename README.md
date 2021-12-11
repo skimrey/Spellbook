@@ -47,5 +47,4 @@ Common Combos: thought (though (tho) + backspace + t) or (th (th.) + ought (ough
 These are just examples, I can't generate a comprehensive explanation at this point so ctrl F is really going to be your friend. I can also hear you saying, "Hey, wouldn't it standardized rules be awesome instead of this hodge podge of ideas put together on the fly?!" To that I respond emphatically that, yes, it would be great. You are welcome to give it a shot. I'm fairly sure language itself is a hodge podge of ideas put together on the fly, so it kind of mandates some oddity and idiosyncracy when you try to contract it.
 
 "Does it work?"
-
 I was able to match/break my standard typing speed (90-105 WPM) with this dictionary using many fewer strokes before moving to a more editing based, mouse heavy workload and falling off a bit. I am confident with some time, love, and care it could reach stenographic speeds (200 WPM).
