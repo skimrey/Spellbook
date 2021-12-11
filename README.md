@@ -2,7 +2,7 @@
 
 AHK QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
-- Please note some keyboards will not work completely based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
+- Please note some keyboards will not completely work based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
 
 This is a dictionary I built for myself to work faster and less fatigued as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and idiosynchratic keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve, simple compensation for library holes, and pidgin typing where you swap between techniques.
 
@@ -15,7 +15,7 @@ The only addiition I made to the code beyond my words is I branched the SENDs by
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
 Additional Notes
-- I built this with a split ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY keyboard as I am not typing as much as I am editing these days and I like my laptop for quick mouse pad access (+ using a mouse with most inputs destroyed my home row). I still use chords for most words, so I am confident you don't need anything crazy to get going. You will find there are still some longer multicharacter spellings where you need to barre keys with a single finger though, which ortho lends itself to. I also found the split ortho layout+keymap+pedals to be great for maintaining homerow. 
+- I initially built this with a split ortholinear whose keymap I have attached. The keymap is essentially QWERTY, I just got rid of space (since all chords include space), then duplicated XCVBNM a row lower for my thumbs. I also used pedals for space and backspace. I have since switched from using that back to a common QWERTY layout as I am not typing as much as I am editing these days and I like my laptop for quick mouse pad access (+ using a mouse with most inputs destroyed my home row). I still use chords for most words, so I am confident you don't need anything crazy to get going. You will find there are still some longer multicharacter spellings where you need to barre keys with a single finger though, which ortho lends itself to. I also found the split ortho layout+keymap+pedals to be great for maintaining homerow. 
 
 Logic Outline
 - Please reference this article for more comprehensive theory https://griffonagedotcom.wordpress.com/2018/11/20/shorthand-on-the-qwerty-keyboard-1875-1917/
