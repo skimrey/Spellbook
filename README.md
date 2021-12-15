@@ -21,7 +21,7 @@ Logic Outline
 
 Full Words: Just hit the letters in the word! how (how), their (their)
 
-Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc), company (cmp), department (dpt) 
+Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc), company (cmp), department (dpt), amazing (amg)
 
 Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound/look close enough): multiple (mltpl -> mltp), again (agn), examine (xmn), relation (rltn), compensate (cmpnst)
 
