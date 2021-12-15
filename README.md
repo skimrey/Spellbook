@@ -36,12 +36,12 @@ Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.)
 Plural/Apostrophe *Automatically backspace to compensate for the space at the end of words*: {backspace}n't (n't), {backspace}'s ('s), {backspace}s (s.)
 
 
-Weird stuff: 
+Weird stuff (frequently used to avoid common spellings): 
 - SENDDOT (words including .) uses period as a modifier for words with common spellings. This can be extended to other punctuation so long as SENDs are added accordingly (update the sorting that starts at line 83 with something like SENDSLASH (positioning must be according to QWERTY order), and then also add SENDSLASH below following the same format as the other SENDs)
-- barring multiple letters is new
 - no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. Similarly, trying (trg) rather than (tryg) because the Y gummed up the works and made it two handed. Also, gone (gon), enough (enog).
 - Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
 - going to (gonna -> gona), got you (gotcha)
+- every (ery) to avoid very and because erryday
 
 
 Common Combos: thought (though (tho) + backspace + t) or (th (th.) + ought (ought)), brought (br (br) + ought)
