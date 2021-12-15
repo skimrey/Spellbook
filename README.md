@@ -29,7 +29,7 @@ Word Chunks *Suffixes that end full roots (moral + ity) automatically backspace 
 
 Phrases: I don't know (idk), Oh my god. (omg), I think (ith), I know (ik),  all (al) right (rt) -> all right (alrt)
 
-Common Abbreviations: because (bc), about (ab), Instagram (ig.), I guess (ig)
+Common Abbreviations: because (bc), about (ab), Instagram (ig.), I guess (ig), years (yrs)
 
 Shortcuts: nothing (ng), nobody (nbd), just (j.), and (n.), much (m.), know (k.), wouldn't (wdn), before (bf)
 
