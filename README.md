@@ -2,7 +2,7 @@
 
 AHK QWERTY chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
-Requires Autohotkey which is a free program for scripting Windows automation (keystrokes, mouse movements, etc) https://www.autohotkey.com/
+Requires Autohotkey which is a free program for scripting Windows automation (keystrokes, mouse movements, etc) https://www.autohotkey.com/ Simply download autohotkey and then launch Spellbook.ahk which is available here.
 
 - Please note some keyboards will not completely work based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
 
