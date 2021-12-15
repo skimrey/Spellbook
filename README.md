@@ -23,7 +23,7 @@ Full Words: Just hit the letters in the word! how (how), their (their)
 
 Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc), company (cmp), department (dpt), amazing (amg)
 
-Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound/look close enough): multiple (mltpl -> mltp), again (agn), examine (xmn), relation (rltn), compensate (cmpnst)
+Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound/look close enough): multiple (mltpl -> mltp), again (agn), examine (xmn), relation (rltn), compensate (cmpnst), cool (cl)
 
 Word Chunks *Suffixes that end full roots (moral + ity) automatically backspace to compensate for the space at the end of words*: {backspace}ity (ity), ought (ought), br (br) , {backspace}tion (io), {backspace}ship (ship), {backspace}ing (ing)
 
