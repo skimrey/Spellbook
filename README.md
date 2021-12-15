@@ -41,7 +41,7 @@ Weird stuff (frequently used to avoid common spellings):
 - no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. Similarly, trying (trg) rather than (tryg) because the Y gummed up the works and made it two handed. Also, gone (gon), enough (enog).
 - Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
 - going to (gonna -> gona), got you (gotcha)
-- every (ery) to avoid very and because erryday
+- every (ery) to avoid very and because "erryday" makes it stick in my mind and rye is very infrequently used
 
 
 Common Combos: thought (though (tho) + backspace + t) or (th (th.) + ought (ought)), brought (br (br) + ought)
