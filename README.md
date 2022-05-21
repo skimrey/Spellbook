@@ -41,7 +41,7 @@ Plural/Apostrophe *Automatically backspace to compensate for the space at the en
 Weird stuff (frequently used to avoid common spellings): 
 - SENDDOT (words including .) uses period as a modifier for words with common spellings. This can be extended to other punctuation so long as SENDs are added accordingly (update the sorting that starts at line 83 with something like SENDSLASH (positioning must be according to QWERTY order), and then also add SENDSLASH below following the same format as the other SENDs)
 - no (ib) This is because of on (on) and non (on.) I tried to layer them but either way I repeatedly would hit the wrong one so I just moved it over a row. Similarly, trying (trg) rather than (tryg) because the Y gummed up the works and made it two handed. Also, gone (gon), enough (enog).
-- Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.)
+- Also I use g to signify ing and io to signify tion in spellings. If a word already contains g like go, I use . for going (go.) Interest (int) so interesting (intg)
 - related to above, thing (tg) things (tgs), bring (brg)
 - going to (gonna -> gona), got you (gotcha)
 - every (ery) to avoid very and because "erryday" makes it stick in my mind and rye is very infrequently used. 
