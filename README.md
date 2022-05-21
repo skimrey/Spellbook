@@ -1,6 +1,6 @@
 # stenotypy AKA Spellbook
 
-Sick of typing every letter in serial like a schmuck? You've come to the right place. Words at once is how we think about our language, so it's how we should output it digitally as well.
+Sick of typing every letter serially like a schmuck? You've come to the right place. Words at once is how we think about our language, so it's how we should output it digitally as well.
 
 AHK QWERTY (and beyond for the Dvorak et al oddballs) chord dictionary based on Laszlo's code https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 
