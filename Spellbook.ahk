@@ -1,4 +1,4 @@
-﻿; Dictionary by Solomon Kimrey, code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
+; Dictionary by Solomon Kimrey, code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 #MaxThreadsPerHotkey 10
 #MaxThreadsBuffer ON
 #MaxHotkeysPerInterval 999
@@ -87,6 +87,8 @@ SEND1:
    SentKeys = %key0%
 If InStr(key0, ".") or InStr(key0, "'")
 GoSub SENDDOT
+Else If InStr(key0, "/")
+GoSub SENDSLASH
 Else If InStr(key0, "q")
 GoSub SENDQ
 Else If InStr(key0, "w")
@@ -141,6 +143,15 @@ Else If InStr(key0, "m")
 GoSub SENDM
 Else If StrLen(key0) = 1
       Send {%key0%}  
+
+Return
+SENDSLASH:
+SentTick = %A_TickCount%            ; remember time of send
+   SentKeys = %key0%
+   If StrLen(key0) = 1
+    Send {%key0%}  
+Else IfEqual key0,ets/, Send {BackSpace}est{Space}
+ Else IfEqual key0,r/, Send {BackSpace}r{Space}
 
 Return
 SENDQ:
@@ -283,6 +294,7 @@ Else IfEqual key0,wrt, Send write{Space}
 Else IfEqual key0,wrtg, Send writing{Space}
 Else IfEqual key0,wrtm, Send tomorrow{Space}
 Else IfEqual key0,wrtoh, Send throw{Space}
+Else IfEqual key0,wrtoh, Send worth{Space}
 Else IfEqual key0,wrtv, Send whatever{Space}
 Else IfEqual key0,wrv, Send whatever{Space}
 Else IfEqual key0,ws, Send website{Space}
@@ -295,6 +307,7 @@ Else IfEqual key0,wtah, Send what{Space}
 Else IfEqual key0,wtahc, Send watch{Space}
 Else IfEqual key0,wtan, Send want{Space}
 Else IfEqual key0,wtasn, Send wasn't{Space}
+Else IfEqual key0,wsn, Send wasn't{Space}
 Else IfEqual key0,wtb, Send by the way{Space}
 Else IfEqual key0,wtd, Send toward{Space}
 Else IfEqual key0,wth, Send whether{Space}
@@ -327,6 +340,7 @@ SENDR:
 Else IfEqual key0,ra, Send around{Space}
 Else IfEqual key0,rlcm, Send molecular{Space}
 Else IfEqual key0,ryd, Send ready{Space}
+Else IfEqual key0,roahcb, Send broach{Space}
 Else IfEqual key0,riav, Send vari{Space}
 Else IfEqual key0,rpsd, Send spread{Space}
 Else IfEqual key0,rpshc, Send purchase{Space}
@@ -339,6 +353,7 @@ Else IfEqual key0,rtphc, Send chapter{Space}
 Else IfEqual key0,rtsdc, Send district{Space}
 Else IfEqual key0,rtygc, Send category{Space}
 Else IfEqual key0,radc, Send card{Space}
+Else IfEqual key0,rof, Send for{Space}
 Else IfEqual key0,ryad, Send yard{Space}
 Else IfEqual key0,radg, Send grad{Space}
 Else IfEqual key0,radh, Send hard{Space}
@@ -517,7 +532,7 @@ Else IfEqual key0,roadb, Send broad{Space}
 Else IfEqual key0,roadbn, Send onboard{Space}
 Else IfEqual key0,roadl, Send dollar{Space}
 Else IfEqual key0,roalnm, Send normal{Space}
-Else IfEqual key0,rofm, Send form
+Else IfEqual key0,rofm, Send form{Space}
 Else IfEqual key0,rog, Send organization{Space}
 Else IfEqual key0,rogln, Send original{Space}
 Else IfEqual key0,rogn, Send original{Space}
@@ -627,7 +642,8 @@ Else IfEqual key0,rtsgh, Send straight{Space}
 Else IfEqual key0,rtsm, Send stream{Space}
 Else IfEqual key0,rtualb, Send brutal{Space}
 Else IfEqual key0,rtualc, Send cultural{Space}
-Else IfEqual key0,rtuh, Send through{Space}
+Else IfEqual key0,rtuh, Send hurt{Space}
+Else IfEqual key0,rtuogh, Send through{Space}
 Else IfEqual key0,rtun, Send turn{Space}
 Else IfEqual key0,rtuops, Send support{Space}
 Else IfEqual key0,rtus, Send trust{Space}
@@ -664,7 +680,7 @@ Else IfEqual key0,rpsv, Send previous{Space}
 Else IfEqual key0,rsm, Send measure{Space}
 Else IfEqual key0,rta, Send art{Space}
 Else IfEqual key0,rtac, Send attract{Space}
-Else IfEqual key0,rtdc, Send credit{Space}
+Else IfEqual key0,rtdc, Send direct{Space}
 Else IfEqual key0,rtdg, Send graduate{Space}
 Else IfEqual key0,rtdnm, Send determine{Space}
 Else IfEqual key0,rtf, Send feature{Space}
@@ -685,6 +701,8 @@ SENDT:
    If StrLen(key0) = 1
     Send {%key0%} 
 Else IfEqual key0,ta, Send at{Space}
+Else IfEqual key0,tgvm, Send government{Space}
+Else IfEqual key0,todn, Send don't{Space}
 Else IfEqual key0,tacm, Send automatic{Space}
 Else IfEqual key0,tahc, Send attach{Space}
 Else IfEqual key0,tahcm, Send match{Space}
@@ -695,7 +713,7 @@ Else IfEqual key0,tdlv, Send validate{Space}
 Else IfEqual key0,tidcn, Send indicate{Space}
 Else IfEqual key0,tipalc, Send capital{Space}
 Else IfEqual key0,tisdn, Send instead{Space}
-Else IfEqual key0,tivn, Send invite{Space}
+Else IfEqual key0,tpxc, Send expect{Space}	
 Else IfEqual key0,tosl, Send lots{Space}
 Else IfEqual key0,tplnm, Send implement{Space}
 Else IfEqual key0,tscnl, Send constantly{Space}
@@ -741,7 +759,7 @@ Else IfEqual key0,tsdcn, Send distance{Space}
 Else IfEqual key0,tsdhn, Send thousand{Space}
 Else IfEqual key0,tudc, Send duct{Space}
 Else IfEqual key0,tuiosd, Send studio{Space}
-Else IfEqual key0,tuis, Send situ{Space}
+Else IfEqual key0,tuis, Send suit{Space}
 Else IfEqual key0,tuodb, Send doubt{Space}
 Else IfEqual key0,tuodcn, Send conduct{Space}
 Else IfEqual key0,tuokl, Send outlook{Space}
@@ -818,7 +836,7 @@ Else IfEqual key0,tid, Send it'd{Space}
 Else IfEqual key0,tidm, Send immediate{Space}
 Else IfEqual key0,tidn, Send didn't{Space}
 Else IfEqual key0,tig, Send {BackSpace}ight{Space}
-Else IfEqual key0,tigh, Send ight{Space}
+Else IfEqual key0,tigh, Send tight{Space}
 Else IfEqual key0,tighl, Send light{Space}
 Else IfEqual key0,tighn, Send night{Space}
 Else IfEqual key0,tign, Send interesting{Space}
@@ -901,7 +919,7 @@ Else IfEqual key0,tsl, Send list{Space}
 Else IfEqual key0,tsln, Send listen{Space}
 Else IfEqual key0,tslvm, Send themselves{Space}
 Else IfEqual key0,tsm, Send sometimes{Space}
-Else IfEqual key0,tsn, Send sent{Space}
+Else IfEqual key0,tsn, Send essentially{Space}
 Else IfEqual key0,tua, Send uation
 Else IfEqual key0,tuagh, Send aught{Space}
 Else IfEqual key0,tualc, Send actual{Space}
@@ -916,7 +934,6 @@ Else IfEqual key0,tuoa, Send auto{Space}
 Else IfEqual key0,tuoacn, Send account{Space}
 Else IfEqual key0,tuobn, Send button{Space}
 Else IfEqual key0,tuocn, Send count{Space}
-Else IfEqual key0,tuogh, Send ought{Space}
 Else IfEqual key0,tuohc, Send touch{Space}
 Else IfEqual key0,tuohm, Send mouth{Space}
 Else IfEqual key0,tuoscm, Send custom{Space}
@@ -1030,7 +1047,7 @@ Else IfEqual key0,uasl, Send usual{Space}
 Else IfEqual key0,ucm, Send communicate{Space}
 Else IfEqual key0,ud, Send you'd{Space}
 Else IfEqual key0,udn, Send understand{Space}
-Else IfEqual key0,ufl, Send {BackSpace}ful{Space}
+Else IfEqual key0,ufl, Send full{Space}
 Else IfEqual key0,uhcm, Send much{Space}
 Else IfEqual key0,uicm, Send communication {Space}
 Else IfEqual key0,uidn, Send industry{Space}
@@ -1080,6 +1097,7 @@ SENDE:
     Send {%key0%}  
 Else IfEqual key0,ea, Send ea	
 Else IfEqual key0,epalcb, Send capable{Space}
+Else IfEqual key0,etpam, Send attempt{Space}
 Else IfEqual key0,eivn, Send vein{Space}
 Else IfEqual key0,ersc, Send source{Space}	
 Else IfEqual key0,erpisn, Send inspire{Space}
@@ -1114,7 +1132,7 @@ Else IfEqual key0,eiosn, Send session{Space}
 Else IfEqual key0,elc, Send cell{Space}
 Else IfEqual key0,eohn, Send hone{Space}
 Else IfEqual key0,eradm, Send dream{Space}
-Else IfEqual key0,erakb, Send brake{Space}
+
 Else IfEqual key0,erasd, Send address{Space}
 Else IfEqual key0,erdg, Send degree{Space}
 Else IfEqual key0,ergcn, Send encourage{Space}
@@ -1391,14 +1409,14 @@ Else IfEqual key0,erov, Send over{Space}
 Else IfEqual key0,erp, Send pre	
 Else IfEqual key0,erpa, Send prepare{Space}	
 Else IfEqual key0,erpalc, Send replace{Space}	
-Else IfEqual key0,erps, Send repond{Space}	
+Else IfEqual key0,erps, Send press{Space}	
 Else IfEqual key0,ers, Send res{Space}	
 Else IfEqual key0,erscn, Send screen{Space}	
 Else IfEqual key0,ersv, Send serve{Space}	
 Else IfEqual key0,ert, Send tree{Space}	
 Else IfEqual key0,erta, Send rate{Space}	
 Else IfEqual key0,ertac, Send react{Space}	
-Else IfEqual key0,ertafh, Send farther{Space}	
+Else IfEqual key0,ertafh, Send father{Space}	
 Else IfEqual key0,ertag, Send great{Space}	
 Else IfEqual key0,ertahc, Send character{Space}	
 Else IfEqual key0,ertal, Send later{Space}	
@@ -1414,7 +1432,7 @@ Else IfEqual key0,ertiagn, Send integrate{Space}
 Else IfEqual key0,ertial, Send retail{Space}	
 Else IfEqual key0,ertialcv, Send vertical{Space}	
 Else IfEqual key0,ertialv, Send relative{Space}	
-Else IfEqual key0,ertidc, Send direct{Space}	
+Else IfEqual key0,ertidc, Send credit{Space}	
 Else IfEqual key0,ertifl, Send filter{Space}	
 Else IfEqual key0,ertih, Send their{Space}	
 Else IfEqual key0,ertin, Send inter	
@@ -1427,7 +1445,7 @@ Else IfEqual key0,ertis, Send sister{Space}
 Else IfEqual key0,ertl, Send letter{Space}	
 Else IfEqual key0,ertm, Send term{Space}	
 Else IfEqual key0,ertn, Send enter{Space}	
-Else IfEqual key0,erto, Send hetero	
+Else IfEqual key0,erto, Send tore{Space}	
 Else IfEqual key0,ertoasg, Send storage{Space}	
 Else IfEqual key0,ertoc, Send correct{Space}	
 Else IfEqual key0,ertogh, Send together{Space}	
@@ -1477,7 +1495,7 @@ Else IfEqual key0,eryv, Send very{Space}
 Else IfEqual key0,es, Send see{Space}	
 Else IfEqual key0,esc, Send second{Space}	
 Else IfEqual key0,esdn, Send send{Space}	
-Else IfEqual key0,esfl, Send feels{Space}	
+Else IfEqual key0,esfl, Send self{Space}	
 Else IfEqual key0,esh, Send she{Space}	
 Else IfEqual key0,esk, Send seek{Space}	
 Else IfEqual key0,esl, Send else{Space}	
@@ -1557,7 +1575,7 @@ Else IfEqual key0,etpk, Send kept{Space}
 Else IfEqual key0,etps, Send step{Space}	
 Else IfEqual key0,etps, Send step{Space}	
 Else IfEqual key0,etpsn, Send spent{Space}	
-Else IfEqual key0,etpxc, Send expect{Space}	
+Else IfEqual key0,tpxc, Send expect{Space}	
 Else IfEqual key0,ets, Send set{Space}	
 Else IfEqual key0,etsb, Send best{Space}	
 Else IfEqual key0,etsh, Send these{Space}	
@@ -1565,8 +1583,9 @@ Else IfEqual key0,etshc, Send chest{Space}
 Else IfEqual key0,etshlb, Send establish{Space}	
 Else IfEqual key0,etsl, Send let's{Space}	
 Else IfEqual key0,etslc, Send select{Space}	
-Else IfEqual key0,etsn, Send essentially{Space}	
-Else IfEqual key0,etsn, Send nest{Space}	
+Else IfEqual key0,etsn, Send sent{Space}
+Else IfEqual key0,etysln, Send sent{Space}	
+	
 Else IfEqual key0,etuadc, Send educate{Space}	
 Else IfEqual key0,etuagnm, Send augment{Space}	
 Else IfEqual key0,etuinm, Send minute{Space}	
@@ -1653,7 +1672,7 @@ Else IfEqual key0,ocm, Send com
 Else IfEqual key0,ocn, Send con
 Else IfEqual key0,ocnm, Send common{Space}
 Else IfEqual key0,od, Send do{Space}
-Else IfEqual key0,odc, Send doc
+Else IfEqual key0,odc, Send document{Space}
 Else IfEqual key0,odf, Send food{Space}
 Else IfEqual key0,odg, Send doing{Space}
 Else IfEqual key0,odhl, Send hold{Space}
@@ -1817,6 +1836,7 @@ SENDS:
     Send {%key0%}  
 Else IfEqual key0,sbn, Send business{Space}
 Else IfEqual key0,scb, Send basic{Space}
+Else IfEqual key0,shm, Send somehow{Space}
 Else IfEqual key0,sdhlc, Send schedule{Space}
 Else IfEqual key0,sz, Send size{Space}
 Else IfEqual key0,sd, Send somebody{Space}
@@ -1834,7 +1854,7 @@ Else IfEqual key0,shn, Send hasn't{Space}
 Else IfEqual key0,sdcn, Send decision{Space}
 Else IfEqual key0,sdgn, Send design{Space}
 Else IfEqual key0,sdlcm, Send social media{Space}
-Else IfEqual key0,sf, Send self{Space}
+Else IfEqual key0,sf, Send For sure.{Space}
 Else IfEqual key0,sfgcn, Send significant{Space}
 Else IfEqual key0,sflm, Send myself{Space}
 Else IfEqual key0,sg, Send something{Space}
@@ -1859,8 +1879,9 @@ SENDD:
    If StrLen(key0) = 1
     Send {%key0%}  
 Else IfEqual key0,dbn, Send nobody{Space}
-Else IfEqual key0,dcm, Send document{Space}
+Else IfEqual key0,dcm, Send command{Space}
 Else IfEqual key0,dhln, Send handle{Space}
+Else IfEqual key0,dghln, Send handling{Space}
 Else IfEqual key0,dcn, Send couldn't{Space}
 Else IfEqual key0,dcn, Send candid{Space}
 Else IfEqual key0,dcnm, Send commend{Space}
@@ -1894,6 +1915,7 @@ SENDF:
    If StrLen(key0) = 1
     Send {%key0%}  
 Else IfEqual key0,fb, Send before{Space}
+
 Else IfEqual key0,fcm, Send comfortable{Space}
 Else IfEqual key0,fcn, Send finance{Space}
 Else IfEqual key0,flb, Send belief{Space}
@@ -1938,6 +1960,7 @@ SENDH:
    If StrLen(key0) = 1
     Send {%key0%}  
 Else IfEqual key0,hc, Send choice{Space}
+ Else IfEqual key0,hm, Send Mm-hmm.{Space}
 Else IfEqual key0,hv, Send have{Space}
 Else IfEqual key0,hcnm, Send machine{Space}
 Else IfEqual key0,hlcn, Send channel{Space}
@@ -1950,6 +1973,7 @@ SENDI:
     Send {%key0%}  
 Else IfEqual key0,ia, Send ai
 Else IfEqual key0,iafl, Send fail{Space}
+Else IfEqual key0,igz, Send {BackSpace}izing{Space}
 Else IfEqual key0,iagn, Send gain{Space}
 Else IfEqual key0,ib, Send no{Space}
 Else IfEqual key0,iadlv, Send valid{Space}
@@ -2135,11 +2159,25 @@ SENDDOT:
    SentKeys = %key0%
    If StrLen(key0) = 1
     Send {%key0%}  
- Else IfEqual key0,wto., Send two{Space}
+ Else IfEqual key0,r', Send {BackSpace}r{Space}
+Else IfEqual key0,ok', Send okay{Space}
+Else IfEqual key0,rtuogh., Send thorough{Space}
+ Else IfEqual key0,wto', Send two{Space}
+Else IfEqual key0,ets', Send {BackSpace}est{Space}
+Else IfEqual key0,erakb., Send brake{Space}
+ Else IfEqual key0,tvm., Send motivate{Space}
+Else IfEqual key0,rtdc., Send direct{Space}
+Else IfEqual key0,tuogh., Send ought{Space}
+Else IfEqual key0,d., Send{backspace}d{Space}
+  Else IfEqual key0,hm., Send Mm-mmm.{Space}
+  Else IfEqual key0,ign., Send {backspace}{backspace}ing{Space}
  Else IfEqual key0,esl., Send less{Space}
  Else IfEqual key0,etan., Send ante
+Else IfEqual key0,rtfh., Send further{Space}
+ Else IfEqual key0,tivn., Send invite{Space}
  Else IfEqual key0,esdn., Send dense{Space}
 Else IfEqual key0,erias, Send easier{Space}
+Else IfEqual key0,rtln., Send natural{Space}
 Else IfEqual key0,.ertpsn, Send represent{Space}
 Else IfEqual key0,erf., Send refer{Space}
 Else IfEqual key0,eru., Send {backspace}ure{Space}
@@ -2152,7 +2190,7 @@ Else IfEqual key0,scnm., Send musician{Space}
  Else IfEqual key0,rtsg., Send register{Space}
  Else IfEqual key0,eivn., Send vine{Space}
  Else IfEqual key0,etas., Send taste{Space}
-
+Else IfEqual key0,etsn., Send nest{Space}
   Else IfEqual key0,tan., Send {BackSpace}ant{Space}
  Else IfEqual key0,eon., Send none{Space}	
  Else IfEqual key0,apl., Send appeal{Space}
@@ -2254,6 +2292,7 @@ Else IfEqual key0,wto., Send two{Space}
  Else IfEqual key0,2., Send two{Space}
  Else IfEqual key0,4., Send four{Space}
  Else IfEqual key0,5., Send five{Space}
+ Else IfEqual key0,ex., Send exact{Space}
  Else IfEqual key0,6., Send six{Space}
  Else IfEqual key0,7., Send seven{Space}
  Else IfEqual key0,8., Send eight{Space}
@@ -2289,7 +2328,7 @@ Else IfEqual key0,wto., Send two{Space}
  Else IfEqual key0,esn., Send {BackSpace}ness{Space}
  Else IfEqual key0,i., Send I{Space}
  Else IfEqual key0,a., Send a{Space}
- Else IfEqual key0,ufl., Send full{Space}
+ Else IfEqual key0,ufl., Send {BackSpace}ful{Space}
  Else IfEqual key0,er., Send re
  Else IfEqual key0,toh., Send oth{Space} 
  Else IfEqual key0,ton., Send ton{Space} 
@@ -2344,7 +2383,7 @@ Else IfEqual key0,rac., Send car{Space}
 Else IfEqual key0,roadb., Send board{Space}
 Else IfEqual key0,wera., Send aware{Space}
 Else IfEqual key0,wrtoh., Send worth{Space}
-Else IfEqual key0,ertafh., Send father{Space}
+Else IfEqual key0,ertafh., Send farther{Space}
 Else IfEqual key0,ypal., Send apply{Space}
 Else IfEqual key0,rtpc., Send capture{Space}
 Else IfEqual key0,erups., Send pressure{Space}
