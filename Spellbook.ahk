@@ -1781,7 +1781,7 @@ Else IfEqual key0,eryal, Send early{Space}
 Else IfEqual key0,eryogc, Send grocery{Space}	
 Else IfEqual key0,eryph, Send hyper	
 Else IfEqual key0,eryusg, Send surgery{Space}	
-Else IfEqual key0,eryv, Send very{Space}	
+Else IfEqual key0,eryv, Send every{Space}	
 Else IfEqual key0,es, Send see{Space}	
 Else IfEqual key0,esc, Send second{Space}	
 Else IfEqual key0,esdn, Send send{Space}	
