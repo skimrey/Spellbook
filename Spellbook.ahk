@@ -1737,13 +1737,12 @@ Else IfEqual key0,erpisn, Send inspire{Space}
 Else IfEqual key0,eopsk, Send spoke{Space}
 Else IfEqual key0,epal, Send leap{Space}
 Else IfEqual key0,epdxn, Send expend{Space}
-
 Else IfEqual key0,eriav, Send arrive{Space}
 Else IfEqual key0,erop, Send proper{Space}
 Else IfEqual key0,erpdc, Send deprec{Space}
 Else IfEqual key0,ertipn, Send interpret{Space}
 Else IfEqual key0,ertuipn, Send interrupt{Space}
-Else IfEqual key0,etialnm, Send eliminate (etlmn is element){Space}
+Else IfEqual key0,etialnm, Send eliminate{Space}
 Else IfEqual key0,etiascn, Send instance{Space}
 Else IfEqual key0,etiscn, Send scientist{Space}
 Else IfEqual key0,etivn, Send invite{Space}
