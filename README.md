@@ -6,7 +6,7 @@ AHK QWERTY (and beyond for the Dvorak et al oddballs) chord dictionary based on 
 
 Requires Autohotkey which is a free program for scripting Windows automation (keystrokes, mouse movements, etc) https://www.autohotkey.com/ Simply download autohotkey and then launch Spellbook.ahk which is available here.
 
-- Please note some keyboards will not completely work based on their matrix. Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
+- Please note some keyboards will not completely work based on their matrix (certain keyboards only register a few keys at a time). Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
 
 This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and new keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes. Please use it and build on it if it makes any sense to you or build your own!
 
