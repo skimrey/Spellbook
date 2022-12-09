@@ -158,11 +158,13 @@ Else IfEqual key0,tosh/, Send host{Space}
 Else IfEqual key0,ealb/, Send {BackSpace}{BackSpace}able{Space}
 Else IfEqual key0,etas/, Send estate{Space}
 Else IfEqual key0,wal/, Send law{Space}
+Else IfEqual key0,esl/, Send {BackSpace}less{Space}
 Else IfEqual key0,era/, Send ear avoid are rear{Space}
 Else IfEqual key0,ersv/, Send sever{Space}
 Else IfEqual key0,tis/, Send {BackSpace}ist{Space}
  Else IfEqual key0,eis/, Send {BackSpace}ise{Space}	
 Else IfEqual key0,slcn/, Send counsel{Space}
+Else IfEqual key0,erups/, Send pursue{Space}
 Else IfEqual key0,won/, Send won{Space}
 Else IfEqual key0,y/, Send {backspace}y{Space}
 Else IfEqual key0,n/, Send {backspace}n{Space}
@@ -811,7 +813,7 @@ Else IfEqual key0,rpfm, Send perform{Space}
 Else IfEqual key0,rpgm, Send program{Space}
 Else IfEqual key0,rplb, Send problem{Space}
 Else IfEqual key0,rplx, Send explore{Space}
-Else IfEqual key0,rps, Send super{Space}
+Else IfEqual key0,rps, Send surprise{Space}
 Else IfEqual key0,rpslbn, Send responsible{Space}
 Else IfEqual key0,rpsdn, Send respond{Space}
 Else IfEqual key0,rpsh, Send perhaps{Space}
@@ -951,6 +953,7 @@ SENDT:
 Else IfEqual key0,ta, Send at{Space}
 Else IfEqual key0,tisv, Send visit{Space}
 Else IfEqual key0,tihn, Send thin{Space}
+Else IfEqual key0,tpsln, Send pleasant{Space}
 Else IfEqual key0,tadcv, Send advocate{Space}
 Else IfEqual key0,tahm, Send math{Space}
 Else IfEqual key0,takn, Send tank{Space}
@@ -1483,6 +1486,7 @@ Else IfEqual key0,epalcb, Send capable{Space}
 Else IfEqual key0,eosln, Send lesson{Space}
 Else IfEqual key0,ealcn, Send cancel{Space}
 Else IfEqual key0,ealn, Send lane{Space}
+Else IfEqual key0,etpasln, Send pleasant{Space}
 Else IfEqual key0,eas, Send assess{Space}
 Else IfEqual key0,eruips, Send surprise{Space}
 Else IfEqual key0,easf, Send safety{Space}
@@ -2108,7 +2112,7 @@ Else IfEqual key0,erudc, Send reduce{Space}
 Else IfEqual key0,erudn, Send under{Space}	
 Else IfEqual key0,erul, Send rule{Space}	
 Else IfEqual key0,eruops, Send purpose{Space}	
-Else IfEqual key0,erups, Send pursue{Space}	
+Else IfEqual key0,erups, Send super{Space}	
 Else IfEqual key0,erus, Send sure{Space}	
 Else IfEqual key0,erusfl, Send yourself{Space}	
 Else IfEqual key0,erusm, Send summer{Space}	
