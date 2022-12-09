@@ -811,7 +811,7 @@ Else IfEqual key0,rpfm, Send perform{Space}
 Else IfEqual key0,rpgm, Send program{Space}
 Else IfEqual key0,rplb, Send problem{Space}
 Else IfEqual key0,rplx, Send explore{Space}
-Else IfEqual key0,rps, Send surprise{Space}
+Else IfEqual key0,rps, Send super{Space}
 Else IfEqual key0,rpslbn, Send responsible{Space}
 Else IfEqual key0,rpsdn, Send respond{Space}
 Else IfEqual key0,rpsh, Send perhaps{Space}
@@ -1484,6 +1484,7 @@ Else IfEqual key0,eosln, Send lesson{Space}
 Else IfEqual key0,ealcn, Send cancel{Space}
 Else IfEqual key0,ealn, Send lane{Space}
 Else IfEqual key0,eas, Send assess{Space}
+Else IfEqual key0,eruips, Send surprise{Space}
 Else IfEqual key0,easf, Send safety{Space}
 Else IfEqual key0,efhc, Send chef{Space}
 Else IfEqual key0,eialv, Send alive{Space}
@@ -2107,7 +2108,7 @@ Else IfEqual key0,erudc, Send reduce{Space}
 Else IfEqual key0,erudn, Send under{Space}	
 Else IfEqual key0,erul, Send rule{Space}	
 Else IfEqual key0,eruops, Send purpose{Space}	
-Else IfEqual key0,erups, Send super{Space}	
+Else IfEqual key0,erups, Send pursue{Space}	
 Else IfEqual key0,erus, Send sure{Space}	
 Else IfEqual key0,erusfl, Send yourself{Space}	
 Else IfEqual key0,erusm, Send summer{Space}	
