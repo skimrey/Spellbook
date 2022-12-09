@@ -1492,8 +1492,7 @@ Else IfEqual key0,eruips, Send surprise{Space}
 Else IfEqual key0,easf, Send safety{Space}
 Else IfEqual key0,efhc, Send chef{Space}
 Else IfEqual key0,eialv, Send alive{Space}
-Else IfEqual key0,eiasn, Send insane{Space}
-Else IfEqual key0,eiasn, Send insane{Space}
+Else IfEqual key0,eyiasl, Send easily{Space}
 Else IfEqual key0,eiasn, Send insane{Space}
 Else IfEqual key0,eifkn, Send knife{Space}
 Else IfEqual key0,eihcn, Send niche{Space}
