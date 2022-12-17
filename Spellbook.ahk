@@ -1,4 +1,4 @@
-; Dictionary by Solomon Kimrey, code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
+; Dictionary by Solomon Kimrey, initial code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 #MaxThreadsPerHotkey 10
 #MaxThreadsBuffer ON
 #MaxHotkeysPerInterval 999
@@ -7,7 +7,7 @@ StringCaseSense On
 Process Priority,,Realtime
 SetKeyDelay -1
 BlockInput Send
- 
+
 Low = ``1234567890-=qwertyuiop[]\asdfghjkl`'zxcvbnm,./;
 Shft= ~!@#$`%^&*()_+QWERTYUIOP{}|ASDFGHJKL`"ZXCVBNM<>?:
 
@@ -85,6 +85,7 @@ SEND:
 SEND1:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
+
 If InStr(key0, ".") or InStr(key0, "'")
 GoSub SENDDOT
 Else If InStr(key0, "/")
@@ -141,25 +142,82 @@ Else If InStr(key0, "n")
 GoSub SENDN
 Else If InStr(key0, "m")
 GoSub SENDM
+If InStr(key0, ">")
+GoSub SENDDOTup
+Else If InStr(key0, "?")
+GoSub SENDSLASHup
+Else If InStr(key0, "Q")
+GoSub SENDQup
+Else If InStr(key0, "W")
+GoSub SENDWup
+Else If InStr(key0, "E")
+GoSub SENDEup
+Else If InStr(key0, "R")
+GoSub SENDRup
+Else If InStr(key0, "T")
+GoSub SENDTup
+Else If InStr(key0, "Y")
+GoSub SENDYup
+Else If InStr(key0, "U")
+GoSub SENDUup
+Else If InStr(key0, "I")
+GoSub SENDIup
+Else If InStr(key0, "O")
+GoSub SENDOup
+Else If InStr(key0, "P")
+GoSub SENDPup
+Else If InStr(key0, "A")
+GoSub SENDAup
+Else If InStr(key0, "S")
+GoSub SENDSup
+Else If InStr(key0, "D")
+GoSub SENDDup
+Else If InStr(key0, "F")
+GoSub SENDFup
+Else If InStr(key0, "G")
+GoSub SENDGup
+Else If InStr(key0, "H")
+GoSub SENDHup
+Else If InStr(key0, "J")
+GoSub SENDJup
+Else If InStr(key0, "K")
+GoSub SENDKup
+Else If InStr(key0, "L")
+GoSub SENDLup
+Else If InStr(key0, "Z")
+GoSub SENDZup
+Else If InStr(key0, "X")
+GoSub SENDXup
+Else If InStr(key0, "C")
+GoSub SENDCup
+Else If InStr(key0, "V")
+GoSub SENDVup
+Else If InStr(key0, "B")
+GoSub SENDBup
+Else If InStr(key0, "N")
+GoSub SENDNup
+Else If InStr(key0, "M")
+GoSub SENDMup
 Else If StrLen(key0) = 1
       Send {%key0%}  
 
 Return
 SENDSLASH:
 SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ets/, Send {BackSpace}est{Space}
+   SentKeys = %key0% 
+IfEqual key0,ets/, Send {BackSpace}est{Space}
 Else IfEqual key0,era/, Send ear{Space}
- Else IfEqual key0,r/, Send {BackSpace}r{Space}
+Else IfEqual key0,r/, Send {BackSpace}r{Space}
 Else IfEqual key0,tops/, Send spot{Space}
+Else IfEqual key0,ertal/, Send latter{Space}
+Else IfEqual key0,erts/, Send steer{Space}
 Else IfEqual key0,tosh/, Send host{Space}
+Else IfEqual key0,erp/, Send peer{Space}
 Else IfEqual key0,ealb/, Send {BackSpace}{BackSpace}able{Space}
-Else IfEqual key0,etas/, Send estate{Space}
+Else IfEqual key0,etas/, Send tease{Space}
 Else IfEqual key0,wal/, Send law{Space}
 Else IfEqual key0,esl/, Send {BackSpace}less{Space}
-Else IfEqual key0,era/, Send ear avoid are rear{Space}
+Else IfEqual key0,era/, Send ear{Space}
 Else IfEqual key0,ersv/, Send sever{Space}
 Else IfEqual key0,tis/, Send {BackSpace}ist{Space}
  Else IfEqual key0,eis/, Send {BackSpace}ise{Space}	
@@ -173,17 +231,17 @@ Return
 SENDQ:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,qerf, Send frequency{Space}
+IfEqual key0,qerf, Send frequency{Space}
 Else IfEqual key0,qerfn, Send frequent{Space}
-Else IfEqual key0,qerui, Send require{Space}
+Else IfEqual key0,qerui, Send queue{Space}
+Else IfEqual key0,qeu, Send queue{Space}
 Else IfEqual key0,qrac, Send acquire{Space}
 Else IfEqual key0,qrts, Send request{Space}
 Else IfEqual key0,qetui, Send quiet{Space}
 Else IfEqual key0,qeuin, Send unique{Space}
 Else IfEqual key0,qel, Send equal{Space}
 Else IfEqual key0,qeru, Send queer{Space}
+Else IfEqual key0,ql, Send quickly{Space}
 Else IfEqual key0,qetuo, Send quote{Space}
 Else IfEqual key0,qfl, Send qualify{Space}
 Else IfEqual key0,qrtuis, Send squirt{Space}
@@ -211,13 +269,14 @@ Return
 SENDW:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,wa, Send as well{Space}
+IfEqual key0,wa, Send as well{Space}
+Else IfEqual key0,wrhv, Send however{Space}
 Else IfEqual key0,wtn, Send won't{Space}
 Else IfEqual key0,werhvn, Send whenever{Space}
 Else IfEqual key0,weoasm, Send awesome{Space}
 Else IfEqual key0,wrpa, Send wrap{Space}
+Else IfEqual key0,wlb, Send below{Space}
+Else IfEqual key0,weolb, Send below{Space}
 Else IfEqual key0,wan, Send want to{Space}
 Else IfEqual key0,wehc, Send chew{Space}
 Else IfEqual key0,weif, Send wife{Space}
@@ -227,7 +286,6 @@ Else IfEqual key0,werhvn, Send whenever{Space}
 Else IfEqual key0,werin, Send winner{Space}
 Else IfEqual key0,weropm, Send empower{Space}
 Else IfEqual key0,werosh, Send shower{Space}
-Else IfEqual key0,werth, Send threw{Space}
 Else IfEqual key0,wertih, Send wither{Space}
 Else IfEqual key0,wesk, Send skew{Space}
 Else IfEqual key0,wetishl, Send whistle{Space}
@@ -417,25 +475,33 @@ Else IfEqual key0,wts, Send what's{Space}
 Return
 SENDR:
    SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ra, Send around{Space}
+   SentKeys = %key0% 
+IfEqual key0,ra, Send around{Space}
+Else IfEqual key0,ruioasv, Send saviour{Space}
+Else IfEqual key0,rtyph, Send therapy{Space}
+Else IfEqual key0,rtdlnm, Send detrimental{Space}
 Else IfEqual key0,rtdln, Send traditional{Space}
 Else IfEqual key0,ryc, Send cry{Space}
+Else IfEqual key0,rtpsdn, Send president{Space}
+Else IfEqual key0,rtuiag, Send guitar	{Space}
+Else IfEqual key0,rtip, Send trip{Space}
+Else IfEqual key0,ruosh, Send hours{Space}
+Else IfEqual key0,ridkn, Send drink{Space}
+Else IfEqual key0,riafc, Send Africa{Space}
+Else IfEqual key0,rtiac, Send arctic{Space}
+Else IfEqual key0,rtiacn, Send Antarctica{Space}
 Else IfEqual key0,wrb, Send borrow{Space}
 Else IfEqual key0,rhlb, Send horrible{Space}
+Else IfEqual key0,rp, Send peer{Space}
 Else IfEqual key0,rahcm, Send march{Space}
 Else IfEqual key0,rdv, Send drive{Space}
 Else IfEqual key0,rdbn, Send burden{Space}
 Else IfEqual key0,rdgn, Send garden{Space}
 Else IfEqual key0,rfcn, Send conference{Space}
 Else IfEqual key0,rfnm, Send inform{Space}
-Else IfEqual key0,rfnm, Send inform{Space}
 Else IfEqual key0,riagc, Send cigar{Space}
 Else IfEqual key0,rid, Send rid{Space}
 Else IfEqual key0,ridb, Send bird{Space}
-Else IfEqual key0,riofnm, Send inform{Space}
 Else IfEqual key0,riofnm, Send inform{Space}
 Else IfEqual key0,riom, Send mirror{Space}
 Else IfEqual key0,rionm, Send minor{Space}
@@ -597,7 +663,7 @@ Else IfEqual key0,rush, Send rush{Space}
 Else IfEqual key0,ryanm, Send anymore{Space}
 Else IfEqual key0,ryanm, Send anymore{Space}
 Else IfEqual key0,ryjn, Send journey{Space}
-Else IfEqual key0,rypas, Send spray{Space}A
+Else IfEqual key0,rypas, Send spray{Space}
 Else IfEqual key0,rtphc, Send chapter{Space}
 Else IfEqual key0,rtsdc, Send district{Space}
 Else IfEqual key0,rtygc, Send category{Space}
@@ -778,7 +844,7 @@ Else IfEqual key0,rn, Send right now{Space}
 Else IfEqual key0,ro, Send or{Space}
 Else IfEqual key0,roacm, Send macro
 Else IfEqual key0,road, Send road{Space}
-Else IfEqual key0,roadb, Send broad{Space}
+Else IfEqual key0,roadb, Send board{Space}
 Else IfEqual key0,roadbn, Send onboard{Space}
 Else IfEqual key0,roadl, Send dollar{Space}
 Else IfEqual key0,roalnm, Send normal{Space}
@@ -854,7 +920,7 @@ Else IfEqual key0,rtiodcn, Send coordinate{Space}
 Else IfEqual key0,rtiodn, Send introduce{Space}
 Else IfEqual key0,rtion, Send intro
 Else IfEqual key0,rtipa, Send particular{Space}
-Else IfEqual key0,rtyl, Send literally{Space}
+Else IfEqual key0,rtl, Send literal{Space}
 Else IfEqual key0,rtlb, Send trouble{Space}
 Else IfEqual key0,rtlc, Send control{Space}
 Else IfEqual key0,rtlcb, Send collaborate{Space}
@@ -948,19 +1014,19 @@ Return
 SENDT:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,ta, Send at{Space}
+IfEqual key0,ta, Send at{Space}
+Else IfEqual key0,tadh, Send that'd{Space}
 Else IfEqual key0,tisv, Send visit{Space}
 Else IfEqual key0,tihn, Send thin{Space}
 Else IfEqual key0,tpsln, Send pleasant{Space}
 Else IfEqual key0,tadcv, Send advocate{Space}
 Else IfEqual key0,tahm, Send math{Space}
+Else IfEqual key0,tupg, Send putting{Space}
 Else IfEqual key0,takn, Send tank{Space}
-Else IfEqual key0,tasl, Send salt{Space}
 Else IfEqual key0,tglv, Send vegetable{Space}
 Else IfEqual key0,tgvn, Send navigate{Space}
 Else IfEqual key0,tiafh, Send faith{Space}
+Else IfEqual key0,tipsl, Send split{Space}
 Else IfEqual key0,tial, Send tail{Space}
 Else IfEqual key0,tias, Send assist{Space}
 Else IfEqual key0,tifghl, Send flight{Space}
@@ -1326,10 +1392,9 @@ Return
 SENDY:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,yac, Send {BackSpace}acy{Space}
+IfEqual key0,yac, Send {BackSpace}acy{Space}
 Else IfEqual key0,yad, Send day{Space}
+Else IfEqual key0,yugl, Send ugly{Space}
 Else IfEqual key0,tysg, Send staying{Space}
 Else IfEqual key0,eyagcn, Send agency{Space}
 Else IfEqual key0,yc, Send {BackSpace}cy{Space}
@@ -1398,9 +1463,7 @@ Return
 SENDU:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ua, Send au
+IfEqual key0,ua, Send au
 Else IfEqual key0,uab, Send a bunch{Space}
 Else IfEqual key0,uahnm, Send human{Space}
 Else IfEqual key0,uasdhbn, Send husband{Space}
@@ -1479,18 +1542,25 @@ Return
 SENDE:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ea, Send ea	
+IfEqual key0,ea, Send ea	
 Else IfEqual key0,epalcb, Send capable{Space}
+Else IfEqual key0,eriv, Send river{Space}
+Else IfEqual key0,eruipm, Send premium{Space}
+Else IfEqual key0,etf, Send feet{Space}
+Else IfEqual key0,ertypah, Send therapy{Space}
+Else IfEqual key0,eriacm, Send America{Space}
+Else IfEqual key0,eruop, Send Europe{Space}
 Else IfEqual key0,eosln, Send lesson{Space}
+Else IfEqual key0,epaln, Send plane{Space}
 Else IfEqual key0,ealcn, Send cancel{Space}
+Else IfEqual key0,epaslc, Send places{Space}
 Else IfEqual key0,ealn, Send lane{Space}
 Else IfEqual key0,etpasln, Send pleasant{Space}
 Else IfEqual key0,eas, Send assess{Space}
 Else IfEqual key0,eruips, Send surprise{Space}
 Else IfEqual key0,easf, Send safety{Space}
 Else IfEqual key0,efhc, Send chef{Space}
+Else IfEqual key0,erualcn, Send nuclear{Space}
 Else IfEqual key0,eialv, Send alive{Space}
 Else IfEqual key0,eyiasl, Send easily{Space}
 Else IfEqual key0,eiasn, Send insane{Space}
@@ -1514,7 +1584,7 @@ Else IfEqual key0,eoaslm, Send molasses{Space}
 Else IfEqual key0,eofc, Send coffee{Space}
 Else IfEqual key0,eosdcn, Send condense{Space}
 Else IfEqual key0,eosln, Send lesson{Space}
-Else IfEqual key0,eosn, Send ones{Space}
+Else IfEqual key0,eosn, Send nose{Space}
 Else IfEqual key0,epa, Send ape{Space}
 Else IfEqual key0,epn, Send pen{Space}
 Else IfEqual key0,epsl, Send spell{Space}
@@ -1543,7 +1613,6 @@ Else IfEqual key0,erokb, Send broke{Space}
 Else IfEqual key0,eros, Send rose{Space}
 Else IfEqual key0,eroscn, Send censor{Space}
 Else IfEqual key0,erovbnm, Send November{Space}
-Else IfEqual key0,erp, Send pepper{Space}
 Else IfEqual key0,erpas, Send spare{Space}
 Else IfEqual key0,ertag, Send target{Space}
 Else IfEqual key0,ertagn, Send generate{Space}
@@ -1598,7 +1667,7 @@ Else IfEqual key0,eujn, Send June{Space}
 Else IfEqual key0,eupsl, Send pulse{Space}
 Else IfEqual key0,eyagcn, Send agency{Space}
 Else IfEqual key0,eyp, Send yep{Space}
-Else IfEqual key0,ertyial, Send reality{Space}
+Else IfEqual key0,rtyl, Send reality{Space}
 Else IfEqual key0,etanm, Send meant{Space}
 Else IfEqual key0,easn, Send sane{Space}
 Else IfEqual key0,eiasn, Send insane{Space}
@@ -1650,7 +1719,6 @@ Else IfEqual key0,eopk, Send poke{Space}
 Else IfEqual key0,eoslv, Send solve{Space}
 Else IfEqual key0,eoslv, Send solve{Space}
 Else IfEqual key0,epahc, Send cheap{Space}
-
 Else IfEqual key0,eradg, Send grade{Space}
 Else IfEqual key0,erafm, Send frame{Space}
 Else IfEqual key0,eraghc, Send charge{Space}
@@ -1764,11 +1832,9 @@ Else IfEqual key0,eiosn, Send session{Space}
 Else IfEqual key0,elc, Send cell{Space}
 Else IfEqual key0,eohn, Send hone{Space}
 Else IfEqual key0,eradm, Send dream{Space}
-
 Else IfEqual key0,erasd, Send address{Space}
 Else IfEqual key0,erdg, Send degree{Space}
 Else IfEqual key0,ergcn, Send encourage{Space}
-
 Else IfEqual key0,erih, Send hire{Space}
 Else IfEqual key0,erilc, Send circle{Space}
 Else IfEqual key0,erpscn, Send presence{Space}
@@ -2216,7 +2282,6 @@ Else IfEqual key0,etsl, Send let's{Space}
 Else IfEqual key0,etslc, Send select{Space}	
 Else IfEqual key0,etsn, Send sent{Space}
 Else IfEqual key0,etysln, Send sent{Space}	
-	
 Else IfEqual key0,etuadc, Send educate{Space}	
 Else IfEqual key0,etuagnm, Send augment{Space}	
 Else IfEqual key0,etuinm, Send minute{Space}	
@@ -2281,9 +2346,7 @@ Return
 SENDO:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,oa, Send anyone{Space}
+IfEqual key0,oa, Send anyone{Space}
 Else IfEqual key0,oan, Send anyone{Space}
 Else IfEqual key0,oadl, Send load{Space}
 Else IfEqual key0,oagnm, Send among{Space}
@@ -2338,7 +2401,7 @@ Else IfEqual key0,okl, Send look{Space}
 Else IfEqual key0,oklc, Send lock{Space}
 Else IfEqual key0,oln, Send online{Space}
 Else IfEqual key0,on, Send on{Space}
-Else IfEqual key0,onm, Send mono
+Else IfEqual key0,onm, Send moon{Space}
 Else IfEqual key0,op, Send opportunity{Space}
 Else IfEqual key0,opn, Send open{Space}
 Else IfEqual key0,ops, Send opportunities{Space}
@@ -2359,10 +2422,10 @@ Return
 SENDP:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
     Send {%key0%}  
-Else IfEqual key0,pac, Send cap{Space}
+IfEqual key0,pac, Send cap{Space}
 Else IfEqual key0,pk, Send keep{Space}	
+Else IfEqual key0,updg, Send pudding{Space}		
 Else IfEqual key0,psfc, Send specific{Space}
 Else IfEqual key0,pfhl, Send helpful{Space}
 Else IfEqual key0,phl, Send helpful{Space}
@@ -2425,12 +2488,11 @@ Return
 SENDA:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ab, Send about{Space}
+IfEqual key0,ab, Send about{Space}
 Else IfEqual key0,adv, Send avoid{Space}
 Else IfEqual key0,adcvn, Send advance{Space}
 Else IfEqual key0,askc, Send sack{Space}
+Else IfEqual key0,abn, Send banana{Space}
 Else IfEqual key0,afv, Send favorite{Space}
 Else IfEqual key0,ac, Send actually{Space}
 Else IfEqual key0,adgl, Send glad{Space}
@@ -2505,9 +2567,7 @@ Return
 SENDS:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,sbn, Send business{Space}
+IfEqual key0,sbn, Send business{Space}
 Else IfEqual key0,scb, Send basic{Space}
 Else IfEqual key0,shm, Send somehow{Space}
 Else IfEqual key0,sdhlc, Send schedule{Space}
@@ -2557,9 +2617,7 @@ Return
 SENDD:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,dbn, Send nobody{Space}
+IfEqual key0,dbn, Send nobody{Space}
 Else IfEqual key0,dcm, Send command{Space}
 Else IfEqual key0,dhln, Send handle{Space}
 Else IfEqual key0,dnm, Send domain{Space}
@@ -2594,10 +2652,7 @@ Return
 SENDF:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,fb, Send before{Space}
-
+IfEqual key0,fb, Send before{Space}
 Else IfEqual key0,fcm, Send comfortable{Space}
 Else IfEqual key0,fcn, Send finance{Space}
 Else IfEqual key0,flb, Send belief{Space}
@@ -2611,10 +2666,8 @@ Else IfEqual key0,fn, Send fine{Space}
 Return
 SENDG:
    SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,gb, Send being{Space}
+   SentKeys = %key0% 
+IfEqual key0,gb, Send being{Space}
 Else IfEqual key0,gc, Send coming{Space}
 Else IfEqual key0,gen, Send general{Space}
 Else IfEqual key0,ghcn, Send change{Space}
@@ -2642,9 +2695,7 @@ Return
 SENDH:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,hc, Send choice{Space}
+IfEqual key0,hc, Send choice{Space}
 Else IfEqual key0,hkcn, Send chicken{Space}
 Else IfEqual key0,hl, Send he'll{Space}
 Else IfEqual key0,hlcv, Send vehicle{Space}
@@ -2657,11 +2708,12 @@ Return
 SENDI:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,ia, Send ai
+IfEqual key0,ia, Send ai
 Else IfEqual key0,idfc, Send difficult{Space}
 Else IfEqual key0,idm, Send mid{Space}
+Else IfEqual key0,iahcn, Send China{Space}
+Else IfEqual key0,ias, Send Asia{Space}
+Else IfEqual key0,ialnm, Send animal{Space}
 Else IfEqual key0,iahcn, Send chain{Space}
 Else IfEqual key0,iam, Send aim{Space}
 Else IfEqual key0,iasl, Send sail{Space}
@@ -2780,10 +2832,8 @@ Else IfEqual key0,iflm, Send film{Space}
 Return
 SENDL:
    SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,lb, Send little bit{Space}
+   SentKeys = %key0% 
+IfEqual key0,lb, Send little bit{Space}
 Else IfEqual key0,lc, Send cool{Space}
 Else IfEqual key0,lcbn, Send balance{Space}
 Else IfEqual key0,lnm, Send manual{Space}
@@ -2800,26 +2850,20 @@ Return
 SENDX:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,xc, Send executive{Space}
+IfEqual key0,xc, Send executive{Space}
 Else IfEqual key0,xnm, Send examine{Space}
 Else IfEqual key0,xnm, Send expect{Space}
 Return
 SENDV:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,vm, Send move{Space}
+IfEqual key0,vm, Send move{Space}
 Else IfEqual key0,vn, Send even{Space}
 Return
 SENDB:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,bm, Send maybe{Space}
+IfEqual key0,bm, Send maybe{Space}
 Else IfEqual key0,bf, Send boyfriend{Space}
 Else IfEqual key0,bn, Send been{Space}
 Else IfEqual key0,bsc, Send basic{Space}
@@ -2828,9 +2872,7 @@ Return
 SENDC:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,cb, Send because{Space}
+IfEqual key0,cb, Send because{Space}
 Else IfEqual key0,cbm, Send become{Space}
 Else IfEqual key0,cm, Send come{Space}
 Else IfEqual key0,dfcn, Send confidence{Space}
@@ -2843,9 +2885,7 @@ Return
 SENDK:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,kc, Send {Backspace}ck{Space}
+IfEqual key0,kc, Send {Backspace}ck{Space}
 Else IfEqual key0,kl, Send look{Space}
 Else IfEqual key0,kln, Send knowledge{Space}
 Else IfEqual key0,km, Send make{Space}
@@ -2853,42 +2893,49 @@ Else IfEqual key0,kn, Send know{Space}
 Return
 SENDJ:
    SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
+   SentKeys = %key0% 
     
     Return
 SENDZ:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,zm, Send Zoom{Space}
+  
+IfEqual key0,zm, Send Zoom{Space}
 
 Return
 SENDM:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-
+ 
 Return
 SENDN:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%} 
-Else IfEqual key0,nm, Send mean{Space}
+
+IfEqual key0,nm, Send mean{Space}
 Return
 SENDDOT:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-   If StrLen(key0) = 1
-    Send {%key0%}  
-Else IfEqual key0,r', Send {BackSpace}r{Space}
+
+IfEqual key0,r', Send {BackSpace}r{Space}
 Else IfEqual key0,udn., Send understood{Space}
+Else IfEqual key0,werth., Send threw{Space}
+Else IfEqual key0,rsv., Send verse{Space}
+Else IfEqual key0,onm., Send moon{Space}
+Else IfEqual key0,rsv', Send verse{Space}
+Else IfEqual key0,tasl., Send salt{Space}
+Else IfEqual key0,ertah., Send earth{Space}
+Else IfEqual key0,us., Send United States{Space}
+Else IfEqual key0,uosdn., Send sounds{Space}
+Else IfEqual key0,tasl., Send last{Space}
+Else IfEqual key0,tioan., Send {BackSpace}{BackSpace}ation{Space}
 Else IfEqual key0,epsd., Send speed{Space}
+Else IfEqual key0,iadn., Send Indian{Space}
+Else IfEqual key0,eas., Send sea{Space}
+Else IfEqual key0,tisl., Send list{Space}
 Else IfEqual key0,eragn., Send arrange{Space}
+Else IfEqual key0,erp', Send pepper{Space}
 Else IfEqual key0,epa., Send pea{Space}
 Else IfEqual key0,eadh., Send ahead{Space}
 Else IfEqual key0,ajn., Send January{Space}
@@ -3173,7 +3220,7 @@ Else IfEqual key0,eigbn., Send beginning{Space}
 Else IfEqual key0,opsh., Send shops{Space}
 Else IfEqual key0,esm., Send seems{Space}
 Else IfEqual key0,ertal., Send relate{Space}
-Else IfEqual key0,etis., Send ities{Space}
+Else IfEqual key0,etis., Send {BackSpace}ities{Space}
 Else IfEqual key0,tol., Send tool{Space}
 Else IfEqual key0,tasf., Send staff{Space}
 Else IfEqual key0,sn., Send season{Space}
@@ -3202,7 +3249,7 @@ Else IfEqual key0,werti., Send Twitter{Space}
 Else IfEqual key0,erac., Send race{Space}
 Else IfEqual key0,erus., Send user{Space}
 Else IfEqual key0,rac., Send car{Space}
-Else IfEqual key0,roadb., Send board{Space}
+Else IfEqual key0,roadb., Send broad{Space}
 Else IfEqual key0,wera., Send aware{Space}
 Else IfEqual key0,wrtoh., Send worth{Space}
 Else IfEqual key0,ertafh., Send farther{Space}
@@ -3237,4 +3284,3072 @@ Else IfEqual key0,til., Send it'll{Space}
 Else IfEqual key0,til', Send it'll{Space}
 Else IfEqual key0,tpln., Send population{Space}
 Else IfEqual key0,vm., Send movie{Space}
+Return
+
+SENDSLASHup:
+SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%}, 	 
+Else IfEqual key0, ERA?, Send Ear{Space} 
+Else IfEqual key0, TOPS?, Send Spot{Space} 
+Else IfEqual key0, ERTAL?, Send Latter{Space} 
+Else IfEqual key0, ERTS?, Send Steer{Space} 
+Else IfEqual key0, TOSH?, Send Host{Space} 
+Else IfEqual key0, ERP?, Send Peer{Space} 
+Else IfEqual key0, ETAS?, Send Tease{Space} 
+Else IfEqual key0, WAL?, Send Law{Space} 
+Else IfEqual key0, ERA?, Send Ear{Space} 
+Else IfEqual key0, ERSV?, Send Sever{Space} 	
+Else IfEqual key0, SLCN?, Send Counsel{Space} 
+Else IfEqual key0, ERUPS?, Send Pursue{Space} 
+Else IfEqual key0, WON?, Send Won{Space} 
+
+Return
+SENDQup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, QERF, Send Frequency{Space} 
+Else IfEqual key0, QERFN, Send Frequent{Space} 
+Else IfEqual key0, QERUI, Send Queue{Space} 
+Else IfEqual key0, QEU, Send Queue{Space} 
+Else IfEqual key0, QRAC, Send Acquire{Space} 
+Else IfEqual key0, QRTS, Send Request{Space} 
+Else IfEqual key0, QETUI, Send Quiet{Space} 
+Else IfEqual key0, QEUIN, Send Unique{Space} 
+Else IfEqual key0, QEL, Send Equal{Space} 
+Else IfEqual key0, QERU, Send Queer{Space} 
+Else IfEqual key0, QL, Send Quickly{Space} 
+Else IfEqual key0, QETUO, Send Quote{Space} 
+Else IfEqual key0, QFL, Send Qualify{Space} 
+Else IfEqual key0, QRTUIS, Send Squirt{Space} 
+Else IfEqual key0, QYFL, Send Qualify{Space} 
+Else IfEqual key0, QEUIP, Send Equip{Space} 
+Else IfEqual key0, QEUOSCN, Send Consequence{Space} 
+Else IfEqual key0, QEUS, Send Esque
+Else IfEqual key0, QR, Send Require{Space} 
+Else IfEqual key0, QRSL, Send Squirrel{Space} 
+Else IfEqual key0, QERYU, Send Query{Space} 
+Else IfEqual key0, QES, Send Sequence{Space} 
+Else IfEqual key0, QETYUI, Send Equity{Space} 
+Else IfEqual key0, QRF, Send Frequent{Space} 
+Else IfEqual key0, QRTFN, Send Frequent{Space} 
+Else IfEqual key0, QSCN, Send Sequence{Space} 
+Else IfEqual key0, QTUANM, Send Quantum{Space} 
+Else IfEqual key0, QT, Send Question{Space} 
+Else IfEqual key0, QTI, Send Quite{Space} 
+Else IfEqual key0, QTL, Send Quality{Space} 
+Else IfEqual key0, QTS, Send Questions{Space} 
+Else IfEqual key0, QTUI, Send Quit{Space} 
+Else IfEqual key0, QUN, Send Unique{Space} 
+Else IfEqual key0, QRT, Send Quarter{Space} 
+Return
+SENDWup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, WA, Send As Well{Space} 
+Else IfEqual key0, WRHV, Send However{Space} 
+Else IfEqual key0, WTN, Send Won't{Space} 
+Else IfEqual key0, WERHVN, Send Whenever{Space} 
+Else IfEqual key0, WEOASM, Send Awesome{Space} 
+Else IfEqual key0, WRPA, Send Wrap{Space} 
+Else IfEqual key0, WLB, Send Below{Space} 
+Else IfEqual key0, WEOLB, Send Below{Space} 
+Else IfEqual key0, WAN, Send Want To{Space} 
+Else IfEqual key0, WEHC, Send Chew{Space} 
+Else IfEqual key0, WEIF, Send Wife{Space} 
+Else IfEqual key0, WEISLV, Send Swivel{Space} 
+Else IfEqual key0, WERASH, Send Whereas{Space} 
+Else IfEqual key0, WERHVN, Send Whenever{Space} 
+Else IfEqual key0, WERIN, Send Winner{Space} 
+Else IfEqual key0, WEROPM, Send Empower{Space} 
+Else IfEqual key0, WEROSH, Send Shower{Space} 
+Else IfEqual key0, WERTIH, Send Wither{Space} 
+Else IfEqual key0, WESK, Send Skew{Space} 
+Else IfEqual key0, WETISHL, Send Whistle{Space} 
+Else IfEqual key0, WHKM, Send Homework{Space} 
+Else IfEqual key0, WISM, Send Swim{Space} 
+Else IfEqual key0, WOASL, Send Swallow{Space} 
+Else IfEqual key0, WOLB, Send Blow{Space} 
+Else IfEqual key0, WRA, Send War{Space} 
+Else IfEqual key0, WRB, Send Borrow{Space} 
+Else IfEqual key0, WRSM, Send Worrisome{Space} 
+Else IfEqual key0, WRPF, Send Powerful{Space} 
+Else IfEqual key0, WDV, Send Would've{Space} 
+Else IfEqual key0, WEROHN, Send Nowhere{Space} 
+Else IfEqual key0, WEROHV, Send However{Space} 
+Else IfEqual key0, WRTH, Send Worth{Space} 
+Else IfEqual key0, WEROS, Send Worse{Space} 
+Else IfEqual key0, WED, Send We'd{Space} 
+Else IfEqual key0, WEIN, Send Wine{Space} 
+Else IfEqual key0, WETAH, Send Weather{Space} 
+Else IfEqual key0, WETAHL, Send Wealth{Space} 
+Else IfEqual key0, WOFL, Send Flow{Space} 
+Else IfEqual key0, WEROP, Send Power{Space} 
+Else IfEqual key0, WERTN, Send Weren't{Space} 
+Else IfEqual key0, WRTN, Send Written{Space} 
+Else IfEqual key0, WADN, Send Wand{Space} 
+Else IfEqual key0, WDL, Send Wield{Space} 
+Else IfEqual key0, WEAV, Send Wave{Space} 
+Else IfEqual key0, WELB, Send Blew{Space} 
+Else IfEqual key0, WELB, Send Blew{Space} 
+Else IfEqual key0, WEONM, Send Women{Space} 
+Else IfEqual key0, WERTO, Send Wrote{Space} 
+Else IfEqual key0, WERTO, Send Wrote{Space} 
+Else IfEqual key0, WLCM, Send Welcome{Space} 
+Else IfEqual key0, WNM, Send Women{Space} 
+Else IfEqual key0, WNM, Send Woman{Space} 
+Else IfEqual key0, WOSL, Send Slow{Space} 
+Else IfEqual key0, WRDH, Send Hardware{Space} 
+Else IfEqual key0, WRTOS, Send Worst{Space} 
+Else IfEqual key0, WRYO, Send Worry{Space} 
+Else IfEqual key0, WAGN, Send Gnaw{Space} 
+Else IfEqual key0, WALN, Send Lawn{Space} 
+Else IfEqual key0, WAN, Send Awn{Space} 
+Else IfEqual key0, WASKL, Send Walks{Space} 
+Else IfEqual key0, WDLN, Send Download{Space} 
+Else IfEqual key0, WEAHL, Send Whale{Space} 
+Else IfEqual key0, WEHL, Send Wheel{Space} 
+Else IfEqual key0, WEIF, Send Wife{Space} 
+Else IfEqual key0, WEIGH, Send Weigh{Space} 
+Else IfEqual key0, WEIS, Send Wise{Space} 
+Else IfEqual key0, WEOSH, Send Whose{Space} 
+Else IfEqual key0, WEOSH, Send Swore{Space} 
+Else IfEqual key0, WERTAH, Send Weather{Space} 
+Else IfEqual key0, WETIGH, Send Weight{Space} 
+Else IfEqual key0, WETS, Send West{Space} 
+Else IfEqual key0, WIDL, Send Wild{Space} 
+Else IfEqual key0, WIN, Send Win{Space} 
+Else IfEqual key0, WOC, Send Cow{Space} 
+Else IfEqual key0, WOM, Send Mow{Space} 
+Else IfEqual key0, WRGLN, Send Wrangle{Space} 
+Else IfEqual key0, WRHN, Send Nowhere{Space} 
+Else IfEqual key0, WRLNM, Send Lawnmower{Space} 
+Else IfEqual key0, WRS, Send Worse{Space} 
+Else IfEqual key0, WRTOS, Send Worst{Space} 
+Else IfEqual key0, WSDM, Send Wisdom{Space} 
+Else IfEqual key0, WAKL, Send Walk{Space} 
+Else IfEqual key0, WAL, Send Always{Space} 
+Else IfEqual key0, WAS, Send Was{Space} 
+Else IfEqual key0, WAS, Send Was{Space} 
+Else IfEqual key0, WASH, Send Wash{Space} 
+Else IfEqual key0, WDF, Send Forward{Space} 
+Else IfEqual key0, WDN, Send Wouldn't{Space} 
+Else IfEqual key0, WE, Send We{Space} 
+Else IfEqual key0, WEAK, Send Weak{Space} 
+Else IfEqual key0, WEASM, Send Awesome{Space} 
+Else IfEqual key0, WEF, Send Few{Space} 
+Else IfEqual key0, WEH, Send When{Space} 
+Else IfEqual key0, WEHN, Send When{Space} 
+Else IfEqual key0, WEID, Send Wide{Space} 
+Else IfEqual key0, WEID, Send Wide{Space} 
+Else IfEqual key0, WEIHL, Send While{Space} 
+Else IfEqual key0, WEIS, Send Wise{Space} 
+Else IfEqual key0, WEISDH, Send Wished{Space} 
+Else IfEqual key0, WEIV, Send View{Space} 
+Else IfEqual key0, WEK, Send Week{Space} 
+Else IfEqual key0, WEKN, Send Knew{Space} 
+Else IfEqual key0, WEL, Send Well{Space} 
+Else IfEqual key0, WEN, Send New{Space} 
+Else IfEqual key0, WEOHL, Send Whole{Space} 
+Else IfEqual key0, WEOHL, Send Whole{Space} 
+Else IfEqual key0, WEOHL, Send Whole{Space} 
+Else IfEqual key0, WER, Send Were{Space} 
+Else IfEqual key0, WERA, Send Wear{Space} 
+Else IfEqual key0, WERASN, Send Answer{Space} 
+Else IfEqual key0, WERC, Send Crew{Space} 
+Else IfEqual key0, WERH, Send Where{Space} 
+Else IfEqual key0, WERID, Send Weird{Space} 
+Else IfEqual key0, WERIV, Send Review{Space} 
+Else IfEqual key0, WEROSB, Send Browse{Space} 
+Else IfEqual key0, WERTA, Send Water{Space} 
+Else IfEqual key0, WERTH, Send Whether{Space} 
+Else IfEqual key0, WERTI, Send Twitter{Space} 
+Else IfEqual key0, WETADN, Send Wanted{Space} 
+Else IfEqual key0, WETBN, Send Between{Space} 
+Else IfEqual key0, WETIH, Send White{Space} 
+Else IfEqual key0, WETN, Send Went{Space} 
+Else IfEqual key0, WEV, Send Everywhere{Space} 
+Else IfEqual key0, WFL, Send Follow{Space} 
+Else IfEqual key0, WGK, Send Working{Space} 
+Else IfEqual key0, WGKL, Send Walking{Space} 
+Else IfEqual key0, WH, Send Who{Space} 
+Else IfEqual key0, WHEN, Send When{Space} 
+Else IfEqual key0, WHL, Send Whole{Space} 
+Else IfEqual key0, WHN, Send When{Space} 
+Else IfEqual key0, WIDN, Send Wind{Space} 
+Else IfEqual key0, WIHC, Send Which{Space} 
+Else IfEqual key0, WIL, Send Will{Space} 
+Else IfEqual key0, WIODN, Send Window{Space} 
+Else IfEqual key0, WISH, Send Wish{Space} 
+Else IfEqual key0, WK, Send Work{Space} 
+Else IfEqual key0, WKL, Send Walk{Space} 
+Else IfEqual key0, WL, Send We'll{Space} 
+Else IfEqual key0, WN, Send Network{Space} 
+Else IfEqual key0, WO, Send Would{Space} 
+Else IfEqual key0, WOAL, Send Allow{Space} 
+Else IfEqual key0, WOD, Send Wood{Space} 
+Else IfEqual key0, WODN, Send Down{Space} 
+Else IfEqual key0, WOH, Send How{Space} 
+Else IfEqual key0, WOKN, Send Know{Space} 
+Else IfEqual key0, WOL, Send Low{Space} 
+Else IfEqual key0, WON, Send Now{Space} 
+Else IfEqual key0, WOSH, Send Show{Space} 
+Else IfEqual key0, WOSN, Send Snow{Space} 
+Else IfEqual key0, WPN, Send Newspaper{Space} 
+Else IfEqual key0, WR, Send We're{Space} 
+Else IfEqual key0, WR, Send We're{Space} 
+Else IfEqual key0, WRAD, Send Draw{Space} 
+Else IfEqual key0, WRAM, Send Warm{Space} 
+Else IfEqual key0, WRDF, Send Wonderful{Space} 
+Else IfEqual key0, WRDFN, Send Wonderful{Space} 
+Else IfEqual key0, WRDN, Send Wonder{Space} 
+Else IfEqual key0, WRK, Send Work{Space} 
+Else IfEqual key0, WROD, Send Word{Space} 
+Else IfEqual key0, WRODL, Send World{Space} 
+Else IfEqual key0, WROG, Send Grow{Space} 
+Else IfEqual key0, WROGN, Send Wrong{Space} 
+Else IfEqual key0, WROK, Send Work{Space} 
+Else IfEqual key0, WRT, Send Write{Space} 
+Else IfEqual key0, WRTG, Send Writing{Space} 
+Else IfEqual key0, WRTM, Send Tomorrow{Space} 
+Else IfEqual key0, WRTOH, Send Throw{Space} 
+Else IfEqual key0, WRTV, Send Whatever{Space} 
+Else IfEqual key0, WRV, Send Review{Space} 
+Else IfEqual key0, WS, Send Website{Space} 
+Else IfEqual key0, WSF, Send Software{Space} 
+Else IfEqual key0, WSM, Send Somewhere{Space} 
+Else IfEqual key0, WT, Send What{Space} 
+Else IfEqual key0, WTADN, Send Wanted{Space} 
+Else IfEqual key0, WTADN, Send Wanted{Space} 
+Else IfEqual key0, WTAH, Send What{Space} 
+Else IfEqual key0, WTAHC, Send Watch{Space} 
+Else IfEqual key0, WTAN, Send Want{Space} 
+Else IfEqual key0, WTASN, Send Wasn't{Space} 
+Else IfEqual key0, WSN, Send Wasn't{Space} 
+Else IfEqual key0, WTB, Send By The Way{Space} 
+Else IfEqual key0, WTD, Send Toward{Space} 
+Else IfEqual key0, WTH, Send Whether{Space} 
+Else IfEqual key0, WTHC, Send Watch{Space} 
+Else IfEqual key0, WTI, Send Within{Space} 
+Else IfEqual key0, WTIA, Send Wait{Space} 
+Else IfEqual key0, WTISHC, Send Switch{Space} 
+Else IfEqual key0, WTO, Send Without{Space} 
+Else IfEqual key0, WTON, Send Town{Space} 
+Else IfEqual key0, WTUO, Send Without{Space} 
+Else IfEqual key0, WTV, Send Whatever{Space} 
+Else IfEqual key0, WTVN, Send Interview{Space} 
+Else IfEqual key0, WV, Send We've{Space} 
+Else IfEqual key0, WV, Send We've{Space} 
+Else IfEqual key0, WYA, Send Way{Space} 
+Else IfEqual key0, WYAHN, Send Anywhere{Space} 
+Else IfEqual key0, WYAN, Send Anyway{Space} 
+Else IfEqual key0, WYH, Send Why{Space} 
+Else IfEqual key0, WYL, Send Yellow{Space} 
+Else IfEqual key0, WERG, Send Grew{Space} 
+Else IfEqual key0, WETIC, Send Twice{Space} 
+Else IfEqual key0, WTASH, Send What's{Space} 
+Else IfEqual key0, WTS, Send What's{Space} 
+Return
+SENDRup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, RA, Send Around{Space} 
+Else IfEqual key0, RUIOASV, Send Saviour{Space} 
+Else IfEqual key0, RTYPH, Send Therapy{Space} 
+Else IfEqual key0, RTDLNM, Send Detrimental{Space} 
+Else IfEqual key0, RTDLN, Send Traditional{Space} 
+Else IfEqual key0, RYC, Send Cry{Space} 
+Else IfEqual key0, RTPSDN, Send President{Space} 
+Else IfEqual key0, RTUIAG, Send Guitar	{Space} 
+Else IfEqual key0, RTIP, Send Trip{Space} 
+Else IfEqual key0, RUOSH, Send Hours{Space} 
+Else IfEqual key0, RIDKN, Send Drink{Space} 
+Else IfEqual key0, RIAFC, Send Africa{Space} 
+Else IfEqual key0, RTIAC, Send Arctic{Space} 
+Else IfEqual key0, RTIACN, Send Antarctica{Space} 
+Else IfEqual key0, WRB, Send Borrow{Space} 
+Else IfEqual key0, RHLB, Send Horrible{Space} 
+Else IfEqual key0, RP, Send Peer{Space} 
+Else IfEqual key0, RAHCM, Send March{Space} 
+Else IfEqual key0, RDV, Send Drive{Space} 
+Else IfEqual key0, RDBN, Send Burden{Space} 
+Else IfEqual key0, RDGN, Send Garden{Space} 
+Else IfEqual key0, RFCN, Send Conference{Space} 
+Else IfEqual key0, RFNM, Send Inform{Space} 
+Else IfEqual key0, RIAGC, Send Cigar{Space} 
+Else IfEqual key0, RID, Send Rid{Space} 
+Else IfEqual key0, RIDB, Send Bird{Space} 
+Else IfEqual key0, RIOFNM, Send Inform{Space} 
+Else IfEqual key0, RIOM, Send Mirror{Space} 
+Else IfEqual key0, RIONM, Send Minor{Space} 
+Else IfEqual key0, RIPAL, Send April{Space} 
+Else IfEqual key0, RISC, Send Crisis{Space} 
+Else IfEqual key0, RISCN, Send Insurance{Space} 
+Else IfEqual key0, RLCM, Send Commercial{Space} 
+Else IfEqual key0, ROAJM, Send Major{Space} 
+Else IfEqual key0, RODN, Send Donor{Space} 
+Else IfEqual key0, ROLC, Send Color{Space} 
+Else IfEqual key0, ROOGM, Send Groom{Space} 
+Else IfEqual key0, RPCN, Send Pronounce{Space} 
+Else IfEqual key0, RPSCB, Send Prescribe{Space} 
+Else IfEqual key0, RPSCM, Send Compromise{Space} 
+Else IfEqual key0, RSC, Send Source{Space} 
+Else IfEqual key0, RSJLN, Send Journalist{Space} 
+Else IfEqual key0, RTASHC, Send Scratch{Space} 
+Else IfEqual key0, RTAV, Send Avatar{Space} 
+Else IfEqual key0, RTFGL, Send Grateful{Space} 
+Else IfEqual key0, RTGN, Send Generate{Space} 
+Else IfEqual key0, RTIFCN, Send Interface{Space} 
+Else IfEqual key0, RTIOAVN, Send Innovator{Space} 
+Else IfEqual key0, RTIOSCN, Send Constrict{Space} 
+Else IfEqual key0, RTISH, Send Shirt{Space} 
+Else IfEqual key0, RTODC, Send Doctor{Space} 
+Else IfEqual key0, RTOFH, Send Forth{Space} 
+Else IfEqual key0, RTPNM, Send Prominent{Space} 
+Else IfEqual key0, RTPSCN, Send Transcript{Space} 
+Else IfEqual key0, RTPSN, Send Proposition{Space} 
+Else IfEqual key0, RTSDM, Send Mustard{Space} 
+Else IfEqual key0, RTSHLC, Send Historical{Space} 
+Else IfEqual key0, RTSJLN, Send Journalist{Space} 
+Else IfEqual key0, RTUINM, Send Monitor{Space} 
+Else IfEqual key0, RTUKC, Send Truck{Space} 
+Else IfEqual key0, RTUOSCN, Send Construct{Space} 
+Else IfEqual key0, RTUPAB, Send Abrupt{Space} 
+Else IfEqual key0, RTUSKC, Send Struck{Space} 
+Else IfEqual key0, RTYIVN, Send Inventory{Space} 
+Else IfEqual key0, RTYOPH, Send Trophy{Space} 
+Else IfEqual key0, RTYSHLC, Send Hysterical{Space} 
+Else IfEqual key0, RUASG, Send Sugar{Space} 
+Else IfEqual key0, RUOGH, Send Rough{Space} 
+Else IfEqual key0, RYDLV, Send Delivery{Space} 
+Else IfEqual key0, RYFB, Send February{Space} 
+Else IfEqual key0, RYJN, Send January{Space} 
+Else IfEqual key0, RYSDCV, Send Discovery{Space} 
+Else IfEqual key0, RYSG, Send Surgery{Space} 
+Else IfEqual key0, RYUASM, Send Summary{Space} 
+Else IfEqual key0, RUS, Send Yours{Space} 
+Else IfEqual key0, RTIALC, Send Critical{Space} 
+Else IfEqual key0, ROPASL, Send Proposal{Space} 
+Else IfEqual key0, RSHC, Send Proposal{Space} 
+Else IfEqual key0, RSC, Send Source{Space} 
+Else IfEqual key0, RYAGN, Send Angry{Space} 
+Else IfEqual key0, RIGN, Send Ignore{Space} 
+Else IfEqual key0, RTSGLCN, Send Congratulations{Space} 
+Else IfEqual key0, RFV, Send Forever{Space} 
+Else IfEqual key0, RTPCM, Send Competitor{Space} 
+Else IfEqual key0, RL, Send Real{Space} 
+Else IfEqual key0, RTILN, Send Internal{Space} 
+Else IfEqual key0, RTUALN, Send Natural{Space} 
+Else IfEqual key0, RTHB, Send Breath{Space} 
+Else IfEqual key0, RTLCN, Send Control{Space} 
+Else IfEqual key0, RDH, Send Heard{Space} 
+Else IfEqual key0, RLCM, Send Molecular{Space} 
+Else IfEqual key0, RYD, Send Ready{Space} 
+Else IfEqual key0, ROAHCB, Send Broach{Space} 
+Else IfEqual key0, RIAV, Send Vari{Space} 
+Else IfEqual key0, RPSD, Send Spread{Space} 
+Else IfEqual key0, RPSHC, Send Purchase{Space} 
+Else IfEqual key0, RTAGHLM, Send Algorithm{Space} 
+Else IfEqual key0, RODHC, Send Chord{Space} 
+Else IfEqual key0, RTAGNM, Send Argument{Space} 
+Else IfEqual key0, RTFH, Send Further{Space} 
+Else IfEqual key0, RTISDC, Send District{Space} 
+Else IfEqual key0, RTPDXN, Send Expenditure{Space} 
+Else IfEqual key0, RAFM, Send Farm{Space} 
+Else IfEqual key0, RAG, Send Argue{Space} 
+Else IfEqual key0, RAKC, Send Crack{Space} 
+Else IfEqual key0, RAM, Send Arm{Space} 
+ Else IfEqual key0, RTLVN, Send Relevant{Space} 
+Else IfEqual key0, RAM, Send Arm{Space} 
+Else IfEqual key0, RDFCN, Send Difference{Space} 
+Else IfEqual key0, RDFL, Send Federal{Space} 
+Else IfEqual key0, RFB, Send Brief{Space} 
+Else IfEqual key0, RFCNM, Send Confirm{Space} 
+Else IfEqual key0, RFGN, Send Finger{Space} 
+Else IfEqual key0, RGHC, Send Charge{Space} 
+Else IfEqual key0, RGLN, Send General{Space} 
+Else IfEqual key0, RGLV, Send Leverage{Space} 
+Else IfEqual key0, RHLCN, Send Chronicle{Space} 
+Else IfEqual key0, RIA, Send Air{Space} 
+Else IfEqual key0, RIABN, Send Brain{Space} 
+Else IfEqual key0, RICB, Send Crib{Space} 
+Else IfEqual key0, RID, Send Rid{Space} 
+Else IfEqual key0, RIF, Send Riff{Space} 
+Else IfEqual key0, RIPAGHC, Send Graphic{Space} 
+Else IfEqual key0, RIPALCN, Send Principal{Space} 
+Else IfEqual key0, RIPSVM, Send Improvise{Space} 
+Else IfEqual key0, RISK, Send Risk{Space} 
+Else IfEqual key0, RJN, Send Junior{Space} 
+Else IfEqual key0, RKM, Send Maker{Space} 
+Else IfEqual key0, RLC, Send Clear{Space} 
+Else IfEqual key0, RLCM, Send Curriculum{Space} 
+Else IfEqual key0, RLCM, Send Miracle{Space} 
+Else IfEqual key0, ROASB, Send Absorb{Space} 
+Else IfEqual key0, ROSVB, Send Observe{Space} 
+Else IfEqual key0, RPAGH, Send Graph{Space} 
+Else IfEqual key0, RPAGHC, Send Graphic{Space} 
+Else IfEqual key0, RPG, Send Grp Group{Space} 
+Else IfEqual key0, RPLCN, Send Principle{Space} 
+Else IfEqual key0, RPSCNM, Send Comparison{Space} 
+Else IfEqual key0, RPSHM, Send Sophomore{Space} 
+Else IfEqual key0, RPSL, Send Pleasure{Space} 
+Else IfEqual key0, RPSLN, Send Personal{Space} 
+Else IfEqual key0, RSFC, Send Surface{Space} 
+Else IfEqual key0, RSFHNM, Send Freshman{Space} 
+Else IfEqual key0, RSFLC, Send Salesforce{Space} 
+Else IfEqual key0, RSGLN, Send Singular{Space} 
+Else IfEqual key0, RSGLN, Send Singular{Space} 
+Else IfEqual key0, RSLCN, Send Counselor{Space} 
+Else IfEqual key0, RSXC, Send Exercise{Space} 
+Else IfEqual key0, RTAGN, Send Grant{Space} 
+Else IfEqual key0, RTASM, Send Smart{Space} 
+Else IfEqual key0, RTFC, Send Factor{Space} 
+Else IfEqual key0, RTFGN, Send Forgotten{Space} 
+Else IfEqual key0, RTHN, Send Neither{Space} 
+Else IfEqual key0, RTIDH, Send Third{Space} 
+Else IfEqual key0, RTIOSHC, Send Historic{Space} 
+Else IfEqual key0, RTISGN, Send String{Space} 
+Else IfEqual key0, RTKM, Send Market{Space} 
+Else IfEqual key0, RTOAFC, Send Factor{Space} 
+Else IfEqual key0, RTOFG, Send Forgot{Space} 
+Else IfEqual key0, RTOHN, Send North{Space} 
+Else IfEqual key0, RTOPA, Send Parrot{Space} 
+Else IfEqual key0, RTOPA, Send Transport{Space} 
+Else IfEqual key0, RTPLC, Send Particular{Space} 
+Else IfEqual key0, RTPSLC, Send Spectacular{Space} 
+Else IfEqual key0, RTPSLC, Send Transport{Space} 
+Else IfEqual key0, RTPSN>, Send Transportation{Space} 
+Else IfEqual key0, RTPVM, Send Primitive{Space} 
+Else IfEqual key0, RTPVN, Send Prevent{Space} 
+Else IfEqual key0, RTPXNM, Send Experiment{Space} 
+Else IfEqual key0, RTSCN, Send Countries{Space} 
+Else IfEqual key0, RTSDB, Send Disturb{Space} 
+Else IfEqual key0, RTSFN, Send Transfer{Space} 
+Else IfEqual key0, RTSHC, Send Historic{Space} 
+Else IfEqual key0, RTUAM, Send Trauma{Space} 
+Else IfEqual key0, RTUO, Send Tour{Space} 
+Else IfEqual key0, RTUOAH, Send Author{Space} 
+Else IfEqual key0, RTYAN, Send Attorney{Space} 
+Else IfEqual key0, RTYP, Send Property{Space} 
+Else IfEqual key0, RTYP, Send Property{Space} 
+Else IfEqual key0, RUADG, Send Guard{Space} 
+Else IfEqual key0, RUBN, Send Burn{Space} 
+Else IfEqual key0, RUODN, Send Round{Space} 
+Else IfEqual key0, RUOS, Send Ours{Space} 
+Else IfEqual key0, RUSH, Send Rush{Space} 
+Else IfEqual key0, RYANM, Send Anymore{Space} 
+Else IfEqual key0, RYANM, Send Anymore{Space} 
+Else IfEqual key0, RYJN, Send Journey{Space} 
+Else IfEqual key0, RYPAS, Send Spray{Space} 
+Else IfEqual key0, RTPHC, Send Chapter{Space} 
+Else IfEqual key0, RTSDC, Send District{Space} 
+Else IfEqual key0, RTYGC, Send Category{Space} 
+Else IfEqual key0, RADC, Send Card{Space} 
+Else IfEqual key0, ROF, Send For{Space} 
+Else IfEqual key0, RYAD, Send Yard{Space} 
+Else IfEqual key0, RADG, Send Grad{Space} 
+Else IfEqual key0, RADH, Send Hard{Space} 
+Else IfEqual key0, RAKM, Send Mark{Space} 
+Else IfEqual key0, RAKM, Send Mark{Space} 
+Else IfEqual key0, RASDV, Send Advisor{Space} 
+Else IfEqual key0, RDCNM, Send Recommend{Space} 
+Else IfEqual key0, RDGN, Send Gender{Space} 
+Else IfEqual key0, RDGN, Send Gender{Space} 
+Else IfEqual key0, RDHN, Send Hundred{Space} 
+Else IfEqual key0, RDLV, Send Deliver{Space} 
+Else IfEqual key0, RDM, Send Dream{Space} 
+Else IfEqual key0, RDN, Send Round{Space} 
+Else IfEqual key0, RDNM, Send Random{Space} 
+Else IfEqual key0, RDVN, Send Vendor{Space} 
+Else IfEqual key0, RFC, Send Force{Space} 
+Else IfEqual key0, RFC, Send Force{Space} 
+Else IfEqual key0, RFCN, Send Reference{Space} 
+Else IfEqual key0, RFCN, Send Reference{Space} 
+Else IfEqual key0, RFCN, Send Conference{Space} 
+Else IfEqual key0, RFLV, Send Flavor{Space} 
+Else IfEqual key0, RFM, Send Firm{Space} 
+Else IfEqual key0, RG, Send Regard{Space} 
+Else IfEqual key0, RGCN, Send Encourage{Space} 
+Else IfEqual key0, RGCN, Send Encourage{Space} 
+Else IfEqual key0, RGL, Send Regular{Space} 
+Else IfEqual key0, RGL, Send Regardless{Space} 
+Else IfEqual key0, RGL, Send Regular{Space} 
+Else IfEqual key0, RGLV, Send Leverage{Space} 
+Else IfEqual key0, RHCBM, Send Chamber{Space} 
+Else IfEqual key0, RHVB, Send Behavior{Space} 
+Else IfEqual key0, RIADN, Send Drain{Space} 
+Else IfEqual key0, RIAH, Send Hair{Space} 
+Else IfEqual key0, RIFM, Send Firm{Space} 
+Else IfEqual key0, RISCN, Send Increase{Space} 
+Else IfEqual key0, RLB, Send Reliable{Space} 
+Else IfEqual key0, RLCM, Send Commercial{Space} 
+Else IfEqual key0, RLV, Send Lever{Space} 
+Else IfEqual key0, ROALB, Send Labor{Space} 
+Else IfEqual key0, ROD, Send Door{Space} 
+Else IfEqual key0, ROGCN, Send Organic{Space} 
+Else IfEqual key0, ROHN, Send Honor{Space} 
+Else IfEqual key0, ROKC, Send Rock{Space} 
+Else IfEqual key0, ROLC, Send Color{Space} 
+Else IfEqual key0, RPD, Send Drop{Space} 
+Else IfEqual key0, RPAV, Send Approve{Space} 
+Else IfEqual key0, RPCV, Send Perceive{Space} 
+Else IfEqual key0, RPDN, Send Pardon{Space} 
+Else IfEqual key0, RPGHC, Send Graphic{Space} 
+Else IfEqual key0, RPL, Send Popular{Space} 
+Else IfEqual key0, RPL, Send Popular{Space} 
+Else IfEqual key0, RPSC, Send Precise{Space} 
+Else IfEqual key0, RPSCN, Send Presence{Space} 
+Else IfEqual key0, RPSF, Send Profess{Space} 
+Else IfEqual key0, RPSG, Send Progress{Space} 
+Else IfEqual key0, RSCN, Send Increase{Space} 
+Else IfEqual key0, RSCN, Send Increase{Space} 
+Else IfEqual key0, RSCNM, Send Consumer{Space} 
+Else IfEqual key0, RSD, Send Desire{Space} 
+Else IfEqual key0, RSDC, Send Decrease{Space} 
+Else IfEqual key0, RSDLC, Send Ridiculous{Space} 
+Else IfEqual key0, RSDLC, Send Ridiculous{Space} 
+Else IfEqual key0, RSDN, Send Surround{Space} 
+Else IfEqual key0, RSDV, Send Deserve{Space} 
+Else IfEqual key0, RSV, Send Various{Space} 
+Else IfEqual key0, RSXC, Send Exercise{Space} 
+Else IfEqual key0, RSXC, Send Exercise{Space} 
+Else IfEqual key0, RTAB, Send Attribute{Space} 
+Else IfEqual key0, RTALC, Send Article{Space} 
+Else IfEqual key0, RTCBN, Send Contribute{Space} 
+Else IfEqual key0, RTDCN, Send Coordinate{Space} 
+Else IfEqual key0, RTIDCN, Send Coordinate{Space} 
+Else IfEqual key0, RTFCNM, Send Manufacture{Space} 
+Else IfEqual key0, RTFLC, Send Reflect{Space} 
+Else IfEqual key0, RTIAL, Send Trial{Space} 
+Else IfEqual key0, RTIKC, Send Trick{Space} 
+Else IfEqual key0, RTLCB, Send Collaborate{Space} 
+Else IfEqual key0, RTO, Send Root{Space} 
+Else IfEqual key0, RTOASHC, Send Orchestra{Space} 
+Else IfEqual key0, RTOPM, Send Prompt{Space} 
+Else IfEqual key0, RTPF, Send Profit{Space} 
+Else IfEqual key0, RTPFN, Send Nonprofit{Space} 
+Else IfEqual key0, RTYPSCN, Send Transparency{Space} 
+Else IfEqual key0, RTPSDCN, Send Description{Space} 
+Else IfEqual key0, RTPSN, Send Inspiration{Space} 
+Else IfEqual key0, RTIPVN, Send Prevent{Space} 
+Else IfEqual key0, RTPVN, Send Prevent{Space} 
+Else IfEqual key0, RTPX, Send Expert{Space} 
+Else IfEqual key0, RTSCN, Send Contrast{Space} 
+Else IfEqual key0, RTSDNM, Send Demonstrate{Space} 
+Else IfEqual key0, RTSGL, Send Struggle{Space} 
+Else IfEqual key0, RTSN, Send Restaurant{Space} 
+Else IfEqual key0, RTSN, Send Resonate{Space} 
+Else IfEqual key0, RTSN, Send Restaurant{Space} 
+Else IfEqual key0, RTSNM, Send Instrument{Space} 
+Else IfEqual key0, RTUOM, Send Tumor{Space} 
+Else IfEqual key0, RTYCN, Send Country{Space} 
+Else IfEqual key0, RTYHCM, Send Chemistry{Space} 
+Else IfEqual key0, RTYHM, Send Rhythm{Space} 
+Else IfEqual key0, RTYSC, Send Security{Space} 
+Else IfEqual key0, RTYSH, Send History{Space} 
+Else IfEqual key0, RUDG, Send Drug{Space} 
+Else IfEqual key0, RVB, Send Brave{Space} 
+Else IfEqual key0, RVM, Send Remove{Space} 
+Else IfEqual key0, RYGLN, Send Neurology{Space} 
+Else IfEqual key0, RIPVM, Send Improve{Space} 	
+Else IfEqual key0, RUDM, Send Drum{Space} 
+Else IfEqual key0, RAGB, Send Grab{Space} 
+Else IfEqual key0, RCV, Send Receive{Space} 
+Else IfEqual key0, RDBN, Send Burden{Space} 
+Else IfEqual key0, RIOP, Send Prior{Space} 
+Else IfEqual key0, RNM, Send Remain{Space} 
+Else IfEqual key0, RPCM, Send Compare{Space} 
+Else IfEqual key0, RPSM, Send Promise{Space} 
+Else IfEqual key0, RPSM, Send Promise{Space} 
+Else IfEqual key0, RSCV, Send Service{Space} 
+Else IfEqual key0, RSDCV, Send Discover{Space} 
+Else IfEqual key0, RSDN, Send Surround{Space} 
+Else IfEqual key0, RSV, Send Survive{Space} 
+Else IfEqual key0, RSVN, Send Version{Space} 
+Else IfEqual key0, RTD, Send Tried{Space} 
+Else IfEqual key0, RTDGH, Send Daughter{Space} 
+Else IfEqual key0, RTFG, Send Forget{Space} 
+Else IfEqual key0, RTHC, Send Teacher{Space} 
+Else IfEqual key0, RTIAN, Send Train{Space} 
+Else IfEqual key0, RTIC, Send Critic{Space} 
+Else IfEqual key0, RTIOSCN, Send Construction{Space} 
+Else IfEqual key0, RTISCM, Send Criticism{Space} 
+Else IfEqual key0, RTLM, Send Material{Space} 
+Else IfEqual key0, RTLN, Send Relation{Space} 
+Else IfEqual key0, RTSCN, Send Construct{Space} 
+Else IfEqual key0, RTSCVN, Send Constructive{Space} 
+Else IfEqual key0, RTSLN, Send Resolution{Space} 
+Else IfEqual key0, RYAC, Send Carry{Space} 
+Else IfEqual key0, RTH, Send Rather{Space} 	
+Else IfEqual key0, RAB, Send Bar{Space} 
+Else IfEqual key0, RAC, Send Across{Space} 
+Else IfEqual key0, RADBN, Send Brand{Space} 
+Else IfEqual key0, RADH, Send Hard{Space} 
+Else IfEqual key0, RAF, Send Far{Space} 
+Else IfEqual key0, RAFKN, Send Frank{Space} 
+Else IfEqual key0, RAL, Send Ral
+Else IfEqual key0, RAX, Send Extra{Space} 
+Else IfEqual key0, RB, Send Br
+Else IfEqual key0, RBM, Send Remember{Space} 
+Else IfEqual key0, RBN, Send Brain{Space} 
+Else IfEqual key0, RC, Send Crazy{Space} 
+Else IfEqual key0, RD, Send Read{Space} 
+Else IfEqual key0, RDG, Send During{Space} 
+Else IfEqual key0, RDLZ, Send Realized{Space} 
+Else IfEqual key0, RF, Send From{Space} 
+Else IfEqual key0, RFG, Send Figure{Space} 
+Else IfEqual key0, RFLM, Send Familiar{Space} 
+Else IfEqual key0, RFN, Send Refine{Space} 
+Else IfEqual key0, RGB, Send Bring{Space} 
+Else IfEqual key0, RGNM, Send Manager{Space} 
+Else IfEqual key0, RIOGNM, Send Morning{Space} 
+Else IfEqual key0, RGZCN, Send Recognize{Space} 
+Else IfEqual key0, RH, Send Here{Space} 
+Else IfEqual key0, RIAF, Send Fair{Space} 
+Else IfEqual key0, RIDHLC, Send Children{Space} 
+Else IfEqual key0, RDHLCN, Send Children{Space} 
+Else IfEqual key0, RIGBN, Send Bring{Space} 
+Else IfEqual key0, RIGL, Send Girl{Space} 
+Else IfEqual key0, RIHC, Send Rich{Space} 
+Else IfEqual key0, RIOCM, Send Micro
+Else IfEqual key0, RIPA, Send Pair{Space} 
+Else IfEqual key0, RJM, Send Major{Space} 
+Else IfEqual key0, RLNM, Send Normal{Space} 
+Else IfEqual key0, RLZ, Send Realize{Space} 
+Else IfEqual key0, RM, Send More{Space} 
+Else IfEqual key0, RN, Send Right Now{Space} 
+Else IfEqual key0, RO, Send Or{Space} 
+Else IfEqual key0, ROACM, Send Macro
+Else IfEqual key0, ROAD, Send Road{Space} 
+Else IfEqual key0, ROADB, Send Board{Space} 
+Else IfEqual key0, ROADBN, Send Onboard{Space} 
+Else IfEqual key0, ROADL, Send Dollar{Space} 
+Else IfEqual key0, ROALNM, Send Normal{Space} 
+Else IfEqual key0, ROFM, Send Form{Space} 
+Else IfEqual key0, ROG, Send Organization{Space} 
+Else IfEqual key0, ROGLN, Send Original{Space} 
+Else IfEqual key0, ROGN, Send Original{Space} 
+Else IfEqual key0, ROGNM, Send Morning{Space} 
+Else IfEqual key0, ROL, Send Roll{Space} 
+Else IfEqual key0, ROLNM, Send Normal{Space} 
+Else IfEqual key0, ROM, Send Room{Space} 
+Else IfEqual key0, ROP, Send Pro
+Else IfEqual key0, ROPB, Send Probably{Space} 
+Else IfEqual key0, ROPD, Send Drop{Space} 
+Else IfEqual key0, RTPDC, Send Product{Space} 
+Else IfEqual key0, ROPJ, Send Project{Space} 
+Else IfEqual key0, ROPLB, Send Problem{Space} 
+Else IfEqual key0, ROSC, Send Cross{Space} 
+Else IfEqual key0, ROSG, Send Organizations{Space} 
+Else IfEqual key0, ROSLC, Send Scroll{Space} 
+Else IfEqual key0, RPA, Send Appreciate{Space} 
+Else IfEqual key0, RPAHC, Send Approach{Space} 
+Else IfEqual key0, RPAK, Send Park{Space} 
+Else IfEqual key0, RPB, Send Problem{Space} 
+Else IfEqual key0, RPC, Send Process{Space} 
+Else IfEqual key0, RPDC, Send Proceed{Space} 
+Else IfEqual key0, RPDV, Send Provide{Space} 
+Else IfEqual key0, RPF, Send Professional{Space} 
+Else IfEqual key0, RPFCNM, Send Performance{Space} 
+Else IfEqual key0, RPFL, Send Profile{Space} 
+Else IfEqual key0, RPFM, Send Perform{Space} 
+Else IfEqual key0, RPGM, Send Program{Space} 
+Else IfEqual key0, RPLB, Send Problem{Space} 
+Else IfEqual key0, RPLX, Send Explore{Space} 
+Else IfEqual key0, RPS, Send Surprise{Space} 
+Else IfEqual key0, RPSLBN, Send Responsible{Space} 
+Else IfEqual key0, RPSDN, Send Respond{Space} 
+Else IfEqual key0, RPSH, Send Perhaps{Space} 
+Else IfEqual key0, RTPSBN, Send Responsibility{Space} 
+Else IfEqual key0, RPSN, Send Response{Space} 
+Else IfEqual key0, RS, Send Sure{Space} 
+Else IfEqual key0, RSDCB, Send Describe{Space} 
+Else IfEqual key0, RSDCN, Send Consider{Space} 
+Else IfEqual key0, RSL, Send Release{Space} 
+Else IfEqual key0, RSLM, Send Similar{Space} 
+Else IfEqual key0, RSLV, Send Several{Space} 
+Else IfEqual key0, RSN, Send Reason{Space} 
+Else IfEqual key0, RT, Send Right{Space} 
+Else IfEqual key0, RTAD, Send Traditional{Space} 
+Else IfEqual key0, RTAKC, Send Track{Space} 
+Else IfEqual key0, RTAL, Send Alright{Space} 
+Else IfEqual key0, RTALC, Send Article{Space} 
+Else IfEqual key0, RTAN, Send Another{Space} 
+Else IfEqual key0, RTAS, Send Strategy{Space} 
+Else IfEqual key0, RTASDN, Send Standard{Space} 
+Else IfEqual key0, RTASN, Send Trans{Space} 
+Else IfEqual key0, RTC, Send Create{Space} 
+Else IfEqual key0, RTCN, Send Certain{Space} 
+Else IfEqual key0, RTCV, Send Creative{Space} 
+Else IfEqual key0, RTFLC, Send Reflect{Space} 
+Else IfEqual key0, RTFN, Send Fortunate{Space} 
+Else IfEqual key0, RTG, Send Trying{Space} 
+Else IfEqual key0, RTGC, Send Creating{Space} 
+Else IfEqual key0, RTGH, Send Together{Space} 
+Else IfEqual key0, RTI, Send Tri
+Else IfEqual key0, RTIAFC, Send Traffic{Space} 
+Else IfEqual key0, RTIAN, Send Intra
+Else IfEqual key0, RTIASN, Send Strain{Space} 
+Else IfEqual key0, RTIOASN, Send Transition{Space} 
+Else IfEqual key0, RTIGN, Send Integrate{Space} 
+Else IfEqual key0, RTIL, Send Literally{Space} 
+Else IfEqual key0, RTIODCN, Send Coordinate{Space} 
+Else IfEqual key0, RTIODN, Send Introduce{Space} 
+Else IfEqual key0, RTION, Send Intro
+Else IfEqual key0, RTIPA, Send Particular{Space} 
+Else IfEqual key0, RTL, Send Literal{Space} 
+Else IfEqual key0, RTLB, Send Trouble{Space} 
+Else IfEqual key0, RTLC, Send Control{Space} 
+Else IfEqual key0, RTLCB, Send Collaborate{Space} 
+Else IfEqual key0, RTLV, Send Relative{Space} 
+Else IfEqual key0, RTM, Send Remote{Space} 
+Else IfEqual key0, RTN, Send Entire{Space} 
+Else IfEqual key0, RTOAC, Send Actor{Space} 
+Else IfEqual key0, RTOACN, Send Contract{Space} 
+Else IfEqual key0, RTOB, Send Obtrusive{Space} 
+Else IfEqual key0, RTOCN, Send Contro
+Else IfEqual key0, RTOFN, Send Front{Space} 
+Else IfEqual key0, RTOM, Send Tomorrow{Space} 
+Else IfEqual key0, RTOS, Send Sort{Space} 
+Else IfEqual key0, RTOSG, Send Storage{Space} 
+Else IfEqual key0, RTOSGN, Send Strong{Space} 
+Else IfEqual key0, RTOSH, Send Short{Space} 
+Else IfEqual key0, RTP, Send Repeat{Space} 
+Else IfEqual key0, RTPA, Send Part{Space} 
+Else IfEqual key0, RTPAC, Send Practice{Space} 
+Else IfEqual key0, RTPAN, Send Apparent{Space} 
+Else IfEqual key0, RTPC, Send Picture{Space} 
+Else IfEqual key0, RTPCN, Send Perception{Space} 
+Else IfEqual key0, RTPS, Send Separate{Space} 
+Else IfEqual key0, RTPSC, Send Respect{Space} 
+Else IfEqual key0, RTPSCV, Send Perspective{Space} 
+Else IfEqual key0, RTPV, Send Private{Space} 
+Else IfEqual key0, RTS, Send Start{Space} 
+Else IfEqual key0, RTSBN, Send Stubborn{Space} 
+Else IfEqual key0, RTSCM, Send Customer{Space} 
+Else IfEqual key0, RTSD, Send Disastrous{Space} 
+Else IfEqual key0, RTSDC, Send Distract{Space} 
+Else IfEqual key0, RTSDN, Send Standard{Space} 
+Else IfEqual key0, RTSG, Send Starting{Space} 
+Else IfEqual key0, RTSGH, Send Straight{Space} 
+Else IfEqual key0, RTSM, Send Stream{Space} 
+Else IfEqual key0, RTUALB, Send Brutal{Space} 
+Else IfEqual key0, RTUALC, Send Cultural{Space} 
+Else IfEqual key0, RTUH, Send Hurt{Space} 
+Else IfEqual key0, RTUOGH, Send Through{Space} 
+Else IfEqual key0, RTUN, Send Turn{Space} 
+Else IfEqual key0, RTUOPS, Send Support{Space} 
+Else IfEqual key0, RTUS, Send Trust{Space} 
+Else IfEqual key0, RTVN, Send Narrative{Space} 
+Else IfEqual key0, RTY, Send Try{Space} 
+Else IfEqual key0, RTYOS, Send Story{Space} 
+Else IfEqual key0, RTYPA, Send Party{Space} 
+Else IfEqual key0, RTYUL, Send Truly{Space} 
+Else IfEqual key0, RU, Send Your{Space} 
+Else IfEqual key0, RUIOASV, Send Various{Space} 
+Else IfEqual key0, RUIOSC, Send Curious{Space} 
+Else IfEqual key0, RUN, Send Run{Space} 
+Else IfEqual key0, RUO, Send Our{Space} 
+Else IfEqual key0, RUOC, Send Occur{Space} 
+Else IfEqual key0, RUODGN, Send Ground{Space} 
+Else IfEqual key0, RUOH, Send Hour{Space} 
+Else IfEqual key0, RUOPG, Send Group{Space} 
+Else IfEqual key0, RUPHC, Send Purchase{Space} 
+Else IfEqual key0, RV, Send Virtual Reality{Space} 
+Else IfEqual key0, RY, Send Year{Space} 
+Else IfEqual key0, RYAFKLN, Send Frankly{Space} 
+Else IfEqual key0, RYAV, Send Vary{Space} 
+Else IfEqual key0, RYOS, Send Sorry{Space} 
+Else IfEqual key0, RYPCV, Send Privacy{Space} 
+Else IfEqual key0, RYS, Send Years{Space} 
+Else IfEqual key0, RAN, Send Ran{Space} 
+Else IfEqual key0, RDCV, Send Received{Space} 
+Else IfEqual key0, RJLN, Send Journal{Space} 
+Else IfEqual key0, ROPA, Send Approach{Space} 
+Else IfEqual key0, ROPAHC, Send Approach{Space} 
+Else IfEqual key0, RPAM, Send Ramp{Space} 
+Else IfEqual key0, RPSV, Send Previous{Space} 
+Else IfEqual key0, RSM, Send Measure{Space} 
+Else IfEqual key0, RTA, Send Art{Space} 
+Else IfEqual key0, RTAC, Send Attract{Space} 
+Else IfEqual key0, RTDC, Send Direct{Space} 
+Else IfEqual key0, RTDG, Send Graduate{Space} 
+Else IfEqual key0, RTDNM, Send Determine{Space} 
+Else IfEqual key0, RTF, Send Feature{Space} 
+Else IfEqual key0, RTGHB, Send Brought{Space} 
+Else IfEqual key0, RTIAN, Send Train{Space} 
+Else IfEqual key0, RTIAS, Send Artist{Space} 
+Else IfEqual key0, RTIPN, Send Print{Space} 
+Else IfEqual key0, RTPL, Send Partial{Space} 
+Else IfEqual key0, RTPM, Send Promote{Space} 
+Else IfEqual key0, RTSDB, Send Distribute{Space} 
+Else IfEqual key0, RUOPD, Send Proud{Space} 
+Else IfEqual key0, RTPN, Send Pattern{Space} 
+Else IfEqual key0, RYPM, Send Primary{Space} 
+Return
+SENDTup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, TA, Send At{Space} 
+Else IfEqual key0, TADH, Send That'd{Space} 
+Else IfEqual key0, TISV, Send Visit{Space} 
+Else IfEqual key0, TIHN, Send Thin{Space} 
+Else IfEqual key0, TPSLN, Send Pleasant{Space} 
+Else IfEqual key0, TADCV, Send Advocate{Space} 
+Else IfEqual key0, TAHM, Send Math{Space} 
+Else IfEqual key0, TUPG, Send Putting{Space} 
+Else IfEqual key0, TAKN, Send Tank{Space} 
+Else IfEqual key0, TGLV, Send Vegetable{Space} 
+Else IfEqual key0, TGVN, Send Navigate{Space} 
+Else IfEqual key0, TIAFH, Send Faith{Space} 
+Else IfEqual key0, TIPSL, Send Split{Space} 
+Else IfEqual key0, TIAL, Send Tail{Space} 
+Else IfEqual key0, TIAS, Send Assist{Space} 
+Else IfEqual key0, TIFGHL, Send Flight{Space} 
+Else IfEqual key0, TIGHM, Send Might{Space} 
+Else IfEqual key0, TILCN, Send Inoculate{Space} 
+Else IfEqual key0, TIOFLCN, Send Conflict{Space} 
+Else IfEqual key0, TIPAN, Send Paint{Space} 
+Else IfEqual key0, TIPAN, Send Paint{Space} 
+Else IfEqual key0, TISV, Send Visit{Space} 
+Else IfEqual key0, TOHCB, Send Botch{Space} 
+Else IfEqual key0, TOHLC, Send Cloth{Space} 
+Else IfEqual key0, TOPSG, Send Stopping{Space} 
+Else IfEqual key0, TOSD, Send Stood{Space} 
+Else IfEqual key0, TOSHM, Send Smooth{Space} 
+Else IfEqual key0, TOSHM, Send Smooth{Space} 
+Else IfEqual key0, TOSL, Send Lost{Space} 
+Else IfEqual key0, TPASNM, Send Assumption{Space} 
+Else IfEqual key0, TPCN, Send Patience{Space} 
+Else IfEqual key0, TPCVM, Send Competitive{Space} 
+Else IfEqual key0, TPHKC, Send Ketchup{Space} 
+Else IfEqual key0, TPSLC, Send Telescope{Space} 
+Else IfEqual key0, TSDNM, Send Disseminate{Space} 
+Else IfEqual key0, TSFC, Send Suffocate{Space} 
+Else IfEqual key0, TSHLB, Send Bullshit{Space} 
+Else IfEqual key0, TUADL, Send Adult{Space} 
+Else IfEqual key0, TUAFL, Send Fault{Space} 
+Else IfEqual key0, TUASG, Send August{Space} 
+Else IfEqual key0, TUHN, Send Hunt{Space} 
+Else IfEqual key0, TUIN, Send Unit{Space} 
+Else IfEqual key0, TUIOACN, Send Caution{Space} 
+Else IfEqual key0, TUIPSD, Send Stupid{Space} 
+Else IfEqual key0, TUISCN, Send Succinct{Space} 
+Else IfEqual key0, TULZ, Send Utilize{Space} 
+Else IfEqual key0, TUOASCM, Send Accustom{Space} 
+Else IfEqual key0, TUOCM, Send Outcome{Space} 
+Else IfEqual key0, TUOSLCN, Send Consult{Space} 
+Else IfEqual key0, TUPG, Send Putting{Space} 
+Else IfEqual key0, TUSKC, Send Stuck{Space} 
+Else IfEqual key0, TYFLC, Send Facility{Space} 
+Else IfEqual key0, TUOGHB, Send Bought{Space} 
+Else IfEqual key0, TPXC, Send Expect{Space} 
+Else IfEqual key0, TPCN, Send Patience{Space} 
+Else IfEqual key0, TPN, Send Patient{Space} 
+Else IfEqual key0, TPCVM, Send Competitive{Space} 
+Else IfEqual key0, TUAGHC, Send Caught{Space} 
+Else IfEqual key0, TPSCNM, Send Compensate{Space} 
+Else IfEqual key0, TFL, Send Left{Space} 
+Else IfEqual key0, TUADL, Send Adult{Space} 
+Else IfEqual key0, TSVN, Send Sensitive{Space} 
+Else IfEqual key0, TGVM, Send Government{Space} 
+Else IfEqual key0, TODN, Send Don't{Space} 
+Else IfEqual key0, TACM, Send Automatic{Space} 
+Else IfEqual key0, TX, Send Text{Space} 
+Else IfEqual key0, TAHC, Send Catch{Space} 
+Else IfEqual key0, TAHCM, Send Match{Space} 
+Else IfEqual key0, TAS, Send Sat{Space} 
+Else IfEqual key0, TADLN, Send Additional{Space} 
+Else IfEqual key0, TADN, Send Addition{Space} 
+Else IfEqual key0, TDLV, Send Validate{Space} 
+Else IfEqual key0, TIDCN, Send Indicate{Space} 
+Else IfEqual key0, TIPALC, Send Capital{Space} 
+Else IfEqual key0, TISDN, Send Instead{Space} 
+Else IfEqual key0, TPXC, Send Expect{Space} 	
+Else IfEqual key0, TOSL, Send Lost{Space} 
+Else IfEqual key0, TPLNM, Send Implement{Space} 
+Else IfEqual key0, TSCNL, Send Constantly{Space} 
+Else IfEqual key0, TSDCN, Send Distance{Space} 
+Else IfEqual key0, TSFGCN, Send Significant{Space} 
+Else IfEqual key0, TUIPN, Send Input{Space} 
+Else IfEqual key0, TYDFN, Send Identify{Space} 
+Else IfEqual key0, TYUSD, Send Study{Space} 
+Else IfEqual key0, TASC, Send Cast{Space} 
+Else IfEqual key0, TADHN, Send Hadn’T{Space} 
+Else IfEqual key0, TAHL, Send That’Ll{Space} 
+Else IfEqual key0, TASGN, Send Against{Space} 
+Else IfEqual key0, TASHKN, Send Thanks{Space} 
+Else IfEqual key0, TBN, Send Button{Space} 	
+Else IfEqual key0, TIAC, Send Attic{Space} 
+Else IfEqual key0, TIASN, Send Instant{Space} 
+Else IfEqual key0, TIDG, Send Digit{Space} 
+Else IfEqual key0, TIF, Send Fit{Space} 
+Else IfEqual key0, TIFG, Send Gift{Space} 
+Else IfEqual key0, TIFGH, Send Fight{Space} 
+Else IfEqual key0, TIHKC, Send Thick{Space} 
+Else IfEqual key0, TILM, Send Limit{Space} 
+Else IfEqual key0, TIOACN, Send Contain{Space} 
+Else IfEqual key0, TIOGHN, Send Tonight{Space} 
+Else IfEqual key0, TIONM, Send Motion{Space} 
+Else IfEqual key0, TISM, Send Mist{Space} 
+Else IfEqual key0, TKN, Send Think{Space} 
+Else IfEqual key0, TOA, Send Tattoo{Space} 
+Else IfEqual key0, TOASC, Send Coast{Space} 
+Else IfEqual key0, TOF, Send Foot{Space} 
+Else IfEqual key0, TOGHN, Send Thong{Space} 
+Else IfEqual key0, TOPS, Send Stop{Space} 
+Else IfEqual key0, TPDN, Send Independent{Space} 
+Else IfEqual key0, TPL, Send Pollute{Space} 
+Else IfEqual key0, TPLCNM, Send Implication{Space} 
+Else IfEqual key0, TPLNM, Send Implement{Space} 
+Else IfEqual key0, TPSLCNM, Send Implications{Space} 
+Else IfEqual key0, TPSM, Send Symptom{Space} 
+Else IfEqual key0, TRADE, Send Trade{Space} 
+Else IfEqual key0, TSBM, Send Submit{Space} 
+Else IfEqual key0, TSCBN, Send Substance{Space} 
+Else IfEqual key0, TSFNM, Send Manifest{Space} 
+Else IfEqual key0, TSGN, Send Suggestion{Space} 
+Else IfEqual key0, TSK, Send Takes{Space} 
+Else IfEqual key0, TSXN, Send Extension{Space} 
+Else IfEqual key0, TUAH, Send Authorize{Space} 
+Else IfEqual key0, TUAHCN, Send Authentic{Space} 
+Else IfEqual key0, TUIOANM, Send Mountain{Space} 
+Else IfEqual key0, TUISLN, Send Insult{Space} 
+Else IfEqual key0, TULC, Send Cult{Space} 
+Else IfEqual key0, TUOSD, Send Outside{Space} 
+Else IfEqual key0, TUOSH, Send South{Space} 
+Else IfEqual key0, TUOSH, Send Shout{Space} 
+Else IfEqual key0, TVN, Send Initiative{Space} 
+Else IfEqual key0, TVNM, Send Motivation{Space} 
+Else IfEqual key0, TYPSM, Send Symptom{Space} 
+Else IfEqual key0, TYUOCN, Send County{Space} 
+Else IfEqual key0, TDCN, Send Condition{Space} 
+Else IfEqual key0, TDCN, Send Candidate{Space} 
+Else IfEqual key0, TDCNM, Send Document{Space} 
+Else IfEqual key0, TDXN, Send Extend{Space} 
+Else IfEqual key0, TGN, Send Negotiate{Space} 
+Else IfEqual key0, TIDC, Send Dict{Space} 
+Else IfEqual key0, TIDFN, Send Identify{Space} 
+Else IfEqual key0, TIDM, Send Immediate{Space} 
+Else IfEqual key0, TIFL, Send Lift{Space} 
+Else IfEqual key0, TIOCM, Send Commit{Space} 
+Else IfEqual key0, TIOPC, Send Topic{Space} 
+Else IfEqual key0, TIP, Send Tip{Space} 
+Else IfEqual key0, TIPS, Send Tips{Space} 
+Else IfEqual key0, TISFH, Send Shift{Space} 
+Else IfEqual key0, TISGHL, Send Slight{Space} 
+Else IfEqual key0, TISN, Send Isn't{Space} 
+Else IfEqual key0, TLCM, Send Climate{Space} 
+Else IfEqual key0, TLN, Send National{Space} 
+Else IfEqual key0, TOCV, Send Octave{Space} 
+Else IfEqual key0, TOJCVB, Send Objective{Space} 
+Else IfEqual key0, TPAN, Send Appoint{Space} 
+Else IfEqual key0, TPANM, Send Appointment{Space} 
+Else IfEqual key0, TPCM, Send Compete{Space} 
+Else IfEqual key0, TPLC, Send Politic{Space} 
+Else IfEqual key0, TPLCNM, Send Complement{Space} 
+Else IfEqual key0, TPSHCN, Send Snapchat{Space} 
+Else IfEqual key0, TPSN, Send Position{Space} 
+Else IfEqual key0, TSCN, Send Constant{Space} 
+Else IfEqual key0, TSCN, Send Consistent{Space} 
+Else IfEqual key0, TSCN, Send Constant{Space} 
+Else IfEqual key0, TSCN, Send Scientist{Space} 
+Else IfEqual key0, TSDCN, Send Distance{Space} 
+Else IfEqual key0, TSDHN, Send Thousand{Space} 
+Else IfEqual key0, TUDC, Send Duct{Space} 
+Else IfEqual key0, TUIOSD, Send Studio{Space} 
+Else IfEqual key0, TUIS, Send Suit{Space} 
+Else IfEqual key0, TUODB, Send Doubt{Space} 
+Else IfEqual key0, TUODCN, Send Conduct{Space} 
+Else IfEqual key0, TUOKL, Send Outlook{Space} 
+Else IfEqual key0, TUSH, Send Shut{Space} 
+Else IfEqual key0, TVM, Send Motive{Space} 
+Else IfEqual key0, TVN, Send Invite{Space} 
+Else IfEqual key0, TYB, Send Beauty{Space} 
+Else IfEqual key0, TYCN, Send County{Space} 
+Else IfEqual key0, TYIN, Send Tiny{Space} 
+Else IfEqual key0, TYPAC, Send Capacity{Space} 
+Else IfEqual key0, TAC, Send Act{Space} 
+Else IfEqual key0, TFLB, Send Beautiful{Space} 
+Else IfEqual key0, TASHN, Send Hasn't{Space} 
+Else IfEqual key0, TFLB, Send Beautiful{Space} 
+Else IfEqual key0, TGVN, Send Negative{Space} 
+Else IfEqual key0, TIANM, Send Maintain{Space} 
+Else IfEqual key0, TIL, Send It'll{Space} 
+Else IfEqual key0, TIPACM, Send Impact{Space} 
+Else IfEqual key0, TOSH, Send Shot{Space} 
+Else IfEqual key0, TSCM, Send Costume{Space} 
+Else IfEqual key0, TSFCN, Send Fantastic{Space} 
+Else IfEqual key0, TUIOAS, Send Situation{Space} 
+Else IfEqual key0, TUIOAS, Send Situation{Space} 
+Else IfEqual key0, TACN, Send Can't{Space} 
+Else IfEqual key0, TAD, Send Data{Space} 
+Else IfEqual key0, TAFC, Send Fact{Space} 
+Else IfEqual key0, TAGKL, Send Talking{Space} 
+Else IfEqual key0, TAGN, Send Against{Space} 
+Else IfEqual key0, TAH, Send That{Space} 
+Else IfEqual key0, TAHC, Send Chat{Space} 
+Else IfEqual key0, TAHKN, Send Thank{Space} 
+Else IfEqual key0, TAHN, Send Than{Space} 
+Else IfEqual key0, TAKL, Send Talk{Space} 
+Else IfEqual key0, TALC, Send Actually{Space} 
+Else IfEqual key0, TAM, Send Amount{Space} 
+Else IfEqual key0, TAN, Send Attention{Space} 
+Else IfEqual key0, TASDN, Send Stand{Space} 
+Else IfEqual key0, TASF, Send Fast{Space} 
+Else IfEqual key0, TASH, Send That's{Space} 
+Else IfEqual key0, TASKC, Send Stack{Space} 
+Else IfEqual key0, TASL, Send Last{Space} 
+Else IfEqual key0, TBM, Send Bottom{Space} 
+Else IfEqual key0, TC, Send Content{Space} 
+Else IfEqual key0, TCM, Send Community{Space} 
+Else IfEqual key0, TCN, Send Continue{Space} 
+Else IfEqual key0, TD, Send Today{Space} 
+Else IfEqual key0, TDCMN, Send Document{Space} 
+Else IfEqual key0, TDFCN, Send Confident{Space} 
+Else IfEqual key0, TDGL, Send Digital{Space} 
+Else IfEqual key0, TDL, Send Detail{Space} 
+Else IfEqual key0, TDN, Send Don't{Space} 
+Else IfEqual key0, TDX, Send Excited{Space} 
+Else IfEqual key0, TF, Send First{Space} 
+Else IfEqual key0, TFBN, Send Benefit{Space} 
+Else IfEqual key0, TG, Send Thing{Space} 
+Else IfEqual key0, TGHLC, Send Glitch{Space} 
+Else IfEqual key0, TGK, Send Taking{Space} 
+Else IfEqual key0, TGK, Send Taking{Space} 
+Else IfEqual key0, TGKL, Send Talking{Space} 
+Else IfEqual key0, TGKL, Send Talking{Space} 
+Else IfEqual key0, TGKN, Send Thinking{Space} 
+Else IfEqual key0, TGM, Send Meeting{Space} 
+Else IfEqual key0, TGNM, Send Management{Space} 
+Else IfEqual key0, TH, Send This{Space} 
+Else IfEqual key0, THB, Send To Be Honest{Space} 
+Else IfEqual key0, THKN, Send Think{Space} 
+Else IfEqual key0, THVN, Send Haven't{Space} 
+Else IfEqual key0, TI, Send It{Space} 
+Else IfEqual key0, TIAGH, Send Aight{Space} 
+Else IfEqual key0, TIALN, Send Initial{Space} 
+Else IfEqual key0, TIAN, Send Anti
+Else IfEqual key0, TIB, Send Bit{Space} 
+Else IfEqual key0, TID, Send It'd{Space} 
+Else IfEqual key0, TIDM, Send Immediate{Space} 
+Else IfEqual key0, TIDN, Send Didn't{Space} 
+Else IfEqual key0, TIGH, Send Tight{Space} 
+Else IfEqual key0, TIGHL, Send Light{Space} 
+Else IfEqual key0, TIGHN, Send Night{Space} 
+Else IfEqual key0, TIGN, Send Interesting{Space} 
+Else IfEqual key0, TIH, Send I Think{Space} 
+Else IfEqual key0, TIHC, Send Itch{Space} 
+Else IfEqual key0, TIHKN, Send Think{Space} 
+Else IfEqual key0, TILN, Send Internal{Space} 
+Else IfEqual key0, TIN, Send Interest{Space} 
+Else IfEqual key0, TIO, Send In Terms Of{Space} 
+Else IfEqual key0, TIOLN, Send International{Space} 
+Else IfEqual key0, TION, Send Into{Space} 
+Else IfEqual key0, TIOPSN, Send Position{Space} 
+Else IfEqual key0, TIS, Send It's{Space} 
+Else IfEqual key0, TISDCN, Send Distinct{Space} 
+Else IfEqual key0, TISGH, Send Sight{Space} 
+Else IfEqual key0, TISH, Send This{Space} 
+Else IfEqual key0, TISH, Send This{Space} 
+Else IfEqual key0, TISKC, Send Stick{Space} 
+Else IfEqual key0, TISL, Send Still{Space} 
+Else IfEqual key0, TISN, Send Instead{Space} 
+Else IfEqual key0, TIVN, Send Interview{Space} 
+Else IfEqual key0, TIZ, Send Ization
+Else IfEqual key0, TK, Send Take{Space} 
+Else IfEqual key0, TKL, Send Talk{Space} 
+Else IfEqual key0, TKM, Send Market{Space} 
+Else IfEqual key0, TLB, Send Built{Space} 
+Else IfEqual key0, TLCN, Send Technical{Space} 
+Else IfEqual key0, TLNM, Send Mental{Space} 
+Else IfEqual key0, TLXN, Send Excellent{Space} 
+Else IfEqual key0, TM, Send Time{Space} 
+Else IfEqual key0, TNM, Send Minute{Space} 
+Else IfEqual key0, TO, Send To{Space} 
+Else IfEqual key0, TO, Send Too{Space} 
+Else IfEqual key0, TOACN, Send Contact{Space} 
+Else IfEqual key0, TOAHL, Send Although{Space} 
+Else IfEqual key0, TOAL, Send Total{Space} 
+Else IfEqual key0, TOBM, Send Bottom{Space} 
+Else IfEqual key0, TOCN, Send Contract{Space} 
+Else IfEqual key0, TODL, Send Told{Space} 
+Else IfEqual key0, TODN, Send Don't{Space} 
+Else IfEqual key0, TOG, Send Got{Space} 
+Else IfEqual key0, TOH, Send Though{Space} 
+Else IfEqual key0, TOHB, Send Both{Space} 
+Else IfEqual key0, TOHNM, Send Month{Space} 
+Else IfEqual key0, TOK, Send Took{Space} 
+Else IfEqual key0, TOL, Send Lot{Space} 
+Else IfEqual key0, TON, Send Not{Space} 
+Else IfEqual key0, TON, Send Not{Space} 
+Else IfEqual key0, TOP, Send Top{Space} 
+Else IfEqual key0, TOPAD, Send Adopt{Space} 
+Else IfEqual key0, TOPH, Send Photo{Space} 
+Else IfEqual key0, TOPS, Send Stop{Space} 
+Else IfEqual key0, TOPZM, Send Optimize{Space} 
+Else IfEqual key0, TOSC, Send Cost{Space} 
+Else IfEqual key0, TOSL, Send Lost{Space} 
+Else IfEqual key0, TOSM, Send Most{Space} 
+Else IfEqual key0, TP, Send Point{Space} 
+Else IfEqual key0, TPAFLM, Send Platform{Space} 
+Else IfEqual key0, TPALN, Send Plant{Space} 
+Else IfEqual key0, TPAS, Send Past{Space} 
+Else IfEqual key0, TPC, Send Corporate{Space} 
+Else IfEqual key0, TPCNM, Send Component{Space} 
+Else IfEqual key0, TPD, Send Department{Space} 
+Else IfEqual key0, TPLM, Send Multiple{Space} 
+Else IfEqual key0, TPLN, Send Potential{Space} 
+Else IfEqual key0, TPS, Send Post{Space} 
+Else IfEqual key0, TPSN, Send Postpone{Space} 
+Else IfEqual key0, TPSV, Send Positive{Space} 
+Else IfEqual key0, TS, Send Its{Space} 
+Else IfEqual key0, TS, Send St
+Else IfEqual key0, TSDN, Send Doesn't{Space} 
+Else IfEqual key0, TSFGN, Send Significant{Space} 
+Else IfEqual key0, TSG, Send Things{Space} 
+Else IfEqual key0, TSDHN, Send Shouldn't{Space} 
+Else IfEqual key0, TSKM, Send Mistake{Space} 
+Else IfEqual key0, TSL, Send List{Space} 
+Else IfEqual key0, TSLN, Send Listen{Space} 
+Else IfEqual key0, TSLVM, Send Themselves{Space} 
+Else IfEqual key0, TSM, Send Sometimes{Space} 
+Else IfEqual key0, TSN, Send Essentially{Space} 
+Else IfEqual key0, TUA, Send Uation
+Else IfEqual key0, TUAGH, Send Taught{Space} 
+Else IfEqual key0, TUALC, Send Actual{Space} 
+Else IfEqual key0, TUB, Send But{Space} 
+Else IfEqual key0, TUC, Send Cut{Space} 
+Else IfEqual key0, TUILN, Send Until{Space} 
+Else IfEqual key0, TUIOASN, Send Situation{Space} 
+Else IfEqual key0, TUIPDLC, Send Duplicate{Space} 
+Else IfEqual key0, TUL, Send Ultimately{Space} 
+Else IfEqual key0, TUO, Send Out{Space} 
+Else IfEqual key0, TUOA, Send Auto{Space} 
+Else IfEqual key0, TUOACN, Send Account{Space} 
+Else IfEqual key0, TUOBN, Send Button{Space} 
+Else IfEqual key0, TUOCN, Send Count{Space} 
+Else IfEqual key0, TUOHC, Send Touch{Space} 
+Else IfEqual key0, TUOHM, Send Mouth{Space} 
+Else IfEqual key0, TUOSCM, Send Custom{Space} 
+Else IfEqual key0, TUP, Send Put{Space} 
+Else IfEqual key0, TUSF, Send Stuff{Space} 
+Else IfEqual key0, TUSM, Send Must{Space} 
+Else IfEqual key0, TXC, Send Context{Space} 
+Else IfEqual key0, TY, Send Thank You{Space} 
+Else IfEqual key0, TYAS, Send Stay{Space} 
+Else IfEqual key0, TYASLV, Send Vastly{Space} 
+Else IfEqual key0, TYD, Send Today{Space} 
+Else IfEqual key0, TYIACV, Send Activity{Space} 
+Else IfEqual key0, TYIALB, Send Ability{Space} 
+Else IfEqual key0, TYIDN, Send Identity{Space} 
+Else IfEqual key0, TYIK, Send Kitty{Space} 
+Else IfEqual key0, TYIL, Send Ility{Space} 
+Else IfEqual key0, TYILB, Send Ibility{Space} 
+Else IfEqual key0, TYO, Send Toy{Space} 
+Else IfEqual key0, TYOAL, Send Totally{Space} 
+Else IfEqual key0, TYPHLC, Send Hypothetical{Space} 
+Else IfEqual key0, TYPLC, Send Typical{Space} 
+Else IfEqual key0, TYVM, Send Thank You Very Much{Space} 
+Else IfEqual key0, TOAGHC, Send Got You.{Space} 
+Else IfEqual key0, TPAH, Send Path{Space} 
+Else IfEqual key0, TSC, Send Society{Space} 
+Else IfEqual key0, TSLVM, Send Themselves{Space} 
+Else IfEqual key0, TUIASN, Send Sustain{Space} 
+Else IfEqual key0, TUIOSN, Send Institution{Space} 
+Else IfEqual key0, TUOGH, Send Thought{Space} 
+Else IfEqual key0, TVN, Send Native{Space} 
+Else IfEqual key0, TYIC, Send City{Space} 
+Return
+SENDYup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, YAD, Send Day{Space} 
+Else IfEqual key0, YUGL, Send Ugly{Space} 
+Else IfEqual key0, TYSG, Send Staying{Space} 
+Else IfEqual key0, EYAGCN, Send Agency{Space} 
+Else IfEqual key0, YADBN, Send Anybody{Space} 
+Else IfEqual key0, YDGB, Send Goodbye{Space} 
+Else IfEqual key0, YPG, Send Paying{Space} 
+ Else IfEqual key0, YDVN, Send Vineyard{Space} 
+Else IfEqual key0, YCVN, Send Convey{Space} 
+Else IfEqual key0, YFL, Send Fly{Space} 
+Else IfEqual key0, YOHL, Send Holy{Space} 
+Else IfEqual key0, YOPH, Send Hypo
+Else IfEqual key0, YSLN, Send Analysis{Space} 
+Else IfEqual key0, YUDB, Send Buddy{Space} 
+Else IfEqual key0, YUSG, Send Guys{Space} 
+Else IfEqual key0, YAB, Send Baby{Space} 
+Else IfEqual key0, YOGLCN, Send Oncology{Space} 
+Else IfEqual key0, YPAL, Send Play{Space} 
+Else IfEqual key0, YSNM, Send Mayonnaise{Space} 
+Else IfEqual key0, YUJL, Send July{Space} 
+Else IfEqual key0, YOPC, Send Copy{Space} 
+Else IfEqual key0, YPSHCN, Send Physician{Space} 
+Else IfEqual key0, YAM, Send May{Space} 
+Else IfEqual key0, YGLCN, Send Oncology{Space} 
+Else IfEqual key0, YOGLCN, Send Oncology{Space} 
+Else IfEqual key0, YDBN, Send Beyond{Space} 
+Else IfEqual key0, YOJ, Send Joy{Space} 
+Else IfEqual key0, YPSHLC, Send Physical{Space} 
+Else IfEqual key0, YAN, Send Any{Space} 
+Else IfEqual key0, YANM, Send Many{Space} 
+Else IfEqual key0, YAS, Send Say{Space} 
+Else IfEqual key0, YASG, Send Saying{Space} 
+Else IfEqual key0, YB, Send By{Space} 
+Else IfEqual key0, YD, Send Yesterday{Space} 
+Else IfEqual key0, YFLN, Send Finally{Space} 
+Else IfEqual key0, YIADL, Send Daily{Space} 
+Else IfEqual key0, YIAFLM, Send Family{Space} 
+Else IfEqual key0, YIASLN, Send Analysis{Space} 
+Else IfEqual key0, YIF, Send Ify{Space} 
+Else IfEqual key0, YK, Send You Know{Space} 
+Else IfEqual key0, YM, Send My{Space} 
+Else IfEqual key0, YOAN, Send Annoy{Space} 
+Else IfEqual key0, YOANM, Send Anymore{Space} 
+Else IfEqual key0, YOB, Send Boy{Space} 
+Else IfEqual key0, YODB, Send Body{Space} 
+Else IfEqual key0, YOLN, Send Only{Space} 
+Else IfEqual key0, YPA, Send Pay{Space} 
+Else IfEqual key0, YPAH, Send Happy{Space} 
+Else IfEqual key0, YPAL, Send Play{Space} 
+Else IfEqual key0, YPCM, Send Completely{Space} 
+Else IfEqual key0, YSDA, Send Days{Space} 
+Else IfEqual key0, YSG, Send Saying{Space} 
+Else IfEqual key0, YSM, Send Sym
+Else IfEqual key0, YSN, Send Syn
+Else IfEqual key0, YUASL, Send Usually{Space} 
+Else IfEqual key0, YUB, Send Buy{Space} 
+Else IfEqual key0, YUG, Send Guy{Space} 
+Else IfEqual key0, YUOGN, Send Young{Space} 
+Else IfEqual key0, YAL, Send Lay{Space} 
+Else IfEqual key0, YUFN, Send Funny{Space} 
+Else IfEqual key0, YUSB, Send Busy{Space} 
+Return
+SENDUup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, UA, Send Au
+Else IfEqual key0, UAB, Send A Bunch{Space} 
+Else IfEqual key0, UAHNM, Send Human{Space} 
+Else IfEqual key0, UASDHBN, Send Husband{Space} 
+Else IfEqual key0, UINM, Send Minimum{Space} 
+Else IfEqual key0, UIOLCN, Send Council{Space} 
+Else IfEqual key0, UODBN, Send Bound{Space} 
+Else IfEqual key0, UODC, Send Docu
+Else IfEqual key0, UAHLCN, Send Launch{Space} 
+Else IfEqual key0, UASHBN, Send Husband{Space} 
+Else IfEqual key0, UDH, Send Duh{Space} 
+Else IfEqual key0, UGN, Send Gun{Space} 
+Else IfEqual key0, UHCBN, Send Bunch{Space} 
+Else IfEqual key0, UIOAC, Send Caution{Space} 
+Else IfEqual key0, UPBM, Send Bump{Space} 
+Else IfEqual key0, UANM, Send Manu{Space} 
+Else IfEqual key0, UFKC, Send Fuck{Space} 
+Else IfEqual key0, UKLC, Send Luck{Space} 
+Else IfEqual key0, UISDC, Send Discuss{Space} 
+Else IfEqual key0, USG, Send Using{Space} 
+Else IfEqual key0, USGN, Send Sung{Space} 
+Else IfEqual key0, UALBM, Send Albums{Space} 
+Else IfEqual key0, UIOSL, Send Solution{Space} 
+Else IfEqual key0, UAD, Send Audience{Space} 
+Else IfEqual key0, UAG, Send Aug{Space} 
+Else IfEqual key0, UAGHL, Send Laugh{Space} 
+Else IfEqual key0, UAGL, Send Laugh{Space} 
+Else IfEqual key0, UAHLCN, Send Launch{Space} 
+Else IfEqual key0, UASL, Send Usual{Space} 
+Else IfEqual key0, UCM, Send Communicate{Space} 
+Else IfEqual key0, UD, Send You'd{Space} 
+Else IfEqual key0, UDN, Send Understand{Space} 
+Else IfEqual key0, UFL, Send Full{Space} 
+Else IfEqual key0, UHCM, Send Much{Space} 
+Else IfEqual key0, UICM, Send Communication{Space} 
+Else IfEqual key0, UIOCM, Send Communication{Space} 
+Else IfEqual key0, UIDN, Send Industry{Space} 
+Else IfEqual key0, UIN, Send Uni
+Else IfEqual key0, UIOFCN, Send Function{Space} 
+Else IfEqual key0, UIOS, Send Ious
+Else IfEqual key0, UIOSCN, Send Conscious{Space} 
+Else IfEqual key0, UIOSLCN, Send Conclusion{Space} 
+Else IfEqual key0, UIPDL, Send Dupli{Space} 
+Else IfEqual key0, UISCM, Send Music{Space} 
+Else IfEqual key0, UISN, Send Insurance{Space} 
+Else IfEqual key0, UIVN, Send University{Space} 
+Else IfEqual key0, UL, Send You'll{Space} 
+Else IfEqual key0, UN, Send Un
+Else IfEqual key0, UNM, Send Number{Space} 
+Else IfEqual key0, UO, Send Ou
+Else IfEqual key0, UODFN, Send Found{Space} 
+Else IfEqual key0, UODL, Send Loud{Space} 
+Else IfEqual key0, UODLC, Send Cloud{Space} 
+Else IfEqual key0, UOGH, Send Ough{Space} 
+Else IfEqual key0, UOP, Send Population{Space} 
+Else IfEqual key0, UOPN, Send Upon{Space} 
+Else IfEqual key0, UOSDN, Send Sound{Space} 
+Else IfEqual key0, UOSFC, Send Focus{Space} 
+Else IfEqual key0, UOSM, Send So Much{Space} 
+Else IfEqual key0, UP, Send Up{Space} 
+Else IfEqual key0, UPASCM, Send Campus{Space} 
+Else IfEqual key0, UPC, Send Computer{Space} 
+Else IfEqual key0, UPJM, Send Jump{Space} 
+Else IfEqual key0, UPL, Send Pull{Space} 
+Else IfEqual key0, UPSH, Send Push{Space} 
+Else IfEqual key0, US, Send Us{Space} 
+Else IfEqual key0, USB, Send Sub
+Else IfEqual key0, USF, Send Yourself{Space} 
+Else IfEqual key0, USHC, Send Such{Space} 
+Else IfEqual key0, USN, Send Sun{Space} 
+Else IfEqual key0, UV, Send You've{Space} 
+Else IfEqual key0, UDFN, Send Fund{Space} 
+Else IfEqual key0, UFN, Send Fun{Space} 
+Else IfEqual key0, USFL, Send Yourself{Space} 
+Return
+SENDEup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, EA, Send Ea	
+Else IfEqual key0, EPALCB, Send Capable{Space} 
+Else IfEqual key0, ERIV, Send River{Space} 
+Else IfEqual key0, ERUIPM, Send Premium{Space} 
+Else IfEqual key0, ETF, Send Feet{Space} 
+Else IfEqual key0, ERTYPAH, Send Therapy{Space} 
+Else IfEqual key0, ERIACM, Send America{Space} 
+Else IfEqual key0, ERUOP, Send Europe{Space} 
+Else IfEqual key0, EOSLN, Send Lesson{Space} 
+Else IfEqual key0, EPALN, Send Plane{Space} 
+Else IfEqual key0, EALCN, Send Cancel{Space} 
+Else IfEqual key0, EPASLC, Send Places{Space} 
+Else IfEqual key0, EALN, Send Lane{Space} 
+Else IfEqual key0, ETPASLN, Send Pleasant{Space} 
+Else IfEqual key0, EAS, Send Assess{Space} 
+Else IfEqual key0, ERUIPS, Send Surprise{Space} 
+Else IfEqual key0, EASF, Send Safety{Space} 
+Else IfEqual key0, EFHC, Send Chef{Space} 
+Else IfEqual key0, ERUALCN, Send Nuclear{Space} 
+Else IfEqual key0, EIALV, Send Alive{Space} 
+Else IfEqual key0, EYIASL, Send Easily{Space} 
+Else IfEqual key0, EIASN, Send Insane{Space} 
+Else IfEqual key0, EIFKN, Send Knife{Space} 
+Else IfEqual key0, EIHCN, Send Niche{Space} 
+Else IfEqual key0, EIHK, Send Hike{Space} 
+Else IfEqual key0, EIL, Send Lie{Space} 
+Else IfEqual key0, EIL, Send Lie{Space} 
+Else IfEqual key0, EILCN, Send Incline{Space} 
+Else IfEqual key0, EIOCNM, Send Economic{Space} 
+Else IfEqual key0, EIOCNM, Send Income{Space} 
+Else IfEqual key0, EIPLCN, Send Pencil{Space} 
+Else IfEqual key0, EISDL, Send Slide{Space} 
+Else IfEqual key0, EISKVN, Send Knives{Space} 
+Else IfEqual key0, EISLM, Send Smile{Space} 
+Else IfEqual key0, EISZ, Send Seize{Space} 
+Else IfEqual key0, EKN, Send Knee{Space} 
+Else IfEqual key0, ELB, Send Bell{Space} 
+Else IfEqual key0, EOADB, Send Adobe{Space} 
+Else IfEqual key0, EOASLM, Send Molasses{Space} 
+Else IfEqual key0, EOFC, Send Coffee{Space} 
+Else IfEqual key0, EOSDCN, Send Condense{Space} 
+Else IfEqual key0, EOSLN, Send Lesson{Space} 
+Else IfEqual key0, EOSN, Send Nose{Space} 
+Else IfEqual key0, EPA, Send Ape{Space} 
+Else IfEqual key0, EPN, Send Pen{Space} 
+Else IfEqual key0, EPSL, Send Spell{Space} 
+Else IfEqual key0, ERAB, Send Bear{Space} 
+Else IfEqual key0, ERADG, Send Regard{Space} 
+Else IfEqual key0, ERADLC, Send Declare{Space} 
+Else IfEqual key0, ERAF, Send Fear{Space} 
+Else IfEqual key0, ERAF, Send Fear{Space} 
+Else IfEqual key0, ERALX, Send Relax{Space} 
+Else IfEqual key0, ERAS, Send Erase{Space} 
+Else IfEqual key0, ERDCBM, Send December{Space} 
+Else IfEqual key0, ERF, Send Refer{Space} 
+Else IfEqual key0, ERHC, Send Cheer{Space} 
+Else IfEqual key0, ERIAS, Send Raise{Space} 
+Else IfEqual key0, ERIDB, Send Bride{Space} 
+Else IfEqual key0, ERIDGB, Send Bridge{Space} 
+Else IfEqual key0, ERIDL, Send Riddle{Space} 
+Else IfEqual key0, ERIN, Send Inner{Space} 
+Else IfEqual key0, ERIOPSCM, Send Comprise{Space} 
+Else IfEqual key0, ERIPSCB, Send Prescribe{Space} 
+Else IfEqual key0, ERM, Send Mere{Space} 
+Else IfEqual key0, ERO, Send Error{Space} 
+Else IfEqual key0, EROASH, Send Hoarse{Space} 
+Else IfEqual key0, EROCM, Send Commerce{Space} 
+Else IfEqual key0, EROKB, Send Broke{Space} 
+Else IfEqual key0, EROS, Send Rose{Space} 
+Else IfEqual key0, EROSCN, Send Censor{Space} 
+Else IfEqual key0, EROVBNM, Send November{Space} 
+Else IfEqual key0, ERPAS, Send Spare{Space} 
+Else IfEqual key0, ERTAG, Send Target{Space} 
+Else IfEqual key0, ERTAGN, Send Generate{Space} 
+Else IfEqual key0, ERTIACN, Send Interact{Space} 
+Else IfEqual key0, ERTIAGC, Send Cigarette{Space} 
+Else IfEqual key0, ERTIHN, Send Inherent{Space} 
+Else IfEqual key0, ERTION, Send Orient{Space} 
+Else IfEqual key0, ERTIPAC, Send Practice{Space} 
+Else IfEqual key0, ERTOA, Send Rotate{Space} 
+Else IfEqual key0, ERTOCB, Send October{Space} 
+Else IfEqual key0, ERTOSK, Send Stroke{Space} 
+Else IfEqual key0, ERTPSBM, Send September{Space} 
+Else IfEqual key0, ERTUANM, Send Remunerate{Space} 
+Else IfEqual key0, ERTYCM, Send Cemetery{Space} 
+Else IfEqual key0, ERTYOP, Send Property{Space} 
+Else IfEqual key0, ERUD, Send Educator{Space} 
+Else IfEqual key0, ERUDBN, Send Burden{Space} 
+Else IfEqual key0, ERUIN, Send Urine{Space} 
+Else IfEqual key0, ERUOPCN, Send Pronounce{Space} 
+Else IfEqual key0, ERUSC, Send Rescue{Space} 
+Else IfEqual key0, ERUVN, Send Revenue{Space} 
+Else IfEqual key0, ERYOASC, Send Accessory{Space} 
+Else IfEqual key0, ESHCM, Send Scheme{Space} 
+Else IfEqual key0, ESLM, Send Smell{Space} 
+Else IfEqual key0, ETADN, Send Attend{Space} 
+Else IfEqual key0, ETAGN, Send Agent{Space} 
+Else IfEqual key0, ETAGN, Send Tangent{Space} 
+Else IfEqual key0, ETALN, Send Talent{Space} 
+Else IfEqual key0, ETANM, Send Meant{Space} 
+Else IfEqual key0, ETASK, Send Stake{Space} 
+Else IfEqual key0, ETGHLN, Send Length{Space} 
+Else IfEqual key0, ETIAHLCN, Send Technical{Space} 
+Else IfEqual key0, ETIOANM, Send Nominate{Space} 
+Else IfEqual key0, ETIOSN, Send Tension{Space} 
+Else IfEqual key0, ETIOSN, Send Tension{Space} 
+Else IfEqual key0, ETOLB, Send Bottle{Space} 
+Else IfEqual key0, ETOLB, Send Bottle{Space} 
+Else IfEqual key0, ETOSHLC, Send Clothes{Space} 
+Else IfEqual key0, ETPAL, Send Plate{Space} 
+Else IfEqual key0, ETPASC, Send Aspect{Space} 
+Else IfEqual key0, ETPS, Send Steep{Space} 
+Else IfEqual key0, ETSCN, Send Sentence{Space} 
+Else IfEqual key0, ETUB, Send Tube{Space} 
+Else IfEqual key0, ETUHC, Send Chute{Space} 
+Else IfEqual key0, ETUM, Send Mute{Space} 
+Else IfEqual key0, ETUOCM, Send Outcome{Space} 
+Else IfEqual key0, ETUPS, Send Upset{Space} 
+Else IfEqual key0, ETYOSCM, Send Ecosystem{Space} 
+Else IfEqual key0, EUDGJ, Send Judge{Space} 
+Else IfEqual key0, EUDGN, Send Nudge{Space} 
+Else IfEqual key0, EUJN, Send June{Space} 
+Else IfEqual key0, EUPSL, Send Pulse{Space} 
+Else IfEqual key0, EYAGCN, Send Agency{Space} 
+Else IfEqual key0, EYP, Send Yep{Space} 
+Else IfEqual key0, RTYL, Send Reality{Space} 
+Else IfEqual key0, ETANM, Send Meant{Space} 
+Else IfEqual key0, EASN, Send Sane{Space} 
+Else IfEqual key0, EIASN, Send Insane{Space} 
+Else IfEqual key0, EPSD, Send Sped{Space} 
+Else IfEqual key0, ETUN, Send Tune{Space} 
+Else IfEqual key0, EROFC, Send Force{Space} 
+Else IfEqual key0, ETIOASC, Send Associate{Space} 
+Else IfEqual key0, EIONM, Send Mention{Space} 
+Else IfEqual key0, EYH, Send Hey{Space} 
+Else IfEqual key0, EYP, Send Yep{Space} 
+Else IfEqual key0, EODCNM, Send Commend{Space} 
+Else IfEqual key0, ETISN, Send Intense{Space} 
+Else IfEqual key0, ERUIOS, Send Capable{Space} 
+Else IfEqual key0, EUALVB, Send Valuable{Space} 
+Else IfEqual key0, ETIAGVN, Send Navigate{Space} 
+Else IfEqual key0, ERASC, Send Scare{Space} 
+Else IfEqual key0, ERTOM, Send Remote{Space} 
+Else IfEqual key0, ERTLXN, Send Internal{Space} 
+Else IfEqual key0, EROPSC, Send Process{Space} 
+Else IfEqual key0, EACBM, Send Became{Space} 
+Else IfEqual key0, EAGHLCN, Send Challenge{Space} 
+Else IfEqual key0, ETAKN, Send Taken{Space} 
+Else IfEqual key0, ETPAM, Send Attempt{Space} 
+Else IfEqual key0, EIVN, Send Vein{Space} 
+Else IfEqual key0, ERPASH, Send Phrase{Space} 
+Else IfEqual key0, ERTPASN, Send Transparent{Space} 
+Else IfEqual key0, EAD, Send Dead{Space} 
+Else IfEqual key0, EADHLN, Send Handle{Space} 
+Else IfEqual key0, EAGBN, Send Began{Space} 
+Else IfEqual key0, EASHK, Send Shake{Space} 
+Else IfEqual key0, EDCVN, Send Evidence{Space} 
+Else IfEqual key0, EIASD, Send Disease{Space} 
+Else IfEqual key0, EIASL, Send Aisle{Space} 
+Else IfEqual key0, EIHLCV, Send Vehicle{Space} 
+Else IfEqual key0, EILM, Send Mile{Space} 
+Else IfEqual key0, EIOM, Send Emotion{Space} 
+Else IfEqual key0, EISDN, Send Inside{Space} 
+Else IfEqual key0, EISHN, Send Shine{Space} 
+Else IfEqual key0, EISLCN, Send Silence{Space} 
+Else IfEqual key0, EAKL, Send Lake{Space} 
+Else IfEqual key0, EOALN, Send Alone{Space} 
+Else IfEqual key0, EOCVN, Send Convene{Space} 
+Else IfEqual key0, EODGL, Send Lodge{Space} 
+Else IfEqual key0, EOLCN, Send Clone{Space} 
+Else IfEqual key0, EOLNM, Send Lemon{Space} 
+Else IfEqual key0, EOLNM, Send Melon{Space} 
+Else IfEqual key0, EOPK, Send Poke{Space} 
+Else IfEqual key0, EOSLV, Send Solve{Space} 
+Else IfEqual key0, EOSLV, Send Solve{Space} 
+Else IfEqual key0, EPAHC, Send Cheap{Space} 
+
+Else IfEqual key0, ERADG, Send Grade{Space} 
+Else IfEqual key0, ERAFM, Send Frame{Space} 
+Else IfEqual key0, ERAGHC, Send Charge{Space} 
+Else IfEqual key0, ERAGNM, Send Manager{Space} 
+Else IfEqual key0, ERC, Send Rec Recognize{Space} 
+Else IfEqual key0, ERDH, Send Herd{Space} 
+Else IfEqual key0, ERGCNM, Send Emergency{Space} 
+Else IfEqual key0, ERGM, Send Merge{Space} 
+Else IfEqual key0, ERIAL, Send Earlier{Space} 
+Else IfEqual key0, ERIALCM, Send Miracle{Space} 
+Else IfEqual key0, ERIF, Send Fire{Space} 
+Else IfEqual key0, ERIOSN, Send Senior{Space} 
+Else IfEqual key0, ERIPL, Send Ripple{Space} 
+Else IfEqual key0, ERIPLCN, Send Principle{Space} 
+Else IfEqual key0, ERIPSN, Send Inspire{Space} 
+Else IfEqual key0, ERLV, Send Lever{Space} 
+Else IfEqual key0, EROC, Send Core{Space} 
+Else IfEqual key0, EROC, Send Core{Space} 
+Else IfEqual key0, EROH, Send Hero{Space} 
+Else IfEqual key0, EROHL, Send Holler{Space} 
+Else IfEqual key0, EROSC, Send Score{Space} 
+Else IfEqual key0, EROSLC, Send Closer{Space} 
+Else IfEqual key0, ERTA, Send Tear{Space} 
+Else IfEqual key0, ERTAD, Send Trade{Space} 
+Else IfEqual key0, ERTD, Send Editor{Space} 
+Else IfEqual key0, ERTIHN, Send Neither{Space} 
+Else IfEqual key0, ERTILC, Send Electric{Space} 
+Else IfEqual key0, ERTIOD, Send Editor{Space} 
+Else IfEqual key0, ERTIPAC, Send Practice{Space} 
+Else IfEqual key0, ERTIPAC, Send Practice{Space} 
+Else IfEqual key0, ERTISH, Send Theirs{Space} 
+Else IfEqual key0, ERTJC, Send Reject{Space} 
+Else IfEqual key0, ERTLC, Send Electric{Space} 
+Else IfEqual key0, ERTOFGN, Send Forgotten{Space} 
+Else IfEqual key0, ERTPVN, Send Prevent{Space} 
+Else IfEqual key0, ERTUIC, Send Recruit{Space} 
+Else IfEqual key0, ERTUL, Send Turtle{Space} 
+Else IfEqual key0, ERTUN, Send Return{Space} 
+Else IfEqual key0, ERTUO, Send Route{Space} 
+Else IfEqual key0, ERUAG, Send Argue{Space} 
+Else IfEqual key0, ERUAS, Send Assure{Space} 
+Else IfEqual key0, ERUBM, Send Bummer{Space} 
+Else IfEqual key0, ERUOSLCN, Send Counselor{Space} 
+Else IfEqual key0, ERUOSVN, Send Nervous{Space} 
+Else IfEqual key0, ERUSN, Send Nurse{Space} 
+Else IfEqual key0, ESHL, Send Shell{Space} 
+Else IfEqual key0, ETAS, Send State{Space} 
+Else IfEqual key0, ETB, Send Bet{Space} 
+Else IfEqual key0, ETB, Send Bet{Space} 
+Else IfEqual key0, ETDN, Send Tend{Space} 
+Else IfEqual key0, ETFCN, Send Efficient{Space} 
+Else IfEqual key0, ETFCN, Send Efficient{Space} 
+Else IfEqual key0, ETIHKCN, Send Kitchen{Space} 
+Else IfEqual key0, ETION, Send Intention{Space} 
+Else IfEqual key0, ETIONM, Send Emotion{Space} 
+Else IfEqual key0, ETIPDN, Send Independent{Space} 
+Else IfEqual key0, ETISLN, Send Nationalities{Space} 
+Else IfEqual key0, ETLVT, Send Evaluate{Space} 
+Else IfEqual key0, ETOP, Send Poet{Space} 
+Else IfEqual key0, ETPALN, Send Planet{Space} 
+Else IfEqual key0, ETPXM, Send Exempt{Space} 
+Else IfEqual key0, ETSG, Send Setting{Space} 
+Else IfEqual key0, ETSG, Send Gets{Space} 
+Else IfEqual key0, ETSLN, Send Essential{Space} 
+Else IfEqual key0, ETUALV, Send Evaluate{Space} 
+Else IfEqual key0, ETUASCBN, Send Substance{Space} 
+Else IfEqual key0, ETUISN, Send Institute{Space} 
+Else IfEqual key0, ETYPLN, Send Plenty{Space} 
+Else IfEqual key0, EUAG, Send Gauge{Space} 
+Else IfEqual key0, EUAGV, Send Vague{Space} 
+Else IfEqual key0, EUASB, Send Abuse{Space} 
+Else IfEqual key0, EUH, Send Hue{Space} 
+Else IfEqual key0, EUIFLCN, Send Influence{Space} 
+Else IfEqual key0, EUISDC, Send Suicide{Space} 
+Else IfEqual key0, EUOSLCN, Send Counsel{Space} 
+Else IfEqual key0, EUPDL, Send Puddle{Space} 
+Else IfEqual key0, EY, Send Eye{Space} 
+Else IfEqual key0, EYADL, Send Delay{Space} 
+Else IfEqual key0, EYIAFC, Send Efficacy{Space} 
+Else IfEqual key0, EYL, Send Yell{Space} 
+Else IfEqual key0, EYOCVN, Send Convey{Space} 	
+Else IfEqual key0, ERPISN, Send Inspire{Space} 
+Else IfEqual key0, EOPSK, Send Spoke{Space} 
+Else IfEqual key0, EPAL, Send Leap{Space} 
+Else IfEqual key0, EPDXN, Send Expend{Space} 
+Else IfEqual key0, ERIAV, Send Arrive{Space} 
+Else IfEqual key0, EROP, Send Proper{Space} 
+Else IfEqual key0, ERPDC, Send Deprec{Space} 
+Else IfEqual key0, ERTIPN, Send Interpret{Space} 
+Else IfEqual key0, ERTUIPN, Send Interrupt{Space} 
+Else IfEqual key0, ETIALNM, Send Eliminate{Space} 
+Else IfEqual key0, ETIASCN, Send Instance{Space} 
+Else IfEqual key0, ETISCN, Send Scientist{Space} 
+Else IfEqual key0, ETIVN, Send Invite{Space} 
+Else IfEqual key0, ERUOPD, Send Produce{Space} 
+Else IfEqual key0, EACM, Send Came{Space} 	
+Else IfEqual key0, EADCN, Send Dance{Space} 	
+Else IfEqual key0, ERUDM, Send Drummer{Space} 
+Else IfEqual key0, EASFL, Send False{Space} 
+Else IfEqual key0, EASL, Send Sale{Space} 
+Else IfEqual key0, EASLC, Send Scale{Space} 
+Else IfEqual key0, EDG, Send Edge{Space} 
+Else IfEqual key0, EFB, Send Beef{Space} 
+Else IfEqual key0, EICV, Send Vice{Space} 
+Else IfEqual key0, EIDV, Send Dive{Space} 
+Else IfEqual key0, EIGN, Send Engine{Space} 
+Else IfEqual key0, EINM, Send Mine{Space} 
+Else IfEqual key0, EIOCVN, Send Convince{Space} 
+Else IfEqual key0, EIOSN, Send Session{Space} 
+Else IfEqual key0, ELC, Send Cell{Space} 
+Else IfEqual key0, EOHN, Send Hone{Space} 
+Else IfEqual key0, ERADM, Send Dream{Space} 
+
+Else IfEqual key0, ERASD, Send Address{Space} 
+Else IfEqual key0, ERDG, Send Degree{Space} 
+Else IfEqual key0, ERGCN, Send Encourage{Space} 
+
+Else IfEqual key0, ERIH, Send Hire{Space} 
+Else IfEqual key0, ERILC, Send Circle{Space} 
+Else IfEqual key0, ERPSCN, Send Presence{Space} 
+Else IfEqual key0, ERTI, Send Tire{Space} 
+Else IfEqual key0, ERTIPAC, Send Practice{Space} 
+Else IfEqual key0, ERTLCN, Send Electronic{Space} 
+Else IfEqual key0, ERTOCN, Send Concert{Space} 
+Else IfEqual key0, ERTOF, Send Effort{Space} 
+Else IfEqual key0, ERTOPC, Send Protect{Space} 
+Else IfEqual key0, ERTPX, Send Expert{Space} 
+Else IfEqual key0, ERTUION, Send Routine{Space} 
+Else IfEqual key0, ERTUO, Send Route{Space} 
+Else IfEqual key0, ERUOSC, Send Course{Space} 
+Else IfEqual key0, ERUOSC, Send Course{Space} 
+Else IfEqual key0, ERUSC, Send Secure{Space} 
+Else IfEqual key0, ERUSC, Send Secure{Space} 
+Else IfEqual key0, ERYL, Send Rely{Space} 
+Else IfEqual key0, ESCN, Send Scene{Space} 
+Else IfEqual key0, ESG, Send Seeing{Space} 
+Else IfEqual key0, ETAB, Send Beat{Space} 
+Else IfEqual key0, ETAD, Send Date{Space} 
+Else IfEqual key0, ETAD, Send Date{Space} 
+Else IfEqual key0, ETADH, Send Death{Space} 
+Else IfEqual key0, ETALM, Send Metal{Space} 
+Else IfEqual key0, ETFH, Send Theft{Space} 
+Else IfEqual key0, ETIADC, Send Dictate{Space} 
+Else IfEqual key0, ETIN, Send Intent{Space} 
+Else IfEqual key0, ETIOCM, Send Committee{Space} 
+Else IfEqual key0, ETIVN, Send Invent{Space} 
+Else IfEqual key0, ETOGN, Send Gotten{Space} 
+Else IfEqual key0, ETOSCN, Send Consent{Space} 
+Else IfEqual key0, ETOV, Send Vote{Space} 
+Else IfEqual key0, ETPXC, Send Except{Space} 
+Else IfEqual key0, ETUPAD, Send Update{Space} 
+Else IfEqual key0, ETY, Send Yet{Space} 
+Else IfEqual key0, ETYUAB, Send Beauty{Space} 
+Else IfEqual key0, EUAGLN, Send Language{Space} 
+Else IfEqual key0, EUASM, Send Assume{Space} 
+Else IfEqual key0, EUISDC, Send Suicide{Space} 
+Else IfEqual key0, EULB, Send Blue{Space} 
+Else IfEqual key0, EUNM, Send Menu{Space} 
+Else IfEqual key0, EUNM, Send Menu{Space} 
+Else IfEqual key0, EUPAS, Send Pause{Space} 
+Else IfEqual key0, ERADCN, Send Dancer{Space} 	
+Else IfEqual key0, EAGN, Send Engage{Space} 
+Else IfEqual key0, EIOM, Send Emotion{Space} 
+Else IfEqual key0, EOAVB, Send Above{Space} 
+Else IfEqual key0, EOJK, Send Joke{Space} 
+Else IfEqual key0, EPD, Send Deep{Space} 
+Else IfEqual key0, ERGN, Send Green{Space} 
+Else IfEqual key0, ERIANM, Send Remain{Space} 
+Else IfEqual key0, EROPV, Send Prove{Space} 
+Else IfEqual key0, ERPF, Send Prefer{Space} 
+Else IfEqual key0, ERTAH, Send Heart{Space} 
+Else IfEqual key0, ERTAHB, Send Breathe{Space} 
+Else IfEqual key0, ERTAN, Send Aren't{Space} 
+Else IfEqual key0, ERTIOA, Send Iteration{Space} 
+Else IfEqual key0, ERTIOA, Send Iteration{Space} 
+Else IfEqual key0, ERTIPAC, Send Practice{Space} 
+Else IfEqual key0, ERTPAN, Send Parent{Space} 
+Else IfEqual key0, ERYGN, Send Energy{Space} 
+Else IfEqual key0, ESDN, Send Send {Space} 
+Else IfEqual key0, ETASG, Send Stage{Space} 
+Else IfEqual key0, ETASG, Send Stage{Space} 
+Else IfEqual key0, ETIOPS, Send Opposite{Space} 
+Else IfEqual key0, ETLNM, Send Element{Space} 
+Else IfEqual key0, ETOLC, Send Collect{Space} 
+Else IfEqual key0, ETON, Send Note{Space} 
+Else IfEqual key0, ETUC, Send Cute{Space} 
+Else IfEqual key0, ETUSG, Send Suggest{Space} 
+Else IfEqual key0, ETVN, Send Event{Space} 
+Else IfEqual key0, ETYHD, Send They'd{Space} 
+Else IfEqual key0, ETYHL, Send Theyll{Space} 
+Else IfEqual key0, EUASC, Send Cause{Space} 
+Else IfEqual key0, EUOACN, Send Announce{Space} 
+Else IfEqual key0, EUSDC, Send Succeed{Space} 
+Else IfEqual key0, EUSDC, Send Succeed{Space} 
+Else IfEqual key0, EUSLN, Send Unless{Space} 
+Else IfEqual key0, EYOJN, Send Enjoy{Space} 
+Else IfEqual key0, EPS, Send Especially{Space} 	
+Else IfEqual key0, EADH, Send Head{Space} 		
+Else IfEqual key0, EADL, Send Lead{Space} 	
+Else IfEqual key0, EADM, Send Made{Space} 	
+Else IfEqual key0, EAFC, Send Face{Space} 	
+Else IfEqual key0, EAFLM, Send Female{Space} 	
+Else IfEqual key0, EAFM, Send Fame{Space} 	
+Else IfEqual key0, EAG, Send Age{Space} 	
+Else IfEqual key0, EAGHCN, Send Change{Space} 	
+Else IfEqual key0, EAGHLCN, Send Challenge{Space} 	
+Else IfEqual key0, EAGM, Send Game{Space} 	
+Else IfEqual key0, EAGNM, Send Manage{Space} 	
+Else IfEqual key0, EAGV, Send Gave{Space} 	
+Else IfEqual key0, EAHC, Send Each{Space} 	
+Else IfEqual key0, EAHCN, Send Chance{Space} 	
+Else IfEqual key0, EAHL, Send Heal{Space} 	
+Else IfEqual key0, EAHV, Send Have{Space} 	
+Else IfEqual key0, EAKM, Send Make{Space} 	
+Else IfEqual key0, EALB, Send Able{Space} 	
+Else IfEqual key0, EALCN, Send Clean{Space} 	
+Else IfEqual key0, EALM, Send Male{Space} 	
+Else IfEqual key0, EALN, Send Lean{Space} 	
+Else IfEqual key0, EANM, Send Name{Space} 	
+Else IfEqual key0, EASB, Send Base{Space} 	
+Else IfEqual key0, EASC, Send Case{Space} 	
+Else IfEqual key0, EASDK, Send Asked{Space} 	
+Else IfEqual key0, EASF, Send Safe{Space} 	
+Else IfEqual key0, EASKM, Send Makes{Space} 	
+Else IfEqual key0, EASM, Send Same{Space} 	
+Else IfEqual key0, EASV, Send Save{Space} 	
+Else IfEqual key0, EB, Send Be{Space} 	
+Else IfEqual key0, ECN, Send Necessary{Space}
+Else IfEqual key0, EDC, Send Dec{Space} 	
+Else IfEqual key0, EDF, Send Definitely{Space} 	
+Else IfEqual key0, EDL, Send Led{Space} 	
+Else IfEqual key0, EDN, Send Need{Space} 	
+Else IfEqual key0, EDN, Send End{Space} 	
+Else IfEqual key0, EDV, Send Develop{Space} 	
+Else IfEqual key0, EF, Send For Example{Space} 	
+Else IfEqual key0, EG, Send Everything{Space} 	
+Else IfEqual key0, EGB, Send Being{Space} 	
+Else IfEqual key0, EGL, Send Leg{Space} 	
+Else IfEqual key0, EH, Send He{Space} 	
+Else IfEqual key0, EHKC, Send Check{Space} 	
+Else IfEqual key0, EIACVN, Send Vaccine{Space} 	
+Else IfEqual key0, EIAD, Send Idea{Space} 	
+Else IfEqual key0, EIADM, Send Media{Space} 	
+Else IfEqual key0, EIAGNM, Send Imagine{Space} 	
+Else IfEqual key0, EIALM, Send Email{Space} 	
+Else IfEqual key0, EIC, Send Ice{Space} 
+Else IfEqual key0, EICN, Send Nice{Space} 	
+Else IfEqual key0, EID, Send Ide	
+Else IfEqual key0, EIDC, Send Decide{Space} 	
+Else IfEqual key0, EIDFL, Send Field{Space} 	
+Else IfEqual key0, EIDFL, Send Field{Space} 	
+Else IfEqual key0, EIDFN, Send Define{Space} 	
+Else IfEqual key0, EIDLM, Send Middle{Space} 	
+Else IfEqual key0, EIDN, Send Indeed{Space} 	
+Else IfEqual key0, EIFL, Send Life{Space} 	
+Else IfEqual key0, EIGBN, Send Begin{Space} 	
+Else IfEqual key0, EIGBN, Send Beginning{Space}
+Else IfEqual key0, EILV, Send Live{Space} 	
+Else IfEqual key0, EIOCV, Send Voice{Space} 	
+Else IfEqual key0, EIODV, Send Video{Space} 	
+Else IfEqual key0, EIOFC, Send Office{Space} 	
+Else IfEqual key0, EIOHC, Send Choice{Space} 	
+Else IfEqual key0, EIOLVN, Send Involve{Space} 	
+Else IfEqual key0, EIOSC, Send Section{Space} 	
+Else IfEqual key0, EIOSN, Send Noise{Space} 	
+Else IfEqual key0, EIP, Send Pipe{Space} 	
+Else IfEqual key0, EIPC, Send Piece{Space} 	
+Else IfEqual key0, EISCN, Send Since{Space} 	
+Else IfEqual key0, EISD, Send Side{Space} 	
+Else IfEqual key0, EISGLN, Send Single{Space} 	
+Else IfEqual key0, EIV, Send I've{Space}
+Else IfEqual key0, EKCN, Send Neck{Space} 	
+Else IfEqual key0, ELCN, Send Necessarily{Space} 	
+Else IfEqual key0, ELV, Send Level{Space} 	
+Else IfEqual key0, EM, Send Me{Space} 	
+Else IfEqual key0, EN, Send En	
+Else IfEqual key0, EN, Send En	
+Else IfEqual key0, ENM, Send Men{Space} 	
+Else IfEqual key0, EOASN, Send Season{Space} 	
+Else IfEqual key0, EOC, Send Eco{Space} 	
+Else IfEqual key0, EOCN, Send Once{Space} 	
+Else IfEqual key0, EODC, Send Code{Space} 	
+Else IfEqual key0, EODLM, Send Model{Space} 	
+Else IfEqual key0, EODN, Send Done{Space} 	
+Else IfEqual key0, EOGN, Send Enough{Space} 
+Else IfEqual key0, EUOGHN, Send Gone{Space} 	
+Else IfEqual key0, EOHL, Send Hole{Space} 	
+Else IfEqual key0, EOHM, Send Home{Space} 	
+Else IfEqual key0, EOLV, Send Love{Space} 	
+Else IfEqual key0, EON, Send One{Space} 	
+Else IfEqual key0, EOP, Send People{Space} 	
+Else IfEqual key0, EOPDLV, Send Develop{Space} 	
+Else IfEqual key0, EOPH, Send Hope{Space} 	
+Else IfEqual key0, EOPHN, Send Phone{Space} 	
+Else IfEqual key0, EOPN, Send Open{Space} 	
+Else IfEqual key0, EOPS, Send Pose{Space} 	
+Else IfEqual key0, EOPSHN, Send Phones{Space} 	
+Else IfEqual key0, EOSD, Send Does{Space} 	
+Else IfEqual key0, EOSG, Send Goes{Space} 	
+Else IfEqual key0, EOSH, Send Shoe{Space} 	
+Else IfEqual key0, EOSHC, Send Chose{Space} 	
+Else IfEqual key0, EOSL, Send Lose{Space} 	
+Else IfEqual key0, EOSLC, Send Close{Space} 	
+Else IfEqual key0, EOSM, Send Some{Space} 	
+Else IfEqual key0, EOV, Send Everyone{Space} 	
+Else IfEqual key0, EOZN, Send Zone{Space} 	
+Else IfEqual key0, EPAC, Send Pace{Space} 	
+Else IfEqual key0, EPAG, Send Page{Space} 	
+Else IfEqual key0, EPAK, Send Peak{Space} 	
+Else IfEqual key0, EPALC, Send Place{Space} 	
+Else IfEqual key0, EPASC, Send Space{Space} 	
+Else IfEqual key0, EPASH, Send Shape{Space} 	
+Else IfEqual key0, EPASK, Send Speak{Space} 	
+Else IfEqual key0, EPASL, Send Please{Space} 	
+Else IfEqual key0, EPDN, Send Depend{Space} 	
+Else IfEqual key0, EPHL, Send Help{Space} 	
+Else IfEqual key0, EPK, Send Keep{Space} 	
+Else IfEqual key0, EPSC, Send Spec{Space} 	
+Else IfEqual key0, EPSCL, Send Specifically{Space} 	
+Else IfEqual key0, EPSDN, Send Spend{Space} 	
+Else IfEqual key0, EPSH, Send Sheep{Space} 	
+Else IfEqual key0, EPSL, Send Sleep{Space} 	
+Else IfEqual key0, EPX, Send Experience{Space}
+Else IfEqual key0, ERA, Send Are{Space} 	
+Else IfEqual key0, ERAC, Send Care{Space} 	
+Else IfEqual key0, ERACM, Send Camera{Space} 	
+Else IfEqual key0, ERADFL, Send Federal	
+Else IfEqual key0, ERADH, Send Heard{Space} 	
+Else IfEqual key0, ERADY, Send Ready{Space} 	
+Else IfEqual key0, ERAG, Send Agree{Space} 	
+Else IfEqual key0, ERAGH, Send Hearing{Space} 	
+Else IfEqual key0, ERAGL, Send Large{Space} 	
+Else IfEqual key0, ERAGN, Send Range{Space} 	
+Else IfEqual key0, ERAH, Send Hear{Space} 	
+Else IfEqual key0, ERAHC, Send Reach{Space} 	
+Else IfEqual key0, ERAKB, Send Break{Space} 	
+Else IfEqual key0, ERAL, Send Real{Space} 	
+Else IfEqual key0, ERALC, Send Clear{Space} 	
+Else IfEqual key0, ERALN, Send Learn{Space} 	
+Else IfEqual key0, ERAN, Send Near{Space} 	
+Else IfEqual key0, ERASH, Send Share{Space} 	
+Else IfEqual key0, ERASHC, Send Search{Space} 	
+Else IfEqual key0, ERBM, Send Member{Space} 	
+Else IfEqual key0, ERF, Send Free{Space} 	
+Else IfEqual key0, ERH, Send Her{Space} 	
+Else IfEqual key0, ERIAS, Send Raise{Space} 	
+Else IfEqual key0, ERIDFN, Send Friend{Space} 	
+Else IfEqual key0, ERIDLV, Send Deliver{Space} 	
+Else IfEqual key0, ERIDLV, Send Deliver{Space} 	
+Else IfEqual key0, ERIDNM, Send Remind{Space} 	
+Else IfEqual key0, ERIDV, Send Derive{Space} 	
+Else IfEqual key0, ERIFB, Send Brief{Space} 	
+Else IfEqual key0, ERIFN, Send Infer{Space} 	
+Else IfEqual key0, ERIGN, Send Engineer{Space} 	
+Else IfEqual key0, ERIOGN, Send Region{Space} 	
+Else IfEqual key0, ERIOPA, Send Operation{Space} 	
+Else IfEqual key0, ERIOPDV, Send Provide{Space} 	
+Else IfEqual key0, ERIOSCN, Send Scenario{Space} 	
+Else IfEqual key0, ERIOSDC, Send Description{Space} 	
+Else IfEqual key0, ERIOVN, Send Environment{Space} 	
+Else IfEqual key0, ERIPC, Send Price{Space} 	
+Else IfEqual key0, ERISCB, Send Scribe{Space} 	
+Else IfEqual key0, ERISDC, Send Describe{Space} 	
+Else IfEqual key0, EROASN, Send Reason{Space} 	
+Else IfEqual key0, EROCN, Send Concern{Space} 	
+Else IfEqual key0, EROCV, Send Cover{Space} 	
+Else IfEqual key0, EROD, Send Order{Space} 	
+Else IfEqual key0, ERODC, Send Record{Space} 	
+Else IfEqual key0, EROF, Send Offer{Space} 	
+Else IfEqual key0, EROL, Send Role{Space} 	
+Else IfEqual key0, EROPACM, Send Compare{Space} 	
+Else IfEqual key0, EROPAFCNM, Send Performance{Space} 	
+Else IfEqual key0, EROPLBM, Send Problem{Space} 	
+Else IfEqual key0, EROPLX, Send Explore{Space} 	
+Else IfEqual key0, EROPSG, Send Progress{Space} 	
+Else IfEqual key0, EROPSN, Send Person{Space} 	
+Else IfEqual key0, EROSH, Send Horse{Space} 	
+Else IfEqual key0, EROV, Send Over{Space} 	
+Else IfEqual key0, ERP, Send Per{Space} 
+Else IfEqual key0, ERPA, Send Prepare{Space} 	
+Else IfEqual key0, ERPALC, Send Replace{Space} 	
+Else IfEqual key0, ERPS, Send Press{Space} 	
+Else IfEqual key0, ERS, Send Res{Space} 	
+Else IfEqual key0, ERSCN, Send Screen{Space} 	
+Else IfEqual key0, ERSV, Send Serve{Space} 	
+Else IfEqual key0, ERT, Send Tree{Space} 	
+Else IfEqual key0, ERTA, Send Rate{Space} 	
+Else IfEqual key0, ERTAC, Send React{Space} 	
+Else IfEqual key0, ERTAFH, Send Father{Space} 	
+Else IfEqual key0, ERTAG, Send Great{Space} 	
+Else IfEqual key0, ERTAHC, Send Character{Space} 	
+Else IfEqual key0, ERTAL, Send Later{Space} 	
+Else IfEqual key0, ERTALCN, Send Central{Space} 	
+Else IfEqual key0, ERTAM, Send Matter{Space} 	
+Else IfEqual key0, ERTAX, Send Extra	
+Else IfEqual key0, ERTB, Send Better{Space} 	
+Else IfEqual key0, ERTCN, Send Recent{Space} 	
+Else IfEqual key0, ERTH, Send There{Space} 	
+Else IfEqual key0, ERTHS, Send There's{Space} 	
+Else IfEqual key0, ERTIACN, Send Certain{Space} 	
+Else IfEqual key0, ERTIAGN, Send Integrate{Space} 	
+Else IfEqual key0, ERTIAL, Send Retail{Space} 	
+Else IfEqual key0, ERTIALCV, Send Vertical{Space} 	
+Else IfEqual key0, ERTIALV, Send Relative{Space} 	
+Else IfEqual key0, ERTIDC, Send Credit{Space} 	
+Else IfEqual key0, ERTIFL, Send Filter{Space} 	
+Else IfEqual key0, ERTIH, Send Their{Space} 	
+Else IfEqual key0, ERTIN, Send Inter	
+Else IfEqual key0, ERTIOADCN, Send Coordinate{Space} 	
+Else IfEqual key0, ERTIPA, Send Therapist{Space} 	
+Else IfEqual key0, ERTIPAH, Send Therapist{Space} 	
+Else IfEqual key0, ERTIPASH, Send Therapist{Space} 	
+Else IfEqual key0, ERTIPH, Send Therapist{Space} 	
+Else IfEqual key0, ERTIS, Send Sister{Space} 	
+Else IfEqual key0, ERTL, Send Letter{Space} 	
+Else IfEqual key0, ERTM, Send Term{Space} 	
+Else IfEqual key0, ERTN, Send Enter{Space} 	
+Else IfEqual key0, ERTO, Send Tore{Space} 	
+Else IfEqual key0, ERTOASG, Send Storage{Space} 	
+Else IfEqual key0, ERTOC, Send Correct{Space} 	
+Else IfEqual key0, ERTOGH, Send Together{Space} 	
+Else IfEqual key0, ERTOH, Send Other{Space} 	
+Else IfEqual key0, ERTOHB, Send Bother{Space} 	
+Else IfEqual key0, ERTOHM, Send Mother{Space} 	
+Else IfEqual key0, ERTOP, Send Report{Space} 	
+Else IfEqual key0, ERTOS, Send Store{Space} 	
+Else IfEqual key0, ERTOSN, Send Testosterone{Space} 	
+Else IfEqual key0, ERTPA, Send Parate{Space} 	
+Else IfEqual key0, ERTPAN, Send Partner{Space} 	
+Else IfEqual key0, ERTPCN, Send Percent{Space} 	
+Else IfEqual key0, ERTPSN, Send Present{Space} 	
+Else IfEqual key0, ERTS, Send Rest{Space} 	
+Else IfEqual key0, ERTSH, Send There's{Space} 	
+Else IfEqual key0, ERTU, Send True{Space} 	
+Else IfEqual key0, ERTUAC, Send Accurate{Space} 	
+Else IfEqual key0, ERTUAFCNM, Send Manufacture{Space} 	
+Else IfEqual key0, ERTUAN, Send Nature{Space} 	
+Else IfEqual key0, ERTUCN, Send Current{Space} 	
+Else IfEqual key0, ERTUF, Send Future{Space} 	
+Else IfEqual key0, ERTUIPC, Send Picture{Space} 	
+Else IfEqual key0, ERTULC, Send Culture{Space} 	
+Else IfEqual key0, ERTUSL, Send Result{Space} 	
+Else IfEqual key0, ERTVNM, Send Environment{Space} 	
+Else IfEqual key0, ERTXM, Send Extreme{Space} 	
+Else IfEqual key0, ERTYH, Send They're{Space} 	
+Else IfEqual key0, ERTYN, Send Entry{Space} 	
+Else IfEqual key0, ERU, Send You're{Space} 	
+Else IfEqual key0, ERUDC, Send Reduce{Space} 	
+Else IfEqual key0, ERUDN, Send Under{Space} 	
+Else IfEqual key0, ERUL, Send Rule{Space} 	
+Else IfEqual key0, ERUOPS, Send Purpose{Space} 	
+Else IfEqual key0, ERUPS, Send Super{Space} 	
+Else IfEqual key0, ERUS, Send Sure{Space} 	
+Else IfEqual key0, ERUSFL, Send Yourself{Space} 	
+Else IfEqual key0, ERUSM, Send Summer{Space} 	
+Else IfEqual key0, ERV, Send Ever{Space} 	
+Else IfEqual key0, ERVN, Send Never{Space} 	
+Else IfEqual key0, ERVN, Send Never{Space} 	
+Else IfEqual key0, ERY, Send Every{Space} 	
+Else IfEqual key0, ERYAL, Send Early{Space} 	
+Else IfEqual key0, ERYOGC, Send Grocery{Space} 	
+Else IfEqual key0, ERYPH, Send Hyper	
+Else IfEqual key0, ERYUSG, Send Surgery{Space} 	
+Else IfEqual key0, ERYV, Send Every{Space} 	
+Else IfEqual key0, ES, Send See{Space} 	
+Else IfEqual key0, ESC, Send Second{Space} 	
+Else IfEqual key0, ESDN, Send Send {Space} 	
+Else IfEqual key0, ESFL, Send Self{Space} 	
+Else IfEqual key0, ESH, Send She{Space} 	
+Else IfEqual key0, ESK, Send Seek{Space} 	
+Else IfEqual key0, ESL, Send Else{Space}
+Else IfEqual key0, ESM, Send Seem{Space} 	
+Else IfEqual key0, ESN, Send Sense{Space} 	
+Else IfEqual key0, ET, Send Even Though{Space} 	
+Else IfEqual key0, ETA, Send Ate{Space} 	
+Else IfEqual key0, ETADH, Send Hated{Space} 	
+Else IfEqual key0, ETADLN, Send Dental{Space} 	
+Else IfEqual key0, ETAFC, Send Affect{Space} 	
+Else IfEqual key0, ETAGHC, Send Teaching{Space} 	
+Else IfEqual key0, ETAH, Send Hate{Space} 	
+Else IfEqual key0, ETAHC, Send Teach{Space} 	
+Else IfEqual key0, ETAHL, Send Health{Space} 	
+Else IfEqual key0, ETAK, Send Take{Space} 	
+Else IfEqual key0, ETAL, Send Late{Space} 	
+Else IfEqual key0, ETALB, Send Table{Space} 	
+Else IfEqual key0, ETAM, Send Team{Space} 	
+Else IfEqual key0, ETAN, Send Neat{Space} 	
+Else IfEqual key0, ETAS, Send State{Space} 	
+Else IfEqual key0, ETASCN, Send Stance{Space} 	
+Else IfEqual key0, ETASL, Send Least{Space} 	
+Else IfEqual key0, ETAXC, Send Exact{Space} 	
+Else IfEqual key0, ETC, Send Et Cetera{Space} 	
+Else IfEqual key0, ETCN, Send Cent{Space} 	
+Else IfEqual key0, ETDN, Send Tend{Space} 	
+Else IfEqual key0, ETFC, Send Effect{Space} 	
+Else IfEqual key0, ETFL, Send Felt{Space} 	
+Else IfEqual key0, ETG, Send Get{Space} 	
+Else IfEqual key0, ETGV, Send Everything{Space} 	
+Else IfEqual key0, ETH, Send The{Space} 	
+Else IfEqual key0, ETHC, Send Tech{Space} 	
+Else IfEqual key0, ETHCN, Send Technology{Space} 	
+Else IfEqual key0, ETHM, Send Them{Space} 	
+Else IfEqual key0, ETHN, Send Then{Space} 	
+Else IfEqual key0, ETIACV, Send Active{Space} 	
+Else IfEqual key0, ETIAV, Send Ative	
+Else IfEqual key0, ETIGLCN, Send Intelligence{Space} 	
+Else IfEqual key0, ETIGLN, Send Intelligent{Space} 	
+Else IfEqual key0, ETIHC, Send Ethic{Space} 	
+Else IfEqual key0, ETIL, Send Little{Space} 	
+Else IfEqual key0, ETILCN, Send Client{Space} 	
+Else IfEqual key0, ETIM, Send Item{Space} 	
+Else IfEqual key0, ETIM, Send Time{Space} 	
+Else IfEqual key0, ETIOCM, Send Committee{Space} 	
+Else IfEqual key0, ETIOCN, Send Notice{Space} 	
+Else IfEqual key0, ETIONM, Send Mention{Space} 	
+Else IfEqual key0, ETIPAN, Send Patient{Space} 	
+Else IfEqual key0, ETIS, Send Site{Space} 	
+Else IfEqual key0, ETIS, Send Ities{Space} 	
+Else IfEqual key0, ETISM, Send Times{Space} 	
+Else IfEqual key0, ETISVN, Send Invest{Space} 	
+Else IfEqual key0, ETISX, Send Exist{Space} 	
+Else IfEqual key0, ETIV, Send Tive{Space} 	
+Else IfEqual key0, ETIXC, Send Excite{Space} 	
+Else IfEqual key0, ETL, Send Let{Space} 	
+Else IfEqual key0, ETM, Send Met{Space} 	
+Else IfEqual key0, ETM, Send Met{Space} 	
+Else IfEqual key0, ETN, Send Net{Space}
+Else IfEqual key0, ETOALC, Send Locate{Space} 	
+Else IfEqual key0, ETOCN, Send Connect{Space} 	
+Else IfEqual key0, ETOCNM, Send Comment{Space} 	
+Else IfEqual key0, ETOFN, Send Often{Space} 	
+Else IfEqual key0, ETOGH, Send Together{Space} 	
+Else IfEqual key0, ETOHL, Send Hotel{Space} 	
+Else IfEqual key0, ETOJCB, Send Object{Space} 	
+Else IfEqual key0, ETONM, Send Moment{Space} 	
+Else IfEqual key0, ETOPCN, Send Concept{Space} 	
+Else IfEqual key0, ETOPKC, Send Pocket{Space} 	
+Else IfEqual key0, ETOSH, Send Those{Space} 	
+Else IfEqual key0, ETOSHN, Send Honest{Space} 	
+Else IfEqual key0, ETPAC, Send Accept{Space} 	
+Else IfEqual key0, ETPDN, Send Dependent{Space} 	
+Else IfEqual key0, ETPK, Send Kept{Space} 	
+Else IfEqual key0, ETPS, Send Step{Space} 	
+Else IfEqual key0, ETPS, Send Step{Space} 	
+Else IfEqual key0, ETPSN, Send Spent{Space} 	
+Else IfEqual key0, TPXC, Send Expect{Space} 	
+Else IfEqual key0, ETS, Send Set{Space} 	
+Else IfEqual key0, ETSB, Send Best{Space} 	
+Else IfEqual key0, ETSH, Send These{Space} 	
+Else IfEqual key0, ETSHC, Send Chest{Space} 	
+Else IfEqual key0, ETSHLB, Send Establish{Space} 	
+Else IfEqual key0, ETSL, Send Let's{Space} 	
+Else IfEqual key0, ETSLC, Send Select{Space} 	
+Else IfEqual key0, ETSN, Send Sent{Space} 
+Else IfEqual key0, ETYSLN, Send Sent{Space} 	
+	
+Else IfEqual key0, ETUADC, Send Educate{Space} 	
+Else IfEqual key0, ETUAGNM, Send Augment{Space} 	
+Else IfEqual key0, ETUINM, Send Minute{Space} 	
+Else IfEqual key0, ETUIPADLC, Send Duplicate{Space} 	
+Else IfEqual key0, ETUODCNM, Send Document{Space} 	
+Else IfEqual key0, ETUSDN, Send Student{Space} 	
+Else IfEqual key0, ETUVN, Send Eventually{Space} 	
+Else IfEqual key0, ETX, Send External{Space} 	
+Else IfEqual key0, ETXN, Send Next{Space} 	
+Else IfEqual key0, ETYH, Send They{Space} 	
+Else IfEqual key0, ETYHV, Send They've{Space} 	
+Else IfEqual key0, ETYIDN, Send Identity{Space} 	
+Else IfEqual key0, ETYOSCM, Send Ecosystem{Space} 	
+Else IfEqual key0, ETYP, Send Type{Space} 	
+Else IfEqual key0, ETYSL, Send Style{Space} 	
+Else IfEqual key0, ETYSM, Send System{Space} 	
+Else IfEqual key0, EUAGLC, Send Colleague{Space} 	
+Else IfEqual key0, EUALV, Send Value{Space} 	
+Else IfEqual key0, EUD, Send Education{Space} 	
+Else IfEqual key0, EUGH, Send Huge{Space} 	
+Else IfEqual key0, EUIADCN, Send Audience{Space} 	
+Else IfEqual key0, EUIS, Send Issue{Space} 	
+Else IfEqual key0, EUOPS, Send Suppose{Space} 	
+Else IfEqual key0, EUOSFCN, Send Confuse{Space} 	
+Else IfEqual key0, EUOSH, Send House{Space} 	
+Else IfEqual key0, EUS, Send Use{Space} 	
+Else IfEqual key0, EUSC, Send Success{Space} 	
+Else IfEqual key0, EUSDN, Send Sudden{Space} 	
+Else IfEqual key0, EUSG, Send Guess{Space} 	
+Else IfEqual key0, EUV, Send You've{Space} 	
+Else IfEqual key0, EV, Send Ever{Space} 	
+Else IfEqual key0, EVB, Send Everybody{Space} 	
+Else IfEqual key0, EVN, Send Even{Space} 	
+Else IfEqual key0, EX, Send Exactly{Space} 	
+Else IfEqual key0, EX, Send Ex	
+Else IfEqual key0, EXC, Send Excellent{Space} 	
+Else IfEqual key0, EYALZN, Send Analyze{Space} 	
+Else IfEqual key0, EYAS, Send Easy{Space} 	
+Else IfEqual key0, EYB, Send Bye{Space} 	
+Else IfEqual key0, EYK, Send Key{Space} 	
+Else IfEqual key0, EYLC, Send Cycle{Space} 	
+Else IfEqual key0, EYONM, Send Money{Space} 	
+Else IfEqual key0, EYS, Send Yes{Space} 	
+Else IfEqual key0, EYSFLM, Send Myself{Space} 	
+Else IfEqual key0, EYSFLM, Send Myself{Space} 	
+Else IfEqual key0, EYV, Send Every{Space} 
+Else IfEqual key0, EALBM, Send Blame{Space} 
+Else IfEqual key0, EASL, Send Lease{Space} 
+Else IfEqual key0, EDKC, Send Deck{Space} 
+Else IfEqual key0, ERANM, Send Manner{Space} 
+Else IfEqual key0, ERFL, Send Freelance{Space} 
+Else IfEqual key0, ERIOPD, Send Period{Space} 
+Else IfEqual key0, ERIPX, Send Expire{Space} 
+Else IfEqual key0, ERPDC, Send Precede{Space} 
+Else IfEqual key0, ERTIAN, Send Entertain{Space} 
+Else IfEqual key0, ETID, Send Edit{Space} 
+Else IfEqual key0, ETLC, Send Elect{Space} 
+Else IfEqual key0, EUIDG, Send Guide{Space} 
+Else IfEqual key0, EUIGN, Send Genuine{Space} 
+Else IfEqual key0, EYAGLC, Send Legacy{Space} 	
+Return
+SENDOup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, OA, Send Anyone{Space} 
+Else IfEqual key0, OAN, Send Anyone{Space} 
+Else IfEqual key0, OADL, Send Load{Space} 
+Else IfEqual key0, OAGNM, Send Among{Space} 
+Else IfEqual key0, ODFL, Send Fold{Space} 
+Else IfEqual key0, OGM, Send Oh My God.{Space} 
+Else IfEqual key0, OAHLC, Send Alcohol{Space} 
+Else IfEqual key0, ODGL, Send Gold{Space} 
+Else IfEqual key0, ODLB, Send Bold{Space} 
+Else IfEqual key0, ODLC, Send Cold{Space} 
+Else IfEqual key0, OFKL, Send Folk{Space} 
+Else IfEqual key0, OGL, Send Log{Space} 
+Else IfEqual key0, OZM, Send Zoom{Space} 
+Else IfEqual key0, OMSGH, Send Oh My Gosh.{Space} 
+Else IfEqual key0, OSGH, Send Gosh{Space} 
+Else IfEqual key0, OSN, Send Soon{Space} 
+Else IfEqual key0, OALN, Send Loan{Space} 
+Else IfEqual key0, OBM, Send Bomb{Space} 
+Else IfEqual key0, OSHKC, Send Shock{Space} 
+Else IfEqual key0, OXB, Send Box{Space} 
+Else IfEqual key0, OAG, Send Ago{Space} 
+Else IfEqual key0, OSN, Send Son{Space} 
+Else IfEqual key0, OAGL, Send Goal{Space} 
+Else IfEqual key0, OAGLN, Send Along{Space} 
+Else IfEqual key0, OAGN, Send Going To{Space} 
+Else IfEqual key0, OASL, Send Also{Space} 
+Else IfEqual key0, OC, Send Could{Space} 
+Else IfEqual key0, OCM, Send Com
+Else IfEqual key0, OCN, Send Con
+Else IfEqual key0, OCNM, Send Common{Space} 
+Else IfEqual key0, OD, Send Do{Space} 
+Else IfEqual key0, ODC, Send Document{Space} 
+Else IfEqual key0, ODF, Send Food{Space} 
+Else IfEqual key0, ODG, Send Doing{Space} 
+Else IfEqual key0, ODHL, Send Hold{Space} 
+Else IfEqual key0, ODL, Send Old{Space} 
+Else IfEqual key0, OF, Send Of{Space} 
+Else IfEqual key0, OFC, Send Of Course{Space} 
+Else IfEqual key0, OFC, Send Of Course{Space} 
+Else IfEqual key0, OFCN, Send Confirm{Space} 
+Else IfEqual key0, OFN, Send Information{Space} 
+Else IfEqual key0, OG, Send Go{Space} 
+Else IfEqual key0, OGLN, Send Long{Space} 
+Else IfEqual key0, OGLV, Send Loving{Space} 
+Else IfEqual key0, OGN, Send Gone{Space} 
+Else IfEqual key0, OHM, Send Homo
+Else IfEqual key0, OJB, Send Job{Space} 
+Else IfEqual key0, OK, Send Kind Of{Space} 
+Else IfEqual key0, OKB, Send Book{Space} 
+Else IfEqual key0, OKC, Send Cook{Space} 
+Else IfEqual key0, OKL, Send Look{Space} 
+Else IfEqual key0, OKLC, Send Lock{Space} 
+Else IfEqual key0, OLN, Send Online{Space} 
+Else IfEqual key0, ON, Send On{Space} 
+Else IfEqual key0, ONM, Send Moon{Space} 
+Else IfEqual key0, OP, Send Opportunity{Space} 
+Else IfEqual key0, OPN, Send Open{Space} 
+Else IfEqual key0, OPS, Send Opportunities{Space} 
+Else IfEqual key0, OPSH, Send Shop{Space} 
+Else IfEqual key0, OS, Send So{Space} 
+Else IfEqual key0, OSF, Send Sort Of{Space} 
+Else IfEqual key0, OSFKL, Send Folks{Space} 
+Else IfEqual key0, OSGN, Send Song{Space} 
+Else IfEqual key0, OSHLC, Send School{Space} 
+Else IfEqual key0, OSM, Send Someone{Space} 
+Else IfEqual key0, OSN, Send Soon{Space} 
+Else IfEqual key0, OVB, Send Obviously{Space} 
+Else IfEqual key0, OALC, Send Local{Space} 
+Else IfEqual key0, OFLC, Send Official{Space} 
+Else IfEqual key0, OH, Send Oh, {Space} 
+Else IfEqual key0, OSDL, Send Sold{Space} 
+Return
+SENDPup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, PAC, Send Cap{Space} 
+Else IfEqual key0, PK, Send Keep{Space} 	
+Else IfEqual key0, UPDG, Send Pudding{Space} 		
+Else IfEqual key0, PSFC, Send Specific{Space} 
+Else IfEqual key0, PFHL, Send Helpful{Space} 
+Else IfEqual key0, PHL, Send Helpful{Space} 
+Else IfEqual key0, PAKC, Send Pack{Space} 
+Else IfEqual key0, PAM, Send Map{Space} 
+Else IfEqual key0, PASM, Send Spam{Space} 
+Else IfEqual key0, PGK, Send Package{Space} 
+Else IfEqual key0, PK, Send Keep{Space} 
+Else IfEqual key0, PAL, Send Application{Space} 
+Else IfEqual key0, PB, Send Possible{Space} 
+Else IfEqual key0, PAG, Send Gap{Space} 
+Else IfEqual key0, PASL, Send Applies{Space} 
+Else IfEqual key0, PCNM, Send Companion{Space} 
+Else IfEqual key0, PDXN, Send Expand{Space} 
+Else IfEqual key0, PGK, Send Package{Space} 
+Else IfEqual key0, PLCNM, Send Complain{Space} 
+Else IfEqual key0, PLCNM, Send Complain{Space} 
+Else IfEqual key0, PSDN, Send Dispense{Space} 
+Else IfEqual key0, PSXVN, Send Expansive{Space} 
+Else IfEqual key0, PA, Send App{Space} 
+Else IfEqual key0, PAGLZ, Send Apologize{Space} 
+Else IfEqual key0, PALCM, Send Accomplish{Space} 
+Else IfEqual key0, PASHLCM, Send Accomplish{Space} 
+Else IfEqual key0, PSK, Send Speak{Space} 
+Else IfEqual key0, PSLBM, Send Impossible{Space} 
+Else IfEqual key0, PSX, Send Expose{Space} 
+Else IfEqual key0, PALN, Send Plan{Space} 
+Else IfEqual key0, PAS, Send Pass{Space} 
+Else IfEqual key0, PFH, Send Hopefully{Space} 
+Else IfEqual key0, PH, Send Hope{Space} 
+Else IfEqual key0, PSLC, Send Special{Space} 
+Else IfEqual key0, PCM, Send Company{Space} 
+Else IfEqual key0, PDCM, Send Pandemic{Space} 
+Else IfEqual key0, PF, Send Perfect{Space} 
+Else IfEqual key0, PFH, Send Hopefully{Space} 
+Else IfEqual key0, PG, Send Page{Space} 
+Else IfEqual key0, PGH, Send Happening{Space} 
+Else IfEqual key0, PGLB, Send Publishing{Space} 
+Else IfEqual key0, PHN, Send Happen{Space} 
+Else IfEqual key0, PJM, Send Jump{Space} 
+Else IfEqual key0, PL, Send People{Space} 
+Else IfEqual key0, PLB, Send Possibly{Space} 
+Else IfEqual key0, PLC, Send Couple{Space} 
+Else IfEqual key0, PLCB, Send Public{Space} 
+Else IfEqual key0, PLCM, Send Complete{Space} 
+Else IfEqual key0, PLXM, Send Example{Space} 
+Else IfEqual key0, PLXN, Send Explain{Space} 
+Else IfEqual key0, PN, Send No Problem{Space} 
+Else IfEqual key0, PS, Send Specifically{Space} 
+Else IfEqual key0, PSCM, Send Companies{Space} 
+Else IfEqual key0, PSD, Send Speed{Space} 
+Else IfEqual key0, PSH, Send Hospital{Space} 
+Else IfEqual key0, PSL, Send Please{Space} 
+Else IfEqual key0, PSLB, Send Possible{Space} 
+Else IfEqual key0, PSLM, Send Simple{Space} 
+Else IfEqual key0, PSN, Send Passion{Space} 
+Else IfEqual key0, PX, Send Experience{Space} 
+Else IfEqual key0, PSHLB, Send Publish{Space} 
+Return
+SENDAup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, AB, Send About{Space} 
+Else IfEqual key0, ADV, Send Avoid{Space} 
+Else IfEqual key0, ADCVN, Send Advance{Space} 
+Else IfEqual key0, ASKC, Send Sack{Space} 
+Else IfEqual key0, ABN, Send Banana{Space} 
+Else IfEqual key0, AFV, Send Favorite{Space} 
+Else IfEqual key0, AC, Send Actually{Space} 
+Else IfEqual key0, ADGL, Send Glad{Space} 
+Else IfEqual key0, ADBN, Send Band{Space} 
+Else IfEqual key0, ADLN, Send Land{Space} 
+Else IfEqual key0, ADNM, Send Damn{Space} 
+Else IfEqual key0, AGHN, Send Hang{Space} 
+Else IfEqual key0, AGKBN, Send Banking{Space} 
+Else IfEqual key0, ALCM, Send Calm{Space} 
+Else IfEqual key0, ASCN, Send Scan{Space} 
+Else IfEqual key0, ASDHN, Send Hands{Space} 
+Else IfEqual key0, ASDNM, Send Admission{Space} 
+Else IfEqual key0, ADCM, Send Academic{Space} 
+Else IfEqual key0, ADCM, Send Academic{Space} 
+Else IfEqual key0, ADCV, Send Advice{Space} 
+Else IfEqual key0, ADCV, Send Advice{Space} 
+Else IfEqual key0, ADM, Send Mad{Space} 
+Else IfEqual key0, ADV, Send Advertise{Space} 
+Else IfEqual key0, AGCN, Send Agency{Space} 
+Else IfEqual key0, AGNM, Send Among{Space} 
+Else IfEqual key0, AHKC, Send Hack{Space} 
+Else IfEqual key0, AHL, Send Hall{Space} 
+Else IfEqual key0, ALN, Send Alone{Space} 
+Else IfEqual key0, ASD, Send Ads{Space} 
+Else IfEqual key0, ASDV, Send Advise{Space} 
+Else IfEqual key0, ASHC, Send Cash{Space} 
+Else IfEqual key0, ASM, Send Assume{Space} 
+Else IfEqual key0, AGV, Send Average{Space} 
+Else IfEqual key0, AHCV, Send Achieve{Space} 
+Else IfEqual key0, AKLCB, Send Black{Space} 
+Else IfEqual key0, AVB, Send Above{Space} 
+Else IfEqual key0, ACN, Send Can{Space} 
+Else IfEqual key0, ADGCN, Send Dancing{Space} 	
+Else IfEqual key0, ADB, Send Anybody{Space} 
+Else IfEqual key0, ADF, Send Afterwards{Space} 
+Else IfEqual key0, ADGC, Send According{Space} 
+Else IfEqual key0, ADH, Send Had{Space} 
+Else IfEqual key0, ADHN, Send Hand{Space} 
+Else IfEqual key0, ADL, Send Already{Space} 
+Else IfEqual key0, AF, Send After{Space} 
+Else IfEqual key0, AFG, Send Affecting{Space} 
+Else IfEqual key0, AFHL, Send Half{Space} 
+Else IfEqual key0, AFL, Send Fall{Space} 
+Else IfEqual key0, AG, Send Anything{Space} 
+Else IfEqual key0, AGM, Send Amazing{Space} 
+Else IfEqual key0, AGN, Send Again{Space} 
+Else IfEqual key0, AKCB, Send Back{Space} 
+Else IfEqual key0, AL, Send All{Space} 
+Else IfEqual key0, ALB, Send Lab{Space} 
+Else IfEqual key0, ALC, Send Call{Space} 
+Else IfEqual key0, ALM, Send Almost{Space} 
+Else IfEqual key0, ALVB, Send Available{Space} 
+Else IfEqual key0, AM, Send Am{Space} 
+Else IfEqual key0, AN, Send An{Space} 
+Else IfEqual key0, ANM, Send Man{Space} 
+Else IfEqual key0, AS, Send As{Space} 
+Else IfEqual key0, ASB, Send Absolutely{Space} 
+Else IfEqual key0, ASDK, Send Asked{Space} 
+Else IfEqual key0, ASGL, Send Glass{Space} 
+Else IfEqual key0, ASH, Send Has{Space} 
+Else IfEqual key0, ASHL, Send Lash{Space} 
+Else IfEqual key0, ASK, Send Ask{Space} 
+Else IfEqual key0, ASLC, Send Class{Space} 
+Else IfEqual key0, ASLM, Send Small{Space} 
+Else IfEqual key0, AKBN, Send Bank{Space} 
+Else IfEqual key0, ASN, Send Answer{Space} 
+Else IfEqual key0, AXV, Send Vaccine{Space} 
+Else IfEqual key0, AZM, Send Amazon{Space} 
+Else IfEqual key0, AD, Send Ad{Space} 
+Return
+SENDSup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, SBN, Send Business{Space} 
+Else IfEqual key0, SCB, Send Basic{Space} 
+Else IfEqual key0, SHM, Send Somehow{Space} 
+Else IfEqual key0, SDHLC, Send Schedule{Space} 
+Else IfEqual key0, SZ, Send Size{Space} 
+Else IfEqual key0, SCM, Send Comes{Space} 
+Else IfEqual key0, SDB, Send Besides{Space} 
+Else IfEqual key0, SDHBN, Send Husband{Space} 
+Else IfEqual key0, SDN, Send Inside{Space} 
+Else IfEqual key0, SHL, Send She'll{Space} 
+Else IfEqual key0, SLVB, Send Visible{Space} 
+Else IfEqual key0, SD, Send Somebody{Space} 
+Else IfEqual key0, SCNM, Send Consume{Space} 
+Else IfEqual key0, SLCN, Send License{Space} 
+Else IfEqual key0, SLN, Send Lesson{Space} 
+Else IfEqual key0, SNM, Send Mission{Space} 
+Else IfEqual key0, SNM, Send Mission{Space} 
+Else IfEqual key0, SVM, Send Massive{Space} 
+Else IfEqual key0, SVN, Send Vision{Space} 
+Else IfEqual key0, SDC, Send Describe{Space} 
+Else IfEqual key0, SFCN, Send Confuse{Space} 
+Else IfEqual key0, SHN, Send Hasn't{Space} 
+Else IfEqual key0, SDCN, Send Decision{Space} 
+Else IfEqual key0, SDGN, Send Design{Space} 
+Else IfEqual key0, SDLCM, Send Social Media{Space} 
+Else IfEqual key0, SF, Send For Sure.{Space} 
+Else IfEqual key0, SFGCN, Send Significant{Space} 
+Else IfEqual key0, SFLM, Send Myself{Space} 
+Else IfEqual key0, SG, Send Something{Space} 
+Else IfEqual key0, SGM, Send Message{Space} 
+Else IfEqual key0, SH, Send Should{Space} 
+Else IfEqual key0, SDHN, Send Shouldn't{Space} 
+Else IfEqual key0, SHN, Send Shouldn't{Space} 
+Else IfEqual key0, SH, Send Should{Space} 
+Else IfEqual key0, SL, Send Sell{Space} 
+Else IfEqual key0, SLC, Send Social{Space} 
+Else IfEqual key0, SLCB, Send Basically{Space} 
+Else IfEqual key0, SLP, Send Sleep{Space} 
+Else IfEqual key0, SLV, Send Visual{Space} 
+Else IfEqual key0, SM, Send Some{Space} 
+Else IfEqual key0, SN, Send Seen{Space} 
+Else IfEqual key0, SRCV, Send Service{Space} 
+Else IfEqual key0, ST, Send Street{Space} 
+Else IfEqual key0, SV, Send Versus{Space} 
+Else IfEqual key0, SXCVL, Send Exclusive{Space} 
+Return
+SENDDup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, DBN, Send Nobody{Space} 
+Else IfEqual key0, DCM, Send Command{Space} 
+Else IfEqual key0, DHLN, Send Handle{Space} 
+Else IfEqual key0, DNM, Send Domain{Space} 
+Else IfEqual key0, DHLN, Send Handle{Space} 
+Else IfEqual key0, DGHLN, Send Handling{Space} 
+Else IfEqual key0, DCN, Send Couldn't{Space} 
+Else IfEqual key0, DCN, Send Candid{Space} 
+Else IfEqual key0, DCNM, Send Medicine{Space} 
+Else IfEqual key0, DHN, Send Hadn't{Space} 
+Else IfEqual key0, DLCN, Send Include{Space} 
+Else IfEqual key0, DCV, Send Device{Space} 
+Else IfEqual key0, DFKB, Send Feedback{Space} 
+Else IfEqual key0, DFN, Send Found{Space} 
+Else IfEqual key0, DG, Send Good{Space} 
+Else IfEqual key0, DGB, Send Background{Space} 
+Else IfEqual key0, DGLB, Send Building{Space} 
+Else IfEqual key0, DGM, Send Damage{Space} 
+Else IfEqual key0, DGN, Send Ground{Space} 
+Else IfEqual key0, DHBN, Send Behind{Space} 
+Else IfEqual key0, DL, Send Deal{Space} 
+Else IfEqual key0, DLB, Send Build{Space} 
+Else IfEqual key0, DLCBN, Send Incredible{Space} 
+Else IfEqual key0, DLCM, Send Medical{Space} 
+Else IfEqual key0, DLCM, Send Medical{Space} 
+Else IfEqual key0, DM, Send Made{Space} 
+Else IfEqual key0, DN, Send Done{Space} 
+Else IfEqual key0, DRG, Send During, {Space} 
+Else IfEqual key0, DV, Send Everyday{Space} 
+Else IfEqual key0, DVM, Send Development{Space} 
+Else IfEqual key0, DX, Send Excited{Space} 
+Return
+SENDFup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, FB, Send Before{Space} 
+Else IfEqual key0, FCM, Send Comfortable{Space} 
+Else IfEqual key0, FCN, Send Finance{Space} 
+Else IfEqual key0, FLB, Send Belief{Space} 
+Else IfEqual key0, FLCBN, Send Beneficial{Space} 
+Else IfEqual key0, FH, Send Helpful{Space} 
+Else IfEqual key0, FGL, Send Feeling{Space} 	
+Else IfEqual key0, FL, Send Feel{Space} 
+Else IfEqual key0, FLCN, Send Financial{Space} 
+Else IfEqual key0, FLN, Send Final{Space} 
+Else IfEqual key0, FN, Send Fine{Space} 
+Return
+SENDGup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, GB, Send Being{Space} 
+Else IfEqual key0, GC, Send Coming{Space} 
+Else IfEqual key0, GEN, Send General{Space} 
+Else IfEqual key0, GHCN, Send Change{Space} 
+Else IfEqual key0, GLBN, Send Belong{Space} 
+Else IfEqual key0, GCM, Send Magic{Space} 
+Else IfEqual key0, GH, Send Having{Space} 
+Else IfEqual key0, GKL, Send Looking{Space} 
+Else IfEqual key0, GHLCN, Send Challenge{Space} 
+Else IfEqual key0, GKM, Send Making{Space} 
+Else IfEqual key0, GL, Send Learning{Space} 
+Else IfEqual key0, GLC, Send College{Space} 
+Else IfEqual key0, GLN, Send General{Space} 
+Else IfEqual key0, GLV, Send Leaving{Space} 
+Else IfEqual key0, GF, Send Girlfriend{Space} 
+Else IfEqual key0, GVN, Send Given{Space} 
+Else IfEqual key0, GM, Send Making{Space} 
+Else IfEqual key0, GN, Send Nothing{Space} 
+Else IfEqual key0, GNM, Send Manage{Space} 
+Else IfEqual key0, GV, Send Give{Space} 
+Else IfEqual key0, GV, Send Very Good{Space} 
+Else IfEqual key0, GVM, Send Moving{Space} 
+Else IfEqual key0, GX, Send Exciting{Space} 
+Else IfEqual key0, GZNM, Send Magazine{Space} 
+Return
+SENDHup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, HC, Send Choice{Space} 
+Else IfEqual key0, HKCN, Send Chicken{Space} 
+Else IfEqual key0, HL, Send He'll{Space} 
+Else IfEqual key0, HLCV, Send Vehicle{Space} 
+ Else IfEqual key0, HM, Send Mm-hmm.{Space} 
+Else IfEqual key0, HV, Send Have{Space} 
+Else IfEqual key0, HCNM, Send Machine{Space} 
+Else IfEqual key0, HLCN, Send Channel{Space} 
+Return
+
+SENDIup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, IA, Send Ai
+Else IfEqual key0, IDFC, Send Difficult{Space} 
+Else IfEqual key0, IDM, Send Mid{Space} 
+Else IfEqual key0, IAHCN, Send China{Space} 
+Else IfEqual key0, IAS, Send Asia{Space} 
+Else IfEqual key0, IALNM, Send Animal{Space} 
+Else IfEqual key0, IAHCN, Send Chain{Space} 
+Else IfEqual key0, IAM, Send Aim{Space} 
+Else IfEqual key0, IASL, Send Sail{Space} 
+Else IfEqual key0, IAV, Send Via{Space} 
+Else IfEqual key0, IGKLN, Send Inkling{Space} 
+Else IfEqual key0, IOL, Send Oil{Space} 
+Else IfEqual key0, IOLBM, Send Limbo{Space} 
+Else IfEqual key0, IPHC, Send Chip{Space} 
+Else IfEqual key0, IPL, Send Pill{Space} 
+Else IfEqual key0, IPSN, Send Spin{Space} 
+Else IfEqual key0, ISKL, Send Skill{Space} 
+Else IfEqual key0, IXM, Send Mix{Space} 
+Else IfEqual key0, IAFL, Send Fail{Space} 
+Else IfEqual key0, IPSLBM, Send Impossible{Space} 
+Else IfEqual key0, IOADV, Send Avoid{Space} 
+Else IfEqual key0, IADC, Send Acid{Space} 
+Else IfEqual key0, IAGCM, Send Magic{Space} 
+Else IfEqual key0, IDG, Send Dig{Space} 
+Else IfEqual key0, IFLCN, Send Influence{Space} 
+Else IfEqual key0, IKC, Send Kick{Space} 
+Else IfEqual key0, IKN, Send Ink{Space} 
+Else IfEqual key0, INM, Send Mini{Space} 
+Else IfEqual key0, IOADNM, Send Domain{Space} 
+Else IfEqual key0, IODB, Send Biodegradable{Space} 
+Else IfEqual key0, IODV, Send Void{Space} 
+Else IfEqual key0, IOM, Send In My Opinion{Space} 
+Else IfEqual key0, IOSDL, Send Solid{Space} 
+Else IfEqual key0, IPS, Send Piss{Space} 
+Else IfEqual key0, IPSGL, Send Slipping{Space} 
+Else IfEqual key0, IPSL, Send Slip{Space} 
+Else IfEqual key0, IPSL, Send Slip{Space} 
+Else IfEqual key0, IAJL, Send Jail{Space} 
+Else IfEqual key0, IAGN, Send Gain{Space} 
+Else IfEqual key0, IB, Send No{Space} 
+Else IfEqual key0, IADLV, Send Valid{Space} 
+Else IfEqual key0, IOAN, Send Nation{Space} 
+Else IfEqual key0, ISHCM, Send Schism{Space} 
+Else IfEqual key0, IASB, Send Basis{Space} 
+Else IfEqual key0, IASLC, Send Classic{Space} 
+Else IfEqual key0, IHCN, Send Inch{Space} 
+Else IfEqual key0, IKL, Send Kill{Space} 
+Else IfEqual key0, ILCN, Send Clinic{Space} 
+Else IfEqual key0, IOFN, Send Info{Space} 
+Else IfEqual key0, IPHN, Send Iphone{Space} 
+Else IfEqual key0, ISKN, Send Skin{Space} 
+Else IfEqual key0, ISM, Send Miss{Space} 
+Else IfEqual key0, IADNM, Send Admin{Space} 
+Else IfEqual key0, IASDNM, Send Administrator{Space} 
+Else IfEqual key0, IGM, Send Image{Space} 
+Else IfEqual key0, IKLN, Send Link{Space} 
+Else IfEqual key0, IOADNM, Send Administration{Space} 
+Else IfEqual key0, ISN, Send Isn't{Space} 
+Else IfEqual key0, IALCM, Send Claim{Space} 
+Else IfEqual key0, IANM, Send Main{Space} 
+Else IfEqual key0, IASD, Send Said{Space} 
+Else IfEqual key0, ID, Send Did{Space} 
+Else IfEqual key0, IDF, Send Different{Space} 
+Else IfEqual key0, IDFN, Send Find{Space} 
+Else IfEqual key0, IDHLC, Send Child{Space} 
+Else IfEqual key0, IDK, Send I Don't Know{Space} 
+Else IfEqual key0, IDKN, Send Kind{Space} 
+Else IfEqual key0, IDN, Send Individual{Space} 
+Else IfEqual key0, IDNM, Send Mind{Space} 
+Else IfEqual key0, IF, Send If{Space} 
+Else IfEqual key0, IFL, Send Fill{Space} 
+Else IfEqual key0, IFX, Send Fix{Space} 
+Else IfEqual key0, IG, Send I Guess{Space} 
+Else IfEqual key0, IGB, Send Big{Space} 
+Else IfEqual key0, IGH, Send High{Space} 
+Else IfEqual key0, IGLV, Send Living{Space} 
+Else IfEqual key0, IHL, Send Hill{Space} 
+Else IfEqual key0, IHM, Send Him{Space} 
+Else IfEqual key0, IK, Send I Know{Space} 
+Else IfEqual key0, IKLBN, Send Blink{Space} 
+Else IfEqual key0, IKLC, Send Click{Space} 
+Else IfEqual key0, IKLM, Send Milk{Space} 
+Else IfEqual key0, IL, Send I'll{Space} 
+Else IfEqual key0, ILV, Send Live{Space} 
+Else IfEqual key0, IM, Send I'm{Space} 
+Else IfEqual key0, IN, Send In{Space} 
+Else IfEqual key0, IN, Send In{Space} 
+Else IfEqual key0, IOAC, Send Action{Space} 
+Else IfEqual key0, IOALC, Send Location{Space} 
+Else IfEqual key0, IOJN, Send Join{Space}
+Else IfEqual key0, IONM, Send Omni
+Else IfEqual key0, IOP, Send Option{Space} 
+Else IfEqual key0, IOPN, Send Opinion{Space} 
+Else IfEqual key0, IOSN, Send Ision{Space} 
+Else IfEqual key0, IPAD, Send Paid{Space} 
+Else IfEqual key0, IPAFN, Send Painful{Space} 
+Else IfEqual key0, IPAN, Send Pain{Space} 
+Else IfEqual key0, IPFL, Send Flip{Space} 
+Else IfEqual key0, IPG, Send Pig{Space} 
+Else IfEqual key0, IPKC, Send Pick{Space} 
+Else IfEqual key0, IPM, Send Important{Space} 
+Else IfEqual key0, IPSK, Send Skip{Space} 
+Else IfEqual key0, IS, Send Is{Space} 
+Else IfEqual key0, ISD, Send Dis
+Else IfEqual key0, ISDK, Send Kids{Space} 
+Else IfEqual key0, ISFHN, Send Finish{Space} 
+Else IfEqual key0, ISG, Send Significant{Space} 
+Else IfEqual key0, ISGN, Send Sign{Space} 
+Else IfEqual key0, ISH, Send His{Space} 
+Else IfEqual key0, ISKC, Send Sick{Space} 
+Else IfEqual key0, ISM, Send Mis
+Else IfEqual key0, IFLM, Send Film{Space} 
+Return
+SENDLup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, LB, Send Little Bit{Space} 
+Else IfEqual key0, LC, Send Cool{Space} 
+Else IfEqual key0, LCBN, Send Balance{Space} 
+Else IfEqual key0, LNM, Send Manual{Space} 
+Else IfEqual key0, LVM, Send Volume{Space} 
+Else IfEqual key0, LCN, Send Clinical{Space} 
+Else IfEqual key0, LCBN, Send Balance{Space} 
+Else IfEqual key0, LCM, Send Molecule{Space} 
+Else IfEqual key0, LN, Send Line{Space} 
+Else IfEqual key0, LV, Send Leave{Space} 
+Else IfEqual key0, LVB, Send Believe{Space} 
+Else IfEqual key0, LX, Send Exactly{Space} 
+Else IfEqual key0, LXCN, Send Excellence{Space} 
+Return
+SENDXup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, XC, Send Executive{Space} 
+Else IfEqual key0, XNM, Send Examine{Space} 
+Else IfEqual key0, XNM, Send Expect{Space} 
+Return
+SENDVup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, VM, Send Move{Space} 
+Else IfEqual key0, VN, Send Even{Space} 
+Return
+SENDBup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, BM, Send Maybe{Space} 
+Else IfEqual key0, BF, Send Boyfriend{Space} 
+Else IfEqual key0, BN, Send Been{Space} 
+Else IfEqual key0, BSC, Send Basic{Space} 
+Else IfEqual key0, BSCL, Send Basically{Space} 
+Return
+SENDCup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, CB, Send Because{Space} 
+Else IfEqual key0, CBM, Send Become{Space} 
+Else IfEqual key0, CM, Send Come{Space} 
+Else IfEqual key0, DFCN, Send Confidence{Space} 
+Else IfEqual key0, CBNM, Send Combine{Space} 
+Else IfEqual key0, CMG, Send Coming{Space} 
+Else IfEqual key0, CN, Send Can{Space} 
+Else IfEqual key0, CNM, Send Common{Space} 
+Else IfEqual key0, CVN, Send Conversation{Space} 
+Return
+SENDKup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, KL, Send Look{Space} 
+Else IfEqual key0, KLN, Send Knowledge{Space} 
+Else IfEqual key0, KM, Send Make{Space} 
+Else IfEqual key0, KN, Send Know{Space} 
+Return
+SENDJup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+ 
+ Return
+SENDZup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, ZM, Send Zoom{Space} 
+
+Return
+SENDMup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+
+Return
+SENDNup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ If StrLen(key0) = 1
+ Send {%key0%} 
+Else IfEqual key0, NM, Send Mean{Space} 
+Return
+SENDDOTup:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ IfEqual key0, UDN>, Send Understood{Space} 
+Else IfEqual key0, WERTH>, Send Threw{Space} 
+Else IfEqual key0, RSV>, Send Verse{Space} 
+Else IfEqual key0, ONM>, Send Moon{Space} 
+Else IfEqual key0, RSV:, Send Verse{Space} 
+Else IfEqual key0, TASL>, Send Salt{Space} 
+Else IfEqual key0, ERTAH>, Send Earth{Space} 
+Else IfEqual key0, US>, Send United States{Space} 
+Else IfEqual key0, UOSDN>, Send Sounds{Space} 
+Else IfEqual key0, TASL>, Send Last{Space} 
+Else IfEqual key0, EPSD>, Send Speed{Space} 
+Else IfEqual key0, IADN>, Send Indian{Space} 
+Else IfEqual key0, EAS>, Send Sea{Space} 
+Else IfEqual key0, TISL>, Send List{Space} 
+Else IfEqual key0, ERAGN>, Send Arrange{Space} 
+Else IfEqual key0, ERP:, Send Pepper{Space} 
+Else IfEqual key0, EPA>, Send Pea{Space} 
+Else IfEqual key0, EADH>, Send Ahead{Space} 
+Else IfEqual key0, AJN>, Send January{Space} 
+Else IfEqual key0, EDC>, Send December{Space} 
+Else IfEqual key0, EFB>, Send February{Space} 
+Else IfEqual key0, ERIGN>, Send Reign{Space} 
+Else IfEqual key0, ERIN>, Send Rein{Space} 
+Else IfEqual key0, EROS>, Send Sore{Space} 
+Else IfEqual key0, ERSV>, Send Severe{Space} 
+Else IfEqual key0, ERTIHN>, Send Inherit{Space} 
+Else IfEqual key0, ERYAL>, Send Relay{Space} 
+Else IfEqual key0, ETASK>, Send Steak{Space} 
+Else IfEqual key0, ETHM>, Send Theme{Space} 
+Else IfEqual key0, ETIVN>, Send Invent{Space} 
+Else IfEqual key0, ETPS>, Send September{Space} 
+Else IfEqual key0, ETUPS>, Send Setup{Space} 
+Else IfEqual key0, EUS>, Send Sue{Space} 
+Else IfEqual key0, ISKN>, Send Sink{Space} 
+Else IfEqual key0, OVN>, Send November{Space} 
+Else IfEqual key0, RAHCM>, Send March{Space} 
+Else IfEqual key0, UDN>, Send Understood{Space} 
+Else IfEqual key0, WRA>, Send Raw{Space} 
+Else IfEqual key0, TIAN:, Send Ain’T{Space} 
+Else IfEqual key0, YAM>, Send May{Space} 
+Else IfEqual key0, ADH>, Send Dah{Space} 
+Else IfEqual key0, UAG>, Send August{Space} 
+Else IfEqual key0, TUSH>, Send Thus{Space} 
+Else IfEqual key0, TOC>, Send October{Space} 
+Else IfEqual key0, TSFCN>, Send Fascinate{Space} 
+Else IfEqual key0, ERTIAL>, Send Literal{Space}
+Else IfEqual key0, IOFN>, Send Information{Space} 
+Else IfEqual key0, RPDC>, Send Procedure{Space} 
+Else IfEqual key0, ASD>, Send Sad{Space} 
+Else IfEqual key0, RPGM>, Send Programmer{Space} 
+Else IfEqual key0, ETAS:, Send East{Space} 
+Else IfEqual key0, EPASC>, Send Escape{Space} 
+Else IfEqual key0, ALB>, Send Ball{Space} 
+Else IfEqual key0, WTON:, Send Won't{Space} 
+Else IfEqual key0, OK:, Send Okay{Space} 
+Else IfEqual key0, EPSL>, Send Spell{Space} 
+Else IfEqual key0, EOPS>, Send Oppose{Space} 
+Else IfEqual key0, ERIAS>, Send Easier{Space} 
+Else IfEqual key0, TKN>, Send Taken{Space} 
+Else IfEqual key0, ERASHC>, Send Research{Space} 
+Else IfEqual key0, FLCN>, Send Influence{Space} 
+Else IfEqual key0, LCN>, Send Council{Space} 
+Else IfEqual key0, TNM>, Send Mountain{Space} 
+Else IfEqual key0, EF>, Send Fee{Space} 
+Else IfEqual key0, RPLCN>, Send Principal{Space} 
+Else IfEqual key0, ETAM>, Send Meat{Space} 
+Else IfEqual key0, OGL>, Send Logging{Space} 
+Else IfEqual key0, OZM>, Send Zoom{Space} 
+Else IfEqual key0, QRTS>, Send Squirt{Space} 
+Else IfEqual key0, RAM>, Send Ram{Space} 
+Else IfEqual key0, RDG>, Send Grade{Space} 
+Else IfEqual key0, FLCN>, Send Influence{Space} 
+Else IfEqual key0, RGNM>, Send Manager{Space} 
+Else IfEqual key0, RSLV>, Send Resolve{Space} 
+Else IfEqual key0, RSVN>, Send Nervous{Space} 
+Else IfEqual key0, RTFG>, Send Forgot{Space} 
+Else IfEqual key0, RTSG>, Send String{Space} 
+Else IfEqual key0, WAL>, Send Wall{Space} 
+Else IfEqual key0, RUOS>, Send Sour{Space} 
+Else IfEqual key0, SLCN>, Send Silence{Space} 
+Else IfEqual key0, SLV>, Send Solve{Space} 
+Else IfEqual key0, TAC>, Send Cat{Space} 
+Else IfEqual key0, TCN>, Send Contain{Space} 
+Else IfEqual key0, TIAN>, Send Taint{Space} 
+Else IfEqual key0, WO>, Send Wow{Space} 
+Else IfEqual key0, YAS>, Send Says{Space} 
+Else IfEqual key0, YPAL>, Send Apply{Space} 
+Else IfEqual key0, GHCN>, Send Changing{Space} 
+Else IfEqual key0, IN>, Send In
+Else IfEqual key0, IDK>, Send Kid{Space} 
+Else IfEqual key0, GLN>, Send Language Lng.{Space} 
+Else IfEqual key0, ESHL>, Send She'll{Space}
+Else IfEqual key0, ETSG>, Send Settings{Space} 
+Else IfEqual key0, ESC>, Send Escape{Space} 
+Else IfEqual key0, ERGM>, Send Emerge{Space} 
+Else IfEqual key0, RTUOGH>, Send Thorough{Space}
+ Else IfEqual key0, WTO:, Send Two{Space} 
+Else IfEqual key0, EPAL>, Send Appeal{Space}
+Else IfEqual key0, EIASL>, Send Liaise{Space} 
+Else IfEqual key0, ERAKB>, Send Brake{Space} 
+ Else IfEqual key0, TVM>, Send Motivate{Space} 
+Else IfEqual key0, ERA>, Send Rear{Space} 
+Else IfEqual key0, RTDC>, Send Direct{Space} 
+Else IfEqual key0, ERA:, Send Era{Space} 
+Else IfEqual key0, TUOGH>, Send Ought{Space} 
+ Else IfEqual key0, HM>, Send Mm-Mmm.{Space} 
+ Else IfEqual key0, ESL>, Send Less{Space} 
+ Else IfEqual key0, ETAN>, Send Tenant{Space} 
+Else IfEqual key0, RTFH>, Send Further{Space} 
+ Else IfEqual key0, TIVN>, Send Invite{Space} 
+ Else IfEqual key0, ESDN>, Send Dense{Space} 
+Else IfEqual key0, ERIAS, Send Easier{Space} 
+Else IfEqual key0, RTLN>, Send Natural{Space} 
+Else IfEqual key0, >ERTPSN, Send Represent{Space} 
+Else IfEqual key0, ERF>, Send Refer{Space} 
+Else IfEqual key0, ETSH>, Send Sheet{Space} 
+Else IfEqual key0, ON>, Send Non{Space} 
+Else IfEqual key0, RTIPN>, Send Interrupt{Space} 
+Else IfEqual key0, TAS>, Send Asset{Space} 
+Else IfEqual key0, SCNM>, Send Musician{Space} 
+ Else IfEqual key0, TGVN>, Send Vintage{Space} 
+ Else IfEqual key0, RTSG>, Send Register{Space} 
+ Else IfEqual key0, EIVN>, Send Vine{Space} 
+ Else IfEqual key0, ETAS>, Send Taste{Space} 
+Else IfEqual key0, ETSN>, Send Nest{Space} 
+ Else IfEqual key0, TAN>, Send {BackSpace} ant{Space} 
+ Else IfEqual key0, EON>, Send None{Space} 	
+ Else IfEqual key0, APL>, Send Appeal{Space} 
+ Else IfEqual key0, EIS>, Send {BackSpace}{BackSpace} ies{Space} 	
+Else IfEqual key0, ASB>, Send Bass{Space} 
+Else IfEqual key0, DLB>, Send Double{Space} 
+Else IfEqual key0, EAG>, Send {BackSpace} age{Space} 
+Else IfEqual key0, ECN>, Send {BackSpace} ence{Space} 
+Else IfEqual key0, ERTA>, Send Treat{Space} 
+Else IfEqual key0, ERTCN>, Send Center{Space} 
+Else IfEqual key0, ETA>, Send Eat{Space} 
+Else IfEqual key0, IPSH>, Send Ship{Space} 
+Else IfEqual key0, RPSF>, Send Professor{Space} 
+Else IfEqual key0, RTG>, Send Guitar{Space} 
+Else IfEqual key0, RTLB>, Send Terrible{Space} 
+Else IfEqual key0, RTPA>, Send Appropriate{Space} 
+Else IfEqual key0, RTPC>, Send Participate{Space} 
+Else IfEqual key0, RTPN>, Send Partner{Space} 
+Else IfEqual key0, RTUH>, Send Truth{Space} 
+Else IfEqual key0, TGN>, Send Negotiation{Space} 
+Else IfEqual key0, TIDN>, Send Identity{Space} 
+Else IfEqual key0, TIH>, Send Hit{Space} 
+Else IfEqual key0, TPLC>, Send Political{Space} 
+Else IfEqual key0, TSN>, Send Situation{Space} 
+Else IfEqual key0, TY>, Send Youtube{Space} 
+Else IfEqual key0, WN>, Send No Worries.{Space} 
+ Else IfEqual key0, ADB>, Send Bad{Space} 
+ Else IfEqual key0, ASB>, Send Bass{Space} 
+Else IfEqual key0, EFL>, Send Fell{Space} 
+Else IfEqual key0, EIFV>, Send Five{Space} 
+Else IfEqual key0, EIN>, Send Nine{Space} 
+Else IfEqual key0, EIV>, Send {BackSpace} ive{Space} 
+Else IfEqual key0, EM>, Send Em{Space} 
+Else IfEqual key0, ERAN>, Send Earn{Space} 
+Else IfEqual key0, ERTH>, Send Three{Space} 
+Else IfEqual key0, ESH>, Send He's{Space} 
+Else IfEqual key0, ESVN>, Send Seven{Space} 
+Else IfEqual key0, ETIGH>, Send Eight{Space} 
+Else IfEqual key0, ETON>, Send Tone{Space} 
+Else IfEqual key0, ISX>, Send Six{Space} 
+Else IfEqual key0, RPA>, Send Appear{Space} 
+Else IfEqual key0, RUOF>, Send Four{Space} 
+Else IfEqual key0, TIL>, Send Till{Space} 
+Else IfEqual key0, TOSH>, Send Shoot{Space} 
+Else IfEqual key0, WTO>, Send Two{Space} 
+ Else IfEqual key0, RTOS>, Send Sort Of{Space} 
+ Else IfEqual key0, OG>, Send Going{Space} 
+ Else IfEqual key0, TISH>, Send Shit{Space} 
+ Else IfEqual key0, TM>, Send Might{Space} 
+ Else IfEqual key0, IDF>, Send Difficult{Space} 
+ Else IfEqual key0, TDN>, Send Didn't{Space} 
+ Else IfEqual key0, TIDN>, Send Didn't{Space} 
+ Else IfEqual key0, ER>, Send Re
+ Else IfEqual key0, ERP>, Send Pre
+ Else IfEqual key0, EM>, Send Them{Space} 
+ Else IfEqual key0, IG>, Send Instagram{Space} 
+ Else IfEqual key0, FB>, Send Facebook{Space} 
+ Else IfEqual key0, GL>, Send Google{Space} 
+ Else IfEqual key0, ID>, Send I'd{Space} 
+ Else IfEqual key0, OK>, Send Okay{Space} 
+ Else IfEqual key0, SM>, Send So Much{Space} 
+ Else IfEqual key0, ETC>, Send Technology{Space} 
+ Else IfEqual key0, TH>, Send Th{Space} 
+ Else IfEqual key0, TSH>, Send That's{Space} 
+ Else IfEqual key0, EV>, Send Ve{Space} 
+ Else IfEqual key0, C>, Send See{Space} 
+ Else IfEqual key0, U>, Send You{Space} 
+ Else IfEqual key0, N>, Send And{Space} 
+ Else IfEqual key0, T>, Send The{Space} 
+ Else IfEqual key0, Y>, Send Yeah{Space} 
+ Else IfEqual key0, B>, Send But{Space} 
+ Else IfEqual key0, TION>, Send Ition{Space} 
+ Else IfEqual key0, W>, Send With{Space} 
+ Else IfEqual key0, P>, Send Pretty{Space} 
+ Else IfEqual key0, K>, Send Know{Space} 
+ Else IfEqual key0, Q>, Send Quick{Space} 
+ Else IfEqual key0, G>, Send Great{Space} 
+ Else IfEqual key0, L>, Send Like{Space} 
+ Else IfEqual key0, R>, Send Really{Space} 
+ Else IfEqual key0, SH>, Send Sh{Space} 
+ Else IfEqual key0, J>, Send Just{Space} 
+ Else IfEqual key0, M>, Send Much{Space} 
+ Else IfEqual key0, E>, Send Even{Space} 
+ Else IfEqual key0, D>, Send Ed{Space} 
+ Else IfEqual key0, F>, Send For{Space} 
+ Else IfEqual key0, V>, Send Very{Space} 
+ Else IfEqual key0, IO>, Send {BackSpace}{BackSpace} tion{Space} 
+ Else IfEqual key0, TH>, Send Th{Space} 
+ Else IfEqual key0, HC>, Send Ch{Space} 
+ Else IfEqual key0, TO>, Send Too{Space} 
+ Else IfEqual key0, TUAGH>, Send Aught{Space} 
+ Else IfEqual key0, OCN>, Send Con{Space} 
+ Else IfEqual key0, ERA>, Send Are{Space} 
+ Else IfEqual key0, GC>, Send Seeing{Space} 
+ Else IfEqual key0, WYA>, Send Away{Space} 
+ Else IfEqual key0, WAS>, Send Saw{Space} 
+ Else IfEqual key0, 3>, Send Three{Space} 
+ Else IfEqual key0, 1>, Send One{Space} 
+ Else IfEqual key0, 2>, Send Two{Space} 
+ Else IfEqual key0, 4>, Send Four{Space} 
+ Else IfEqual key0, 5>, Send Five{Space} 
+ Else IfEqual key0, EX>, Send Exact{Space} 
+ Else IfEqual key0, 6>, Send Six{Space} 
+ Else IfEqual key0, 7>, Send Seven{Space} 
+ Else IfEqual key0, 8>, Send Eight{Space} 
+ Else IfEqual key0, 9>, Send Nine{Space} 
+ Else IfEqual key0, 0>, Send 10{Space} 
+ Else IfEqual key0, WOH>, Send Who{Space} 
+ Else IfEqual key0, ETL>, Send Tell{Space} 
+ Else IfEqual key0, ERTS>, Send Stress{Space} 
+ Else IfEqual key0, ST>, Send St{Space} 
+ Else IfEqual key0, TOPS>, Send Post{Space} 
+ Else IfEqual key0, TIS>, Send Sit{Space} 
+ Else IfEqual key0, ASHL>, Send Shall{Space} 
+ Else IfEqual key0, ESD>, Send Seed{Space} 
+ Else IfEqual key0, WAS>, Send Saw{Space} 
+ Else IfEqual key0, WON>, Send Own{Space} 
+ Else IfEqual key0, ON>, Send On{Space} 
+ Else IfEqual key0, ETFL>, Send Left{Space} 
+ Else IfEqual key0, WTAH>, Send Thaw{Space} 
+ Else IfEqual key0, OF>, Send Off{Space} 
+ Else IfEqual key0, EANM>, Send Name{Space} 
+ Else IfEqual key0, EILV>, Send Evil{Space} 
+ Else IfEqual key0, EPK>, Send Peek{Space} 
+ Else IfEqual key0, RTUH>, Send Hurt{Space} 
+ Else IfEqual key0, TOH>, Send Hot{Space} 
+ Else IfEqual key0, ISH>, Send Ish{Space} 
+ Else IfEqual key0, ERH>, Send Here{Space} 
+ Else IfEqual key0, OG>, Send Original{Space} 
+ Else IfEqual key0, ED>, Send De
+ Else IfEqual key0, TOPS>, Send Post
+ Else IfEqual key0, ISM>, Send Mis{Space} 
+ Else IfEqual key0, AL>, Send {BackSpace} al{Space} 
+ Else IfEqual key0, S>, Send {BackSpace} s{Space} 
+ Else IfEqual key0, ESN>, Send {BackSpace} ness{Space} 
+ Else IfEqual key0, I>, Send I{Space} 
+ Else IfEqual key0, A>, Send A{Space} 
+ Else IfEqual key0, UFL>, Send {BackSpace} ful{Space} 
+ Else IfEqual key0, ER>, Send Re
+ Else IfEqual key0, TOH>, Send Oth{Space} 
+ Else IfEqual key0, TON>, Send Ton{Space} 
+Else IfEqual key0, YAL>, Send {BackSpace} ally{Space} 
+Else IfEqual key0, ABLE>, Send Able
+Else IfEqual key0, UA>, Send Ua 
+Else IfEqual key0, EDN>, Send End{Space} 
+Else IfEqual key0, ER>, Send {BackSpace} er
+Else IfEqual key0, ETM>, Send Meet{Space} 
+Else IfEqual key0, ETG>, Send Getting{Space} 
+Else IfEqual key0, AL>, Send {BackSpace} al
+Else IfEqual key0, TOPS>, Send Post{Space} 
+Else IfEqual key0, EAG>, Send Age
+Else IfEqual key0, ERTIH>, Send Either{Space} 
+Else IfEqual key0, GV>, Send Giving{Space} 
+Else IfEqual key0, ERASHC>, Send Research{Space} 
+Else IfEqual key0, EDF>, Send Feed{Space} 
+Else IfEqual key0, EOSHC>, Send Choose{Space} 
+Else IfEqual key0, EIGBN>, Send Beginning{Space} 
+Else IfEqual key0, OPSH>, Send Shops{Space} 
+Else IfEqual key0, ESM>, Send Seems{Space} 
+Else IfEqual key0, ERTAL>, Send Relate{Space} 
+Else IfEqual key0, ETIS>, Send {BackSpace} ities{Space} 
+Else IfEqual key0, TOL>, Send Tool{Space} 
+Else IfEqual key0, TASF>, Send Staff{Space} 
+Else IfEqual key0, SN>, Send Season{Space} 
+ Else IfEqual key0, ISGN>, Send Sing{Space} 
+ Else IfEqual key0, ERPA>, Send Paper{Space} 
+ Else IfEqual key0, ES>, Send {BackSpace} es{Space} 
+Else IfEqual key0, EPSDN>, Send Depends{Space} 
+Else IfEqual key0, RTLC>, Send Critical{Space} 
+Else IfEqual key0, ERTPSN>, Send Represent{Space} 
+Else IfEqual key0, OAGLN>, Send Analog{Space} 
+Else IfEqual key0, RAL>, Send Lar
+Else IfEqual key0, TAHC>, Send Attach{Space} 
+Else IfEqual key0, ERTPAN>, Send Parent{Space} 
+Else IfEqual key0, IGH>, Send Igh{Space} 
+Else IfEqual key0, ETS>, Send Test{Space} 	
+Else IfEqual key0, ETSN>, Send Sent{Space} 
+Else IfEqual key0, ESFL>, Send Self{Space} 
+Else IfEqual key0, EPAL>, Send Apple{Space} 
+Else IfEqual key0, EISCN>, Send Science{Space} 
+Else IfEqual key0, RTLV>, Send Virtual{Space} 
+Else IfEqual key0, TS>, Send Street{Space} 
+Else IfEqual key0, ODG>, Send Dog{Space} 
+Else IfEqual key0, ERTIN>, Send Internet{Space} 
+Else IfEqual key0, RTPCN>, Send Corporation{Space} 
+Else IfEqual key0, WERTI>, Send Twitter{Space} 
+Else IfEqual key0, ERAC>, Send Race{Space} 
+Else IfEqual key0, ERUS>, Send User{Space} 
+Else IfEqual key0, RAC>, Send Car{Space} 
+Else IfEqual key0, ROADB>, Send Broad{Space} 
+Else IfEqual key0, WERA>, Send Aware{Space} 
+Else IfEqual key0, WRTOH>, Send Worth{Space} 
+Else IfEqual key0, ERTAFH>, Send Farther{Space} 
+Else IfEqual key0, YPAL>, Send Apply{Space} 
+Else IfEqual key0, RTPC>, Send Capture{Space} 
+Else IfEqual key0, ERUPS>, Send Pressure{Space} 
+Else IfEqual key0, ESL>, Send Sell{Space} 
+Else IfEqual key0, EIFL>, Send File{Space} 
+Else IfEqual key0, WEAK>, Send Wake{Space} 
+Else IfEqual key0, DEADL>, Send Lead{Space} 
+ Else IfEqual key0, WER:, Send We're{Space} 
+ Else IfEqual key0, ESH:, Send He's{Space} 
+ Else IfEqual key0, ID:, Send I'd{Space} 
+ Else IfEqual key0, YAL:, Send Y'all{Space} 
+ Else IfEqual key0, WOSH:, Send Who's{Space} 
+ Else IfEqual key0, TID'N, Send Didn't{Space} 
+ Else IfEqual key0, TS:, Send That's{Space}
+Else IfEqual key0, AD>, Send Add{Space} 
+Else IfEqual key0, EASC>, Send Access{Space} 
+Else IfEqual key0, EOLV>, Send Evolve{Space} 
+Else IfEqual key0, EPASH>, Send Phase{Space} 
+Else IfEqual key0, ERTAL>, Send Alter{Space} 
+Else IfEqual key0, FL>, Send Full{Space} 
+Else IfEqual key0, TIL>, Send It'll{Space} 
+Else IfEqual key0, TIL:, Send It'll{Space} 
+Else IfEqual key0, TPLN>, Send Population{Space} 
+Else IfEqual key0, VM>, Send Movie{Space} 
 Return
