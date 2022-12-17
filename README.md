@@ -35,8 +35,11 @@ Common Abbreviations: because (bc), about (ab), Instagram (ig.), I guess (ig), y
 
 Shortcuts: nothing (ng), everything (eg), nobody (nbd), just (j.), and (n.), much (m.), know (k.), wouldn't (wdn), before (bf)
 
-Plural/Apostrophe *Automatically backspace to compensate for the space at the end of words*: {backspace}n't (n't), {backspace}'s ('s), {backspace}s (s.)
+Plural/Apostrophe: *Automatically backspace to compensate for the space at the end of words*: {backspace}n't (n't), {backspace}'s ('s), {backspace}s (s.)
 
+Capitalization: Just use shift and a chord!
+
+Sentence starting: To avoid separate strokes for period, space, shift, word/letter at the beginning of a sentence, adding ; to a word capitalizes it and adds a period to the word before.
 
 Weird stuff (frequently used to avoid common spellings): 
 - SENDDOT (words including .) uses period as a modifier for words with common spellings. This can be extended to other punctuation so long as SENDs are added accordingly (update the sorting that starts at line 83 with something like SENDSLASH (positioning must be according to QWERTY order), and then also add SENDSLASH below following the same format as the other SENDs)
