@@ -1,4 +1,4 @@
-; Dictionary by Solomon Kimrey, initial code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
+; Dictionary and tweaks by Solomon Kimrey, initial code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 #MaxThreadsPerHotkey 10
 #MaxThreadsBuffer ON
 #MaxHotkeysPerInterval 999
@@ -85,8 +85,10 @@ SEND:
 SEND1:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-
-If InStr(key0, ".") or InStr(key0, "'")
+If StrLen(key0) = 1
+      Send {%key0%}  
+   
+Else If InStr(key0, ".") or InStr(key0, "'")
 GoSub SENDDOT
 Else If InStr(key0, "/")
 GoSub SENDSLASH
@@ -198,8 +200,62 @@ Else If InStr(key0, "N")
 GoSub SENDNup
 Else If InStr(key0, "M")
 GoSub SENDMup
-Else If StrLen(key0) = 1
-      Send {%key0%}  
+If InStr(key0, ";") and InStr(key0, ".")
+GoSub SENDDOTstart
+Else If InStr(key0, "/")
+GoSub SENDSLASHstart
+Else If InStr(key0, "q")
+GoSub SENDQstart 
+Else If InStr(key0, "w")
+GoSub SENDWstart 
+Else If InStr(key0, "e")
+GoSub SENDEstart
+Else If InStr(key0, "r")
+GoSub SENDRstart 
+Else If InStr(key0, "t")
+GoSub SENDTstart 
+Else If InStr(key0, "y")
+GoSub SENDYstart 
+Else If InStr(key0, "u")
+GoSub SENDUstart 
+Else If InStr(key0, "i")
+GoSub SENDIstart 
+Else If InStr(key0, "o")
+GoSub SENDOstart 
+Else If InStr(key0, "p")
+GoSub SENDPstart 
+Else If InStr(key0, "a")
+GoSub SENDAstart
+Else If InStr(key0, "s")
+GoSub SENDSstart
+Else If InStr(key0, "d")
+GoSub SENDDstart 
+Else If InStr(key0, "f")
+GoSub SENDFstart 
+Else If InStr(key0, "g")
+GoSub SENDGstart 
+Else If InStr(key0, "h")
+GoSub SENDHstart 
+Else If InStr(key0, "j")
+GoSub SENDJstart
+Else If InStr(key0, "k")
+GoSub SENDKstart
+Else If InStr(key0, "l")
+GoSub SENDLstart 
+Else If InStr(key0, "z")
+GoSub SENDZstart 
+Else If InStr(key0, "x")
+GoSub SENDXstart 
+Else If InStr(key0, "c")
+GoSub SENDCstart 
+Else If InStr(key0, "v")
+GoSub SENDVstart 
+Else If InStr(key0, "b")
+GoSub SENDBstart 
+Else If InStr(key0, "n")
+GoSub SENDNstart
+Else If InStr(key0, "m")
+GoSub SENDMstart
 
 Return
 SENDSLASH:
@@ -226,6 +282,7 @@ Else IfEqual key0,erups/, Send pursue{Space}
 Else IfEqual key0,won/, Send won{Space}
 Else IfEqual key0,y/, Send {backspace}y{Space}
 Else IfEqual key0,n/, Send {backspace}n{Space}
+Else Send /
 
 Return
 SENDQ:
@@ -2422,7 +2479,6 @@ Return
 SENDP:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
-    Send {%key0%}  
 IfEqual key0,pac, Send cap{Space}
 Else IfEqual key0,pk, Send keep{Space}	
 Else IfEqual key0,updg, Send pudding{Space}		
@@ -3289,9 +3345,7 @@ Return
 SENDSLASHup:
 SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%}, 	 
-Else IfEqual key0, ERA?, Send Ear{Space} 
+IfEqual key0, ERA?, Send Ear{Space} 
 Else IfEqual key0, TOPS?, Send Spot{Space} 
 Else IfEqual key0, ERTAL?, Send Latter{Space} 
 Else IfEqual key0, ERTS?, Send Steer{Space} 
@@ -3309,9 +3363,7 @@ Return
 SENDQup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, QERF, Send Frequency{Space} 
+IfEqual key0, QERF, Send Frequency{Space} 
 Else IfEqual key0, QERFN, Send Frequent{Space} 
 Else IfEqual key0, QERUI, Send Queue{Space} 
 Else IfEqual key0, QEU, Send Queue{Space} 
@@ -3349,9 +3401,7 @@ Return
 SENDWup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, WA, Send As Well{Space} 
+IfEqual key0, WA, Send As Well{Space} 
 Else IfEqual key0, WRHV, Send However{Space} 
 Else IfEqual key0, WTN, Send Won't{Space} 
 Else IfEqual key0, WERHVN, Send Whenever{Space} 
@@ -3558,9 +3608,7 @@ Return
 SENDRup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, RA, Send Around{Space} 
+IfEqual key0, RA, Send Around{Space} 
 Else IfEqual key0, RUIOASV, Send Saviour{Space} 
 Else IfEqual key0, RTYPH, Send Therapy{Space} 
 Else IfEqual key0, RTDLNM, Send Detrimental{Space} 
@@ -4097,9 +4145,7 @@ Return
 SENDTup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, TA, Send At{Space} 
+ IfEqual key0, TA, Send At{Space} 
 Else IfEqual key0, TADH, Send That'd{Space} 
 Else IfEqual key0, TISV, Send Visit{Space} 
 Else IfEqual key0, TIHN, Send Thin{Space} 
@@ -4473,9 +4519,7 @@ Return
 SENDYup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, YAD, Send Day{Space} 
+ IfEqual key0, YAD, Send Day{Space} 
 Else IfEqual key0, YUGL, Send Ugly{Space} 
 Else IfEqual key0, TYSG, Send Staying{Space} 
 Else IfEqual key0, EYAGCN, Send Agency{Space} 
@@ -4540,9 +4584,7 @@ Return
 SENDUup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, UA, Send Au
+ IfEqual key0, UA, Send Au
 Else IfEqual key0, UAB, Send A Bunch{Space} 
 Else IfEqual key0, UAHNM, Send Human{Space} 
 Else IfEqual key0, UASDHBN, Send Husband{Space} 
@@ -4620,9 +4662,7 @@ Return
 SENDEup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, EA, Send Ea	
+IfEqual key0, EA, Send Ea	
 Else IfEqual key0, EPALCB, Send Capable{Space} 
 Else IfEqual key0, ERIV, Send River{Space} 
 Else IfEqual key0, ERUIPM, Send Premium{Space} 
@@ -4798,7 +4838,6 @@ Else IfEqual key0, EOPK, Send Poke{Space}
 Else IfEqual key0, EOSLV, Send Solve{Space} 
 Else IfEqual key0, EOSLV, Send Solve{Space} 
 Else IfEqual key0, EPAHC, Send Cheap{Space} 
-
 Else IfEqual key0, ERADG, Send Grade{Space} 
 Else IfEqual key0, ERAFM, Send Frame{Space} 
 Else IfEqual key0, ERAGHC, Send Charge{Space} 
@@ -4911,11 +4950,9 @@ Else IfEqual key0, EIOSN, Send Session{Space}
 Else IfEqual key0, ELC, Send Cell{Space} 
 Else IfEqual key0, EOHN, Send Hone{Space} 
 Else IfEqual key0, ERADM, Send Dream{Space} 
-
 Else IfEqual key0, ERASD, Send Address{Space} 
 Else IfEqual key0, ERDG, Send Degree{Space} 
 Else IfEqual key0, ERGCN, Send Encourage{Space} 
-
 Else IfEqual key0, ERIH, Send Hire{Space} 
 Else IfEqual key0, ERILC, Send Circle{Space} 
 Else IfEqual key0, ERPSCN, Send Presence{Space} 
@@ -5353,8 +5390,6 @@ Else IfEqual key0, ETSHLB, Send Establish{Space}
 Else IfEqual key0, ETSL, Send Let's{Space} 	
 Else IfEqual key0, ETSLC, Send Select{Space} 	
 Else IfEqual key0, ETSN, Send Sent{Space} 
-Else IfEqual key0, ETYSLN, Send Sent{Space} 	
-	
 Else IfEqual key0, ETUADC, Send Educate{Space} 	
 Else IfEqual key0, ETUAGNM, Send Augment{Space} 	
 Else IfEqual key0, ETUINM, Send Minute{Space} 	
@@ -5419,9 +5454,8 @@ Return
 SENDOup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, OA, Send Anyone{Space} 
+
+ IfEqual key0, OA, Send Anyone{Space} 
 Else IfEqual key0, OAN, Send Anyone{Space} 
 Else IfEqual key0, OADL, Send Load{Space} 
 Else IfEqual key0, OAGNM, Send Among{Space} 
@@ -5561,9 +5595,8 @@ Return
 SENDAup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, AB, Send About{Space} 
+
+IfEqual key0, AB, Send About{Space} 
 Else IfEqual key0, ADV, Send Avoid{Space} 
 Else IfEqual key0, ADCVN, Send Advance{Space} 
 Else IfEqual key0, ASKC, Send Sack{Space} 
@@ -5641,9 +5674,8 @@ Return
 SENDSup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, SBN, Send Business{Space} 
+
+ IfEqual key0, SBN, Send Business{Space} 
 Else IfEqual key0, SCB, Send Basic{Space} 
 Else IfEqual key0, SHM, Send Somehow{Space} 
 Else IfEqual key0, SDHLC, Send Schedule{Space} 
@@ -5692,9 +5724,8 @@ Return
 SENDDup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, DBN, Send Nobody{Space} 
+
+ IfEqual key0, DBN, Send Nobody{Space} 
 Else IfEqual key0, DCM, Send Command{Space} 
 Else IfEqual key0, DHLN, Send Handle{Space} 
 Else IfEqual key0, DNM, Send Domain{Space} 
@@ -5729,9 +5760,8 @@ Return
 SENDFup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, FB, Send Before{Space} 
+
+ IfEqual key0, FB, Send Before{Space} 
 Else IfEqual key0, FCM, Send Comfortable{Space} 
 Else IfEqual key0, FCN, Send Finance{Space} 
 Else IfEqual key0, FLB, Send Belief{Space} 
@@ -5746,9 +5776,8 @@ Return
 SENDGup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, GB, Send Being{Space} 
+
+ IfEqual key0, GB, Send Being{Space} 
 Else IfEqual key0, GC, Send Coming{Space} 
 Else IfEqual key0, GEN, Send General{Space} 
 Else IfEqual key0, GHCN, Send Change{Space} 
@@ -5776,9 +5805,8 @@ Return
 SENDHup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, HC, Send Choice{Space} 
+
+ IfEqual key0, HC, Send Choice{Space} 
 Else IfEqual key0, HKCN, Send Chicken{Space} 
 Else IfEqual key0, HL, Send He'll{Space} 
 Else IfEqual key0, HLCV, Send Vehicle{Space} 
@@ -5791,9 +5819,8 @@ Return
 SENDIup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, IA, Send Ai
+
+ IfEqual key0, IA, Send Ai
 Else IfEqual key0, IDFC, Send Difficult{Space} 
 Else IfEqual key0, IDM, Send Mid{Space} 
 Else IfEqual key0, IAHCN, Send China{Space} 
@@ -5909,9 +5936,8 @@ Return
 SENDLup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, LB, Send Little Bit{Space} 
+
+ IfEqual key0, LB, Send Little Bit{Space} 
 Else IfEqual key0, LC, Send Cool{Space} 
 Else IfEqual key0, LCBN, Send Balance{Space} 
 Else IfEqual key0, LNM, Send Manual{Space} 
@@ -5928,26 +5954,23 @@ Return
 SENDXup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, XC, Send Executive{Space} 
+
+ IfEqual key0, XC, Send Executive{Space} 
 Else IfEqual key0, XNM, Send Examine{Space} 
 Else IfEqual key0, XNM, Send Expect{Space} 
 Return
 SENDVup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, VM, Send Move{Space} 
+
+ IfEqual key0, VM, Send Move{Space} 
 Else IfEqual key0, VN, Send Even{Space} 
 Return
 SENDBup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, BM, Send Maybe{Space} 
+
+ IfEqual key0, BM, Send Maybe{Space} 
 Else IfEqual key0, BF, Send Boyfriend{Space} 
 Else IfEqual key0, BN, Send Been{Space} 
 Else IfEqual key0, BSC, Send Basic{Space} 
@@ -5956,9 +5979,8 @@ Return
 SENDCup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, CB, Send Because{Space} 
+
+ IfEqual key0, CB, Send Because{Space} 
 Else IfEqual key0, CBM, Send Become{Space} 
 Else IfEqual key0, CM, Send Come{Space} 
 Else IfEqual key0, DFCN, Send Confidence{Space} 
@@ -5971,9 +5993,8 @@ Return
 SENDKup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, KL, Send Look{Space} 
+
+ IfEqual key0, KL, Send Look{Space} 
 Else IfEqual key0, KLN, Send Knowledge{Space} 
 Else IfEqual key0, KM, Send Make{Space} 
 Else IfEqual key0, KN, Send Know{Space} 
@@ -5981,31 +6002,27 @@ Return
 SENDJup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
+
  
  Return
 SENDZup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, ZM, Send Zoom{Space} 
+
+ IfEqual key0, ZM, Send Zoom{Space} 
 
 Return
 SENDMup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
+
 
 Return
 SENDNup:
  SentTick = %A_TickCount%, 
  SentKeys = %key0%
- If StrLen(key0) = 1
- Send {%key0%} 
-Else IfEqual key0, NM, Send Mean{Space} 
+
+ IfEqual key0, NM, Send Mean{Space} 
 Return
 SENDDOTup:
  SentTick = %A_TickCount%, 
@@ -6014,7 +6031,7 @@ SENDDOTup:
 Else IfEqual key0, WERTH>, Send Threw{Space} 
 Else IfEqual key0, RSV>, Send Verse{Space} 
 Else IfEqual key0, ONM>, Send Moon{Space} 
-Else IfEqual key0, RSV:, Send Verse{Space} 
+Else IfEqual key0, RSV", Send Verse{Space} 
 Else IfEqual key0, TASL>, Send Salt{Space} 
 Else IfEqual key0, ERTAH>, Send Earth{Space} 
 Else IfEqual key0, US>, Send United States{Space} 
@@ -6025,7 +6042,7 @@ Else IfEqual key0, IADN>, Send Indian{Space}
 Else IfEqual key0, EAS>, Send Sea{Space} 
 Else IfEqual key0, TISL>, Send List{Space} 
 Else IfEqual key0, ERAGN>, Send Arrange{Space} 
-Else IfEqual key0, ERP:, Send Pepper{Space} 
+Else IfEqual key0, ERP", Send Pepper{Space} 
 Else IfEqual key0, EPA>, Send Pea{Space} 
 Else IfEqual key0, EADH>, Send Ahead{Space} 
 Else IfEqual key0, AJN>, Send January{Space} 
@@ -6048,7 +6065,7 @@ Else IfEqual key0, OVN>, Send November{Space}
 Else IfEqual key0, RAHCM>, Send March{Space} 
 Else IfEqual key0, UDN>, Send Understood{Space} 
 Else IfEqual key0, WRA>, Send Raw{Space} 
-Else IfEqual key0, TIAN:, Send Ain’T{Space} 
+Else IfEqual key0, TIAN", Send Ain’T{Space} 
 Else IfEqual key0, YAM>, Send May{Space} 
 Else IfEqual key0, ADH>, Send Dah{Space} 
 Else IfEqual key0, UAG>, Send August{Space} 
@@ -6060,11 +6077,11 @@ Else IfEqual key0, IOFN>, Send Information{Space}
 Else IfEqual key0, RPDC>, Send Procedure{Space} 
 Else IfEqual key0, ASD>, Send Sad{Space} 
 Else IfEqual key0, RPGM>, Send Programmer{Space} 
-Else IfEqual key0, ETAS:, Send East{Space} 
+Else IfEqual key0, ETAS", Send East{Space} 
 Else IfEqual key0, EPASC>, Send Escape{Space} 
 Else IfEqual key0, ALB>, Send Ball{Space} 
-Else IfEqual key0, WTON:, Send Won't{Space} 
-Else IfEqual key0, OK:, Send Okay{Space} 
+Else IfEqual key0, WTON", Send Won't{Space} 
+Else IfEqual key0, OK", Send Okay{Space} 
 Else IfEqual key0, EPSL>, Send Spell{Space} 
 Else IfEqual key0, EOPS>, Send Oppose{Space} 
 Else IfEqual key0, ERIAS>, Send Easier{Space} 
@@ -6106,14 +6123,14 @@ Else IfEqual key0, ETSG>, Send Settings{Space}
 Else IfEqual key0, ESC>, Send Escape{Space} 
 Else IfEqual key0, ERGM>, Send Emerge{Space} 
 Else IfEqual key0, RTUOGH>, Send Thorough{Space}
- Else IfEqual key0, WTO:, Send Two{Space} 
+ Else IfEqual key0, WTO", Send Two{Space} 
 Else IfEqual key0, EPAL>, Send Appeal{Space}
 Else IfEqual key0, EIASL>, Send Liaise{Space} 
 Else IfEqual key0, ERAKB>, Send Brake{Space} 
  Else IfEqual key0, TVM>, Send Motivate{Space} 
 Else IfEqual key0, ERA>, Send Rear{Space} 
 Else IfEqual key0, RTDC>, Send Direct{Space} 
-Else IfEqual key0, ERA:, Send Era{Space} 
+Else IfEqual key0, ERA", Send Era{Space} 
 Else IfEqual key0, TUOGH>, Send Ought{Space} 
  Else IfEqual key0, HM>, Send Mm-Mmm.{Space} 
  Else IfEqual key0, ESL>, Send Less{Space} 
@@ -6335,13 +6352,13 @@ Else IfEqual key0, ESL>, Send Sell{Space}
 Else IfEqual key0, EIFL>, Send File{Space} 
 Else IfEqual key0, WEAK>, Send Wake{Space} 
 Else IfEqual key0, DEADL>, Send Lead{Space} 
- Else IfEqual key0, WER:, Send We're{Space} 
- Else IfEqual key0, ESH:, Send He's{Space} 
- Else IfEqual key0, ID:, Send I'd{Space} 
- Else IfEqual key0, YAL:, Send Y'all{Space} 
- Else IfEqual key0, WOSH:, Send Who's{Space} 
+ Else IfEqual key0, WER", Send We're{Space} 
+ Else IfEqual key0, ESH", Send He's{Space} 
+ Else IfEqual key0, ID", Send I'd{Space} 
+ Else IfEqual key0, YAL", Send Y'all{Space} 
+ Else IfEqual key0, WOSH", Send Who's{Space} 
  Else IfEqual key0, TID'N, Send Didn't{Space} 
- Else IfEqual key0, TS:, Send That's{Space}
+ Else IfEqual key0, TS", Send That's{Space}
 Else IfEqual key0, AD>, Send Add{Space} 
 Else IfEqual key0, EASC>, Send Access{Space} 
 Else IfEqual key0, EOLV>, Send Evolve{Space} 
@@ -6349,7 +6366,3023 @@ Else IfEqual key0, EPASH>, Send Phase{Space}
 Else IfEqual key0, ERTAL>, Send Alter{Space} 
 Else IfEqual key0, FL>, Send Full{Space} 
 Else IfEqual key0, TIL>, Send It'll{Space} 
-Else IfEqual key0, TIL:, Send It'll{Space} 
+Else IfEqual key0, TIL", Send It'll{Space} 
 Else IfEqual key0, TPLN>, Send Population{Space} 
 Else IfEqual key0, VM>, Send Movie{Space} 
 Return
+
+
+SENDSLASHstart:
+SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, era/;, Send {BackSpace}.{Space}Ear{Space} 
+Else IfEqual key0, tops/;, Send {BackSpace}.{Space}Spot{Space} 
+Else IfEqual key0, ertal/;, Send {BackSpace}.{Space}Latter{Space} 
+Else IfEqual key0, erts/;, Send {BackSpace}.{Space}Steer{Space} 
+Else IfEqual key0, tosh/;, Send {BackSpace}.{Space}Host{Space} 
+Else IfEqual key0, erp/;, Send {BackSpace}.{Space}Peer{Space} 
+Else IfEqual key0, etas/;, Send {BackSpace}.{Space}Tease{Space} 
+Else IfEqual key0, wal/;, Send {BackSpace}.{Space}Law{Space} 
+Else IfEqual key0, era/;, Send {BackSpace}.{Space}Ear{Space} 
+Else IfEqual key0, ersv/;, Send {BackSpace}.{Space}Sever{Space} 	
+Else IfEqual key0, slcn/;, Send {BackSpace}.{Space}Counsel{Space} 
+Else IfEqual key0, erups/;, Send {BackSpace}.{Space}Pursue{Space} 
+Else IfEqual key0, won/;, Send {BackSpace}.{Space}Won{Space} 
+
+Return
+SENDQstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, qerf;, Send {BackSpace}.{Space}Frequency{Space} 
+Else IfEqual key0, qerfn;, Send {BackSpace}.{Space}Frequent{Space} 
+Else IfEqual key0, qerui;, Send {BackSpace}.{Space}Queue{Space} 
+Else IfEqual key0, qeu;, Send {BackSpace}.{Space}Queue{Space} 
+Else IfEqual key0, qrac;, Send {BackSpace}.{Space}Acquire{Space} 
+Else IfEqual key0, qrts;, Send {BackSpace}.{Space}Request{Space} 
+Else IfEqual key0, qetui;, Send {BackSpace}.{Space}Quiet{Space} 
+Else IfEqual key0, qeuin;, Send {BackSpace}.{Space}Unique{Space} 
+Else IfEqual key0, qel;, Send {BackSpace}.{Space}Equal{Space} 
+Else IfEqual key0, qeru;, Send {BackSpace}.{Space}Queer{Space} 
+Else IfEqual key0, ql;, Send {BackSpace}.{Space}Quickly{Space} 
+Else IfEqual key0, qetuo;, Send {BackSpace}.{Space}Quote{Space} 
+Else IfEqual key0, qfl;, Send {BackSpace}.{Space}Qualify{Space} 
+Else IfEqual key0, qrtuis;, Send {BackSpace}.{Space}Squirt{Space} 
+Else IfEqual key0, qyfl;, Send {BackSpace}.{Space}Qualify{Space} 
+Else IfEqual key0, qeuip;, Send {BackSpace}.{Space}Equip{Space} 
+Else IfEqual key0, qeuoscn;, Send {BackSpace}.{Space}Consequence{Space} 
+Else IfEqual key0, qeus;, Send {BackSpace}.{Space}Esque
+Else IfEqual key0, qr;, Send {BackSpace}.{Space}Require{Space} 
+Else IfEqual key0, qrsl;, Send {BackSpace}.{Space}Squirrel{Space} 
+Else IfEqual key0, qeryu;, Send {BackSpace}.{Space}Query{Space} 
+Else IfEqual key0, qes;, Send {BackSpace}.{Space}Sequence{Space} 
+Else IfEqual key0, qetyui;, Send {BackSpace}.{Space}Equity{Space} 
+Else IfEqual key0, qrf;, Send {BackSpace}.{Space}Frequent{Space} 
+Else IfEqual key0, qrtfn;, Send {BackSpace}.{Space}Frequent{Space} 
+Else IfEqual key0, qscn;, Send {BackSpace}.{Space}Sequence{Space} 
+Else IfEqual key0, qtuanm;, Send {BackSpace}.{Space}Quantum{Space} 
+Else IfEqual key0, qt;, Send {BackSpace}.{Space}Question{Space} 
+Else IfEqual key0, qti;, Send {BackSpace}.{Space}Quite{Space} 
+Else IfEqual key0, qtl;, Send {BackSpace}.{Space}Quality{Space} 
+Else IfEqual key0, qts;, Send {BackSpace}.{Space}Questions{Space} 
+Else IfEqual key0, qtui;, Send {BackSpace}.{Space}Quit{Space} 
+Else IfEqual key0, qun;, Send {BackSpace}.{Space}Unique{Space} 
+Else IfEqual key0, qrt;, Send {BackSpace}.{Space}Quarter{Space} 
+Return
+SENDWstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, wa;, Send {BackSpace}.{Space}As Well{Space} 
+Else IfEqual key0, wrhv;, Send {BackSpace}.{Space}However{Space} 
+Else IfEqual key0, wtn;, Send {BackSpace}.{Space}Won't{Space} 
+Else IfEqual key0, werhvn;, Send {BackSpace}.{Space}Whenever{Space} 
+Else IfEqual key0, weoasm;, Send {BackSpace}.{Space}Awesome{Space} 
+Else IfEqual key0, wrpa;, Send {BackSpace}.{Space}Wrap{Space} 
+Else IfEqual key0, wlb;, Send {BackSpace}.{Space}Below{Space} 
+Else IfEqual key0, weolb;, Send {BackSpace}.{Space}Below{Space} 
+Else IfEqual key0, wan;, Send {BackSpace}.{Space}Want To{Space} 
+Else IfEqual key0, wehc;, Send {BackSpace}.{Space}Chew{Space} 
+Else IfEqual key0, weif;, Send {BackSpace}.{Space}Wife{Space} 
+Else IfEqual key0, weislv;, Send {BackSpace}.{Space}Swivel{Space} 
+Else IfEqual key0, werash;, Send {BackSpace}.{Space}Whereas{Space} 
+Else IfEqual key0, werhvn;, Send {BackSpace}.{Space}Whenever{Space} 
+Else IfEqual key0, werin;, Send {BackSpace}.{Space}Winner{Space} 
+Else IfEqual key0, weropm;, Send {BackSpace}.{Space}Empower{Space} 
+Else IfEqual key0, werosh;, Send {BackSpace}.{Space}Shower{Space} 
+Else IfEqual key0, wertih;, Send {BackSpace}.{Space}Wither{Space} 
+Else IfEqual key0, wesk;, Send {BackSpace}.{Space}Skew{Space} 
+Else IfEqual key0, wetishl;, Send {BackSpace}.{Space}Whistle{Space} 
+Else IfEqual key0, whkm;, Send {BackSpace}.{Space}Homework{Space} 
+Else IfEqual key0, wism;, Send {BackSpace}.{Space}Swim{Space} 
+Else IfEqual key0, woasl;, Send {BackSpace}.{Space}Swallow{Space} 
+Else IfEqual key0, wolb;, Send {BackSpace}.{Space}Blow{Space} 
+Else IfEqual key0, wra;, Send {BackSpace}.{Space}War{Space} 
+Else IfEqual key0, wrb;, Send {BackSpace}.{Space}Borrow{Space} 
+Else IfEqual key0, wrsm;, Send {BackSpace}.{Space}Worrisome{Space} 
+Else IfEqual key0, wrpf;, Send {BackSpace}.{Space}Powerful{Space} 
+Else IfEqual key0, wdv;, Send {BackSpace}.{Space}Would've{Space} 
+Else IfEqual key0, werohn;, Send {BackSpace}.{Space}Nowhere{Space} 
+Else IfEqual key0, werohv;, Send {BackSpace}.{Space}However{Space} 
+Else IfEqual key0, wrth;, Send {BackSpace}.{Space}Worth{Space} 
+Else IfEqual key0, weros;, Send {BackSpace}.{Space}Worse{Space} 
+Else IfEqual key0, wed;, Send {BackSpace}.{Space}We'd{Space} 
+Else IfEqual key0, wein;, Send {BackSpace}.{Space}Wine{Space} 
+Else IfEqual key0, wetah;, Send {BackSpace}.{Space}Weather{Space} 
+Else IfEqual key0, wetahl;, Send {BackSpace}.{Space}Wealth{Space} 
+Else IfEqual key0, wofl;, Send {BackSpace}.{Space}Flow{Space} 
+Else IfEqual key0, werop;, Send {BackSpace}.{Space}Power{Space} 
+Else IfEqual key0, wertn;, Send {BackSpace}.{Space}Weren't{Space} 
+Else IfEqual key0, wrtn;, Send {BackSpace}.{Space}Written{Space} 
+Else IfEqual key0, wadn;, Send {BackSpace}.{Space}Wand{Space} 
+Else IfEqual key0, wdl;, Send {BackSpace}.{Space}Wield{Space} 
+Else IfEqual key0, weav;, Send {BackSpace}.{Space}Wave{Space} 
+Else IfEqual key0, welb;, Send {BackSpace}.{Space}Blew{Space} 
+Else IfEqual key0, welb;, Send {BackSpace}.{Space}Blew{Space} 
+Else IfEqual key0, weonm;, Send {BackSpace}.{Space}Women{Space} 
+Else IfEqual key0, werto;, Send {BackSpace}.{Space}Wrote{Space} 
+Else IfEqual key0, werto;, Send {BackSpace}.{Space}Wrote{Space} 
+Else IfEqual key0, wlcm;, Send {BackSpace}.{Space}Welcome{Space} 
+Else IfEqual key0, wnm;, Send {BackSpace}.{Space}Women{Space} 
+Else IfEqual key0, wnm;, Send {BackSpace}.{Space}Woman{Space} 
+Else IfEqual key0, wosl;, Send {BackSpace}.{Space}Slow{Space} 
+Else IfEqual key0, wrdh;, Send {BackSpace}.{Space}Hardware{Space} 
+Else IfEqual key0, wrtos;, Send {BackSpace}.{Space}Worst{Space} 
+Else IfEqual key0, wryo;, Send {BackSpace}.{Space}Worry{Space} 
+Else IfEqual key0, wagn;, Send {BackSpace}.{Space}Gnaw{Space} 
+Else IfEqual key0, waln;, Send {BackSpace}.{Space}Lawn{Space} 
+Else IfEqual key0, wan;, Send {BackSpace}.{Space}Awn{Space} 
+Else IfEqual key0, waskl;, Send {BackSpace}.{Space}Walks{Space} 
+Else IfEqual key0, wdln;, Send {BackSpace}.{Space}Download{Space} 
+Else IfEqual key0, weahl;, Send {BackSpace}.{Space}Whale{Space} 
+Else IfEqual key0, wehl;, Send {BackSpace}.{Space}Wheel{Space} 
+Else IfEqual key0, weif;, Send {BackSpace}.{Space}Wife{Space} 
+Else IfEqual key0, weigh;, Send {BackSpace}.{Space}Weigh{Space} 
+Else IfEqual key0, weis;, Send {BackSpace}.{Space}Wise{Space} 
+Else IfEqual key0, weosh;, Send {BackSpace}.{Space}Whose{Space} 
+Else IfEqual key0, weosh;, Send {BackSpace}.{Space}Swore{Space} 
+Else IfEqual key0, wertah;, Send {BackSpace}.{Space}Weather{Space} 
+Else IfEqual key0, wetigh;, Send {BackSpace}.{Space}Weight{Space} 
+Else IfEqual key0, wets;, Send {BackSpace}.{Space}West{Space} 
+Else IfEqual key0, widl;, Send {BackSpace}.{Space}Wild{Space} 
+Else IfEqual key0, win;, Send {BackSpace}.{Space}Win{Space} 
+Else IfEqual key0, woc;, Send {BackSpace}.{Space}Cow{Space} 
+Else IfEqual key0, wom;, Send {BackSpace}.{Space}Mow{Space} 
+Else IfEqual key0, wrgln;, Send {BackSpace}.{Space}Wrangle{Space} 
+Else IfEqual key0, wrhn;, Send {BackSpace}.{Space}Nowhere{Space} 
+Else IfEqual key0, wrlnm;, Send {BackSpace}.{Space}Lawnmower{Space} 
+Else IfEqual key0, wrs;, Send {BackSpace}.{Space}Worse{Space} 
+Else IfEqual key0, wrtos;, Send {BackSpace}.{Space}Worst{Space} 
+Else IfEqual key0, wsdm;, Send {BackSpace}.{Space}Wisdom{Space} 
+Else IfEqual key0, wakl;, Send {BackSpace}.{Space}Walk{Space} 
+Else IfEqual key0, wal;, Send {BackSpace}.{Space}Always{Space} 
+Else IfEqual key0, was;, Send {BackSpace}.{Space}Was{Space} 
+Else IfEqual key0, was;, Send {BackSpace}.{Space}Was{Space} 
+Else IfEqual key0, wash;, Send {BackSpace}.{Space}Wash{Space} 
+Else IfEqual key0, wdf;, Send {BackSpace}.{Space}Forward{Space} 
+Else IfEqual key0, wdn;, Send {BackSpace}.{Space}Wouldn't{Space} 
+Else IfEqual key0, we;, Send {BackSpace}.{Space}We{Space} 
+Else IfEqual key0, weak;, Send {BackSpace}.{Space}Weak{Space} 
+Else IfEqual key0, weasm;, Send {BackSpace}.{Space}Awesome{Space} 
+Else IfEqual key0, wef;, Send {BackSpace}.{Space}Few{Space} 
+Else IfEqual key0, weh;, Send {BackSpace}.{Space}When{Space} 
+Else IfEqual key0, wehn;, Send {BackSpace}.{Space}When{Space} 
+Else IfEqual key0, weid;, Send {BackSpace}.{Space}Wide{Space} 
+Else IfEqual key0, weid;, Send {BackSpace}.{Space}Wide{Space} 
+Else IfEqual key0, weihl;, Send {BackSpace}.{Space}While{Space} 
+Else IfEqual key0, weis;, Send {BackSpace}.{Space}Wise{Space} 
+Else IfEqual key0, weisdh;, Send {BackSpace}.{Space}Wished{Space} 
+Else IfEqual key0, weiv;, Send {BackSpace}.{Space}View{Space} 
+Else IfEqual key0, wek;, Send {BackSpace}.{Space}Week{Space} 
+Else IfEqual key0, wekn;, Send {BackSpace}.{Space}Knew{Space} 
+Else IfEqual key0, wel;, Send {BackSpace}.{Space}Well{Space} 
+Else IfEqual key0, wen;, Send {BackSpace}.{Space}New{Space} 
+Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
+Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
+Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
+Else IfEqual key0, wer;, Send {BackSpace}.{Space}Were{Space} 
+Else IfEqual key0, wera;, Send {BackSpace}.{Space}Wear{Space} 
+Else IfEqual key0, werasn;, Send {BackSpace}.{Space}Answer{Space} 
+Else IfEqual key0, werc;, Send {BackSpace}.{Space}Crew{Space} 
+Else IfEqual key0, werh;, Send {BackSpace}.{Space}Where{Space} 
+Else IfEqual key0, werid;, Send {BackSpace}.{Space}Weird{Space} 
+Else IfEqual key0, weriv;, Send {BackSpace}.{Space}Review{Space} 
+Else IfEqual key0, werosb;, Send {BackSpace}.{Space}Browse{Space} 
+Else IfEqual key0, werta;, Send {BackSpace}.{Space}Water{Space} 
+Else IfEqual key0, werth;, Send {BackSpace}.{Space}Whether{Space} 
+Else IfEqual key0, werti;, Send {BackSpace}.{Space}Twitter{Space} 
+Else IfEqual key0, wetadn;, Send {BackSpace}.{Space}Wanted{Space} 
+Else IfEqual key0, wetbn;, Send {BackSpace}.{Space}Between{Space} 
+Else IfEqual key0, wetih;, Send {BackSpace}.{Space}White{Space} 
+Else IfEqual key0, wetn;, Send {BackSpace}.{Space}Went{Space} 
+Else IfEqual key0, wev;, Send {BackSpace}.{Space}Everywhere{Space} 
+Else IfEqual key0, wfl;, Send {BackSpace}.{Space}Follow{Space} 
+Else IfEqual key0, wgk;, Send {BackSpace}.{Space}Working{Space} 
+Else IfEqual key0, wgkl;, Send {BackSpace}.{Space}Walking{Space} 
+Else IfEqual key0, wh;, Send {BackSpace}.{Space}Who{Space} 
+Else IfEqual key0, when;, Send {BackSpace}.{Space}When{Space} 
+Else IfEqual key0, whl;, Send {BackSpace}.{Space}Whole{Space} 
+Else IfEqual key0, whn;, Send {BackSpace}.{Space}When{Space} 
+Else IfEqual key0, widn;, Send {BackSpace}.{Space}Wind{Space} 
+Else IfEqual key0, wihc;, Send {BackSpace}.{Space}Which{Space} 
+Else IfEqual key0, wil;, Send {BackSpace}.{Space}Will{Space} 
+Else IfEqual key0, wiodn;, Send {BackSpace}.{Space}Window{Space} 
+Else IfEqual key0, wish;, Send {BackSpace}.{Space}Wish{Space} 
+Else IfEqual key0, wk;, Send {BackSpace}.{Space}Work{Space} 
+Else IfEqual key0, wkl;, Send {BackSpace}.{Space}Walk{Space} 
+Else IfEqual key0, wl;, Send {BackSpace}.{Space}We'll{Space} 
+Else IfEqual key0, wn;, Send {BackSpace}.{Space}Network{Space} 
+Else IfEqual key0, wo;, Send {BackSpace}.{Space}Would{Space} 
+Else IfEqual key0, woal;, Send {BackSpace}.{Space}Allow{Space} 
+Else IfEqual key0, wod;, Send {BackSpace}.{Space}Wood{Space} 
+Else IfEqual key0, wodn;, Send {BackSpace}.{Space}Down{Space} 
+Else IfEqual key0, woh;, Send {BackSpace}.{Space}How{Space} 
+Else IfEqual key0, wokn;, Send {BackSpace}.{Space}Know{Space} 
+Else IfEqual key0, wol;, Send {BackSpace}.{Space}Low{Space} 
+Else IfEqual key0, won;, Send {BackSpace}.{Space}Now{Space} 
+Else IfEqual key0, wosh;, Send {BackSpace}.{Space}Show{Space} 
+Else IfEqual key0, wosn;, Send {BackSpace}.{Space}Snow{Space} 
+Else IfEqual key0, wpn;, Send {BackSpace}.{Space}Newspaper{Space} 
+Else IfEqual key0, wr;, Send {BackSpace}.{Space}We're{Space} 
+Else IfEqual key0, wr;, Send {BackSpace}.{Space}We're{Space} 
+Else IfEqual key0, wrad;, Send {BackSpace}.{Space}Draw{Space} 
+Else IfEqual key0, wram;, Send {BackSpace}.{Space}Warm{Space} 
+Else IfEqual key0, wrdf;, Send {BackSpace}.{Space}Wonderful{Space} 
+Else IfEqual key0, wrdfn;, Send {BackSpace}.{Space}Wonderful{Space} 
+Else IfEqual key0, wrdn;, Send {BackSpace}.{Space}Wonder{Space} 
+Else IfEqual key0, wrk;, Send {BackSpace}.{Space}Work{Space} 
+Else IfEqual key0, wrod;, Send {BackSpace}.{Space}Word{Space} 
+Else IfEqual key0, wrodl;, Send {BackSpace}.{Space}World{Space} 
+Else IfEqual key0, wrog;, Send {BackSpace}.{Space}Grow{Space} 
+Else IfEqual key0, wrogn;, Send {BackSpace}.{Space}Wrong{Space} 
+Else IfEqual key0, wrok;, Send {BackSpace}.{Space}Work{Space} 
+Else IfEqual key0, wrt;, Send {BackSpace}.{Space}Write{Space} 
+Else IfEqual key0, wrtg;, Send {BackSpace}.{Space}Writing{Space} 
+Else IfEqual key0, wrtm;, Send {BackSpace}.{Space}Tomorrow{Space} 
+Else IfEqual key0, wrtoh;, Send {BackSpace}.{Space}Throw{Space} 
+Else IfEqual key0, wrtv;, Send {BackSpace}.{Space}Whatever{Space} 
+Else IfEqual key0, wrv;, Send {BackSpace}.{Space}Review{Space} 
+Else IfEqual key0, ws;, Send {BackSpace}.{Space}Website{Space} 
+Else IfEqual key0, wsf;, Send {BackSpace}.{Space}Software{Space} 
+Else IfEqual key0, wsm;, Send {BackSpace}.{Space}Somewhere{Space} 
+Else IfEqual key0, wt;, Send {BackSpace}.{Space}What{Space} 
+Else IfEqual key0, wtadn;, Send {BackSpace}.{Space}Wanted{Space} 
+Else IfEqual key0, wtadn;, Send {BackSpace}.{Space}Wanted{Space} 
+Else IfEqual key0, wtah;, Send {BackSpace}.{Space}What{Space} 
+Else IfEqual key0, wtahc;, Send {BackSpace}.{Space}Watch{Space} 
+Else IfEqual key0, wtan;, Send {BackSpace}.{Space}Want{Space} 
+Else IfEqual key0, wtasn;, Send {BackSpace}.{Space}Wasn't{Space} 
+Else IfEqual key0, wsn;, Send {BackSpace}.{Space}Wasn't{Space} 
+Else IfEqual key0, wtb;, Send {BackSpace}.{Space}By The Way{Space} 
+Else IfEqual key0, wtd;, Send {BackSpace}.{Space}Toward{Space} 
+Else IfEqual key0, wth;, Send {BackSpace}.{Space}Whether{Space} 
+Else IfEqual key0, wthc;, Send {BackSpace}.{Space}Watch{Space} 
+Else IfEqual key0, wti;, Send {BackSpace}.{Space}Within{Space} 
+Else IfEqual key0, wtia;, Send {BackSpace}.{Space}Wait{Space} 
+Else IfEqual key0, wtishc;, Send {BackSpace}.{Space}Switch{Space} 
+Else IfEqual key0, wto;, Send {BackSpace}.{Space}Without{Space} 
+Else IfEqual key0, wton;, Send {BackSpace}.{Space}Town{Space} 
+Else IfEqual key0, wtuo;, Send {BackSpace}.{Space}Without{Space} 
+Else IfEqual key0, wtv;, Send {BackSpace}.{Space}Whatever{Space} 
+Else IfEqual key0, wtvn;, Send {BackSpace}.{Space}Interview{Space} 
+Else IfEqual key0, wv;, Send {BackSpace}.{Space}We've{Space} 
+Else IfEqual key0, wv;, Send {BackSpace}.{Space}We've{Space} 
+Else IfEqual key0, wya;, Send {BackSpace}.{Space}Way{Space} 
+Else IfEqual key0, wyahn;, Send {BackSpace}.{Space}Anywhere{Space} 
+Else IfEqual key0, wyan;, Send {BackSpace}.{Space}Anyway{Space} 
+Else IfEqual key0, wyh;, Send {BackSpace}.{Space}Why{Space} 
+Else IfEqual key0, wyl;, Send {BackSpace}.{Space}Yellow{Space} 
+Else IfEqual key0, werg;, Send {BackSpace}.{Space}Grew{Space} 
+Else IfEqual key0, wetic;, Send {BackSpace}.{Space}Twice{Space} 
+Else IfEqual key0, wtash;, Send {BackSpace}.{Space}What's{Space} 
+Else IfEqual key0, wts;, Send {BackSpace}.{Space}What's{Space} 
+Return
+SENDRstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, ra;, Send {BackSpace}.{Space}Around{Space} 
+Else IfEqual key0, ruioasv;, Send {BackSpace}.{Space}Saviour{Space} 
+Else IfEqual key0, rtyph;, Send {BackSpace}.{Space}Therapy{Space} 
+Else IfEqual key0, rtdlnm;, Send {BackSpace}.{Space}Detrimental{Space} 
+Else IfEqual key0, rtdln;, Send {BackSpace}.{Space}Traditional{Space} 
+Else IfEqual key0, ryc;, Send {BackSpace}.{Space}Cry{Space} 
+Else IfEqual key0, rtpsdn;, Send {BackSpace}.{Space}President{Space} 
+Else IfEqual key0, rtuiag;, Send {BackSpace}.{Space}Guitar	{Space} 
+Else IfEqual key0, rtip;, Send {BackSpace}.{Space}Trip{Space} 
+Else IfEqual key0, ruosh;, Send {BackSpace}.{Space}Hours{Space} 
+Else IfEqual key0, ridkn;, Send {BackSpace}.{Space}Drink{Space} 
+Else IfEqual key0, riafc;, Send {BackSpace}.{Space}Africa{Space} 
+Else IfEqual key0, rtiac;, Send {BackSpace}.{Space}Arctic{Space} 
+Else IfEqual key0, rtiacn;, Send {BackSpace}.{Space}Antarctica{Space} 
+Else IfEqual key0, wrb;, Send {BackSpace}.{Space}Borrow{Space} 
+Else IfEqual key0, rhlb;, Send {BackSpace}.{Space}Horrible{Space} 
+Else IfEqual key0, rp;, Send {BackSpace}.{Space}Peer{Space} 
+Else IfEqual key0, rahcm;, Send {BackSpace}.{Space}March{Space} 
+Else IfEqual key0, rdv;, Send {BackSpace}.{Space}Drive{Space} 
+Else IfEqual key0, rdbn;, Send {BackSpace}.{Space}Burden{Space} 
+Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Garden{Space} 
+Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Conference{Space} 
+Else IfEqual key0, rfnm;, Send {BackSpace}.{Space}Inform{Space} 
+Else IfEqual key0, riagc;, Send {BackSpace}.{Space}Cigar{Space} 
+Else IfEqual key0, rid;, Send {BackSpace}.{Space}Rid{Space} 
+Else IfEqual key0, ridb;, Send {BackSpace}.{Space}Bird{Space} 
+Else IfEqual key0, riofnm;, Send {BackSpace}.{Space}Inform{Space} 
+Else IfEqual key0, riom;, Send {BackSpace}.{Space}Mirror{Space} 
+Else IfEqual key0, rionm;, Send {BackSpace}.{Space}Minor{Space} 
+Else IfEqual key0, ripal;, Send {BackSpace}.{Space}April{Space} 
+Else IfEqual key0, risc;, Send {BackSpace}.{Space}Crisis{Space} 
+Else IfEqual key0, riscn;, Send {BackSpace}.{Space}Insurance{Space} 
+Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Commercial{Space} 
+Else IfEqual key0, roajm;, Send {BackSpace}.{Space}Major{Space} 
+Else IfEqual key0, rodn;, Send {BackSpace}.{Space}Donor{Space} 
+Else IfEqual key0, rolc;, Send {BackSpace}.{Space}Color{Space} 
+Else IfEqual key0, roogm;, Send {BackSpace}.{Space}Groom{Space} 
+Else IfEqual key0, rpcn;, Send {BackSpace}.{Space}Pronounce{Space} 
+Else IfEqual key0, rpscb;, Send {BackSpace}.{Space}Prescribe{Space} 
+Else IfEqual key0, rpscm;, Send {BackSpace}.{Space}Compromise{Space} 
+Else IfEqual key0, rsc;, Send {BackSpace}.{Space}Source{Space} 
+Else IfEqual key0, rsjln;, Send {BackSpace}.{Space}Journalist{Space} 
+Else IfEqual key0, rtashc;, Send {BackSpace}.{Space}Scratch{Space} 
+Else IfEqual key0, rtav;, Send {BackSpace}.{Space}Avatar{Space} 
+Else IfEqual key0, rtfgl;, Send {BackSpace}.{Space}Grateful{Space} 
+Else IfEqual key0, rtgn;, Send {BackSpace}.{Space}Generate{Space} 
+Else IfEqual key0, rtifcn;, Send {BackSpace}.{Space}Interface{Space} 
+Else IfEqual key0, rtioavn;, Send {BackSpace}.{Space}Innovator{Space} 
+Else IfEqual key0, rtioscn;, Send {BackSpace}.{Space}Constrict{Space} 
+Else IfEqual key0, rtish;, Send {BackSpace}.{Space}Shirt{Space} 
+Else IfEqual key0, rtodc;, Send {BackSpace}.{Space}Doctor{Space} 
+Else IfEqual key0, rtofh;, Send {BackSpace}.{Space}Forth{Space} 
+Else IfEqual key0, rtpnm;, Send {BackSpace}.{Space}Prominent{Space} 
+Else IfEqual key0, rtpscn;, Send {BackSpace}.{Space}Transcript{Space} 
+Else IfEqual key0, rtpsn;, Send {BackSpace}.{Space}Proposition{Space} 
+Else IfEqual key0, rtsdm;, Send {BackSpace}.{Space}Mustard{Space} 
+Else IfEqual key0, rtshlc;, Send {BackSpace}.{Space}Historical{Space} 
+Else IfEqual key0, rtsjln;, Send {BackSpace}.{Space}Journalist{Space} 
+Else IfEqual key0, rtuinm;, Send {BackSpace}.{Space}Monitor{Space} 
+Else IfEqual key0, rtukc;, Send {BackSpace}.{Space}Truck{Space} 
+Else IfEqual key0, rtuoscn;, Send {BackSpace}.{Space}Construct{Space} 
+Else IfEqual key0, rtupab;, Send {BackSpace}.{Space}Abrupt{Space} 
+Else IfEqual key0, rtuskc;, Send {BackSpace}.{Space}Struck{Space} 
+Else IfEqual key0, rtyivn;, Send {BackSpace}.{Space}Inventory{Space} 
+Else IfEqual key0, rtyoph;, Send {BackSpace}.{Space}Trophy{Space} 
+Else IfEqual key0, rtyshlc;, Send {BackSpace}.{Space}Hysterical{Space} 
+Else IfEqual key0, ruasg;, Send {BackSpace}.{Space}Sugar{Space} 
+Else IfEqual key0, ruogh;, Send {BackSpace}.{Space}Rough{Space} 
+Else IfEqual key0, rydlv;, Send {BackSpace}.{Space}Delivery{Space} 
+Else IfEqual key0, ryfb;, Send {BackSpace}.{Space}February{Space} 
+Else IfEqual key0, ryjn;, Send {BackSpace}.{Space}January{Space} 
+Else IfEqual key0, rysdcv;, Send {BackSpace}.{Space}Discovery{Space} 
+Else IfEqual key0, rysg;, Send {BackSpace}.{Space}Surgery{Space} 
+Else IfEqual key0, ryuasm;, Send {BackSpace}.{Space}Summary{Space} 
+Else IfEqual key0, rus;, Send {BackSpace}.{Space}Yours{Space} 
+Else IfEqual key0, rtialc;, Send {BackSpace}.{Space}Critical{Space} 
+Else IfEqual key0, ropasl;, Send {BackSpace}.{Space}Proposal{Space} 
+Else IfEqual key0, rshc;, Send {BackSpace}.{Space}Proposal{Space} 
+Else IfEqual key0, rsc;, Send {BackSpace}.{Space}Source{Space} 
+Else IfEqual key0, ryagn;, Send {BackSpace}.{Space}Angry{Space} 
+Else IfEqual key0, rign;, Send {BackSpace}.{Space}Ignore{Space} 
+Else IfEqual key0, rtsglcn;, Send {BackSpace}.{Space}Congratulations{Space} 
+Else IfEqual key0, rfv;, Send {BackSpace}.{Space}Forever{Space} 
+Else IfEqual key0, rtpcm;, Send {BackSpace}.{Space}Competitor{Space} 
+Else IfEqual key0, rl;, Send {BackSpace}.{Space}Real{Space} 
+Else IfEqual key0, rtiln;, Send {BackSpace}.{Space}Internal{Space} 
+Else IfEqual key0, rtualn;, Send {BackSpace}.{Space}Natural{Space} 
+Else IfEqual key0, rthb;, Send {BackSpace}.{Space}Breath{Space} 
+Else IfEqual key0, rtlcn;, Send {BackSpace}.{Space}Control{Space} 
+Else IfEqual key0, rdh;, Send {BackSpace}.{Space}Heard{Space} 
+Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Molecular{Space} 
+Else IfEqual key0, ryd;, Send {BackSpace}.{Space}Ready{Space} 
+Else IfEqual key0, roahcb;, Send {BackSpace}.{Space}Broach{Space} 
+Else IfEqual key0, riav;, Send {BackSpace}.{Space}Vari{Space} 
+Else IfEqual key0, rpsd;, Send {BackSpace}.{Space}Spread{Space} 
+Else IfEqual key0, rpshc;, Send {BackSpace}.{Space}Purchase{Space} 
+Else IfEqual key0, rtaghlm;, Send {BackSpace}.{Space}Algorithm{Space} 
+Else IfEqual key0, rodhc;, Send {BackSpace}.{Space}Chord{Space} 
+Else IfEqual key0, rtagnm;, Send {BackSpace}.{Space}Argument{Space} 
+Else IfEqual key0, rtfh;, Send {BackSpace}.{Space}Further{Space} 
+Else IfEqual key0, rtisdc;, Send {BackSpace}.{Space}District{Space} 
+Else IfEqual key0, rtpdxn;, Send {BackSpace}.{Space}Expenditure{Space} 
+Else IfEqual key0, rafm;, Send {BackSpace}.{Space}Farm{Space} 
+Else IfEqual key0, rag;, Send {BackSpace}.{Space}Argue{Space} 
+Else IfEqual key0, rakc;, Send {BackSpace}.{Space}Crack{Space} 
+Else IfEqual key0, ram;, Send {BackSpace}.{Space}Arm{Space} 
+ Else IfEqual key0, rtlvn;, Send {BackSpace}.{Space}Relevant{Space} 
+Else IfEqual key0, ram;, Send {BackSpace}.{Space}Arm{Space} 
+Else IfEqual key0, rdfcn;, Send {BackSpace}.{Space}Difference{Space} 
+Else IfEqual key0, rdfl;, Send {BackSpace}.{Space}Federal{Space} 
+Else IfEqual key0, rfb;, Send {BackSpace}.{Space}Brief{Space} 
+Else IfEqual key0, rfcnm;, Send {BackSpace}.{Space}Confirm{Space} 
+Else IfEqual key0, rfgn;, Send {BackSpace}.{Space}Finger{Space} 
+Else IfEqual key0, rghc;, Send {BackSpace}.{Space}Charge{Space} 
+Else IfEqual key0, rgln;, Send {BackSpace}.{Space}General{Space} 
+Else IfEqual key0, rglv;, Send {BackSpace}.{Space}Leverage{Space} 
+Else IfEqual key0, rhlcn;, Send {BackSpace}.{Space}Chronicle{Space} 
+Else IfEqual key0, ria;, Send {BackSpace}.{Space}Air{Space} 
+Else IfEqual key0, riabn;, Send {BackSpace}.{Space}Brain{Space} 
+Else IfEqual key0, ricb;, Send {BackSpace}.{Space}Crib{Space} 
+Else IfEqual key0, rid;, Send {BackSpace}.{Space}Rid{Space} 
+Else IfEqual key0, rif;, Send {BackSpace}.{Space}Riff{Space} 
+Else IfEqual key0, ripaghc;, Send {BackSpace}.{Space}Graphic{Space} 
+Else IfEqual key0, ripalcn;, Send {BackSpace}.{Space}Principal{Space} 
+Else IfEqual key0, ripsvm;, Send {BackSpace}.{Space}Improvise{Space} 
+Else IfEqual key0, risk;, Send {BackSpace}.{Space}Risk{Space} 
+Else IfEqual key0, rjn;, Send {BackSpace}.{Space}Junior{Space} 
+Else IfEqual key0, rkm;, Send {BackSpace}.{Space}Maker{Space} 
+Else IfEqual key0, rlc;, Send {BackSpace}.{Space}Clear{Space} 
+Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Curriculum{Space} 
+Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Miracle{Space} 
+Else IfEqual key0, roasb;, Send {BackSpace}.{Space}Absorb{Space} 
+Else IfEqual key0, rosvb;, Send {BackSpace}.{Space}Observe{Space} 
+Else IfEqual key0, rpagh;, Send {BackSpace}.{Space}Graph{Space} 
+Else IfEqual key0, rpaghc;, Send {BackSpace}.{Space}Graphic{Space} 
+Else IfEqual key0, rpg;, Send {BackSpace}.{Space}Grp Group{Space} 
+Else IfEqual key0, rplcn;, Send {BackSpace}.{Space}Principle{Space} 
+Else IfEqual key0, rpscnm;, Send {BackSpace}.{Space}Comparison{Space} 
+Else IfEqual key0, rpshm;, Send {BackSpace}.{Space}Sophomore{Space} 
+Else IfEqual key0, rpsl;, Send {BackSpace}.{Space}Pleasure{Space} 
+Else IfEqual key0, rpsln;, Send {BackSpace}.{Space}Personal{Space} 
+Else IfEqual key0, rsfc;, Send {BackSpace}.{Space}Surface{Space} 
+Else IfEqual key0, rsfhnm;, Send {BackSpace}.{Space}Freshman{Space} 
+Else IfEqual key0, rsflc;, Send {BackSpace}.{Space}Salesforce{Space} 
+Else IfEqual key0, rsgln;, Send {BackSpace}.{Space}Singular{Space} 
+Else IfEqual key0, rsgln;, Send {BackSpace}.{Space}Singular{Space} 
+Else IfEqual key0, rslcn;, Send {BackSpace}.{Space}Counselor{Space} 
+Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
+Else IfEqual key0, rtagn;, Send {BackSpace}.{Space}Grant{Space} 
+Else IfEqual key0, rtasm;, Send {BackSpace}.{Space}Smart{Space} 
+Else IfEqual key0, rtfc;, Send {BackSpace}.{Space}Factor{Space} 
+Else IfEqual key0, rtfgn;, Send {BackSpace}.{Space}Forgotten{Space} 
+Else IfEqual key0, rthn;, Send {BackSpace}.{Space}Neither{Space} 
+Else IfEqual key0, rtidh;, Send {BackSpace}.{Space}Third{Space} 
+Else IfEqual key0, rtioshc;, Send {BackSpace}.{Space}Historic{Space} 
+Else IfEqual key0, rtisgn;, Send {BackSpace}.{Space}String{Space} 
+Else IfEqual key0, rtkm;, Send {BackSpace}.{Space}Market{Space} 
+Else IfEqual key0, rtoafc;, Send {BackSpace}.{Space}Factor{Space} 
+Else IfEqual key0, rtofg;, Send {BackSpace}.{Space}Forgot{Space} 
+Else IfEqual key0, rtohn;, Send {BackSpace}.{Space}North{Space} 
+Else IfEqual key0, rtopa;, Send {BackSpace}.{Space}Parrot{Space} 
+Else IfEqual key0, rtopa;, Send {BackSpace}.{Space}Transport{Space} 
+Else IfEqual key0, rtplc;, Send {BackSpace}.{Space}Particular{Space} 
+Else IfEqual key0, rtpslc;, Send {BackSpace}.{Space}Spectacular{Space} 
+Else IfEqual key0, rtpslc;, Send {BackSpace}.{Space}Transport{Space} 
+Else IfEqual key0, rtpsn.;, Send {BackSpace}.{Space}Transportation{Space} 
+Else IfEqual key0, rtpvm;, Send {BackSpace}.{Space}Primitive{Space} 
+Else IfEqual key0, rtpvn;, Send {BackSpace}.{Space}Prevent{Space} 
+Else IfEqual key0, rtpxnm;, Send {BackSpace}.{Space}Experiment{Space} 
+Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Countries{Space} 
+Else IfEqual key0, rtsdb;, Send {BackSpace}.{Space}Disturb{Space} 
+Else IfEqual key0, rtsfn;, Send {BackSpace}.{Space}Transfer{Space} 
+Else IfEqual key0, rtshc;, Send {BackSpace}.{Space}Historic{Space} 
+Else IfEqual key0, rtuam;, Send {BackSpace}.{Space}Trauma{Space} 
+Else IfEqual key0, rtuo;, Send {BackSpace}.{Space}Tour{Space} 
+Else IfEqual key0, rtuoah;, Send {BackSpace}.{Space}Author{Space} 
+Else IfEqual key0, rtyan;, Send {BackSpace}.{Space}Attorney{Space} 
+Else IfEqual key0, rtyp;, Send {BackSpace}.{Space}Property{Space} 
+Else IfEqual key0, rtyp;, Send {BackSpace}.{Space}Property{Space} 
+Else IfEqual key0, ruadg;, Send {BackSpace}.{Space}Guard{Space} 
+Else IfEqual key0, rubn;, Send {BackSpace}.{Space}Burn{Space} 
+Else IfEqual key0, ruodn;, Send {BackSpace}.{Space}Round{Space} 
+Else IfEqual key0, ruos;, Send {BackSpace}.{Space}Ours{Space} 
+Else IfEqual key0, rush;, Send {BackSpace}.{Space}Rush{Space} 
+Else IfEqual key0, ryanm;, Send {BackSpace}.{Space}Anymore{Space} 
+Else IfEqual key0, ryanm;, Send {BackSpace}.{Space}Anymore{Space} 
+Else IfEqual key0, ryjn;, Send {BackSpace}.{Space}Journey{Space} 
+Else IfEqual key0, rypas;, Send {BackSpace}.{Space}Spray{Space} 
+Else IfEqual key0, rtphc;, Send {BackSpace}.{Space}Chapter{Space} 
+Else IfEqual key0, rtsdc;, Send {BackSpace}.{Space}District{Space} 
+Else IfEqual key0, rtygc;, Send {BackSpace}.{Space}Category{Space} 
+Else IfEqual key0, radc;, Send {BackSpace}.{Space}Card{Space} 
+Else IfEqual key0, rof;, Send {BackSpace}.{Space}For{Space} 
+Else IfEqual key0, ryad;, Send {BackSpace}.{Space}Yard{Space} 
+Else IfEqual key0, radg;, Send {BackSpace}.{Space}Grad{Space} 
+Else IfEqual key0, radh;, Send {BackSpace}.{Space}Hard{Space} 
+Else IfEqual key0, rakm;, Send {BackSpace}.{Space}Mark{Space} 
+Else IfEqual key0, rakm;, Send {BackSpace}.{Space}Mark{Space} 
+Else IfEqual key0, rasdv;, Send {BackSpace}.{Space}Advisor{Space} 
+Else IfEqual key0, rdcnm;, Send {BackSpace}.{Space}Recommend{Space} 
+Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Gender{Space} 
+Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Gender{Space} 
+Else IfEqual key0, rdhn;, Send {BackSpace}.{Space}Hundred{Space} 
+Else IfEqual key0, rdlv;, Send {BackSpace}.{Space}Deliver{Space} 
+Else IfEqual key0, rdm;, Send {BackSpace}.{Space}Dream{Space} 
+Else IfEqual key0, rdn;, Send {BackSpace}.{Space}Round{Space} 
+Else IfEqual key0, rdnm;, Send {BackSpace}.{Space}Random{Space} 
+Else IfEqual key0, rdvn;, Send {BackSpace}.{Space}Vendor{Space} 
+Else IfEqual key0, rfc;, Send {BackSpace}.{Space}Force{Space} 
+Else IfEqual key0, rfc;, Send {BackSpace}.{Space}Force{Space} 
+Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Reference{Space} 
+Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Reference{Space} 
+Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Conference{Space} 
+Else IfEqual key0, rflv;, Send {BackSpace}.{Space}Flavor{Space} 
+Else IfEqual key0, rfm;, Send {BackSpace}.{Space}Firm{Space} 
+Else IfEqual key0, rg;, Send {BackSpace}.{Space}Regard{Space} 
+Else IfEqual key0, rgcn;, Send {BackSpace}.{Space}Encourage{Space} 
+Else IfEqual key0, rgcn;, Send {BackSpace}.{Space}Encourage{Space} 
+Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regular{Space} 
+Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regardless{Space} 
+Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regular{Space} 
+Else IfEqual key0, rglv;, Send {BackSpace}.{Space}Leverage{Space} 
+Else IfEqual key0, rhcbm;, Send {BackSpace}.{Space}Chamber{Space} 
+Else IfEqual key0, rhvb;, Send {BackSpace}.{Space}Behavior{Space} 
+Else IfEqual key0, riadn;, Send {BackSpace}.{Space}Drain{Space} 
+Else IfEqual key0, riah;, Send {BackSpace}.{Space}Hair{Space} 
+Else IfEqual key0, rifm;, Send {BackSpace}.{Space}Firm{Space} 
+Else IfEqual key0, riscn;, Send {BackSpace}.{Space}Increase{Space} 
+Else IfEqual key0, rlb;, Send {BackSpace}.{Space}Reliable{Space} 
+Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Commercial{Space} 
+Else IfEqual key0, rlv;, Send {BackSpace}.{Space}Lever{Space} 
+Else IfEqual key0, roalb;, Send {BackSpace}.{Space}Labor{Space} 
+Else IfEqual key0, rod;, Send {BackSpace}.{Space}Door{Space} 
+Else IfEqual key0, rogcn;, Send {BackSpace}.{Space}Organic{Space} 
+Else IfEqual key0, rohn;, Send {BackSpace}.{Space}Honor{Space} 
+Else IfEqual key0, rokc;, Send {BackSpace}.{Space}Rock{Space} 
+Else IfEqual key0, rolc;, Send {BackSpace}.{Space}Color{Space} 
+Else IfEqual key0, rpd;, Send {BackSpace}.{Space}Drop{Space} 
+Else IfEqual key0, rpav;, Send {BackSpace}.{Space}Approve{Space} 
+Else IfEqual key0, rpcv;, Send {BackSpace}.{Space}Perceive{Space} 
+Else IfEqual key0, rpdn;, Send {BackSpace}.{Space}Pardon{Space} 
+Else IfEqual key0, rpghc;, Send {BackSpace}.{Space}Graphic{Space} 
+Else IfEqual key0, rpl;, Send {BackSpace}.{Space}Popular{Space} 
+Else IfEqual key0, rpl;, Send {BackSpace}.{Space}Popular{Space} 
+Else IfEqual key0, rpsc;, Send {BackSpace}.{Space}Precise{Space} 
+Else IfEqual key0, rpscn;, Send {BackSpace}.{Space}Presence{Space} 
+Else IfEqual key0, rpsf;, Send {BackSpace}.{Space}Profess{Space} 
+Else IfEqual key0, rpsg;, Send {BackSpace}.{Space}Progress{Space} 
+Else IfEqual key0, rscn;, Send {BackSpace}.{Space}Increase{Space} 
+Else IfEqual key0, rscn;, Send {BackSpace}.{Space}Increase{Space} 
+Else IfEqual key0, rscnm;, Send {BackSpace}.{Space}Consumer{Space} 
+Else IfEqual key0, rsd;, Send {BackSpace}.{Space}Desire{Space} 
+Else IfEqual key0, rsdc;, Send {BackSpace}.{Space}Decrease{Space} 
+Else IfEqual key0, rsdlc;, Send {BackSpace}.{Space}Ridiculous{Space} 
+Else IfEqual key0, rsdlc;, Send {BackSpace}.{Space}Ridiculous{Space} 
+Else IfEqual key0, rsdn;, Send {BackSpace}.{Space}Surround{Space} 
+Else IfEqual key0, rsdv;, Send {BackSpace}.{Space}Deserve{Space} 
+Else IfEqual key0, rsv;, Send {BackSpace}.{Space}Various{Space} 
+Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
+Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
+Else IfEqual key0, rtab;, Send {BackSpace}.{Space}Attribute{Space} 
+Else IfEqual key0, rtalc;, Send {BackSpace}.{Space}Article{Space} 
+Else IfEqual key0, rtcbn;, Send {BackSpace}.{Space}Contribute{Space} 
+Else IfEqual key0, rtdcn;, Send {BackSpace}.{Space}Coordinate{Space} 
+Else IfEqual key0, rtidcn;, Send {BackSpace}.{Space}Coordinate{Space} 
+Else IfEqual key0, rtfcnm;, Send {BackSpace}.{Space}Manufacture{Space} 
+Else IfEqual key0, rtflc;, Send {BackSpace}.{Space}Reflect{Space} 
+Else IfEqual key0, rtial;, Send {BackSpace}.{Space}Trial{Space} 
+Else IfEqual key0, rtikc;, Send {BackSpace}.{Space}Trick{Space} 
+Else IfEqual key0, rtlcb;, Send {BackSpace}.{Space}Collaborate{Space} 
+Else IfEqual key0, rto;, Send {BackSpace}.{Space}Root{Space} 
+Else IfEqual key0, rtoashc;, Send {BackSpace}.{Space}Orchestra{Space} 
+Else IfEqual key0, rtopm;, Send {BackSpace}.{Space}Prompt{Space} 
+Else IfEqual key0, rtpf;, Send {BackSpace}.{Space}Profit{Space} 
+Else IfEqual key0, rtpfn;, Send {BackSpace}.{Space}Nonprofit{Space} 
+Else IfEqual key0, rtypscn;, Send {BackSpace}.{Space}Transparency{Space} 
+Else IfEqual key0, rtpsdcn;, Send {BackSpace}.{Space}Description{Space} 
+Else IfEqual key0, rtpsn;, Send {BackSpace}.{Space}Inspiration{Space} 
+Else IfEqual key0, rtipvn;, Send {BackSpace}.{Space}Prevent{Space} 
+Else IfEqual key0, rtpvn;, Send {BackSpace}.{Space}Prevent{Space} 
+Else IfEqual key0, rtpx;, Send {BackSpace}.{Space}Expert{Space} 
+Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Contrast{Space} 
+Else IfEqual key0, rtsdnm;, Send {BackSpace}.{Space}Demonstrate{Space} 
+Else IfEqual key0, rtsgl;, Send {BackSpace}.{Space}Struggle{Space} 
+Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Restaurant{Space} 
+Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Resonate{Space} 
+Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Restaurant{Space} 
+Else IfEqual key0, rtsnm;, Send {BackSpace}.{Space}Instrument{Space} 
+Else IfEqual key0, rtuom;, Send {BackSpace}.{Space}Tumor{Space} 
+Else IfEqual key0, rtycn;, Send {BackSpace}.{Space}Country{Space} 
+Else IfEqual key0, rtyhcm;, Send {BackSpace}.{Space}Chemistry{Space} 
+Else IfEqual key0, rtyhm;, Send {BackSpace}.{Space}Rhythm{Space} 
+Else IfEqual key0, rtysc;, Send {BackSpace}.{Space}Security{Space} 
+Else IfEqual key0, rtysh;, Send {BackSpace}.{Space}History{Space} 
+Else IfEqual key0, rudg;, Send {BackSpace}.{Space}Drug{Space} 
+Else IfEqual key0, rvb;, Send {BackSpace}.{Space}Brave{Space} 
+Else IfEqual key0, rvm;, Send {BackSpace}.{Space}Remove{Space} 
+Else IfEqual key0, rygln;, Send {BackSpace}.{Space}Neurology{Space} 
+Else IfEqual key0, ripvm;, Send {BackSpace}.{Space}Improve{Space} 	
+Else IfEqual key0, rudm;, Send {BackSpace}.{Space}Drum{Space} 
+Else IfEqual key0, ragb;, Send {BackSpace}.{Space}Grab{Space} 
+Else IfEqual key0, rcv;, Send {BackSpace}.{Space}Receive{Space} 
+Else IfEqual key0, rdbn;, Send {BackSpace}.{Space}Burden{Space} 
+Else IfEqual key0, riop;, Send {BackSpace}.{Space}Prior{Space} 
+Else IfEqual key0, rnm;, Send {BackSpace}.{Space}Remain{Space} 
+Else IfEqual key0, rpcm;, Send {BackSpace}.{Space}Compare{Space} 
+Else IfEqual key0, rpsm;, Send {BackSpace}.{Space}Promise{Space} 
+Else IfEqual key0, rpsm;, Send {BackSpace}.{Space}Promise{Space} 
+Else IfEqual key0, rscv;, Send {BackSpace}.{Space}Service{Space} 
+Else IfEqual key0, rsdcv;, Send {BackSpace}.{Space}Discover{Space} 
+Else IfEqual key0, rsdn;, Send {BackSpace}.{Space}Surround{Space} 
+Else IfEqual key0, rsv;, Send {BackSpace}.{Space}Survive{Space} 
+Else IfEqual key0, rsvn;, Send {BackSpace}.{Space}Version{Space} 
+Else IfEqual key0, rtd;, Send {BackSpace}.{Space}Tried{Space} 
+Else IfEqual key0, rtdgh;, Send {BackSpace}.{Space}Daughter{Space} 
+Else IfEqual key0, rtfg;, Send {BackSpace}.{Space}Forget{Space} 
+Else IfEqual key0, rthc;, Send {BackSpace}.{Space}Teacher{Space} 
+Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Train{Space} 
+Else IfEqual key0, rtic;, Send {BackSpace}.{Space}Critic{Space} 
+Else IfEqual key0, rtioscn;, Send {BackSpace}.{Space}Construction{Space} 
+Else IfEqual key0, rtiscm;, Send {BackSpace}.{Space}Criticism{Space} 
+Else IfEqual key0, rtlm;, Send {BackSpace}.{Space}Material{Space} 
+Else IfEqual key0, rtln;, Send {BackSpace}.{Space}Relation{Space} 
+Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Construct{Space} 
+Else IfEqual key0, rtscvn;, Send {BackSpace}.{Space}Constructive{Space} 
+Else IfEqual key0, rtsln;, Send {BackSpace}.{Space}Resolution{Space} 
+Else IfEqual key0, ryac;, Send {BackSpace}.{Space}Carry{Space} 
+Else IfEqual key0, rth;, Send {BackSpace}.{Space}Rather{Space} 	
+Else IfEqual key0, rab;, Send {BackSpace}.{Space}Bar{Space} 
+Else IfEqual key0, rac;, Send {BackSpace}.{Space}Across{Space} 
+Else IfEqual key0, radbn;, Send {BackSpace}.{Space}Brand{Space} 
+Else IfEqual key0, radh;, Send {BackSpace}.{Space}Hard{Space} 
+Else IfEqual key0, raf;, Send {BackSpace}.{Space}Far{Space} 
+Else IfEqual key0, rafkn;, Send {BackSpace}.{Space}Frank{Space} 
+Else IfEqual key0, ral;, Send {BackSpace}.{Space}Ral
+Else IfEqual key0, rax;, Send {BackSpace}.{Space}Extra{Space} 
+Else IfEqual key0, rb;, Send {BackSpace}.{Space}Br
+Else IfEqual key0, rbm;, Send {BackSpace}.{Space}Remember{Space} 
+Else IfEqual key0, rbn;, Send {BackSpace}.{Space}Brain{Space} 
+Else IfEqual key0, rc;, Send {BackSpace}.{Space}Crazy{Space} 
+Else IfEqual key0, rd;, Send {BackSpace}.{Space}Read{Space} 
+Else IfEqual key0, rdg;, Send {BackSpace}.{Space}During{Space} 
+Else IfEqual key0, rdlz;, Send {BackSpace}.{Space}Realized{Space} 
+Else IfEqual key0, rf;, Send {BackSpace}.{Space}From{Space} 
+Else IfEqual key0, rfg;, Send {BackSpace}.{Space}Figure{Space} 
+Else IfEqual key0, rflm;, Send {BackSpace}.{Space}Familiar{Space} 
+Else IfEqual key0, rfn;, Send {BackSpace}.{Space}Refine{Space} 
+Else IfEqual key0, rgb;, Send {BackSpace}.{Space}Bring{Space} 
+Else IfEqual key0, rgnm;, Send {BackSpace}.{Space}Manager{Space} 
+Else IfEqual key0, riognm;, Send {BackSpace}.{Space}Morning{Space} 
+Else IfEqual key0, rgzcn;, Send {BackSpace}.{Space}Recognize{Space} 
+Else IfEqual key0, rh;, Send {BackSpace}.{Space}Here{Space} 
+Else IfEqual key0, riaf;, Send {BackSpace}.{Space}Fair{Space} 
+Else IfEqual key0, ridhlc;, Send {BackSpace}.{Space}Children{Space} 
+Else IfEqual key0, rdhlcn;, Send {BackSpace}.{Space}Children{Space} 
+Else IfEqual key0, rigbn;, Send {BackSpace}.{Space}Bring{Space} 
+Else IfEqual key0, rigl;, Send {BackSpace}.{Space}Girl{Space} 
+Else IfEqual key0, rihc;, Send {BackSpace}.{Space}Rich{Space} 
+Else IfEqual key0, riocm;, Send {BackSpace}.{Space}Micro
+Else IfEqual key0, ripa;, Send {BackSpace}.{Space}Pair{Space} 
+Else IfEqual key0, rjm;, Send {BackSpace}.{Space}Major{Space} 
+Else IfEqual key0, rlnm;, Send {BackSpace}.{Space}Normal{Space} 
+Else IfEqual key0, rlz;, Send {BackSpace}.{Space}Realize{Space} 
+Else IfEqual key0, rm;, Send {BackSpace}.{Space}More{Space} 
+Else IfEqual key0, rn;, Send {BackSpace}.{Space}Right Now{Space} 
+Else IfEqual key0, ro;, Send {BackSpace}.{Space}Or{Space} 
+Else IfEqual key0, roacm;, Send {BackSpace}.{Space}Macro
+Else IfEqual key0, road;, Send {BackSpace}.{Space}Road{Space} 
+Else IfEqual key0, roadb;, Send {BackSpace}.{Space}Board{Space} 
+Else IfEqual key0, roadbn;, Send {BackSpace}.{Space}Onboard{Space} 
+Else IfEqual key0, roadl;, Send {BackSpace}.{Space}Dollar{Space} 
+Else IfEqual key0, roalnm;, Send {BackSpace}.{Space}Normal{Space} 
+Else IfEqual key0, rofm;, Send {BackSpace}.{Space}Form{Space} 
+Else IfEqual key0, rog;, Send {BackSpace}.{Space}Organization{Space} 
+Else IfEqual key0, rogln;, Send {BackSpace}.{Space}Original{Space} 
+Else IfEqual key0, rogn;, Send {BackSpace}.{Space}Original{Space} 
+Else IfEqual key0, rognm;, Send {BackSpace}.{Space}Morning{Space} 
+Else IfEqual key0, rol;, Send {BackSpace}.{Space}Roll{Space} 
+Else IfEqual key0, rolnm;, Send {BackSpace}.{Space}Normal{Space} 
+Else IfEqual key0, rom;, Send {BackSpace}.{Space}Room{Space} 
+Else IfEqual key0, rop;, Send {BackSpace}.{Space}Pro
+Else IfEqual key0, ropb;, Send {BackSpace}.{Space}Probably{Space} 
+Else IfEqual key0, ropd;, Send {BackSpace}.{Space}Drop{Space} 
+Else IfEqual key0, rtpdc;, Send {BackSpace}.{Space}Product{Space} 
+Else IfEqual key0, ropj;, Send {BackSpace}.{Space}Project{Space} 
+Else IfEqual key0, roplb;, Send {BackSpace}.{Space}Problem{Space} 
+Else IfEqual key0, rosc;, Send {BackSpace}.{Space}Cross{Space} 
+Else IfEqual key0, rosg;, Send {BackSpace}.{Space}Organizations{Space} 
+Else IfEqual key0, roslc;, Send {BackSpace}.{Space}Scroll{Space} 
+Else IfEqual key0, rpa;, Send {BackSpace}.{Space}Appreciate{Space} 
+Else IfEqual key0, rpahc;, Send {BackSpace}.{Space}Approach{Space} 
+Else IfEqual key0, rpak;, Send {BackSpace}.{Space}Park{Space} 
+Else IfEqual key0, rpb;, Send {BackSpace}.{Space}Problem{Space} 
+Else IfEqual key0, rpc;, Send {BackSpace}.{Space}Process{Space} 
+Else IfEqual key0, rpdc;, Send {BackSpace}.{Space}Proceed{Space} 
+Else IfEqual key0, rpdv;, Send {BackSpace}.{Space}Provide{Space} 
+Else IfEqual key0, rpf;, Send {BackSpace}.{Space}Professional{Space} 
+Else IfEqual key0, rpfcnm;, Send {BackSpace}.{Space}Performance{Space} 
+Else IfEqual key0, rpfl;, Send {BackSpace}.{Space}Profile{Space} 
+Else IfEqual key0, rpfm;, Send {BackSpace}.{Space}Perform{Space} 
+Else IfEqual key0, rpgm;, Send {BackSpace}.{Space}Program{Space} 
+Else IfEqual key0, rplb;, Send {BackSpace}.{Space}Problem{Space} 
+Else IfEqual key0, rplx;, Send {BackSpace}.{Space}Explore{Space} 
+Else IfEqual key0, rps;, Send {BackSpace}.{Space}Surprise{Space} 
+Else IfEqual key0, rpslbn;, Send {BackSpace}.{Space}Responsible{Space} 
+Else IfEqual key0, rpsdn;, Send {BackSpace}.{Space}Respond{Space} 
+Else IfEqual key0, rpsh;, Send {BackSpace}.{Space}Perhaps{Space} 
+Else IfEqual key0, rtpsbn;, Send {BackSpace}.{Space}Responsibility{Space} 
+Else IfEqual key0, rpsn;, Send {BackSpace}.{Space}Response{Space} 
+Else IfEqual key0, rs;, Send {BackSpace}.{Space}Sure{Space} 
+Else IfEqual key0, rsdcb;, Send {BackSpace}.{Space}Describe{Space} 
+Else IfEqual key0, rsdcn;, Send {BackSpace}.{Space}Consider{Space} 
+Else IfEqual key0, rsl;, Send {BackSpace}.{Space}Release{Space} 
+Else IfEqual key0, rslm;, Send {BackSpace}.{Space}Similar{Space} 
+Else IfEqual key0, rslv;, Send {BackSpace}.{Space}Several{Space} 
+Else IfEqual key0, rsn;, Send {BackSpace}.{Space}Reason{Space} 
+Else IfEqual key0, rt;, Send {BackSpace}.{Space}Right{Space} 
+Else IfEqual key0, rtad;, Send {BackSpace}.{Space}Traditional{Space} 
+Else IfEqual key0, rtakc;, Send {BackSpace}.{Space}Track{Space} 
+Else IfEqual key0, rtal;, Send {BackSpace}.{Space}Alright{Space} 
+Else IfEqual key0, rtalc;, Send {BackSpace}.{Space}Article{Space} 
+Else IfEqual key0, rtan;, Send {BackSpace}.{Space}Another{Space} 
+Else IfEqual key0, rtas;, Send {BackSpace}.{Space}Strategy{Space} 
+Else IfEqual key0, rtasdn;, Send {BackSpace}.{Space}Standard{Space} 
+Else IfEqual key0, rtasn;, Send {BackSpace}.{Space}Trans{Space} 
+Else IfEqual key0, rtc;, Send {BackSpace}.{Space}Create{Space} 
+Else IfEqual key0, rtcn;, Send {BackSpace}.{Space}Certain{Space} 
+Else IfEqual key0, rtcv;, Send {BackSpace}.{Space}Creative{Space} 
+Else IfEqual key0, rtflc;, Send {BackSpace}.{Space}Reflect{Space} 
+Else IfEqual key0, rtfn;, Send {BackSpace}.{Space}Fortunate{Space} 
+Else IfEqual key0, rtg;, Send {BackSpace}.{Space}Trying{Space} 
+Else IfEqual key0, rtgc;, Send {BackSpace}.{Space}Creating{Space} 
+Else IfEqual key0, rtgh;, Send {BackSpace}.{Space}Together{Space} 
+Else IfEqual key0, rti;, Send {BackSpace}.{Space}Tri
+Else IfEqual key0, rtiafc;, Send {BackSpace}.{Space}Traffic{Space} 
+Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Intra
+Else IfEqual key0, rtiasn;, Send {BackSpace}.{Space}Strain{Space} 
+Else IfEqual key0, rtioasn;, Send {BackSpace}.{Space}Transition{Space} 
+Else IfEqual key0, rtign;, Send {BackSpace}.{Space}Integrate{Space} 
+Else IfEqual key0, rtil;, Send {BackSpace}.{Space}Literally{Space} 
+Else IfEqual key0, rtiodcn;, Send {BackSpace}.{Space}Coordinate{Space} 
+Else IfEqual key0, rtiodn;, Send {BackSpace}.{Space}Introduce{Space} 
+Else IfEqual key0, rtion;, Send {BackSpace}.{Space}Intro
+Else IfEqual key0, rtipa;, Send {BackSpace}.{Space}Particular{Space} 
+Else IfEqual key0, rtl;, Send {BackSpace}.{Space}Literal{Space} 
+Else IfEqual key0, rtlb;, Send {BackSpace}.{Space}Trouble{Space} 
+Else IfEqual key0, rtlc;, Send {BackSpace}.{Space}Control{Space} 
+Else IfEqual key0, rtlcb;, Send {BackSpace}.{Space}Collaborate{Space} 
+Else IfEqual key0, rtlv;, Send {BackSpace}.{Space}Relative{Space} 
+Else IfEqual key0, rtm;, Send {BackSpace}.{Space}Remote{Space} 
+Else IfEqual key0, rtn;, Send {BackSpace}.{Space}Entire{Space} 
+Else IfEqual key0, rtoac;, Send {BackSpace}.{Space}Actor{Space} 
+Else IfEqual key0, rtoacn;, Send {BackSpace}.{Space}Contract{Space} 
+Else IfEqual key0, rtob;, Send {BackSpace}.{Space}Obtrusive{Space} 
+Else IfEqual key0, rtocn;, Send {BackSpace}.{Space}Contro
+Else IfEqual key0, rtofn;, Send {BackSpace}.{Space}Front{Space} 
+Else IfEqual key0, rtom;, Send {BackSpace}.{Space}Tomorrow{Space} 
+Else IfEqual key0, rtos;, Send {BackSpace}.{Space}Sort{Space} 
+Else IfEqual key0, rtosg;, Send {BackSpace}.{Space}Storage{Space} 
+Else IfEqual key0, rtosgn;, Send {BackSpace}.{Space}Strong{Space} 
+Else IfEqual key0, rtosh;, Send {BackSpace}.{Space}Short{Space} 
+Else IfEqual key0, rtp;, Send {BackSpace}.{Space}Repeat{Space} 
+Else IfEqual key0, rtpa;, Send {BackSpace}.{Space}Part{Space} 
+Else IfEqual key0, rtpac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, rtpan;, Send {BackSpace}.{Space}Apparent{Space} 
+Else IfEqual key0, rtpc;, Send {BackSpace}.{Space}Picture{Space} 
+Else IfEqual key0, rtpcn;, Send {BackSpace}.{Space}Perception{Space} 
+Else IfEqual key0, rtps;, Send {BackSpace}.{Space}Separate{Space} 
+Else IfEqual key0, rtpsc;, Send {BackSpace}.{Space}Respect{Space} 
+Else IfEqual key0, rtpscv;, Send {BackSpace}.{Space}Perspective{Space} 
+Else IfEqual key0, rtpv;, Send {BackSpace}.{Space}Private{Space} 
+Else IfEqual key0, rts;, Send {BackSpace}.{Space}Start{Space} 
+Else IfEqual key0, rtsbn;, Send {BackSpace}.{Space}Stubborn{Space} 
+Else IfEqual key0, rtscm;, Send {BackSpace}.{Space}Customer{Space} 
+Else IfEqual key0, rtsd;, Send {BackSpace}.{Space}Disastrous{Space} 
+Else IfEqual key0, rtsdc;, Send {BackSpace}.{Space}Distract{Space} 
+Else IfEqual key0, rtsdn;, Send {BackSpace}.{Space}Standard{Space} 
+Else IfEqual key0, rtsg;, Send {BackSpace}.{Space}Starting{Space} 
+Else IfEqual key0, rtsgh;, Send {BackSpace}.{Space}Straight{Space} 
+Else IfEqual key0, rtsm;, Send {BackSpace}.{Space}Stream{Space} 
+Else IfEqual key0, rtualb;, Send {BackSpace}.{Space}Brutal{Space} 
+Else IfEqual key0, rtualc;, Send {BackSpace}.{Space}Cultural{Space} 
+Else IfEqual key0, rtuh;, Send {BackSpace}.{Space}Hurt{Space} 
+Else IfEqual key0, rtuogh;, Send {BackSpace}.{Space}Through{Space} 
+Else IfEqual key0, rtun;, Send {BackSpace}.{Space}Turn{Space} 
+Else IfEqual key0, rtuops;, Send {BackSpace}.{Space}Support{Space} 
+Else IfEqual key0, rtus;, Send {BackSpace}.{Space}Trust{Space} 
+Else IfEqual key0, rtvn;, Send {BackSpace}.{Space}Narrative{Space} 
+Else IfEqual key0, rty;, Send {BackSpace}.{Space}Try{Space} 
+Else IfEqual key0, rtyos;, Send {BackSpace}.{Space}Story{Space} 
+Else IfEqual key0, rtypa;, Send {BackSpace}.{Space}Party{Space} 
+Else IfEqual key0, rtyul;, Send {BackSpace}.{Space}Truly{Space} 
+Else IfEqual key0, ru;, Send {BackSpace}.{Space}Your{Space} 
+Else IfEqual key0, ruioasv;, Send {BackSpace}.{Space}Various{Space} 
+Else IfEqual key0, ruiosc;, Send {BackSpace}.{Space}Curious{Space} 
+Else IfEqual key0, run;, Send {BackSpace}.{Space}Run{Space} 
+Else IfEqual key0, ruo;, Send {BackSpace}.{Space}Our{Space} 
+Else IfEqual key0, ruoc;, Send {BackSpace}.{Space}Occur{Space} 
+Else IfEqual key0, ruodgn;, Send {BackSpace}.{Space}Ground{Space} 
+Else IfEqual key0, ruoh;, Send {BackSpace}.{Space}Hour{Space} 
+Else IfEqual key0, ruopg;, Send {BackSpace}.{Space}Group{Space} 
+Else IfEqual key0, ruphc;, Send {BackSpace}.{Space}Purchase{Space} 
+Else IfEqual key0, rv;, Send {BackSpace}.{Space}Virtual Reality{Space} 
+Else IfEqual key0, ry;, Send {BackSpace}.{Space}Year{Space} 
+Else IfEqual key0, ryafkln;, Send {BackSpace}.{Space}Frankly{Space} 
+Else IfEqual key0, ryav;, Send {BackSpace}.{Space}Vary{Space} 
+Else IfEqual key0, ryos;, Send {BackSpace}.{Space}Sorry{Space} 
+Else IfEqual key0, rypcv;, Send {BackSpace}.{Space}Privacy{Space} 
+Else IfEqual key0, rys;, Send {BackSpace}.{Space}Years{Space} 
+Else IfEqual key0, ran;, Send {BackSpace}.{Space}Ran{Space} 
+Else IfEqual key0, rdcv;, Send {BackSpace}.{Space}Received{Space} 
+Else IfEqual key0, rjln;, Send {BackSpace}.{Space}Journal{Space} 
+Else IfEqual key0, ropa;, Send {BackSpace}.{Space}Approach{Space} 
+Else IfEqual key0, ropahc;, Send {BackSpace}.{Space}Approach{Space} 
+Else IfEqual key0, rpam;, Send {BackSpace}.{Space}Ramp{Space} 
+Else IfEqual key0, rpsv;, Send {BackSpace}.{Space}Previous{Space} 
+Else IfEqual key0, rsm;, Send {BackSpace}.{Space}Measure{Space} 
+Else IfEqual key0, rta;, Send {BackSpace}.{Space}Art{Space} 
+Else IfEqual key0, rtac;, Send {BackSpace}.{Space}Attract{Space} 
+Else IfEqual key0, rtdc;, Send {BackSpace}.{Space}Direct{Space} 
+Else IfEqual key0, rtdg;, Send {BackSpace}.{Space}Graduate{Space} 
+Else IfEqual key0, rtdnm;, Send {BackSpace}.{Space}Determine{Space} 
+Else IfEqual key0, rtf;, Send {BackSpace}.{Space}Feature{Space} 
+Else IfEqual key0, rtghb;, Send {BackSpace}.{Space}Brought{Space} 
+Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Train{Space} 
+Else IfEqual key0, rtias;, Send {BackSpace}.{Space}Artist{Space} 
+Else IfEqual key0, rtipn;, Send {BackSpace}.{Space}Print{Space} 
+Else IfEqual key0, rtpl;, Send {BackSpace}.{Space}Partial{Space} 
+Else IfEqual key0, rtpm;, Send {BackSpace}.{Space}Promote{Space} 
+Else IfEqual key0, rtsdb;, Send {BackSpace}.{Space}Distribute{Space} 
+Else IfEqual key0, ruopd;, Send {BackSpace}.{Space}Proud{Space} 
+Else IfEqual key0, rtpn;, Send {BackSpace}.{Space}Pattern{Space} 
+Else IfEqual key0, rypm;, Send {BackSpace}.{Space}Primary{Space} 
+Return
+SENDTstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, ta;, Send {BackSpace}.{Space}At{Space} 
+Else IfEqual key0, tadh;, Send {BackSpace}.{Space}That'd{Space} 
+Else IfEqual key0, tisv;, Send {BackSpace}.{Space}Visit{Space} 
+Else IfEqual key0, tihn;, Send {BackSpace}.{Space}Thin{Space} 
+Else IfEqual key0, tpsln;, Send {BackSpace}.{Space}Pleasant{Space} 
+Else IfEqual key0, tadcv;, Send {BackSpace}.{Space}Advocate{Space} 
+Else IfEqual key0, tahm;, Send {BackSpace}.{Space}Math{Space} 
+Else IfEqual key0, tupg;, Send {BackSpace}.{Space}Putting{Space} 
+Else IfEqual key0, takn;, Send {BackSpace}.{Space}Tank{Space} 
+Else IfEqual key0, tglv;, Send {BackSpace}.{Space}Vegetable{Space} 
+Else IfEqual key0, tgvn;, Send {BackSpace}.{Space}Navigate{Space} 
+Else IfEqual key0, tiafh;, Send {BackSpace}.{Space}Faith{Space} 
+Else IfEqual key0, tipsl;, Send {BackSpace}.{Space}Split{Space} 
+Else IfEqual key0, tial;, Send {BackSpace}.{Space}Tail{Space} 
+Else IfEqual key0, tias;, Send {BackSpace}.{Space}Assist{Space} 
+Else IfEqual key0, tifghl;, Send {BackSpace}.{Space}Flight{Space} 
+Else IfEqual key0, tighm;, Send {BackSpace}.{Space}Might{Space} 
+Else IfEqual key0, tilcn;, Send {BackSpace}.{Space}Inoculate{Space} 
+Else IfEqual key0, tioflcn;, Send {BackSpace}.{Space}Conflict{Space} 
+Else IfEqual key0, tipan;, Send {BackSpace}.{Space}Paint{Space} 
+Else IfEqual key0, tipan;, Send {BackSpace}.{Space}Paint{Space} 
+Else IfEqual key0, tisv;, Send {BackSpace}.{Space}Visit{Space} 
+Else IfEqual key0, tohcb;, Send {BackSpace}.{Space}Botch{Space} 
+Else IfEqual key0, tohlc;, Send {BackSpace}.{Space}Cloth{Space} 
+Else IfEqual key0, topsg;, Send {BackSpace}.{Space}Stopping{Space} 
+Else IfEqual key0, tosd;, Send {BackSpace}.{Space}Stood{Space} 
+Else IfEqual key0, toshm;, Send {BackSpace}.{Space}Smooth{Space} 
+Else IfEqual key0, toshm;, Send {BackSpace}.{Space}Smooth{Space} 
+Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
+Else IfEqual key0, tpasnm;, Send {BackSpace}.{Space}Assumption{Space} 
+Else IfEqual key0, tpcn;, Send {BackSpace}.{Space}Patience{Space} 
+Else IfEqual key0, tpcvm;, Send {BackSpace}.{Space}Competitive{Space} 
+Else IfEqual key0, tphkc;, Send {BackSpace}.{Space}Ketchup{Space} 
+Else IfEqual key0, tpslc;, Send {BackSpace}.{Space}Telescope{Space} 
+Else IfEqual key0, tsdnm;, Send {BackSpace}.{Space}Disseminate{Space} 
+Else IfEqual key0, tsfc;, Send {BackSpace}.{Space}Suffocate{Space} 
+Else IfEqual key0, tshlb;, Send {BackSpace}.{Space}Bullshit{Space} 
+Else IfEqual key0, tuadl;, Send {BackSpace}.{Space}Adult{Space} 
+Else IfEqual key0, tuafl;, Send {BackSpace}.{Space}Fault{Space} 
+Else IfEqual key0, tuasg;, Send {BackSpace}.{Space}August{Space} 
+Else IfEqual key0, tuhn;, Send {BackSpace}.{Space}Hunt{Space} 
+Else IfEqual key0, tuin;, Send {BackSpace}.{Space}Unit{Space} 
+Else IfEqual key0, tuioacn;, Send {BackSpace}.{Space}Caution{Space} 
+Else IfEqual key0, tuipsd;, Send {BackSpace}.{Space}Stupid{Space} 
+Else IfEqual key0, tuiscn;, Send {BackSpace}.{Space}Succinct{Space} 
+Else IfEqual key0, tulz;, Send {BackSpace}.{Space}Utilize{Space} 
+Else IfEqual key0, tuoascm;, Send {BackSpace}.{Space}Accustom{Space} 
+Else IfEqual key0, tuocm;, Send {BackSpace}.{Space}Outcome{Space} 
+Else IfEqual key0, tuoslcn;, Send {BackSpace}.{Space}Consult{Space} 
+Else IfEqual key0, tupg;, Send {BackSpace}.{Space}Putting{Space} 
+Else IfEqual key0, tuskc;, Send {BackSpace}.{Space}Stuck{Space} 
+Else IfEqual key0, tyflc;, Send {BackSpace}.{Space}Facility{Space} 
+Else IfEqual key0, tuoghb;, Send {BackSpace}.{Space}Bought{Space} 
+Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 
+Else IfEqual key0, tpcn;, Send {BackSpace}.{Space}Patience{Space} 
+Else IfEqual key0, tpn;, Send {BackSpace}.{Space}Patient{Space} 
+Else IfEqual key0, tpcvm;, Send {BackSpace}.{Space}Competitive{Space} 
+Else IfEqual key0, tuaghc;, Send {BackSpace}.{Space}Caught{Space} 
+Else IfEqual key0, tpscnm;, Send {BackSpace}.{Space}Compensate{Space} 
+Else IfEqual key0, tfl;, Send {BackSpace}.{Space}Left{Space} 
+Else IfEqual key0, tuadl;, Send {BackSpace}.{Space}Adult{Space} 
+Else IfEqual key0, tsvn;, Send {BackSpace}.{Space}Sensitive{Space} 
+Else IfEqual key0, tgvm;, Send {BackSpace}.{Space}Government{Space} 
+Else IfEqual key0, todn;, Send {BackSpace}.{Space}Don't{Space} 
+Else IfEqual key0, tacm;, Send {BackSpace}.{Space}Automatic{Space} 
+Else IfEqual key0, tx;, Send {BackSpace}.{Space}Text{Space} 
+Else IfEqual key0, tahc;, Send {BackSpace}.{Space}Catch{Space} 
+Else IfEqual key0, tahcm;, Send {BackSpace}.{Space}Match{Space} 
+Else IfEqual key0, tas;, Send {BackSpace}.{Space}Sat{Space} 
+Else IfEqual key0, tadln;, Send {BackSpace}.{Space}Additional{Space} 
+Else IfEqual key0, tadn;, Send {BackSpace}.{Space}Addition{Space} 
+Else IfEqual key0, tdlv;, Send {BackSpace}.{Space}Validate{Space} 
+Else IfEqual key0, tidcn;, Send {BackSpace}.{Space}Indicate{Space} 
+Else IfEqual key0, tipalc;, Send {BackSpace}.{Space}Capital{Space} 
+Else IfEqual key0, tisdn;, Send {BackSpace}.{Space}Instead{Space} 
+Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 	
+Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
+Else IfEqual key0, tplnm;, Send {BackSpace}.{Space}Implement{Space} 
+Else IfEqual key0, tscnl;, Send {BackSpace}.{Space}Constantly{Space} 
+Else IfEqual key0, tsdcn;, Send {BackSpace}.{Space}Distance{Space} 
+Else IfEqual key0, tsfgcn;, Send {BackSpace}.{Space}Significant{Space} 
+Else IfEqual key0, tuipn;, Send {BackSpace}.{Space}Input{Space} 
+Else IfEqual key0, tydfn;, Send {BackSpace}.{Space}Identify{Space} 
+Else IfEqual key0, tyusd;, Send {BackSpace}.{Space}Study{Space} 
+Else IfEqual key0, tasc;, Send {BackSpace}.{Space}Cast{Space} 
+Else IfEqual key0, tadhn;, Send {BackSpace}.{Space}Hadn’T{Space} 
+Else IfEqual key0, tahl;, Send {BackSpace}.{Space}That’Ll{Space} 
+Else IfEqual key0, tasgn;, Send {BackSpace}.{Space}Against{Space} 
+Else IfEqual key0, tashkn;, Send {BackSpace}.{Space}Thanks{Space} 
+Else IfEqual key0, tbn;, Send {BackSpace}.{Space}Button{Space} 	
+Else IfEqual key0, tiac;, Send {BackSpace}.{Space}Attic{Space} 
+Else IfEqual key0, tiasn;, Send {BackSpace}.{Space}Instant{Space} 
+Else IfEqual key0, tidg;, Send {BackSpace}.{Space}Digit{Space} 
+Else IfEqual key0, tif;, Send {BackSpace}.{Space}Fit{Space} 
+Else IfEqual key0, tifg;, Send {BackSpace}.{Space}Gift{Space} 
+Else IfEqual key0, tifgh;, Send {BackSpace}.{Space}Fight{Space} 
+Else IfEqual key0, tihkc;, Send {BackSpace}.{Space}Thick{Space} 
+Else IfEqual key0, tilm;, Send {BackSpace}.{Space}Limit{Space} 
+Else IfEqual key0, tioacn;, Send {BackSpace}.{Space}Contain{Space} 
+Else IfEqual key0, tioghn;, Send {BackSpace}.{Space}Tonight{Space} 
+Else IfEqual key0, tionm;, Send {BackSpace}.{Space}Motion{Space} 
+Else IfEqual key0, tism;, Send {BackSpace}.{Space}Mist{Space} 
+Else IfEqual key0, tkn;, Send {BackSpace}.{Space}Think{Space} 
+Else IfEqual key0, toa;, Send {BackSpace}.{Space}Tattoo{Space} 
+Else IfEqual key0, toasc;, Send {BackSpace}.{Space}Coast{Space} 
+Else IfEqual key0, tof;, Send {BackSpace}.{Space}Foot{Space} 
+Else IfEqual key0, toghn;, Send {BackSpace}.{Space}Thong{Space} 
+Else IfEqual key0, tops;, Send {BackSpace}.{Space}Stop{Space} 
+Else IfEqual key0, tpdn;, Send {BackSpace}.{Space}Independent{Space} 
+Else IfEqual key0, tpl;, Send {BackSpace}.{Space}Pollute{Space} 
+Else IfEqual key0, tplcnm;, Send {BackSpace}.{Space}Implication{Space} 
+Else IfEqual key0, tplnm;, Send {BackSpace}.{Space}Implement{Space} 
+Else IfEqual key0, tpslcnm;, Send {BackSpace}.{Space}Implications{Space} 
+Else IfEqual key0, tpsm;, Send {BackSpace}.{Space}Symptom{Space} 
+Else IfEqual key0, trade;, Send {BackSpace}.{Space}Trade{Space} 
+Else IfEqual key0, tsbm;, Send {BackSpace}.{Space}Submit{Space} 
+Else IfEqual key0, tscbn;, Send {BackSpace}.{Space}Substance{Space} 
+Else IfEqual key0, tsfnm;, Send {BackSpace}.{Space}Manifest{Space} 
+Else IfEqual key0, tsgn;, Send {BackSpace}.{Space}Suggestion{Space} 
+Else IfEqual key0, tsk;, Send {BackSpace}.{Space}Takes{Space} 
+Else IfEqual key0, tsxn;, Send {BackSpace}.{Space}Extension{Space} 
+Else IfEqual key0, tuah;, Send {BackSpace}.{Space}Authorize{Space} 
+Else IfEqual key0, tuahcn;, Send {BackSpace}.{Space}Authentic{Space} 
+Else IfEqual key0, tuioanm;, Send {BackSpace}.{Space}Mountain{Space} 
+Else IfEqual key0, tuisln;, Send {BackSpace}.{Space}Insult{Space} 
+Else IfEqual key0, tulc;, Send {BackSpace}.{Space}Cult{Space} 
+Else IfEqual key0, tuosd;, Send {BackSpace}.{Space}Outside{Space} 
+Else IfEqual key0, tuosh;, Send {BackSpace}.{Space}South{Space} 
+Else IfEqual key0, tuosh;, Send {BackSpace}.{Space}Shout{Space} 
+Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Initiative{Space} 
+Else IfEqual key0, tvnm;, Send {BackSpace}.{Space}Motivation{Space} 
+Else IfEqual key0, typsm;, Send {BackSpace}.{Space}Symptom{Space} 
+Else IfEqual key0, tyuocn;, Send {BackSpace}.{Space}County{Space} 
+Else IfEqual key0, tdcn;, Send {BackSpace}.{Space}Condition{Space} 
+Else IfEqual key0, tdcn;, Send {BackSpace}.{Space}Candidate{Space} 
+Else IfEqual key0, tdcnm;, Send {BackSpace}.{Space}Document{Space} 
+Else IfEqual key0, tdxn;, Send {BackSpace}.{Space}Extend{Space} 
+Else IfEqual key0, tgn;, Send {BackSpace}.{Space}Negotiate{Space} 
+Else IfEqual key0, tidc;, Send {BackSpace}.{Space}Dict{Space} 
+Else IfEqual key0, tidfn;, Send {BackSpace}.{Space}Identify{Space} 
+Else IfEqual key0, tidm;, Send {BackSpace}.{Space}Immediate{Space} 
+Else IfEqual key0, tifl;, Send {BackSpace}.{Space}Lift{Space} 
+Else IfEqual key0, tiocm;, Send {BackSpace}.{Space}Commit{Space} 
+Else IfEqual key0, tiopc;, Send {BackSpace}.{Space}Topic{Space} 
+Else IfEqual key0, tip;, Send {BackSpace}.{Space}Tip{Space} 
+Else IfEqual key0, tips;, Send {BackSpace}.{Space}Tips{Space} 
+Else IfEqual key0, tisfh;, Send {BackSpace}.{Space}Shift{Space} 
+Else IfEqual key0, tisghl;, Send {BackSpace}.{Space}Slight{Space} 
+Else IfEqual key0, tisn;, Send {BackSpace}.{Space}Isn't{Space} 
+Else IfEqual key0, tlcm;, Send {BackSpace}.{Space}Climate{Space} 
+Else IfEqual key0, tln;, Send {BackSpace}.{Space}National{Space} 
+Else IfEqual key0, tocv;, Send {BackSpace}.{Space}Octave{Space} 
+Else IfEqual key0, tojcvb;, Send {BackSpace}.{Space}Objective{Space} 
+Else IfEqual key0, tpan;, Send {BackSpace}.{Space}Appoint{Space} 
+Else IfEqual key0, tpanm;, Send {BackSpace}.{Space}Appointment{Space} 
+Else IfEqual key0, tpcm;, Send {BackSpace}.{Space}Compete{Space} 
+Else IfEqual key0, tplc;, Send {BackSpace}.{Space}Politic{Space} 
+Else IfEqual key0, tplcnm;, Send {BackSpace}.{Space}Complement{Space} 
+Else IfEqual key0, tpshcn;, Send {BackSpace}.{Space}Snapchat{Space} 
+Else IfEqual key0, tpsn;, Send {BackSpace}.{Space}Position{Space} 
+Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Constant{Space} 
+Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Consistent{Space} 
+Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Constant{Space} 
+Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Scientist{Space} 
+Else IfEqual key0, tsdcn;, Send {BackSpace}.{Space}Distance{Space} 
+Else IfEqual key0, tsdhn;, Send {BackSpace}.{Space}Thousand{Space} 
+Else IfEqual key0, tudc;, Send {BackSpace}.{Space}Duct{Space} 
+Else IfEqual key0, tuiosd;, Send {BackSpace}.{Space}Studio{Space} 
+Else IfEqual key0, tuis;, Send {BackSpace}.{Space}Suit{Space} 
+Else IfEqual key0, tuodb;, Send {BackSpace}.{Space}Doubt{Space} 
+Else IfEqual key0, tuodcn;, Send {BackSpace}.{Space}Conduct{Space} 
+Else IfEqual key0, tuokl;, Send {BackSpace}.{Space}Outlook{Space} 
+Else IfEqual key0, tush;, Send {BackSpace}.{Space}Shut{Space} 
+Else IfEqual key0, tvm;, Send {BackSpace}.{Space}Motive{Space} 
+Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Invite{Space} 
+Else IfEqual key0, tyb;, Send {BackSpace}.{Space}Beauty{Space} 
+Else IfEqual key0, tycn;, Send {BackSpace}.{Space}County{Space} 
+Else IfEqual key0, tyin;, Send {BackSpace}.{Space}Tiny{Space} 
+Else IfEqual key0, typac;, Send {BackSpace}.{Space}Capacity{Space} 
+Else IfEqual key0, tac;, Send {BackSpace}.{Space}Act{Space} 
+Else IfEqual key0, tflb;, Send {BackSpace}.{Space}Beautiful{Space} 
+Else IfEqual key0, tashn;, Send {BackSpace}.{Space}Hasn't{Space} 
+Else IfEqual key0, tflb;, Send {BackSpace}.{Space}Beautiful{Space} 
+Else IfEqual key0, tgvn;, Send {BackSpace}.{Space}Negative{Space} 
+Else IfEqual key0, tianm;, Send {BackSpace}.{Space}Maintain{Space} 
+Else IfEqual key0, til;, Send {BackSpace}.{Space}It'll{Space} 
+Else IfEqual key0, tipacm;, Send {BackSpace}.{Space}Impact{Space} 
+Else IfEqual key0, tosh;, Send {BackSpace}.{Space}Shot{Space} 
+Else IfEqual key0, tscm;, Send {BackSpace}.{Space}Costume{Space} 
+Else IfEqual key0, tsfcn;, Send {BackSpace}.{Space}Fantastic{Space} 
+Else IfEqual key0, tuioas;, Send {BackSpace}.{Space}Situation{Space} 
+Else IfEqual key0, tuioas;, Send {BackSpace}.{Space}Situation{Space} 
+Else IfEqual key0, tacn;, Send {BackSpace}.{Space}Can't{Space} 
+Else IfEqual key0, tad;, Send {BackSpace}.{Space}Data{Space} 
+Else IfEqual key0, tafc;, Send {BackSpace}.{Space}Fact{Space} 
+Else IfEqual key0, tagkl;, Send {BackSpace}.{Space}Talking{Space} 
+Else IfEqual key0, tagn;, Send {BackSpace}.{Space}Against{Space} 
+Else IfEqual key0, tah;, Send {BackSpace}.{Space}That{Space} 
+Else IfEqual key0, tahc;, Send {BackSpace}.{Space}Chat{Space} 
+Else IfEqual key0, tahkn;, Send {BackSpace}.{Space}Thank{Space} 
+Else IfEqual key0, tahn;, Send {BackSpace}.{Space}Than{Space} 
+Else IfEqual key0, takl;, Send {BackSpace}.{Space}Talk{Space} 
+Else IfEqual key0, talc;, Send {BackSpace}.{Space}Actually{Space} 
+Else IfEqual key0, tam;, Send {BackSpace}.{Space}Amount{Space} 
+Else IfEqual key0, tan;, Send {BackSpace}.{Space}Attention{Space} 
+Else IfEqual key0, tasdn;, Send {BackSpace}.{Space}Stand{Space} 
+Else IfEqual key0, tasf;, Send {BackSpace}.{Space}Fast{Space} 
+Else IfEqual key0, tash;, Send {BackSpace}.{Space}That's{Space} 
+Else IfEqual key0, taskc;, Send {BackSpace}.{Space}Stack{Space} 
+Else IfEqual key0, tasl;, Send {BackSpace}.{Space}Last{Space} 
+Else IfEqual key0, tbm;, Send {BackSpace}.{Space}Bottom{Space} 
+Else IfEqual key0, tc;, Send {BackSpace}.{Space}Content{Space} 
+Else IfEqual key0, tcm;, Send {BackSpace}.{Space}Community{Space} 
+Else IfEqual key0, tcn;, Send {BackSpace}.{Space}Continue{Space} 
+Else IfEqual key0, td;, Send {BackSpace}.{Space}Today{Space} 
+Else IfEqual key0, tdcmn;, Send {BackSpace}.{Space}Document{Space} 
+Else IfEqual key0, tdfcn;, Send {BackSpace}.{Space}Confident{Space} 
+Else IfEqual key0, tdgl;, Send {BackSpace}.{Space}Digital{Space} 
+Else IfEqual key0, tdl;, Send {BackSpace}.{Space}Detail{Space} 
+Else IfEqual key0, tdn;, Send {BackSpace}.{Space}Don't{Space} 
+Else IfEqual key0, tdx;, Send {BackSpace}.{Space}Excited{Space} 
+Else IfEqual key0, tf;, Send {BackSpace}.{Space}First{Space} 
+Else IfEqual key0, tfbn;, Send {BackSpace}.{Space}Benefit{Space} 
+Else IfEqual key0, tg;, Send {BackSpace}.{Space}Thing{Space} 
+Else IfEqual key0, tghlc;, Send {BackSpace}.{Space}Glitch{Space} 
+Else IfEqual key0, tgk;, Send {BackSpace}.{Space}Taking{Space} 
+Else IfEqual key0, tgk;, Send {BackSpace}.{Space}Taking{Space} 
+Else IfEqual key0, tgkl;, Send {BackSpace}.{Space}Talking{Space} 
+Else IfEqual key0, tgkl;, Send {BackSpace}.{Space}Talking{Space} 
+Else IfEqual key0, tgkn;, Send {BackSpace}.{Space}Thinking{Space} 
+Else IfEqual key0, tgm;, Send {BackSpace}.{Space}Meeting{Space} 
+Else IfEqual key0, tgnm;, Send {BackSpace}.{Space}Management{Space} 
+Else IfEqual key0, th;, Send {BackSpace}.{Space}This{Space} 
+Else IfEqual key0, thb;, Send {BackSpace}.{Space}To Be Honest{Space} 
+Else IfEqual key0, thkn;, Send {BackSpace}.{Space}Think{Space} 
+Else IfEqual key0, thvn;, Send {BackSpace}.{Space}Haven't{Space} 
+Else IfEqual key0, ti;, Send {BackSpace}.{Space}It{Space} 
+Else IfEqual key0, tiagh;, Send {BackSpace}.{Space}Aight{Space} 
+Else IfEqual key0, tialn;, Send {BackSpace}.{Space}Initial{Space} 
+Else IfEqual key0, tian;, Send {BackSpace}.{Space}Anti
+Else IfEqual key0, tib;, Send {BackSpace}.{Space}Bit{Space} 
+Else IfEqual key0, tid;, Send {BackSpace}.{Space}It'd{Space} 
+Else IfEqual key0, tidm;, Send {BackSpace}.{Space}Immediate{Space} 
+Else IfEqual key0, tidn;, Send {BackSpace}.{Space}Didn't{Space} 
+Else IfEqual key0, tigh;, Send {BackSpace}.{Space}Tight{Space} 
+Else IfEqual key0, tighl;, Send {BackSpace}.{Space}Light{Space} 
+Else IfEqual key0, tighn;, Send {BackSpace}.{Space}Night{Space} 
+Else IfEqual key0, tign;, Send {BackSpace}.{Space}Interesting{Space} 
+Else IfEqual key0, tih;, Send {BackSpace}.{Space}I Think{Space} 
+Else IfEqual key0, tihc;, Send {BackSpace}.{Space}Itch{Space} 
+Else IfEqual key0, tihkn;, Send {BackSpace}.{Space}Think{Space} 
+Else IfEqual key0, tiln;, Send {BackSpace}.{Space}Internal{Space} 
+Else IfEqual key0, tin;, Send {BackSpace}.{Space}Interest{Space} 
+Else IfEqual key0, tio;, Send {BackSpace}.{Space}In Terms Of{Space} 
+Else IfEqual key0, tioln;, Send {BackSpace}.{Space}International{Space} 
+Else IfEqual key0, tion;, Send {BackSpace}.{Space}Into{Space} 
+Else IfEqual key0, tiopsn;, Send {BackSpace}.{Space}Position{Space} 
+Else IfEqual key0, tis;, Send {BackSpace}.{Space}It's{Space} 
+Else IfEqual key0, tisdcn;, Send {BackSpace}.{Space}Distinct{Space} 
+Else IfEqual key0, tisgh;, Send {BackSpace}.{Space}Sight{Space} 
+Else IfEqual key0, tish;, Send {BackSpace}.{Space}This{Space} 
+Else IfEqual key0, tish;, Send {BackSpace}.{Space}This{Space} 
+Else IfEqual key0, tiskc;, Send {BackSpace}.{Space}Stick{Space} 
+Else IfEqual key0, tisl;, Send {BackSpace}.{Space}Still{Space} 
+Else IfEqual key0, tisn;, Send {BackSpace}.{Space}Instead{Space} 
+Else IfEqual key0, tivn;, Send {BackSpace}.{Space}Interview{Space} 
+Else IfEqual key0, tiz;, Send {BackSpace}.{Space}Ization
+Else IfEqual key0, tk;, Send {BackSpace}.{Space}Take{Space} 
+Else IfEqual key0, tkl;, Send {BackSpace}.{Space}Talk{Space} 
+Else IfEqual key0, tkm;, Send {BackSpace}.{Space}Market{Space} 
+Else IfEqual key0, tlb;, Send {BackSpace}.{Space}Built{Space} 
+Else IfEqual key0, tlcn;, Send {BackSpace}.{Space}Technical{Space} 
+Else IfEqual key0, tlnm;, Send {BackSpace}.{Space}Mental{Space} 
+Else IfEqual key0, tlxn;, Send {BackSpace}.{Space}Excellent{Space} 
+Else IfEqual key0, tm;, Send {BackSpace}.{Space}Time{Space} 
+Else IfEqual key0, tnm;, Send {BackSpace}.{Space}Minute{Space} 
+Else IfEqual key0, to;, Send {BackSpace}.{Space}To{Space} 
+Else IfEqual key0, to;, Send {BackSpace}.{Space}Too{Space} 
+Else IfEqual key0, toacn;, Send {BackSpace}.{Space}Contact{Space} 
+Else IfEqual key0, toahl;, Send {BackSpace}.{Space}Although{Space} 
+Else IfEqual key0, toal;, Send {BackSpace}.{Space}Total{Space} 
+Else IfEqual key0, tobm;, Send {BackSpace}.{Space}Bottom{Space} 
+Else IfEqual key0, tocn;, Send {BackSpace}.{Space}Contract{Space} 
+Else IfEqual key0, todl;, Send {BackSpace}.{Space}Told{Space} 
+Else IfEqual key0, todn;, Send {BackSpace}.{Space}Don't{Space} 
+Else IfEqual key0, tog;, Send {BackSpace}.{Space}Got{Space} 
+Else IfEqual key0, toh;, Send {BackSpace}.{Space}Though{Space} 
+Else IfEqual key0, tohb;, Send {BackSpace}.{Space}Both{Space} 
+Else IfEqual key0, tohnm;, Send {BackSpace}.{Space}Month{Space} 
+Else IfEqual key0, tok;, Send {BackSpace}.{Space}Took{Space} 
+Else IfEqual key0, tol;, Send {BackSpace}.{Space}Lot{Space} 
+Else IfEqual key0, ton;, Send {BackSpace}.{Space}Not{Space} 
+Else IfEqual key0, ton;, Send {BackSpace}.{Space}Not{Space} 
+Else IfEqual key0, top;, Send {BackSpace}.{Space}Top{Space} 
+Else IfEqual key0, topad;, Send {BackSpace}.{Space}Adopt{Space} 
+Else IfEqual key0, toph;, Send {BackSpace}.{Space}Photo{Space} 
+Else IfEqual key0, tops;, Send {BackSpace}.{Space}Stop{Space} 
+Else IfEqual key0, topzm;, Send {BackSpace}.{Space}Optimize{Space} 
+Else IfEqual key0, tosc;, Send {BackSpace}.{Space}Cost{Space} 
+Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
+Else IfEqual key0, tosm;, Send {BackSpace}.{Space}Most{Space} 
+Else IfEqual key0, tp;, Send {BackSpace}.{Space}Point{Space} 
+Else IfEqual key0, tpaflm;, Send {BackSpace}.{Space}Platform{Space} 
+Else IfEqual key0, tpaln;, Send {BackSpace}.{Space}Plant{Space} 
+Else IfEqual key0, tpas;, Send {BackSpace}.{Space}Past{Space} 
+Else IfEqual key0, tpc;, Send {BackSpace}.{Space}Corporate{Space} 
+Else IfEqual key0, tpcnm;, Send {BackSpace}.{Space}Component{Space} 
+Else IfEqual key0, tpd;, Send {BackSpace}.{Space}Department{Space} 
+Else IfEqual key0, tplm;, Send {BackSpace}.{Space}Multiple{Space} 
+Else IfEqual key0, tpln;, Send {BackSpace}.{Space}Potential{Space} 
+Else IfEqual key0, tps;, Send {BackSpace}.{Space}Post{Space} 
+Else IfEqual key0, tpsn;, Send {BackSpace}.{Space}Postpone{Space} 
+Else IfEqual key0, tpsv;, Send {BackSpace}.{Space}Positive{Space} 
+Else IfEqual key0, ts;, Send {BackSpace}.{Space}Its{Space} 
+Else IfEqual key0, ts;, Send {BackSpace}.{Space}St
+Else IfEqual key0, tsdn;, Send {BackSpace}.{Space}Doesn't{Space} 
+Else IfEqual key0, tsfgn;, Send {BackSpace}.{Space}Significant{Space} 
+Else IfEqual key0, tsg;, Send {BackSpace}.{Space}Things{Space} 
+Else IfEqual key0, tsdhn;, Send {BackSpace}.{Space}Shouldn't{Space} 
+Else IfEqual key0, tskm;, Send {BackSpace}.{Space}Mistake{Space} 
+Else IfEqual key0, tsl;, Send {BackSpace}.{Space}List{Space} 
+Else IfEqual key0, tsln;, Send {BackSpace}.{Space}Listen{Space} 
+Else IfEqual key0, tslvm;, Send {BackSpace}.{Space}Themselves{Space} 
+Else IfEqual key0, tsm;, Send {BackSpace}.{Space}Sometimes{Space} 
+Else IfEqual key0, tsn;, Send {BackSpace}.{Space}Essentially{Space} 
+Else IfEqual key0, tua;, Send {BackSpace}.{Space}Uation
+Else IfEqual key0, tuagh;, Send {BackSpace}.{Space}Taught{Space} 
+Else IfEqual key0, tualc;, Send {BackSpace}.{Space}Actual{Space} 
+Else IfEqual key0, tub;, Send {BackSpace}.{Space}But{Space} 
+Else IfEqual key0, tuc;, Send {BackSpace}.{Space}Cut{Space} 
+Else IfEqual key0, tuiln;, Send {BackSpace}.{Space}Until{Space} 
+Else IfEqual key0, tuioasn;, Send {BackSpace}.{Space}Situation{Space} 
+Else IfEqual key0, tuipdlc;, Send {BackSpace}.{Space}Duplicate{Space} 
+Else IfEqual key0, tul;, Send {BackSpace}.{Space}Ultimately{Space} 
+Else IfEqual key0, tuo;, Send {BackSpace}.{Space}Out{Space} 
+Else IfEqual key0, tuoa;, Send {BackSpace}.{Space}Auto{Space} 
+Else IfEqual key0, tuoacn;, Send {BackSpace}.{Space}Account{Space} 
+Else IfEqual key0, tuobn;, Send {BackSpace}.{Space}Button{Space} 
+Else IfEqual key0, tuocn;, Send {BackSpace}.{Space}Count{Space} 
+Else IfEqual key0, tuohc;, Send {BackSpace}.{Space}Touch{Space} 
+Else IfEqual key0, tuohm;, Send {BackSpace}.{Space}Mouth{Space} 
+Else IfEqual key0, tuoscm;, Send {BackSpace}.{Space}Custom{Space} 
+Else IfEqual key0, tup;, Send {BackSpace}.{Space}Put{Space} 
+Else IfEqual key0, tusf;, Send {BackSpace}.{Space}Stuff{Space} 
+Else IfEqual key0, tusm;, Send {BackSpace}.{Space}Must{Space} 
+Else IfEqual key0, txc;, Send {BackSpace}.{Space}Context{Space} 
+Else IfEqual key0, ty;, Send {BackSpace}.{Space}Thank You{Space} 
+Else IfEqual key0, tyas;, Send {BackSpace}.{Space}Stay{Space} 
+Else IfEqual key0, tyaslv;, Send {BackSpace}.{Space}Vastly{Space} 
+Else IfEqual key0, tyd;, Send {BackSpace}.{Space}Today{Space} 
+Else IfEqual key0, tyiacv;, Send {BackSpace}.{Space}Activity{Space} 
+Else IfEqual key0, tyialb;, Send {BackSpace}.{Space}Ability{Space} 
+Else IfEqual key0, tyidn;, Send {BackSpace}.{Space}Identity{Space} 
+Else IfEqual key0, tyik;, Send {BackSpace}.{Space}Kitty{Space} 
+Else IfEqual key0, tyil;, Send {BackSpace}.{Space}Ility{Space} 
+Else IfEqual key0, tyilb;, Send {BackSpace}.{Space}Ibility{Space} 
+Else IfEqual key0, tyo;, Send {BackSpace}.{Space}Toy{Space} 
+Else IfEqual key0, tyoal;, Send {BackSpace}.{Space}Totally{Space} 
+Else IfEqual key0, typhlc;, Send {BackSpace}.{Space}Hypothetical{Space} 
+Else IfEqual key0, typlc;, Send {BackSpace}.{Space}Typical{Space} 
+Else IfEqual key0, tyvm;, Send {BackSpace}.{Space}Thank You Very Much{Space} 
+Else IfEqual key0, toaghc;, Send {BackSpace}.{Space}Got You.{Space} 
+Else IfEqual key0, tpah;, Send {BackSpace}.{Space}Path{Space} 
+Else IfEqual key0, tsc;, Send {BackSpace}.{Space}Society{Space} 
+Else IfEqual key0, tslvm;, Send {BackSpace}.{Space}Themselves{Space} 
+Else IfEqual key0, tuiasn;, Send {BackSpace}.{Space}Sustain{Space} 
+Else IfEqual key0, tuiosn;, Send {BackSpace}.{Space}Institution{Space} 
+Else IfEqual key0, tuogh;, Send {BackSpace}.{Space}Thought{Space} 
+Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Native{Space} 
+Else IfEqual key0, tyic;, Send {BackSpace}.{Space}City{Space} 
+Return
+SENDYstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, yad;, Send {BackSpace}.{Space}Day{Space} 
+Else IfEqual key0, yugl;, Send {BackSpace}.{Space}Ugly{Space} 
+Else IfEqual key0, tysg;, Send {BackSpace}.{Space}Staying{Space} 
+Else IfEqual key0, eyagcn;, Send {BackSpace}.{Space}Agency{Space} 
+Else IfEqual key0, yadbn;, Send {BackSpace}.{Space}Anybody{Space} 
+Else IfEqual key0, ydgb;, Send {BackSpace}.{Space}Goodbye{Space} 
+Else IfEqual key0, ypg;, Send {BackSpace}.{Space}Paying{Space} 
+ Else IfEqual key0, ydvn;, Send {BackSpace}.{Space}Vineyard{Space} 
+Else IfEqual key0, ycvn;, Send {BackSpace}.{Space}Convey{Space} 
+Else IfEqual key0, yfl;, Send {BackSpace}.{Space}Fly{Space} 
+Else IfEqual key0, yohl;, Send {BackSpace}.{Space}Holy{Space} 
+Else IfEqual key0, yoph;, Send {BackSpace}.{Space}Hypo
+Else IfEqual key0, ysln;, Send {BackSpace}.{Space}Analysis{Space} 
+Else IfEqual key0, yudb;, Send {BackSpace}.{Space}Buddy{Space} 
+Else IfEqual key0, yusg;, Send {BackSpace}.{Space}Guys{Space} 
+Else IfEqual key0, yab;, Send {BackSpace}.{Space}Baby{Space} 
+Else IfEqual key0, yoglcn;, Send {BackSpace}.{Space}Oncology{Space} 
+Else IfEqual key0, ypal;, Send {BackSpace}.{Space}Play{Space} 
+Else IfEqual key0, ysnm;, Send {BackSpace}.{Space}Mayonnaise{Space} 
+Else IfEqual key0, yujl;, Send {BackSpace}.{Space}July{Space} 
+Else IfEqual key0, yopc;, Send {BackSpace}.{Space}Copy{Space} 
+Else IfEqual key0, ypshcn;, Send {BackSpace}.{Space}Physician{Space} 
+Else IfEqual key0, yam;, Send {BackSpace}.{Space}May{Space} 
+Else IfEqual key0, yglcn;, Send {BackSpace}.{Space}Oncology{Space} 
+Else IfEqual key0, yoglcn;, Send {BackSpace}.{Space}Oncology{Space} 
+Else IfEqual key0, ydbn;, Send {BackSpace}.{Space}Beyond{Space} 
+Else IfEqual key0, yoj;, Send {BackSpace}.{Space}Joy{Space} 
+Else IfEqual key0, ypshlc;, Send {BackSpace}.{Space}Physical{Space} 
+Else IfEqual key0, yan;, Send {BackSpace}.{Space}Any{Space} 
+Else IfEqual key0, yanm;, Send {BackSpace}.{Space}Many{Space} 
+Else IfEqual key0, yas;, Send {BackSpace}.{Space}Say{Space} 
+Else IfEqual key0, yasg;, Send {BackSpace}.{Space}Saying{Space} 
+Else IfEqual key0, yb;, Send {BackSpace}.{Space}By{Space} 
+Else IfEqual key0, yd;, Send {BackSpace}.{Space}Yesterday{Space} 
+Else IfEqual key0, yfln;, Send {BackSpace}.{Space}Finally{Space} 
+Else IfEqual key0, yiadl;, Send {BackSpace}.{Space}Daily{Space} 
+Else IfEqual key0, yiaflm;, Send {BackSpace}.{Space}Family{Space} 
+Else IfEqual key0, yiasln;, Send {BackSpace}.{Space}Analysis{Space} 
+Else IfEqual key0, yif;, Send {BackSpace}.{Space}Ify{Space} 
+Else IfEqual key0, yk;, Send {BackSpace}.{Space}You Know{Space} 
+Else IfEqual key0, ym;, Send {BackSpace}.{Space}My{Space} 
+Else IfEqual key0, yoan;, Send {BackSpace}.{Space}Annoy{Space} 
+Else IfEqual key0, yoanm;, Send {BackSpace}.{Space}Anymore{Space} 
+Else IfEqual key0, yob;, Send {BackSpace}.{Space}Boy{Space} 
+Else IfEqual key0, yodb;, Send {BackSpace}.{Space}Body{Space} 
+Else IfEqual key0, yoln;, Send {BackSpace}.{Space}Only{Space} 
+Else IfEqual key0, ypa;, Send {BackSpace}.{Space}Pay{Space} 
+Else IfEqual key0, ypah;, Send {BackSpace}.{Space}Happy{Space} 
+Else IfEqual key0, ypal;, Send {BackSpace}.{Space}Play{Space} 
+Else IfEqual key0, ypcm;, Send {BackSpace}.{Space}Completely{Space} 
+Else IfEqual key0, ysda;, Send {BackSpace}.{Space}Days{Space} 
+Else IfEqual key0, ysg;, Send {BackSpace}.{Space}Saying{Space} 
+Else IfEqual key0, ysm;, Send {BackSpace}.{Space}Sym
+Else IfEqual key0, ysn;, Send {BackSpace}.{Space}Syn
+Else IfEqual key0, yuasl;, Send {BackSpace}.{Space}Usually{Space} 
+Else IfEqual key0, yub;, Send {BackSpace}.{Space}Buy{Space} 
+Else IfEqual key0, yug;, Send {BackSpace}.{Space}Guy{Space} 
+Else IfEqual key0, yuogn;, Send {BackSpace}.{Space}Young{Space} 
+Else IfEqual key0, yal;, Send {BackSpace}.{Space}Lay{Space} 
+Else IfEqual key0, yufn;, Send {BackSpace}.{Space}Funny{Space} 
+Else IfEqual key0, yusb;, Send {BackSpace}.{Space}Busy{Space} 
+Return
+SENDUstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, ua;, Send {BackSpace}.{Space}Au
+Else IfEqual key0, uab;, Send {BackSpace}.{Space}A Bunch{Space} 
+Else IfEqual key0, uahnm;, Send {BackSpace}.{Space}Human{Space} 
+Else IfEqual key0, uasdhbn;, Send {BackSpace}.{Space}Husband{Space} 
+Else IfEqual key0, uinm;, Send {BackSpace}.{Space}Minimum{Space} 
+Else IfEqual key0, uiolcn;, Send {BackSpace}.{Space}Council{Space} 
+Else IfEqual key0, uodbn;, Send {BackSpace}.{Space}Bound{Space} 
+Else IfEqual key0, uodc;, Send {BackSpace}.{Space}Docu
+Else IfEqual key0, uahlcn;, Send {BackSpace}.{Space}Launch{Space} 
+Else IfEqual key0, uashbn;, Send {BackSpace}.{Space}Husband{Space} 
+Else IfEqual key0, udh;, Send {BackSpace}.{Space}Duh{Space} 
+Else IfEqual key0, ugn;, Send {BackSpace}.{Space}Gun{Space} 
+Else IfEqual key0, uhcbn;, Send {BackSpace}.{Space}Bunch{Space} 
+Else IfEqual key0, uioac;, Send {BackSpace}.{Space}Caution{Space} 
+Else IfEqual key0, upbm;, Send {BackSpace}.{Space}Bump{Space} 
+Else IfEqual key0, uanm;, Send {BackSpace}.{Space}Manu{Space} 
+Else IfEqual key0, ufkc;, Send {BackSpace}.{Space}Fuck{Space} 
+Else IfEqual key0, uklc;, Send {BackSpace}.{Space}Luck{Space} 
+Else IfEqual key0, uisdc;, Send {BackSpace}.{Space}Discuss{Space} 
+Else IfEqual key0, usg;, Send {BackSpace}.{Space}Using{Space} 
+Else IfEqual key0, usgn;, Send {BackSpace}.{Space}Sung{Space} 
+Else IfEqual key0, ualbm;, Send {BackSpace}.{Space}Albums{Space} 
+Else IfEqual key0, uiosl;, Send {BackSpace}.{Space}Solution{Space} 
+Else IfEqual key0, uad;, Send {BackSpace}.{Space}Audience{Space} 
+Else IfEqual key0, uag;, Send {BackSpace}.{Space}Aug{Space} 
+Else IfEqual key0, uaghl;, Send {BackSpace}.{Space}Laugh{Space} 
+Else IfEqual key0, uagl;, Send {BackSpace}.{Space}Laugh{Space} 
+Else IfEqual key0, uahlcn;, Send {BackSpace}.{Space}Launch{Space} 
+Else IfEqual key0, uasl;, Send {BackSpace}.{Space}Usual{Space} 
+Else IfEqual key0, ucm;, Send {BackSpace}.{Space}Communicate{Space} 
+Else IfEqual key0, ud;, Send {BackSpace}.{Space}You'd{Space} 
+Else IfEqual key0, udn;, Send {BackSpace}.{Space}Understand{Space} 
+Else IfEqual key0, ufl;, Send {BackSpace}.{Space}Full{Space} 
+Else IfEqual key0, uhcm;, Send {BackSpace}.{Space}Much{Space} 
+Else IfEqual key0, uicm;, Send {BackSpace}.{Space}Communication{Space} 
+Else IfEqual key0, uiocm;, Send {BackSpace}.{Space}Communication{Space} 
+Else IfEqual key0, uidn;, Send {BackSpace}.{Space}Industry{Space} 
+Else IfEqual key0, uin;, Send {BackSpace}.{Space}Uni
+Else IfEqual key0, uiofcn;, Send {BackSpace}.{Space}Function{Space} 
+Else IfEqual key0, uios;, Send {BackSpace}.{Space}Ious
+Else IfEqual key0, uioscn;, Send {BackSpace}.{Space}Conscious{Space} 
+Else IfEqual key0, uioslcn;, Send {BackSpace}.{Space}Conclusion{Space} 
+Else IfEqual key0, uipdl;, Send {BackSpace}.{Space}Dupli{Space} 
+Else IfEqual key0, uiscm;, Send {BackSpace}.{Space}Music{Space} 
+Else IfEqual key0, uisn;, Send {BackSpace}.{Space}Insurance{Space} 
+Else IfEqual key0, uivn;, Send {BackSpace}.{Space}University{Space} 
+Else IfEqual key0, ul;, Send {BackSpace}.{Space}You'll{Space} 
+Else IfEqual key0, un;, Send {BackSpace}.{Space}Un
+Else IfEqual key0, unm;, Send {BackSpace}.{Space}Number{Space} 
+Else IfEqual key0, uo;, Send {BackSpace}.{Space}Ou
+Else IfEqual key0, uodfn;, Send {BackSpace}.{Space}Found{Space} 
+Else IfEqual key0, uodl;, Send {BackSpace}.{Space}Loud{Space} 
+Else IfEqual key0, uodlc;, Send {BackSpace}.{Space}Cloud{Space} 
+Else IfEqual key0, uogh;, Send {BackSpace}.{Space}Ough{Space} 
+Else IfEqual key0, uop;, Send {BackSpace}.{Space}Population{Space} 
+Else IfEqual key0, uopn;, Send {BackSpace}.{Space}Upon{Space} 
+Else IfEqual key0, uosdn;, Send {BackSpace}.{Space}Sound{Space} 
+Else IfEqual key0, uosfc;, Send {BackSpace}.{Space}Focus{Space} 
+Else IfEqual key0, uosm;, Send {BackSpace}.{Space}So Much{Space} 
+Else IfEqual key0, up;, Send {BackSpace}.{Space}Up{Space} 
+Else IfEqual key0, upascm;, Send {BackSpace}.{Space}Campus{Space} 
+Else IfEqual key0, upc;, Send {BackSpace}.{Space}Computer{Space} 
+Else IfEqual key0, upjm;, Send {BackSpace}.{Space}Jump{Space} 
+Else IfEqual key0, upl;, Send {BackSpace}.{Space}Pull{Space} 
+Else IfEqual key0, upsh;, Send {BackSpace}.{Space}Push{Space} 
+Else IfEqual key0, us;, Send {BackSpace}.{Space}Us{Space} 
+Else IfEqual key0, usb;, Send {BackSpace}.{Space}Sub
+Else IfEqual key0, usf;, Send {BackSpace}.{Space}Yourself{Space} 
+Else IfEqual key0, ushc;, Send {BackSpace}.{Space}Such{Space} 
+Else IfEqual key0, usn;, Send {BackSpace}.{Space}Sun{Space} 
+Else IfEqual key0, uv;, Send {BackSpace}.{Space}You've{Space} 
+Else IfEqual key0, udfn;, Send {BackSpace}.{Space}Fund{Space} 
+Else IfEqual key0, ufn;, Send {BackSpace}.{Space}Fun{Space} 
+Else IfEqual key0, usfl;, Send {BackSpace}.{Space}Yourself{Space} 
+Return
+SENDEstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, ea;, Send {BackSpace}.{Space}Ea	
+Else IfEqual key0, epalcb;, Send {BackSpace}.{Space}Capable{Space} 
+Else IfEqual key0, eriv;, Send {BackSpace}.{Space}River{Space} 
+Else IfEqual key0, eruipm;, Send {BackSpace}.{Space}Premium{Space} 
+Else IfEqual key0, etf;, Send {BackSpace}.{Space}Feet{Space} 
+Else IfEqual key0, ertypah;, Send {BackSpace}.{Space}Therapy{Space} 
+Else IfEqual key0, eriacm;, Send {BackSpace}.{Space}America{Space} 
+Else IfEqual key0, eruop;, Send {BackSpace}.{Space}Europe{Space} 
+Else IfEqual key0, eosln;, Send {BackSpace}.{Space}Lesson{Space} 
+Else IfEqual key0, epaln;, Send {BackSpace}.{Space}Plane{Space} 
+Else IfEqual key0, ealcn;, Send {BackSpace}.{Space}Cancel{Space} 
+Else IfEqual key0, epaslc;, Send {BackSpace}.{Space}Places{Space} 
+Else IfEqual key0, ealn;, Send {BackSpace}.{Space}Lane{Space} 
+Else IfEqual key0, etpasln;, Send {BackSpace}.{Space}Pleasant{Space} 
+Else IfEqual key0, eas;, Send {BackSpace}.{Space}Assess{Space} 
+Else IfEqual key0, eruips;, Send {BackSpace}.{Space}Surprise{Space} 
+Else IfEqual key0, easf;, Send {BackSpace}.{Space}Safety{Space} 
+Else IfEqual key0, efhc;, Send {BackSpace}.{Space}Chef{Space} 
+Else IfEqual key0, erualcn;, Send {BackSpace}.{Space}Nuclear{Space} 
+Else IfEqual key0, eialv;, Send {BackSpace}.{Space}Alive{Space} 
+Else IfEqual key0, eyiasl;, Send {BackSpace}.{Space}Easily{Space} 
+Else IfEqual key0, eiasn;, Send {BackSpace}.{Space}Insane{Space} 
+Else IfEqual key0, eifkn;, Send {BackSpace}.{Space}Knife{Space} 
+Else IfEqual key0, eihcn;, Send {BackSpace}.{Space}Niche{Space} 
+Else IfEqual key0, eihk;, Send {BackSpace}.{Space}Hike{Space} 
+Else IfEqual key0, eil;, Send {BackSpace}.{Space}Lie{Space} 
+Else IfEqual key0, eil;, Send {BackSpace}.{Space}Lie{Space} 
+Else IfEqual key0, eilcn;, Send {BackSpace}.{Space}Incline{Space} 
+Else IfEqual key0, eiocnm;, Send {BackSpace}.{Space}Economic{Space} 
+Else IfEqual key0, eiocnm;, Send {BackSpace}.{Space}Income{Space} 
+Else IfEqual key0, eiplcn;, Send {BackSpace}.{Space}Pencil{Space} 
+Else IfEqual key0, eisdl;, Send {BackSpace}.{Space}Slide{Space} 
+Else IfEqual key0, eiskvn;, Send {BackSpace}.{Space}Knives{Space} 
+Else IfEqual key0, eislm;, Send {BackSpace}.{Space}Smile{Space} 
+Else IfEqual key0, eisz;, Send {BackSpace}.{Space}Seize{Space} 
+Else IfEqual key0, ekn;, Send {BackSpace}.{Space}Knee{Space} 
+Else IfEqual key0, elb;, Send {BackSpace}.{Space}Bell{Space} 
+Else IfEqual key0, eoadb;, Send {BackSpace}.{Space}Adobe{Space} 
+Else IfEqual key0, eoaslm;, Send {BackSpace}.{Space}Molasses{Space} 
+Else IfEqual key0, eofc;, Send {BackSpace}.{Space}Coffee{Space} 
+Else IfEqual key0, eosdcn;, Send {BackSpace}.{Space}Condense{Space} 
+Else IfEqual key0, eosln;, Send {BackSpace}.{Space}Lesson{Space} 
+Else IfEqual key0, eosn;, Send {BackSpace}.{Space}Nose{Space} 
+Else IfEqual key0, epa;, Send {BackSpace}.{Space}Ape{Space} 
+Else IfEqual key0, epn;, Send {BackSpace}.{Space}Pen{Space} 
+Else IfEqual key0, epsl;, Send {BackSpace}.{Space}Spell{Space} 
+Else IfEqual key0, erab;, Send {BackSpace}.{Space}Bear{Space} 
+Else IfEqual key0, eradg;, Send {BackSpace}.{Space}Regard{Space} 
+Else IfEqual key0, eradlc;, Send {BackSpace}.{Space}Declare{Space} 
+Else IfEqual key0, eraf;, Send {BackSpace}.{Space}Fear{Space} 
+Else IfEqual key0, eraf;, Send {BackSpace}.{Space}Fear{Space} 
+Else IfEqual key0, eralx;, Send {BackSpace}.{Space}Relax{Space} 
+Else IfEqual key0, eras;, Send {BackSpace}.{Space}Erase{Space} 
+Else IfEqual key0, erdcbm;, Send {BackSpace}.{Space}December{Space} 
+Else IfEqual key0, erf;, Send {BackSpace}.{Space}Refer{Space} 
+Else IfEqual key0, erhc;, Send {BackSpace}.{Space}Cheer{Space} 
+Else IfEqual key0, erias;, Send {BackSpace}.{Space}Raise{Space} 
+Else IfEqual key0, eridb;, Send {BackSpace}.{Space}Bride{Space} 
+Else IfEqual key0, eridgb;, Send {BackSpace}.{Space}Bridge{Space} 
+Else IfEqual key0, eridl;, Send {BackSpace}.{Space}Riddle{Space} 
+Else IfEqual key0, erin;, Send {BackSpace}.{Space}Inner{Space} 
+Else IfEqual key0, eriopscm;, Send {BackSpace}.{Space}Comprise{Space} 
+Else IfEqual key0, eripscb;, Send {BackSpace}.{Space}Prescribe{Space} 
+Else IfEqual key0, erm;, Send {BackSpace}.{Space}Mere{Space} 
+Else IfEqual key0, ero;, Send {BackSpace}.{Space}Error{Space} 
+Else IfEqual key0, eroash;, Send {BackSpace}.{Space}Hoarse{Space} 
+Else IfEqual key0, erocm;, Send {BackSpace}.{Space}Commerce{Space} 
+Else IfEqual key0, erokb;, Send {BackSpace}.{Space}Broke{Space} 
+Else IfEqual key0, eros;, Send {BackSpace}.{Space}Rose{Space} 
+Else IfEqual key0, eroscn;, Send {BackSpace}.{Space}Censor{Space} 
+Else IfEqual key0, erovbnm;, Send {BackSpace}.{Space}November{Space} 
+Else IfEqual key0, erpas;, Send {BackSpace}.{Space}Spare{Space} 
+Else IfEqual key0, ertag;, Send {BackSpace}.{Space}Target{Space} 
+Else IfEqual key0, ertagn;, Send {BackSpace}.{Space}Generate{Space} 
+Else IfEqual key0, ertiacn;, Send {BackSpace}.{Space}Interact{Space} 
+Else IfEqual key0, ertiagc;, Send {BackSpace}.{Space}Cigarette{Space} 
+Else IfEqual key0, ertihn;, Send {BackSpace}.{Space}Inherent{Space} 
+Else IfEqual key0, ertion;, Send {BackSpace}.{Space}Orient{Space} 
+Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, ertoa;, Send {BackSpace}.{Space}Rotate{Space} 
+Else IfEqual key0, ertocb;, Send {BackSpace}.{Space}October{Space} 
+Else IfEqual key0, ertosk;, Send {BackSpace}.{Space}Stroke{Space} 
+Else IfEqual key0, ertpsbm;, Send {BackSpace}.{Space}September{Space} 
+Else IfEqual key0, ertuanm;, Send {BackSpace}.{Space}Remunerate{Space} 
+Else IfEqual key0, ertycm;, Send {BackSpace}.{Space}Cemetery{Space} 
+Else IfEqual key0, ertyop;, Send {BackSpace}.{Space}Property{Space} 
+Else IfEqual key0, erud;, Send {BackSpace}.{Space}Educator{Space} 
+Else IfEqual key0, erudbn;, Send {BackSpace}.{Space}Burden{Space} 
+Else IfEqual key0, eruin;, Send {BackSpace}.{Space}Urine{Space} 
+Else IfEqual key0, eruopcn;, Send {BackSpace}.{Space}Pronounce{Space} 
+Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Rescue{Space} 
+Else IfEqual key0, eruvn;, Send {BackSpace}.{Space}Revenue{Space} 
+Else IfEqual key0, eryoasc;, Send {BackSpace}.{Space}Accessory{Space} 
+Else IfEqual key0, eshcm;, Send {BackSpace}.{Space}Scheme{Space} 
+Else IfEqual key0, eslm;, Send {BackSpace}.{Space}Smell{Space} 
+Else IfEqual key0, etadn;, Send {BackSpace}.{Space}Attend{Space} 
+Else IfEqual key0, etagn;, Send {BackSpace}.{Space}Agent{Space} 
+Else IfEqual key0, etagn;, Send {BackSpace}.{Space}Tangent{Space} 
+Else IfEqual key0, etaln;, Send {BackSpace}.{Space}Talent{Space} 
+Else IfEqual key0, etanm;, Send {BackSpace}.{Space}Meant{Space} 
+Else IfEqual key0, etask;, Send {BackSpace}.{Space}Stake{Space} 
+Else IfEqual key0, etghln;, Send {BackSpace}.{Space}Length{Space} 
+Else IfEqual key0, etiahlcn;, Send {BackSpace}.{Space}Technical{Space} 
+Else IfEqual key0, etioanm;, Send {BackSpace}.{Space}Nominate{Space} 
+Else IfEqual key0, etiosn;, Send {BackSpace}.{Space}Tension{Space} 
+Else IfEqual key0, etiosn;, Send {BackSpace}.{Space}Tension{Space} 
+Else IfEqual key0, etolb;, Send {BackSpace}.{Space}Bottle{Space} 
+Else IfEqual key0, etolb;, Send {BackSpace}.{Space}Bottle{Space} 
+Else IfEqual key0, etoshlc;, Send {BackSpace}.{Space}Clothes{Space} 
+Else IfEqual key0, etpal;, Send {BackSpace}.{Space}Plate{Space} 
+Else IfEqual key0, etpasc;, Send {BackSpace}.{Space}Aspect{Space} 
+Else IfEqual key0, etps;, Send {BackSpace}.{Space}Steep{Space} 
+Else IfEqual key0, etscn;, Send {BackSpace}.{Space}Sentence{Space} 
+Else IfEqual key0, etub;, Send {BackSpace}.{Space}Tube{Space} 
+Else IfEqual key0, etuhc;, Send {BackSpace}.{Space}Chute{Space} 
+Else IfEqual key0, etum;, Send {BackSpace}.{Space}Mute{Space} 
+Else IfEqual key0, etuocm;, Send {BackSpace}.{Space}Outcome{Space} 
+Else IfEqual key0, etups;, Send {BackSpace}.{Space}Upset{Space} 
+Else IfEqual key0, etyoscm;, Send {BackSpace}.{Space}Ecosystem{Space} 
+Else IfEqual key0, eudgj;, Send {BackSpace}.{Space}Judge{Space} 
+Else IfEqual key0, eudgn;, Send {BackSpace}.{Space}Nudge{Space} 
+Else IfEqual key0, eujn;, Send {BackSpace}.{Space}June{Space} 
+Else IfEqual key0, eupsl;, Send {BackSpace}.{Space}Pulse{Space} 
+Else IfEqual key0, eyagcn;, Send {BackSpace}.{Space}Agency{Space} 
+Else IfEqual key0, eyp;, Send {BackSpace}.{Space}Yep{Space} 
+Else IfEqual key0, rtyl;, Send {BackSpace}.{Space}Reality{Space} 
+Else IfEqual key0, etanm;, Send {BackSpace}.{Space}Meant{Space} 
+Else IfEqual key0, easn;, Send {BackSpace}.{Space}Sane{Space} 
+Else IfEqual key0, eiasn;, Send {BackSpace}.{Space}Insane{Space} 
+Else IfEqual key0, epsd;, Send {BackSpace}.{Space}Sped{Space} 
+Else IfEqual key0, etun;, Send {BackSpace}.{Space}Tune{Space} 
+Else IfEqual key0, erofc;, Send {BackSpace}.{Space}Force{Space} 
+Else IfEqual key0, etioasc;, Send {BackSpace}.{Space}Associate{Space} 
+Else IfEqual key0, eionm;, Send {BackSpace}.{Space}Mention{Space} 
+Else IfEqual key0, eyh;, Send {BackSpace}.{Space}Hey{Space} 
+Else IfEqual key0, eyp;, Send {BackSpace}.{Space}Yep{Space} 
+Else IfEqual key0, eodcnm;, Send {BackSpace}.{Space}Commend{Space} 
+Else IfEqual key0, etisn;, Send {BackSpace}.{Space}Intense{Space} 
+Else IfEqual key0, eruios;, Send {BackSpace}.{Space}Capable{Space} 
+Else IfEqual key0, eualvb;, Send {BackSpace}.{Space}Valuable{Space} 
+Else IfEqual key0, etiagvn;, Send {BackSpace}.{Space}Navigate{Space} 
+Else IfEqual key0, erasc;, Send {BackSpace}.{Space}Scare{Space} 
+Else IfEqual key0, ertom;, Send {BackSpace}.{Space}Remote{Space} 
+Else IfEqual key0, ertlxn;, Send {BackSpace}.{Space}Internal{Space} 
+Else IfEqual key0, eropsc;, Send {BackSpace}.{Space}Process{Space} 
+Else IfEqual key0, eacbm;, Send {BackSpace}.{Space}Became{Space} 
+Else IfEqual key0, eaghlcn;, Send {BackSpace}.{Space}Challenge{Space} 
+Else IfEqual key0, etakn;, Send {BackSpace}.{Space}Taken{Space} 
+Else IfEqual key0, etpam;, Send {BackSpace}.{Space}Attempt{Space} 
+Else IfEqual key0, eivn;, Send {BackSpace}.{Space}Vein{Space} 
+Else IfEqual key0, erpash;, Send {BackSpace}.{Space}Phrase{Space} 
+Else IfEqual key0, ertpasn;, Send {BackSpace}.{Space}Transparent{Space} 
+Else IfEqual key0, ead;, Send {BackSpace}.{Space}Dead{Space} 
+Else IfEqual key0, eadhln;, Send {BackSpace}.{Space}Handle{Space} 
+Else IfEqual key0, eagbn;, Send {BackSpace}.{Space}Began{Space} 
+Else IfEqual key0, eashk;, Send {BackSpace}.{Space}Shake{Space} 
+Else IfEqual key0, edcvn;, Send {BackSpace}.{Space}Evidence{Space} 
+Else IfEqual key0, eiasd;, Send {BackSpace}.{Space}Disease{Space} 
+Else IfEqual key0, eiasl;, Send {BackSpace}.{Space}Aisle{Space} 
+Else IfEqual key0, eihlcv;, Send {BackSpace}.{Space}Vehicle{Space} 
+Else IfEqual key0, eilm;, Send {BackSpace}.{Space}Mile{Space} 
+Else IfEqual key0, eiom;, Send {BackSpace}.{Space}Emotion{Space} 
+Else IfEqual key0, eisdn;, Send {BackSpace}.{Space}Inside{Space} 
+Else IfEqual key0, eishn;, Send {BackSpace}.{Space}Shine{Space} 
+Else IfEqual key0, eislcn;, Send {BackSpace}.{Space}Silence{Space} 
+Else IfEqual key0, eakl;, Send {BackSpace}.{Space}Lake{Space} 
+Else IfEqual key0, eoaln;, Send {BackSpace}.{Space}Alone{Space} 
+Else IfEqual key0, eocvn;, Send {BackSpace}.{Space}Convene{Space} 
+Else IfEqual key0, eodgl;, Send {BackSpace}.{Space}Lodge{Space} 
+Else IfEqual key0, eolcn;, Send {BackSpace}.{Space}Clone{Space} 
+Else IfEqual key0, eolnm;, Send {BackSpace}.{Space}Lemon{Space} 
+Else IfEqual key0, eolnm;, Send {BackSpace}.{Space}Melon{Space} 
+Else IfEqual key0, eopk;, Send {BackSpace}.{Space}Poke{Space} 
+Else IfEqual key0, eoslv;, Send {BackSpace}.{Space}Solve{Space} 
+Else IfEqual key0, eoslv;, Send {BackSpace}.{Space}Solve{Space} 
+Else IfEqual key0, epahc;, Send {BackSpace}.{Space}Cheap{Space} 
+Else IfEqual key0, eradg;, Send {BackSpace}.{Space}Grade{Space} 
+Else IfEqual key0, erafm;, Send {BackSpace}.{Space}Frame{Space} 
+Else IfEqual key0, eraghc;, Send {BackSpace}.{Space}Charge{Space} 
+Else IfEqual key0, eragnm;, Send {BackSpace}.{Space}Manager{Space} 
+Else IfEqual key0, erc;, Send {BackSpace}.{Space}Rec Recognize{Space} 
+Else IfEqual key0, erdh;, Send {BackSpace}.{Space}Herd{Space} 
+Else IfEqual key0, ergcnm;, Send {BackSpace}.{Space}Emergency{Space} 
+Else IfEqual key0, ergm;, Send {BackSpace}.{Space}Merge{Space} 
+Else IfEqual key0, erial;, Send {BackSpace}.{Space}Earlier{Space} 
+Else IfEqual key0, erialcm;, Send {BackSpace}.{Space}Miracle{Space} 
+Else IfEqual key0, erif;, Send {BackSpace}.{Space}Fire{Space} 
+Else IfEqual key0, eriosn;, Send {BackSpace}.{Space}Senior{Space} 
+Else IfEqual key0, eripl;, Send {BackSpace}.{Space}Ripple{Space} 
+Else IfEqual key0, eriplcn;, Send {BackSpace}.{Space}Principle{Space} 
+Else IfEqual key0, eripsn;, Send {BackSpace}.{Space}Inspire{Space} 
+Else IfEqual key0, erlv;, Send {BackSpace}.{Space}Lever{Space} 
+Else IfEqual key0, eroc;, Send {BackSpace}.{Space}Core{Space} 
+Else IfEqual key0, eroc;, Send {BackSpace}.{Space}Core{Space} 
+Else IfEqual key0, eroh;, Send {BackSpace}.{Space}Hero{Space} 
+Else IfEqual key0, erohl;, Send {BackSpace}.{Space}Holler{Space} 
+Else IfEqual key0, erosc;, Send {BackSpace}.{Space}Score{Space} 
+Else IfEqual key0, eroslc;, Send {BackSpace}.{Space}Closer{Space} 
+Else IfEqual key0, erta;, Send {BackSpace}.{Space}Tear{Space} 
+Else IfEqual key0, ertad;, Send {BackSpace}.{Space}Trade{Space} 
+Else IfEqual key0, ertd;, Send {BackSpace}.{Space}Editor{Space} 
+Else IfEqual key0, ertihn;, Send {BackSpace}.{Space}Neither{Space} 
+Else IfEqual key0, ertilc;, Send {BackSpace}.{Space}Electric{Space} 
+Else IfEqual key0, ertiod;, Send {BackSpace}.{Space}Editor{Space} 
+Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, ertish;, Send {BackSpace}.{Space}Theirs{Space} 
+Else IfEqual key0, ertjc;, Send {BackSpace}.{Space}Reject{Space} 
+Else IfEqual key0, ertlc;, Send {BackSpace}.{Space}Electric{Space} 
+Else IfEqual key0, ertofgn;, Send {BackSpace}.{Space}Forgotten{Space} 
+Else IfEqual key0, ertpvn;, Send {BackSpace}.{Space}Prevent{Space} 
+Else IfEqual key0, ertuic;, Send {BackSpace}.{Space}Recruit{Space} 
+Else IfEqual key0, ertul;, Send {BackSpace}.{Space}Turtle{Space} 
+Else IfEqual key0, ertun;, Send {BackSpace}.{Space}Return{Space} 
+Else IfEqual key0, ertuo;, Send {BackSpace}.{Space}Route{Space} 
+Else IfEqual key0, eruag;, Send {BackSpace}.{Space}Argue{Space} 
+Else IfEqual key0, eruas;, Send {BackSpace}.{Space}Assure{Space} 
+Else IfEqual key0, erubm;, Send {BackSpace}.{Space}Bummer{Space} 
+Else IfEqual key0, eruoslcn;, Send {BackSpace}.{Space}Counselor{Space} 
+Else IfEqual key0, eruosvn;, Send {BackSpace}.{Space}Nervous{Space} 
+Else IfEqual key0, erusn;, Send {BackSpace}.{Space}Nurse{Space} 
+Else IfEqual key0, eshl;, Send {BackSpace}.{Space}Shell{Space} 
+Else IfEqual key0, etas;, Send {BackSpace}.{Space}State{Space} 
+Else IfEqual key0, etb;, Send {BackSpace}.{Space}Bet{Space} 
+Else IfEqual key0, etb;, Send {BackSpace}.{Space}Bet{Space} 
+Else IfEqual key0, etdn;, Send {BackSpace}.{Space}Tend{Space} 
+Else IfEqual key0, etfcn;, Send {BackSpace}.{Space}Efficient{Space} 
+Else IfEqual key0, etfcn;, Send {BackSpace}.{Space}Efficient{Space} 
+Else IfEqual key0, etihkcn;, Send {BackSpace}.{Space}Kitchen{Space} 
+Else IfEqual key0, etion;, Send {BackSpace}.{Space}Intention{Space} 
+Else IfEqual key0, etionm;, Send {BackSpace}.{Space}Emotion{Space} 
+Else IfEqual key0, etipdn;, Send {BackSpace}.{Space}Independent{Space} 
+Else IfEqual key0, etisln;, Send {BackSpace}.{Space}Nationalities{Space} 
+Else IfEqual key0, etlvt;, Send {BackSpace}.{Space}Evaluate{Space} 
+Else IfEqual key0, etop;, Send {BackSpace}.{Space}Poet{Space} 
+Else IfEqual key0, etpaln;, Send {BackSpace}.{Space}Planet{Space} 
+Else IfEqual key0, etpxm;, Send {BackSpace}.{Space}Exempt{Space} 
+Else IfEqual key0, etsg;, Send {BackSpace}.{Space}Setting{Space} 
+Else IfEqual key0, etsg;, Send {BackSpace}.{Space}Gets{Space} 
+Else IfEqual key0, etsln;, Send {BackSpace}.{Space}Essential{Space} 
+Else IfEqual key0, etualv;, Send {BackSpace}.{Space}Evaluate{Space} 
+Else IfEqual key0, etuascbn;, Send {BackSpace}.{Space}Substance{Space} 
+Else IfEqual key0, etuisn;, Send {BackSpace}.{Space}Institute{Space} 
+Else IfEqual key0, etypln;, Send {BackSpace}.{Space}Plenty{Space} 
+Else IfEqual key0, euag;, Send {BackSpace}.{Space}Gauge{Space} 
+Else IfEqual key0, euagv;, Send {BackSpace}.{Space}Vague{Space} 
+Else IfEqual key0, euasb;, Send {BackSpace}.{Space}Abuse{Space} 
+Else IfEqual key0, euh;, Send {BackSpace}.{Space}Hue{Space} 
+Else IfEqual key0, euiflcn;, Send {BackSpace}.{Space}Influence{Space} 
+Else IfEqual key0, euisdc;, Send {BackSpace}.{Space}Suicide{Space} 
+Else IfEqual key0, euoslcn;, Send {BackSpace}.{Space}Counsel{Space} 
+Else IfEqual key0, eupdl;, Send {BackSpace}.{Space}Puddle{Space} 
+Else IfEqual key0, ey;, Send {BackSpace}.{Space}Eye{Space} 
+Else IfEqual key0, eyadl;, Send {BackSpace}.{Space}Delay{Space} 
+Else IfEqual key0, eyiafc;, Send {BackSpace}.{Space}Efficacy{Space} 
+Else IfEqual key0, eyl;, Send {BackSpace}.{Space}Yell{Space} 
+Else IfEqual key0, eyocvn;, Send {BackSpace}.{Space}Convey{Space} 	
+Else IfEqual key0, erpisn;, Send {BackSpace}.{Space}Inspire{Space} 
+Else IfEqual key0, eopsk;, Send {BackSpace}.{Space}Spoke{Space} 
+Else IfEqual key0, epal;, Send {BackSpace}.{Space}Leap{Space} 
+Else IfEqual key0, epdxn;, Send {BackSpace}.{Space}Expend{Space} 
+Else IfEqual key0, eriav;, Send {BackSpace}.{Space}Arrive{Space} 
+Else IfEqual key0, erop;, Send {BackSpace}.{Space}Proper{Space} 
+Else IfEqual key0, erpdc;, Send {BackSpace}.{Space}Deprec{Space} 
+Else IfEqual key0, ertipn;, Send {BackSpace}.{Space}Interpret{Space} 
+Else IfEqual key0, ertuipn;, Send {BackSpace}.{Space}Interrupt{Space} 
+Else IfEqual key0, etialnm;, Send {BackSpace}.{Space}Eliminate{Space} 
+Else IfEqual key0, etiascn;, Send {BackSpace}.{Space}Instance{Space} 
+Else IfEqual key0, etiscn;, Send {BackSpace}.{Space}Scientist{Space} 
+Else IfEqual key0, etivn;, Send {BackSpace}.{Space}Invite{Space} 
+Else IfEqual key0, eruopd;, Send {BackSpace}.{Space}Produce{Space} 
+Else IfEqual key0, eacm;, Send {BackSpace}.{Space}Came{Space} 	
+Else IfEqual key0, eadcn;, Send {BackSpace}.{Space}Dance{Space} 	
+Else IfEqual key0, erudm;, Send {BackSpace}.{Space}Drummer{Space} 
+Else IfEqual key0, easfl;, Send {BackSpace}.{Space}False{Space} 
+Else IfEqual key0, easl;, Send {BackSpace}.{Space}Sale{Space} 
+Else IfEqual key0, easlc;, Send {BackSpace}.{Space}Scale{Space} 
+Else IfEqual key0, edg;, Send {BackSpace}.{Space}Edge{Space} 
+Else IfEqual key0, efb;, Send {BackSpace}.{Space}Beef{Space} 
+Else IfEqual key0, eicv;, Send {BackSpace}.{Space}Vice{Space} 
+Else IfEqual key0, eidv;, Send {BackSpace}.{Space}Dive{Space} 
+Else IfEqual key0, eign;, Send {BackSpace}.{Space}Engine{Space} 
+Else IfEqual key0, einm;, Send {BackSpace}.{Space}Mine{Space} 
+Else IfEqual key0, eiocvn;, Send {BackSpace}.{Space}Convince{Space} 
+Else IfEqual key0, eiosn;, Send {BackSpace}.{Space}Session{Space} 
+Else IfEqual key0, elc;, Send {BackSpace}.{Space}Cell{Space} 
+Else IfEqual key0, eohn;, Send {BackSpace}.{Space}Hone{Space} 
+Else IfEqual key0, eradm;, Send {BackSpace}.{Space}Dream{Space} 
+Else IfEqual key0, erasd;, Send {BackSpace}.{Space}Address{Space} 
+Else IfEqual key0, erdg;, Send {BackSpace}.{Space}Degree{Space} 
+Else IfEqual key0, ergcn;, Send {BackSpace}.{Space}Encourage{Space} 
+Else IfEqual key0, erih;, Send {BackSpace}.{Space}Hire{Space} 
+Else IfEqual key0, erilc;, Send {BackSpace}.{Space}Circle{Space} 
+Else IfEqual key0, erpscn;, Send {BackSpace}.{Space}Presence{Space} 
+Else IfEqual key0, erti;, Send {BackSpace}.{Space}Tire{Space} 
+Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, ertlcn;, Send {BackSpace}.{Space}Electronic{Space} 
+Else IfEqual key0, ertocn;, Send {BackSpace}.{Space}Concert{Space} 
+Else IfEqual key0, ertof;, Send {BackSpace}.{Space}Effort{Space} 
+Else IfEqual key0, ertopc;, Send {BackSpace}.{Space}Protect{Space} 
+Else IfEqual key0, ertpx;, Send {BackSpace}.{Space}Expert{Space} 
+Else IfEqual key0, ertuion;, Send {BackSpace}.{Space}Routine{Space} 
+Else IfEqual key0, ertuo;, Send {BackSpace}.{Space}Route{Space} 
+Else IfEqual key0, eruosc;, Send {BackSpace}.{Space}Course{Space} 
+Else IfEqual key0, eruosc;, Send {BackSpace}.{Space}Course{Space} 
+Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Secure{Space} 
+Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Secure{Space} 
+Else IfEqual key0, eryl;, Send {BackSpace}.{Space}Rely{Space} 
+Else IfEqual key0, escn;, Send {BackSpace}.{Space}Scene{Space} 
+Else IfEqual key0, esg;, Send {BackSpace}.{Space}Seeing{Space} 
+Else IfEqual key0, etab;, Send {BackSpace}.{Space}Beat{Space} 
+Else IfEqual key0, etad;, Send {BackSpace}.{Space}Date{Space} 
+Else IfEqual key0, etad;, Send {BackSpace}.{Space}Date{Space} 
+Else IfEqual key0, etadh;, Send {BackSpace}.{Space}Death{Space} 
+Else IfEqual key0, etalm;, Send {BackSpace}.{Space}Metal{Space} 
+Else IfEqual key0, etfh;, Send {BackSpace}.{Space}Theft{Space} 
+Else IfEqual key0, etiadc;, Send {BackSpace}.{Space}Dictate{Space} 
+Else IfEqual key0, etin;, Send {BackSpace}.{Space}Intent{Space} 
+Else IfEqual key0, etiocm;, Send {BackSpace}.{Space}Committee{Space} 
+Else IfEqual key0, etivn;, Send {BackSpace}.{Space}Invent{Space} 
+Else IfEqual key0, etogn;, Send {BackSpace}.{Space}Gotten{Space} 
+Else IfEqual key0, etoscn;, Send {BackSpace}.{Space}Consent{Space} 
+Else IfEqual key0, etov;, Send {BackSpace}.{Space}Vote{Space} 
+Else IfEqual key0, etpxc;, Send {BackSpace}.{Space}Except{Space} 
+Else IfEqual key0, etupad;, Send {BackSpace}.{Space}Update{Space} 
+Else IfEqual key0, ety;, Send {BackSpace}.{Space}Yet{Space} 
+Else IfEqual key0, etyuab;, Send {BackSpace}.{Space}Beauty{Space} 
+Else IfEqual key0, euagln;, Send {BackSpace}.{Space}Language{Space} 
+Else IfEqual key0, euasm;, Send {BackSpace}.{Space}Assume{Space} 
+Else IfEqual key0, euisdc;, Send {BackSpace}.{Space}Suicide{Space} 
+Else IfEqual key0, eulb;, Send {BackSpace}.{Space}Blue{Space} 
+Else IfEqual key0, eunm;, Send {BackSpace}.{Space}Menu{Space} 
+Else IfEqual key0, eunm;, Send {BackSpace}.{Space}Menu{Space} 
+Else IfEqual key0, eupas;, Send {BackSpace}.{Space}Pause{Space} 
+Else IfEqual key0, eradcn;, Send {BackSpace}.{Space}Dancer{Space} 	
+Else IfEqual key0, eagn;, Send {BackSpace}.{Space}Engage{Space} 
+Else IfEqual key0, eiom;, Send {BackSpace}.{Space}Emotion{Space} 
+Else IfEqual key0, eoavb;, Send {BackSpace}.{Space}Above{Space} 
+Else IfEqual key0, eojk;, Send {BackSpace}.{Space}Joke{Space} 
+Else IfEqual key0, epd;, Send {BackSpace}.{Space}Deep{Space} 
+Else IfEqual key0, ergn;, Send {BackSpace}.{Space}Green{Space} 
+Else IfEqual key0, erianm;, Send {BackSpace}.{Space}Remain{Space} 
+Else IfEqual key0, eropv;, Send {BackSpace}.{Space}Prove{Space} 
+Else IfEqual key0, erpf;, Send {BackSpace}.{Space}Prefer{Space} 
+Else IfEqual key0, ertah;, Send {BackSpace}.{Space}Heart{Space} 
+Else IfEqual key0, ertahb;, Send {BackSpace}.{Space}Breathe{Space} 
+Else IfEqual key0, ertan;, Send {BackSpace}.{Space}Aren't{Space} 
+Else IfEqual key0, ertioa;, Send {BackSpace}.{Space}Iteration{Space} 
+Else IfEqual key0, ertioa;, Send {BackSpace}.{Space}Iteration{Space} 
+Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
+Else IfEqual key0, ertpan;, Send {BackSpace}.{Space}Parent{Space} 
+Else IfEqual key0, erygn;, Send {BackSpace}.{Space}Energy{Space} 
+Else IfEqual key0, esdn;, Send {BackSpace}.{Space}Send{Space} 
+Else IfEqual key0, etasg;, Send {BackSpace}.{Space}Stage{Space} 
+Else IfEqual key0, etasg;, Send {BackSpace}.{Space}Stage{Space} 
+Else IfEqual key0, etiops;, Send {BackSpace}.{Space}Opposite{Space} 
+Else IfEqual key0, etlnm;, Send {BackSpace}.{Space}Element{Space} 
+Else IfEqual key0, etolc;, Send {BackSpace}.{Space}Collect{Space} 
+Else IfEqual key0, eton;, Send {BackSpace}.{Space}Note{Space} 
+Else IfEqual key0, etuc;, Send {BackSpace}.{Space}Cute{Space} 
+Else IfEqual key0, etusg;, Send {BackSpace}.{Space}Suggest{Space} 
+Else IfEqual key0, etvn;, Send {BackSpace}.{Space}Event{Space} 
+Else IfEqual key0, etyhd;, Send {BackSpace}.{Space}They'd{Space} 
+Else IfEqual key0, etyhl;, Send {BackSpace}.{Space}Theyll{Space} 
+Else IfEqual key0, euasc;, Send {BackSpace}.{Space}Cause{Space} 
+Else IfEqual key0, euoacn;, Send {BackSpace}.{Space}Announce{Space} 
+Else IfEqual key0, eusdc;, Send {BackSpace}.{Space}Succeed{Space} 
+Else IfEqual key0, eusdc;, Send {BackSpace}.{Space}Succeed{Space} 
+Else IfEqual key0, eusln;, Send {BackSpace}.{Space}Unless{Space} 
+Else IfEqual key0, eyojn;, Send {BackSpace}.{Space}Enjoy{Space} 
+Else IfEqual key0, eps;, Send {BackSpace}.{Space}Especially{Space} 	
+Else IfEqual key0, eadh;, Send {BackSpace}.{Space}Head{Space} 		
+Else IfEqual key0, eadl;, Send {BackSpace}.{Space}Lead{Space} 	
+Else IfEqual key0, eadm;, Send {BackSpace}.{Space}Made{Space} 	
+Else IfEqual key0, eafc;, Send {BackSpace}.{Space}Face{Space} 	
+Else IfEqual key0, eaflm;, Send {BackSpace}.{Space}Female{Space} 	
+Else IfEqual key0, eafm;, Send {BackSpace}.{Space}Fame{Space} 	
+Else IfEqual key0, eag;, Send {BackSpace}.{Space}Age{Space} 	
+Else IfEqual key0, eaghcn;, Send {BackSpace}.{Space}Change{Space} 	
+Else IfEqual key0, eaghlcn;, Send {BackSpace}.{Space}Challenge{Space} 	
+Else IfEqual key0, eagm;, Send {BackSpace}.{Space}Game{Space} 	
+Else IfEqual key0, eagnm;, Send {BackSpace}.{Space}Manage{Space} 	
+Else IfEqual key0, eagv;, Send {BackSpace}.{Space}Gave{Space} 	
+Else IfEqual key0, eahc;, Send {BackSpace}.{Space}Each{Space} 	
+Else IfEqual key0, eahcn;, Send {BackSpace}.{Space}Chance{Space} 	
+Else IfEqual key0, eahl;, Send {BackSpace}.{Space}Heal{Space} 	
+Else IfEqual key0, eahv;, Send {BackSpace}.{Space}Have{Space} 	
+Else IfEqual key0, eakm;, Send {BackSpace}.{Space}Make{Space} 	
+Else IfEqual key0, ealb;, Send {BackSpace}.{Space}Able{Space} 	
+Else IfEqual key0, ealcn;, Send {BackSpace}.{Space}Clean{Space} 	
+Else IfEqual key0, ealm;, Send {BackSpace}.{Space}Male{Space} 	
+Else IfEqual key0, ealn;, Send {BackSpace}.{Space}Lean{Space} 	
+Else IfEqual key0, eanm;, Send {BackSpace}.{Space}Name{Space} 	
+Else IfEqual key0, easb;, Send {BackSpace}.{Space}Base{Space} 	
+Else IfEqual key0, easc;, Send {BackSpace}.{Space}Case{Space} 	
+Else IfEqual key0, easdk;, Send {BackSpace}.{Space}Asked{Space} 	
+Else IfEqual key0, easf;, Send {BackSpace}.{Space}Safe{Space} 	
+Else IfEqual key0, easkm;, Send {BackSpace}.{Space}Makes{Space} 	
+Else IfEqual key0, easm;, Send {BackSpace}.{Space}Same{Space} 	
+Else IfEqual key0, easv;, Send {BackSpace}.{Space}Save{Space} 	
+Else IfEqual key0, eb;, Send {BackSpace}.{Space}Be{Space} 	
+Else IfEqual key0, ecn;, Send {BackSpace}.{Space}Necessary{Space}
+Else IfEqual key0, edc;, Send {BackSpace}.{Space}Dec{Space} 	
+Else IfEqual key0, edf;, Send {BackSpace}.{Space}Definitely{Space} 	
+Else IfEqual key0, edl;, Send {BackSpace}.{Space}Led{Space} 	
+Else IfEqual key0, edn;, Send {BackSpace}.{Space}Need{Space} 	
+Else IfEqual key0, edn;, Send {BackSpace}.{Space}End{Space} 	
+Else IfEqual key0, edv;, Send {BackSpace}.{Space}Develop{Space} 	
+Else IfEqual key0, ef;, Send {BackSpace}.{Space}For Example{Space} 	
+Else IfEqual key0, eg;, Send {BackSpace}.{Space}Everything{Space} 	
+Else IfEqual key0, egb;, Send {BackSpace}.{Space}Being{Space} 	
+Else IfEqual key0, egl;, Send {BackSpace}.{Space}Leg{Space} 	
+Else IfEqual key0, eh;, Send {BackSpace}.{Space}He{Space} 	
+Else IfEqual key0, ehkc;, Send {BackSpace}.{Space}Check{Space} 	
+Else IfEqual key0, eiacvn;, Send {BackSpace}.{Space}Vaccine{Space} 	
+Else IfEqual key0, eiad;, Send {BackSpace}.{Space}Idea{Space} 	
+Else IfEqual key0, eiadm;, Send {BackSpace}.{Space}Media{Space} 	
+Else IfEqual key0, eiagnm;, Send {BackSpace}.{Space}Imagine{Space} 	
+Else IfEqual key0, eialm;, Send {BackSpace}.{Space}Email{Space} 	
+Else IfEqual key0, eic;, Send {BackSpace}.{Space}Ice{Space} 
+Else IfEqual key0, eicn;, Send {BackSpace}.{Space}Nice{Space} 	
+Else IfEqual key0, eid;, Send {BackSpace}.{Space}Ide	
+Else IfEqual key0, eidc;, Send {BackSpace}.{Space}Decide{Space} 	
+Else IfEqual key0, eidfl;, Send {BackSpace}.{Space}Field{Space} 	
+Else IfEqual key0, eidfl;, Send {BackSpace}.{Space}Field{Space} 	
+Else IfEqual key0, eidfn;, Send {BackSpace}.{Space}Define{Space} 	
+Else IfEqual key0, eidlm;, Send {BackSpace}.{Space}Middle{Space} 	
+Else IfEqual key0, eidn;, Send {BackSpace}.{Space}Indeed{Space} 	
+Else IfEqual key0, eifl;, Send {BackSpace}.{Space}Life{Space} 	
+Else IfEqual key0, eigbn;, Send {BackSpace}.{Space}Begin{Space} 	
+Else IfEqual key0, eigbn;, Send {BackSpace}.{Space}Beginning{Space}
+Else IfEqual key0, eilv;, Send {BackSpace}.{Space}Live{Space} 	
+Else IfEqual key0, eiocv;, Send {BackSpace}.{Space}Voice{Space} 	
+Else IfEqual key0, eiodv;, Send {BackSpace}.{Space}Video{Space} 	
+Else IfEqual key0, eiofc;, Send {BackSpace}.{Space}Office{Space} 	
+Else IfEqual key0, eiohc;, Send {BackSpace}.{Space}Choice{Space} 	
+Else IfEqual key0, eiolvn;, Send {BackSpace}.{Space}Involve{Space} 	
+Else IfEqual key0, eiosc;, Send {BackSpace}.{Space}Section{Space} 	
+Else IfEqual key0, eiosn;, Send {BackSpace}.{Space}Noise{Space} 	
+Else IfEqual key0, eip;, Send {BackSpace}.{Space}Pipe{Space} 	
+Else IfEqual key0, eipc;, Send {BackSpace}.{Space}Piece{Space} 	
+Else IfEqual key0, eiscn;, Send {BackSpace}.{Space}Since{Space} 	
+Else IfEqual key0, eisd;, Send {BackSpace}.{Space}Side{Space} 	
+Else IfEqual key0, eisgln;, Send {BackSpace}.{Space}Single{Space} 	
+Else IfEqual key0, eiv;, Send {BackSpace}.{Space}I've{Space}
+Else IfEqual key0, ekcn;, Send {BackSpace}.{Space}Neck{Space} 	
+Else IfEqual key0, elcn;, Send {BackSpace}.{Space}Necessarily{Space} 	
+Else IfEqual key0, elv;, Send {BackSpace}.{Space}Level{Space} 	
+Else IfEqual key0, em;, Send {BackSpace}.{Space}Me{Space} 	
+Else IfEqual key0, en;, Send {BackSpace}.{Space}En	
+Else IfEqual key0, en;, Send {BackSpace}.{Space}En	
+Else IfEqual key0, enm;, Send {BackSpace}.{Space}Men{Space} 	
+Else IfEqual key0, eoasn;, Send {BackSpace}.{Space}Season{Space} 	
+Else IfEqual key0, eoc;, Send {BackSpace}.{Space}Eco{Space} 	
+Else IfEqual key0, eocn;, Send {BackSpace}.{Space}Once{Space} 	
+Else IfEqual key0, eodc;, Send {BackSpace}.{Space}Code{Space} 	
+Else IfEqual key0, eodlm;, Send {BackSpace}.{Space}Model{Space} 	
+Else IfEqual key0, eodn;, Send {BackSpace}.{Space}Done{Space} 	
+Else IfEqual key0, eogn;, Send {BackSpace}.{Space}Enough{Space} 
+Else IfEqual key0, euoghn;, Send {BackSpace}.{Space}Gone{Space} 	
+Else IfEqual key0, eohl;, Send {BackSpace}.{Space}Hole{Space} 	
+Else IfEqual key0, eohm;, Send {BackSpace}.{Space}Home{Space} 	
+Else IfEqual key0, eolv;, Send {BackSpace}.{Space}Love{Space} 	
+Else IfEqual key0, eon;, Send {BackSpace}.{Space}One{Space} 	
+Else IfEqual key0, eop;, Send {BackSpace}.{Space}People{Space} 	
+Else IfEqual key0, eopdlv;, Send {BackSpace}.{Space}Develop{Space} 	
+Else IfEqual key0, eoph;, Send {BackSpace}.{Space}Hope{Space} 	
+Else IfEqual key0, eophn;, Send {BackSpace}.{Space}Phone{Space} 	
+Else IfEqual key0, eopn;, Send {BackSpace}.{Space}Open{Space} 	
+Else IfEqual key0, eops;, Send {BackSpace}.{Space}Pose{Space} 	
+Else IfEqual key0, eopshn;, Send {BackSpace}.{Space}Phones{Space} 	
+Else IfEqual key0, eosd;, Send {BackSpace}.{Space}Does{Space} 	
+Else IfEqual key0, eosg;, Send {BackSpace}.{Space}Goes{Space} 	
+Else IfEqual key0, eosh;, Send {BackSpace}.{Space}Shoe{Space} 	
+Else IfEqual key0, eoshc;, Send {BackSpace}.{Space}Chose{Space} 	
+Else IfEqual key0, eosl;, Send {BackSpace}.{Space}Lose{Space} 	
+Else IfEqual key0, eoslc;, Send {BackSpace}.{Space}Close{Space} 	
+Else IfEqual key0, eosm;, Send {BackSpace}.{Space}Some{Space} 	
+Else IfEqual key0, eov;, Send {BackSpace}.{Space}Everyone{Space} 	
+Else IfEqual key0, eozn;, Send {BackSpace}.{Space}Zone{Space} 	
+Else IfEqual key0, epac;, Send {BackSpace}.{Space}Pace{Space} 	
+Else IfEqual key0, epag;, Send {BackSpace}.{Space}Page{Space} 	
+Else IfEqual key0, epak;, Send {BackSpace}.{Space}Peak{Space} 	
+Else IfEqual key0, epalc;, Send {BackSpace}.{Space}Place{Space} 	
+Else IfEqual key0, epasc;, Send {BackSpace}.{Space}Space{Space} 	
+Else IfEqual key0, epash;, Send {BackSpace}.{Space}Shape{Space} 	
+Else IfEqual key0, epask;, Send {BackSpace}.{Space}Speak{Space} 	
+Else IfEqual key0, epasl;, Send {BackSpace}.{Space}Please{Space} 	
+Else IfEqual key0, epdn;, Send {BackSpace}.{Space}Depend{Space} 	
+Else IfEqual key0, ephl;, Send {BackSpace}.{Space}Help{Space} 	
+Else IfEqual key0, epk;, Send {BackSpace}.{Space}Keep{Space} 	
+Else IfEqual key0, epsc;, Send {BackSpace}.{Space}Spec{Space} 	
+Else IfEqual key0, epscl;, Send {BackSpace}.{Space}Specifically{Space} 	
+Else IfEqual key0, epsdn;, Send {BackSpace}.{Space}Spend{Space} 	
+Else IfEqual key0, epsh;, Send {BackSpace}.{Space}Sheep{Space} 	
+Else IfEqual key0, epsl;, Send {BackSpace}.{Space}Sleep{Space} 	
+Else IfEqual key0, epx;, Send {BackSpace}.{Space}Experience{Space}
+Else IfEqual key0, era;, Send {BackSpace}.{Space}Are{Space} 	
+Else IfEqual key0, erac;, Send {BackSpace}.{Space}Care{Space} 	
+Else IfEqual key0, eracm;, Send {BackSpace}.{Space}Camera{Space} 	
+Else IfEqual key0, eradfl;, Send {BackSpace}.{Space}Federal	
+Else IfEqual key0, eradh;, Send {BackSpace}.{Space}Heard{Space} 	
+Else IfEqual key0, erady;, Send {BackSpace}.{Space}Ready{Space} 	
+Else IfEqual key0, erag;, Send {BackSpace}.{Space}Agree{Space} 	
+Else IfEqual key0, eragh;, Send {BackSpace}.{Space}Hearing{Space} 	
+Else IfEqual key0, eragl;, Send {BackSpace}.{Space}Large{Space} 	
+Else IfEqual key0, eragn;, Send {BackSpace}.{Space}Range{Space} 	
+Else IfEqual key0, erah;, Send {BackSpace}.{Space}Hear{Space} 	
+Else IfEqual key0, erahc;, Send {BackSpace}.{Space}Reach{Space} 	
+Else IfEqual key0, erakb;, Send {BackSpace}.{Space}Break{Space} 	
+Else IfEqual key0, eral;, Send {BackSpace}.{Space}Real{Space} 	
+Else IfEqual key0, eralc;, Send {BackSpace}.{Space}Clear{Space} 	
+Else IfEqual key0, eraln;, Send {BackSpace}.{Space}Learn{Space} 	
+Else IfEqual key0, eran;, Send {BackSpace}.{Space}Near{Space} 	
+Else IfEqual key0, erash;, Send {BackSpace}.{Space}Share{Space} 	
+Else IfEqual key0, erashc;, Send {BackSpace}.{Space}Search{Space} 	
+Else IfEqual key0, erbm;, Send {BackSpace}.{Space}Member{Space} 	
+Else IfEqual key0, erf;, Send {BackSpace}.{Space}Free{Space} 	
+Else IfEqual key0, erh;, Send {BackSpace}.{Space}Her{Space} 	
+Else IfEqual key0, erias;, Send {BackSpace}.{Space}Raise{Space} 	
+Else IfEqual key0, eridfn;, Send {BackSpace}.{Space}Friend{Space} 	
+Else IfEqual key0, eridlv;, Send {BackSpace}.{Space}Deliver{Space} 	
+Else IfEqual key0, eridlv;, Send {BackSpace}.{Space}Deliver{Space} 	
+Else IfEqual key0, eridnm;, Send {BackSpace}.{Space}Remind{Space} 	
+Else IfEqual key0, eridv;, Send {BackSpace}.{Space}Derive{Space} 	
+Else IfEqual key0, erifb;, Send {BackSpace}.{Space}Brief{Space} 	
+Else IfEqual key0, erifn;, Send {BackSpace}.{Space}Infer{Space} 	
+Else IfEqual key0, erign;, Send {BackSpace}.{Space}Engineer{Space} 	
+Else IfEqual key0, eriogn;, Send {BackSpace}.{Space}Region{Space} 	
+Else IfEqual key0, eriopa;, Send {BackSpace}.{Space}Operation{Space} 	
+Else IfEqual key0, eriopdv;, Send {BackSpace}.{Space}Provide{Space} 	
+Else IfEqual key0, erioscn;, Send {BackSpace}.{Space}Scenario{Space} 	
+Else IfEqual key0, eriosdc;, Send {BackSpace}.{Space}Description{Space} 	
+Else IfEqual key0, eriovn;, Send {BackSpace}.{Space}Environment{Space} 	
+Else IfEqual key0, eripc;, Send {BackSpace}.{Space}Price{Space} 	
+Else IfEqual key0, eriscb;, Send {BackSpace}.{Space}Scribe{Space} 	
+Else IfEqual key0, erisdc;, Send {BackSpace}.{Space}Describe{Space} 	
+Else IfEqual key0, eroasn;, Send {BackSpace}.{Space}Reason{Space} 	
+Else IfEqual key0, erocn;, Send {BackSpace}.{Space}Concern{Space} 	
+Else IfEqual key0, erocv;, Send {BackSpace}.{Space}Cover{Space} 	
+Else IfEqual key0, erod;, Send {BackSpace}.{Space}Order{Space} 	
+Else IfEqual key0, erodc;, Send {BackSpace}.{Space}Record{Space} 	
+Else IfEqual key0, erof;, Send {BackSpace}.{Space}Offer{Space} 	
+Else IfEqual key0, erol;, Send {BackSpace}.{Space}Role{Space} 	
+Else IfEqual key0, eropacm;, Send {BackSpace}.{Space}Compare{Space} 	
+Else IfEqual key0, eropafcnm;, Send {BackSpace}.{Space}Performance{Space} 	
+Else IfEqual key0, eroplbm;, Send {BackSpace}.{Space}Problem{Space} 	
+Else IfEqual key0, eroplx;, Send {BackSpace}.{Space}Explore{Space} 	
+Else IfEqual key0, eropsg;, Send {BackSpace}.{Space}Progress{Space} 	
+Else IfEqual key0, eropsn;, Send {BackSpace}.{Space}Person{Space} 	
+Else IfEqual key0, erosh;, Send {BackSpace}.{Space}Horse{Space} 	
+Else IfEqual key0, erov;, Send {BackSpace}.{Space}Over{Space} 	
+Else IfEqual key0, erp;, Send {BackSpace}.{Space}Per{Space} 
+Else IfEqual key0, erpa;, Send {BackSpace}.{Space}Prepare{Space} 	
+Else IfEqual key0, erpalc;, Send {BackSpace}.{Space}Replace{Space} 	
+Else IfEqual key0, erps;, Send {BackSpace}.{Space}Press{Space} 	
+Else IfEqual key0, ers;, Send {BackSpace}.{Space}Res{Space} 	
+Else IfEqual key0, erscn;, Send {BackSpace}.{Space}Screen{Space} 	
+Else IfEqual key0, ersv;, Send {BackSpace}.{Space}Serve{Space} 	
+Else IfEqual key0, ert;, Send {BackSpace}.{Space}Tree{Space} 	
+Else IfEqual key0, erta;, Send {BackSpace}.{Space}Rate{Space} 	
+Else IfEqual key0, ertac;, Send {BackSpace}.{Space}React{Space} 	
+Else IfEqual key0, ertafh;, Send {BackSpace}.{Space}Father{Space} 	
+Else IfEqual key0, ertag;, Send {BackSpace}.{Space}Great{Space} 	
+Else IfEqual key0, ertahc;, Send {BackSpace}.{Space}Character{Space} 	
+Else IfEqual key0, ertal;, Send {BackSpace}.{Space}Later{Space} 	
+Else IfEqual key0, ertalcn;, Send {BackSpace}.{Space}Central{Space} 	
+Else IfEqual key0, ertam;, Send {BackSpace}.{Space}Matter{Space} 	
+Else IfEqual key0, ertax;, Send {BackSpace}.{Space}Extra	
+Else IfEqual key0, ertb;, Send {BackSpace}.{Space}Better{Space} 	
+Else IfEqual key0, ertcn;, Send {BackSpace}.{Space}Recent{Space} 	
+Else IfEqual key0, erth;, Send {BackSpace}.{Space}There{Space} 	
+Else IfEqual key0, erths;, Send {BackSpace}.{Space}There's{Space} 	
+Else IfEqual key0, ertiacn;, Send {BackSpace}.{Space}Certain{Space} 	
+Else IfEqual key0, ertiagn;, Send {BackSpace}.{Space}Integrate{Space} 	
+Else IfEqual key0, ertial;, Send {BackSpace}.{Space}Retail{Space} 	
+Else IfEqual key0, ertialcv;, Send {BackSpace}.{Space}Vertical{Space} 	
+Else IfEqual key0, ertialv;, Send {BackSpace}.{Space}Relative{Space} 	
+Else IfEqual key0, ertidc;, Send {BackSpace}.{Space}Credit{Space} 	
+Else IfEqual key0, ertifl;, Send {BackSpace}.{Space}Filter{Space} 	
+Else IfEqual key0, ertih;, Send {BackSpace}.{Space}Their{Space} 	
+Else IfEqual key0, ertin;, Send {BackSpace}.{Space}Inter	
+Else IfEqual key0, ertioadcn;, Send {BackSpace}.{Space}Coordinate{Space} 	
+Else IfEqual key0, ertipa;, Send {BackSpace}.{Space}Therapist{Space} 	
+Else IfEqual key0, ertipah;, Send {BackSpace}.{Space}Therapist{Space} 	
+Else IfEqual key0, ertipash;, Send {BackSpace}.{Space}Therapist{Space} 	
+Else IfEqual key0, ertiph;, Send {BackSpace}.{Space}Therapist{Space} 	
+Else IfEqual key0, ertis;, Send {BackSpace}.{Space}Sister{Space} 	
+Else IfEqual key0, ertl;, Send {BackSpace}.{Space}Letter{Space} 	
+Else IfEqual key0, ertm;, Send {BackSpace}.{Space}Term{Space} 	
+Else IfEqual key0, ertn;, Send {BackSpace}.{Space}Enter{Space} 	
+Else IfEqual key0, erto;, Send {BackSpace}.{Space}Tore{Space} 	
+Else IfEqual key0, ertoasg;, Send {BackSpace}.{Space}Storage{Space} 	
+Else IfEqual key0, ertoc;, Send {BackSpace}.{Space}Correct{Space} 	
+Else IfEqual key0, ertogh;, Send {BackSpace}.{Space}Together{Space} 	
+Else IfEqual key0, ertoh;, Send {BackSpace}.{Space}Other{Space} 	
+Else IfEqual key0, ertohb;, Send {BackSpace}.{Space}Bother{Space} 	
+Else IfEqual key0, ertohm;, Send {BackSpace}.{Space}Mother{Space} 	
+Else IfEqual key0, ertop;, Send {BackSpace}.{Space}Report{Space} 	
+Else IfEqual key0, ertos;, Send {BackSpace}.{Space}Store{Space} 	
+Else IfEqual key0, ertosn;, Send {BackSpace}.{Space}Testosterone{Space} 	
+Else IfEqual key0, ertpa;, Send {BackSpace}.{Space}Parate{Space} 	
+Else IfEqual key0, ertpan;, Send {BackSpace}.{Space}Partner{Space} 	
+Else IfEqual key0, ertpcn;, Send {BackSpace}.{Space}Percent{Space} 	
+Else IfEqual key0, ertpsn;, Send {BackSpace}.{Space}Present{Space} 	
+Else IfEqual key0, erts;, Send {BackSpace}.{Space}Rest{Space} 	
+Else IfEqual key0, ertsh;, Send {BackSpace}.{Space}There's{Space} 	
+Else IfEqual key0, ertu;, Send {BackSpace}.{Space}True{Space} 	
+Else IfEqual key0, ertuac;, Send {BackSpace}.{Space}Accurate{Space} 	
+Else IfEqual key0, ertuafcnm;, Send {BackSpace}.{Space}Manufacture{Space} 	
+Else IfEqual key0, ertuan;, Send {BackSpace}.{Space}Nature{Space} 	
+Else IfEqual key0, ertucn;, Send {BackSpace}.{Space}Current{Space} 	
+Else IfEqual key0, ertuf;, Send {BackSpace}.{Space}Future{Space} 	
+Else IfEqual key0, ertuipc;, Send {BackSpace}.{Space}Picture{Space} 	
+Else IfEqual key0, ertulc;, Send {BackSpace}.{Space}Culture{Space} 	
+Else IfEqual key0, ertusl;, Send {BackSpace}.{Space}Result{Space} 	
+Else IfEqual key0, ertvnm;, Send {BackSpace}.{Space}Environment{Space} 	
+Else IfEqual key0, ertxm;, Send {BackSpace}.{Space}Extreme{Space} 	
+Else IfEqual key0, ertyh;, Send {BackSpace}.{Space}They're{Space} 	
+Else IfEqual key0, ertyn;, Send {BackSpace}.{Space}Entry{Space} 	
+Else IfEqual key0, eru;, Send {BackSpace}.{Space}You're{Space} 	
+Else IfEqual key0, erudc;, Send {BackSpace}.{Space}Reduce{Space} 	
+Else IfEqual key0, erudn;, Send {BackSpace}.{Space}Under{Space} 	
+Else IfEqual key0, erul;, Send {BackSpace}.{Space}Rule{Space} 	
+Else IfEqual key0, eruops;, Send {BackSpace}.{Space}Purpose{Space} 	
+Else IfEqual key0, erups;, Send {BackSpace}.{Space}Super{Space} 	
+Else IfEqual key0, erus;, Send {BackSpace}.{Space}Sure{Space} 	
+Else IfEqual key0, erusfl;, Send {BackSpace}.{Space}Yourself{Space} 	
+Else IfEqual key0, erusm;, Send {BackSpace}.{Space}Summer{Space} 	
+Else IfEqual key0, erv;, Send {BackSpace}.{Space}Ever{Space} 	
+Else IfEqual key0, ervn;, Send {BackSpace}.{Space}Never{Space} 	
+Else IfEqual key0, ervn;, Send {BackSpace}.{Space}Never{Space} 	
+Else IfEqual key0, ery;, Send {BackSpace}.{Space}Every{Space} 	
+Else IfEqual key0, eryal;, Send {BackSpace}.{Space}Early{Space} 	
+Else IfEqual key0, eryogc;, Send {BackSpace}.{Space}Grocery{Space} 	
+Else IfEqual key0, eryph;, Send {BackSpace}.{Space}Hyper	
+Else IfEqual key0, eryusg;, Send {BackSpace}.{Space}Surgery{Space} 	
+Else IfEqual key0, eryv;, Send {BackSpace}.{Space}Every{Space} 	
+Else IfEqual key0, es;, Send {BackSpace}.{Space}See{Space} 	
+Else IfEqual key0, esc;, Send {BackSpace}.{Space}Second{Space} 	
+Else IfEqual key0, esdn;, Send {BackSpace}.{Space}Send{Space} 	
+Else IfEqual key0, esfl;, Send {BackSpace}.{Space}Self{Space} 	
+Else IfEqual key0, esh;, Send {BackSpace}.{Space}She{Space} 	
+Else IfEqual key0, esk;, Send {BackSpace}.{Space}Seek{Space} 	
+Else IfEqual key0, esl;, Send {BackSpace}.{Space}Else{Space}
+Else IfEqual key0, esm;, Send {BackSpace}.{Space}Seem{Space} 	
+Else IfEqual key0, esn;, Send {BackSpace}.{Space}Sense{Space} 	
+Else IfEqual key0, et;, Send {BackSpace}.{Space}Even Though{Space} 	
+Else IfEqual key0, eta;, Send {BackSpace}.{Space}Ate{Space} 	
+Else IfEqual key0, etadh;, Send {BackSpace}.{Space}Hated{Space} 	
+Else IfEqual key0, etadln;, Send {BackSpace}.{Space}Dental{Space} 	
+Else IfEqual key0, etafc;, Send {BackSpace}.{Space}Affect{Space} 	
+Else IfEqual key0, etaghc;, Send {BackSpace}.{Space}Teaching{Space} 	
+Else IfEqual key0, etah;, Send {BackSpace}.{Space}Hate{Space} 	
+Else IfEqual key0, etahc;, Send {BackSpace}.{Space}Teach{Space} 	
+Else IfEqual key0, etahl;, Send {BackSpace}.{Space}Health{Space} 	
+Else IfEqual key0, etak;, Send {BackSpace}.{Space}Take{Space} 	
+Else IfEqual key0, etal;, Send {BackSpace}.{Space}Late{Space} 	
+Else IfEqual key0, etalb;, Send {BackSpace}.{Space}Table{Space} 	
+Else IfEqual key0, etam;, Send {BackSpace}.{Space}Team{Space} 	
+Else IfEqual key0, etan;, Send {BackSpace}.{Space}Neat{Space} 	
+Else IfEqual key0, etas;, Send {BackSpace}.{Space}State{Space} 	
+Else IfEqual key0, etascn;, Send {BackSpace}.{Space}Stance{Space} 	
+Else IfEqual key0, etasl;, Send {BackSpace}.{Space}Least{Space} 	
+Else IfEqual key0, etaxc;, Send {BackSpace}.{Space}Exact{Space} 	
+Else IfEqual key0, etc;, Send {BackSpace}.{Space}Et Cetera{Space} 	
+Else IfEqual key0, etcn;, Send {BackSpace}.{Space}Cent{Space} 	
+Else IfEqual key0, etdn;, Send {BackSpace}.{Space}Tend{Space} 	
+Else IfEqual key0, etfc;, Send {BackSpace}.{Space}Effect{Space} 	
+Else IfEqual key0, etfl;, Send {BackSpace}.{Space}Felt{Space} 	
+Else IfEqual key0, etg;, Send {BackSpace}.{Space}Get{Space} 	
+Else IfEqual key0, etgv;, Send {BackSpace}.{Space}Everything{Space} 	
+Else IfEqual key0, eth;, Send {BackSpace}.{Space}The{Space} 	
+Else IfEqual key0, ethc;, Send {BackSpace}.{Space}Tech{Space} 	
+Else IfEqual key0, ethcn;, Send {BackSpace}.{Space}Technology{Space} 	
+Else IfEqual key0, ethm;, Send {BackSpace}.{Space}Them{Space} 	
+Else IfEqual key0, ethn;, Send {BackSpace}.{Space}Then{Space} 	
+Else IfEqual key0, etiacv;, Send {BackSpace}.{Space}Active{Space} 	
+Else IfEqual key0, etiav;, Send {BackSpace}.{Space}Ative	
+Else IfEqual key0, etiglcn;, Send {BackSpace}.{Space}Intelligence{Space} 	
+Else IfEqual key0, etigln;, Send {BackSpace}.{Space}Intelligent{Space} 	
+Else IfEqual key0, etihc;, Send {BackSpace}.{Space}Ethic{Space} 	
+Else IfEqual key0, etil;, Send {BackSpace}.{Space}Little{Space} 	
+Else IfEqual key0, etilcn;, Send {BackSpace}.{Space}Client{Space} 	
+Else IfEqual key0, etim;, Send {BackSpace}.{Space}Item{Space} 	
+Else IfEqual key0, etim;, Send {BackSpace}.{Space}Time{Space} 	
+Else IfEqual key0, etiocm;, Send {BackSpace}.{Space}Committee{Space} 	
+Else IfEqual key0, etiocn;, Send {BackSpace}.{Space}Notice{Space} 	
+Else IfEqual key0, etionm;, Send {BackSpace}.{Space}Mention{Space} 	
+Else IfEqual key0, etipan;, Send {BackSpace}.{Space}Patient{Space} 	
+Else IfEqual key0, etis;, Send {BackSpace}.{Space}Site{Space} 	
+Else IfEqual key0, etis;, Send {BackSpace}.{Space}Ities{Space} 	
+Else IfEqual key0, etism;, Send {BackSpace}.{Space}Times{Space} 	
+Else IfEqual key0, etisvn;, Send {BackSpace}.{Space}Invest{Space} 	
+Else IfEqual key0, etisx;, Send {BackSpace}.{Space}Exist{Space} 	
+Else IfEqual key0, etiv;, Send {BackSpace}.{Space}Tive{Space} 	
+Else IfEqual key0, etixc;, Send {BackSpace}.{Space}Excite{Space} 	
+Else IfEqual key0, etl;, Send {BackSpace}.{Space}Let{Space} 	
+Else IfEqual key0, etm;, Send {BackSpace}.{Space}Met{Space} 	
+Else IfEqual key0, etm;, Send {BackSpace}.{Space}Met{Space} 	
+Else IfEqual key0, etn;, Send {BackSpace}.{Space}Net{Space}
+Else IfEqual key0, etoalc;, Send {BackSpace}.{Space}Locate{Space} 	
+Else IfEqual key0, etocn;, Send {BackSpace}.{Space}Connect{Space} 	
+Else IfEqual key0, etocnm;, Send {BackSpace}.{Space}Comment{Space} 	
+Else IfEqual key0, etofn;, Send {BackSpace}.{Space}Often{Space} 	
+Else IfEqual key0, etogh;, Send {BackSpace}.{Space}Together{Space} 	
+Else IfEqual key0, etohl;, Send {BackSpace}.{Space}Hotel{Space} 	
+Else IfEqual key0, etojcb;, Send {BackSpace}.{Space}Object{Space} 	
+Else IfEqual key0, etonm;, Send {BackSpace}.{Space}Moment{Space} 	
+Else IfEqual key0, etopcn;, Send {BackSpace}.{Space}Concept{Space} 	
+Else IfEqual key0, etopkc;, Send {BackSpace}.{Space}Pocket{Space} 	
+Else IfEqual key0, etosh;, Send {BackSpace}.{Space}Those{Space} 	
+Else IfEqual key0, etoshn;, Send {BackSpace}.{Space}Honest{Space} 	
+Else IfEqual key0, etpac;, Send {BackSpace}.{Space}Accept{Space} 	
+Else IfEqual key0, etpdn;, Send {BackSpace}.{Space}Dependent{Space} 	
+Else IfEqual key0, etpk;, Send {BackSpace}.{Space}Kept{Space} 	
+Else IfEqual key0, etps;, Send {BackSpace}.{Space}Step{Space} 	
+Else IfEqual key0, etps;, Send {BackSpace}.{Space}Step{Space} 	
+Else IfEqual key0, etpsn;, Send {BackSpace}.{Space}Spent{Space} 	
+Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 	
+Else IfEqual key0, ets;, Send {BackSpace}.{Space}Set{Space} 	
+Else IfEqual key0, etsb;, Send {BackSpace}.{Space}Best{Space} 	
+Else IfEqual key0, etsh;, Send {BackSpace}.{Space}These{Space} 	
+Else IfEqual key0, etshc;, Send {BackSpace}.{Space}Chest{Space} 	
+Else IfEqual key0, etshlb;, Send {BackSpace}.{Space}Establish{Space} 	
+Else IfEqual key0, etsl;, Send {BackSpace}.{Space}Let's{Space} 	
+Else IfEqual key0, etslc;, Send {BackSpace}.{Space}Select{Space} 	
+Else IfEqual key0, etsn;, Send {BackSpace}.{Space}Sent{Space} 
+Else IfEqual key0, etysln;, Send {BackSpace}.{Space}Sent{Space} 	
+Else IfEqual key0, etuadc;, Send {BackSpace}.{Space}Educate{Space} 	
+Else IfEqual key0, etuagnm;, Send {BackSpace}.{Space}Augment{Space} 	
+Else IfEqual key0, etuinm;, Send {BackSpace}.{Space}Minute{Space} 	
+Else IfEqual key0, etuipadlc;, Send {BackSpace}.{Space}Duplicate{Space} 	
+Else IfEqual key0, etuodcnm;, Send {BackSpace}.{Space}Document{Space} 	
+Else IfEqual key0, etusdn;, Send {BackSpace}.{Space}Student{Space} 	
+Else IfEqual key0, etuvn;, Send {BackSpace}.{Space}Eventually{Space} 	
+Else IfEqual key0, etx;, Send {BackSpace}.{Space}External{Space} 	
+Else IfEqual key0, etxn;, Send {BackSpace}.{Space}Next{Space} 	
+Else IfEqual key0, etyh;, Send {BackSpace}.{Space}They{Space} 	
+Else IfEqual key0, etyhv;, Send {BackSpace}.{Space}They've{Space} 	
+Else IfEqual key0, etyidn;, Send {BackSpace}.{Space}Identity{Space} 	
+Else IfEqual key0, etyoscm;, Send {BackSpace}.{Space}Ecosystem{Space} 	
+Else IfEqual key0, etyp;, Send {BackSpace}.{Space}Type{Space} 	
+Else IfEqual key0, etysl;, Send {BackSpace}.{Space}Style{Space} 	
+Else IfEqual key0, etysm;, Send {BackSpace}.{Space}System{Space} 	
+Else IfEqual key0, euaglc;, Send {BackSpace}.{Space}Colleague{Space} 	
+Else IfEqual key0, eualv;, Send {BackSpace}.{Space}Value{Space} 	
+Else IfEqual key0, eud;, Send {BackSpace}.{Space}Education{Space} 	
+Else IfEqual key0, eugh;, Send {BackSpace}.{Space}Huge{Space} 	
+Else IfEqual key0, euiadcn;, Send {BackSpace}.{Space}Audience{Space} 	
+Else IfEqual key0, euis;, Send {BackSpace}.{Space}Issue{Space} 	
+Else IfEqual key0, euops;, Send {BackSpace}.{Space}Suppose{Space} 	
+Else IfEqual key0, euosfcn;, Send {BackSpace}.{Space}Confuse{Space} 	
+Else IfEqual key0, euosh;, Send {BackSpace}.{Space}House{Space} 	
+Else IfEqual key0, eus;, Send {BackSpace}.{Space}Use{Space} 	
+Else IfEqual key0, eusc;, Send {BackSpace}.{Space}Success{Space} 	
+Else IfEqual key0, eusdn;, Send {BackSpace}.{Space}Sudden{Space} 	
+Else IfEqual key0, eusg;, Send {BackSpace}.{Space}Guess{Space} 	
+Else IfEqual key0, euv;, Send {BackSpace}.{Space}You've{Space} 	
+Else IfEqual key0, ev;, Send {BackSpace}.{Space}Ever{Space} 	
+Else IfEqual key0, evb;, Send {BackSpace}.{Space}Everybody{Space} 	
+Else IfEqual key0, evn;, Send {BackSpace}.{Space}Even{Space} 	
+Else IfEqual key0, ex;, Send {BackSpace}.{Space}Exactly{Space} 	
+Else IfEqual key0, ex;, Send {BackSpace}.{Space}Ex	
+Else IfEqual key0, exc;, Send {BackSpace}.{Space}Excellent{Space} 	
+Else IfEqual key0, eyalzn;, Send {BackSpace}.{Space}Analyze{Space} 	
+Else IfEqual key0, eyas;, Send {BackSpace}.{Space}Easy{Space} 	
+Else IfEqual key0, eyb;, Send {BackSpace}.{Space}Bye{Space} 	
+Else IfEqual key0, eyk;, Send {BackSpace}.{Space}Key{Space} 	
+Else IfEqual key0, eylc;, Send {BackSpace}.{Space}Cycle{Space} 	
+Else IfEqual key0, eyonm;, Send {BackSpace}.{Space}Money{Space} 	
+Else IfEqual key0, eys;, Send {BackSpace}.{Space}Yes{Space} 	
+Else IfEqual key0, eysflm;, Send {BackSpace}.{Space}Myself{Space} 	
+Else IfEqual key0, eysflm;, Send {BackSpace}.{Space}Myself{Space} 	
+Else IfEqual key0, eyv;, Send {BackSpace}.{Space}Every{Space} 
+Else IfEqual key0, ealbm;, Send {BackSpace}.{Space}Blame{Space} 
+Else IfEqual key0, easl;, Send {BackSpace}.{Space}Lease{Space} 
+Else IfEqual key0, edkc;, Send {BackSpace}.{Space}Deck{Space} 
+Else IfEqual key0, eranm;, Send {BackSpace}.{Space}Manner{Space} 
+Else IfEqual key0, erfl;, Send {BackSpace}.{Space}Freelance{Space} 
+Else IfEqual key0, eriopd;, Send {BackSpace}.{Space}Period{Space} 
+Else IfEqual key0, eripx;, Send {BackSpace}.{Space}Expire{Space} 
+Else IfEqual key0, erpdc;, Send {BackSpace}.{Space}Precede{Space} 
+Else IfEqual key0, ertian;, Send {BackSpace}.{Space}Entertain{Space} 
+Else IfEqual key0, etid;, Send {BackSpace}.{Space}Edit{Space} 
+Else IfEqual key0, etlc;, Send {BackSpace}.{Space}Elect{Space} 
+Else IfEqual key0, euidg;, Send {BackSpace}.{Space}Guide{Space} 
+Else IfEqual key0, euign;, Send {BackSpace}.{Space}Genuine{Space} 
+Else IfEqual key0, eyaglc;, Send {BackSpace}.{Space}Legacy{Space} 	
+Return
+SENDOstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, oa;, Send {BackSpace}.{Space}Anyone{Space} 
+Else IfEqual key0, oan;, Send {BackSpace}.{Space}Anyone{Space} 
+Else IfEqual key0, oadl;, Send {BackSpace}.{Space}Load{Space} 
+Else IfEqual key0, oagnm;, Send {BackSpace}.{Space}Among{Space} 
+Else IfEqual key0, odfl;, Send {BackSpace}.{Space}Fold{Space} 
+Else IfEqual key0, ogm;, Send {BackSpace}.{Space}Oh My God.{Space} 
+Else IfEqual key0, oahlc;, Send {BackSpace}.{Space}Alcohol{Space} 
+Else IfEqual key0, odgl;, Send {BackSpace}.{Space}Gold{Space} 
+Else IfEqual key0, odlb;, Send {BackSpace}.{Space}Bold{Space} 
+Else IfEqual key0, odlc;, Send {BackSpace}.{Space}Cold{Space} 
+Else IfEqual key0, ofkl;, Send {BackSpace}.{Space}Folk{Space} 
+Else IfEqual key0, ogl;, Send {BackSpace}.{Space}Log{Space} 
+Else IfEqual key0, ozm;, Send {BackSpace}.{Space}Zoom{Space} 
+Else IfEqual key0, omsgh;, Send {BackSpace}.{Space}Oh My Gosh.{Space} 
+Else IfEqual key0, osgh;, Send {BackSpace}.{Space}Gosh{Space} 
+Else IfEqual key0, osn;, Send {BackSpace}.{Space}Soon{Space} 
+Else IfEqual key0, oaln;, Send {BackSpace}.{Space}Loan{Space} 
+Else IfEqual key0, obm;, Send {BackSpace}.{Space}Bomb{Space} 
+Else IfEqual key0, oshkc;, Send {BackSpace}.{Space}Shock{Space} 
+Else IfEqual key0, oxb;, Send {BackSpace}.{Space}Box{Space} 
+Else IfEqual key0, oag;, Send {BackSpace}.{Space}Ago{Space} 
+Else IfEqual key0, osn;, Send {BackSpace}.{Space}Son{Space} 
+Else IfEqual key0, oagl;, Send {BackSpace}.{Space}Goal{Space} 
+Else IfEqual key0, oagln;, Send {BackSpace}.{Space}Along{Space} 
+Else IfEqual key0, oagn;, Send {BackSpace}.{Space}Going To{Space} 
+Else IfEqual key0, oasl;, Send {BackSpace}.{Space}Also{Space} 
+Else IfEqual key0, oc;, Send {BackSpace}.{Space}Could{Space} 
+Else IfEqual key0, ocm;, Send {BackSpace}.{Space}Com
+Else IfEqual key0, ocn;, Send {BackSpace}.{Space}Con
+Else IfEqual key0, ocnm;, Send {BackSpace}.{Space}Common{Space} 
+Else IfEqual key0, od;, Send {BackSpace}.{Space}Do{Space} 
+Else IfEqual key0, odc;, Send {BackSpace}.{Space}Document{Space} 
+Else IfEqual key0, odf;, Send {BackSpace}.{Space}Food{Space} 
+Else IfEqual key0, odg;, Send {BackSpace}.{Space}Doing{Space} 
+Else IfEqual key0, odhl;, Send {BackSpace}.{Space}Hold{Space} 
+Else IfEqual key0, odl;, Send {BackSpace}.{Space}Old{Space} 
+Else IfEqual key0, of;, Send {BackSpace}.{Space}Of{Space} 
+Else IfEqual key0, ofc;, Send {BackSpace}.{Space}Of Course{Space} 
+Else IfEqual key0, ofc;, Send {BackSpace}.{Space}Of Course{Space} 
+Else IfEqual key0, ofcn;, Send {BackSpace}.{Space}Confirm{Space} 
+Else IfEqual key0, ofn;, Send {BackSpace}.{Space}Information{Space} 
+Else IfEqual key0, og;, Send {BackSpace}.{Space}Go{Space} 
+Else IfEqual key0, ogln;, Send {BackSpace}.{Space}Long{Space} 
+Else IfEqual key0, oglv;, Send {BackSpace}.{Space}Loving{Space} 
+Else IfEqual key0, ogn;, Send {BackSpace}.{Space}Gone{Space} 
+Else IfEqual key0, ohm;, Send {BackSpace}.{Space}Homo
+Else IfEqual key0, ojb;, Send {BackSpace}.{Space}Job{Space} 
+Else IfEqual key0, ok;, Send {BackSpace}.{Space}Kind Of{Space} 
+Else IfEqual key0, okb;, Send {BackSpace}.{Space}Book{Space} 
+Else IfEqual key0, okc;, Send {BackSpace}.{Space}Cook{Space} 
+Else IfEqual key0, okl;, Send {BackSpace}.{Space}Look{Space} 
+Else IfEqual key0, oklc;, Send {BackSpace}.{Space}Lock{Space} 
+Else IfEqual key0, oln;, Send {BackSpace}.{Space}Online{Space} 
+Else IfEqual key0, on;, Send {BackSpace}.{Space}On{Space} 
+Else IfEqual key0, onm;, Send {BackSpace}.{Space}Moon{Space} 
+Else IfEqual key0, op;, Send {BackSpace}.{Space}Opportunity{Space} 
+Else IfEqual key0, opn;, Send {BackSpace}.{Space}Open{Space} 
+Else IfEqual key0, ops;, Send {BackSpace}.{Space}Opportunities{Space} 
+Else IfEqual key0, opsh;, Send {BackSpace}.{Space}Shop{Space} 
+Else IfEqual key0, os;, Send {BackSpace}.{Space}So{Space} 
+Else IfEqual key0, osf;, Send {BackSpace}.{Space}Sort Of{Space} 
+Else IfEqual key0, osfkl;, Send {BackSpace}.{Space}Folks{Space} 
+Else IfEqual key0, osgn;, Send {BackSpace}.{Space}Song{Space} 
+Else IfEqual key0, oshlc;, Send {BackSpace}.{Space}School{Space} 
+Else IfEqual key0, osm;, Send {BackSpace}.{Space}Someone{Space} 
+Else IfEqual key0, osn;, Send {BackSpace}.{Space}Soon{Space} 
+Else IfEqual key0, ovb;, Send {BackSpace}.{Space}Obviously{Space} 
+Else IfEqual key0, oalc;, Send {BackSpace}.{Space}Local{Space} 
+Else IfEqual key0, oflc;, Send {BackSpace}.{Space}Official{Space} 
+Else IfEqual key0, oh;, Send {BackSpace}.{Space}Oh,{Space} 
+Else IfEqual key0, osdl;, Send {BackSpace}.{Space}Sold{Space} 
+Return
+SENDPstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, PAC;, Send {BackSpace}.{Space}Cap{Space} 
+Else IfEqual key0, pk;, Send {BackSpace}.{Space}Keep{Space} 	
+Else IfEqual key0, updg;, Send {BackSpace}.{Space}Pudding{Space} 		
+Else IfEqual key0, psfc;, Send {BackSpace}.{Space}Specific{Space} 
+Else IfEqual key0, pfhl;, Send {BackSpace}.{Space}Helpful{Space} 
+Else IfEqual key0, phl;, Send {BackSpace}.{Space}Helpful{Space} 
+Else IfEqual key0, pakc;, Send {BackSpace}.{Space}Pack{Space} 
+Else IfEqual key0, pam;, Send {BackSpace}.{Space}Map{Space} 
+Else IfEqual key0, pasm;, Send {BackSpace}.{Space}Spam{Space} 
+Else IfEqual key0, pgk;, Send {BackSpace}.{Space}Package{Space} 
+Else IfEqual key0, pk;, Send {BackSpace}.{Space}Keep{Space} 
+Else IfEqual key0, pal;, Send {BackSpace}.{Space}Application{Space} 
+Else IfEqual key0, pb;, Send {BackSpace}.{Space}Possible{Space} 
+Else IfEqual key0, pag;, Send {BackSpace}.{Space}Gap{Space} 
+Else IfEqual key0, pasl;, Send {BackSpace}.{Space}Applies{Space} 
+Else IfEqual key0, pcnm;, Send {BackSpace}.{Space}Companion{Space} 
+Else IfEqual key0, pdxn;, Send {BackSpace}.{Space}Expand{Space} 
+Else IfEqual key0, pgk;, Send {BackSpace}.{Space}Package{Space} 
+Else IfEqual key0, plcnm;, Send {BackSpace}.{Space}Complain{Space} 
+Else IfEqual key0, plcnm;, Send {BackSpace}.{Space}Complain{Space} 
+Else IfEqual key0, psdn;, Send {BackSpace}.{Space}Dispense{Space} 
+Else IfEqual key0, psxvn;, Send {BackSpace}.{Space}Expansive{Space} 
+Else IfEqual key0, pa;, Send {BackSpace}.{Space}App{Space} 
+Else IfEqual key0, paglz;, Send {BackSpace}.{Space}Apologize{Space} 
+Else IfEqual key0, palcm;, Send {BackSpace}.{Space}Accomplish{Space} 
+Else IfEqual key0, pashlcm;, Send {BackSpace}.{Space}Accomplish{Space} 
+Else IfEqual key0, psk;, Send {BackSpace}.{Space}Speak{Space} 
+Else IfEqual key0, pslbm;, Send {BackSpace}.{Space}Impossible{Space} 
+Else IfEqual key0, psx;, Send {BackSpace}.{Space}Expose{Space} 
+Else IfEqual key0, paln;, Send {BackSpace}.{Space}Plan{Space} 
+Else IfEqual key0, pas;, Send {BackSpace}.{Space}Pass{Space} 
+Else IfEqual key0, pfh;, Send {BackSpace}.{Space}Hopefully{Space} 
+Else IfEqual key0, ph;, Send {BackSpace}.{Space}Hope{Space} 
+Else IfEqual key0, pslc;, Send {BackSpace}.{Space}Special{Space} 
+Else IfEqual key0, pcm;, Send {BackSpace}.{Space}Company{Space} 
+Else IfEqual key0, pdcm;, Send {BackSpace}.{Space}Pandemic{Space} 
+Else IfEqual key0, pf;, Send {BackSpace}.{Space}Perfect{Space} 
+Else IfEqual key0, pfh;, Send {BackSpace}.{Space}Hopefully{Space} 
+Else IfEqual key0, pg;, Send {BackSpace}.{Space}Page{Space} 
+Else IfEqual key0, pgh;, Send {BackSpace}.{Space}Happening{Space} 
+Else IfEqual key0, pglb;, Send {BackSpace}.{Space}Publishing{Space} 
+Else IfEqual key0, phn;, Send {BackSpace}.{Space}Happen{Space} 
+Else IfEqual key0, pjm;, Send {BackSpace}.{Space}Jump{Space} 
+Else IfEqual key0, pl;, Send {BackSpace}.{Space}People{Space} 
+Else IfEqual key0, plb;, Send {BackSpace}.{Space}Possibly{Space} 
+Else IfEqual key0, plc;, Send {BackSpace}.{Space}Couple{Space} 
+Else IfEqual key0, plcb;, Send {BackSpace}.{Space}Public{Space} 
+Else IfEqual key0, plcm;, Send {BackSpace}.{Space}Complete{Space} 
+Else IfEqual key0, plxm;, Send {BackSpace}.{Space}Example{Space} 
+Else IfEqual key0, plxn;, Send {BackSpace}.{Space}Explain{Space} 
+Else IfEqual key0, pn;, Send {BackSpace}.{Space}No Problem{Space} 
+Else IfEqual key0, ps;, Send {BackSpace}.{Space}Specifically{Space} 
+Else IfEqual key0, pscm;, Send {BackSpace}.{Space}Companies{Space} 
+Else IfEqual key0, psd;, Send {BackSpace}.{Space}Speed{Space} 
+Else IfEqual key0, psh;, Send {BackSpace}.{Space}Hospital{Space} 
+Else IfEqual key0, psl;, Send {BackSpace}.{Space}Please{Space} 
+Else IfEqual key0, pslb;, Send {BackSpace}.{Space}Possible{Space} 
+Else IfEqual key0, pslm;, Send {BackSpace}.{Space}Simple{Space} 
+Else IfEqual key0, psn;, Send {BackSpace}.{Space}Passion{Space} 
+Else IfEqual key0, px;, Send {BackSpace}.{Space}Experience{Space} 
+Else IfEqual key0, pshlb;, Send {BackSpace}.{Space}Publish{Space} 
+Return
+SENDAstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0% 
+IfEqual key0, ab;, Send {BackSpace}.{Space}About{Space} 
+Else IfEqual key0, adv;, Send {BackSpace}.{Space}Avoid{Space} 
+Else IfEqual key0, adcvn;, Send {BackSpace}.{Space}Advance{Space} 
+Else IfEqual key0, askc;, Send {BackSpace}.{Space}Sack{Space} 
+Else IfEqual key0, abn;, Send {BackSpace}.{Space}Banana{Space} 
+Else IfEqual key0, afv;, Send {BackSpace}.{Space}Favorite{Space} 
+Else IfEqual key0, ac;, Send {BackSpace}.{Space}Actually{Space} 
+Else IfEqual key0, adgl;, Send {BackSpace}.{Space}Glad{Space} 
+Else IfEqual key0, adbn;, Send {BackSpace}.{Space}Band{Space} 
+Else IfEqual key0, adln;, Send {BackSpace}.{Space}Land{Space} 
+Else IfEqual key0, adnm;, Send {BackSpace}.{Space}Damn{Space} 
+Else IfEqual key0, aghn;, Send {BackSpace}.{Space}Hang{Space} 
+Else IfEqual key0, agkbn;, Send {BackSpace}.{Space}Banking{Space} 
+Else IfEqual key0, alcm;, Send {BackSpace}.{Space}Calm{Space} 
+Else IfEqual key0, ascn;, Send {BackSpace}.{Space}Scan{Space} 
+Else IfEqual key0, asdhn;, Send {BackSpace}.{Space}Hands{Space} 
+Else IfEqual key0, asdnm;, Send {BackSpace}.{Space}Admission{Space} 
+Else IfEqual key0, adcm;, Send {BackSpace}.{Space}Academic{Space} 
+Else IfEqual key0, adcm;, Send {BackSpace}.{Space}Academic{Space} 
+Else IfEqual key0, adcv;, Send {BackSpace}.{Space}Advice{Space} 
+Else IfEqual key0, adcv;, Send {BackSpace}.{Space}Advice{Space} 
+Else IfEqual key0, adm;, Send {BackSpace}.{Space}Mad{Space} 
+Else IfEqual key0, adv;, Send {BackSpace}.{Space}Advertise{Space} 
+Else IfEqual key0, agcn;, Send {BackSpace}.{Space}Agency{Space} 
+Else IfEqual key0, agnm;, Send {BackSpace}.{Space}Among{Space} 
+Else IfEqual key0, ahkc;, Send {BackSpace}.{Space}Hack{Space} 
+Else IfEqual key0, ahl;, Send {BackSpace}.{Space}Hall{Space} 
+Else IfEqual key0, aln;, Send {BackSpace}.{Space}Alone{Space} 
+Else IfEqual key0, asd;, Send {BackSpace}.{Space}Ads{Space} 
+Else IfEqual key0, asdv;, Send {BackSpace}.{Space}Advise{Space} 
+Else IfEqual key0, ashc;, Send {BackSpace}.{Space}Cash{Space} 
+Else IfEqual key0, asm;, Send {BackSpace}.{Space}Assume{Space} 
+Else IfEqual key0, agv;, Send {BackSpace}.{Space}Average{Space} 
+Else IfEqual key0, ahcv;, Send {BackSpace}.{Space}Achieve{Space} 
+Else IfEqual key0, aklcb;, Send {BackSpace}.{Space}Black{Space} 
+Else IfEqual key0, avb;, Send {BackSpace}.{Space}Above{Space} 
+Else IfEqual key0, acn;, Send {BackSpace}.{Space}Can{Space} 
+Else IfEqual key0, adgcn;, Send {BackSpace}.{Space}Dancing{Space} 	
+Else IfEqual key0, adb;, Send {BackSpace}.{Space}Anybody{Space} 
+Else IfEqual key0, adf;, Send {BackSpace}.{Space}Afterwards{Space} 
+Else IfEqual key0, adgc;, Send {BackSpace}.{Space}According{Space} 
+Else IfEqual key0, adh;, Send {BackSpace}.{Space}Had{Space} 
+Else IfEqual key0, adhn;, Send {BackSpace}.{Space}Hand{Space} 
+Else IfEqual key0, adl;, Send {BackSpace}.{Space}Already{Space} 
+Else IfEqual key0, af;, Send {BackSpace}.{Space}After{Space} 
+Else IfEqual key0, afg;, Send {BackSpace}.{Space}Affecting{Space} 
+Else IfEqual key0, afhl;, Send {BackSpace}.{Space}Half{Space} 
+Else IfEqual key0, afl;, Send {BackSpace}.{Space}Fall{Space} 
+Else IfEqual key0, ag;, Send {BackSpace}.{Space}Anything{Space} 
+Else IfEqual key0, agm;, Send {BackSpace}.{Space}Amazing{Space} 
+Else IfEqual key0, agn;, Send {BackSpace}.{Space}Again{Space} 
+Else IfEqual key0, akcb;, Send {BackSpace}.{Space}Back{Space} 
+Else IfEqual key0, al;, Send {BackSpace}.{Space}All{Space} 
+Else IfEqual key0, alb;, Send {BackSpace}.{Space}Lab{Space} 
+Else IfEqual key0, alc;, Send {BackSpace}.{Space}Call{Space} 
+Else IfEqual key0, alm;, Send {BackSpace}.{Space}Almost{Space} 
+Else IfEqual key0, alvb;, Send {BackSpace}.{Space}Available{Space} 
+Else IfEqual key0, am;, Send {BackSpace}.{Space}Am{Space} 
+Else IfEqual key0, an;, Send {BackSpace}.{Space}An{Space} 
+Else IfEqual key0, anm;, Send {BackSpace}.{Space}Man{Space} 
+Else IfEqual key0, as;, Send {BackSpace}.{Space}As{Space} 
+Else IfEqual key0, asb;, Send {BackSpace}.{Space}Absolutely{Space} 
+Else IfEqual key0, asdk;, Send {BackSpace}.{Space}Asked{Space} 
+Else IfEqual key0, asgl;, Send {BackSpace}.{Space}Glass{Space} 
+Else IfEqual key0, ash;, Send {BackSpace}.{Space}Has{Space} 
+Else IfEqual key0, ashl;, Send {BackSpace}.{Space}Lash{Space} 
+Else IfEqual key0, ask;, Send {BackSpace}.{Space}Ask{Space} 
+Else IfEqual key0, aslc;, Send {BackSpace}.{Space}Class{Space} 
+Else IfEqual key0, aslm;, Send {BackSpace}.{Space}Small{Space} 
+Else IfEqual key0, akbn;, Send {BackSpace}.{Space}Bank{Space} 
+Else IfEqual key0, asn;, Send {BackSpace}.{Space}Answer{Space} 
+Else IfEqual key0, axv;, Send {BackSpace}.{Space}Vaccine{Space} 
+Else IfEqual key0, azm;, Send {BackSpace}.{Space}Amazon{Space} 
+Else IfEqual key0, ad;, Send {BackSpace}.{Space}Ad{Space} 
+Return
+SENDSstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, sbn;, Send {BackSpace}.{Space}Business{Space} 
+Else IfEqual key0, scb;, Send {BackSpace}.{Space}Basic{Space} 
+Else IfEqual key0, shm;, Send {BackSpace}.{Space}Somehow{Space} 
+Else IfEqual key0, sdhlc;, Send {BackSpace}.{Space}Schedule{Space} 
+Else IfEqual key0, sz;, Send {BackSpace}.{Space}Size{Space} 
+Else IfEqual key0, scm;, Send {BackSpace}.{Space}Comes{Space} 
+Else IfEqual key0, sdb;, Send {BackSpace}.{Space}Besides{Space} 
+Else IfEqual key0, sdhbn;, Send {BackSpace}.{Space}Husband{Space} 
+Else IfEqual key0, sdn;, Send {BackSpace}.{Space}Inside{Space} 
+Else IfEqual key0, shl;, Send {BackSpace}.{Space}She'll{Space} 
+Else IfEqual key0, slvb;, Send {BackSpace}.{Space}Visible{Space} 
+Else IfEqual key0, sd;, Send {BackSpace}.{Space}Somebody{Space} 
+Else IfEqual key0, scnm;, Send {BackSpace}.{Space}Consume{Space} 
+Else IfEqual key0, slcn;, Send {BackSpace}.{Space}License{Space} 
+Else IfEqual key0, sln;, Send {BackSpace}.{Space}Lesson{Space} 
+Else IfEqual key0, snm;, Send {BackSpace}.{Space}Mission{Space} 
+Else IfEqual key0, snm;, Send {BackSpace}.{Space}Mission{Space} 
+Else IfEqual key0, svm;, Send {BackSpace}.{Space}Massive{Space} 
+Else IfEqual key0, svn;, Send {BackSpace}.{Space}Vision{Space} 
+Else IfEqual key0, sdc;, Send {BackSpace}.{Space}Describe{Space} 
+Else IfEqual key0, sfcn;, Send {BackSpace}.{Space}Confuse{Space} 
+Else IfEqual key0, shn;, Send {BackSpace}.{Space}Hasn't{Space} 
+Else IfEqual key0, sdcn;, Send {BackSpace}.{Space}Decision{Space} 
+Else IfEqual key0, sdgn;, Send {BackSpace}.{Space}Design{Space} 
+Else IfEqual key0, sdlcm;, Send {BackSpace}.{Space}Social Media{Space} 
+Else IfEqual key0, sf;, Send {BackSpace}.{Space}For Sure.{Space} 
+Else IfEqual key0, sfgcn;, Send {BackSpace}.{Space}Significant{Space} 
+Else IfEqual key0, sflm;, Send {BackSpace}.{Space}Myself{Space} 
+Else IfEqual key0, sg;, Send {BackSpace}.{Space}Something{Space} 
+Else IfEqual key0, sgm;, Send {BackSpace}.{Space}Message{Space} 
+Else IfEqual key0, sh;, Send {BackSpace}.{Space}Should{Space} 
+Else IfEqual key0, sdhn;, Send {BackSpace}.{Space}Shouldn't{Space} 
+Else IfEqual key0, shn;, Send {BackSpace}.{Space}Shouldn't{Space} 
+Else IfEqual key0, sh;, Send {BackSpace}.{Space}Should{Space} 
+Else IfEqual key0, sl;, Send {BackSpace}.{Space}Sell{Space} 
+Else IfEqual key0, slc;, Send {BackSpace}.{Space}Social{Space} 
+Else IfEqual key0, slcb;, Send {BackSpace}.{Space}Basically{Space} 
+Else IfEqual key0, slp;, Send {BackSpace}.{Space}Sleep{Space} 
+Else IfEqual key0, slv;, Send {BackSpace}.{Space}Visual{Space} 
+Else IfEqual key0, sm;, Send {BackSpace}.{Space}Some{Space} 
+Else IfEqual key0, sn;, Send {BackSpace}.{Space}Seen{Space} 
+Else IfEqual key0, srcv;, Send {BackSpace}.{Space}Service{Space} 
+Else IfEqual key0, st;, Send {BackSpace}.{Space}Street{Space} 
+Else IfEqual key0, sv;, Send {BackSpace}.{Space}Versus{Space} 
+Else IfEqual key0, sxcvl;, Send {BackSpace}.{Space}Exclusive{Space} 
+Return
+SENDDstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, dbn;, Send {BackSpace}.{Space}Nobody{Space} 
+Else IfEqual key0, dcm;, Send {BackSpace}.{Space}Command{Space} 
+Else IfEqual key0, dhln;, Send {BackSpace}.{Space}Handle{Space} 
+Else IfEqual key0, dnm;, Send {BackSpace}.{Space}Domain{Space} 
+Else IfEqual key0, dhln;, Send {BackSpace}.{Space}Handle{Space} 
+Else IfEqual key0, dghln;, Send {BackSpace}.{Space}Handling{Space} 
+Else IfEqual key0, dcn;, Send {BackSpace}.{Space}Couldn't{Space} 
+Else IfEqual key0, dcn;, Send {BackSpace}.{Space}Candid{Space} 
+Else IfEqual key0, dcnm;, Send {BackSpace}.{Space}Medicine{Space} 
+Else IfEqual key0, dhn;, Send {BackSpace}.{Space}Hadn't{Space} 
+Else IfEqual key0, dlcn;, Send {BackSpace}.{Space}Include{Space} 
+Else IfEqual key0, dcv;, Send {BackSpace}.{Space}Device{Space} 
+Else IfEqual key0, dfkb;, Send {BackSpace}.{Space}Feedback{Space} 
+Else IfEqual key0, dfn;, Send {BackSpace}.{Space}Found{Space} 
+Else IfEqual key0, dg;, Send {BackSpace}.{Space}Good{Space} 
+Else IfEqual key0, dgb;, Send {BackSpace}.{Space}Background{Space} 
+Else IfEqual key0, dglb;, Send {BackSpace}.{Space}Building{Space} 
+Else IfEqual key0, dgm;, Send {BackSpace}.{Space}Damage{Space} 
+Else IfEqual key0, dgn;, Send {BackSpace}.{Space}Ground{Space} 
+Else IfEqual key0, dhbn;, Send {BackSpace}.{Space}Behind{Space} 
+Else IfEqual key0, dl;, Send {BackSpace}.{Space}Deal{Space} 
+Else IfEqual key0, dlb;, Send {BackSpace}.{Space}Build{Space} 
+Else IfEqual key0, dlcbn;, Send {BackSpace}.{Space}Incredible{Space} 
+Else IfEqual key0, dlcm;, Send {BackSpace}.{Space}Medical{Space} 
+Else IfEqual key0, dlcm;, Send {BackSpace}.{Space}Medical{Space} 
+Else IfEqual key0, dm;, Send {BackSpace}.{Space}Made{Space} 
+Else IfEqual key0, dn;, Send {BackSpace}.{Space}Done{Space} 
+Else IfEqual key0, drg;, Send {BackSpace}.{Space}During,{Space} 
+Else IfEqual key0, dv;, Send {BackSpace}.{Space}Everyday{Space} 
+Else IfEqual key0, dvm;, Send {BackSpace}.{Space}Development{Space} 
+Else IfEqual key0, dx;, Send {BackSpace}.{Space}Excited{Space} 
+Return
+SENDFstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0% 
+IfEqual key0, fb;, Send {BackSpace}.{Space}Before{Space} 
+Else IfEqual key0, fcm;, Send {BackSpace}.{Space}Comfortable{Space} 
+Else IfEqual key0, fcn;, Send {BackSpace}.{Space}Finance{Space} 
+Else IfEqual key0, flb;, Send {BackSpace}.{Space}Belief{Space} 
+Else IfEqual key0, flcbn;, Send {BackSpace}.{Space}Beneficial{Space} 
+Else IfEqual key0, fh;, Send {BackSpace}.{Space}Helpful{Space} 
+Else IfEqual key0, fgl;, Send {BackSpace}.{Space}Feeling{Space} 	
+Else IfEqual key0, fl;, Send {BackSpace}.{Space}Feel{Space} 
+Else IfEqual key0, flcn;, Send {BackSpace}.{Space}Financial{Space} 
+Else IfEqual key0, fln;, Send {BackSpace}.{Space}Final{Space} 
+Else IfEqual key0, fn;, Send {BackSpace}.{Space}Fine{Space} 
+Return
+SENDGstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, gb;, Send {BackSpace}.{Space}Being{Space} 
+Else IfEqual key0, gc;, Send {BackSpace}.{Space}Coming{Space} 
+Else IfEqual key0, gen;, Send {BackSpace}.{Space}General{Space} 
+Else IfEqual key0, ghcn;, Send {BackSpace}.{Space}Change{Space} 
+Else IfEqual key0, glbn;, Send {BackSpace}.{Space}Belong{Space} 
+Else IfEqual key0, gcm;, Send {BackSpace}.{Space}Magic{Space} 
+Else IfEqual key0, gh;, Send {BackSpace}.{Space}Having{Space} 
+Else IfEqual key0, gkl;, Send {BackSpace}.{Space}Looking{Space} 
+Else IfEqual key0, ghlcn;, Send {BackSpace}.{Space}Challenge{Space} 
+Else IfEqual key0, gkm;, Send {BackSpace}.{Space}Making{Space} 
+Else IfEqual key0, gl;, Send {BackSpace}.{Space}Learning{Space} 
+Else IfEqual key0, glc;, Send {BackSpace}.{Space}College{Space} 
+Else IfEqual key0, gln;, Send {BackSpace}.{Space}General{Space} 
+Else IfEqual key0, glv;, Send {BackSpace}.{Space}Leaving{Space} 
+Else IfEqual key0, gf;, Send {BackSpace}.{Space}Girlfriend{Space} 
+Else IfEqual key0, gvn;, Send {BackSpace}.{Space}Given{Space} 
+Else IfEqual key0, gm;, Send {BackSpace}.{Space}Making{Space} 
+Else IfEqual key0, gn;, Send {BackSpace}.{Space}Nothing{Space} 
+Else IfEqual key0, gnm;, Send {BackSpace}.{Space}Manage{Space} 
+Else IfEqual key0, gv;, Send {BackSpace}.{Space}Give{Space} 
+Else IfEqual key0, gv;, Send {BackSpace}.{Space}Very Good{Space} 
+Else IfEqual key0, gvm;, Send {BackSpace}.{Space}Moving{Space} 
+Else IfEqual key0, gx;, Send {BackSpace}.{Space}Exciting{Space} 
+Else IfEqual key0, gznm;, Send {BackSpace}.{Space}Magazine{Space} 
+Return
+SENDHstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, hc;, Send {BackSpace}.{Space}Choice{Space} 
+Else IfEqual key0, hkcn;, Send {BackSpace}.{Space}Chicken{Space} 
+Else IfEqual key0, hl;, Send {BackSpace}.{Space}He'll{Space} 
+Else IfEqual key0, hlcv;, Send {BackSpace}.{Space}Vehicle{Space} 
+ Else IfEqual key0, hm;, Send {BackSpace}.{Space}Mm-hmm.{Space} 
+Else IfEqual key0, hv;, Send {BackSpace}.{Space}Have{Space} 
+Else IfEqual key0, hcnm;, Send {BackSpace}.{Space}Machine{Space} 
+Else IfEqual key0, hlcn;, Send {BackSpace}.{Space}Channel{Space} 
+Return
+
+SENDIstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0% 
+IfEqual key0, ia;, Send {BackSpace}.{Space}Ai
+Else IfEqual key0, idfc;, Send {BackSpace}.{Space}Difficult{Space} 
+Else IfEqual key0, idm;, Send {BackSpace}.{Space}Mid{Space} 
+Else IfEqual key0, iahcn;, Send {BackSpace}.{Space}China{Space} 
+Else IfEqual key0, ias;, Send {BackSpace}.{Space}Asia{Space} 
+Else IfEqual key0, ialnm;, Send {BackSpace}.{Space}Animal{Space} 
+Else IfEqual key0, iahcn;, Send {BackSpace}.{Space}Chain{Space} 
+Else IfEqual key0, iam;, Send {BackSpace}.{Space}Aim{Space} 
+Else IfEqual key0, iasl;, Send {BackSpace}.{Space}Sail{Space} 
+Else IfEqual key0, iav;, Send {BackSpace}.{Space}Via{Space} 
+Else IfEqual key0, igkln;, Send {BackSpace}.{Space}Inkling{Space} 
+Else IfEqual key0, iol;, Send {BackSpace}.{Space}Oil{Space} 
+Else IfEqual key0, iolbm;, Send {BackSpace}.{Space}Limbo{Space} 
+Else IfEqual key0, iphc;, Send {BackSpace}.{Space}Chip{Space} 
+Else IfEqual key0, ipl;, Send {BackSpace}.{Space}Pill{Space} 
+Else IfEqual key0, ipsn;, Send {BackSpace}.{Space}Spin{Space} 
+Else IfEqual key0, iskl;, Send {BackSpace}.{Space}Skill{Space} 
+Else IfEqual key0, ixm;, Send {BackSpace}.{Space}Mix{Space} 
+Else IfEqual key0, iafl;, Send {BackSpace}.{Space}Fail{Space} 
+Else IfEqual key0, ipslbm;, Send {BackSpace}.{Space}Impossible{Space} 
+Else IfEqual key0, ioadv;, Send {BackSpace}.{Space}Avoid{Space} 
+Else IfEqual key0, iadc;, Send {BackSpace}.{Space}Acid{Space} 
+Else IfEqual key0, iagcm;, Send {BackSpace}.{Space}Magic{Space} 
+Else IfEqual key0, idg;, Send {BackSpace}.{Space}Dig{Space} 
+Else IfEqual key0, iflcn;, Send {BackSpace}.{Space}Influence{Space} 
+Else IfEqual key0, ikc;, Send {BackSpace}.{Space}Kick{Space} 
+Else IfEqual key0, ikn;, Send {BackSpace}.{Space}Ink{Space} 
+Else IfEqual key0, inm;, Send {BackSpace}.{Space}Mini{Space} 
+Else IfEqual key0, ioadnm;, Send {BackSpace}.{Space}Domain{Space} 
+Else IfEqual key0, iodb;, Send {BackSpace}.{Space}Biodegradable{Space} 
+Else IfEqual key0, iodv;, Send {BackSpace}.{Space}Void{Space} 
+Else IfEqual key0, iom;, Send {BackSpace}.{Space}In My Opinion{Space} 
+Else IfEqual key0, iosdl;, Send {BackSpace}.{Space}Solid{Space} 
+Else IfEqual key0, ips;, Send {BackSpace}.{Space}Piss{Space} 
+Else IfEqual key0, ipsgl;, Send {BackSpace}.{Space}Slipping{Space} 
+Else IfEqual key0, ipsl;, Send {BackSpace}.{Space}Slip{Space} 
+Else IfEqual key0, ipsl;, Send {BackSpace}.{Space}Slip{Space} 
+Else IfEqual key0, iajl;, Send {BackSpace}.{Space}Jail{Space} 
+Else IfEqual key0, iagn;, Send {BackSpace}.{Space}Gain{Space} 
+Else IfEqual key0, ib;, Send {BackSpace}.{Space}No{Space} 
+Else IfEqual key0, iadlv;, Send {BackSpace}.{Space}Valid{Space} 
+Else IfEqual key0, ioan;, Send {BackSpace}.{Space}Nation{Space} 
+Else IfEqual key0, ishcm;, Send {BackSpace}.{Space}Schism{Space} 
+Else IfEqual key0, iasb;, Send {BackSpace}.{Space}Basis{Space} 
+Else IfEqual key0, iaslc;, Send {BackSpace}.{Space}Classic{Space} 
+Else IfEqual key0, ihcn;, Send {BackSpace}.{Space}Inch{Space} 
+Else IfEqual key0, ikl;, Send {BackSpace}.{Space}Kill{Space} 
+Else IfEqual key0, ilcn;, Send {BackSpace}.{Space}Clinic{Space} 
+Else IfEqual key0, iofn;, Send {BackSpace}.{Space}Info{Space} 
+Else IfEqual key0, iphn;, Send {BackSpace}.{Space}Iphone{Space} 
+Else IfEqual key0, iskn;, Send {BackSpace}.{Space}Skin{Space} 
+Else IfEqual key0, ism;, Send {BackSpace}.{Space}Miss{Space} 
+Else IfEqual key0, iadnm;, Send {BackSpace}.{Space}Admin{Space} 
+Else IfEqual key0, iasdnm;, Send {BackSpace}.{Space}Administrator{Space} 
+Else IfEqual key0, igm;, Send {BackSpace}.{Space}Image{Space} 
+Else IfEqual key0, ikln;, Send {BackSpace}.{Space}Link{Space} 
+Else IfEqual key0, ioadnm;, Send {BackSpace}.{Space}Administration{Space} 
+Else IfEqual key0, isn;, Send {BackSpace}.{Space}Isn't{Space} 
+Else IfEqual key0, ialcm;, Send {BackSpace}.{Space}Claim{Space} 
+Else IfEqual key0, ianm;, Send {BackSpace}.{Space}Main{Space} 
+Else IfEqual key0, iasd;, Send {BackSpace}.{Space}Said{Space} 
+Else IfEqual key0, id;, Send {BackSpace}.{Space}Did{Space} 
+Else IfEqual key0, idf;, Send {BackSpace}.{Space}Different{Space} 
+Else IfEqual key0, idfn;, Send {BackSpace}.{Space}Find{Space} 
+Else IfEqual key0, idhlc;, Send {BackSpace}.{Space}Child{Space} 
+Else IfEqual key0, idk;, Send {BackSpace}.{Space}I Don't Know{Space} 
+Else IfEqual key0, idkn;, Send {BackSpace}.{Space}Kind{Space} 
+Else IfEqual key0, idn;, Send {BackSpace}.{Space}Individual{Space} 
+Else IfEqual key0, idnm;, Send {BackSpace}.{Space}Mind{Space} 
+Else IfEqual key0, if;, Send {BackSpace}.{Space}If{Space} 
+Else IfEqual key0, ifl;, Send {BackSpace}.{Space}Fill{Space} 
+Else IfEqual key0, ifx;, Send {BackSpace}.{Space}Fix{Space} 
+Else IfEqual key0, ig;, Send {BackSpace}.{Space}I Guess{Space} 
+Else IfEqual key0, igb;, Send {BackSpace}.{Space}Big{Space} 
+Else IfEqual key0, igh;, Send {BackSpace}.{Space}High{Space} 
+Else IfEqual key0, iglv;, Send {BackSpace}.{Space}Living{Space} 
+Else IfEqual key0, ihl;, Send {BackSpace}.{Space}Hill{Space} 
+Else IfEqual key0, ihm;, Send {BackSpace}.{Space}Him{Space} 
+Else IfEqual key0, ik;, Send {BackSpace}.{Space}I Know{Space} 
+Else IfEqual key0, iklbn;, Send {BackSpace}.{Space}Blink{Space} 
+Else IfEqual key0, iklc;, Send {BackSpace}.{Space}Click{Space} 
+Else IfEqual key0, iklm;, Send {BackSpace}.{Space}Milk{Space} 
+Else IfEqual key0, il;, Send {BackSpace}.{Space}I'll{Space} 
+Else IfEqual key0, ilv;, Send {BackSpace}.{Space}Live{Space} 
+Else IfEqual key0, im;, Send {BackSpace}.{Space}I'm{Space} 
+Else IfEqual key0, in;, Send {BackSpace}.{Space}In{Space} 
+Else IfEqual key0, in;, Send {BackSpace}.{Space}In{Space} 
+Else IfEqual key0, ioac;, Send {BackSpace}.{Space}Action{Space} 
+Else IfEqual key0, ioalc;, Send {BackSpace}.{Space}Location{Space} 
+Else IfEqual key0, iojn;, Send {BackSpace}.{Space}Join{Space}
+Else IfEqual key0, ionm;, Send {BackSpace}.{Space}Omni
+Else IfEqual key0, iop;, Send {BackSpace}.{Space}Option{Space} 
+Else IfEqual key0, iopn;, Send {BackSpace}.{Space}Opinion{Space} 
+Else IfEqual key0, iosn;, Send {BackSpace}.{Space}Ision{Space} 
+Else IfEqual key0, ipad;, Send {BackSpace}.{Space}Paid{Space} 
+Else IfEqual key0, ipafn;, Send {BackSpace}.{Space}Painful{Space} 
+Else IfEqual key0, ipan;, Send {BackSpace}.{Space}Pain{Space} 
+Else IfEqual key0, ipfl;, Send {BackSpace}.{Space}Flip{Space} 
+Else IfEqual key0, ipg;, Send {BackSpace}.{Space}Pig{Space} 
+Else IfEqual key0, ipkc;, Send {BackSpace}.{Space}Pick{Space} 
+Else IfEqual key0, ipm;, Send {BackSpace}.{Space}Important{Space} 
+Else IfEqual key0, ipsk;, Send {BackSpace}.{Space}Skip{Space} 
+Else IfEqual key0, is;, Send {BackSpace}.{Space}Is{Space} 
+Else IfEqual key0, isd;, Send {BackSpace}.{Space}Dis
+Else IfEqual key0, isdk;, Send {BackSpace}.{Space}Kids{Space} 
+Else IfEqual key0, isfhn;, Send {BackSpace}.{Space}Finish{Space} 
+Else IfEqual key0, isg;, Send {BackSpace}.{Space}Significant{Space} 
+Else IfEqual key0, isgn;, Send {BackSpace}.{Space}Sign{Space} 
+Else IfEqual key0, ish;, Send {BackSpace}.{Space}His{Space} 
+Else IfEqual key0, iskc;, Send {BackSpace}.{Space}Sick{Space} 
+Else IfEqual key0, ism;, Send {BackSpace}.{Space}Mis
+Else IfEqual key0, iflm;, Send {BackSpace}.{Space}Film{Space} 
+Return
+SENDLstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0% 
+IfEqual key0, lb;, Send {BackSpace}.{Space}Little Bit{Space} 
+Else IfEqual key0, lc;, Send {BackSpace}.{Space}Cool{Space} 
+Else IfEqual key0, lcbn;, Send {BackSpace}.{Space}Balance{Space} 
+Else IfEqual key0, lnm;, Send {BackSpace}.{Space}Manual{Space} 
+Else IfEqual key0, lvm;, Send {BackSpace}.{Space}Volume{Space} 
+Else IfEqual key0, lcn;, Send {BackSpace}.{Space}Clinical{Space} 
+Else IfEqual key0, lcbn;, Send {BackSpace}.{Space}Balance{Space} 
+Else IfEqual key0, lcm;, Send {BackSpace}.{Space}Molecule{Space} 
+Else IfEqual key0, ln;, Send {BackSpace}.{Space}Line{Space} 
+Else IfEqual key0, lv;, Send {BackSpace}.{Space}Leave{Space} 
+Else IfEqual key0, lvb;, Send {BackSpace}.{Space}Believe{Space} 
+Else IfEqual key0, lx;, Send {BackSpace}.{Space}Exactly{Space} 
+Else IfEqual key0, lxcn;, Send {BackSpace}.{Space}Excellence{Space} 
+Return
+SENDXstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, xc;, Send {BackSpace}.{Space}Executive{Space} 
+Else IfEqual key0, xnm;, Send {BackSpace}.{Space}Examine{Space} 
+Else IfEqual key0, xnm;, Send {BackSpace}.{Space}Expect{Space} 
+Return
+SENDVstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0% 
+IfEqual key0, vm;, Send {BackSpace}.{Space}Move{Space} 
+Else IfEqual key0, vn;, Send {BackSpace}.{Space}Even{Space} 
+Return
+SENDBstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, bm;, Send {BackSpace}.{Space}Maybe{Space} 
+Else IfEqual key0, bf;, Send {BackSpace}.{Space}Boyfriend{Space} 
+Else IfEqual key0, bn;, Send {BackSpace}.{Space}Been{Space} 
+Else IfEqual key0, bsc;, Send {BackSpace}.{Space}Basic{Space} 
+Else IfEqual key0, bscl;, Send {BackSpace}.{Space}Basically{Space} 
+Return
+SENDCstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, cb;, Send {BackSpace}.{Space}Because{Space} 
+Else IfEqual key0, cbm;, Send {BackSpace}.{Space}Become{Space} 
+Else IfEqual key0, cm;, Send {BackSpace}.{Space}Come{Space} 
+Else IfEqual key0, dfcn;, Send {BackSpace}.{Space}Confidence{Space} 
+Else IfEqual key0, cbnm;, Send {BackSpace}.{Space}Combine{Space} 
+Else IfEqual key0, cmg;, Send {BackSpace}.{Space}Coming{Space} 
+Else IfEqual key0, cn;, Send {BackSpace}.{Space}Can{Space} 
+Else IfEqual key0, cnm;, Send {BackSpace}.{Space}Common{Space} 
+Else IfEqual key0, cvn;, Send {BackSpace}.{Space}Conversation{Space} 
+Return
+SENDKstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, kl;, Send {BackSpace}.{Space}Look{Space} 
+Else IfEqual key0, kln;, Send {BackSpace}.{Space}Knowledge{Space} 
+Else IfEqual key0, km;, Send {BackSpace}.{Space}Make{Space} 
+Else IfEqual key0, kn;, Send {BackSpace}.{Space}Know{Space} 
+Return
+SENDJstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+
+ Return
+SENDZstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, zm;, Send {BackSpace}.{Space}Zoom{Space} 
+
+Return
+SENDMstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+ 
+
+Return
+SENDNstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+
+ 
+IfEqual key0, nm;, Send {BackSpace}.{Space}Mean{Space} 
+Return
+SENDDOTstart:
+ SentTick = %A_TickCount%, 
+ SentKeys = %key0%
+IfEqual key0, udn.;, Send {BackSpace}.{Space}Understood{Space} 
+Else IfEqual key0, werth.;, Send {BackSpace}.{Space}Threw{Space} 
+Else IfEqual key0, rsv.;, Send {BackSpace}.{Space}Verse{Space} 
+Else IfEqual key0, onm.;, Send {BackSpace}.{Space}Moon{Space} 
+Else IfEqual key0, rsv';, Send {BackSpace}.{Space}Verse{Space} 
+Else IfEqual key0, tasl.;, Send {BackSpace}.{Space}Salt{Space} 
+Else IfEqual key0, ertah.;, Send {BackSpace}.{Space}Earth{Space} 
+Else IfEqual key0, us.;, Send {BackSpace}.{Space}United States{Space} 
+Else IfEqual key0, uosdn.;, Send {BackSpace}.{Space}Sounds{Space} 
+Else IfEqual key0, tasl.;, Send {BackSpace}.{Space}Last{Space} 
+Else IfEqual key0, epsd.;, Send {BackSpace}.{Space}Speed{Space} 
+Else IfEqual key0, iadn.;, Send {BackSpace}.{Space}Indian{Space} 
+Else IfEqual key0, eas.;, Send {BackSpace}.{Space}Sea{Space} 
+Else IfEqual key0, tisl.;, Send {BackSpace}.{Space}List{Space} 
+Else IfEqual key0, eragn.;, Send {BackSpace}.{Space}Arrange{Space} 
+Else IfEqual key0, erp';, Send {BackSpace}.{Space}Pepper{Space} 
+Else IfEqual key0, epa.;, Send {BackSpace}.{Space}Pea{Space} 
+Else IfEqual key0, eadh.;, Send {BackSpace}.{Space}Ahead{Space} 
+Else IfEqual key0, ajn.;, Send {BackSpace}.{Space}January{Space} 
+Else IfEqual key0, edc.;, Send {BackSpace}.{Space}December{Space} 
+Else IfEqual key0, efb.;, Send {BackSpace}.{Space}February{Space} 
+Else IfEqual key0, erign.;, Send {BackSpace}.{Space}Reign{Space} 
+Else IfEqual key0, erin.;, Send {BackSpace}.{Space}Rein{Space} 
+Else IfEqual key0, eros.;, Send {BackSpace}.{Space}Sore{Space} 
+Else IfEqual key0, ersv.;, Send {BackSpace}.{Space}Severe{Space} 
+Else IfEqual key0, ertihn.;, Send {BackSpace}.{Space}Inherit{Space} 
+Else IfEqual key0, eryal.;, Send {BackSpace}.{Space}Relay{Space} 
+Else IfEqual key0, etask.;, Send {BackSpace}.{Space}Steak{Space} 
+Else IfEqual key0, ethm.;, Send {BackSpace}.{Space}Theme{Space} 
+Else IfEqual key0, etivn.;, Send {BackSpace}.{Space}Invent{Space} 
+Else IfEqual key0, etps.;, Send {BackSpace}.{Space}September{Space} 
+Else IfEqual key0, etups.;, Send {BackSpace}.{Space}Setup{Space} 
+Else IfEqual key0, eus.;, Send {BackSpace}.{Space}Sue{Space} 
+Else IfEqual key0, iskn.;, Send {BackSpace}.{Space}Sink{Space} 
+Else IfEqual key0, ovn.;, Send {BackSpace}.{Space}November{Space} 
+Else IfEqual key0, rahcm.;, Send {BackSpace}.{Space}March{Space} 
+Else IfEqual key0, udn.;, Send {BackSpace}.{Space}Understood{Space} 
+Else IfEqual key0, wra.;, Send {BackSpace}.{Space}Raw{Space} 
+Else IfEqual key0, tian';, Send {BackSpace}.{Space}Ain’T{Space} 
+Else IfEqual key0, yam.;, Send {BackSpace}.{Space}May{Space} 
+Else IfEqual key0, adh.;, Send {BackSpace}.{Space}Dah{Space} 
+Else IfEqual key0, uag.;, Send {BackSpace}.{Space}August{Space} 
+Else IfEqual key0, tush.;, Send {BackSpace}.{Space}Thus{Space} 
+Else IfEqual key0, toc.;, Send {BackSpace}.{Space}October{Space} 
+Else IfEqual key0, tsfcn.;, Send {BackSpace}.{Space}Fascinate{Space} 
+Else IfEqual key0, ertial.;, Send {BackSpace}.{Space}Literal{Space}
+Else IfEqual key0, iofn.;, Send {BackSpace}.{Space}Information{Space} 
+Else IfEqual key0, rpdc.;, Send {BackSpace}.{Space}Procedure{Space} 
+Else IfEqual key0, asd.;, Send {BackSpace}.{Space}Sad{Space} 
+Else IfEqual key0, rpgm.;, Send {BackSpace}.{Space}Programmer{Space} 
+Else IfEqual key0, etas';, Send {BackSpace}.{Space}East{Space} 
+Else IfEqual key0, epasc.;, Send {BackSpace}.{Space}Escape{Space} 
+Else IfEqual key0, alb.;, Send {BackSpace}.{Space}Ball{Space} 
+Else IfEqual key0, wton';, Send {BackSpace}.{Space}Won't{Space} 
+Else IfEqual key0, ok';, Send {BackSpace}.{Space}Okay{Space} 
+Else IfEqual key0, epsl.;, Send {BackSpace}.{Space}Spell{Space} 
+Else IfEqual key0, eops.;, Send {BackSpace}.{Space}Oppose{Space} 
+Else IfEqual key0, erias.;, Send {BackSpace}.{Space}Easier{Space} 
+Else IfEqual key0, tkn.;, Send {BackSpace}.{Space}Taken{Space} 
+Else IfEqual key0, erashc.;, Send {BackSpace}.{Space}Research{Space} 
+Else IfEqual key0, flcn.;, Send {BackSpace}.{Space}Influence{Space} 
+Else IfEqual key0, lcn.;, Send {BackSpace}.{Space}Council{Space} 
+Else IfEqual key0, tnm.;, Send {BackSpace}.{Space}Mountain{Space} 
+Else IfEqual key0, ef.;, Send {BackSpace}.{Space}Fee{Space} 
+Else IfEqual key0, rplcn.;, Send {BackSpace}.{Space}Principal{Space} 
+Else IfEqual key0, etam.;, Send {BackSpace}.{Space}Meat{Space} 
+Else IfEqual key0, ogl.;, Send {BackSpace}.{Space}Logging{Space} 
+Else IfEqual key0, ozm.;, Send {BackSpace}.{Space}Zoom{Space} 
+Else IfEqual key0, qrts.;, Send {BackSpace}.{Space}Squirt{Space} 
+Else IfEqual key0, ram.;, Send {BackSpace}.{Space}Ram{Space} 
+Else IfEqual key0, rdg.;, Send {BackSpace}.{Space}Grade{Space} 
+Else IfEqual key0, flcn.;, Send {BackSpace}.{Space}Influence{Space} 
+Else IfEqual key0, rgnm.;, Send {BackSpace}.{Space}Manager{Space} 
+Else IfEqual key0, rslv.;, Send {BackSpace}.{Space}Resolve{Space} 
+Else IfEqual key0, rsvn.;, Send {BackSpace}.{Space}Nervous{Space} 
+Else IfEqual key0, rtfg.;, Send {BackSpace}.{Space}Forgot{Space} 
+Else IfEqual key0, rtsg.;, Send {BackSpace}.{Space}String{Space} 
+Else IfEqual key0, wal.;, Send {BackSpace}.{Space}Wall{Space} 
+Else IfEqual key0, ruos.;, Send {BackSpace}.{Space}Sour{Space} 
+Else IfEqual key0, slcn.;, Send {BackSpace}.{Space}Silence{Space} 
+Else IfEqual key0, slv.;, Send {BackSpace}.{Space}Solve{Space} 
+Else IfEqual key0, tac.;, Send {BackSpace}.{Space}Cat{Space} 
+Else IfEqual key0, tcn.;, Send {BackSpace}.{Space}Contain{Space} 
+Else IfEqual key0, tian.;, Send {BackSpace}.{Space}Taint{Space} 
+Else IfEqual key0, wo.;, Send {BackSpace}.{Space}Wow{Space} 
+Else IfEqual key0, yas.;, Send {BackSpace}.{Space}Says{Space} 
+Else IfEqual key0, ypal.;, Send {BackSpace}.{Space}Apply{Space} 
+Else IfEqual key0, ghcn.;, Send {BackSpace}.{Space}Changing{Space} 
+Else IfEqual key0, in.;, Send {BackSpace}.{Space}In
+Else IfEqual key0, idk.;, Send {BackSpace}.{Space}Kid{Space} 
+Else IfEqual key0, gln.;, Send {BackSpace}.{Space}Language Lng.{Space} 
+Else IfEqual key0, eshl.;, Send {BackSpace}.{Space}She'll{Space}
+Else IfEqual key0, etsg.;, Send {BackSpace}.{Space}Settings{Space} 
+Else IfEqual key0, esc.;, Send {BackSpace}.{Space}Escape{Space} 
+Else IfEqual key0, ergm.;, Send {BackSpace}.{Space}Emerge{Space} 
+Else IfEqual key0, rtuogh.;, Send {BackSpace}.{Space}Thorough{Space}
+ Else IfEqual key0, wto';, Send {BackSpace}.{Space}Two{Space} 
+Else IfEqual key0, epal.;, Send {BackSpace}.{Space}Appeal{Space}
+Else IfEqual key0, eiasl.;, Send {BackSpace}.{Space}Liaise{Space} 
+Else IfEqual key0, erakb.;, Send {BackSpace}.{Space}Brake{Space} 
+ Else IfEqual key0, tvm.;, Send {BackSpace}.{Space}Motivate{Space} 
+Else IfEqual key0, era.;, Send {BackSpace}.{Space}Rear{Space} 
+Else IfEqual key0, rtdc.;, Send {BackSpace}.{Space}Direct{Space} 
+Else IfEqual key0, era';, Send {BackSpace}.{Space}Era{Space} 
+Else IfEqual key0, tuogh.;, Send {BackSpace}.{Space}Ought{Space} 
+ Else IfEqual key0, hm.;, Send {BackSpace}.{Space}Mm-Mmm.{Space} 
+ Else IfEqual key0, esl.;, Send {BackSpace}.{Space}Less{Space} 
+ Else IfEqual key0, etan.;, Send {BackSpace}.{Space}Tenant{Space} 
+Else IfEqual key0, rtfh.;, Send {BackSpace}.{Space}Further{Space} 
+ Else IfEqual key0, tivn.;, Send {BackSpace}.{Space}Invite{Space} 
+ Else IfEqual key0, esdn.;, Send {BackSpace}.{Space}Dense{Space} 
+Else IfEqual key0, erias;, Send {BackSpace}.{Space}Easier{Space} 
+Else IfEqual key0, rtln.;, Send {BackSpace}.{Space}Natural{Space} 
+Else IfEqual key0, .ertpsn;, Send {BackSpace}.{Space}Represent{Space} 
+Else IfEqual key0, erf.;, Send {BackSpace}.{Space}Refer{Space} 
+Else IfEqual key0, etsh.;, Send {BackSpace}.{Space}Sheet{Space} 
+Else IfEqual key0, on.;, Send {BackSpace}.{Space}Non{Space} 
+Else IfEqual key0, rtipn.;, Send {BackSpace}.{Space}Interrupt{Space} 
+Else IfEqual key0, tas.;, Send {BackSpace}.{Space}Asset{Space} 
+Else IfEqual key0, scnm.;, Send {BackSpace}.{Space}Musician{Space} 
+ Else IfEqual key0, tgvn.;, Send {BackSpace}.{Space}Vintage{Space} 
+ Else IfEqual key0, rtsg.;, Send {BackSpace}.{Space}Register{Space} 
+ Else IfEqual key0, eivn.;, Send {BackSpace}.{Space}Vine{Space} 
+ Else IfEqual key0, etas.;, Send {BackSpace}.{Space}Taste{Space} 
+Else IfEqual key0, etsn.;, Send {BackSpace}.{Space}Nest{Space} 
+ Else IfEqual key0, tan.;, Send{BackSpace} ant{Space} 
+ Else IfEqual key0, eon.;, Send {BackSpace}.{Space}None{Space} 	
+ Else IfEqual key0, apl.;, Send {BackSpace}.{Space}Appeal{Space} 
+ Else IfEqual key0, eis.;, Send{BackSpace}{BackSpace} ies{Space} 	
+Else IfEqual key0, asb.;, Send {BackSpace}.{Space}Bass{Space} 
+Else IfEqual key0, dlb.;, Send {BackSpace}.{Space}Double{Space} 
+Else IfEqual key0, eag.;, Send{BackSpace} age{Space} 
+Else IfEqual key0, ecn.;, Send{BackSpace} ence{Space} 
+Else IfEqual key0, erta.;, Send {BackSpace}.{Space}Treat{Space} 
+Else IfEqual key0, ertcn.;, Send {BackSpace}.{Space}Center{Space} 
+Else IfEqual key0, eta.;, Send {BackSpace}.{Space}Eat{Space} 
+Else IfEqual key0, ipsh.;, Send {BackSpace}.{Space}Ship{Space} 
+Else IfEqual key0, rpsf.;, Send {BackSpace}.{Space}Professor{Space} 
+Else IfEqual key0, rtg.;, Send {BackSpace}.{Space}Guitar{Space} 
+Else IfEqual key0, rtlb.;, Send {BackSpace}.{Space}Terrible{Space} 
+Else IfEqual key0, rtpa.;, Send {BackSpace}.{Space}Appropriate{Space} 
+Else IfEqual key0, rtpc.;, Send {BackSpace}.{Space}Participate{Space} 
+Else IfEqual key0, rtpn.;, Send {BackSpace}.{Space}Partner{Space} 
+Else IfEqual key0, rtuh.;, Send {BackSpace}.{Space}Truth{Space} 
+Else IfEqual key0, tgn.;, Send {BackSpace}.{Space}Negotiation{Space} 
+Else IfEqual key0, tidn.;, Send {BackSpace}.{Space}Identity{Space} 
+Else IfEqual key0, tih.;, Send {BackSpace}.{Space}Hit{Space} 
+Else IfEqual key0, tplc.;, Send {BackSpace}.{Space}Political{Space} 
+Else IfEqual key0, tsn.;, Send {BackSpace}.{Space}Situation{Space} 
+Else IfEqual key0, ty.;, Send {BackSpace}.{Space}Youtube{Space} 
+Else IfEqual key0, wn.;, Send {BackSpace}.{Space}No Worries.{Space} 
+ Else IfEqual key0, adb.;, Send {BackSpace}.{Space}Bad{Space} 
+ Else IfEqual key0, asb.;, Send {BackSpace}.{Space}Bass{Space} 
+Else IfEqual key0, efl.;, Send {BackSpace}.{Space}Fell{Space} 
+Else IfEqual key0, eifv.;, Send {BackSpace}.{Space}Five{Space} 
+Else IfEqual key0, ein.;, Send {BackSpace}.{Space}Nine{Space} 
+Else IfEqual key0, eiv.;, Send{BackSpace} ive{Space} 
+Else IfEqual key0, em.;, Send {BackSpace}.{Space}Em{Space} 
+Else IfEqual key0, eran.;, Send {BackSpace}.{Space}Earn{Space} 
+Else IfEqual key0, erth.;, Send {BackSpace}.{Space}Three{Space} 
+Else IfEqual key0, esh.;, Send {BackSpace}.{Space}He's{Space} 
+Else IfEqual key0, esvn.;, Send {BackSpace}.{Space}Seven{Space} 
+Else IfEqual key0, etigh.;, Send {BackSpace}.{Space}Eight{Space} 
+Else IfEqual key0, eton.;, Send {BackSpace}.{Space}Tone{Space} 
+Else IfEqual key0, isx.;, Send {BackSpace}.{Space}Six{Space} 
+Else IfEqual key0, rpa.;, Send {BackSpace}.{Space}Appear{Space} 
+Else IfEqual key0, ruof.;, Send {BackSpace}.{Space}Four{Space} 
+Else IfEqual key0, til.;, Send {BackSpace}.{Space}Till{Space} 
+Else IfEqual key0, tosh.;, Send {BackSpace}.{Space}Shoot{Space} 
+Else IfEqual key0, wto.;, Send {BackSpace}.{Space}Two{Space} 
+ Else IfEqual key0, rtos.;, Send {BackSpace}.{Space}Sort Of{Space} 
+ Else IfEqual key0, og.;, Send {BackSpace}.{Space}Going{Space} 
+ Else IfEqual key0, tish.;, Send {BackSpace}.{Space}Shit{Space} 
+ Else IfEqual key0, tm.;, Send {BackSpace}.{Space}Might{Space} 
+ Else IfEqual key0, idf.;, Send {BackSpace}.{Space}Difficult{Space} 
+ Else IfEqual key0, tdn.;, Send {BackSpace}.{Space}Didn't{Space} 
+ Else IfEqual key0, tidn.;, Send {BackSpace}.{Space}Didn't{Space} 
+ Else IfEqual key0, er.;, Send {BackSpace}.{Space}Re
+ Else IfEqual key0, erp.;, Send {BackSpace}.{Space}Pre
+ Else IfEqual key0, em.;, Send {BackSpace}.{Space}Them{Space} 
+ Else IfEqual key0, ig.;, Send {BackSpace}.{Space}Instagram{Space} 
+ Else IfEqual key0, fb.;, Send {BackSpace}.{Space}Facebook{Space} 
+ Else IfEqual key0, gl.;, Send {BackSpace}.{Space}Google{Space} 
+ Else IfEqual key0, id.;, Send {BackSpace}.{Space}I'd{Space} 
+ Else IfEqual key0, ok.;, Send {BackSpace}.{Space}Okay{Space} 
+ Else IfEqual key0, sm.;, Send {BackSpace}.{Space}So Much{Space} 
+ Else IfEqual key0, etc.;, Send {BackSpace}.{Space}Technology{Space} 
+ Else IfEqual key0, th.;, Send {BackSpace}.{Space}Th{Space} 
+ Else IfEqual key0, tsh.;, Send {BackSpace}.{Space}That's{Space} 
+ Else IfEqual key0, ev.;, Send {BackSpace}.{Space}Ve{Space} 
+ Else IfEqual key0, c.;, Send {BackSpace}.{Space}See{Space} 
+ Else IfEqual key0, u.;, Send {BackSpace}.{Space}You{Space} 
+ Else IfEqual key0, n.;, Send {BackSpace}.{Space}And{Space} 
+ Else IfEqual key0, t.;, Send {BackSpace}.{Space}The{Space} 
+ Else IfEqual key0, y.;, Send {BackSpace}.{Space}Yeah{Space} 
+ Else IfEqual key0, b.;, Send {BackSpace}.{Space}But{Space} 
+ Else IfEqual key0, tion.;, Send {BackSpace}.{Space}Ition{Space} 
+ Else IfEqual key0, w.;, Send {BackSpace}.{Space}With{Space} 
+ Else IfEqual key0, p.;, Send {BackSpace}.{Space}Pretty{Space} 
+ Else IfEqual key0, k.;, Send {BackSpace}.{Space}Know{Space} 
+ Else IfEqual key0, q.;, Send {BackSpace}.{Space}Quick{Space} 
+ Else IfEqual key0, g.;, Send {BackSpace}.{Space}Great{Space} 
+ Else IfEqual key0, l.;, Send {BackSpace}.{Space}Like{Space} 
+ Else IfEqual key0, r.;, Send {BackSpace}.{Space}Really{Space} 
+ Else IfEqual key0, sh.;, Send {BackSpace}.{Space}Sh{Space} 
+ Else IfEqual key0, j.;, Send {BackSpace}.{Space}Just{Space} 
+ Else IfEqual key0, m.;, Send {BackSpace}.{Space}Much{Space} 
+ Else IfEqual key0, e.;, Send {BackSpace}.{Space}Even{Space} 
+ Else IfEqual key0, d.;, Send {BackSpace}.{Space}Ed{Space} 
+ Else IfEqual key0, f.;, Send {BackSpace}.{Space}For{Space} 
+ Else IfEqual key0, v.;, Send {BackSpace}.{Space}Very{Space} 
+ Else IfEqual key0, io.;, Send{BackSpace}{BackSpace} tion{Space} 
+ Else IfEqual key0, th.;, Send {BackSpace}.{Space}Th{Space} 
+ Else IfEqual key0, hc.;, Send {BackSpace}.{Space}Ch{Space} 
+ Else IfEqual key0, to.;, Send {BackSpace}.{Space}Too{Space} 
+ Else IfEqual key0, tuagh.;, Send {BackSpace}.{Space}Aught{Space} 
+ Else IfEqual key0, ocn.;, Send {BackSpace}.{Space}Con{Space} 
+ Else IfEqual key0, era.;, Send {BackSpace}.{Space}Are{Space} 
+ Else IfEqual key0, gc.;, Send {BackSpace}.{Space}Seeing{Space} 
+ Else IfEqual key0, wya.;, Send {BackSpace}.{Space}Away{Space} 
+ Else IfEqual key0, was.;, Send {BackSpace}.{Space}Saw{Space} 
+ Else IfEqual key0, 3.;, Send {BackSpace}.{Space}Three{Space} 
+ Else IfEqual key0, 1.;, Send {BackSpace}.{Space}One{Space} 
+ Else IfEqual key0, 2.;, Send {BackSpace}.{Space}Two{Space} 
+ Else IfEqual key0, 4.;, Send {BackSpace}.{Space}Four{Space} 
+ Else IfEqual key0, 5.;, Send {BackSpace}.{Space}Five{Space} 
+ Else IfEqual key0, ex.;, Send {BackSpace}.{Space}Exact{Space} 
+ Else IfEqual key0, 6.;, Send {BackSpace}.{Space}Six{Space} 
+ Else IfEqual key0, 7.;, Send {BackSpace}.{Space}Seven{Space} 
+ Else IfEqual key0, 8.;, Send {BackSpace}.{Space}Eight{Space} 
+ Else IfEqual key0, 9.;, Send {BackSpace}.{Space}Nine{Space} 
+ Else IfEqual key0, 0.;, Send {BackSpace}.{Space}10,{Space} 
+ Else IfEqual key0, woh.;, Send {BackSpace}.{Space}Who{Space} 
+ Else IfEqual key0, etl.;, Send {BackSpace}.{Space}Tell{Space}   
+ Else IfEqual key0, erts.;, Send {BackSpace}.{Space}Stress{Space} 
+ Else IfEqual key0, st.;, Send {BackSpace}.{Space}St{Space} 
+ Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post{Space} 
+ Else IfEqual key0, tis.;, Send {BackSpace}.{Space}Sit{Space} 
+ Else IfEqual key0, ashl.;, Send {BackSpace}.{Space}Shall{Space} 
+ Else IfEqual key0, esd.;, Send {BackSpace}.{Space}Seed{Space} 
+ Else IfEqual key0, was.;, Send {BackSpace}.{Space}Saw{Space} 
+ Else IfEqual key0, won.;, Send {BackSpace}.{Space}Own{Space} 
+ Else IfEqual key0, on.;, Send {BackSpace}.{Space}On{Space} 
+ Else IfEqual key0, etfl.;, Send {BackSpace}.{Space}Left{Space} 
+ Else IfEqual key0, wtah.;, Send {BackSpace}.{Space}Thaw{Space} 
+ Else IfEqual key0, of.;, Send {BackSpace}.{Space}Off{Space} 
+ Else IfEqual key0, eanm.;, Send {BackSpace}.{Space}Name{Space} 
+ Else IfEqual key0, eilv.;, Send {BackSpace}.{Space}Evil{Space} 
+ Else IfEqual key0, epk.;, Send {BackSpace}.{Space}Peek{Space} 
+ Else IfEqual key0, rtuh.;, Send {BackSpace}.{Space}Hurt{Space} 
+ Else IfEqual key0, toh.;, Send {BackSpace}.{Space}Hot{Space} 
+ Else IfEqual key0, ish.;, Send {BackSpace}.{Space}Ish{Space} 
+ Else IfEqual key0, erh.;, Send {BackSpace}.{Space}Here{Space} 
+ Else IfEqual key0, og.;, Send {BackSpace}.{Space}Original{Space} 
+ Else IfEqual key0, ed.;, Send {BackSpace}.{Space}De
+ Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post
+ Else IfEqual key0, ism.;, Send {BackSpace}.{Space}Mis{Space} 
+ Else IfEqual key0, al.;, Send{BackSpace} al{Space} 
+ Else IfEqual key0, s.;, Send{BackSpace} s{Space} 
+ Else IfEqual key0, esn.;, Send{BackSpace} ness{Space} 
+ Else IfEqual key0, i.;, Send {BackSpace}.{Space}I{Space} 
+ Else IfEqual key0, a.;, Send {BackSpace}.{Space}A{Space} 
+ Else IfEqual key0, ufl.;, Send{BackSpace} ful{Space} 
+ Else IfEqual key0, er.;, Send {BackSpace}.{Space}Re
+ Else IfEqual key0, toh.;, Send {BackSpace}.{Space}Oth{Space} 
+ Else IfEqual key0, ton.;, Send {BackSpace}.{Space}Ton{Space} 
+Else IfEqual key0, yal.;, Send{BackSpace} ally{Space} 
+Else IfEqual key0, able.;, Send {BackSpace}.{Space}Able
+Else IfEqual key0, ua.;, Send {BackSpace}.{Space}Ua 
+Else IfEqual key0, edn.;, Send {BackSpace}.{Space}End{Space} 
+Else IfEqual key0, er.;, Send{BackSpace} er
+Else IfEqual key0, etm.;, Send {BackSpace}.{Space}Meet{Space} 
+Else IfEqual key0, etg.;, Send {BackSpace}.{Space}Getting{Space} 
+Else IfEqual key0, al.;, Send{BackSpace} al
+Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post{Space} 
+Else IfEqual key0, eag.;, Send {BackSpace}.{Space}Age
+Else IfEqual key0, ertih.;, Send {BackSpace}.{Space}Either{Space} 
+Else IfEqual key0, gv.;, Send {BackSpace}.{Space}Giving{Space} 
+Else IfEqual key0, erashc.;, Send {BackSpace}.{Space}Research{Space} 
+Else IfEqual key0, edf.;, Send {BackSpace}.{Space}Feed{Space} 
+Else IfEqual key0, eoshc.;, Send {BackSpace}.{Space}Choose{Space} 
+Else IfEqual key0, eigbn.;, Send {BackSpace}.{Space}Beginning{Space} 
+Else IfEqual key0, opsh.;, Send {BackSpace}.{Space}Shops{Space} 
+Else IfEqual key0, esm.;, Send {BackSpace}.{Space}Seems{Space} 
+Else IfEqual key0, ertal.;, Send {BackSpace}.{Space}Relate{Space} 
+Else IfEqual key0, etis.;, Send{BackSpace} ities{Space} 
+Else IfEqual key0, tol.;, Send {BackSpace}.{Space}Tool{Space} 
+Else IfEqual key0, tasf.;, Send {BackSpace}.{Space}Staff{Space} 
+Else IfEqual key0, sn.;, Send {BackSpace}.{Space}Season{Space} 
+ Else IfEqual key0, isgn.;, Send {BackSpace}.{Space}Sing{Space} 
+ Else IfEqual key0, erpa.;, Send {BackSpace}.{Space}Paper{Space} 
+ Else IfEqual key0, es.;, Send{BackSpace} es{Space} 
+Else IfEqual key0, epsdn.;, Send {BackSpace}.{Space}Depends{Space} 
+Else IfEqual key0, rtlc.;, Send {BackSpace}.{Space}Critical{Space} 
+Else IfEqual key0, ertpsn.;, Send {BackSpace}.{Space}Represent{Space} 
+Else IfEqual key0, oagln.;, Send {BackSpace}.{Space}Analog{Space} 
+Else IfEqual key0, ral.;, Send {BackSpace}.{Space}Lar
+Else IfEqual key0, tahc.;, Send {BackSpace}.{Space}Attach{Space} 
+Else IfEqual key0, ertpan.;, Send {BackSpace}.{Space}Parent{Space} 
+Else IfEqual key0, igh.;, Send {BackSpace}.{Space}Igh{Space} 
+Else IfEqual key0, ets.;, Send {BackSpace}.{Space}Test{Space} 	
+Else IfEqual key0, etsn.;, Send {BackSpace}.{Space}Sent{Space} 
+Else IfEqual key0, esfl.;, Send {BackSpace}.{Space}Self{Space} 
+Else IfEqual key0, epal.;, Send {BackSpace}.{Space}Apple{Space} 
+Else IfEqual key0, eiscn.;, Send {BackSpace}.{Space}Science{Space} 
+Else IfEqual key0, rtlv.;, Send {BackSpace}.{Space}Virtual{Space} 
+Else IfEqual key0, ts.;, Send {BackSpace}.{Space}Street{Space} 
+Else IfEqual key0, odg.;, Send {BackSpace}.{Space}Dog{Space} 
+Else IfEqual key0, ertin.;, Send {BackSpace}.{Space}Internet{Space} 
+Else IfEqual key0, rtpcn.;, Send {BackSpace}.{Space}Corporation{Space} 
+Else IfEqual key0, werti.;, Send {BackSpace}.{Space}Twitter{Space} 
+Else IfEqual key0, erac.;, Send {BackSpace}.{Space}Race{Space} 
+Else IfEqual key0, erus.;, Send {BackSpace}.{Space}User{Space} 
+Else IfEqual key0, rac.;, Send {BackSpace}.{Space}Car{Space} 
+Else IfEqual key0, roadb.;, Send {BackSpace}.{Space}Broad{Space} 
+Else IfEqual key0, wera.;, Send {BackSpace}.{Space}Aware{Space} 
+Else IfEqual key0, wrtoh.;, Send {BackSpace}.{Space}Worth{Space} 
+Else IfEqual key0, ertafh.;, Send {BackSpace}.{Space}Farther{Space} 
+Else IfEqual key0, ypal.;, Send {BackSpace}.{Space}Apply{Space} 
+Else IfEqual key0, rtpc.;, Send {BackSpace}.{Space}Capture{Space} 
+Else IfEqual key0, erups.;, Send {BackSpace}.{Space}Pressure{Space} 
+Else IfEqual key0, esl.;, Send {BackSpace}.{Space}Sell{Space} 
+Else IfEqual key0, eifl.;, Send {BackSpace}.{Space}File{Space} 
+Else IfEqual key0, weak.;, Send {BackSpace}.{Space}Wake{Space} 
+Else IfEqual key0, deadl.;, Send {BackSpace}.{Space}Lead{Space} 
+ Else IfEqual key0, wer';, Send {BackSpace}.{Space}We're{Space} 
+ Else IfEqual key0, esh';, Send {BackSpace}.{Space}He's{Space} 
+ Else IfEqual key0, id';, Send {BackSpace}.{Space}I'd{Space} 
+ Else IfEqual key0, yal';, Send {BackSpace}.{Space}Y'all{Space} 
+ Else IfEqual key0, wosh';, Send {BackSpace}.{Space}Who's{Space} 
+ Else IfEqual key0, tid`'`n;, Send {BackSpace}.{Space}Didn't{Space} 
+ Else IfEqual key0, ts';, Send {BackSpace}.{Space}That's{Space}
+Else IfEqual key0, ad.;, Send {BackSpace}.{Space}Add{Space} 
+Else IfEqual key0, easc.;, Send {BackSpace}.{Space}Access{Space} 
+Else IfEqual key0, eolv.;, Send {BackSpace}.{Space}Evolve{Space} 
+Else IfEqual key0, epash.;, Send {BackSpace}.{Space}Phase{Space} 
+Else IfEqual key0, ertal.;, Send {BackSpace}.{Space}Alter{Space} 
+Else IfEqual key0, fl.;, Send {BackSpace}.{Space}Full{Space} 
+Else IfEqual key0, til.;, Send {BackSpace}.{Space}It'll{Space} 
+Else IfEqual key0, til';, Send {BackSpace}.{Space}It'll{Space} 
+Else IfEqual key0, tpln.;, Send {BackSpace}.{Space}Population{Space} 
+Else IfEqual key0, vm.;, Send {BackSpace}.{Space}Movie{Space}
+Return  
