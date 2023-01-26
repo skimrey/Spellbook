@@ -7,7 +7,8 @@ StringCaseSense On
 Process Priority,,Realtime
 SetKeyDelay -1
 BlockInput Send
-
+$^.:: Send, {Backspace}.{Space}   
+$^,:: Send, {Backspace},{Space}
 Low = ``1234567890-=qwertyuiop[]\asdfghjkl`'zxcvbnm,./;
 Shft= ~!@#$`%^&*()_+QWERTYUIOP{}|ASDFGHJKL`"ZXCVBNM<>?:
 
