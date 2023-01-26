@@ -81,16 +81,20 @@ Action:
 Return
 
 SEND:
-   IfLess len0,%len1%, Send {}         ; no send at releasing keys
+   IfLess len0,%len1%
+    str = {}         ; no send at releasing keys
 SEND1:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
 If StrLen(key0) = 1
+   {
       Send {%key0%}  
+      Return
+   }
    
-Else If InStr(key0, ".") or InStr(key0, "'")
+Else If InStr(key0, ".") or InStr(key0, "'") or InStr(key0, ">")
 GoSub SENDDOT
-Else If InStr(key0, "/")
+Else If InStr(key0, "/") or InStr(key0, "?")
 GoSub SENDSLASH
 Else If InStr(key0, "q")
 GoSub SENDQ
@@ -144,9245 +148,6275 @@ Else If InStr(key0, "n")
 GoSub SENDN
 Else If InStr(key0, "m")
 GoSub SENDM
-If InStr(key0, ">")
-GoSub SENDDOTup
-Else If InStr(key0, "?")
-GoSub SENDSLASHup
-Else If InStr(key0, "Q")
-GoSub SENDQup
-Else If InStr(key0, "W")
-GoSub SENDWup
-Else If InStr(key0, "E")
-GoSub SENDEup
-Else If InStr(key0, "R")
-GoSub SENDRup
-Else If InStr(key0, "T")
-GoSub SENDTup
-Else If InStr(key0, "Y")
-GoSub SENDYup
-Else If InStr(key0, "U")
-GoSub SENDUup
-Else If InStr(key0, "I")
-GoSub SENDIup
-Else If InStr(key0, "O")
-GoSub SENDOup
-Else If InStr(key0, "P")
-GoSub SENDPup
-Else If InStr(key0, "A")
-GoSub SENDAup
-Else If InStr(key0, "S")
-GoSub SENDSup
-Else If InStr(key0, "D")
-GoSub SENDDup
-Else If InStr(key0, "F")
-GoSub SENDFup
-Else If InStr(key0, "G")
-GoSub SENDGup
-Else If InStr(key0, "H")
-GoSub SENDHup
-Else If InStr(key0, "J")
-GoSub SENDJup
-Else If InStr(key0, "K")
-GoSub SENDKup
-Else If InStr(key0, "L")
-GoSub SENDLup
-Else If InStr(key0, "Z")
-GoSub SENDZup
-Else If InStr(key0, "X")
-GoSub SENDXup
-Else If InStr(key0, "C")
-GoSub SENDCup
-Else If InStr(key0, "V")
-GoSub SENDVup
-Else If InStr(key0, "B")
-GoSub SENDBup
-Else If InStr(key0, "N")
-GoSub SENDNup
-Else If InStr(key0, "M")
-GoSub SENDMup
-If InStr(key0, ";") and InStr(key0, ".")
-GoSub SENDDOTstart
-Else If InStr(key0, "/")
-GoSub SENDSLASHstart
-Else If InStr(key0, "q")
-GoSub SENDQstart 
-Else If InStr(key0, "w")
-GoSub SENDWstart 
-Else If InStr(key0, "e")
-GoSub SENDEstart
-Else If InStr(key0, "r")
-GoSub SENDRstart 
-Else If InStr(key0, "t")
-GoSub SENDTstart 
-Else If InStr(key0, "y")
-GoSub SENDYstart 
-Else If InStr(key0, "u")
-GoSub SENDUstart 
-Else If InStr(key0, "i")
-GoSub SENDIstart 
-Else If InStr(key0, "o")
-GoSub SENDOstart 
-Else If InStr(key0, "p")
-GoSub SENDPstart 
-Else If InStr(key0, "a")
-GoSub SENDAstart
-Else If InStr(key0, "s")
-GoSub SENDSstart
-Else If InStr(key0, "d")
-GoSub SENDDstart 
-Else If InStr(key0, "f")
-GoSub SENDFstart 
-Else If InStr(key0, "g")
-GoSub SENDGstart 
-Else If InStr(key0, "h")
-GoSub SENDHstart 
-Else If InStr(key0, "j")
-GoSub SENDJstart
-Else If InStr(key0, "k")
-GoSub SENDKstart
-Else If InStr(key0, "l")
-GoSub SENDLstart 
-Else If InStr(key0, "z")
-GoSub SENDZstart 
-Else If InStr(key0, "x")
-GoSub SENDXstart 
-Else If InStr(key0, "c")
-GoSub SENDCstart 
-Else If InStr(key0, "v")
-GoSub SENDVstart 
-Else If InStr(key0, "b")
-GoSub SENDBstart 
-Else If InStr(key0, "n")
-GoSub SENDNstart
-Else If InStr(key0, "m")
-GoSub SENDMstart
 
+IfInString, key0, Q
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, W
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, E
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, R
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, T
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, Y
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, U
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, I
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, O
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, P
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, A
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, S
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, D
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, F
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, G
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, H
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, J
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, K
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, Z
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, X
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, C
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, V
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, B
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, N
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+IfInString, key0, M
+{
+   str := RegExReplace(str, "^(.)", "$T1")
+}
+
+
+If InStr(key0, ";") 
+{
+         if (key0 = "q;")
+         Send {BackSpace}{BackSpace}q
+         Else if (key0 = "w;")
+         Send {BackSpace}{BackSpace}w
+         Else if (key0 = "e;")
+         Send {BackSpace}{BackSpace}e
+         Else if (key0 = "r;")
+         Send {BackSpace}{BackSpace}r
+         Else if (key0 = "t;")
+         Send {BackSpace}{BackSpace}t
+         Else if (key0 = "y;")
+         Send {BackSpace}{BackSpace}y
+         Else if (key0 = "u;")
+         Send {BackSpace}{BackSpace}u
+         Else if (key0 = "i;")
+         Send {BackSpace}{BackSpace}i
+         Else if (key0 = "o;")
+         Send {BackSpace}{BackSpace}o
+         Else if (key0 = "p;")
+         Send {BackSpace}{BackSpace}p
+         Else if (key0 = "a;")
+         Send {BackSpace}{BackSpace}a
+         Else if (key0 = "s;")
+         Send {BackSpace}{BackSpace}s
+         Else if (key0 = "d;")
+         Send {BackSpace}{BackSpace}d
+         Else if (key0 = "f;")
+         Send {BackSpace}{BackSpace}f
+         Else if (key0 = "g;")
+         Send {BackSpace}{BackSpace}g
+         Else if (key0 = "h;")
+         Send {BackSpace}{BackSpace}h
+         Else if (key0 = "j;")
+         Send {BackSpace}{BackSpace}j
+         Else if (key0 = "k;")
+         Send {BackSpace}{BackSpace}k
+         Else if (key0 = "l;")
+         Send {BackSpace}{BackSpace}l
+         Else if (key0 = "z;")
+         Send {BackSpace}{BackSpace}z
+         Else if (key0 = "x;")
+         Send {BackSpace}{BackSpace}x
+         Else if (key0 = "c;")
+         Send {BackSpace}{BackSpace}c
+         Else if (key0 = "v;")
+         Send {BackSpace}{BackSpace}v
+         Else if (key0 = "b;")
+         Send {BackSpace}{BackSpace}b
+         Else if (key0 = "n;")
+         Send {BackSpace}{BackSpace}n
+         Else if (key0 = "m;")
+         Send {BackSpace}{BackSpace}m
+         Else
+         {
+            str := RegExReplace(str, "^(.)", "$T1")
+            str = {BackSpace}.{Space}%str%
+         }
+}
+
+If StrLen(key0) > 1 
+Send %str%
+str = {}
 Return
+
+SENDSEMICOLON:
+   SentTick = %A_TickCount%            
+   SentKeys = %key0%
+Return
+
 SENDSLASH:
 SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0% 
-IfEqual key0,ets/, Send {BackSpace}est{Space}
-Else IfEqual key0,era/, Send ear{Space}
-Else IfEqual key0,r/, Send {BackSpace}r{Space}
-Else IfEqual key0,tops/, Send spot{Space}
-Else IfEqual key0,ertal/, Send latter{Space}
-Else IfEqual key0,erts/, Send steer{Space}
-Else IfEqual key0,tosh/, Send host{Space}
-Else IfEqual key0,erp/, Send peer{Space}
-Else IfEqual key0,ealb/, Send {BackSpace}{BackSpace}able{Space}
-Else IfEqual key0,etas/, Send tease{Space}
-Else IfEqual key0,wal/, Send law{Space}
-Else IfEqual key0,esl/, Send {BackSpace}less{Space}
-Else IfEqual key0,era/, Send ear{Space}
-Else IfEqual key0,ersv/, Send sever{Space}
-Else IfEqual key0,tis/, Send {BackSpace}ist{Space}
- Else IfEqual key0,eis/, Send {BackSpace}ise{Space}	
-Else IfEqual key0,slcn/, Send counsel{Space}
-Else IfEqual key0,erups/, Send pursue{Space}
-Else IfEqual key0,won/, Send won{Space}
-Else IfEqual key0,y/, Send {backspace}y{Space}
-Else IfEqual key0,n/, Send {backspace}n{Space}
-Else Send /
+If (key0 = "ets/" or key0 = "ets/;" or key0 = "ETS?")
+    str = {BackSpace}est{Space}
+Else if (key0 = "era/" or key0 = "era/;" or key0 = "ERA?")
+    str = ear{Space}
+Else if (key0 = "q/" or key0 = "q/;" or key0 = "Q?")
+    str = {BackSpace}q{Space}
+Else if (key0 = "w/" or key0 = "w/;" or key0 = "W?")
+    str = {BackSpace}w{Space}
+Else if (key0 = "e/" or key0 = "e/;" or key0 = "E?")
+    str = {BackSpace}e{Space}
+Else if (key0 = "r/" or key0 = "r/;" or key0 = "R?")
+    str = {BackSpace}r{Space}
+Else if (key0 = "t/" or key0 = "t/;" or key0 = "T?")
+    str = {BackSpace}t{Space}
+Else if (key0 = "y/" or key0 = "y/;" or key0 = "Y?")
+    str = {BackSpace}y{Space}
+Else if (key0 = "u/" or key0 = "u/;" or key0 = "U?")
+    str = {BackSpace}u{Space}
+Else if (key0 = "i/" or key0 = "i/;" or key0 = "I?")
+    str = {BackSpace}i{Space}
+Else if (key0 = "o/" or key0 = "o/;" or key0 = "O?")
+    str = {BackSpace}o{Space}
+Else if (key0 = "p/" or key0 = "p/;" or key0 = "P?")
+    str = {BackSpace}p{Space}
+Else if (key0 = "a/" or key0 = "a/;" or key0 = "A?")
+    str = {BackSpace}a{Space}
+Else if (key0 = "s/" or key0 = "s/;" or key0 = "S?")
+    str = {BackSpace}s{Space}
+Else if (key0 = "d/" or key0 = "d/;" or key0 = "D?")
+    str = {BackSpace}d{Space}
+Else if (key0 = "f/" or key0 = "f/;" or key0 = "F?")
+    str = {BackSpace}f{Space}
+Else if (key0 = "g/" or key0 = "g/;" or key0 = "G?")
+    str = {BackSpace}g{Space}
+Else if (key0 = "h/" or key0 = "h/;" or key0 = "H?")
+    str = {BackSpace}h{Space}
+Else if (key0 = "j/" or key0 = "j/;" or key0 = "J?")
+    str = {BackSpace}j{Space}
+Else if (key0 = "k/" or key0 = "k/;" or key0 = "K?")
+    str = {BackSpace}k{Space}
+Else if (key0 = "l/" or key0 = "l/;" or key0 = "L?")
+    str = {BackSpace}l{Space}
+Else if (key0 = "z/" or key0 = "z/;" or key0 = "Z?")
+    str = {BackSpace}z{Space}
+Else if (key0 = "x/" or key0 = "x/;" or key0 = "X?")
+    str = {BackSpace}x{Space}
+Else if (key0 = "c/" or key0 = "c/;" or key0 = "C?")
+    str = {BackSpace}c{Space}
+Else if (key0 = "v/" or key0 = "v/;" or key0 = "V?")
+    str = {BackSpace}v{Space}
+Else if (key0 = "b/" or key0 = "b/;" or key0 = "B?")
+    str = {BackSpace}b{Space}
+Else if (key0 = "n/" or key0 = "n/;" or key0 = "N?")
+    str = {BackSpace}n{Space}
+Else if (key0 = "m/" or key0 = "m/;" or key0 = "M?")
+    str = {BackSpace}m{Space}
+Else if (key0 = "tops/" or key0 = "tops/;" or key0 = "TOPS?")
+    str = spot{Space}
+Else if (key0 = "ts/" or key0 = "ts/;" or key0 = "TS?")
+    str = {BackSpace}st{Space}
+Else if (key0 = "ertal/" or key0 = "ertal/;" or key0 = "ERTAL?")
+    str = latter{Space}
+Else if (key0 = "erts/" or key0 = "erts/;" or key0 = "ERTS?")
+    str = steer{Space}
+Else if (key0 = "tosh/" or key0 = "tosh/;" or key0 = "TOSH?")
+    str = host{Space}
+Else if (key0 = "erp/" or key0 = "erp/;" or key0 = "ERP?")
+    str = peer{Space}
+Else if (key0 = "ealb/" or key0 = "ealb/;" or key0 = "EALB?")
+    str = {BackSpace}{BackSpace}able{Space}
+Else if (key0 = "etas/" or key0 = "etas/;" or key0 = "ETAS?")
+    str = tease{Space}
+Else if (key0 = "wal/" or key0 = "wal/;" or key0 = "WAL?")
+    str = law{Space}
+Else if (key0 = "esl/" or key0 = "esl/;" or key0 = "ESL?")
+    str = {BackSpace}less{Space}
+Else if (key0 = "era/" or key0 = "era/;" or key0 = "ERA?")
+    str = ear{Space}
+Else if (key0 = "ersv/" or key0 = "ersv/;" or key0 = "ERSV?")
+    str = sever{Space}
+Else if (key0 = "tis/" or key0 = "tis/;" or key0 = "TIS?")
+    str = {BackSpace}ist{Space}
+Else if (key0 = "eis/" or key0 = "eis/;" or key0 = "EIS?")
+    str = {BackSpace}ise{Space}
+Else if (key0 = "slcn/" or key0 = "slcn/;" or key0 = "SLCN?")
+    str = counsel{Space}
+Else if (key0 = "erups/" or key0 = "erups/;" or key0 = "ERUPS?")
+    str = pursue{Space}
+Else if (key0 = "won/" or key0 = "won/;" or key0 = "WON?")
+    str = won{Space}
+Else if (key0 = "y/" or key0 = "y/;" or key0 = "Y?")
+    str = {backspace}y{Space}
+Else if (key0 = "n/" or key0 = "n/;" or key0 = "N?")
+    str = {backspace}n{Space}
+Return
 
-Return
 SENDQ:
-   SentTick = %A_TickCount%            ; remember time of send
+
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,qerf, Send frequency{Space}
-Else IfEqual key0,qerfn, Send frequent{Space}
-Else IfEqual key0,qerui, Send queue{Space}
-Else IfEqual key0,qeu, Send queue{Space}
-Else IfEqual key0,qrac, Send acquire{Space}
-Else IfEqual key0,qrts, Send request{Space}
-Else IfEqual key0,qetui, Send quiet{Space}
-Else IfEqual key0,qeuin, Send unique{Space}
-Else IfEqual key0,qel, Send equal{Space}
-Else IfEqual key0,qeru, Send queer{Space}
-Else IfEqual key0,ql, Send quickly{Space}
-Else IfEqual key0,qetuo, Send quote{Space}
-Else IfEqual key0,qfl, Send qualify{Space}
-Else IfEqual key0,qrtuis, Send squirt{Space}
-Else IfEqual key0,qyfl, Send qualify{Space}
-Else IfEqual key0,qeuip, Send equip{Space}
-Else IfEqual key0,qeuoscn, Send consequence{Space}
-Else IfEqual key0,qeus, Send esque
-Else IfEqual key0,qr, Send require{Space}
-Else IfEqual key0,qrsl, Send squirrel{Space}
-Else IfEqual key0,qeryu, Send query{Space}
-Else IfEqual key0,qes, Send sequence{Space}
-Else IfEqual key0,qetyui, Send equity{Space}
-Else IfEqual key0,qrf, Send frequent{Space}
-Else IfEqual key0,qrtfn, Send frequent{Space}
-Else IfEqual key0,qscn, Send sequence{Space}
-Else IfEqual key0,qtuanm, Send quantum{Space}
-Else IfEqual key0,qt, Send question{Space}
-Else IfEqual key0,qti, Send quite{Space}
-Else IfEqual key0,qtl, Send quality{Space}
-Else IfEqual key0,qts, Send questions{Space}
-Else IfEqual key0,qtui, Send quit{Space}
-Else IfEqual key0,qun, Send unique{Space}
-Else IfEqual key0,qrt, Send quarter{Space}
+If (key0 = "qerf" or key0 = "qerf;" or key0 = "QERF")
+    str = frequency{Space}
+Else if (key0 = "qerfn" or key0 = "qerfn;" or key0 = "QERFN")
+    str = frequent{Space}
+Else if (key0 = "qerui" or key0 = "qerui;" or key0 = "QERUI")
+    str = queue{Space}
+Else if (key0 = "qeu" or key0 = "qeu;" or key0 = "QEU")
+    str = queue{Space}
+Else if (key0 = "qrac" or key0 = "qrac;" or key0 = "QRAC")
+    str = acquire{Space}
+Else if (key0 = "qrts" or key0 = "qrts;" or key0 = "QRTS")
+    str = request{Space}
+Else if (key0 = "qetui" or key0 = "qetui;" or key0 = "QETUI")
+    str = quiet{Space}
+Else if (key0 = "qeuin" or key0 = "qeuin;" or key0 = "QEUIN")
+    str = unique{Space}
+Else if (key0 = "qel" or key0 = "qel;" or key0 = "QEL")
+    str = equal{Space}
+Else if (key0 = "qeru" or key0 = "qeru;" or key0 = "QERU")
+    str = queer{Space}
+Else if (key0 = "ql" or key0 = "ql;" or key0 = "QL")
+    str = quickly{Space}
+Else if (key0 = "qetuo" or key0 = "qetuo;" or key0 = "QETUO")
+    str = quote{Space}
+Else if (key0 = "qfl" or key0 = "qfl;" or key0 = "QFL")
+    str = qualify{Space}
+Else if (key0 = "qrtuis" or key0 = "qrtuis;" or key0 = "QRTUIS")
+    str = squirt{Space}
+Else if (key0 = "qyfl" or key0 = "qyfl;" or key0 = "QYFL")
+    str = qualify{Space}
+Else if (key0 = "qeuip" or key0 = "qeuip;" or key0 = "QEUIP")
+    str = equip{Space}
+Else if (key0 = "qeuoscn" or key0 = "qeuoscn;" or key0 = "QEUOSCN")
+    str = consequence{Space}
+Else if (key0 = "qeus" or key0 = "qeus;" or key0 = "QEUS")
+    str = {BackSpace}-esque{Space}
+Else if (key0 = "qr" or key0 = "qr;" or key0 = "QR")
+    str = require{Space}
+Else if (key0 = "qrsl" or key0 = "qrsl;" or key0 = "QRSL")
+    str = squirrel{Space}
+Else if (key0 = "qeryu" or key0 = "qeryu;" or key0 = "QERYU")
+    str = query{Space}
+Else if (key0 = "qes" or key0 = "qes;" or key0 = "QES")
+    str = sequence{Space}
+Else if (key0 = "qetyui" or key0 = "qetyui;" or key0 = "QETYUI")
+    str = equity{Space}
+Else if (key0 = "qrf" or key0 = "qrf;" or key0 = "QRF")
+    str = frequent{Space}
+Else if (key0 = "qrtfn" or key0 = "qrtfn;" or key0 = "QRTFN")
+    str = frequent{Space}
+Else if (key0 = "qscn" or key0 = "qscn;" or key0 = "QSCN")
+    str = sequence{Space}
+Else if (key0 = "qtuanm" or key0 = "qtuanm;" or key0 = "QTUANM")
+    str = quantum{Space}
+Else if (key0 = "qt" or key0 = "qt;" or key0 = "QT")
+    str = question{Space}
+Else if (key0 = "qti" or key0 = "qti;" or key0 = "QTI")
+    str = quite{Space}
+Else if (key0 = "qtl" or key0 = "qtl;" or key0 = "QTL")
+    str = quality{Space}
+Else if (key0 = "qts" or key0 = "qts;" or key0 = "QTS")
+    str = questions{Space}
+Else if (key0 = "qtui" or key0 = "qtui;" or key0 = "QTUI")
+    str = quit{Space}
+Else if (key0 = "qun" or key0 = "qun;" or key0 = "QUN")
+    str = unique{Space}
+Else if (key0 = "qrt" or key0 = "qrt;" or key0 = "QRT")
+    str = quarter{Space}
 Return
+
 SENDW:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,wa, Send as well{Space}
-Else IfEqual key0,wrhv, Send however{Space}
-Else IfEqual key0,wtn, Send won't{Space}
-Else IfEqual key0,werhvn, Send whenever{Space}
-Else IfEqual key0,weoasm, Send awesome{Space}
-Else IfEqual key0,wrpa, Send wrap{Space}
-Else IfEqual key0,wlb, Send below{Space}
-Else IfEqual key0,weolb, Send below{Space}
-Else IfEqual key0,wan, Send want to{Space}
-Else IfEqual key0,wehc, Send chew{Space}
-Else IfEqual key0,weif, Send wife{Space}
-Else IfEqual key0,weislv, Send swivel{Space}
-Else IfEqual key0,werash, Send whereas{Space}
-Else IfEqual key0,werhvn, Send whenever{Space}
-Else IfEqual key0,werin, Send winner{Space}
-Else IfEqual key0,weropm, Send empower{Space}
-Else IfEqual key0,werosh, Send shower{Space}
-Else IfEqual key0,wertih, Send wither{Space}
-Else IfEqual key0,wesk, Send skew{Space}
-Else IfEqual key0,wetishl, Send whistle{Space}
-Else IfEqual key0,whkm, Send homework{Space}
-Else IfEqual key0,wism, Send swim{Space}
-Else IfEqual key0,woasl, Send swallow{Space}
-Else IfEqual key0,wolb, Send blow{Space}
-Else IfEqual key0,wra, Send war{Space}
-Else IfEqual key0,wrb, Send borrow{Space}
-Else IfEqual key0,wrsm, Send worrisome{Space}
-Else IfEqual key0,wrpf, Send powerful{Space}
-Else IfEqual key0,wdv, Send would've{Space}
-Else IfEqual key0,werohn, Send nowhere{Space}
-Else IfEqual key0,werohv, Send however{Space}
-Else IfEqual key0,wrth, Send worth{Space}
-Else IfEqual key0,weros, Send worse{Space}
-Else IfEqual key0,wed, Send we'd{Space}
-Else IfEqual key0,wein, Send wine{Space}
-Else IfEqual key0,wetah, Send weather{Space}
-Else IfEqual key0,wetahl, Send wealth{Space}
-Else IfEqual key0,wofl, Send flow{Space}
-Else IfEqual key0,werop, Send power{Space}
-Else IfEqual key0,wertn, Send weren't{Space}
-Else IfEqual key0,wrtn, Send written{Space}
-Else IfEqual key0,wadn, Send wand{Space}
-Else IfEqual key0,wdl, Send wield{Space}
-Else IfEqual key0,weav, Send wave{Space}
-Else IfEqual key0,welb, Send blew{Space}
-Else IfEqual key0,welb, Send blew{Space}
-Else IfEqual key0,weonm, Send women{Space}
-Else IfEqual key0,werto, Send wrote{Space}
-Else IfEqual key0,werto, Send wrote{Space}
-Else IfEqual key0,wlcm, Send welcome{Space}
-Else IfEqual key0,wnm, Send women{Space}
-Else IfEqual key0,wnm, Send woman{Space}
-Else IfEqual key0,wosl, Send slow{Space}
-Else IfEqual key0,wrdh, Send hardware{Space}
-Else IfEqual key0,wrtos, Send worst{Space}
-Else IfEqual key0,wryo, Send worry{Space}
-Else IfEqual key0,wagn, Send gnaw{Space}
-Else IfEqual key0,waln, Send lawn{Space}
-Else IfEqual key0,wan, Send awn{Space}
-Else IfEqual key0,waskl, Send walks{Space}
-Else IfEqual key0,wdln, Send download{Space}
-Else IfEqual key0,weahl, Send whale{Space}
-Else IfEqual key0,wehl, Send wheel{Space}
-Else IfEqual key0,weif, Send wife{Space}
-Else IfEqual key0,weigh, Send weigh{Space}
-Else IfEqual key0,weis, Send wise{Space}
-Else IfEqual key0,weosh, Send whose{Space}
-Else IfEqual key0,weosh, Send swore{Space}
-Else IfEqual key0,wertah, Send weather{Space}
-Else IfEqual key0,wetigh, Send weight{Space}
-Else IfEqual key0,wets, Send west{Space}
-Else IfEqual key0,widl, Send wild{Space}
-Else IfEqual key0,win, Send win{Space}
-Else IfEqual key0,woc, Send cow{Space}
-Else IfEqual key0,wom, Send mow{Space}
-Else IfEqual key0,wrgln, Send wrangle{Space}
-Else IfEqual key0,wrhn, Send nowhere{Space}
-Else IfEqual key0,wrlnm, Send lawnmower{Space}
-Else IfEqual key0,wrs, Send worse{Space}
-Else IfEqual key0,wrtos, Send worst{Space}
-Else IfEqual key0,wsdm, Send wisdom{Space}
-Else IfEqual key0,wakl, Send walk{Space}
-Else IfEqual key0,wal, Send always{Space}
-Else IfEqual key0,was, Send was{Space}
-Else IfEqual key0,was, Send was{Space}
-Else IfEqual key0,wash, Send wash{Space}
-Else IfEqual key0,wdf, Send forward{Space}
-Else IfEqual key0,wdn, Send wouldn't{Space}
-Else IfEqual key0,we, Send we{Space}
-Else IfEqual key0,weak, Send weak{Space}
-Else IfEqual key0,weasm, Send awesome{Space}
-Else IfEqual key0,wef, Send few{Space}
-Else IfEqual key0,weh, Send when{Space}
-Else IfEqual key0,wehn, Send when{Space}
-Else IfEqual key0,weid, Send wide{Space}
-Else IfEqual key0,weid, Send wide{Space}
-Else IfEqual key0,weihl, Send while{Space}
-Else IfEqual key0,weis, Send wise{Space}
-Else IfEqual key0,weisdh, Send wished{Space}
-Else IfEqual key0,weiv, Send view{Space}
-Else IfEqual key0,wek, Send week{Space}
-Else IfEqual key0,wekn, Send knew{Space}
-Else IfEqual key0,wel, Send well{Space}
-Else IfEqual key0,wen, Send new{Space}
-Else IfEqual key0,weohl, Send whole{Space}
-Else IfEqual key0,weohl, Send whole{Space}
-Else IfEqual key0,weohl, Send whole{Space}
-Else IfEqual key0,wer, Send were{Space}
-Else IfEqual key0,wera, Send wear{Space}
-Else IfEqual key0,werasn, Send answer{Space}
-Else IfEqual key0,werc, Send crew{Space}
-Else IfEqual key0,werh, Send where{Space}
-Else IfEqual key0,werid, Send weird{Space}
-Else IfEqual key0,weriv, Send review{Space}
-Else IfEqual key0,werosb, Send browse{Space}
-Else IfEqual key0,werta, Send water{Space}
-Else IfEqual key0,werth, Send whether{Space}
-Else IfEqual key0,werti, Send Twitter{Space}
-Else IfEqual key0,wetadn, Send wanted{Space}
-Else IfEqual key0,wetbn, Send between{Space}
-Else IfEqual key0,wetih, Send white{Space}
-Else IfEqual key0,wetn, Send went{Space}
-Else IfEqual key0,wev, Send everywhere{Space}
-Else IfEqual key0,wfl, Send follow{Space}
-Else IfEqual key0,wgk, Send working{Space}
-Else IfEqual key0,wgkl, Send walking{Space}
-Else IfEqual key0,wh, Send who{Space}
-Else IfEqual key0,when, Send when{Space}
-Else IfEqual key0,whl, Send whole{Space}
-Else IfEqual key0,whn, Send when{Space}
-Else IfEqual key0,widn, Send wind{Space}
-Else IfEqual key0,wihc, Send which{Space}
-Else IfEqual key0,wil, Send will{Space}
-Else IfEqual key0,wiodn, Send window{Space}
-Else IfEqual key0,wish, Send wish{Space}
-Else IfEqual key0,wk, Send work{Space}
-Else IfEqual key0,wkl, Send walk{Space}
-Else IfEqual key0,wl, Send we'll{Space}
-Else IfEqual key0,wn, Send network{Space}
-Else IfEqual key0,wo, Send would{Space}
-Else IfEqual key0,woal, Send allow{Space}
-Else IfEqual key0,wod, Send wood{Space}
-Else IfEqual key0,wodn, Send down{Space}
-Else IfEqual key0,woh, Send how{Space}
-Else IfEqual key0,wokn, Send know{Space}
-Else IfEqual key0,wol, Send low{Space}
-Else IfEqual key0,won, Send now{Space}
-Else IfEqual key0,wosh, Send show{Space}
-Else IfEqual key0,wosn, Send snow{Space}
-Else IfEqual key0,wpn, Send newspaper{Space}
-Else IfEqual key0,wr, Send we're{Space}
-Else IfEqual key0,wr, Send we're{Space}
-Else IfEqual key0,wrad, Send draw{Space}
-Else IfEqual key0,wram, Send warm{Space}
-Else IfEqual key0,wrdf, Send wonderful{Space}
-Else IfEqual key0,wrdfn, Send wonderful{Space}
-Else IfEqual key0,wrdn, Send wonder{Space}
-Else IfEqual key0,wrk, Send work{Space}
-Else IfEqual key0,wrod, Send word{Space}
-Else IfEqual key0,wrodl, Send world{Space}
-Else IfEqual key0,wrog, Send grow{Space}
-Else IfEqual key0,wrogn, Send wrong{Space}
-Else IfEqual key0,wrok, Send work{Space}
-Else IfEqual key0,wrt, Send write{Space}
-Else IfEqual key0,wrtg, Send writing{Space}
-Else IfEqual key0,wrtm, Send tomorrow{Space}
-Else IfEqual key0,wrtoh, Send throw{Space}
-Else IfEqual key0,wrtv, Send whatever{Space}
-Else IfEqual key0,wrv, Send review{Space}
-Else IfEqual key0,ws, Send website{Space}
-Else IfEqual key0,wsf, Send software{Space}
-Else IfEqual key0,wsm, Send somewhere{Space}
-Else IfEqual key0,wt, Send what{Space}
-Else IfEqual key0,wtadn, Send wanted{Space}
-Else IfEqual key0,wtadn, Send wanted{Space}
-Else IfEqual key0,wtah, Send what{Space}
-Else IfEqual key0,wtahc, Send watch{Space}
-Else IfEqual key0,wtan, Send want{Space}
-Else IfEqual key0,wtasn, Send wasn't{Space}
-Else IfEqual key0,wsn, Send wasn't{Space}
-Else IfEqual key0,wtb, Send by the way{Space}
-Else IfEqual key0,wtd, Send toward{Space}
-Else IfEqual key0,wth, Send whether{Space}
-Else IfEqual key0,wthc, Send watch{Space}
-Else IfEqual key0,wti, Send within{Space}
-Else IfEqual key0,wtia, Send wait{Space}
-Else IfEqual key0,wtishc, Send switch{Space}
-Else IfEqual key0,wto, Send without{Space}
-Else IfEqual key0,wton, Send town{Space}
-Else IfEqual key0,wtuo, Send without{Space}
-Else IfEqual key0,wtv, Send whatever{Space}
-Else IfEqual key0,wtvn, Send interview{Space}
-Else IfEqual key0,wv, Send we've{Space}
-Else IfEqual key0,wv, Send we've{Space}
-Else IfEqual key0,wya, Send way{Space}
-Else IfEqual key0,wyahn, Send anywhere{Space}
-Else IfEqual key0,wyan, Send anyway{Space}
-Else IfEqual key0,wyh, Send why{Space}
-Else IfEqual key0,wyl, Send yellow{Space}
-Else IfEqual key0,werg, Send grew{Space}
-Else IfEqual key0,wetic, Send twice{Space}
-Else IfEqual key0,wtash, Send what's{Space}
-Else IfEqual key0,wts, Send what's{Space}
+ if (key0 = "wa" or key0 = "wa;" or key0 = "WA")
+    str = as well{Space}
+Else if (key0 = "wrhv" or key0 = "wrhv;" or key0 = "WRHV")
+    str = however{Space}
+Else if (key0 = "wtn" or key0 = "wtn;" or key0 = "WTN")
+    str = won't{Space}
+Else if (key0 = "werhvn" or key0 = "werhvn;" or key0 = "WERHVN")
+    str = whenever{Space}
+Else if (key0 = "weoasm" or key0 = "weoasm;" or key0 = "WEOASM")
+    str = awesome{Space}
+Else if (key0 = "wrpa" or key0 = "wrpa;" or key0 = "WRPA")
+    str = wrap{Space}
+Else if (key0 = "wlb" or key0 = "wlb;" or key0 = "WLB")
+    str = below{Space}
+Else if (key0 = "weolb" or key0 = "weolb;" or key0 = "WEOLB")
+    str = below{Space}
+Else if (key0 = "wan" or key0 = "wan;" or key0 = "WAN")
+    str = want to{Space}
+Else if (key0 = "wehc" or key0 = "wehc;" or key0 = "WEHC")
+    str = chew{Space}
+Else if (key0 = "weif" or key0 = "weif;" or key0 = "WEIF")
+    str = wife{Space}
+Else if (key0 = "weislv" or key0 = "weislv;" or key0 = "WEISLV")
+    str = swivel{Space}
+Else if (key0 = "werash" or key0 = "werash;" or key0 = "WERASH")
+    str = whereas{Space}
+Else if (key0 = "werhvn" or key0 = "werhvn;" or key0 = "WERHVN")
+    str = whenever{Space}
+Else if (key0 = "werin" or key0 = "werin;" or key0 = "WERIN")
+    str = winner{Space}
+Else if (key0 = "weropm" or key0 = "weropm;" or key0 = "WEROPM")
+    str = empower{Space}
+Else if (key0 = "werosh" or key0 = "werosh;" or key0 = "WEROSH")
+    str = shower{Space}
+Else if (key0 = "wertih" or key0 = "wertih;" or key0 = "WERTIH")
+    str = wither{Space}
+Else if (key0 = "wesk" or key0 = "wesk;" or key0 = "WESK")
+    str = skew{Space}
+Else if (key0 = "wetishl" or key0 = "wetishl;" or key0 = "WETISHL")
+    str = whistle{Space}
+Else if (key0 = "whkm" or key0 = "whkm;" or key0 = "WHKM")
+    str = homework{Space}
+Else if (key0 = "wism" or key0 = "wism;" or key0 = "WISM")
+    str = swim{Space}
+Else if (key0 = "woasl" or key0 = "woasl;" or key0 = "WOASL")
+    str = swallow{Space}
+Else if (key0 = "wolb" or key0 = "wolb;" or key0 = "WOLB")
+    str = blow{Space}
+Else if (key0 = "wra" or key0 = "wra;" or key0 = "WRA")
+    str = war{Space}
+Else if (key0 = "wrb" or key0 = "wrb;" or key0 = "WRB")
+    str = borrow{Space}
+Else if (key0 = "wrsm" or key0 = "wrsm;" or key0 = "WRSM")
+    str = worrisome{Space}
+Else if (key0 = "wrpf" or key0 = "wrpf;" or key0 = "WRPF")
+    str = powerful{Space}
+Else if (key0 = "wdv" or key0 = "wdv;" or key0 = "WDV")
+    str = would've{Space}
+Else if (key0 = "werohn" or key0 = "werohn;" or key0 = "WEROHN")
+    str = nowhere{Space}
+Else if (key0 = "werohv" or key0 = "werohv;" or key0 = "WEROHV")
+    str = however{Space}
+Else if (key0 = "wrth" or key0 = "wrth;" or key0 = "WRTH")
+    str = worth{Space}
+Else if (key0 = "weros" or key0 = "weros;" or key0 = "WEROS")
+    str = worse{Space}
+Else if (key0 = "wed" or key0 = "wed;" or key0 = "WED")
+    str = we'd{Space}
+Else if (key0 = "wein" or key0 = "wein;" or key0 = "WEIN")
+    str = wine{Space}
+Else if (key0 = "wetah" or key0 = "wetah;" or key0 = "WETAH")
+    str = weather{Space}
+Else if (key0 = "wetahl" or key0 = "wetahl;" or key0 = "WETAHL")
+    str = wealth{Space}
+Else if (key0 = "wofl" or key0 = "wofl;" or key0 = "WOFL")
+    str = flow{Space}
+Else if (key0 = "werop" or key0 = "werop;" or key0 = "WEROP")
+    str = power{Space}
+Else if (key0 = "wertn" or key0 = "wertn;" or key0 = "WERTN")
+    str = weren't{Space}
+Else if (key0 = "wrtn" or key0 = "wrtn;" or key0 = "WRTN")
+    str = written{Space}
+Else if (key0 = "wadn" or key0 = "wadn;" or key0 = "WADN")
+    str = wand{Space}
+Else if (key0 = "wdl" or key0 = "wdl;" or key0 = "WDL")
+    str = wield{Space}
+Else if (key0 = "weav" or key0 = "weav;" or key0 = "WEAV")
+    str = wave{Space}
+Else if (key0 = "welb" or key0 = "welb;" or key0 = "WELB")
+    str = blew{Space}
+Else if (key0 = "welb" or key0 = "welb;" or key0 = "WELB")
+    str = blew{Space}
+Else if (key0 = "weonm" or key0 = "weonm;" or key0 = "WEONM")
+    str = women{Space}
+Else if (key0 = "werto" or key0 = "werto;" or key0 = "WERTO")
+    str = wrote{Space}
+Else if (key0 = "werto" or key0 = "werto;" or key0 = "WERTO")
+    str = wrote{Space}
+Else if (key0 = "wlcm" or key0 = "wlcm;" or key0 = "WLCM")
+    str = welcome{Space}
+Else if (key0 = "wnm" or key0 = "wnm;" or key0 = "WNM")
+    str = women{Space}
+Else if (key0 = "wnm" or key0 = "wnm;" or key0 = "WNM")
+    str = woman{Space}
+Else if (key0 = "wosl" or key0 = "wosl;" or key0 = "WOSL")
+    str = slow{Space}
+Else if (key0 = "wrdh" or key0 = "wrdh;" or key0 = "WRDH")
+    str = hardware{Space}
+Else if (key0 = "wrtos" or key0 = "wrtos;" or key0 = "WRTOS")
+    str = worst{Space}
+Else if (key0 = "wryo" or key0 = "wryo;" or key0 = "WRYO")
+    str = worry{Space}
+Else if (key0 = "wagn" or key0 = "wagn;" or key0 = "WAGN")
+    str = gnaw{Space}
+Else if (key0 = "waln" or key0 = "waln;" or key0 = "WALN")
+    str = lawn{Space}
+Else if (key0 = "wan" or key0 = "wan;" or key0 = "WAN")
+    str = awn{Space}
+Else if (key0 = "waskl" or key0 = "waskl;" or key0 = "WASKL")
+    str = walks{Space}
+Else if (key0 = "wdln" or key0 = "wdln;" or key0 = "WDLN")
+    str = download{Space}
+Else if (key0 = "weahl" or key0 = "weahl;" or key0 = "WEAHL")
+    str = whale{Space}
+Else if (key0 = "wehl" or key0 = "wehl;" or key0 = "WEHL")
+    str = wheel{Space}
+Else if (key0 = "weif" or key0 = "weif;" or key0 = "WEIF")
+    str = wife{Space}
+Else if (key0 = "weigh" or key0 = "weigh;" or key0 = "WEIGH")
+    str = weigh{Space}
+Else if (key0 = "weis" or key0 = "weis;" or key0 = "WEIS")
+    str = wise{Space}
+Else if (key0 = "weosh" or key0 = "weosh;" or key0 = "WEOSH")
+    str = whose{Space}
+Else if (key0 = "weosh" or key0 = "weosh;" or key0 = "WEOSH")
+    str = swore{Space}
+Else if (key0 = "wertah" or key0 = "wertah;" or key0 = "WERTAH")
+    str = weather{Space}
+Else if (key0 = "wetigh" or key0 = "wetigh;" or key0 = "WETIGH")
+    str = weight{Space}
+Else if (key0 = "wets" or key0 = "wets;" or key0 = "WETS")
+    str = west{Space}
+Else if (key0 = "widl" or key0 = "widl;" or key0 = "WIDL")
+    str = wild{Space}
+Else if (key0 = "win" or key0 = "win;" or key0 = "WIN")
+    str = win{Space}
+Else if (key0 = "woc" or key0 = "woc;" or key0 = "WOC")
+    str = cow{Space}
+Else if (key0 = "wom" or key0 = "wom;" or key0 = "WOM")
+    str = mow{Space}
+Else if (key0 = "wrgln" or key0 = "wrgln;" or key0 = "WRGLN")
+    str = wrangle{Space}
+Else if (key0 = "wrhn" or key0 = "wrhn;" or key0 = "WRHN")
+    str = nowhere{Space}
+Else if (key0 = "wrlnm" or key0 = "wrlnm;" or key0 = "WRLNM")
+    str = lawnmower{Space}
+Else if (key0 = "wrs" or key0 = "wrs;" or key0 = "WRS")
+    str = worse{Space}
+Else if (key0 = "wrtos" or key0 = "wrtos;" or key0 = "WRTOS")
+    str = worst{Space}
+Else if (key0 = "wsdm" or key0 = "wsdm;" or key0 = "WSDM")
+    str = wisdom{Space}
+Else if (key0 = "wakl" or key0 = "wakl;" or key0 = "WAKL")
+    str = walk{Space}
+Else if (key0 = "wal" or key0 = "wal;" or key0 = "WAL")
+    str = always{Space}
+Else if (key0 = "was" or key0 = "was;" or key0 = "WAS")
+    str = was{Space}
+Else if (key0 = "was" or key0 = "was;" or key0 = "WAS")
+    str = was{Space}
+Else if (key0 = "wash" or key0 = "wash;" or key0 = "WASH")
+    str = wash{Space}
+Else if (key0 = "wdf" or key0 = "wdf;" or key0 = "WDF")
+    str = forward{Space}
+Else if (key0 = "wdn" or key0 = "wdn;" or key0 = "WDN")
+    str = wouldn't{Space}
+Else if (key0 = "we" or key0 = "we;" or key0 = "WE")
+    str = we{Space}
+Else if (key0 = "weak" or key0 = "weak;" or key0 = "WEAK")
+    str = weak{Space}
+Else if (key0 = "weasm" or key0 = "weasm;" or key0 = "WEASM")
+    str = awesome{Space}
+Else if (key0 = "wef" or key0 = "wef;" or key0 = "WEF")
+    str = few{Space}
+Else if (key0 = "weh" or key0 = "weh;" or key0 = "WEH")
+    str = when{Space}
+Else if (key0 = "wehn" or key0 = "wehn;" or key0 = "WEHN")
+    str = when{Space}
+Else if (key0 = "weid" or key0 = "weid;" or key0 = "WEID")
+    str = wide{Space}
+Else if (key0 = "weid" or key0 = "weid;" or key0 = "WEID")
+    str = wide{Space}
+Else if (key0 = "weihl" or key0 = "weihl;" or key0 = "WEIHL")
+    str = while{Space}
+Else if (key0 = "weis" or key0 = "weis;" or key0 = "WEIS")
+    str = wise{Space}
+Else if (key0 = "weisdh" or key0 = "weisdh;" or key0 = "WEISDH")
+    str = wished{Space}
+Else if (key0 = "weiv" or key0 = "weiv;" or key0 = "WEIV")
+    str = view{Space}
+Else if (key0 = "wek" or key0 = "wek;" or key0 = "WEK")
+    str = week{Space}
+Else if (key0 = "wekn" or key0 = "wekn;" or key0 = "WEKN")
+    str = knew{Space}
+Else if (key0 = "wel" or key0 = "wel;" or key0 = "WEL")
+    str = well{Space}
+Else if (key0 = "wen" or key0 = "wen;" or key0 = "WEN")
+    str = new{Space}
+Else if (key0 = "weohl" or key0 = "weohl;" or key0 = "WEOHL")
+    str = whole{Space}
+Else if (key0 = "wer" or key0 = "wer;" or key0 = "WER")
+    str = were{Space}
+Else if (key0 = "wera" or key0 = "wera;" or key0 = "WERA")
+    str = wear{Space}
+Else if (key0 = "werasn" or key0 = "werasn;" or key0 = "WERASN")
+    str = answer{Space}
+Else if (key0 = "werc" or key0 = "werc;" or key0 = "WERC")
+    str = crew{Space}
+Else if (key0 = "werh" or key0 = "werh;" or key0 = "WERH")
+    str = where{Space}
+Else if (key0 = "werid" or key0 = "werid;" or key0 = "WERID")
+    str = weird{Space}
+Else if (key0 = "weriv" or key0 = "weriv;" or key0 = "WERIV")
+    str = review{Space}
+Else if (key0 = "werosb" or key0 = "werosb;" or key0 = "WEROSB")
+    str = browse{Space}
+Else if (key0 = "werta" or key0 = "werta;" or key0 = "WERTA")
+    str = water{Space}
+Else if (key0 = "werth" or key0 = "werth;" or key0 = "WERTH")
+    str = whether{Space}
+Else if (key0 = "werti" or key0 = "werti;" or key0 = "WERTI")
+    str = Twitter{Space}
+Else if (key0 = "wetadn" or key0 = "wetadn;" or key0 = "WETADN")
+    str = wanted{Space}
+Else if (key0 = "wetbn" or key0 = "wetbn;" or key0 = "WETBN")
+    str = between{Space}
+Else if (key0 = "wetih" or key0 = "wetih;" or key0 = "WETIH")
+    str = white{Space}
+Else if (key0 = "wetn" or key0 = "wetn;" or key0 = "WETN")
+    str = went{Space}
+Else if (key0 = "wev" or key0 = "wev;" or key0 = "WEV")
+    str = everywhere{Space}
+Else if (key0 = "wfl" or key0 = "wfl;" or key0 = "WFL")
+    str = follow{Space}
+Else if (key0 = "wgk" or key0 = "wgk;" or key0 = "WGK")
+    str = working{Space}
+Else if (key0 = "wgkl" or key0 = "wgkl;" or key0 = "WGKL")
+    str = walking{Space}
+Else if (key0 = "wh" or key0 = "wh;" or key0 = "WH")
+    str = who{Space}
+Else if (key0 = "when" or key0 = "when;" or key0 = "WHEN")
+    str = when{Space}
+Else if (key0 = "whl" or key0 = "whl;" or key0 = "WHL")
+    str = whole{Space}
+Else if (key0 = "whn" or key0 = "whn;" or key0 = "WHN")
+    str = when{Space}
+Else if (key0 = "widn" or key0 = "widn;" or key0 = "WIDN")
+    str = wind{Space}
+Else if (key0 = "wihc" or key0 = "wihc;" or key0 = "WIHC")
+    str = which{Space}
+Else if (key0 = "wil" or key0 = "wil;" or key0 = "WIL")
+    str = will{Space}
+Else if (key0 = "wiodn" or key0 = "wiodn;" or key0 = "WIODN")
+    str = window{Space}
+Else if (key0 = "wish" or key0 = "wish;" or key0 = "WISH")
+    str = wish{Space}
+Else if (key0 = "wk" or key0 = "wk;" or key0 = "WK")
+    str = work{Space}
+Else if (key0 = "wkl" or key0 = "wkl;" or key0 = "WKL")
+    str = walk{Space}
+Else if (key0 = "wl" or key0 = "wl;" or key0 = "WL")
+    str = we'll{Space}
+Else if (key0 = "wn" or key0 = "wn;" or key0 = "WN")
+    str = network{Space}
+Else if (key0 = "wo" or key0 = "wo;" or key0 = "WO")
+    str = would{Space}
+Else if (key0 = "woal" or key0 = "woal;" or key0 = "WOAL")
+    str = allow{Space}
+Else if (key0 = "wod" or key0 = "wod;" or key0 = "WOD")
+    str = wood{Space}
+Else if (key0 = "wodn" or key0 = "wodn;" or key0 = "WODN")
+    str = down{Space}
+Else if (key0 = "woh" or key0 = "woh;" or key0 = "WOH")
+    str = how{Space}
+Else if (key0 = "wokn" or key0 = "wokn;" or key0 = "WOKN")
+    str = know{Space}
+Else if (key0 = "wol" or key0 = "wol;" or key0 = "WOL")
+    str = low{Space}
+Else if (key0 = "won" or key0 = "won;" or key0 = "WON")
+    str = now{Space}
+Else if (key0 = "wosh" or key0 = "wosh;" or key0 = "WOSH")
+    str = show{Space}
+Else if (key0 = "wosn" or key0 = "wosn;" or key0 = "WOSN")
+    str = snow{Space}
+Else if (key0 = "wpn" or key0 = "wpn;" or key0 = "WPN")
+    str = newspaper{Space}
+Else if (key0 = "wr" or key0 = "wr;" or key0 = "WR")
+    str = we're{Space}
+Else if (key0 = "wr" or key0 = "wr;" or key0 = "WR")
+    str = we're{Space}
+Else if (key0 = "wrad" or key0 = "wrad;" or key0 = "WRAD")
+    str = draw{Space}
+Else if (key0 = "wram" or key0 = "wram;" or key0 = "WRAM")
+    str = warm{Space}
+Else if (key0 = "wrdf" or key0 = "wrdf;" or key0 = "WRDF")
+    str = wonderful{Space}
+Else if (key0 = "wrdfn" or key0 = "wrdfn;" or key0 = "WRDFN")
+    str = wonderful{Space}
+Else if (key0 = "wrdn" or key0 = "wrdn;" or key0 = "WRDN")
+    str = wonder{Space}
+Else if (key0 = "wrk" or key0 = "wrk;" or key0 = "WRK")
+    str = work{Space}
+Else if (key0 = "wrod" or key0 = "wrod;" or key0 = "WROD")
+    str = word{Space}
+Else if (key0 = "wrodl" or key0 = "wrodl;" or key0 = "WRODL")
+    str = world{Space}
+Else if (key0 = "wrog" or key0 = "wrog;" or key0 = "WROG")
+    str = grow{Space}
+Else if (key0 = "wrogn" or key0 = "wrogn;" or key0 = "WROGN")
+    str = wrong{Space}
+Else if (key0 = "wrok" or key0 = "wrok;" or key0 = "WROK")
+    str = work{Space}
+Else if (key0 = "wrt" or key0 = "wrt;" or key0 = "WRT")
+    str = write{Space}
+Else if (key0 = "wrtg" or key0 = "wrtg;" or key0 = "WRTG")
+    str = writing{Space}
+Else if (key0 = "wrtm" or key0 = "wrtm;" or key0 = "WRTM")
+    str = tomorrow{Space}
+Else if (key0 = "wrtoh" or key0 = "wrtoh;" or key0 = "WRTOH")
+    str = throw{Space}
+Else if (key0 = "wrtv" or key0 = "wrtv;" or key0 = "WRTV")
+    str = whatever{Space}
+Else if (key0 = "wrv" or key0 = "wrv;" or key0 = "WRV")
+    str = review{Space}
+Else if (key0 = "ws" or key0 = "ws;" or key0 = "WS")
+    str = website{Space}
+Else if (key0 = "wsf" or key0 = "wsf;" or key0 = "WSF")
+    str = software{Space}
+Else if (key0 = "wsm" or key0 = "wsm;" or key0 = "WSM")
+    str = somewhere{Space}
+Else if (key0 = "wt" or key0 = "wt;" or key0 = "WT")
+    str = what{Space}
+Else if (key0 = "wtadn" or key0 = "wtadn;" or key0 = "WTADN")
+    str = wanted{Space}
+Else if (key0 = "wtadn" or key0 = "wtadn;" or key0 = "WTADN")
+    str = wanted{Space}
+Else if (key0 = "wtah" or key0 = "wtah;" or key0 = "WTAH")
+    str = what{Space}
+Else if (key0 = "wtahc" or key0 = "wtahc;" or key0 = "WTAHC")
+    str = watch{Space}
+Else if (key0 = "wtan" or key0 = "wtan;" or key0 = "WTAN")
+    str = want{Space}
+Else if (key0 = "wtasn" or key0 = "wtasn;" or key0 = "WTASN")
+    str = wasn't{Space}
+Else if (key0 = "wsn" or key0 = "wsn;" or key0 = "WSN")
+    str = wasn't{Space}
+Else if (key0 = "wtb" or key0 = "wtb;" or key0 = "WTB")
+    str = by the way{Space}
+Else if (key0 = "wtd" or key0 = "wtd;" or key0 = "WTD")
+    str = toward{Space}
+Else if (key0 = "wth" or key0 = "wth;" or key0 = "WTH")
+    str = whether{Space}
+Else if (key0 = "wthc" or key0 = "wthc;" or key0 = "WTHC")
+    str = watch{Space}
+Else if (key0 = "wti" or key0 = "wti;" or key0 = "WTI")
+    str = within{Space}
+Else if (key0 = "wtia" or key0 = "wtia;" or key0 = "WTIA")
+    str = wait{Space}
+Else if (key0 = "wtishc" or key0 = "wtishc;" or key0 = "WTISHC")
+    str = switch{Space}
+Else if (key0 = "wto" or key0 = "wto;" or key0 = "WTO")
+    str = without{Space}
+Else if (key0 = "wton" or key0 = "wton;" or key0 = "WTON")
+    str = town{Space}
+Else if (key0 = "wtuo" or key0 = "wtuo;" or key0 = "WTUO")
+    str = without{Space}
+Else if (key0 = "wtv" or key0 = "wtv;" or key0 = "WTV")
+    str = whatever{Space}
+Else if (key0 = "wtvn" or key0 = "wtvn;" or key0 = "WTVN")
+    str = interview{Space}
+Else if (key0 = "wv" or key0 = "wv;" or key0 = "WV")
+    str = we've{Space}
+Else if (key0 = "wv" or key0 = "wv;" or key0 = "WV")
+    str = we've{Space}
+Else if (key0 = "wya" or key0 = "wya;" or key0 = "WYA")
+    str = way{Space}
+Else if (key0 = "wyahn" or key0 = "wyahn;" or key0 = "WYAHN")
+    str = anywhere{Space}
+Else if (key0 = "wyan" or key0 = "wyan;" or key0 = "WYAN")
+    str = anyway{Space}
+Else if (key0 = "wyh" or key0 = "wyh;" or key0 = "WYH")
+    str = why{Space}
+Else if (key0 = "wyl" or key0 = "wyl;" or key0 = "WYL")
+    str = yellow{Space}
+Else if (key0 = "werg" or key0 = "werg;" or key0 = "WERG")
+    str = grew{Space}
+Else if (key0 = "wetic" or key0 = "wetic;" or key0 = "WETIC")
+    str = twice{Space}
+Else if (key0 = "wtash" or key0 = "wtash;" or key0 = "WTASH")
+    str = what's{Space}
+Else if (key0 = "wts" or key0 = "wts;" or key0 = "WTS")
+    str = what's{Space}
 Return
+
 SENDR:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0% 
-IfEqual key0,ra, Send around{Space}
-Else IfEqual key0,ruioasv, Send saviour{Space}
-Else IfEqual key0,rtyph, Send therapy{Space}
-Else IfEqual key0,rtdlnm, Send detrimental{Space}
-Else IfEqual key0,rtdln, Send traditional{Space}
-Else IfEqual key0,ryc, Send cry{Space}
-Else IfEqual key0,rtpsdn, Send president{Space}
-Else IfEqual key0,rtuiag, Send guitar	{Space}
-Else IfEqual key0,rtip, Send trip{Space}
-Else IfEqual key0,ruosh, Send hours{Space}
-Else IfEqual key0,ridkn, Send drink{Space}
-Else IfEqual key0,riafc, Send Africa{Space}
-Else IfEqual key0,rtiac, Send arctic{Space}
-Else IfEqual key0,rtiacn, Send Antarctica{Space}
-Else IfEqual key0,wrb, Send borrow{Space}
-Else IfEqual key0,rhlb, Send horrible{Space}
-Else IfEqual key0,rp, Send peer{Space}
-Else IfEqual key0,rahcm, Send march{Space}
-Else IfEqual key0,rdv, Send drive{Space}
-Else IfEqual key0,rdbn, Send burden{Space}
-Else IfEqual key0,rdgn, Send garden{Space}
-Else IfEqual key0,rfcn, Send conference{Space}
-Else IfEqual key0,rfnm, Send inform{Space}
-Else IfEqual key0,riagc, Send cigar{Space}
-Else IfEqual key0,rid, Send rid{Space}
-Else IfEqual key0,ridb, Send bird{Space}
-Else IfEqual key0,riofnm, Send inform{Space}
-Else IfEqual key0,riom, Send mirror{Space}
-Else IfEqual key0,rionm, Send minor{Space}
-Else IfEqual key0,ripal, Send April{Space}
-Else IfEqual key0,risc, Send crisis{Space}
-Else IfEqual key0,riscn, Send insurance{Space}
-Else IfEqual key0,rlcm, Send commercial{Space}
-Else IfEqual key0,roajm, Send major{Space}
-Else IfEqual key0,rodn, Send donor{Space}
-Else IfEqual key0,rolc, Send color{Space}
-Else IfEqual key0,roogm, Send groom{Space}
-Else IfEqual key0,rpcn, Send pronounce{Space}
-Else IfEqual key0,rpscb, Send prescribe{Space}
-Else IfEqual key0,rpscm, Send compromise{Space}
-Else IfEqual key0,rsc, Send source{Space}
-Else IfEqual key0,rsjln, Send journalist{Space}
-Else IfEqual key0,rtashc, Send scratch{Space}
-Else IfEqual key0,rtav, Send avatar{Space}
-Else IfEqual key0,rtfgl, Send grateful{Space}
-Else IfEqual key0,rtgn, Send generate{Space}
-Else IfEqual key0,rtifcn, Send interface{Space}
-Else IfEqual key0,rtioavn, Send innovator{Space}
-Else IfEqual key0,rtioscn, Send constrict{Space}
-Else IfEqual key0,rtish, Send shirt{Space}
-Else IfEqual key0,rtodc, Send doctor{Space}
-Else IfEqual key0,rtofh, Send forth{Space}
-Else IfEqual key0,rtpnm, Send prominent{Space}
-Else IfEqual key0,rtpscn, Send transcript{Space}
-Else IfEqual key0,rtpsn, Send proposition{Space}
-Else IfEqual key0,rtsdm, Send mustard{Space}
-Else IfEqual key0,rtshlc, Send historical{Space}
-Else IfEqual key0,rtsjln, Send journalist{Space}
-Else IfEqual key0,rtuinm, Send monitor{Space}
-Else IfEqual key0,rtukc, Send truck{Space}
-Else IfEqual key0,rtuoscn, Send construct{Space}
-Else IfEqual key0,rtupab, Send abrupt{Space}
-Else IfEqual key0,rtuskc, Send struck{Space}
-Else IfEqual key0,rtyivn, Send inventory{Space}
-Else IfEqual key0,rtyoph, Send trophy{Space}
-Else IfEqual key0,rtyshlc, Send hysterical{Space}
-Else IfEqual key0,ruasg, Send sugar{Space}
-Else IfEqual key0,ruogh, Send rough{Space}
-Else IfEqual key0,rydlv, Send delivery{Space}
-Else IfEqual key0,ryfb, Send February{Space}
-Else IfEqual key0,ryjn, Send January{Space}
-Else IfEqual key0,rysdcv, Send discovery{Space}
-Else IfEqual key0,rysg, Send surgery{Space}
-Else IfEqual key0,ryuasm, Send summary{Space}
-Else IfEqual key0,rus, Send yours{Space}
-Else IfEqual key0,rtialc, Send critical{Space}
-Else IfEqual key0,ropasl, Send proposal{Space}
-Else IfEqual key0,rshc, Send proposal{Space}
-Else IfEqual key0,rsc, Send source{Space}
-Else IfEqual key0,ryagn, Send angry{Space}
-Else IfEqual key0,rign, Send ignore{Space}
-Else IfEqual key0,rtsglcn, Send congratulations{Space}
-Else IfEqual key0,rfv, Send forever{Space}
-Else IfEqual key0,rtpcm, Send competitor{Space}
-Else IfEqual key0,rl, Send real{Space}
-Else IfEqual key0,rtiln, Send internal{Space}
-Else IfEqual key0,rtualn, Send natural{Space}
-Else IfEqual key0,rthb, Send breath{Space}
-Else IfEqual key0,rtlcn, Send control{Space}
-Else IfEqual key0,rdh, Send heard{Space}
-Else IfEqual key0,rlcm, Send molecular{Space}
-Else IfEqual key0,ryd, Send ready{Space}
-Else IfEqual key0,roahcb, Send broach{Space}
-Else IfEqual key0,riav, Send vari{Space}
-Else IfEqual key0,rpsd, Send spread{Space}
-Else IfEqual key0,rpshc, Send purchase{Space}
-Else IfEqual key0,rtaghlm, Send algorithm{Space}
-Else IfEqual key0,rodhc, Send chord{Space}
-Else IfEqual key0,rtagnm, Send argument{Space}
-Else IfEqual key0,rtfh, Send further{Space}
-Else IfEqual key0,rtisdc, Send district{Space}
-Else IfEqual key0,rtpdxn, Send expenditure{Space}
-Else IfEqual key0,rafm, Send farm{Space}
-Else IfEqual key0,rag, Send argue{Space}
-Else IfEqual key0,rakc, Send crack{Space}
-Else IfEqual key0,ram, Send arm{Space}
- Else IfEqual key0,rtlvn, Send relevant{Space}
-Else IfEqual key0,ram, Send arm{Space}
-Else IfEqual key0,rdfcn, Send difference{Space}
-Else IfEqual key0,rdfl, Send federal{Space}
-Else IfEqual key0,rfb, Send brief{Space}
-Else IfEqual key0,rfcnm, Send confirm{Space}
-Else IfEqual key0,rfgn, Send finger{Space}
-Else IfEqual key0,rghc, Send charge{Space}
-Else IfEqual key0,rgln, Send general{Space}
-Else IfEqual key0,rglv, Send leverage{Space}
-Else IfEqual key0,rhlcn, Send chronicle{Space}
-Else IfEqual key0,ria, Send air{Space}
-Else IfEqual key0,riabn, Send brain{Space}
-Else IfEqual key0,ricb, Send crib{Space}
-Else IfEqual key0,rid, Send rid{Space}
-Else IfEqual key0,rif, Send riff{Space}
-Else IfEqual key0,ripaghc, Send graphic{Space}
-Else IfEqual key0,ripalcn, Send principal{Space}
-Else IfEqual key0,ripsvm, Send improvise{Space}
-Else IfEqual key0,risk, Send risk{Space}
-Else IfEqual key0,rjn, Send junior{Space}
-Else IfEqual key0,rkm, Send maker{Space}
-Else IfEqual key0,rlc, Send clear{Space}
-Else IfEqual key0,rlcm, Send curriculum{Space}
-Else IfEqual key0,rlcm, Send miracle{Space}
-Else IfEqual key0,roasb, Send absorb{Space}
-Else IfEqual key0,rosvb, Send observe{Space}
-Else IfEqual key0,rpagh, Send graph{Space}
-Else IfEqual key0,rpaghc, Send graphic{Space}
-Else IfEqual key0,rpg, Send grp group{Space}
-Else IfEqual key0,rplcn, Send principle{Space}
-Else IfEqual key0,rpscnm, Send comparison{Space}
-Else IfEqual key0,rpshm, Send sophomore{Space}
-Else IfEqual key0,rpsl, Send pleasure{Space}
-Else IfEqual key0,rpsln, Send personal{Space}
-Else IfEqual key0,rsfc, Send surface{Space}
-Else IfEqual key0,rsfhnm, Send freshman{Space}
-Else IfEqual key0,rsflc, Send salesforce{Space}
-Else IfEqual key0,rsgln, Send singular{Space}
-Else IfEqual key0,rsgln, Send singular{Space}
-Else IfEqual key0,rslcn, Send counselor{Space}
-Else IfEqual key0,rsxc, Send exercise{Space}
-Else IfEqual key0,rtagn, Send grant{Space}
-Else IfEqual key0,rtasm, Send smart{Space}
-Else IfEqual key0,rtfc, Send factor{Space}
-Else IfEqual key0,rtfgn, Send forgotten{Space}
-Else IfEqual key0,rthn, Send neither{Space}
-Else IfEqual key0,rtidh, Send third{Space}
-Else IfEqual key0,rtioshc, Send historic{Space}
-Else IfEqual key0,rtisgn, Send string{Space}
-Else IfEqual key0,rtkm, Send market{Space}
-Else IfEqual key0,rtoafc, Send factor{Space}
-Else IfEqual key0,rtofg, Send forgot{Space}
-Else IfEqual key0,rtohn, Send north{Space}
-Else IfEqual key0,rtopa, Send parrot{Space}
-Else IfEqual key0,rtopa, Send transport{Space}
-Else IfEqual key0,rtplc, Send particular{Space}
-Else IfEqual key0,rtpslc, Send spectacular{Space}
-Else IfEqual key0,rtpslc, Send transport{Space}
-Else IfEqual key0,rtpsn., Send transportation{Space}
-Else IfEqual key0,rtpvm, Send primitive{Space}
-Else IfEqual key0,rtpvn, Send prevent{Space}
-Else IfEqual key0,rtpxnm, Send experiment{Space}
-Else IfEqual key0,rtscn, Send countries{Space}
-Else IfEqual key0,rtsdb, Send disturb{Space}
-Else IfEqual key0,rtsfn, Send transfer{Space}
-Else IfEqual key0,rtshc, Send historic{Space}
-Else IfEqual key0,rtuam, Send trauma{Space}
-Else IfEqual key0,rtuo, Send tour{Space}
-Else IfEqual key0,rtuoah, Send author{Space}
-Else IfEqual key0,rtyan, Send attorney{Space}
-Else IfEqual key0,rtyp, Send property{Space}
-Else IfEqual key0,rtyp, Send property{Space}
-Else IfEqual key0,ruadg, Send guard{Space}
-Else IfEqual key0,rubn, Send burn{Space}
-Else IfEqual key0,ruodn, Send round{Space}
-Else IfEqual key0,ruos, Send ours{Space}
-Else IfEqual key0,rush, Send rush{Space}
-Else IfEqual key0,ryanm, Send anymore{Space}
-Else IfEqual key0,ryanm, Send anymore{Space}
-Else IfEqual key0,ryjn, Send journey{Space}
-Else IfEqual key0,rypas, Send spray{Space}
-Else IfEqual key0,rtphc, Send chapter{Space}
-Else IfEqual key0,rtsdc, Send district{Space}
-Else IfEqual key0,rtygc, Send category{Space}
-Else IfEqual key0,radc, Send card{Space}
-Else IfEqual key0,rof, Send for{Space}
-Else IfEqual key0,ryad, Send yard{Space}
-Else IfEqual key0,radg, Send grad{Space}
-Else IfEqual key0,radh, Send hard{Space}
-Else IfEqual key0,rakm, Send mark{Space}
-Else IfEqual key0,rakm, Send mark{Space}
-Else IfEqual key0,rasdv, Send advisor{Space}
-Else IfEqual key0,rdcnm, Send recommend{Space}
-Else IfEqual key0,rdgn, Send gender{Space}
-Else IfEqual key0,rdgn, Send gender{Space}
-Else IfEqual key0,rdhn, Send hundred{Space}
-Else IfEqual key0,rdlv, Send deliver{Space}
-Else IfEqual key0,rdm, Send dream{Space}
-Else IfEqual key0,rdn, Send round{Space}
-Else IfEqual key0,rdnm, Send random{Space}
-Else IfEqual key0,rdvn, Send vendor{Space}
-Else IfEqual key0,rfc, Send force{Space}
-Else IfEqual key0,rfc, Send force{Space}
-Else IfEqual key0,rfcn, Send reference{Space}
-Else IfEqual key0,rfcn, Send reference{Space}
-Else IfEqual key0,rfcn, Send conference{Space}
-Else IfEqual key0,rflv, Send flavor{Space}
-Else IfEqual key0,rfm, Send firm{Space}
-Else IfEqual key0,rg, Send regard{Space}
-Else IfEqual key0,rgcn, Send encourage{Space}
-Else IfEqual key0,rgcn, Send encourage{Space}
-Else IfEqual key0,rgl, Send regular{Space}
-Else IfEqual key0,rgl, Send regardless{Space}
-Else IfEqual key0,rgl, Send regular{Space}
-Else IfEqual key0,rglv, Send leverage{Space}
-Else IfEqual key0,rhcbm, Send chamber{Space}
-Else IfEqual key0,rhvb, Send behavior{Space}
-Else IfEqual key0,riadn, Send drain{Space}
-Else IfEqual key0,riah, Send hair{Space}
-Else IfEqual key0,rifm, Send firm{Space}
-Else IfEqual key0,riscn, Send increase{Space}
-Else IfEqual key0,rlb, Send reliable{Space}
-Else IfEqual key0,rlcm, Send commercial{Space}
-Else IfEqual key0,rlv, Send lever{Space}
-Else IfEqual key0,roalb, Send labor{Space}
-Else IfEqual key0,rod, Send door{Space}
-Else IfEqual key0,rogcn, Send organic{Space}
-Else IfEqual key0,rohn, Send honor{Space}
-Else IfEqual key0,rokc, Send rock{Space}
-Else IfEqual key0,rolc, Send color{Space}
-Else IfEqual key0,rpd, Send drop{Space}
-Else IfEqual key0,rpav, Send approve{Space}
-Else IfEqual key0,rpcv, Send perceive{Space}
-Else IfEqual key0,rpdn, Send pardon{Space}
-Else IfEqual key0,rpghc, Send graphic{Space}
-Else IfEqual key0,rpl, Send popular{Space}
-Else IfEqual key0,rpl, Send popular{Space}
-Else IfEqual key0,rpsc, Send precise{Space}
-Else IfEqual key0,rpscn, Send presence{Space}
-Else IfEqual key0,rpsf, Send profess{Space}
-Else IfEqual key0,rpsg, Send progress{Space}
-Else IfEqual key0,rscn, Send increase{Space}
-Else IfEqual key0,rscn, Send increase{Space}
-Else IfEqual key0,rscnm, Send consumer{Space}
-Else IfEqual key0,rsd, Send desire{Space}
-Else IfEqual key0,rsdc, Send decrease{Space}
-Else IfEqual key0,rsdlc, Send ridiculous{Space}
-Else IfEqual key0,rsdlc, Send ridiculous{Space}
-Else IfEqual key0,rsdn, Send surround{Space}
-Else IfEqual key0,rsdv, Send deserve{Space}
-Else IfEqual key0,rsv, Send various{Space}
-Else IfEqual key0,rsxc, Send exercise{Space}
-Else IfEqual key0,rsxc, Send exercise{Space}
-Else IfEqual key0,rtab, Send attribute{Space}
-Else IfEqual key0,rtalc, Send article{Space}
-Else IfEqual key0,rtcbn, Send contribute{Space}
-Else IfEqual key0,rtdcn, Send coordinate{Space}
-Else IfEqual key0,rtidcn, Send coordinate{Space}
-Else IfEqual key0,rtfcnm, Send manufacture{Space}
-Else IfEqual key0,rtflc, Send reflect{Space}
-Else IfEqual key0,rtial, Send trial{Space}
-Else IfEqual key0,rtikc, Send trick{Space}
-Else IfEqual key0,rtlcb, Send collaborate{Space}
-Else IfEqual key0,rto, Send root{Space}
-Else IfEqual key0,rtoashc, Send orchestra{Space}
-Else IfEqual key0,rtopm, Send prompt{Space}
-Else IfEqual key0,rtpf, Send profit{Space}
-Else IfEqual key0,rtpfn, Send nonprofit{Space}
-Else IfEqual key0,rtypscn, Send transparency{Space}
-Else IfEqual key0,rtpsdcn, Send description{Space}
-Else IfEqual key0,rtpsn, Send inspiration{Space}
-Else IfEqual key0,rtipvn, Send prevent{Space}
-Else IfEqual key0,rtpvn, Send prevent{Space}
-Else IfEqual key0,rtpx, Send expert{Space}
-Else IfEqual key0,rtscn, Send contrast{Space}
-Else IfEqual key0,rtsdnm, Send demonstrate{Space}
-Else IfEqual key0,rtsgl, Send struggle{Space}
-Else IfEqual key0,rtsn, Send restaurant{Space}
-Else IfEqual key0,rtsn, Send resonate{Space}
-Else IfEqual key0,rtsn, Send restaurant{Space}
-Else IfEqual key0,rtsnm, Send instrument{Space}
-Else IfEqual key0,rtuom, Send tumor{Space}
-Else IfEqual key0,rtycn, Send country{Space}
-Else IfEqual key0,rtyhcm, Send chemistry{Space}
-Else IfEqual key0,rtyhm, Send rhythm{Space}
-Else IfEqual key0,rtysc, Send security{Space}
-Else IfEqual key0,rtysh, Send history{Space}
-Else IfEqual key0,rudg, Send drug{Space}
-Else IfEqual key0,rvb, Send brave{Space}
-Else IfEqual key0,rvm, Send remove{Space}
-Else IfEqual key0,rygln, Send neurology{Space}
-Else IfEqual key0,ripvm, Send improve{Space}	
-Else IfEqual key0,rudm, Send drum{Space}
-Else IfEqual key0,ragb, Send grab{Space}
-Else IfEqual key0,rcv, Send receive{Space}
-Else IfEqual key0,rdbn, Send burden{Space}
-Else IfEqual key0,riop, Send prior{Space}
-Else IfEqual key0,rnm, Send remain{Space}
-Else IfEqual key0,rpcm, Send compare{Space}
-Else IfEqual key0,rpsm, Send promise{Space}
-Else IfEqual key0,rpsm, Send promise{Space}
-Else IfEqual key0,rscv, Send service{Space}
-Else IfEqual key0,rsdcv, Send discover{Space}
-Else IfEqual key0,rsdn, Send surround{Space}
-Else IfEqual key0,rsv, Send survive{Space}
-Else IfEqual key0,rsvn, Send version{Space}
-Else IfEqual key0,rtd, Send tried{Space}
-Else IfEqual key0,rtdgh, Send daughter{Space}
-Else IfEqual key0,rtfg, Send forget{Space}
-Else IfEqual key0,rthc, Send teacher{Space}
-Else IfEqual key0,rtian, Send train{Space}
-Else IfEqual key0,rtic, Send critic{Space}
-Else IfEqual key0,rtioscn, Send construction{Space}
-Else IfEqual key0,rtiscm, Send criticism{Space}
-Else IfEqual key0,rtlm, Send material{Space}
-Else IfEqual key0,rtln, Send relation{Space}
-Else IfEqual key0,rtscn, Send construct{Space}
-Else IfEqual key0,rtscvn, Send constructive{Space}
-Else IfEqual key0,rtsln, Send resolution{Space}
-Else IfEqual key0,ryac, Send carry{Space}
-Else IfEqual key0,rth, Send rather{Space}	
-Else IfEqual key0,rab, Send bar{Space}
-Else IfEqual key0,rac, Send across{Space}
-Else IfEqual key0,radbn, Send brand{Space}
-Else IfEqual key0,radh, Send hard{Space}
-Else IfEqual key0,raf, Send far{Space}
-Else IfEqual key0,rafkn, Send frank{Space}
-Else IfEqual key0,ral, Send ral
-Else IfEqual key0,rax, Send extra{Space}
-Else IfEqual key0,rb, Send br
-Else IfEqual key0,rbm, Send remember{Space}
-Else IfEqual key0,rbn, Send brain{Space}
-Else IfEqual key0,rc, Send crazy{Space}
-Else IfEqual key0,rd, Send read{Space}
-Else IfEqual key0,rdg, Send during{Space}
-Else IfEqual key0,rdlz, Send realized{Space}
-Else IfEqual key0,rf, Send from{Space}
-Else IfEqual key0,rfg, Send figure{Space}
-Else IfEqual key0,rflm, Send familiar{Space}
-Else IfEqual key0,rfn, Send refine{Space}
-Else IfEqual key0,rgb, Send bring{Space}
-Else IfEqual key0,rgnm, Send manager{Space}
-Else IfEqual key0,riognm, Send morning{Space}
-Else IfEqual key0,rgzcn, Send recognize{Space}
-Else IfEqual key0,rh, Send here{Space}
-Else IfEqual key0,riaf, Send fair{Space}
-Else IfEqual key0,ridhlc, Send children{Space}
-Else IfEqual key0,rdhlcn, Send children{Space}
-Else IfEqual key0,rigbn, Send bring{Space}
-Else IfEqual key0,rigl, Send girl{Space}
-Else IfEqual key0,rihc, Send rich{Space}
-Else IfEqual key0,riocm, Send micro
-Else IfEqual key0,ripa, Send pair{Space}
-Else IfEqual key0,rjm, Send major{Space}
-Else IfEqual key0,rlnm, Send normal{Space}
-Else IfEqual key0,rlz, Send realize{Space}
-Else IfEqual key0,rm, Send more{Space}
-Else IfEqual key0,rn, Send right now{Space}
-Else IfEqual key0,ro, Send or{Space}
-Else IfEqual key0,roacm, Send macro
-Else IfEqual key0,road, Send road{Space}
-Else IfEqual key0,roadb, Send board{Space}
-Else IfEqual key0,roadbn, Send onboard{Space}
-Else IfEqual key0,roadl, Send dollar{Space}
-Else IfEqual key0,roalnm, Send normal{Space}
-Else IfEqual key0,rofm, Send form{Space}
-Else IfEqual key0,rog, Send organization{Space}
-Else IfEqual key0,rogln, Send original{Space}
-Else IfEqual key0,rogn, Send original{Space}
-Else IfEqual key0,rognm, Send morning{Space}
-Else IfEqual key0,rol, Send roll{Space}
-Else IfEqual key0,rolnm, Send normal{Space}
-Else IfEqual key0,rom, Send room{Space}
-Else IfEqual key0,rop, Send pro
-Else IfEqual key0,ropb, Send probably{Space}
-Else IfEqual key0,ropd, Send drop{Space}
-Else IfEqual key0,rtpdc, Send product{Space}
-Else IfEqual key0,ropj, Send project{Space}
-Else IfEqual key0,roplb, Send problem{Space}
-Else IfEqual key0,rosc, Send cross{Space}
-Else IfEqual key0,rosg, Send organizations{Space}
-Else IfEqual key0,roslc, Send scroll{Space}
-Else IfEqual key0,rpa, Send appreciate{Space}
-Else IfEqual key0,rpahc, Send approach{Space}
-Else IfEqual key0,rpak, Send park{Space}
-Else IfEqual key0,rpb, Send problem{Space}
-Else IfEqual key0,rpc, Send process{Space}
-Else IfEqual key0,rpdc, Send proceed{Space}
-Else IfEqual key0,rpdv, Send provide{Space}
-Else IfEqual key0,rpf, Send professional{Space}
-Else IfEqual key0,rpfcnm, Send performance{Space}
-Else IfEqual key0,rpfl, Send profile{Space}
-Else IfEqual key0,rpfm, Send perform{Space}
-Else IfEqual key0,rpgm, Send program{Space}
-Else IfEqual key0,rplb, Send problem{Space}
-Else IfEqual key0,rplx, Send explore{Space}
-Else IfEqual key0,rps, Send surprise{Space}
-Else IfEqual key0,rpslbn, Send responsible{Space}
-Else IfEqual key0,rpsdn, Send respond{Space}
-Else IfEqual key0,rpsh, Send perhaps{Space}
-Else IfEqual key0,rtpsbn  , Send responsibility{Space}
-Else IfEqual key0,rpsn, Send response{Space}
-Else IfEqual key0,rs, Send sure{Space}
-Else IfEqual key0,rsdcb, Send describe{Space}
-Else IfEqual key0,rsdcn, Send consider{Space}
-Else IfEqual key0,rsl, Send release{Space}
-Else IfEqual key0,rslm, Send similar{Space}
-Else IfEqual key0,rslv, Send several{Space}
-Else IfEqual key0,rsn, Send reason{Space}
-Else IfEqual key0,rt, Send right{Space}
-Else IfEqual key0,rtad, Send traditional{Space}
-Else IfEqual key0,rtakc, Send track{Space}
-Else IfEqual key0,rtal, Send alright{Space}
-Else IfEqual key0,rtalc, Send article{Space}
-Else IfEqual key0,rtan, Send another{Space}
-Else IfEqual key0,rtas, Send strategy{Space}
-Else IfEqual key0,rtasdn, Send standard{Space}
-Else IfEqual key0,rtasn, Send trans{Space}
-Else IfEqual key0,rtc, Send create{Space}
-Else IfEqual key0,rtcn, Send certain{Space}
-Else IfEqual key0,rtcv, Send creative{Space}
-Else IfEqual key0,rtflc, Send reflect{Space}
-Else IfEqual key0,rtfn, Send fortunate{Space}
-Else IfEqual key0,rtg, Send trying{Space}
-Else IfEqual key0,rtgc, Send creating{Space}
-Else IfEqual key0,rtgh, Send together{Space}
-Else IfEqual key0,rti, Send tri
-Else IfEqual key0,rtiafc, Send traffic{Space}
-Else IfEqual key0,rtian, Send intra
-Else IfEqual key0,rtiasn, Send strain{Space}
-Else IfEqual key0,rtioasn, Send transition{Space}
-Else IfEqual key0,rtign, Send integrate{Space}
-Else IfEqual key0,rtil, Send literally{Space}
-Else IfEqual key0,rtiodcn, Send coordinate{Space}
-Else IfEqual key0,rtiodn, Send introduce{Space}
-Else IfEqual key0,rtion, Send intro
-Else IfEqual key0,rtipa, Send particular{Space}
-Else IfEqual key0,rtl, Send literal{Space}
-Else IfEqual key0,rtlb, Send trouble{Space}
-Else IfEqual key0,rtlc, Send control{Space}
-Else IfEqual key0,rtlcb, Send collaborate{Space}
-Else IfEqual key0,rtlv, Send relative{Space}
-Else IfEqual key0,rtm, Send remote{Space}
-Else IfEqual key0,rtn, Send entire{Space}
-Else IfEqual key0,rtoac, Send actor{Space}
-Else IfEqual key0,rtoacn, Send contract{Space}
-Else IfEqual key0,rtob, Send obtrusive{Space}
-Else IfEqual key0,rtocn, Send contro
-Else IfEqual key0,rtofn, Send front{Space}
-Else IfEqual key0,rtom, Send tomorrow{Space}
-Else IfEqual key0,rtos, Send sort{Space}
-Else IfEqual key0,rtosg, Send storage{Space}
-Else IfEqual key0,rtosgn, Send strong{Space}
-Else IfEqual key0,rtosh, Send short{Space}
-Else IfEqual key0,rtp, Send repeat{Space}
-Else IfEqual key0,rtpa, Send part{Space}
-Else IfEqual key0,rtpac, Send practice{Space}
-Else IfEqual key0,rtpan, Send apparent{Space}
-Else IfEqual key0,rtpc, Send picture{Space}
-Else IfEqual key0,rtpcn, Send perception{Space}
-Else IfEqual key0,rtps, Send separate{Space}
-Else IfEqual key0,rtpsc, Send respect{Space}
-Else IfEqual key0,rtpscv, Send perspective{Space}
-Else IfEqual key0,rtpv, Send private{Space}
-Else IfEqual key0,rts, Send start{Space}
-Else IfEqual key0,rtsbn, Send stubborn{Space}
-Else IfEqual key0,rtscm, Send customer{Space}
-Else IfEqual key0,rtsd, Send disastrous{Space}
-Else IfEqual key0,rtsdc, Send distract{Space}
-Else IfEqual key0,rtsdn, Send standard{Space}
-Else IfEqual key0,rtsg, Send starting{Space}
-Else IfEqual key0,rtsgh, Send straight{Space}
-Else IfEqual key0,rtsm, Send stream{Space}
-Else IfEqual key0,rtualb, Send brutal{Space}
-Else IfEqual key0,rtualc, Send cultural{Space}
-Else IfEqual key0,rtuh, Send hurt{Space}
-Else IfEqual key0,rtuogh, Send through{Space}
-Else IfEqual key0,rtun, Send turn{Space}
-Else IfEqual key0,rtuops, Send support{Space}
-Else IfEqual key0,rtus, Send trust{Space}
-Else IfEqual key0,rtvn, Send narrative{Space}
-Else IfEqual key0,rty, Send try{Space}
-Else IfEqual key0,rtyos, Send story{Space}
-Else IfEqual key0,rtypa, Send party{Space}
-Else IfEqual key0,rtyul, Send truly{Space}
-Else IfEqual key0,ru, Send your{Space}
-Else IfEqual key0,ruioasv, Send various{Space}
-Else IfEqual key0,ruiosc, Send curious{Space}
-Else IfEqual key0,run, Send run{Space}
-Else IfEqual key0,ruo, Send our{Space}
-Else IfEqual key0,ruoc, Send occur{Space}
-Else IfEqual key0,ruodgn, Send ground{Space}
-Else IfEqual key0,ruoh, Send hour{Space}
-Else IfEqual key0,ruopg, Send group{Space}
-Else IfEqual key0,ruphc, Send purchase{Space}
-Else IfEqual key0,rv, Send virtual reality{Space}
-Else IfEqual key0,ry, Send year{Space}
-Else IfEqual key0,rya, Send {BackSpace}ary{Space}
-Else IfEqual key0,ryafkln, Send frankly{Space}
-Else IfEqual key0,ryav, Send vary{Space}
-Else IfEqual key0,ryos, Send sorry{Space}
-Else IfEqual key0,rypcv, Send privacy{Space}
-Else IfEqual key0,rys, Send years{Space}
-Else IfEqual key0,ran, Send ran{Space}
-Else IfEqual key0,rdcv, Send received{Space}
-Else IfEqual key0,rjln, Send journal{Space}
-Else IfEqual key0,ropa, Send approach{Space}
-Else IfEqual key0,ropahc, Send approach{Space}
-Else IfEqual key0,rpam, Send ramp{Space}
-Else IfEqual key0,rpsv, Send previous{Space}
-Else IfEqual key0,rsm, Send measure{Space}
-Else IfEqual key0,rta, Send art{Space}
-Else IfEqual key0,rtac, Send attract{Space}
-Else IfEqual key0,rtdc, Send direct{Space}
-Else IfEqual key0,rtdg, Send graduate{Space}
-Else IfEqual key0,rtdnm, Send determine{Space}
-Else IfEqual key0,rtf, Send feature{Space}
-Else IfEqual key0,rtghb, Send brought{Space}
-Else IfEqual key0,rtian, Send train{Space}
-Else IfEqual key0,rtias, Send artist{Space}
-Else IfEqual key0,rtipn, Send print{Space}
-Else IfEqual key0,rtpl, Send partial{Space}
-Else IfEqual key0,rtpm, Send promote{Space}
-Else IfEqual key0,rtsdb, Send distribute{Space}
-Else IfEqual key0,ruopd, Send proud{Space}
-Else IfEqual key0,rtpn, Send pattern{Space}
-Else IfEqual key0,rypm, Send primary{Space}
+if (key0 = "ra" or key0 = "ra;" or key0 = "RA")
+    str = around{Space}
+Else if (key0 = "ruioasv" or key0 = "ruioasv;" or key0 = "RUIOASV")
+    str = saviour{Space}
+Else if (key0 = "rtyph" or key0 = "rtyph;" or key0 = "RTYPH")
+    str = therapy{Space}
+Else if (key0 = "rtdlnm" or key0 = "rtdlnm;" or key0 = "RTDLNM")
+    str = detrimental{Space}
+Else if (key0 = "rtdln" or key0 = "rtdln;" or key0 = "RTDLN")
+    str = traditional{Space}
+Else if (key0 = "ryc" or key0 = "ryc;" or key0 = "RYC")
+    str = cry{Space}
+Else if (key0 = "rtpsdn" or key0 = "rtpsdn;" or key0 = "RTPSDN")
+    str = president{Space}
+Else if (key0 = "rtuiag" or key0 = "rtuiag;" or key0 = "RTUIAG")
+    str = guitar
+Else if (key0 = "rtip" or key0 = "rtip;" or key0 = "RTIP")
+    str = trip{Space}
+Else if (key0 = "ruosh" or key0 = "ruosh;" or key0 = "RUOSH")
+    str = hours{Space}
+Else if (key0 = "ridkn" or key0 = "ridkn;" or key0 = "RIDKN")
+    str = drink{Space}
+Else if (key0 = "riafc" or key0 = "riafc;" or key0 = "RIAFC")
+    str = Africa{Space}
+Else if (key0 = "rtiac" or key0 = "rtiac;" or key0 = "RTIAC")
+    str = arctic{Space}
+Else if (key0 = "rtiacn" or key0 = "rtiacn;" or key0 = "RTIACN")
+    str = Antarctica{Space}
+Else if (key0 = "wrb" or key0 = "wrb;" or key0 = "WRB")
+    str = borrow{Space}
+Else if (key0 = "rhlb" or key0 = "rhlb;" or key0 = "RHLB")
+    str = horrible{Space}
+Else if (key0 = "rp" or key0 = "rp;" or key0 = "RP")
+    str = peer{Space}
+Else if (key0 = "rahcm" or key0 = "rahcm;" or key0 = "RAHCM")
+    str = march{Space}
+Else if (key0 = "rdv" or key0 = "rdv;" or key0 = "RDV")
+    str = drive{Space}
+Else if (key0 = "rdbn" or key0 = "rdbn;" or key0 = "RDBN")
+    str = burden{Space}
+Else if (key0 = "rdgn" or key0 = "rdgn;" or key0 = "RDGN")
+    str = garden{Space}
+Else if (key0 = "rfcn" or key0 = "rfcn;" or key0 = "RFCN")
+    str = conference{Space}
+Else if (key0 = "rfnm" or key0 = "rfnm;" or key0 = "RFNM")
+    str = inform{Space}
+Else if (key0 = "riagc" or key0 = "riagc;" or key0 = "RIAGC")
+    str = cigar{Space}
+Else if (key0 = "rid" or key0 = "rid;" or key0 = "RID")
+    str = rid{Space}
+Else if (key0 = "ridb" or key0 = "ridb;" or key0 = "RIDB")
+    str = bird{Space}
+Else if (key0 = "riofnm" or key0 = "riofnm;" or key0 = "RIOFNM")
+    str = inform{Space}
+Else if (key0 = "riom" or key0 = "riom;" or key0 = "RIOM")
+    str = mirror{Space}
+Else if (key0 = "rionm" or key0 = "rionm;" or key0 = "RIONM")
+    str = minor{Space}
+Else if (key0 = "ripal" or key0 = "ripal;" or key0 = "RIPAL")
+    str = April{Space}
+Else if (key0 = "risc" or key0 = "risc;" or key0 = "RISC")
+    str = crisis{Space}
+Else if (key0 = "riscn" or key0 = "riscn;" or key0 = "RISCN")
+    str = insurance{Space}
+Else if (key0 = "rlcm" or key0 = "rlcm;" or key0 = "RLCM")
+    str = commercial{Space}
+Else if (key0 = "roajm" or key0 = "roajm;" or key0 = "ROAJM")
+    str = major{Space}
+Else if (key0 = "rodn" or key0 = "rodn;" or key0 = "RODN")
+    str = donor{Space}
+Else if (key0 = "rolc" or key0 = "rolc;" or key0 = "ROLC")
+    str = color{Space}
+Else if (key0 = "roogm" or key0 = "roogm;" or key0 = "ROOGM")
+    str = groom{Space}
+Else if (key0 = "rpcn" or key0 = "rpcn;" or key0 = "RPCN")
+    str = pronounce{Space}
+Else if (key0 = "rpscb" or key0 = "rpscb;" or key0 = "RPSCB")
+    str = prescribe{Space}
+Else if (key0 = "rpscm" or key0 = "rpscm;" or key0 = "RPSCM")
+    str = compromise{Space}
+Else if (key0 = "rsc" or key0 = "rsc;" or key0 = "RSC")
+    str = source{Space}
+Else if (key0 = "rsjln" or key0 = "rsjln;" or key0 = "RSJLN")
+    str = journalist{Space}
+Else if (key0 = "rtashc" or key0 = "rtashc;" or key0 = "RTASHC")
+    str = scratch{Space}
+Else if (key0 = "rtav" or key0 = "rtav;" or key0 = "RTAV")
+    str = avatar{Space}
+Else if (key0 = "rtfgl" or key0 = "rtfgl;" or key0 = "RTFGL")
+    str = grateful{Space}
+Else if (key0 = "rtgn" or key0 = "rtgn;" or key0 = "RTGN")
+    str = generate{Space}
+Else if (key0 = "rtifcn" or key0 = "rtifcn;" or key0 = "RTIFCN")
+    str = interface{Space}
+Else if (key0 = "rtioavn" or key0 = "rtioavn;" or key0 = "RTIOAVN")
+    str = innovator{Space}
+Else if (key0 = "rtioscn" or key0 = "rtioscn;" or key0 = "RTIOSCN")
+    str = constrict{Space}
+Else if (key0 = "rtish" or key0 = "rtish;" or key0 = "RTISH")
+    str = shirt{Space}
+Else if (key0 = "rtodc" or key0 = "rtodc;" or key0 = "RTODC")
+    str = doctor{Space}
+Else if (key0 = "rtofh" or key0 = "rtofh;" or key0 = "RTOFH")
+    str = forth{Space}
+Else if (key0 = "rtpnm" or key0 = "rtpnm;" or key0 = "RTPNM")
+    str = prominent{Space}
+Else if (key0 = "rtpscn" or key0 = "rtpscn;" or key0 = "RTPSCN")
+    str = transcript{Space}
+Else if (key0 = "rtpsn" or key0 = "rtpsn;" or key0 = "RTPSN")
+    str = proposition{Space}
+Else if (key0 = "rtsdm" or key0 = "rtsdm;" or key0 = "RTSDM")
+    str = mustard{Space}
+Else if (key0 = "rtshlc" or key0 = "rtshlc;" or key0 = "RTSHLC")
+    str = historical{Space}
+Else if (key0 = "rtsjln" or key0 = "rtsjln;" or key0 = "RTSJLN")
+    str = journalist{Space}
+Else if (key0 = "rtuinm" or key0 = "rtuinm;" or key0 = "RTUINM")
+    str = monitor{Space}
+Else if (key0 = "rtukc" or key0 = "rtukc;" or key0 = "RTUKC")
+    str = truck{Space}
+Else if (key0 = "rtuoscn" or key0 = "rtuoscn;" or key0 = "RTUOSCN")
+    str = construct{Space}
+Else if (key0 = "rtupab" or key0 = "rtupab;" or key0 = "RTUPAB")
+    str = abrupt{Space}
+Else if (key0 = "rtuskc" or key0 = "rtuskc;" or key0 = "RTUSKC")
+    str = struck{Space}
+Else if (key0 = "rtyivn" or key0 = "rtyivn;" or key0 = "RTYIVN")
+    str = inventory{Space}
+Else if (key0 = "rtyoph" or key0 = "rtyoph;" or key0 = "RTYOPH")
+    str = trophy{Space}
+Else if (key0 = "rtyshlc" or key0 = "rtyshlc;" or key0 = "RTYSHLC")
+    str = hysterical{Space}
+Else if (key0 = "ruasg" or key0 = "ruasg;" or key0 = "RUASG")
+    str = sugar{Space}
+Else if (key0 = "ruogh" or key0 = "ruogh;" or key0 = "RUOGH")
+    str = rough{Space}
+Else if (key0 = "rydlv" or key0 = "rydlv;" or key0 = "RYDLV")
+    str = delivery{Space}
+Else if (key0 = "ryfb" or key0 = "ryfb;" or key0 = "RYFB")
+    str = February{Space}
+Else if (key0 = "ryjn" or key0 = "ryjn;" or key0 = "RYJN")
+    str = January{Space}
+Else if (key0 = "rysdcv" or key0 = "rysdcv;" or key0 = "RYSDCV")
+    str = discovery{Space}
+Else if (key0 = "rysg" or key0 = "rysg;" or key0 = "RYSG")
+    str = surgery{Space}
+Else if (key0 = "ryuasm" or key0 = "ryuasm;" or key0 = "RYUASM")
+    str = summary{Space}
+Else if (key0 = "rus" or key0 = "rus;" or key0 = "RUS")
+    str = yours{Space}
+Else if (key0 = "rtialc" or key0 = "rtialc;" or key0 = "RTIALC")
+    str = critical{Space}
+Else if (key0 = "ropasl" or key0 = "ropasl;" or key0 = "ROPASL")
+    str = proposal{Space}
+Else if (key0 = "rshc" or key0 = "rshc;" or key0 = "RSHC")
+    str = proposal{Space}
+Else if (key0 = "rsc" or key0 = "rsc;" or key0 = "RSC")
+    str = source{Space}
+Else if (key0 = "ryagn" or key0 = "ryagn;" or key0 = "RYAGN")
+    str = angry{Space}
+Else if (key0 = "rign" or key0 = "rign;" or key0 = "RIGN")
+    str = ignore{Space}
+Else if (key0 = "rtsglcn" or key0 = "rtsglcn;" or key0 = "RTSGLCN")
+    str = congratulations{Space}
+Else if (key0 = "rfv" or key0 = "rfv;" or key0 = "RFV")
+    str = forever{Space}
+Else if (key0 = "rtpcm" or key0 = "rtpcm;" or key0 = "RTPCM")
+    str = competitor{Space}
+Else if (key0 = "rl" or key0 = "rl;" or key0 = "RL")
+    str = real{Space}
+Else if (key0 = "rtiln" or key0 = "rtiln;" or key0 = "RTILN")
+    str = internal{Space}
+Else if (key0 = "rtualn" or key0 = "rtualn;" or key0 = "RTUALN")
+    str = natural{Space}
+Else if (key0 = "rthb" or key0 = "rthb;" or key0 = "RTHB")
+    str = breath{Space}
+Else if (key0 = "rtlcn" or key0 = "rtlcn;" or key0 = "RTLCN")
+    str = control{Space}
+Else if (key0 = "rdh" or key0 = "rdh;" or key0 = "RDH")
+    str = heard{Space}
+Else if (key0 = "rlcm" or key0 = "rlcm;" or key0 = "RLCM")
+    str = molecular{Space}
+Else if (key0 = "ryd" or key0 = "ryd;" or key0 = "RYD")
+    str = ready{Space}
+Else if (key0 = "roahcb" or key0 = "roahcb;" or key0 = "ROAHCB")
+    str = broach{Space}
+Else if (key0 = "riav" or key0 = "riav;" or key0 = "RIAV")
+    str = vari{Space}
+Else if (key0 = "rpsd" or key0 = "rpsd;" or key0 = "RPSD")
+    str = spread{Space}
+Else if (key0 = "rpshc" or key0 = "rpshc;" or key0 = "RPSHC")
+    str = purchase{Space}
+Else if (key0 = "rtaghlm" or key0 = "rtaghlm;" or key0 = "RTAGHLM")
+    str = algorithm{Space}
+Else if (key0 = "rodhc" or key0 = "rodhc;" or key0 = "RODHC")
+    str = chord{Space}
+Else if (key0 = "rtagnm" or key0 = "rtagnm;" or key0 = "RTAGNM")
+    str = argument{Space}
+Else if (key0 = "rtfh" or key0 = "rtfh;" or key0 = "RTFH")
+    str = further{Space}
+Else if (key0 = "rtisdc" or key0 = "rtisdc;" or key0 = "RTISDC")
+    str = district{Space}
+Else if (key0 = "rtpdxn" or key0 = "rtpdxn;" or key0 = "RTPDXN")
+    str = expenditure{Space}
+Else if (key0 = "rafm" or key0 = "rafm;" or key0 = "RAFM")
+    str = farm{Space}
+Else if (key0 = "rag" or key0 = "rag;" or key0 = "RAG")
+    str = argue{Space}
+Else if (key0 = "rakc" or key0 = "rakc;" or key0 = "RAKC")
+    str = crack{Space}
+Else if (key0 = "ram" or key0 = "ram;" or key0 = "RAM")
+    str = arm{Space}
+Else if (key0 = "rtlvn" or key0 = "rtlvn;" or key0 = "RTLVN")
+    str = relevant{Space}
+Else if (key0 = "ram" or key0 = "ram;" or key0 = "RAM")
+    str = arm{Space}
+Else if (key0 = "rdfcn" or key0 = "rdfcn;" or key0 = "RDFCN")
+    str = difference{Space}
+Else if (key0 = "rdfl" or key0 = "rdfl;" or key0 = "RDFL")
+    str = federal{Space}
+Else if (key0 = "rfb" or key0 = "rfb;" or key0 = "RFB")
+    str = brief{Space}
+Else if (key0 = "rfcnm" or key0 = "rfcnm;" or key0 = "RFCNM")
+    str = confirm{Space}
+Else if (key0 = "rfgn" or key0 = "rfgn;" or key0 = "RFGN")
+    str = finger{Space}
+Else if (key0 = "rghc" or key0 = "rghc;" or key0 = "RGHC")
+    str = charge{Space}
+Else if (key0 = "rgln" or key0 = "rgln;" or key0 = "RGLN")
+    str = general{Space}
+Else if (key0 = "rglv" or key0 = "rglv;" or key0 = "RGLV")
+    str = leverage{Space}
+Else if (key0 = "rhlcn" or key0 = "rhlcn;" or key0 = "RHLCN")
+    str = chronicle{Space}
+Else if (key0 = "ria" or key0 = "ria;" or key0 = "RIA")
+    str = air{Space}
+Else if (key0 = "riabn" or key0 = "riabn;" or key0 = "RIABN")
+    str = brain{Space}
+Else if (key0 = "ricb" or key0 = "ricb;" or key0 = "RICB")
+    str = crib{Space}
+Else if (key0 = "rid" or key0 = "rid;" or key0 = "RID")
+    str = rid{Space}
+Else if (key0 = "rif" or key0 = "rif;" or key0 = "RIF")
+    str = riff{Space}
+Else if (key0 = "ripaghc" or key0 = "ripaghc;" or key0 = "RIPAGHC")
+    str = graphic{Space}
+Else if (key0 = "ripalcn" or key0 = "ripalcn;" or key0 = "RIPALCN")
+    str = principal{Space}
+Else if (key0 = "ripsvm" or key0 = "ripsvm;" or key0 = "RIPSVM")
+    str = improvise{Space}
+Else if (key0 = "risk" or key0 = "risk;" or key0 = "RISK")
+    str = risk{Space}
+Else if (key0 = "rjn" or key0 = "rjn;" or key0 = "RJN")
+    str = junior{Space}
+Else if (key0 = "rkm" or key0 = "rkm;" or key0 = "RKM")
+    str = maker{Space}
+Else if (key0 = "rlc" or key0 = "rlc;" or key0 = "RLC")
+    str = clear{Space}
+Else if (key0 = "rlcm" or key0 = "rlcm;" or key0 = "RLCM")
+    str = curriculum{Space}
+Else if (key0 = "rlcm" or key0 = "rlcm;" or key0 = "RLCM")
+    str = miracle{Space}
+Else if (key0 = "roasb" or key0 = "roasb;" or key0 = "ROASB")
+    str = absorb{Space}
+Else if (key0 = "rosvb" or key0 = "rosvb;" or key0 = "ROSVB")
+    str = observe{Space}
+Else if (key0 = "rpagh" or key0 = "rpagh;" or key0 = "RPAGH")
+    str = graph{Space}
+Else if (key0 = "rpaghc" or key0 = "rpaghc;" or key0 = "RPAGHC")
+    str = graphic{Space}
+Else if (key0 = "rpg" or key0 = "rpg;" or key0 = "RPG")
+    str = grp group{Space}
+Else if (key0 = "rplcn" or key0 = "rplcn;" or key0 = "RPLCN")
+    str = principle{Space}
+Else if (key0 = "rpscnm" or key0 = "rpscnm;" or key0 = "RPSCNM")
+    str = comparison{Space}
+Else if (key0 = "rpshm" or key0 = "rpshm;" or key0 = "RPSHM")
+    str = sophomore{Space}
+Else if (key0 = "rpsl" or key0 = "rpsl;" or key0 = "RPSL")
+    str = pleasure{Space}
+Else if (key0 = "rpsln" or key0 = "rpsln;" or key0 = "RPSLN")
+    str = personal{Space}
+Else if (key0 = "rsfc" or key0 = "rsfc;" or key0 = "RSFC")
+    str = surface{Space}
+Else if (key0 = "rsfhnm" or key0 = "rsfhnm;" or key0 = "RSFHNM")
+    str = freshman{Space}
+Else if (key0 = "rsflc" or key0 = "rsflc;" or key0 = "RSFLC")
+    str = salesforce{Space}
+Else if (key0 = "rsgln" or key0 = "rsgln;" or key0 = "RSGLN")
+    str = singular{Space}
+Else if (key0 = "rsgln" or key0 = "rsgln;" or key0 = "RSGLN")
+    str = singular{Space}
+Else if (key0 = "rslcn" or key0 = "rslcn;" or key0 = "RSLCN")
+    str = counselor{Space}
+Else if (key0 = "rsxc" or key0 = "rsxc;" or key0 = "RSXC")
+    str = exercise{Space}
+Else if (key0 = "rtagn" or key0 = "rtagn;" or key0 = "RTAGN")
+    str = grant{Space}
+Else if (key0 = "rtasm" or key0 = "rtasm;" or key0 = "RTASM")
+    str = smart{Space}
+Else if (key0 = "rtfc" or key0 = "rtfc;" or key0 = "RTFC")
+    str = factor{Space}
+Else if (key0 = "rtfgn" or key0 = "rtfgn;" or key0 = "RTFGN")
+    str = forgotten{Space}
+Else if (key0 = "rthn" or key0 = "rthn;" or key0 = "RTHN")
+    str = neither{Space}
+Else if (key0 = "rtidh" or key0 = "rtidh;" or key0 = "RTIDH")
+    str = third{Space}
+Else if (key0 = "rtioshc" or key0 = "rtioshc;" or key0 = "RTIOSHC")
+    str = historic{Space}
+Else if (key0 = "rtisgn" or key0 = "rtisgn;" or key0 = "RTISGN")
+    str = string{Space}
+Else if (key0 = "rtkm" or key0 = "rtkm;" or key0 = "RTKM")
+    str = market{Space}
+Else if (key0 = "rtoafc" or key0 = "rtoafc;" or key0 = "RTOAFC")
+    str = factor{Space}
+Else if (key0 = "rtofg" or key0 = "rtofg;" or key0 = "RTOFG")
+    str = forgot{Space}
+Else if (key0 = "rtohn" or key0 = "rtohn;" or key0 = "RTOHN")
+    str = north{Space}
+Else if (key0 = "rtopa" or key0 = "rtopa;" or key0 = "RTOPA")
+    str = parrot{Space}
+Else if (key0 = "rtopa" or key0 = "rtopa;" or key0 = "RTOPA")
+    str = transport{Space}
+Else if (key0 = "rtplc" or key0 = "rtplc;" or key0 = "RTPLC")
+    str = particular{Space}
+Else if (key0 = "rtpslc" or key0 = "rtpslc;" or key0 = "RTPSLC")
+    str = spectacular{Space}
+Else if (key0 = "rtpslc" or key0 = "rtpslc;" or key0 = "RTPSLC")
+    str = transport{Space}
+Else if (key0 = "rtpsn." or key0 = "rtpsn.;" or key0 = "RTPSN.")
+    str = transportation{Space}
+Else if (key0 = "rtpvm" or key0 = "rtpvm;" or key0 = "RTPVM")
+    str = primitive{Space}
+Else if (key0 = "rtpvn" or key0 = "rtpvn;" or key0 = "RTPVN")
+    str = prevent{Space}
+Else if (key0 = "rtpxnm" or key0 = "rtpxnm;" or key0 = "RTPXNM")
+    str = experiment{Space}
+Else if (key0 = "rtscn" or key0 = "rtscn;" or key0 = "RTSCN")
+    str = countries{Space}
+Else if (key0 = "rtsdb" or key0 = "rtsdb;" or key0 = "RTSDB")
+    str = disturb{Space}
+Else if (key0 = "rtsfn" or key0 = "rtsfn;" or key0 = "RTSFN")
+    str = transfer{Space}
+Else if (key0 = "rtshc" or key0 = "rtshc;" or key0 = "RTSHC")
+    str = historic{Space}
+Else if (key0 = "rtuam" or key0 = "rtuam;" or key0 = "RTUAM")
+    str = trauma{Space}
+Else if (key0 = "rtuo" or key0 = "rtuo;" or key0 = "RTUO")
+    str = tour{Space}
+Else if (key0 = "rtuoah" or key0 = "rtuoah;" or key0 = "RTUOAH")
+    str = author{Space}
+Else if (key0 = "rtyan" or key0 = "rtyan;" or key0 = "RTYAN")
+    str = attorney{Space}
+Else if (key0 = "rtyp" or key0 = "rtyp;" or key0 = "RTYP")
+    str = property{Space}
+Else if (key0 = "rtyp" or key0 = "rtyp;" or key0 = "RTYP")
+    str = property{Space}
+Else if (key0 = "ruadg" or key0 = "ruadg;" or key0 = "RUADG")
+    str = guard{Space}
+Else if (key0 = "rubn" or key0 = "rubn;" or key0 = "RUBN")
+    str = burn{Space}
+Else if (key0 = "ruodn" or key0 = "ruodn;" or key0 = "RUODN")
+    str = round{Space}
+Else if (key0 = "ruos" or key0 = "ruos;" or key0 = "RUOS")
+    str = ours{Space}
+Else if (key0 = "rush" or key0 = "rush;" or key0 = "RUSH")
+    str = rush{Space}
+Else if (key0 = "ryanm" or key0 = "ryanm;" or key0 = "RYANM")
+    str = anymore{Space}
+Else if (key0 = "ryanm" or key0 = "ryanm;" or key0 = "RYANM")
+    str = anymore{Space}
+Else if (key0 = "ryjn" or key0 = "ryjn;" or key0 = "RYJN")
+    str = journey{Space}
+Else if (key0 = "rypas" or key0 = "rypas;" or key0 = "RYPAS")
+    str = spray{Space}
+Else if (key0 = "rtphc" or key0 = "rtphc;" or key0 = "RTPHC")
+    str = chapter{Space}
+Else if (key0 = "rtsdc" or key0 = "rtsdc;" or key0 = "RTSDC")
+    str = district{Space}
+Else if (key0 = "rtygc" or key0 = "rtygc;" or key0 = "RTYGC")
+    str = category{Space}
+Else if (key0 = "radc" or key0 = "radc;" or key0 = "RADC")
+    str = card{Space}
+Else if (key0 = "rof" or key0 = "rof;" or key0 = "ROF")
+    str = for{Space}
+Else if (key0 = "ryad" or key0 = "ryad;" or key0 = "RYAD")
+    str = yard{Space}
+Else if (key0 = "radg" or key0 = "radg;" or key0 = "RADG")
+    str = grad{Space}
+Else if (key0 = "radh" or key0 = "radh;" or key0 = "RADH")
+    str = hard{Space}
+Else if (key0 = "rakm" or key0 = "rakm;" or key0 = "RAKM")
+    str = mark{Space}
+Else if (key0 = "rasdv" or key0 = "rasdv;" or key0 = "RASDV")
+    str = advisor{Space}
+Else if (key0 = "rdcnm" or key0 = "rdcnm;" or key0 = "RDCNM")
+    str = recommend{Space}
+Else if (key0 = "rdgn" or key0 = "rdgn;" or key0 = "RDGN")
+    str = gender{Space}
+Else if (key0 = "rdhn" or key0 = "rdhn;" or key0 = "RDHN")
+    str = hundred{Space}
+Else if (key0 = "rdlv" or key0 = "rdlv;" or key0 = "RDLV")
+    str = deliver{Space}
+Else if (key0 = "rdm" or key0 = "rdm;" or key0 = "RDM")
+    str = dream{Space}
+Else if (key0 = "rdn" or key0 = "rdn;" or key0 = "RDN")
+    str = round{Space}
+Else if (key0 = "rdnm" or key0 = "rdnm;" or key0 = "RDNM")
+    str = random{Space}
+Else if (key0 = "rdvn" or key0 = "rdvn;" or key0 = "RDVN")
+    str = vendor{Space}
+Else if (key0 = "rfc" or key0 = "rfc;" or key0 = "RFC")
+    str = force{Space}
+Else if (key0 = "rfc" or key0 = "rfc;" or key0 = "RFC")
+    str = force{Space}
+Else if (key0 = "rfcn" or key0 = "rfcn;" or key0 = "RFCN")
+    str = reference{Space}
+Else if (key0 = "rfcn" or key0 = "rfcn;" or key0 = "RFCN")
+    str = conference{Space}
+Else if (key0 = "rflv" or key0 = "rflv;" or key0 = "RFLV")
+    str = flavor{Space}
+Else if (key0 = "rfm" or key0 = "rfm;" or key0 = "RFM")
+    str = firm{Space}
+Else if (key0 = "rg" or key0 = "rg;" or key0 = "RG")
+    str = regard{Space}
+Else if (key0 = "rgcn" or key0 = "rgcn;" or key0 = "RGCN")
+    str = encourage{Space}
+Else if (key0 = "rgl" or key0 = "rgl;" or key0 = "RGL")
+    str = regular{Space}
+Else if (key0 = "rglv" or key0 = "rglv;" or key0 = "RGLV")
+    str = leverage{Space}
+Else if (key0 = "rhcbm" or key0 = "rhcbm;" or key0 = "RHCBM")
+    str = chamber{Space}
+Else if (key0 = "rhvb" or key0 = "rhvb;" or key0 = "RHVB")
+    str = behavior{Space}
+Else if (key0 = "riadn" or key0 = "riadn;" or key0 = "RIADN")
+    str = drain{Space}
+Else if (key0 = "riah" or key0 = "riah;" or key0 = "RIAH")
+    str = hair{Space}
+Else if (key0 = "rifm" or key0 = "rifm;" or key0 = "RIFM")
+    str = firm{Space}
+Else if (key0 = "riscn" or key0 = "riscn;" or key0 = "RISCN")
+    str = increase{Space}
+Else if (key0 = "rlb" or key0 = "rlb;" or key0 = "RLB")
+    str = reliable{Space}
+Else if (key0 = "rlcm" or key0 = "rlcm;" or key0 = "RLCM")
+    str = commercial{Space}
+Else if (key0 = "rlv" or key0 = "rlv;" or key0 = "RLV")
+    str = lever{Space}
+Else if (key0 = "roalb" or key0 = "roalb;" or key0 = "ROALB")
+    str = labor{Space}
+Else if (key0 = "rod" or key0 = "rod;" or key0 = "ROD")
+    str = door{Space}
+Else if (key0 = "rogcn" or key0 = "rogcn;" or key0 = "ROGCN")
+    str = organic{Space}
+Else if (key0 = "rohn" or key0 = "rohn;" or key0 = "ROHN")
+    str = honor{Space}
+Else if (key0 = "rokc" or key0 = "rokc;" or key0 = "ROKC")
+    str = rock{Space}
+Else if (key0 = "rolc" or key0 = "rolc;" or key0 = "ROLC")
+    str = color{Space}
+Else if (key0 = "rpd" or key0 = "rpd;" or key0 = "RPD")
+    str = drop{Space}
+Else if (key0 = "rpav" or key0 = "rpav;" or key0 = "RPAV")
+    str = approve{Space}
+Else if (key0 = "rpcv" or key0 = "rpcv;" or key0 = "RPCV")
+    str = perceive{Space}
+Else if (key0 = "rpdn" or key0 = "rpdn;" or key0 = "RPDN")
+    str = pardon{Space}
+Else if (key0 = "rpghc" or key0 = "rpghc;" or key0 = "RPGHC")
+    str = graphic{Space}
+Else if (key0 = "rpl" or key0 = "rpl;" or key0 = "RPL")
+    str = popular{Space}
+Else if (key0 = "rpsc" or key0 = "rpsc;" or key0 = "RPSC")
+    str = precise{Space}
+Else if (key0 = "rpscn" or key0 = "rpscn;" or key0 = "RPSCN")
+    str = presence{Space}
+Else if (key0 = "rpsf" or key0 = "rpsf;" or key0 = "RPSF")
+    str = profess{Space}
+Else if (key0 = "rpsg" or key0 = "rpsg;" or key0 = "RPSG")
+    str = progress{Space}
+Else if (key0 = "rscn" or key0 = "rscn;" or key0 = "RSCN")
+    str = increase{Space}
+Else if (key0 = "rscnm" or key0 = "rscnm;" or key0 = "RSCNM")
+    str = consumer{Space}
+Else if (key0 = "rsd" or key0 = "rsd;" or key0 = "RSD")
+    str = desire{Space}
+Else if (key0 = "rsdc" or key0 = "rsdc;" or key0 = "RSDC")
+    str = decrease{Space}
+Else if (key0 = "rsdlc" or key0 = "rsdlc;" or key0 = "RSDLC")
+    str = ridiculous{Space}
+Else if (key0 = "rsdn" or key0 = "rsdn;" or key0 = "RSDN")
+    str = surround{Space}
+Else if (key0 = "rsdv" or key0 = "rsdv;" or key0 = "RSDV")
+    str = deserve{Space}
+Else if (key0 = "rsv" or key0 = "rsv;" or key0 = "RSV")
+    str = various{Space}
+Else if (key0 = "rsxc" or key0 = "rsxc;" or key0 = "RSXC")
+    str = exercise{Space}
+Else if (key0 = "rsxc" or key0 = "rsxc;" or key0 = "RSXC")
+    str = exercise{Space}
+Else if (key0 = "rtab" or key0 = "rtab;" or key0 = "RTAB")
+    str = attribute{Space}
+Else if (key0 = "rtalc" or key0 = "rtalc;" or key0 = "RTALC")
+    str = article{Space}
+Else if (key0 = "rtcbn" or key0 = "rtcbn;" or key0 = "RTCBN")
+    str = contribute{Space}
+Else if (key0 = "rtdcn" or key0 = "rtdcn;" or key0 = "RTDCN")
+    str = coordinate{Space}
+Else if (key0 = "rtidcn" or key0 = "rtidcn;" or key0 = "RTIDCN")
+    str = coordinate{Space}
+Else if (key0 = "rtfcnm" or key0 = "rtfcnm;" or key0 = "RTFCNM")
+    str = manufacture{Space}
+Else if (key0 = "rtflc" or key0 = "rtflc;" or key0 = "RTFLC")
+    str = reflect{Space}
+Else if (key0 = "rtial" or key0 = "rtial;" or key0 = "RTIAL")
+    str = trial{Space}
+Else if (key0 = "rtikc" or key0 = "rtikc;" or key0 = "RTIKC")
+    str = trick{Space}
+Else if (key0 = "rtlcb" or key0 = "rtlcb;" or key0 = "RTLCB")
+    str = collaborate{Space}
+Else if (key0 = "rto" or key0 = "rto;" or key0 = "RTO")
+    str = root{Space}
+Else if (key0 = "rtoashc" or key0 = "rtoashc;" or key0 = "RTOASHC")
+    str = orchestra{Space}
+Else if (key0 = "rtopm" or key0 = "rtopm;" or key0 = "RTOPM")
+    str = prompt{Space}
+Else if (key0 = "rtpf" or key0 = "rtpf;" or key0 = "RTPF")
+    str = profit{Space}
+Else if (key0 = "rtpfn" or key0 = "rtpfn;" or key0 = "RTPFN")
+    str = nonprofit{Space}
+Else if (key0 = "rtypscn" or key0 = "rtypscn;" or key0 = "RTYPSCN")
+    str = transparency{Space}
+Else if (key0 = "rtpsdcn" or key0 = "rtpsdcn;" or key0 = "RTPSDCN")
+    str = description{Space}
+Else if (key0 = "rtpsn" or key0 = "rtpsn;" or key0 = "RTPSN")
+    str = inspiration{Space}
+Else if (key0 = "rtipvn" or key0 = "rtipvn;" or key0 = "RTIPVN")
+    str = prevent{Space}
+Else if (key0 = "rtpvn" or key0 = "rtpvn;" or key0 = "RTPVN")
+    str = prevent{Space}
+Else if (key0 = "rtpx" or key0 = "rtpx;" or key0 = "RTPX")
+    str = expert{Space}
+Else if (key0 = "rtscn" or key0 = "rtscn;" or key0 = "RTSCN")
+    str = contrast{Space}
+Else if (key0 = "rtsdnm" or key0 = "rtsdnm;" or key0 = "RTSDNM")
+    str = demonstrate{Space}
+Else if (key0 = "rtsgl" or key0 = "rtsgl;" or key0 = "RTSGL")
+    str = struggle{Space}
+Else if (key0 = "rtsn" or key0 = "rtsn;" or key0 = "RTSN")
+    str = restaurant{Space}
+Else if (key0 = "rtsn" or key0 = "rtsn;" or key0 = "RTSN")
+    str = resonate{Space}
+Else if (key0 = "rtsn" or key0 = "rtsn;" or key0 = "RTSN")
+    str = restaurant{Space}
+Else if (key0 = "rtsnm" or key0 = "rtsnm;" or key0 = "RTSNM")
+    str = instrument{Space}
+Else if (key0 = "rtuom" or key0 = "rtuom;" or key0 = "RTUOM")
+    str = tumor{Space}
+Else if (key0 = "rtycn" or key0 = "rtycn;" or key0 = "RTYCN")
+    str = country{Space}
+Else if (key0 = "rtyhcm" or key0 = "rtyhcm;" or key0 = "RTYHCM")
+    str = chemistry{Space}
+Else if (key0 = "rtyhm" or key0 = "rtyhm;" or key0 = "RTYHM")
+    str = rhythm{Space}
+Else if (key0 = "rtysc" or key0 = "rtysc;" or key0 = "RTYSC")
+    str = security{Space}
+Else if (key0 = "rtysh" or key0 = "rtysh;" or key0 = "RTYSH")
+    str = history{Space}
+Else if (key0 = "rudg" or key0 = "rudg;" or key0 = "RUDG")
+    str = drug{Space}
+Else if (key0 = "rvb" or key0 = "rvb;" or key0 = "RVB")
+    str = brave{Space}
+Else if (key0 = "rvm" or key0 = "rvm;" or key0 = "RVM")
+    str = remove{Space}
+Else if (key0 = "rygln" or key0 = "rygln;" or key0 = "RYGLN")
+    str = neurology{Space}
+Else if (key0 = "ripvm" or key0 = "ripvm;" or key0 = "RIPVM")
+    str = improve{Space}
+Else if (key0 = "rudm" or key0 = "rudm;" or key0 = "RUDM")
+    str = drum{Space}
+Else if (key0 = "ragb" or key0 = "ragb;" or key0 = "RAGB")
+    str = grab{Space}
+Else if (key0 = "rcv" or key0 = "rcv;" or key0 = "RCV")
+    str = receive{Space}
+Else if (key0 = "rdbn" or key0 = "rdbn;" or key0 = "RDBN")
+    str = burden{Space}
+Else if (key0 = "riop" or key0 = "riop;" or key0 = "RIOP")
+    str = prior{Space}
+Else if (key0 = "rnm" or key0 = "rnm;" or key0 = "RNM")
+    str = remain{Space}
+Else if (key0 = "rpcm" or key0 = "rpcm;" or key0 = "RPCM")
+    str = compare{Space}
+Else if (key0 = "rpsm" or key0 = "rpsm;" or key0 = "RPSM")
+    str = promise{Space}
+Else if (key0 = "rpsm" or key0 = "rpsm;" or key0 = "RPSM")
+    str = promise{Space}
+Else if (key0 = "rscv" or key0 = "rscv;" or key0 = "RSCV")
+    str = service{Space}
+Else if (key0 = "rsdcv" or key0 = "rsdcv;" or key0 = "RSDCV")
+    str = discover{Space}
+Else if (key0 = "rsdn" or key0 = "rsdn;" or key0 = "RSDN")
+    str = surround{Space}
+Else if (key0 = "rsv" or key0 = "rsv;" or key0 = "RSV")
+    str = survive{Space}
+Else if (key0 = "rsvn" or key0 = "rsvn;" or key0 = "RSVN")
+    str = version{Space}
+Else if (key0 = "rtd" or key0 = "rtd;" or key0 = "RTD")
+    str = tried{Space}
+Else if (key0 = "rtdgh" or key0 = "rtdgh;" or key0 = "RTDGH")
+    str = daughter{Space}
+Else if (key0 = "rtfg" or key0 = "rtfg;" or key0 = "RTFG")
+    str = forget{Space}
+Else if (key0 = "rthc" or key0 = "rthc;" or key0 = "RTHC")
+    str = teacher{Space}
+Else if (key0 = "rtian" or key0 = "rtian;" or key0 = "RTIAN")
+    str = train{Space}
+Else if (key0 = "rtic" or key0 = "rtic;" or key0 = "RTIC")
+    str = critic{Space}
+Else if (key0 = "rtioscn" or key0 = "rtioscn;" or key0 = "RTIOSCN")
+    str = construction{Space}
+Else if (key0 = "rtiscm" or key0 = "rtiscm;" or key0 = "RTISCM")
+    str = criticism{Space}
+Else if (key0 = "rtlm" or key0 = "rtlm;" or key0 = "RTLM")
+    str = material{Space}
+Else if (key0 = "rtln" or key0 = "rtln;" or key0 = "RTLN")
+    str = relation{Space}
+Else if (key0 = "rtscn" or key0 = "rtscn;" or key0 = "RTSCN")
+    str = construct{Space}
+Else if (key0 = "rtscvn" or key0 = "rtscvn;" or key0 = "RTSCVN")
+    str = constructive{Space}
+Else if (key0 = "rtsln" or key0 = "rtsln;" or key0 = "RTSLN")
+    str = resolution{Space}
+Else if (key0 = "ryac" or key0 = "ryac;" or key0 = "RYAC")
+    str = carry{Space}
+Else if (key0 = "rth" or key0 = "rth;" or key0 = "RTH")
+    str = rather{Space}
+Else if (key0 = "rab" or key0 = "rab;" or key0 = "RAB")
+    str = bar{Space}
+Else if (key0 = "rac" or key0 = "rac;" or key0 = "RAC")
+    str = across{Space}
+Else if (key0 = "radbn" or key0 = "radbn;" or key0 = "RADBN")
+    str = brand{Space}
+Else if (key0 = "radh" or key0 = "radh;" or key0 = "RADH")
+    str = hard{Space}
+Else if (key0 = "raf" or key0 = "raf;" or key0 = "RAF")
+    str = far{Space}
+Else if (key0 = "rafkn" or key0 = "rafkn;" or key0 = "RAFKN")
+    str = frank{Space}
+Else if (key0 = "ral" or key0 = "ral;" or key0 = "RAL")
+    str = ral
+Else if (key0 = "rax" or key0 = "rax;" or key0 = "RAX")
+    str = extra{Space}
+Else if (key0 = "rb" or key0 = "rb;" or key0 = "RB")
+    str = br
+Else if (key0 = "rbm" or key0 = "rbm;" or key0 = "RBM")
+    str = remember{Space}
+Else if (key0 = "rbn" or key0 = "rbn;" or key0 = "RBN")
+    str = brain{Space}
+Else if (key0 = "rc" or key0 = "rc;" or key0 = "RC")
+    str = crazy{Space}
+Else if (key0 = "rd" or key0 = "rd;" or key0 = "RD")
+    str = read{Space}
+Else if (key0 = "rdg" or key0 = "rdg;" or key0 = "RDG")
+    str = during{Space}
+Else if (key0 = "rdlz" or key0 = "rdlz;" or key0 = "RDLZ")
+    str = realized{Space}
+Else if (key0 = "rf" or key0 = "rf;" or key0 = "RF")
+    str = from{Space}
+Else if (key0 = "rfg" or key0 = "rfg;" or key0 = "RFG")
+    str = figure{Space}
+Else if (key0 = "rflm" or key0 = "rflm;" or key0 = "RFLM")
+    str = familiar{Space}
+Else if (key0 = "rfn" or key0 = "rfn;" or key0 = "RFN")
+    str = refine{Space}
+Else if (key0 = "rgb" or key0 = "rgb;" or key0 = "RGB")
+    str = bring{Space}
+Else if (key0 = "rgnm" or key0 = "rgnm;" or key0 = "RGNM")
+    str = manager{Space}
+Else if (key0 = "riognm" or key0 = "riognm;" or key0 = "RIOGNM")
+    str = morning{Space}
+Else if (key0 = "rgzcn" or key0 = "rgzcn;" or key0 = "RGZCN")
+    str = recognize{Space}
+Else if (key0 = "rh" or key0 = "rh;" or key0 = "RH")
+    str = here{Space}
+Else if (key0 = "riaf" or key0 = "riaf;" or key0 = "RIAF")
+    str = fair{Space}
+Else if (key0 = "ridhlc" or key0 = "ridhlc;" or key0 = "RIDHLC")
+    str = children{Space}
+Else if (key0 = "rdhlcn" or key0 = "rdhlcn;" or key0 = "RDHLCN")
+    str = children{Space}
+Else if (key0 = "rigbn" or key0 = "rigbn;" or key0 = "RIGBN")
+    str = bring{Space}
+Else if (key0 = "rigl" or key0 = "rigl;" or key0 = "RIGL")
+    str = girl{Space}
+Else if (key0 = "rihc" or key0 = "rihc;" or key0 = "RIHC")
+    str = rich{Space}
+Else if (key0 = "riocm" or key0 = "riocm;" or key0 = "RIOCM")
+    str = micro
+Else if (key0 = "ripa" or key0 = "ripa;" or key0 = "RIPA")
+    str = pair{Space}
+Else if (key0 = "rjm" or key0 = "rjm;" or key0 = "RJM")
+    str = major{Space}
+Else if (key0 = "rlnm" or key0 = "rlnm;" or key0 = "RLNM")
+    str = normal{Space}
+Else if (key0 = "rlz" or key0 = "rlz;" or key0 = "RLZ")
+    str = realize{Space}
+Else if (key0 = "rm" or key0 = "rm;" or key0 = "RM")
+    str = more{Space}
+Else if (key0 = "rn" or key0 = "rn;" or key0 = "RN")
+    str = right now{Space}
+Else if (key0 = "ro" or key0 = "ro;" or key0 = "RO")
+    str = or{Space}
+Else if (key0 = "roacm" or key0 = "roacm;" or key0 = "ROACM")
+    str = macro
+Else if (key0 = "road" or key0 = "road;" or key0 = "ROAD")
+    str = road{Space}
+Else if (key0 = "roadb" or key0 = "roadb;" or key0 = "ROADB")
+    str = board{Space}
+Else if (key0 = "roadbn" or key0 = "roadbn;" or key0 = "ROADBN")
+    str = onboard{Space}
+Else if (key0 = "roadl" or key0 = "roadl;" or key0 = "ROADL")
+    str = dollar{Space}
+Else if (key0 = "roalnm" or key0 = "roalnm;" or key0 = "ROALNM")
+    str = normal{Space}
+Else if (key0 = "rofm" or key0 = "rofm;" or key0 = "ROFM")
+    str = form{Space}
+Else if (key0 = "rog" or key0 = "rog;" or key0 = "ROG")
+    str = organization{Space}
+Else if (key0 = "rogln" or key0 = "rogln;" or key0 = "ROGLN")
+    str = original{Space}
+Else if (key0 = "rogn" or key0 = "rogn;" or key0 = "ROGN")
+    str = original{Space}
+Else if (key0 = "rognm" or key0 = "rognm;" or key0 = "ROGNM")
+    str = morning{Space}
+Else if (key0 = "rol" or key0 = "rol;" or key0 = "ROL")
+    str = roll{Space}
+Else if (key0 = "rolnm" or key0 = "rolnm;" or key0 = "ROLNM")
+    str = normal{Space}
+Else if (key0 = "rom" or key0 = "rom;" or key0 = "ROM")
+    str = room{Space}
+Else if (key0 = "rop" or key0 = "rop;" or key0 = "ROP")
+    str = pro
+Else if (key0 = "ropb" or key0 = "ropb;" or key0 = "ROPB")
+    str = probably{Space}
+Else if (key0 = "ropd" or key0 = "ropd;" or key0 = "ROPD")
+    str = drop{Space}
+Else if (key0 = "rtpdc" or key0 = "rtpdc;" or key0 = "RTPDC")
+    str = product{Space}
+Else if (key0 = "ropj" or key0 = "ropj;" or key0 = "ROPJ")
+    str = project{Space}
+Else if (key0 = "roplb" or key0 = "roplb;" or key0 = "ROPLB")
+    str = problem{Space}
+Else if (key0 = "rosc" or key0 = "rosc;" or key0 = "ROSC")
+    str = cross{Space}
+Else if (key0 = "rosg" or key0 = "rosg;" or key0 = "ROSG")
+    str = organizations{Space}
+Else if (key0 = "roslc" or key0 = "roslc;" or key0 = "ROSLC")
+    str = scroll{Space}
+Else if (key0 = "rpa" or key0 = "rpa;" or key0 = "RPA")
+    str = appreciate{Space}
+Else if (key0 = "rpahc" or key0 = "rpahc;" or key0 = "RPAHC")
+    str = approach{Space}
+Else if (key0 = "rpak" or key0 = "rpak;" or key0 = "RPAK")
+    str = park{Space}
+Else if (key0 = "rpb" or key0 = "rpb;" or key0 = "RPB")
+    str = problem{Space}
+Else if (key0 = "rpc" or key0 = "rpc;" or key0 = "RPC")
+    str = process{Space}
+Else if (key0 = "rpdc" or key0 = "rpdc;" or key0 = "RPDC")
+    str = proceed{Space}
+Else if (key0 = "rpdv" or key0 = "rpdv;" or key0 = "RPDV")
+    str = provide{Space}
+Else if (key0 = "rpf" or key0 = "rpf;" or key0 = "RPF")
+    str = professional{Space}
+Else if (key0 = "rpfcnm" or key0 = "rpfcnm;" or key0 = "RPFCNM")
+    str = performance{Space}
+Else if (key0 = "rpfl" or key0 = "rpfl;" or key0 = "RPFL")
+    str = profile{Space}
+Else if (key0 = "rpfm" or key0 = "rpfm;" or key0 = "RPFM")
+    str = perform{Space}
+Else if (key0 = "rpgm" or key0 = "rpgm;" or key0 = "RPGM")
+    str = program{Space}
+Else if (key0 = "rplb" or key0 = "rplb;" or key0 = "RPLB")
+    str = problem{Space}
+Else if (key0 = "rplx" or key0 = "rplx;" or key0 = "RPLX")
+    str = explore{Space}
+Else if (key0 = "rps" or key0 = "rps;" or key0 = "RPS")
+    str = surprise{Space}
+Else if (key0 = "rpslbn" or key0 = "rpslbn;" or key0 = "RPSLBN")
+    str = responsible{Space}
+Else if (key0 = "rpsdn" or key0 = "rpsdn;" or key0 = "RPSDN")
+    str = respond{Space}
+Else if (key0 = "rpsh" or key0 = "rpsh;" or key0 = "RPSH")
+    str = perhaps{Space}
+Else if (key0 = "rtpsbn" or key0 = "rtpsbn;" or key0 = "RTPSBN")
+    str = responsibility{Space}
+Else if (key0 = "rpsn" or key0 = "rpsn;" or key0 = "RPSN")
+    str = response{Space}
+Else if (key0 = "rs" or key0 = "rs;" or key0 = "RS")
+    str = sure{Space}
+Else if (key0 = "rsdcb" or key0 = "rsdcb;" or key0 = "RSDCB")
+    str = describe{Space}
+Else if (key0 = "rsdcn" or key0 = "rsdcn;" or key0 = "RSDCN")
+    str = consider{Space}
+Else if (key0 = "rsl" or key0 = "rsl;" or key0 = "RSL")
+    str = release{Space}
+Else if (key0 = "rslm" or key0 = "rslm;" or key0 = "RSLM")
+    str = similar{Space}
+Else if (key0 = "rslv" or key0 = "rslv;" or key0 = "RSLV")
+    str = several{Space}
+Else if (key0 = "rsn" or key0 = "rsn;" or key0 = "RSN")
+    str = reason{Space}
+Else if (key0 = "rt" or key0 = "rt;" or key0 = "RT")
+    str = right{Space}
+Else if (key0 = "rtad" or key0 = "rtad;" or key0 = "RTAD")
+    str = traditional{Space}
+Else if (key0 = "rtakc" or key0 = "rtakc;" or key0 = "RTAKC")
+    str = track{Space}
+Else if (key0 = "rtal" or key0 = "rtal;" or key0 = "RTAL")
+    str = alright{Space}
+Else if (key0 = "rtalc" or key0 = "rtalc;" or key0 = "RTALC")
+    str = article{Space}
+Else if (key0 = "rtan" or key0 = "rtan;" or key0 = "RTAN")
+    str = another{Space}
+Else if (key0 = "rtas" or key0 = "rtas;" or key0 = "RTAS")
+    str = strategy{Space}
+Else if (key0 = "rtasdn" or key0 = "rtasdn;" or key0 = "RTASDN")
+    str = standard{Space}
+Else if (key0 = "rtasn" or key0 = "rtasn;" or key0 = "RTASN")
+    str = trans{Space}
+Else if (key0 = "rtc" or key0 = "rtc;" or key0 = "RTC")
+    str = create{Space}
+Else if (key0 = "rtcn" or key0 = "rtcn;" or key0 = "RTCN")
+    str = certain{Space}
+Else if (key0 = "rtcv" or key0 = "rtcv;" or key0 = "RTCV")
+    str = creative{Space}
+Else if (key0 = "rtflc" or key0 = "rtflc;" or key0 = "RTFLC")
+    str = reflect{Space}
+Else if (key0 = "rtfn" or key0 = "rtfn;" or key0 = "RTFN")
+    str = fortunate{Space}
+Else if (key0 = "rtg" or key0 = "rtg;" or key0 = "RTG")
+    str = trying{Space}
+Else if (key0 = "rtgc" or key0 = "rtgc;" or key0 = "RTGC")
+    str = creating{Space}
+Else if (key0 = "rtgh" or key0 = "rtgh;" or key0 = "RTGH")
+    str = together{Space}
+Else if (key0 = "rti" or key0 = "rti;" or key0 = "RTI")
+    str = tri
+Else if (key0 = "rtiafc" or key0 = "rtiafc;" or key0 = "RTIAFC")
+    str = traffic{Space}
+Else if (key0 = "rtian" or key0 = "rtian;" or key0 = "RTIAN")
+    str = intra
+Else if (key0 = "rtiasn" or key0 = "rtiasn;" or key0 = "RTIASN")
+    str = strain{Space}
+Else if (key0 = "rtioasn" or key0 = "rtioasn;" or key0 = "RTIOASN")
+    str = transition{Space}
+Else if (key0 = "rtign" or key0 = "rtign;" or key0 = "RTIGN")
+    str = integrate{Space}
+Else if (key0 = "rtil" or key0 = "rtil;" or key0 = "RTIL")
+    str = literally{Space}
+Else if (key0 = "rtiodcn" or key0 = "rtiodcn;" or key0 = "RTIODCN")
+    str = coordinate{Space}
+Else if (key0 = "rtiodn" or key0 = "rtiodn;" or key0 = "RTIODN")
+    str = introduce{Space}
+Else if (key0 = "rtion" or key0 = "rtion;" or key0 = "RTION")
+    str = intro{Space}
+Else if (key0 = "rtipa" or key0 = "rtipa;" or key0 = "RTIPA")
+    str = particular{Space}
+Else if (key0 = "rtl" or key0 = "rtl;" or key0 = "RTL")
+    str = literal{Space}
+Else if (key0 = "rtlb" or key0 = "rtlb;" or key0 = "RTLB")
+    str = trouble{Space}
+Else if (key0 = "rtlc" or key0 = "rtlc;" or key0 = "RTLC")
+    str = control{Space}
+Else if (key0 = "rtlcb" or key0 = "rtlcb;" or key0 = "RTLCB")
+    str = collaborate{Space}
+Else if (key0 = "rtlv" or key0 = "rtlv;" or key0 = "RTLV")
+    str = relative{Space}
+Else if (key0 = "rtm" or key0 = "rtm;" or key0 = "RTM")
+    str = remote{Space}
+Else if (key0 = "rtn" or key0 = "rtn;" or key0 = "RTN")
+    str = entire{Space}
+Else if (key0 = "rtoac" or key0 = "rtoac;" or key0 = "RTOAC")
+    str = actor{Space}
+Else if (key0 = "rtoacn" or key0 = "rtoacn;" or key0 = "RTOACN")
+    str = contract{Space}
+Else if (key0 = "rtob" or key0 = "rtob;" or key0 = "RTOB")
+    str = obtrusive{Space}
+Else if (key0 = "rtocn" or key0 = "rtocn;" or key0 = "RTOCN")
+    str = contro
+Else if (key0 = "rtofn" or key0 = "rtofn;" or key0 = "RTOFN")
+    str = front{Space}
+Else if (key0 = "rtom" or key0 = "rtom;" or key0 = "RTOM")
+    str = tomorrow{Space}
+Else if (key0 = "rtos" or key0 = "rtos;" or key0 = "RTOS")
+    str = sort{Space}
+Else if (key0 = "rtosg" or key0 = "rtosg;" or key0 = "RTOSG")
+    str = storage{Space}
+Else if (key0 = "rtosgn" or key0 = "rtosgn;" or key0 = "RTOSGN")
+    str = strong{Space}
+Else if (key0 = "rtosh" or key0 = "rtosh;" or key0 = "RTOSH")
+    str = short{Space}
+Else if (key0 = "rtp" or key0 = "rtp;" or key0 = "RTP")
+    str = repeat{Space}
+Else if (key0 = "rtpa" or key0 = "rtpa;" or key0 = "RTPA")
+    str = part{Space}
+Else if (key0 = "rtpac" or key0 = "rtpac;" or key0 = "RTPAC")
+    str = practice{Space}
+Else if (key0 = "rtpan" or key0 = "rtpan;" or key0 = "RTPAN")
+    str = apparent{Space}
+Else if (key0 = "rtpc" or key0 = "rtpc;" or key0 = "RTPC")
+    str = picture{Space}
+Else if (key0 = "rtpcn" or key0 = "rtpcn;" or key0 = "RTPCN")
+    str = perception{Space}
+Else if (key0 = "rtps" or key0 = "rtps;" or key0 = "RTPS")
+    str = separate{Space}
+Else if (key0 = "rtpsc" or key0 = "rtpsc;" or key0 = "RTPSC")
+    str = respect{Space}
+Else if (key0 = "rtpscv" or key0 = "rtpscv;" or key0 = "RTPSCV")
+    str = perspective{Space}
+Else if (key0 = "rtpv" or key0 = "rtpv;" or key0 = "RTPV")
+    str = private{Space}
+Else if (key0 = "rts" or key0 = "rts;" or key0 = "RTS")
+    str = start{Space}
+Else if (key0 = "rtsbn" or key0 = "rtsbn;" or key0 = "RTSBN")
+    str = stubborn{Space}
+Else if (key0 = "rtscm" or key0 = "rtscm;" or key0 = "RTSCM")
+    str = customer{Space}
+Else if (key0 = "rtsd" or key0 = "rtsd;" or key0 = "RTSD")
+    str = disastrous{Space}
+Else if (key0 = "rtsdc" or key0 = "rtsdc;" or key0 = "RTSDC")
+    str = distract{Space}
+Else if (key0 = "rtsdn" or key0 = "rtsdn;" or key0 = "RTSDN")
+    str = standard{Space}
+Else if (key0 = "rtsg" or key0 = "rtsg;" or key0 = "RTSG")
+    str = starting{Space}
+Else if (key0 = "rtsgh" or key0 = "rtsgh;" or key0 = "RTSGH")
+    str = straight{Space}
+Else if (key0 = "rtsm" or key0 = "rtsm;" or key0 = "RTSM")
+    str = stream{Space}
+Else if (key0 = "rtualb" or key0 = "rtualb;" or key0 = "RTUALB")
+    str = brutal{Space}
+Else if (key0 = "rtualc" or key0 = "rtualc;" or key0 = "RTUALC")
+    str = cultural{Space}
+Else if (key0 = "rtuh" or key0 = "rtuh;" or key0 = "RTUH")
+    str = hurt{Space}
+Else if (key0 = "rtuogh" or key0 = "rtuogh;" or key0 = "RTUOGH")
+    str = through{Space}
+Else if (key0 = "rtun" or key0 = "rtun;" or key0 = "RTUN")
+    str = turn{Space}
+Else if (key0 = "rtuops" or key0 = "rtuops;" or key0 = "RTUOPS")
+    str = support{Space}
+Else if (key0 = "rtus" or key0 = "rtus;" or key0 = "RTUS")
+    str = trust{Space}
+Else if (key0 = "rtvn" or key0 = "rtvn;" or key0 = "RTVN")
+    str = narrative{Space}
+Else if (key0 = "rty" or key0 = "rty;" or key0 = "RTY")
+    str = try{Space}
+Else if (key0 = "rtyos" or key0 = "rtyos;" or key0 = "RTYOS")
+    str = story{Space}
+Else if (key0 = "rtypa" or key0 = "rtypa;" or key0 = "RTYPA")
+    str = party{Space}
+Else if (key0 = "rtyul" or key0 = "rtyul;" or key0 = "RTYUL")
+    str = truly{Space}
+Else if (key0 = "ru" or key0 = "ru;" or key0 = "RU")
+    str = your{Space}
+Else if (key0 = "ruioasv" or key0 = "ruioasv;" or key0 = "RUIOASV")
+    str = various{Space}
+Else if (key0 = "ruiosc" or key0 = "ruiosc;" or key0 = "RUIOSC")
+    str = curious{Space}
+Else if (key0 = "run" or key0 = "run;" or key0 = "RUN")
+    str = run{Space}
+Else if (key0 = "ruo" or key0 = "ruo;" or key0 = "RUO")
+    str = our{Space}
+Else if (key0 = "ruoc" or key0 = "ruoc;" or key0 = "RUOC")
+    str = occur{Space}
+Else if (key0 = "ruodgn" or key0 = "ruodgn;" or key0 = "RUODGN")
+    str = ground{Space}
+Else if (key0 = "ruoh" or key0 = "ruoh;" or key0 = "RUOH")
+    str = hour{Space}
+Else if (key0 = "ruopg" or key0 = "ruopg;" or key0 = "RUOPG")
+    str = group{Space}
+Else if (key0 = "ruphc" or key0 = "ruphc;" or key0 = "RUPHC")
+    str = purchase{Space}
+Else if (key0 = "rv" or key0 = "rv;" or key0 = "RV")
+    str = virtual reality{Space}
+Else if (key0 = "ry" or key0 = "ry;" or key0 = "RY")
+    str = year{Space}
+Else if (key0 = "rya" or key0 = "rya;" or key0 = "RYA")
+    str = {BackSpace}ary{Space}
+Else if (key0 = "ryafkln" or key0 = "ryafkln;" or key0 = "RYAFKLN")
+    str = frankly{Space}
+Else if (key0 = "ryav" or key0 = "ryav;" or key0 = "RYAV")
+    str = vary{Space}
+Else if (key0 = "ryos" or key0 = "ryos;" or key0 = "RYOS")
+    str = sorry{Space}
+Else if (key0 = "rypcv" or key0 = "rypcv;" or key0 = "RYPCV")
+    str = privacy{Space}
+Else if (key0 = "rys" or key0 = "rys;" or key0 = "RYS")
+    str = years{Space}
+Else if (key0 = "ran" or key0 = "ran;" or key0 = "RAN")
+    str = ran{Space}
+Else if (key0 = "rdcv" or key0 = "rdcv;" or key0 = "RDCV")
+    str = received{Space}
+Else if (key0 = "rjln" or key0 = "rjln;" or key0 = "RJLN")
+    str = journal{Space}
+Else if (key0 = "ropa" or key0 = "ropa;" or key0 = "ROPA")
+    str = approach{Space}
+Else if (key0 = "ropahc" or key0 = "ropahc;" or key0 = "ROPAHC")
+    str = approach{Space}
+Else if (key0 = "rpam" or key0 = "rpam;" or key0 = "RPAM")
+    str = ramp{Space}
+Else if (key0 = "rpsv" or key0 = "rpsv;" or key0 = "RPSV")
+    str = previous{Space}
+Else if (key0 = "rsm" or key0 = "rsm;" or key0 = "RSM")
+    str = measure{Space}
+Else if (key0 = "rta" or key0 = "rta;" or key0 = "RTA")
+    str = art{Space}
+Else if (key0 = "rtac" or key0 = "rtac;" or key0 = "RTAC")
+    str = attract{Space}
+Else if (key0 = "rtdc" or key0 = "rtdc;" or key0 = "RTDC")
+    str = direct{Space}
+Else if (key0 = "rtdg" or key0 = "rtdg;" or key0 = "RTDG")
+    str = graduate{Space}
+Else if (key0 = "rtdnm" or key0 = "rtdnm;" or key0 = "RTDNM")
+    str = determine{Space}
+Else if (key0 = "rtf" or key0 = "rtf;" or key0 = "RTF")
+    str = feature{Space}
+Else if (key0 = "rtghb" or key0 = "rtghb;" or key0 = "RTGHB")
+    str = brought{Space}
+Else if (key0 = "rtian" or key0 = "rtian;" or key0 = "RTIAN")
+    str = train{Space}
+Else if (key0 = "rtias" or key0 = "rtias;" or key0 = "RTIAS")
+    str = artist{Space}
+Else if (key0 = "rtipn" or key0 = "rtipn;" or key0 = "RTIPN")
+    str = print{Space}
+Else if (key0 = "rtpl" or key0 = "rtpl;" or key0 = "RTPL")
+    str = partial{Space}
+Else if (key0 = "rtpm" or key0 = "rtpm;" or key0 = "RTPM")
+    str = promote{Space}
+Else if (key0 = "rtsdb" or key0 = "rtsdb;" or key0 = "RTSDB")
+    str = distribute{Space}
+Else if (key0 = "ruopd" or key0 = "ruopd;" or key0 = "RUOPD")
+    str = proud{Space}
+Else if (key0 = "rtpn" or key0 = "rtpn;" or key0 = "RTPN")
+    str = pattern{Space}
+Else if (key0 = "rypm" or key0 = "rypm;" or key0 = "RYPM")
+    str = primary{Space}
 Return
+
 SENDT:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,ta, Send at{Space}
-Else IfEqual key0,tadh, Send that'd{Space}
-Else IfEqual key0,tisv, Send visit{Space}
-Else IfEqual key0,tihn, Send thin{Space}
-Else IfEqual key0,tpsln, Send pleasant{Space}
-Else IfEqual key0,tadcv, Send advocate{Space}
-Else IfEqual key0,tahm, Send math{Space}
-Else IfEqual key0,tupg, Send putting{Space}
-Else IfEqual key0,takn, Send tank{Space}
-Else IfEqual key0,tglv, Send vegetable{Space}
-Else IfEqual key0,tgvn, Send navigate{Space}
-Else IfEqual key0,tiafh, Send faith{Space}
-Else IfEqual key0,tipsl, Send split{Space}
-Else IfEqual key0,tial, Send tail{Space}
-Else IfEqual key0,tias, Send assist{Space}
-Else IfEqual key0,tifghl, Send flight{Space}
-Else IfEqual key0,tighm, Send might{Space}
-Else IfEqual key0,tilcn, Send inoculate{Space}
-Else IfEqual key0,tioflcn, Send conflict{Space}
-Else IfEqual key0,tipan, Send paint{Space}
-Else IfEqual key0,tipan, Send paint{Space}
-Else IfEqual key0,tisv, Send visit{Space}
-Else IfEqual key0,tohcb, Send botch{Space}
-Else IfEqual key0,tohlc, Send cloth{Space}
-Else IfEqual key0,topsg, Send stopping{Space}
-Else IfEqual key0,tosd, Send stood{Space}
-Else IfEqual key0,toshm, Send smooth{Space}
-Else IfEqual key0,toshm, Send smooth{Space}
-Else IfEqual key0,tosl, Send lost{Space}
-Else IfEqual key0,tpasnm, Send assumption{Space}
-Else IfEqual key0,tpcn, Send patience{Space}
-Else IfEqual key0,tpcvm, Send competitive{Space}
-Else IfEqual key0,tphkc, Send ketchup{Space}
-Else IfEqual key0,tpslc, Send telescope{Space}
-Else IfEqual key0,tsdnm, Send disseminate{Space}
-Else IfEqual key0,tsfc, Send suffocate{Space}
-Else IfEqual key0,tshlb, Send bullshit{Space}
-Else IfEqual key0,tuadl, Send adult{Space}
-Else IfEqual key0,tuafl, Send fault{Space}
-Else IfEqual key0,tuasg, Send August{Space}
-Else IfEqual key0,tuhn, Send hunt{Space}
-Else IfEqual key0,tuin, Send unit{Space}
-Else IfEqual key0,tuioacn, Send caution{Space}
-Else IfEqual key0,tuipsd, Send stupid{Space}
-Else IfEqual key0,tuiscn, Send succinct{Space}
-Else IfEqual key0,tulz, Send utilize{Space}
-Else IfEqual key0,tuoascm, Send accustom{Space}
-Else IfEqual key0,tuocm, Send outcome{Space}
-Else IfEqual key0,tuoslcn, Send consult{Space}
-Else IfEqual key0,tupg, Send putting{Space}
-Else IfEqual key0,tuskc, Send stuck{Space}
-Else IfEqual key0,tyflc, Send facility{Space}
-Else IfEqual key0,tuoghb, Send bought{Space}
-Else IfEqual key0,tpxc, Send expect{Space}
-Else IfEqual key0,tpcn, Send patience{Space}
-Else IfEqual key0,tpn, Send patient{Space}
-Else IfEqual key0,tpcvm, Send competitive{Space}
-Else IfEqual key0,tuaghc, Send caught{Space}
-Else IfEqual key0,tpscnm, Send compensate{Space}
-Else IfEqual key0,tfl, Send left{Space}
-Else IfEqual key0,tuadl, Send adult{Space}
-Else IfEqual key0,tsvn, Send sensitive{Space}
-Else IfEqual key0,tgvm, Send government{Space}
-Else IfEqual key0,todn, Send don't{Space}
-Else IfEqual key0,tacm, Send automatic{Space}
-Else IfEqual key0,tx, Send text{Space}
-Else IfEqual key0,tahc, Send catch{Space}
-Else IfEqual key0,tahcm, Send match{Space}
-Else IfEqual key0,tas, Send sat{Space}
-Else IfEqual key0,tadln, Send additional{Space}
-Else IfEqual key0,tadn, Send addition{Space}
-Else IfEqual key0,tdlv, Send validate{Space}
-Else IfEqual key0,tidcn, Send indicate{Space}
-Else IfEqual key0,tipalc, Send capital{Space}
-Else IfEqual key0,tisdn, Send instead{Space}
-Else IfEqual key0,tpxc, Send expect{Space}	
-Else IfEqual key0,tosl, Send lost{Space}
-Else IfEqual key0,tplnm, Send implement{Space}
-Else IfEqual key0,tscnl, Send constantly{Space}
-Else IfEqual key0,tsdcn, Send distance{Space}
-Else IfEqual key0,tsfgcn, Send significant{Space}
-Else IfEqual key0,tuipn, Send input{Space}
-Else IfEqual key0,tydfn, Send identify{Space}
-Else IfEqual key0,tyusd, Send study{Space}
-Else IfEqual key0,tasc, Send cast{Space}
-Else IfEqual key0,tadhn, Send hadn’t{Space}
-Else IfEqual key0,tahl, Send that’ll{Space}
-Else IfEqual key0,tasgn, Send against{Space}
-Else IfEqual key0,tashkn, Send thanks{Space}
-Else IfEqual key0,tbn, Send button{Space}	
-Else IfEqual key0,tiac, Send attic{Space}
-Else IfEqual key0,tiasn, Send instant{Space}
-Else IfEqual key0,tidg, Send digit{Space}
-Else IfEqual key0,tif, Send fit{Space}
-Else IfEqual key0,tifg, Send gift{Space}
-Else IfEqual key0,tifgh, Send fight{Space}
-Else IfEqual key0,tihkc, Send thick{Space}
-Else IfEqual key0,tilm, Send limit{Space}
-Else IfEqual key0,tioacn, Send contain{Space}
-Else IfEqual key0,tioghn, Send tonight{Space}
-Else IfEqual key0,tionm, Send motion{Space}
-Else IfEqual key0,tism, Send mist{Space}
-Else IfEqual key0,tkn, Send think{Space}
-Else IfEqual key0,toa, Send tattoo{Space}
-Else IfEqual key0,toasc, Send coast{Space}
-Else IfEqual key0,tof, Send foot{Space}
-Else IfEqual key0,toghn, Send thong{Space}
-Else IfEqual key0,tops, Send stop{Space}
-Else IfEqual key0,tpdn, Send independent{Space}
-Else IfEqual key0,tpl, Send pollute{Space}
-Else IfEqual key0,tplcnm, Send implication{Space}
-Else IfEqual key0,tplnm, Send implement{Space}
-Else IfEqual key0,tpslcnm, Send implications{Space}
-Else IfEqual key0,tpsm, Send symptom{Space}
-Else IfEqual key0,trade, Send trade{Space}
-Else IfEqual key0,tsbm, Send submit{Space}
-Else IfEqual key0,tscbn, Send substance{Space}
-Else IfEqual key0,tsfnm, Send manifest{Space}
-Else IfEqual key0,tsgn, Send suggestion{Space}
-Else IfEqual key0,tsk, Send takes{Space}
-Else IfEqual key0,tsxn, Send extension{Space}
-Else IfEqual key0,tuah, Send authorize{Space}
-Else IfEqual key0,tuahcn, Send authentic{Space}
-Else IfEqual key0,tuioanm, Send mountain{Space}
-Else IfEqual key0,tuisln, Send insult{Space}
-Else IfEqual key0,tulc, Send cult{Space}
-Else IfEqual key0,tuosd, Send outside{Space}
-Else IfEqual key0,tuosh, Send south{Space}
-Else IfEqual key0,tuosh, Send shout{Space}
-Else IfEqual key0,tvn, Send initiative{Space}
-Else IfEqual key0,tvnm, Send motivation{Space}
-Else IfEqual key0,typsm, Send symptom{Space}
-Else IfEqual key0,tyuocn, Send county{Space}
-Else IfEqual key0,tdcn, Send condition{Space}
-Else IfEqual key0,tdcn, Send candidate{Space}
-Else IfEqual key0,tdcnm, Send document{Space}
-Else IfEqual key0,tdxn, Send extend{Space}
-Else IfEqual key0,tgn, Send negotiate{Space}
-Else IfEqual key0,tidc, Send dict{Space}
-Else IfEqual key0,tidfn, Send identify{Space}
-Else IfEqual key0,tidm, Send immediate{Space}
-Else IfEqual key0,tifl, Send lift{Space}
-Else IfEqual key0,tiocm, Send commit{Space}
-Else IfEqual key0,tiopc, Send topic{Space}
-Else IfEqual key0,tip, Send tip{Space}
-Else IfEqual key0,tips, Send tips{Space}
-Else IfEqual key0,tisfh, Send shift{Space}
-Else IfEqual key0,tisghl, Send slight{Space}
-Else IfEqual key0,tisn, Send isn't{Space}
-Else IfEqual key0,tlcm, Send climate{Space}
-Else IfEqual key0,tln, Send national{Space}
-Else IfEqual key0,tocv, Send octave{Space}
-Else IfEqual key0,tojcvb, Send objective{Space}
-Else IfEqual key0,tpan, Send appoint{Space}
-Else IfEqual key0,tpanm, Send appointment{Space}
-Else IfEqual key0,tpcm, Send compete{Space}
-Else IfEqual key0,tplc, Send politic{Space}
-Else IfEqual key0,tplcnm, Send complement{Space}
-Else IfEqual key0,tpshcn, Send snapchat{Space}
-Else IfEqual key0,tpsn, Send position{Space}
-Else IfEqual key0,tscn, Send constant{Space}
-Else IfEqual key0,tscn, Send consistent{Space}
-Else IfEqual key0,tscn, Send constant{Space}
-Else IfEqual key0,tscn, Send scientist{Space}
-Else IfEqual key0,tsdcn, Send distance{Space}
-Else IfEqual key0,tsdhn, Send thousand{Space}
-Else IfEqual key0,tudc, Send duct{Space}
-Else IfEqual key0,tuiosd, Send studio{Space}
-Else IfEqual key0,tuis, Send suit{Space}
-Else IfEqual key0,tuodb, Send doubt{Space}
-Else IfEqual key0,tuodcn, Send conduct{Space}
-Else IfEqual key0,tuokl, Send outlook{Space}
-Else IfEqual key0,tush, Send shut{Space}
-Else IfEqual key0,tvm, Send motive{Space}
-Else IfEqual key0,tvn, Send invite{Space}
-Else IfEqual key0,tyb, Send beauty{Space}
-Else IfEqual key0,tycn, Send county{Space}
-Else IfEqual key0,tyin, Send tiny{Space}
-Else IfEqual key0,typac, Send capacity{Space}
-Else IfEqual key0,tac, Send act{Space}
-Else IfEqual key0,tflb, Send beautiful{Space}
-Else IfEqual key0,tashn, Send hasn't{Space}
-Else IfEqual key0,tflb, Send beautiful{Space}
-Else IfEqual key0,tgvn, Send negative{Space}
-Else IfEqual key0,tianm, Send maintain{Space}
-Else IfEqual key0,til, Send it'll{Space}
-Else IfEqual key0,tipacm, Send impact{Space}
-Else IfEqual key0,tosh, Send shot{Space}
-Else IfEqual key0,tscm, Send costume{Space}
-Else IfEqual key0,tsfcn, Send fantastic{Space}
-Else IfEqual key0,tuioas, Send situation{Space}
-Else IfEqual key0,tuioas, Send situation{Space}
-Else IfEqual key0,tacn, Send can't{Space}
-Else IfEqual key0,tad, Send data{Space}
-Else IfEqual key0,tafc, Send fact{Space}
-Else IfEqual key0,tagkl, Send talking{Space}
-Else IfEqual key0,tagn, Send against{Space}
-Else IfEqual key0,tah, Send that{Space}
-Else IfEqual key0,tahc, Send chat{Space}
-Else IfEqual key0,tahkn, Send thank{Space}
-Else IfEqual key0,tahn, Send than{Space}
-Else IfEqual key0,takl, Send talk{Space}
-Else IfEqual key0,talc, Send actually{Space}
-Else IfEqual key0,tam, Send amount{Space}
-Else IfEqual key0,tan, Send attention{Space}
-Else IfEqual key0,tasdn, Send stand{Space}
-Else IfEqual key0,tasf, Send fast{Space}
-Else IfEqual key0,tash, Send that's{Space}
-Else IfEqual key0,taskc, Send stack{Space}
-Else IfEqual key0,tasl, Send last{Space}
-Else IfEqual key0,tbm, Send bottom{Space}
-Else IfEqual key0,tc, Send content{Space}
-Else IfEqual key0,tcm, Send community{Space}
-Else IfEqual key0,tcn, Send continue{Space}
-Else IfEqual key0,td, Send today{Space}
-Else IfEqual key0,tdcmn, Send document{Space}
-Else IfEqual key0,tdfcn, Send confident{Space}
-Else IfEqual key0,tdgl, Send digital{Space}
-Else IfEqual key0,tdl, Send detail{Space}
-Else IfEqual key0,tdn, Send don't{Space}
-Else IfEqual key0,tdx, Send excited{Space}
-Else IfEqual key0,tf, Send first{Space}
-Else IfEqual key0,tfbn, Send benefit{Space}
-Else IfEqual key0,tg, Send thing{Space}
-Else IfEqual key0,tghlc, Send glitch{Space}
-Else IfEqual key0,tgk, Send taking{Space}
-Else IfEqual key0,tgk, Send taking{Space}
-Else IfEqual key0,tgkl, Send talking{Space}
-Else IfEqual key0,tgkl, Send talking{Space}
-Else IfEqual key0,tgkn, Send thinking{Space}
-Else IfEqual key0,tgm, Send meeting{Space}
-Else IfEqual key0,tgnm, Send management{Space}
-Else IfEqual key0,th, Send this{Space}
-Else IfEqual key0,thb, Send to be honest{Space}
-Else IfEqual key0,thkn, Send think{Space}
-Else IfEqual key0,thvn, Send haven't{Space}
-Else IfEqual key0,ti, Send it{Space}
-Else IfEqual key0,tiagh, Send aight{Space}
-Else IfEqual key0,tialn, Send initial{Space}
-Else IfEqual key0,tian, Send anti
-Else IfEqual key0,tib, Send bit{Space}
-Else IfEqual key0,tid, Send it'd{Space}
-Else IfEqual key0,tidm, Send immediate{Space}
-Else IfEqual key0,tidn, Send didn't{Space}
-Else IfEqual key0,tig, Send {BackSpace}ight{Space}
-Else IfEqual key0,tigh, Send tight{Space}
-Else IfEqual key0,tighl, Send light{Space}
-Else IfEqual key0,tighn, Send night{Space}
-Else IfEqual key0,tign, Send interesting{Space}
-Else IfEqual key0,tih, Send I think{Space}
-Else IfEqual key0,tihc, Send itch{Space}
-Else IfEqual key0,tihkn, Send think{Space}
-Else IfEqual key0,tiln, Send internal{Space}
-Else IfEqual key0,tin, Send interest{Space}
-Else IfEqual key0,tio, Send in terms of{Space}
-Else IfEqual key0,tioan, Send {BackSpace}ation{Space}
-Else IfEqual key0,tioln, Send international{Space}
-Else IfEqual key0,tion, Send into{Space}
-Else IfEqual key0,tiopsn, Send position{Space}
-Else IfEqual key0,tis, Send it's{Space}
-Else IfEqual key0,tisdcn, Send distinct{Space}
-Else IfEqual key0,tisgh, Send sight{Space}
-Else IfEqual key0,tish, Send this{Space}
-Else IfEqual key0,tish, Send this{Space}
-Else IfEqual key0,tiskc, Send stick{Space}
-Else IfEqual key0,tisl, Send still{Space}
-Else IfEqual key0,tisn, Send instead{Space}
-Else IfEqual key0,tivn, Send interview{Space}
-Else IfEqual key0,tiz, Send ization
-Else IfEqual key0,tk, Send take{Space}
-Else IfEqual key0,tkl, Send talk{Space}
-Else IfEqual key0,tkm, Send market{Space}
-Else IfEqual key0,tlb, Send built{Space}
-Else IfEqual key0,tlcn, Send technical{Space}
-Else IfEqual key0,tlnm, Send mental{Space}
-Else IfEqual key0,tlxn, Send excellent{Space}
-Else IfEqual key0,tm, Send time{Space}
-Else IfEqual key0,tnm, Send minute{Space}
-Else IfEqual key0,to, Send to{Space}
-Else IfEqual key0,to, Send too{Space}
-Else IfEqual key0,toacn, Send contact{Space}
-Else IfEqual key0,toahl, Send although{Space}
-Else IfEqual key0,toal, Send total{Space}
-Else IfEqual key0,tobm, Send bottom{Space}
-Else IfEqual key0,tocn, Send contract{Space}
-Else IfEqual key0,todl, Send told{Space}
-Else IfEqual key0,todn, Send don't{Space}
-Else IfEqual key0,tog, Send got{Space}
-Else IfEqual key0,toh, Send though{Space}
-Else IfEqual key0,tohb, Send both{Space}
-Else IfEqual key0,tohnm, Send month{Space}
-Else IfEqual key0,tok, Send took{Space}
-Else IfEqual key0,tol, Send lot{Space}
-Else IfEqual key0,ton, Send not{Space}
-Else IfEqual key0,ton, Send not{Space}
-Else IfEqual key0,top, Send top{Space}
-Else IfEqual key0,topad, Send adopt{Space}
-Else IfEqual key0,toph, Send photo{Space}
-Else IfEqual key0,tops, Send stop{Space}
-Else IfEqual key0,topzm, Send optimize{Space}
-Else IfEqual key0,tosc, Send cost{Space}
-Else IfEqual key0,tosl, Send lost{Space}
-Else IfEqual key0,tosm, Send most{Space}
-Else IfEqual key0,tp, Send point{Space}
-Else IfEqual key0,tpaflm, Send platform{Space}
-Else IfEqual key0,tpaln, Send plant{Space}
-Else IfEqual key0,tpas, Send past{Space}
-Else IfEqual key0,tpc, Send corporate{Space}
-Else IfEqual key0,tpcnm, Send component{Space}
-Else IfEqual key0,tpd, Send department{Space}
-Else IfEqual key0,tplm, Send multiple{Space}
-Else IfEqual key0,tpln, Send potential{Space}
-Else IfEqual key0,tps, Send post{Space}
-Else IfEqual key0,tpsn, Send postpone{Space}
-Else IfEqual key0,tpsv, Send positive{Space}
-Else IfEqual key0,ts, Send its{Space}
-Else IfEqual key0,ts, Send st
-Else IfEqual key0,tsdn, Send doesn't{Space}
-Else IfEqual key0,tsfgn, Send significant{Space}
-Else IfEqual key0,tsg, Send things{Space}
-Else IfEqual key0,tsdhn, Send shouldn't{Space}
-Else IfEqual key0,tskm, Send mistake{Space}
-Else IfEqual key0,tsl, Send list{Space}
-Else IfEqual key0,tsln, Send listen{Space}
-Else IfEqual key0,tslvm, Send themselves{Space}
-Else IfEqual key0,tsm, Send sometimes{Space}
-Else IfEqual key0,tsn, Send essentially{Space}
-Else IfEqual key0,tua, Send uation
-Else IfEqual key0,tuagh, Send taught{Space}
-Else IfEqual key0,tualc, Send actual{Space}
-Else IfEqual key0,tub, Send but{Space}
-Else IfEqual key0,tuc, Send cut{Space}
-Else IfEqual key0,tuiln, Send until{Space}
-Else IfEqual key0,tuioasn, Send situation{Space}
-Else IfEqual key0,tuipdlc, Send duplicate{Space}
-Else IfEqual key0,tul, Send ultimately{Space}
-Else IfEqual key0,tuo, Send out{Space}
-Else IfEqual key0,tuoa, Send auto{Space}
-Else IfEqual key0,tuoacn, Send account{Space}
-Else IfEqual key0,tuobn, Send button{Space}
-Else IfEqual key0,tuocn, Send count{Space}
-Else IfEqual key0,tuohc, Send touch{Space}
-Else IfEqual key0,tuohm, Send mouth{Space}
-Else IfEqual key0,tuoscm, Send custom{Space}
-Else IfEqual key0,tup, Send put{Space}
-Else IfEqual key0,tusf, Send stuff{Space}
-Else IfEqual key0,tusm, Send must{Space}
-Else IfEqual key0,txc, Send context{Space}
-Else IfEqual key0,ty, Send thank you{Space}
-Else IfEqual key0,tyas, Send stay{Space}
-Else IfEqual key0,tyaslv, Send vastly{Space}
-Else IfEqual key0,tyd, Send today{Space}
-Else IfEqual key0,tyi, Send {BackSpace}ity{Space}
-Else IfEqual key0,tyiacv, Send activity{Space}
-Else IfEqual key0,tyial, Send {BackSpace}ality{Space}
-Else IfEqual key0,tyialb, Send ability{Space}
-Else IfEqual key0,tyidn, Send identity{Space}
-Else IfEqual key0,tyik, Send kitty{Space}
-Else IfEqual key0,tyil, Send ility{Space}
-Else IfEqual key0,tyilb, Send ibility{Space}
-Else IfEqual key0,tyo, Send toy{Space}
-Else IfEqual key0,tyoal, Send totally{Space}
-Else IfEqual key0,typhlc, Send hypothetical{Space}
-Else IfEqual key0,typlc, Send typical{Space}
-Else IfEqual key0,tyvm, Send thank you very much{Space}
-Else IfEqual key0,toaghc, Send got you.{Space}
-Else IfEqual key0,tpah, Send path{Space}
-Else IfEqual key0,tsc, Send society{Space}
-Else IfEqual key0,tslvm, Send themselves{Space}
-Else IfEqual key0,tuiasn, Send sustain{Space}
-Else IfEqual key0,tuiosn, Send institution{Space}
-Else IfEqual key0,tuogh, Send thought{Space}
-Else IfEqual key0,tvn, Send native{Space}
-Else IfEqual key0,tyic, Send city{Space}
+ if (key0 = "ta" or key0 = "ta;" or key0 = "TA")
+    str = at{Space}
+Else if (key0 = "tadh" or key0 = "tadh;" or key0 = "TADH")
+    str = that'd{Space}
+Else if (key0 = "tisv" or key0 = "tisv;" or key0 = "TISV")
+    str = visit{Space}
+Else if (key0 = "tihn" or key0 = "tihn;" or key0 = "TIHN")
+    str = thin{Space}
+Else if (key0 = "tpsln" or key0 = "tpsln;" or key0 = "TPSLN")
+    str = pleasant{Space}
+Else if (key0 = "tadcv" or key0 = "tadcv;" or key0 = "TADCV")
+    str = advocate{Space}
+Else if (key0 = "tahm" or key0 = "tahm;" or key0 = "TAHM")
+    str = math{Space}
+Else if (key0 = "tupg" or key0 = "tupg;" or key0 = "TUPG")
+    str = putting{Space}
+Else if (key0 = "takn" or key0 = "takn;" or key0 = "TAKN")
+    str = tank{Space}
+Else if (key0 = "tglv" or key0 = "tglv;" or key0 = "TGLV")
+    str = vegetable{Space}
+Else if (key0 = "tgvn" or key0 = "tgvn;" or key0 = "TGVN")
+    str = navigate{Space}
+Else if (key0 = "tiafh" or key0 = "tiafh;" or key0 = "TIAFH")
+    str = faith{Space}
+Else if (key0 = "tipsl" or key0 = "tipsl;" or key0 = "TIPSL")
+    str = split{Space}
+Else if (key0 = "tial" or key0 = "tial;" or key0 = "TIAL")
+    str = tail{Space}
+Else if (key0 = "tias" or key0 = "tias;" or key0 = "TIAS")
+    str = assist{Space}
+Else if (key0 = "tifghl" or key0 = "tifghl;" or key0 = "TIFGHL")
+    str = flight{Space}
+Else if (key0 = "tighm" or key0 = "tighm;" or key0 = "TIGHM")
+    str = might{Space}
+Else if (key0 = "tilcn" or key0 = "tilcn;" or key0 = "TILCN")
+    str = inoculate{Space}
+Else if (key0 = "tioflcn" or key0 = "tioflcn;" or key0 = "TIOFLCN")
+    str = conflict{Space}
+Else if (key0 = "tipan" or key0 = "tipan;" or key0 = "TIPAN")
+    str = paint{Space}
+Else if (key0 = "tipan" or key0 = "tipan;" or key0 = "TIPAN")
+    str = paint{Space}
+Else if (key0 = "tisv" or key0 = "tisv;" or key0 = "TISV")
+    str = visit{Space}
+Else if (key0 = "tohcb" or key0 = "tohcb;" or key0 = "TOHCB")
+    str = botch{Space}
+Else if (key0 = "tohlc" or key0 = "tohlc;" or key0 = "TOHLC")
+    str = cloth{Space}
+Else if (key0 = "topsg" or key0 = "topsg;" or key0 = "TOPSG")
+    str = stopping{Space}
+Else if (key0 = "tosd" or key0 = "tosd;" or key0 = "TOSD")
+    str = stood{Space}
+Else if (key0 = "toshm" or key0 = "toshm;" or key0 = "TOSHM")
+    str = smooth{Space}
+Else if (key0 = "toshm" or key0 = "toshm;" or key0 = "TOSHM")
+    str = smooth{Space}
+Else if (key0 = "tosl" or key0 = "tosl;" or key0 = "TOSL")
+    str = lost{Space}
+Else if (key0 = "tpasnm" or key0 = "tpasnm;" or key0 = "TPASNM")
+    str = assumption{Space}
+Else if (key0 = "tpcn" or key0 = "tpcn;" or key0 = "TPCN")
+    str = patience{Space}
+Else if (key0 = "tpcvm" or key0 = "tpcvm;" or key0 = "TPCVM")
+    str = competitive{Space}
+Else if (key0 = "tphkc" or key0 = "tphkc;" or key0 = "TPHKC")
+    str = ketchup{Space}
+Else if (key0 = "tpslc" or key0 = "tpslc;" or key0 = "TPSLC")
+    str = telescope{Space}
+Else if (key0 = "tsdnm" or key0 = "tsdnm;" or key0 = "TSDNM")
+    str = disseminate{Space}
+Else if (key0 = "tsfc" or key0 = "tsfc;" or key0 = "TSFC")
+    str = suffocate{Space}
+Else if (key0 = "tshlb" or key0 = "tshlb;" or key0 = "TSHLB")
+    str = bullshit{Space}
+Else if (key0 = "tuadl" or key0 = "tuadl;" or key0 = "TUADL")
+    str = adult{Space}
+Else if (key0 = "tuafl" or key0 = "tuafl;" or key0 = "TUAFL")
+    str = fault{Space}
+Else if (key0 = "tuasg" or key0 = "tuasg;" or key0 = "TUASG")
+    str = August{Space}
+Else if (key0 = "tuhn" or key0 = "tuhn;" or key0 = "TUHN")
+    str = hunt{Space}
+Else if (key0 = "tuin" or key0 = "tuin;" or key0 = "TUIN")
+    str = unit{Space}
+Else if (key0 = "tuioacn" or key0 = "tuioacn;" or key0 = "TUIOACN")
+    str = caution{Space}
+Else if (key0 = "tuipsd" or key0 = "tuipsd;" or key0 = "TUIPSD")
+    str = stupid{Space}
+Else if (key0 = "tuiscn" or key0 = "tuiscn;" or key0 = "TUISCN")
+    str = succinct{Space}
+Else if (key0 = "tulz" or key0 = "tulz;" or key0 = "TULZ")
+    str = utilize{Space}
+Else if (key0 = "tuoascm" or key0 = "tuoascm;" or key0 = "TUOASCM")
+    str = accustom{Space}
+Else if (key0 = "tuocm" or key0 = "tuocm;" or key0 = "TUOCM")
+    str = outcome{Space}
+Else if (key0 = "tuoslcn" or key0 = "tuoslcn;" or key0 = "TUOSLCN")
+    str = consult{Space}
+Else if (key0 = "tupg" or key0 = "tupg;" or key0 = "TUPG")
+    str = putting{Space}
+Else if (key0 = "tuskc" or key0 = "tuskc;" or key0 = "TUSKC")
+    str = stuck{Space}
+Else if (key0 = "tyflc" or key0 = "tyflc;" or key0 = "TYFLC")
+    str = facility{Space}
+Else if (key0 = "tuoghb" or key0 = "tuoghb;" or key0 = "TUOGHB")
+    str = bought{Space}
+Else if (key0 = "tpxc" or key0 = "tpxc;" or key0 = "TPXC")
+    str = expect{Space}
+Else if (key0 = "tpcn" or key0 = "tpcn;" or key0 = "TPCN")
+    str = patience{Space}
+Else if (key0 = "tpn" or key0 = "tpn;" or key0 = "TPN")
+    str = patient{Space}
+Else if (key0 = "tpcvm" or key0 = "tpcvm;" or key0 = "TPCVM")
+    str = competitive{Space}
+Else if (key0 = "tuaghc" or key0 = "tuaghc;" or key0 = "TUAGHC")
+    str = caught{Space}
+Else if (key0 = "tpscnm" or key0 = "tpscnm;" or key0 = "TPSCNM")
+    str = compensate{Space}
+Else if (key0 = "tfl" or key0 = "tfl;" or key0 = "TFL")
+    str = left{Space}
+Else if (key0 = "tuadl" or key0 = "tuadl;" or key0 = "TUADL")
+    str = adult{Space}
+Else if (key0 = "tsvn" or key0 = "tsvn;" or key0 = "TSVN")
+    str = sensitive{Space}
+Else if (key0 = "tgvm" or key0 = "tgvm;" or key0 = "TGVM")
+    str = government{Space}
+Else if (key0 = "todn" or key0 = "todn;" or key0 = "TODN")
+    str = don't{Space}
+Else if (key0 = "tacm" or key0 = "tacm;" or key0 = "TACM")
+    str = automatic{Space}
+Else if (key0 = "tx" or key0 = "tx;" or key0 = "TX")
+    str = text{Space}
+Else if (key0 = "tahc" or key0 = "tahc;" or key0 = "TAHC")
+    str = catch{Space}
+Else if (key0 = "tahcm" or key0 = "tahcm;" or key0 = "TAHCM")
+    str = match{Space}
+Else if (key0 = "tas" or key0 = "tas;" or key0 = "TAS")
+    str = sat{Space}
+Else if (key0 = "tadln" or key0 = "tadln;" or key0 = "TADLN")
+    str = additional{Space}
+Else if (key0 = "tadn" or key0 = "tadn;" or key0 = "TADN")
+    str = addition{Space}
+Else if (key0 = "tdlv" or key0 = "tdlv;" or key0 = "TDLV")
+    str = validate{Space}
+Else if (key0 = "tidcn" or key0 = "tidcn;" or key0 = "TIDCN")
+    str = indicate{Space}
+Else if (key0 = "tipalc" or key0 = "tipalc;" or key0 = "TIPALC")
+    str = capital{Space}
+Else if (key0 = "tisdn" or key0 = "tisdn;" or key0 = "TISDN")
+    str = instead{Space}
+Else if (key0 = "tpxc" or key0 = "tpxc;" or key0 = "TPXC")
+    str = expect{Space}
+Else if (key0 = "tosl" or key0 = "tosl;" or key0 = "TOSL")
+    str = lost{Space}
+Else if (key0 = "tplnm" or key0 = "tplnm;" or key0 = "TPLNM")
+    str = implement{Space}
+Else if (key0 = "tscnl" or key0 = "tscnl;" or key0 = "TSCNL")
+    str = constantly{Space}
+Else if (key0 = "tsdcn" or key0 = "tsdcn;" or key0 = "TSDCN")
+    str = distance{Space}
+Else if (key0 = "tsfgcn" or key0 = "tsfgcn;" or key0 = "TSFGCN")
+    str = significant{Space}
+Else if (key0 = "tuipn" or key0 = "tuipn;" or key0 = "TUIPN")
+    str = input{Space}
+Else if (key0 = "tydfn" or key0 = "tydfn;" or key0 = "TYDFN")
+    str = identify{Space}
+Else if (key0 = "tyusd" or key0 = "tyusd;" or key0 = "TYUSD")
+    str = study{Space}
+Else if (key0 = "tasc" or key0 = "tasc;" or key0 = "TASC")
+    str = cast{Space}
+Else if (key0 = "tadhn" or key0 = "tadhn;" or key0 = "TADHN")
+    str = hadn’t{Space}
+Else if (key0 = "tahl" or key0 = "tahl;" or key0 = "TAHL")
+    str = that’ll{Space}
+Else if (key0 = "tasgn" or key0 = "tasgn;" or key0 = "TASGN")
+    str = against{Space}
+Else if (key0 = "tashkn" or key0 = "tashkn;" or key0 = "TASHKN")
+    str = thanks{Space}
+Else if (key0 = "tbn" or key0 = "tbn;" or key0 = "TBN")
+    str = button{Space}
+Else if (key0 = "tiac" or key0 = "tiac;" or key0 = "TIAC")
+    str = attic{Space}
+Else if (key0 = "tiasn" or key0 = "tiasn;" or key0 = "TIASN")
+    str = instant{Space}
+Else if (key0 = "tidg" or key0 = "tidg;" or key0 = "TIDG")
+    str = digit{Space}
+Else if (key0 = "tif" or key0 = "tif;" or key0 = "TIF")
+    str = fit{Space}
+Else if (key0 = "tifg" or key0 = "tifg;" or key0 = "TIFG")
+    str = gift{Space}
+Else if (key0 = "tifgh" or key0 = "tifgh;" or key0 = "TIFGH")
+    str = fight{Space}
+Else if (key0 = "tihkc" or key0 = "tihkc;" or key0 = "TIHKC")
+    str = thick{Space}
+Else if (key0 = "tilm" or key0 = "tilm;" or key0 = "TILM")
+    str = limit{Space}
+Else if (key0 = "tioacn" or key0 = "tioacn;" or key0 = "TIOACN")
+    str = contain{Space}
+Else if (key0 = "tioghn" or key0 = "tioghn;" or key0 = "TIOGHN")
+    str = tonight{Space}
+Else if (key0 = "tionm" or key0 = "tionm;" or key0 = "TIONM")
+    str = motion{Space}
+Else if (key0 = "tism" or key0 = "tism;" or key0 = "TISM")
+    str = mist{Space}
+Else if (key0 = "tkn" or key0 = "tkn;" or key0 = "TKN")
+    str = think{Space}
+Else if (key0 = "toa" or key0 = "toa;" or key0 = "TOA")
+    str = tattoo{Space}
+Else if (key0 = "toasc" or key0 = "toasc;" or key0 = "TOASC")
+    str = coast{Space}
+Else if (key0 = "tof" or key0 = "tof;" or key0 = "TOF")
+    str = foot{Space}
+Else if (key0 = "toghn" or key0 = "toghn;" or key0 = "TOGHN")
+    str = thong{Space}
+Else if (key0 = "tops" or key0 = "tops;" or key0 = "TOPS")
+    str = stop{Space}
+Else if (key0 = "tpdn" or key0 = "tpdn;" or key0 = "TPDN")
+    str = independent{Space}
+Else if (key0 = "tpl" or key0 = "tpl;" or key0 = "TPL")
+    str = pollute{Space}
+Else if (key0 = "tplcnm" or key0 = "tplcnm;" or key0 = "TPLCNM")
+    str = implication{Space}
+Else if (key0 = "tplnm" or key0 = "tplnm;" or key0 = "TPLNM")
+    str = implement{Space}
+Else if (key0 = "tpslcnm" or key0 = "tpslcnm;" or key0 = "TPSLCNM")
+    str = implications{Space}
+Else if (key0 = "tpsm" or key0 = "tpsm;" or key0 = "TPSM")
+    str = symptom{Space}
+Else if (key0 = "trade" or key0 = "trade;" or key0 = "TRADE")
+    str = trade{Space}
+Else if (key0 = "tsbm" or key0 = "tsbm;" or key0 = "TSBM")
+    str = submit{Space}
+Else if (key0 = "tscbn" or key0 = "tscbn;" or key0 = "TSCBN")
+    str = substance{Space}
+Else if (key0 = "tsfnm" or key0 = "tsfnm;" or key0 = "TSFNM")
+    str = manifest{Space}
+Else if (key0 = "tsgn" or key0 = "tsgn;" or key0 = "TSGN")
+    str = suggestion{Space}
+Else if (key0 = "tsk" or key0 = "tsk;" or key0 = "TSK")
+    str = takes{Space}
+Else if (key0 = "tsxn" or key0 = "tsxn;" or key0 = "TSXN")
+    str = extension{Space}
+Else if (key0 = "tuah" or key0 = "tuah;" or key0 = "TUAH")
+    str = authorize{Space}
+Else if (key0 = "tuahcn" or key0 = "tuahcn;" or key0 = "TUAHCN")
+    str = authentic{Space}
+Else if (key0 = "tuioanm" or key0 = "tuioanm;" or key0 = "TUIOANM")
+    str = mountain{Space}
+Else if (key0 = "tuisln" or key0 = "tuisln;" or key0 = "TUISLN")
+    str = insult{Space}
+Else if (key0 = "tulc" or key0 = "tulc;" or key0 = "TULC")
+    str = cult{Space}
+Else if (key0 = "tuosd" or key0 = "tuosd;" or key0 = "TUOSD")
+    str = outside{Space}
+Else if (key0 = "tuosh" or key0 = "tuosh;" or key0 = "TUOSH")
+    str = south{Space}
+Else if (key0 = "tuosh" or key0 = "tuosh;" or key0 = "TUOSH")
+    str = shout{Space}
+Else if (key0 = "tvn" or key0 = "tvn;" or key0 = "TVN")
+    str = initiative{Space}
+Else if (key0 = "tvnm" or key0 = "tvnm;" or key0 = "TVNM")
+    str = motivation{Space}
+Else if (key0 = "typsm" or key0 = "typsm;" or key0 = "TYPSM")
+    str = symptom{Space}
+Else if (key0 = "tyuocn" or key0 = "tyuocn;" or key0 = "TYUOCN")
+    str = county{Space}
+Else if (key0 = "tdcn" or key0 = "tdcn;" or key0 = "TDCN")
+    str = condition{Space}
+Else if (key0 = "tdcn" or key0 = "tdcn;" or key0 = "TDCN")
+    str = candidate{Space}
+Else if (key0 = "tdcnm" or key0 = "tdcnm;" or key0 = "TDCNM")
+    str = document{Space}
+Else if (key0 = "tdxn" or key0 = "tdxn;" or key0 = "TDXN")
+    str = extend{Space}
+Else if (key0 = "tgn" or key0 = "tgn;" or key0 = "TGN")
+    str = negotiate{Space}
+Else if (key0 = "tidc" or key0 = "tidc;" or key0 = "TIDC")
+    str = dict{Space}
+Else if (key0 = "tidfn" or key0 = "tidfn;" or key0 = "TIDFN")
+    str = identify{Space}
+Else if (key0 = "tidm" or key0 = "tidm;" or key0 = "TIDM")
+    str = immediate{Space}
+Else if (key0 = "tifl" or key0 = "tifl;" or key0 = "TIFL")
+    str = lift{Space}
+Else if (key0 = "tiocm" or key0 = "tiocm;" or key0 = "TIOCM")
+    str = commit{Space}
+Else if (key0 = "tiopc" or key0 = "tiopc;" or key0 = "TIOPC")
+    str = topic{Space}
+Else if (key0 = "tip" or key0 = "tip;" or key0 = "TIP")
+    str = tip{Space}
+Else if (key0 = "tips" or key0 = "tips;" or key0 = "TIPS")
+    str = tips{Space}
+Else if (key0 = "tisfh" or key0 = "tisfh;" or key0 = "TISFH")
+    str = shift{Space}
+Else if (key0 = "tisghl" or key0 = "tisghl;" or key0 = "TISGHL")
+    str = slight{Space}
+Else if (key0 = "tisn" or key0 = "tisn;" or key0 = "TISN")
+    str = isn't{Space}
+Else if (key0 = "tlcm" or key0 = "tlcm;" or key0 = "TLCM")
+    str = climate{Space}
+Else if (key0 = "tln" or key0 = "tln;" or key0 = "TLN")
+    str = national{Space}
+Else if (key0 = "tocv" or key0 = "tocv;" or key0 = "TOCV")
+    str = octave{Space}
+Else if (key0 = "tojcvb" or key0 = "tojcvb;" or key0 = "TOJCVB")
+    str = objective{Space}
+Else if (key0 = "tpan" or key0 = "tpan;" or key0 = "TPAN")
+    str = appoint{Space}
+Else if (key0 = "tpanm" or key0 = "tpanm;" or key0 = "TPANM")
+    str = appointment{Space}
+Else if (key0 = "tpcm" or key0 = "tpcm;" or key0 = "TPCM")
+    str = compete{Space}
+Else if (key0 = "tplc" or key0 = "tplc;" or key0 = "TPLC")
+    str = politic{Space}
+Else if (key0 = "tplcnm" or key0 = "tplcnm;" or key0 = "TPLCNM")
+    str = complement{Space}
+Else if (key0 = "tpshcn" or key0 = "tpshcn;" or key0 = "TPSHCN")
+    str = snapchat{Space}
+Else if (key0 = "tpsn" or key0 = "tpsn;" or key0 = "TPSN")
+    str = position{Space}
+Else if (key0 = "tscn" or key0 = "tscn;" or key0 = "TSCN")
+    str = constant{Space}
+Else if (key0 = "tscn" or key0 = "tscn;" or key0 = "TSCN")
+    str = consistent{Space}
+Else if (key0 = "tscn" or key0 = "tscn;" or key0 = "TSCN")
+    str = constant{Space}
+Else if (key0 = "tscn" or key0 = "tscn;" or key0 = "TSCN")
+    str = scientist{Space}
+Else if (key0 = "tsdcn" or key0 = "tsdcn;" or key0 = "TSDCN")
+    str = distance{Space}
+Else if (key0 = "tsdhn" or key0 = "tsdhn;" or key0 = "TSDHN")
+    str = thousand{Space}
+Else if (key0 = "tudc" or key0 = "tudc;" or key0 = "TUDC")
+    str = duct{Space}
+Else if (key0 = "tuiosd" or key0 = "tuiosd;" or key0 = "TUIOSD")
+    str = studio{Space}
+Else if (key0 = "tuis" or key0 = "tuis;" or key0 = "TUIS")
+    str = suit{Space}
+Else if (key0 = "tuodb" or key0 = "tuodb;" or key0 = "TUODB")
+    str = doubt{Space}
+Else if (key0 = "tuodcn" or key0 = "tuodcn;" or key0 = "TUODCN")
+    str = conduct{Space}
+Else if (key0 = "tuokl" or key0 = "tuokl;" or key0 = "TUOKL")
+    str = outlook{Space}
+Else if (key0 = "tush" or key0 = "tush;" or key0 = "TUSH")
+    str = shut{Space}
+Else if (key0 = "tvm" or key0 = "tvm;" or key0 = "TVM")
+    str = motive{Space}
+Else if (key0 = "tvn" or key0 = "tvn;" or key0 = "TVN")
+    str = invite{Space}
+Else if (key0 = "tyb" or key0 = "tyb;" or key0 = "TYB")
+    str = beauty{Space}
+Else if (key0 = "tycn" or key0 = "tycn;" or key0 = "TYCN")
+    str = county{Space}
+Else if (key0 = "tyin" or key0 = "tyin;" or key0 = "TYIN")
+    str = tiny{Space}
+Else if (key0 = "typac" or key0 = "typac;" or key0 = "TYPAC")
+    str = capacity{Space}
+Else if (key0 = "tac" or key0 = "tac;" or key0 = "TAC")
+    str = act{Space}
+Else if (key0 = "tflb" or key0 = "tflb;" or key0 = "TFLB")
+    str = beautiful{Space}
+Else if (key0 = "tashn" or key0 = "tashn;" or key0 = "TASHN")
+    str = hasn't{Space}
+Else if (key0 = "tflb" or key0 = "tflb;" or key0 = "TFLB")
+    str = beautiful{Space}
+Else if (key0 = "tgvn" or key0 = "tgvn;" or key0 = "TGVN")
+    str = negative{Space}
+Else if (key0 = "tianm" or key0 = "tianm;" or key0 = "TIANM")
+    str = maintain{Space}
+Else if (key0 = "til" or key0 = "til;" or key0 = "TIL")
+    str = it'll{Space}
+Else if (key0 = "tipacm" or key0 = "tipacm;" or key0 = "TIPACM")
+    str = impact{Space}
+Else if (key0 = "tosh" or key0 = "tosh;" or key0 = "TOSH")
+    str = shot{Space}
+Else if (key0 = "tscm" or key0 = "tscm;" or key0 = "TSCM")
+    str = costume{Space}
+Else if (key0 = "tsfcn" or key0 = "tsfcn;" or key0 = "TSFCN")
+    str = fantastic{Space}
+Else if (key0 = "tuioas" or key0 = "tuioas;" or key0 = "TUIOAS")
+    str = situation{Space}
+Else if (key0 = "tuioas" or key0 = "tuioas;" or key0 = "TUIOAS")
+    str = situation{Space}
+Else if (key0 = "tacn" or key0 = "tacn;" or key0 = "TACN")
+    str = can't{Space}
+Else if (key0 = "tad" or key0 = "tad;" or key0 = "TAD")
+    str = data{Space}
+Else if (key0 = "tafc" or key0 = "tafc;" or key0 = "TAFC")
+    str = fact{Space}
+Else if (key0 = "tagkl" or key0 = "tagkl;" or key0 = "TAGKL")
+    str = talking{Space}
+Else if (key0 = "tagn" or key0 = "tagn;" or key0 = "TAGN")
+    str = against{Space}
+Else if (key0 = "tah" or key0 = "tah;" or key0 = "TAH")
+    str = that{Space}
+Else if (key0 = "tahc" or key0 = "tahc;" or key0 = "TAHC")
+    str = chat{Space}
+Else if (key0 = "tahkn" or key0 = "tahkn;" or key0 = "TAHKN")
+    str = thank{Space}
+Else if (key0 = "tahn" or key0 = "tahn;" or key0 = "TAHN")
+    str = than{Space}
+Else if (key0 = "takl" or key0 = "takl;" or key0 = "TAKL")
+    str = talk{Space}
+Else if (key0 = "talc" or key0 = "talc;" or key0 = "TALC")
+    str = actually{Space}
+Else if (key0 = "tam" or key0 = "tam;" or key0 = "TAM")
+    str = amount{Space}
+Else if (key0 = "tan" or key0 = "tan;" or key0 = "TAN")
+    str = attention{Space}
+Else if (key0 = "tasdn" or key0 = "tasdn;" or key0 = "TASDN")
+    str = stand{Space}
+Else if (key0 = "tasf" or key0 = "tasf;" or key0 = "TASF")
+    str = fast{Space}
+Else if (key0 = "tash" or key0 = "tash;" or key0 = "TASH")
+    str = that's{Space}
+Else if (key0 = "taskc" or key0 = "taskc;" or key0 = "TASKC")
+    str = stack{Space}
+Else if (key0 = "tasl" or key0 = "tasl;" or key0 = "TASL")
+    str = last{Space}
+Else if (key0 = "tbm" or key0 = "tbm;" or key0 = "TBM")
+    str = bottom{Space}
+Else if (key0 = "tc" or key0 = "tc;" or key0 = "TC")
+    str = content{Space}
+Else if (key0 = "tcm" or key0 = "tcm;" or key0 = "TCM")
+    str = community{Space}
+Else if (key0 = "tcn" or key0 = "tcn;" or key0 = "TCN")
+    str = continue{Space}
+Else if (key0 = "td" or key0 = "td;" or key0 = "TD")
+    str = today{Space}
+Else if (key0 = "tdcmn" or key0 = "tdcmn;" or key0 = "TDCMN")
+    str = document{Space}
+Else if (key0 = "tdfcn" or key0 = "tdfcn;" or key0 = "TDFCN")
+    str = confident{Space}
+Else if (key0 = "tdgl" or key0 = "tdgl;" or key0 = "TDGL")
+    str = digital{Space}
+Else if (key0 = "tdl" or key0 = "tdl;" or key0 = "TDL")
+    str = detail{Space}
+Else if (key0 = "tdn" or key0 = "tdn;" or key0 = "TDN")
+    str = don't{Space}
+Else if (key0 = "tdx" or key0 = "tdx;" or key0 = "TDX")
+    str = excited{Space}
+Else if (key0 = "tf" or key0 = "tf;" or key0 = "TF")
+    str = first{Space}
+Else if (key0 = "tfbn" or key0 = "tfbn;" or key0 = "TFBN")
+    str = benefit{Space}
+Else if (key0 = "tg" or key0 = "tg;" or key0 = "TG")
+    str = thing{Space}
+Else if (key0 = "tghlc" or key0 = "tghlc;" or key0 = "TGHLC")
+    str = glitch{Space}
+Else if (key0 = "tgk" or key0 = "tgk;" or key0 = "TGK")
+    str = taking{Space}
+Else if (key0 = "tgk" or key0 = "tgk;" or key0 = "TGK")
+    str = taking{Space}
+Else if (key0 = "tgkl" or key0 = "tgkl;" or key0 = "TGKL")
+    str = talking{Space}
+Else if (key0 = "tgkl" or key0 = "tgkl;" or key0 = "TGKL")
+    str = talking{Space}
+Else if (key0 = "tgkn" or key0 = "tgkn;" or key0 = "TGKN")
+    str = thinking{Space}
+Else if (key0 = "tgm" or key0 = "tgm;" or key0 = "TGM")
+    str = meeting{Space}
+Else if (key0 = "tgnm" or key0 = "tgnm;" or key0 = "TGNM")
+    str = management{Space}
+Else if (key0 = "th" or key0 = "th;" or key0 = "TH")
+    str = this{Space}
+Else if (key0 = "thb" or key0 = "thb;" or key0 = "THB")
+    str = to be honest{Space}
+Else if (key0 = "thkn" or key0 = "thkn;" or key0 = "THKN")
+    str = think{Space}
+Else if (key0 = "thvn" or key0 = "thvn;" or key0 = "THVN")
+    str = haven't{Space}
+Else if (key0 = "ti" or key0 = "ti;" or key0 = "TI")
+    str = it{Space}
+Else if (key0 = "tiagh" or key0 = "tiagh;" or key0 = "TIAGH")
+    str = aight{Space}
+Else if (key0 = "tialn" or key0 = "tialn;" or key0 = "TIALN")
+    str = initial{Space}
+Else if (key0 = "tian" or key0 = "tian;" or key0 = "TIAN")
+    str = anti
+Else if (key0 = "tib" or key0 = "tib;" or key0 = "TIB")
+    str = bit{Space}
+Else if (key0 = "tid" or key0 = "tid;" or key0 = "TID")
+    str = it'd{Space}
+Else if (key0 = "tidm" or key0 = "tidm;" or key0 = "TIDM")
+    str = immediate{Space}
+Else if (key0 = "tidn" or key0 = "tidn;" or key0 = "TIDN")
+    str = didn't{Space}
+Else if (key0 = "tig" or key0 = "tig;" or key0 = "TIG")
+    str = {BackSpace}ight{Space}
+Else if (key0 = "tigh" or key0 = "tigh;" or key0 = "TIGH")
+    str = tight{Space}
+Else if (key0 = "tighl" or key0 = "tighl;" or key0 = "TIGHL")
+    str = light{Space}
+Else if (key0 = "tighn" or key0 = "tighn;" or key0 = "TIGHN")
+    str = night{Space}
+Else if (key0 = "tign" or key0 = "tign;" or key0 = "TIGN")
+    str = interesting{Space}
+Else if (key0 = "tih" or key0 = "tih;" or key0 = "TIH")
+    str = I think{Space}
+Else if (key0 = "tihc" or key0 = "tihc;" or key0 = "TIHC")
+    str = itch{Space}
+Else if (key0 = "tihkn" or key0 = "tihkn;" or key0 = "TIHKN")
+    str = think{Space}
+Else if (key0 = "tiln" or key0 = "tiln;" or key0 = "TILN")
+    str = internal{Space}
+Else if (key0 = "tin" or key0 = "tin;" or key0 = "TIN")
+    str = interest{Space}
+Else if (key0 = "tio" or key0 = "tio;" or key0 = "TIO")
+    str = in terms of{Space}
+Else if (key0 = "tioan" or key0 = "tioan;" or key0 = "TIOAN")
+    str = {BackSpace}ation{Space}
+Else if (key0 = "tioln" or key0 = "tioln;" or key0 = "TIOLN")
+    str = international{Space}
+Else if (key0 = "tion" or key0 = "tion;" or key0 = "TION")
+    str = into{Space}
+Else if (key0 = "tiopsn" or key0 = "tiopsn;" or key0 = "TIOPSN")
+    str = position{Space}
+Else if (key0 = "tis" or key0 = "tis;" or key0 = "TIS")
+    str = it's{Space}
+Else if (key0 = "tisdcn" or key0 = "tisdcn;" or key0 = "TISDCN")
+    str = distinct{Space}
+Else if (key0 = "tisgh" or key0 = "tisgh;" or key0 = "TISGH")
+    str = sight{Space}
+Else if (key0 = "tish" or key0 = "tish;" or key0 = "TISH")
+    str = this{Space}
+Else if (key0 = "tish" or key0 = "tish;" or key0 = "TISH")
+    str = this{Space}
+Else if (key0 = "tiskc" or key0 = "tiskc;" or key0 = "TISKC")
+    str = stick{Space}
+Else if (key0 = "tisl" or key0 = "tisl;" or key0 = "TISL")
+    str = still{Space}
+Else if (key0 = "tisn" or key0 = "tisn;" or key0 = "TISN")
+    str = instead{Space}
+Else if (key0 = "tivn" or key0 = "tivn;" or key0 = "TIVN")
+    str = interview{Space}
+Else if (key0 = "tiz" or key0 = "tiz;" or key0 = "TIZ")
+    str = ization
+Else if (key0 = "tk" or key0 = "tk;" or key0 = "TK")
+    str = take{Space}
+Else if (key0 = "tkl" or key0 = "tkl;" or key0 = "TKL")
+    str = talk{Space}
+Else if (key0 = "tkm" or key0 = "tkm;" or key0 = "TKM")
+    str = market{Space}
+Else if (key0 = "tlb" or key0 = "tlb;" or key0 = "TLB")
+    str = built{Space}
+Else if (key0 = "tlcn" or key0 = "tlcn;" or key0 = "TLCN")
+    str = technical{Space}
+Else if (key0 = "tlnm" or key0 = "tlnm;" or key0 = "TLNM")
+    str = mental{Space}
+Else if (key0 = "tlxn" or key0 = "tlxn;" or key0 = "TLXN")
+    str = excellent{Space}
+Else if (key0 = "tm" or key0 = "tm;" or key0 = "TM")
+    str = time{Space}
+Else if (key0 = "tnm" or key0 = "tnm;" or key0 = "TNM")
+    str = minute{Space}
+Else if (key0 = "to" or key0 = "to;" or key0 = "TO")
+    str = to{Space}
+Else if (key0 = "to" or key0 = "to;" or key0 = "TO")
+    str = too{Space}
+Else if (key0 = "toacn" or key0 = "toacn;" or key0 = "TOACN")
+    str = contact{Space}
+Else if (key0 = "toahl" or key0 = "toahl;" or key0 = "TOAHL")
+    str = although{Space}
+Else if (key0 = "toal" or key0 = "toal;" or key0 = "TOAL")
+    str = total{Space}
+Else if (key0 = "tobm" or key0 = "tobm;" or key0 = "TOBM")
+    str = bottom{Space}
+Else if (key0 = "tocn" or key0 = "tocn;" or key0 = "TOCN")
+    str = contract{Space}
+Else if (key0 = "todl" or key0 = "todl;" or key0 = "TODL")
+    str = told{Space}
+Else if (key0 = "todn" or key0 = "todn;" or key0 = "TODN")
+    str = don't{Space}
+Else if (key0 = "tog" or key0 = "tog;" or key0 = "TOG")
+    str = got{Space}
+Else if (key0 = "toh" or key0 = "toh;" or key0 = "TOH")
+    str = though{Space}
+Else if (key0 = "tohb" or key0 = "tohb;" or key0 = "TOHB")
+    str = both{Space}
+Else if (key0 = "tohnm" or key0 = "tohnm;" or key0 = "TOHNM")
+    str = month{Space}
+Else if (key0 = "tok" or key0 = "tok;" or key0 = "TOK")
+    str = took{Space}
+Else if (key0 = "tol" or key0 = "tol;" or key0 = "TOL")
+    str = lot{Space}
+Else if (key0 = "ton" or key0 = "ton;" or key0 = "TON")
+    str = not{Space}
+Else if (key0 = "ton" or key0 = "ton;" or key0 = "TON")
+    str = not{Space}
+Else if (key0 = "top" or key0 = "top;" or key0 = "TOP")
+    str = top{Space}
+Else if (key0 = "topad" or key0 = "topad;" or key0 = "TOPAD")
+    str = adopt{Space}
+Else if (key0 = "toph" or key0 = "toph;" or key0 = "TOPH")
+    str = photo{Space}
+Else if (key0 = "tops" or key0 = "tops;" or key0 = "TOPS")
+    str = stop{Space}
+Else if (key0 = "topzm" or key0 = "topzm;" or key0 = "TOPZM")
+    str = optimize{Space}
+Else if (key0 = "tosc" or key0 = "tosc;" or key0 = "TOSC")
+    str = cost{Space}
+Else if (key0 = "tosl" or key0 = "tosl;" or key0 = "TOSL")
+    str = lost{Space}
+Else if (key0 = "tosm" or key0 = "tosm;" or key0 = "TOSM")
+    str = most{Space}
+Else if (key0 = "tp" or key0 = "tp;" or key0 = "TP")
+    str = point{Space}
+Else if (key0 = "tpaflm" or key0 = "tpaflm;" or key0 = "TPAFLM")
+    str = platform{Space}
+Else if (key0 = "tpaln" or key0 = "tpaln;" or key0 = "TPALN")
+    str = plant{Space}
+Else if (key0 = "tpas" or key0 = "tpas;" or key0 = "TPAS")
+    str = past{Space}
+Else if (key0 = "tpc" or key0 = "tpc;" or key0 = "TPC")
+    str = corporate{Space}
+Else if (key0 = "tpcnm" or key0 = "tpcnm;" or key0 = "TPCNM")
+    str = component{Space}
+Else if (key0 = "tpd" or key0 = "tpd;" or key0 = "TPD")
+    str = department{Space}
+Else if (key0 = "tplm" or key0 = "tplm;" or key0 = "TPLM")
+    str = multiple{Space}
+Else if (key0 = "tpln" or key0 = "tpln;" or key0 = "TPLN")
+    str = potential{Space}
+Else if (key0 = "tps" or key0 = "tps;" or key0 = "TPS")
+    str = post{Space}
+Else if (key0 = "tpsn" or key0 = "tpsn;" or key0 = "TPSN")
+    str = postpone{Space}
+Else if (key0 = "tpsv" or key0 = "tpsv;" or key0 = "TPSV")
+    str = positive{Space}
+Else if (key0 = "ts" or key0 = "ts;" or key0 = "TS")
+    str = its{Space}
+Else if (key0 = "ts" or key0 = "ts;" or key0 = "TS")
+    str = st
+Else if (key0 = "tsdn" or key0 = "tsdn;" or key0 = "TSDN")
+    str = doesn't{Space}
+Else if (key0 = "tsfgn" or key0 = "tsfgn;" or key0 = "TSFGN")
+    str = significant{Space}
+Else if (key0 = "tsg" or key0 = "tsg;" or key0 = "TSG")
+    str = things{Space}
+Else if (key0 = "tsdhn" or key0 = "tsdhn;" or key0 = "TSDHN")
+    str = shouldn't{Space}
+Else if (key0 = "tskm" or key0 = "tskm;" or key0 = "TSKM")
+    str = mistake{Space}
+Else if (key0 = "tsl" or key0 = "tsl;" or key0 = "TSL")
+    str = list{Space}
+Else if (key0 = "tsln" or key0 = "tsln;" or key0 = "TSLN")
+    str = listen{Space}
+Else if (key0 = "tslvm" or key0 = "tslvm;" or key0 = "TSLVM")
+    str = themselves{Space}
+Else if (key0 = "tsm" or key0 = "tsm;" or key0 = "TSM")
+    str = sometimes{Space}
+Else if (key0 = "tsn" or key0 = "tsn;" or key0 = "TSN")
+    str = essentially{Space}
+Else if (key0 = "tua" or key0 = "tua;" or key0 = "TUA")
+    str = uation
+Else if (key0 = "tuagh" or key0 = "tuagh;" or key0 = "TUAGH")
+    str = taught{Space}
+Else if (key0 = "tualc" or key0 = "tualc;" or key0 = "TUALC")
+    str = actual{Space}
+Else if (key0 = "tub" or key0 = "tub;" or key0 = "TUB")
+    str = but{Space}
+Else if (key0 = "tuc" or key0 = "tuc;" or key0 = "TUC")
+    str = cut{Space}
+Else if (key0 = "tuiln" or key0 = "tuiln;" or key0 = "TUILN")
+    str = until{Space}
+Else if (key0 = "tuioasn" or key0 = "tuioasn;" or key0 = "TUIOASN")
+    str = situation{Space}
+Else if (key0 = "tuipdlc" or key0 = "tuipdlc;" or key0 = "TUIPDLC")
+    str = duplicate{Space}
+Else if (key0 = "tul" or key0 = "tul;" or key0 = "TUL")
+    str = ultimately{Space}
+Else if (key0 = "tuo" or key0 = "tuo;" or key0 = "TUO")
+    str = out{Space}
+Else if (key0 = "tuoa" or key0 = "tuoa;" or key0 = "TUOA")
+    str = auto{Space}
+Else if (key0 = "tuoacn" or key0 = "tuoacn;" or key0 = "TUOACN")
+    str = account{Space}
+Else if (key0 = "tuobn" or key0 = "tuobn;" or key0 = "TUOBN")
+    str = button{Space}
+Else if (key0 = "tuocn" or key0 = "tuocn;" or key0 = "TUOCN")
+    str = count{Space}
+Else if (key0 = "tuohc" or key0 = "tuohc;" or key0 = "TUOHC")
+    str = touch{Space}
+Else if (key0 = "tuohm" or key0 = "tuohm;" or key0 = "TUOHM")
+    str = mouth{Space}
+Else if (key0 = "tuoscm" or key0 = "tuoscm;" or key0 = "TUOSCM")
+    str = custom{Space}
+Else if (key0 = "tup" or key0 = "tup;" or key0 = "TUP")
+    str = put{Space}
+Else if (key0 = "tusf" or key0 = "tusf;" or key0 = "TUSF")
+    str = stuff{Space}
+Else if (key0 = "tusm" or key0 = "tusm;" or key0 = "TUSM")
+    str = must{Space}
+Else if (key0 = "txc" or key0 = "txc;" or key0 = "TXC")
+    str = context{Space}
+Else if (key0 = "ty" or key0 = "ty;" or key0 = "TY")
+    str = thank you{Space}
+Else if (key0 = "tyas" or key0 = "tyas;" or key0 = "TYAS")
+    str = stay{Space}
+Else if (key0 = "tyaslv" or key0 = "tyaslv;" or key0 = "TYASLV")
+    str = vastly{Space}
+Else if (key0 = "tyd" or key0 = "tyd;" or key0 = "TYD")
+    str = today{Space}
+Else if (key0 = "tyi" or key0 = "tyi;" or key0 = "TYI")
+    str = {BackSpace}ity{Space}
+Else if (key0 = "tyiacv" or key0 = "tyiacv;" or key0 = "TYIACV")
+    str = activity{Space}
+Else if (key0 = "tyial" or key0 = "tyial;" or key0 = "TYIAL")
+    str = {BackSpace}ality{Space}
+Else if (key0 = "tyialb" or key0 = "tyialb;" or key0 = "TYIALB")
+    str = ability{Space}
+Else if (key0 = "tyidn" or key0 = "tyidn;" or key0 = "TYIDN")
+    str = identity{Space}
+Else if (key0 = "tyik" or key0 = "tyik;" or key0 = "TYIK")
+    str = kitty{Space}
+Else if (key0 = "tyil" or key0 = "tyil;" or key0 = "TYIL")
+    str = ility{Space}
+Else if (key0 = "tyilb" or key0 = "tyilb;" or key0 = "TYILB")
+    str = ibility{Space}
+Else if (key0 = "tyo" or key0 = "tyo;" or key0 = "TYO")
+    str = toy{Space}
+Else if (key0 = "tyoal" or key0 = "tyoal;" or key0 = "TYOAL")
+    str = totally{Space}
+Else if (key0 = "typhlc" or key0 = "typhlc;" or key0 = "TYPHLC")
+    str = hypothetical{Space}
+Else if (key0 = "typlc" or key0 = "typlc;" or key0 = "TYPLC")
+    str = typical{Space}
+Else if (key0 = "tyvm" or key0 = "tyvm;" or key0 = "TYVM")
+    str = thank you very much{Space}
+Else if (key0 = "toaghc" or key0 = "toaghc;" or key0 = "TOAGHC")
+    str = got you.{Space}
+Else if (key0 = "tpah" or key0 = "tpah;" or key0 = "TPAH")
+    str = path{Space}
+Else if (key0 = "tsc" or key0 = "tsc;" or key0 = "TSC")
+    str = society{Space}
+Else if (key0 = "tslvm" or key0 = "tslvm;" or key0 = "TSLVM")
+    str = themselves{Space}
+Else if (key0 = "tuiasn" or key0 = "tuiasn;" or key0 = "TUIASN")
+    str = sustain{Space}
+Else if (key0 = "tuiosn" or key0 = "tuiosn;" or key0 = "TUIOSN")
+    str = institution{Space}
+Else if (key0 = "tuogh" or key0 = "tuogh;" or key0 = "TUOGH")
+    str = thought{Space}
+Else if (key0 = "tvn" or key0 = "tvn;" or key0 = "TVN")
+    str = native{Space}
+Else if (key0 = "tyic" or key0 = "tyic;" or key0 = "TYIC")
+    str = city{Space}
 Return
+
 SENDY:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,yac, Send {BackSpace}acy{Space}
-Else IfEqual key0,yad, Send day{Space}
-Else IfEqual key0,yugl, Send ugly{Space}
-Else IfEqual key0,tysg, Send staying{Space}
-Else IfEqual key0,eyagcn, Send agency{Space}
-Else IfEqual key0,yc, Send {BackSpace}cy{Space}
-Else IfEqual key0,yadbn, Send anybody{Space}
-Else IfEqual key0,ydgb, Send goodbye{Space}
-Else IfEqual key0,ypg, Send paying{Space}
- Else IfEqual key0,ydvn, Send vineyard{Space}
-Else IfEqual key0,yalb, Send {backspace}ably{Space}
-Else IfEqual key0,ycvn, Send convey{Space}
-Else IfEqual key0,yfl, Send fly{Space}
-Else IfEqual key0,yohl, Send holy{Space}
-Else IfEqual key0,yoph, Send hypo
-Else IfEqual key0,ysln, Send analysis{Space}
-Else IfEqual key0,yudb, Send buddy{Space}
-Else IfEqual key0,yusg, Send guys{Space}
-Else IfEqual key0,yab, Send baby{Space}
-Else IfEqual key0,yoglcn, Send oncology{Space}
-Else IfEqual key0,ypal, Send play{Space}
-Else IfEqual key0,ysnm, Send mayonnaise{Space}
-Else IfEqual key0,yujl, Send July{Space}
-Else IfEqual key0,yopc, Send copy{Space}
-Else IfEqual key0,ypshcn, Send physician{Space}
-Else IfEqual key0,yam, Send may{Space}
-Else IfEqual key0,yglcn, Send oncology{Space}
-Else IfEqual key0,yoglcn, Send oncology{Space}
-Else IfEqual key0,ydbn, Send beyond{Space}
-Else IfEqual key0,yif, Send {BackSpace}ify{Space}
-Else IfEqual key0,yoj, Send joy{Space}
-Else IfEqual key0,ypshlc, Send physical{Space}
-Else IfEqual key0,yan, Send any{Space}
-Else IfEqual key0,yanm, Send many{Space}
-Else IfEqual key0,yas, Send say{Space}
-Else IfEqual key0,yasg, Send saying{Space}
-Else IfEqual key0,yb, Send by{Space}
-Else IfEqual key0,yd, Send yesterday{Space}
-Else IfEqual key0,yfln, Send finally{Space}
-Else IfEqual key0,yiadl, Send daily{Space}
-Else IfEqual key0,yiaflm, Send family{Space}
-Else IfEqual key0,yiasln, Send analysis{Space}
-Else IfEqual key0,yif, Send ify{Space}
-Else IfEqual key0,yil, Send {BackSpace}ily{Space}
-Else IfEqual key0,yk, Send you know{Space}
-Else IfEqual key0,yl, Send {BackSpace}ly{Space}
-Else IfEqual key0,ym, Send my{Space}
-Else IfEqual key0,yoan, Send annoy{Space}
-Else IfEqual key0,yoanm, Send anymore{Space}
-Else IfEqual key0,yob, Send boy{Space}
-Else IfEqual key0,yodb, Send body{Space}
-Else IfEqual key0,yoln, Send only{Space}
-Else IfEqual key0,ypa, Send pay{Space}
-Else IfEqual key0,ypah, Send happy{Space}
-Else IfEqual key0,ypal, Send play{Space}
-Else IfEqual key0,ypcm, Send completely{Space}
-Else IfEqual key0,ysda, Send days{Space}
-Else IfEqual key0,ysg, Send saying{Space}
-Else IfEqual key0,ysm, Send sym
-Else IfEqual key0,ysn, Send syn
-Else IfEqual key0,yuasl, Send usually{Space}
-Else IfEqual key0,yub, Send buy{Space}
-Else IfEqual key0,yug, Send guy{Space}
-Else IfEqual key0,yuogn, Send young{Space}
-Else IfEqual key0,yal, Send lay{Space}
-Else IfEqual key0,yufn, Send funny{Space}
-Else IfEqual key0,yusb, Send busy{Space}
+ if (key0 = "yac" or key0 = "yac;" or key0 = "YAC")
+    str = {BackSpace}acy{Space}
+Else if (key0 = "yad" or key0 = "yad;" or key0 = "YAD")
+    str = day{Space}
+Else if (key0 = "yugl" or key0 = "yugl;" or key0 = "YUGL")
+    str = ugly{Space}
+Else if (key0 = "tysg" or key0 = "tysg;" or key0 = "TYSG")
+    str = staying{Space}
+Else if (key0 = "eyagcn" or key0 = "eyagcn;" or key0 = "EYAGCN")
+    str = agency{Space}
+Else if (key0 = "yc" or key0 = "yc;" or key0 = "YC")
+    str = {BackSpace}cy{Space}
+Else if (key0 = "yadbn" or key0 = "yadbn;" or key0 = "YADBN")
+    str = anybody{Space}
+Else if (key0 = "ydgb" or key0 = "ydgb;" or key0 = "YDGB")
+    str = goodbye{Space}
+Else if (key0 = "ypg" or key0 = "ypg;" or key0 = "YPG")
+    str = paying{Space}
+Else if (key0 = "ydvn" or key0 = "ydvn;" or key0 = "YDVN")
+    str = vineyard{Space}
+Else if (key0 = "yalb" or key0 = "yalb;" or key0 = "YALB")
+    str = {backspace}ably{Space}
+Else if (key0 = "ycvn" or key0 = "ycvn;" or key0 = "YCVN")
+    str = convey{Space}
+Else if (key0 = "yfl" or key0 = "yfl;" or key0 = "YFL")
+    str = fly{Space}
+Else if (key0 = "yohl" or key0 = "yohl;" or key0 = "YOHL")
+    str = holy{Space}
+Else if (key0 = "yoph" or key0 = "yoph;" or key0 = "YOPH")
+    str = hypo
+Else if (key0 = "ysln" or key0 = "ysln;" or key0 = "YSLN")
+    str = analysis{Space}
+Else if (key0 = "yudb" or key0 = "yudb;" or key0 = "YUDB")
+    str = buddy{Space}
+Else if (key0 = "yusg" or key0 = "yusg;" or key0 = "YUSG")
+    str = guys{Space}
+Else if (key0 = "yab" or key0 = "yab;" or key0 = "YAB")
+    str = baby{Space}
+Else if (key0 = "yoglcn" or key0 = "yoglcn;" or key0 = "YOGLCN")
+    str = oncology{Space}
+Else if (key0 = "ypal" or key0 = "ypal;" or key0 = "YPAL")
+    str = play{Space}
+Else if (key0 = "ysnm" or key0 = "ysnm;" or key0 = "YSNM")
+    str = mayonnaise{Space}
+Else if (key0 = "yujl" or key0 = "yujl;" or key0 = "YUJL")
+    str = July{Space}
+Else if (key0 = "yopc" or key0 = "yopc;" or key0 = "YOPC")
+    str = copy{Space}
+Else if (key0 = "ypshcn" or key0 = "ypshcn;" or key0 = "YPSHCN")
+    str = physician{Space}
+Else if (key0 = "yam" or key0 = "yam;" or key0 = "YAM")
+    str = may{Space}
+Else if (key0 = "yglcn" or key0 = "yglcn;" or key0 = "YGLCN")
+    str = oncology{Space}
+Else if (key0 = "yoglcn" or key0 = "yoglcn;" or key0 = "YOGLCN")
+    str = oncology{Space}
+Else if (key0 = "ydbn" or key0 = "ydbn;" or key0 = "YDBN")
+    str = beyond{Space}
+Else if (key0 = "yif" or key0 = "yif;" or key0 = "YIF")
+    str = {BackSpace}ify{Space}
+Else if (key0 = "yoj" or key0 = "yoj;" or key0 = "YOJ")
+    str = joy{Space}
+Else if (key0 = "ypshlc" or key0 = "ypshlc;" or key0 = "YPSHLC")
+    str = physical{Space}
+Else if (key0 = "yan" or key0 = "yan;" or key0 = "YAN")
+    str = any{Space}
+Else if (key0 = "yanm" or key0 = "yanm;" or key0 = "YANM")
+    str = many{Space}
+Else if (key0 = "yas" or key0 = "yas;" or key0 = "YAS")
+    str = say{Space}
+Else if (key0 = "yasg" or key0 = "yasg;" or key0 = "YASG")
+    str = saying{Space}
+Else if (key0 = "yb" or key0 = "yb;" or key0 = "YB")
+    str = by{Space}
+Else if (key0 = "yd" or key0 = "yd;" or key0 = "YD")
+    str = yesterday{Space}
+Else if (key0 = "yfln" or key0 = "yfln;" or key0 = "YFLN")
+    str = finally{Space}
+Else if (key0 = "yiadl" or key0 = "yiadl;" or key0 = "YIADL")
+    str = daily{Space}
+Else if (key0 = "yiaflm" or key0 = "yiaflm;" or key0 = "YIAFLM")
+    str = family{Space}
+Else if (key0 = "yiasln" or key0 = "yiasln;" or key0 = "YIASLN")
+    str = analysis{Space}
+Else if (key0 = "yif" or key0 = "yif;" or key0 = "YIF")
+    str = ify{Space}
+Else if (key0 = "yil" or key0 = "yil;" or key0 = "YIL")
+    str = {BackSpace}ily{Space}
+Else if (key0 = "yk" or key0 = "yk;" or key0 = "YK")
+    str = you know{Space}
+Else if (key0 = "yl" or key0 = "yl;" or key0 = "YL")
+    str = {BackSpace}ly{Space}
+Else if (key0 = "ym" or key0 = "ym;" or key0 = "YM")
+    str = my{Space}
+Else if (key0 = "yoan" or key0 = "yoan;" or key0 = "YOAN")
+    str = annoy{Space}
+Else if (key0 = "yoanm" or key0 = "yoanm;" or key0 = "YOANM")
+    str = anymore{Space}
+Else if (key0 = "yob" or key0 = "yob;" or key0 = "YOB")
+    str = boy{Space}
+Else if (key0 = "yodb" or key0 = "yodb;" or key0 = "YODB")
+    str = body{Space}
+Else if (key0 = "yoln" or key0 = "yoln;" or key0 = "YOLN")
+    str = only{Space}
+Else if (key0 = "ypa" or key0 = "ypa;" or key0 = "YPA")
+    str = pay{Space}
+Else if (key0 = "ypah" or key0 = "ypah;" or key0 = "YPAH")
+    str = happy{Space}
+Else if (key0 = "ypal" or key0 = "ypal;" or key0 = "YPAL")
+    str = play{Space}
+Else if (key0 = "ypcm" or key0 = "ypcm;" or key0 = "YPCM")
+    str = completely{Space}
+Else if (key0 = "ysda" or key0 = "ysda;" or key0 = "YSDA")
+    str = days{Space}
+Else if (key0 = "ysg" or key0 = "ysg;" or key0 = "YSG")
+    str = saying{Space}
+Else if (key0 = "ysm" or key0 = "ysm;" or key0 = "YSM")
+    str = sym
+Else if (key0 = "ysn" or key0 = "ysn;" or key0 = "YSN")
+    str = syn
+Else if (key0 = "yuasl" or key0 = "yuasl;" or key0 = "YUASL")
+    str = usually{Space}
+Else if (key0 = "yub" or key0 = "yub;" or key0 = "YUB")
+    str = buy{Space}
+Else if (key0 = "yug" or key0 = "yug;" or key0 = "YUG")
+    str = guy{Space}
+Else if (key0 = "yuogn" or key0 = "yuogn;" or key0 = "YUOGN")
+    str = young{Space}
+Else if (key0 = "yal" or key0 = "yal;" or key0 = "YAL")
+    str = lay{Space}
+Else if (key0 = "yufn" or key0 = "yufn;" or key0 = "YUFN")
+    str = funny{Space}
+Else if (key0 = "yusb" or key0 = "yusb;" or key0 = "YUSB")
+    str = busy{Space}
 Return
+
 SENDU:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,ua, Send au
-Else IfEqual key0,uab, Send a bunch{Space}
-Else IfEqual key0,uahnm, Send human{Space}
-Else IfEqual key0,uasdhbn, Send husband{Space}
-Else IfEqual key0,uinm, Send minimum{Space}
-Else IfEqual key0,uiolcn, Send council{Space}
-Else IfEqual key0,uodbn, Send bound{Space}
-Else IfEqual key0,uodc, Send docu
-Else IfEqual key0,uahlcn, Send launch{Space}
-Else IfEqual key0,uashbn, Send husband{Space}
-Else IfEqual key0,udh, Send duh{Space}
-Else IfEqual key0,ugn, Send gun{Space}
-Else IfEqual key0,uhcbn, Send bunch{Space}
-Else IfEqual key0,uioac, Send caution{Space}
-Else IfEqual key0,upbm, Send bump{Space}
-Else IfEqual key0,uanm, Send manu{Space}
-Else IfEqual key0,ufkc, Send fuck{Space}
-Else IfEqual key0,uklc, Send luck{Space}
-Else IfEqual key0,uisdc, Send discuss{Space}
-Else IfEqual key0,usg, Send using{Space}
-Else IfEqual key0,usgn, Send sung{Space}
-Else IfEqual key0,ualbm, Send albums{Space}
-Else IfEqual key0,uiosl, Send solution{Space}
-Else IfEqual key0,uad, Send audience{Space}
-Else IfEqual key0,uag, Send aug{Space}
-Else IfEqual key0,uaghl, Send laugh{Space}
-Else IfEqual key0,uagl, Send laugh{Space}
-Else IfEqual key0,uahlcn, Send launch{Space}
-Else IfEqual key0,uasl, Send usual{Space}
-Else IfEqual key0,ucm, Send communicate{Space}
-Else IfEqual key0,ud, Send you'd{Space}
-Else IfEqual key0,udn, Send understand{Space}
-Else IfEqual key0,ufl, Send full{Space}
-Else IfEqual key0,uhcm, Send much{Space}
-Else IfEqual key0,uicm, Send communication{Space}
-Else IfEqual key0,uiocm, Send communication{Space}
-Else IfEqual key0,uidn, Send industry{Space}
-Else IfEqual key0,uin, Send uni
-Else IfEqual key0,uiofcn, Send function{Space}
-Else IfEqual key0,uios, Send ious
-Else IfEqual key0,uioscn, Send conscious{Space}
-Else IfEqual key0,uioslcn, Send conclusion{Space}
-Else IfEqual key0,uipdl, Send dupli{Space}
-Else IfEqual key0,uiscm, Send music{Space}
-Else IfEqual key0,uisn, Send insurance{Space}
-Else IfEqual key0,uivn, Send university{Space}
-Else IfEqual key0,ul, Send you'll{Space}
-Else IfEqual key0,un, Send un
-Else IfEqual key0,unm, Send number{Space}
-Else IfEqual key0,uo, Send ou
-Else IfEqual key0,uodfn, Send found{Space}
-Else IfEqual key0,uodl, Send loud{Space}
-Else IfEqual key0,uodlc, Send cloud{Space}
-Else IfEqual key0,uogh, Send ough{Space}
-Else IfEqual key0,uop, Send population{Space}
-Else IfEqual key0,uopn, Send upon{Space}
-Else IfEqual key0,uos, Send {BackSpace}ous{Space}
-Else IfEqual key0,uosdn, Send sound{Space}
-Else IfEqual key0,uosfc, Send focus{Space}
-Else IfEqual key0,uosm, Send so much{Space}
-Else IfEqual key0,up, Send up{Space}
-Else IfEqual key0,upascm, Send campus{Space}
-Else IfEqual key0,upc, Send computer{Space}
-Else IfEqual key0,upjm, Send jump{Space}
-Else IfEqual key0,upl, Send pull{Space}
-Else IfEqual key0,upsh, Send push{Space}
-Else IfEqual key0,us, Send us{Space}
-Else IfEqual key0,usb, Send sub
-Else IfEqual key0,usf, Send yourself{Space}
-Else IfEqual key0,ushc, Send such{Space}
-Else IfEqual key0,usn, Send sun{Space}
-Else IfEqual key0,uv, Send you've{Space}
-Else IfEqual key0,udfn, Send fund{Space}
-Else IfEqual key0,ufn, Send fun{Space}
-Else IfEqual key0,usfl, Send yourself{Space}
+ if (key0 = "ua" or key0 = "ua;" or key0 = "UA")
+    str = au
+Else if (key0 = "uab" or key0 = "uab;" or key0 = "UAB")
+    str = a bunch{Space}
+Else if (key0 = "uahnm" or key0 = "uahnm;" or key0 = "UAHNM")
+    str = human{Space}
+Else if (key0 = "uasdhbn" or key0 = "uasdhbn;" or key0 = "UASDHBN")
+    str = husband{Space}
+Else if (key0 = "uinm" or key0 = "uinm;" or key0 = "UINM")
+    str = minimum{Space}
+Else if (key0 = "uiolcn" or key0 = "uiolcn;" or key0 = "UIOLCN")
+    str = council{Space}
+Else if (key0 = "uodbn" or key0 = "uodbn;" or key0 = "UODBN")
+    str = bound{Space}
+Else if (key0 = "uodc" or key0 = "uodc;" or key0 = "UODC")
+    str = docu
+Else if (key0 = "uahlcn" or key0 = "uahlcn;" or key0 = "UAHLCN")
+    str = launch{Space}
+Else if (key0 = "uashbn" or key0 = "uashbn;" or key0 = "UASHBN")
+    str = husband{Space}
+Else if (key0 = "udh" or key0 = "udh;" or key0 = "UDH")
+    str = duh{Space}
+Else if (key0 = "ugn" or key0 = "ugn;" or key0 = "UGN")
+    str = gun{Space}
+Else if (key0 = "uhcbn" or key0 = "uhcbn;" or key0 = "UHCBN")
+    str = bunch{Space}
+Else if (key0 = "uioac" or key0 = "uioac;" or key0 = "UIOAC")
+    str = caution{Space}
+Else if (key0 = "upbm" or key0 = "upbm;" or key0 = "UPBM")
+    str = bump{Space}
+Else if (key0 = "uanm" or key0 = "uanm;" or key0 = "UANM")
+    str = manu{Space}
+Else if (key0 = "ufkc" or key0 = "ufkc;" or key0 = "UFKC")
+    str = fuck{Space}
+Else if (key0 = "uklc" or key0 = "uklc;" or key0 = "UKLC")
+    str = luck{Space}
+Else if (key0 = "uisdc" or key0 = "uisdc;" or key0 = "UISDC")
+    str = discuss{Space}
+Else if (key0 = "usg" or key0 = "usg;" or key0 = "USG")
+    str = using{Space}
+Else if (key0 = "usgn" or key0 = "usgn;" or key0 = "USGN")
+    str = sung{Space}
+Else if (key0 = "ualbm" or key0 = "ualbm;" or key0 = "UALBM")
+    str = albums{Space}
+Else if (key0 = "uiosl" or key0 = "uiosl;" or key0 = "UIOSL")
+    str = solution{Space}
+Else if (key0 = "uad" or key0 = "uad;" or key0 = "UAD")
+    str = audience{Space}
+Else if (key0 = "uag" or key0 = "uag;" or key0 = "UAG")
+    str = aug{Space}
+Else if (key0 = "uaghl" or key0 = "uaghl;" or key0 = "UAGHL")
+    str = laugh{Space}
+Else if (key0 = "uagl" or key0 = "uagl;" or key0 = "UAGL")
+    str = laugh{Space}
+Else if (key0 = "uahlcn" or key0 = "uahlcn;" or key0 = "UAHLCN")
+    str = launch{Space}
+Else if (key0 = "uasl" or key0 = "uasl;" or key0 = "UASL")
+    str = usual{Space}
+Else if (key0 = "ucm" or key0 = "ucm;" or key0 = "UCM")
+    str = communicate{Space}
+Else if (key0 = "ud" or key0 = "ud;" or key0 = "UD")
+    str = you'd{Space}
+Else if (key0 = "udn" or key0 = "udn;" or key0 = "UDN")
+    str = understand{Space}
+Else if (key0 = "ufl" or key0 = "ufl;" or key0 = "UFL")
+    str = full{Space}
+Else if (key0 = "uhcm" or key0 = "uhcm;" or key0 = "UHCM")
+    str = much{Space}
+Else if (key0 = "uicm" or key0 = "uicm;" or key0 = "UICM")
+    str = communication{Space}
+Else if (key0 = "uiocm" or key0 = "uiocm;" or key0 = "UIOCM")
+    str = communication{Space}
+Else if (key0 = "uidn" or key0 = "uidn;" or key0 = "UIDN")
+    str = industry{Space}
+Else if (key0 = "uin" or key0 = "uin;" or key0 = "UIN")
+    str = uni
+Else if (key0 = "uiofcn" or key0 = "uiofcn;" or key0 = "UIOFCN")
+    str = function{Space}
+Else if (key0 = "uios" or key0 = "uios;" or key0 = "UIOS")
+    str = ious
+Else if (key0 = "uioscn" or key0 = "uioscn;" or key0 = "UIOSCN")
+    str = conscious{Space}
+Else if (key0 = "uioslcn" or key0 = "uioslcn;" or key0 = "UIOSLCN")
+    str = conclusion{Space}
+Else if (key0 = "uipdl" or key0 = "uipdl;" or key0 = "UIPDL")
+    str = dupli{Space}
+Else if (key0 = "uiscm" or key0 = "uiscm;" or key0 = "UISCM")
+    str = music{Space}
+Else if (key0 = "uisn" or key0 = "uisn;" or key0 = "UISN")
+    str = insurance{Space}
+Else if (key0 = "uivn" or key0 = "uivn;" or key0 = "UIVN")
+    str = university{Space}
+Else if (key0 = "ul" or key0 = "ul;" or key0 = "UL")
+    str = you'll{Space}
+Else if (key0 = "un" or key0 = "un;" or key0 = "UN")
+    str = un
+Else if (key0 = "unm" or key0 = "unm;" or key0 = "UNM")
+    str = number{Space}
+Else if (key0 = "uo" or key0 = "uo;" or key0 = "UO")
+    str = ou
+Else if (key0 = "uodfn" or key0 = "uodfn;" or key0 = "UODFN")
+    str = found{Space}
+Else if (key0 = "uodl" or key0 = "uodl;" or key0 = "UODL")
+    str = loud{Space}
+Else if (key0 = "uodlc" or key0 = "uodlc;" or key0 = "UODLC")
+    str = cloud{Space}
+Else if (key0 = "uogh" or key0 = "uogh;" or key0 = "UOGH")
+    str = ough{Space}
+Else if (key0 = "uop" or key0 = "uop;" or key0 = "UOP")
+    str = population{Space}
+Else if (key0 = "uopn" or key0 = "uopn;" or key0 = "UOPN")
+    str = upon{Space}
+Else if (key0 = "uos" or key0 = "uos;" or key0 = "UOS")
+    str = {BackSpace}ous{Space}
+Else if (key0 = "uosdn" or key0 = "uosdn;" or key0 = "UOSDN")
+    str = sound{Space}
+Else if (key0 = "uosfc" or key0 = "uosfc;" or key0 = "UOSFC")
+    str = focus{Space}
+Else if (key0 = "uosm" or key0 = "uosm;" or key0 = "UOSM")
+    str = so much{Space}
+Else if (key0 = "up" or key0 = "up;" or key0 = "UP")
+    str = up{Space}
+Else if (key0 = "upascm" or key0 = "upascm;" or key0 = "UPASCM")
+    str = campus{Space}
+Else if (key0 = "upc" or key0 = "upc;" or key0 = "UPC")
+    str = computer{Space}
+Else if (key0 = "upjm" or key0 = "upjm;" or key0 = "UPJM")
+    str = jump{Space}
+Else if (key0 = "upl" or key0 = "upl;" or key0 = "UPL")
+    str = pull{Space}
+Else if (key0 = "upsh" or key0 = "upsh;" or key0 = "UPSH")
+    str = push{Space}
+Else if (key0 = "us" or key0 = "us;" or key0 = "US")
+    str = us{Space}
+Else if (key0 = "usb" or key0 = "usb;" or key0 = "USB")
+    str = sub
+Else if (key0 = "usf" or key0 = "usf;" or key0 = "USF")
+    str = yourself{Space}
+Else if (key0 = "ushc" or key0 = "ushc;" or key0 = "USHC")
+    str = such{Space}
+Else if (key0 = "usn" or key0 = "usn;" or key0 = "USN")
+    str = sun{Space}
+Else if (key0 = "uv" or key0 = "uv;" or key0 = "UV")
+    str = you've{Space}
+Else if (key0 = "udfn" or key0 = "udfn;" or key0 = "UDFN")
+    str = fund{Space}
+Else if (key0 = "ufn" or key0 = "ufn;" or key0 = "UFN")
+    str = fun{Space}
+Else if (key0 = "usfl" or key0 = "usfl;" or key0 = "USFL")
+    str = yourself{Space}
 Return
+
 SENDE:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,ea, Send ea	
-Else IfEqual key0,epalcb, Send capable{Space}
-Else IfEqual key0,eriv, Send river{Space}
-Else IfEqual key0,eruipm, Send premium{Space}
-Else IfEqual key0,etf, Send feet{Space}
-Else IfEqual key0,ertypah, Send therapy{Space}
-Else IfEqual key0,eriacm, Send America{Space}
-Else IfEqual key0,eruop, Send Europe{Space}
-Else IfEqual key0,eosln, Send lesson{Space}
-Else IfEqual key0,epaln, Send plane{Space}
-Else IfEqual key0,ealcn, Send cancel{Space}
-Else IfEqual key0,epaslc, Send places{Space}
-Else IfEqual key0,ealn, Send lane{Space}
-Else IfEqual key0,etpasln, Send pleasant{Space}
-Else IfEqual key0,eas, Send assess{Space}
-Else IfEqual key0,eruips, Send surprise{Space}
-Else IfEqual key0,easf, Send safety{Space}
-Else IfEqual key0,efhc, Send chef{Space}
-Else IfEqual key0,erualcn, Send nuclear{Space}
-Else IfEqual key0,eialv, Send alive{Space}
-Else IfEqual key0,eyiasl, Send easily{Space}
-Else IfEqual key0,eiasn, Send insane{Space}
-Else IfEqual key0,eifkn, Send knife{Space}
-Else IfEqual key0,eihcn, Send niche{Space}
-Else IfEqual key0,eihk, Send hike{Space}
-Else IfEqual key0,eil, Send lie{Space}
-Else IfEqual key0,eil, Send lie{Space}
-Else IfEqual key0,eilcn, Send incline{Space}
-Else IfEqual key0,eiocnm, Send economic{Space}
-Else IfEqual key0,eiocnm, Send income{Space}
-Else IfEqual key0,eiplcn, Send pencil{Space}
-Else IfEqual key0,eisdl, Send slide{Space}
-Else IfEqual key0,eiskvn, Send knives{Space}
-Else IfEqual key0,eislm, Send smile{Space}
-Else IfEqual key0,eisz, Send seize{Space}
-Else IfEqual key0,ekn, Send knee{Space}
-Else IfEqual key0,elb, Send bell{Space}
-Else IfEqual key0,eoadb, Send Adobe{Space}
-Else IfEqual key0,eoaslm, Send molasses{Space}
-Else IfEqual key0,eofc, Send coffee{Space}
-Else IfEqual key0,eosdcn, Send condense{Space}
-Else IfEqual key0,eosln, Send lesson{Space}
-Else IfEqual key0,eosn, Send nose{Space}
-Else IfEqual key0,epa, Send ape{Space}
-Else IfEqual key0,epn, Send pen{Space}
-Else IfEqual key0,epsl, Send spell{Space}
-Else IfEqual key0,erab, Send bear{Space}
-Else IfEqual key0,eradg, Send regard{Space}
-Else IfEqual key0,eradlc, Send declare{Space}
-Else IfEqual key0,eraf, Send fear{Space}
-Else IfEqual key0,eraf, Send fear{Space}
-Else IfEqual key0,eralx, Send relax{Space}
-Else IfEqual key0,eras, Send erase{Space}
-Else IfEqual key0,erdcbm, Send December{Space}
-Else IfEqual key0,erf, Send refer{Space}
-Else IfEqual key0,erhc, Send cheer{Space}
-Else IfEqual key0,erias, Send raise{Space}
-Else IfEqual key0,eridb, Send bride{Space}
-Else IfEqual key0,eridgb, Send bridge{Space}
-Else IfEqual key0,eridl, Send riddle{Space}
-Else IfEqual key0,erin, Send inner{Space}
-Else IfEqual key0,eriopscm, Send comprise{Space}
-Else IfEqual key0,eripscb, Send prescribe{Space}
-Else IfEqual key0,erm, Send mere{Space}
-Else IfEqual key0,ero, Send error{Space}
-Else IfEqual key0,eroash, Send hoarse{Space}
-Else IfEqual key0,erocm, Send commerce{Space}
-Else IfEqual key0,erokb, Send broke{Space}
-Else IfEqual key0,eros, Send rose{Space}
-Else IfEqual key0,eroscn, Send censor{Space}
-Else IfEqual key0,erovbnm, Send November{Space}
-Else IfEqual key0,erpas, Send spare{Space}
-Else IfEqual key0,ertag, Send target{Space}
-Else IfEqual key0,ertagn, Send generate{Space}
-Else IfEqual key0,ertiacn, Send interact{Space}
-Else IfEqual key0,ertiagc, Send cigarette{Space}
-Else IfEqual key0,ertihn, Send inherent{Space}
-Else IfEqual key0,ertion, Send orient{Space}
-Else IfEqual key0,ertipac, Send practice{Space}
-Else IfEqual key0,ertoa, Send rotate{Space}
-Else IfEqual key0,ertocb, Send October{Space}
-Else IfEqual key0,ertosk, Send stroke{Space}
-Else IfEqual key0,ertpsbm, Send September{Space}
-Else IfEqual key0,ertuanm, Send remunerate{Space}
-Else IfEqual key0,ertycm, Send cemetery{Space}
-Else IfEqual key0,ertyop, Send property{Space}
-Else IfEqual key0,erud, Send educator{Space}
-Else IfEqual key0,erudbn, Send burden{Space}
-Else IfEqual key0,eruin, Send urine{Space}
-Else IfEqual key0,eruopcn, Send pronounce{Space}
-Else IfEqual key0,erusc, Send rescue{Space}
-Else IfEqual key0,eruvn, Send revenue{Space}
-Else IfEqual key0,eryoasc, Send accessory{Space}
-Else IfEqual key0,eshcm, Send scheme{Space}
-Else IfEqual key0,eslm, Send smell{Space}
-Else IfEqual key0,etadn, Send attend{Space}
-Else IfEqual key0,etagn, Send agent{Space}
-Else IfEqual key0,etagn, Send tangent{Space}
-Else IfEqual key0,etaln, Send talent{Space}
-Else IfEqual key0,etanm, Send meant{Space}
-Else IfEqual key0,etask, Send stake{Space}
-Else IfEqual key0,etghln, Send length{Space}
-Else IfEqual key0,etiahlcn, Send technical{Space}
-Else IfEqual key0,etioanm, Send nominate{Space}
-Else IfEqual key0,etiosn, Send tension{Space}
-Else IfEqual key0,etiosn, Send tension{Space}
-Else IfEqual key0,etolb, Send bottle{Space}
-Else IfEqual key0,etolb, Send bottle{Space}
-Else IfEqual key0,etoshlc, Send clothes{Space}
-Else IfEqual key0,etpal, Send plate{Space}
-Else IfEqual key0,etpasc, Send aspect{Space}
-Else IfEqual key0,etps, Send steep{Space}
-Else IfEqual key0,etscn, Send sentence{Space}
-Else IfEqual key0,etub, Send tube{Space}
-Else IfEqual key0,etuhc, Send chute{Space}
-Else IfEqual key0,etum, Send mute{Space}
-Else IfEqual key0,etuocm, Send outcome{Space}
-Else IfEqual key0,etups, Send upset{Space}
-Else IfEqual key0,etyoscm, Send ecosystem{Space}
-Else IfEqual key0,eudgj, Send judge{Space}
-Else IfEqual key0,eudgn, Send nudge{Space}
-Else IfEqual key0,eujn, Send June{Space}
-Else IfEqual key0,eupsl, Send pulse{Space}
-Else IfEqual key0,eyagcn, Send agency{Space}
-Else IfEqual key0,eyp, Send yep{Space}
-Else IfEqual key0,rtyl, Send reality{Space}
-Else IfEqual key0,etanm, Send meant{Space}
-Else IfEqual key0,easn, Send sane{Space}
-Else IfEqual key0,eiasn, Send insane{Space}
-Else IfEqual key0,epsd, Send sped{Space}
-Else IfEqual key0,ec, Send {BackSpace}{BackSpace}ce{Space}
-Else IfEqual key0,etun, Send tune{Space}
-Else IfEqual key0,erofc, Send force{Space}
-Else IfEqual key0,etioasc, Send associate{Space}
-Else IfEqual key0,eionm, Send mention{Space}
-Else IfEqual key0,eyh, Send hey{Space}
-Else IfEqual key0,eyp, Send yep{Space}
-Else IfEqual key0,eodcnm, Send commend{Space}
-Else IfEqual key0,etisn, Send intense{Space}
-Else IfEqual key0,eruios, Send capable{Space}
-Else IfEqual key0,eualvb, Send valuable{Space}
-Else IfEqual key0,etiagvn, Send navigate{Space}
-Else IfEqual key0,erasc, Send scare{Space}
-Else IfEqual key0,ertom, Send remote{Space}
-Else IfEqual key0,ertlxn, Send internal{Space}
-Else IfEqual key0,eropsc, Send process{Space}
-Else IfEqual key0,eacbm, Send became{Space}
-Else IfEqual key0,eaghlcn, Send challenge{Space}
-Else IfEqual key0,etakn, Send taken{Space}
-Else IfEqual key0,etpam, Send attempt{Space}
-Else IfEqual key0,eivn, Send vein{Space}
-Else IfEqual key0,erpash, Send phrase{Space}
-Else IfEqual key0,ertpasn, Send transparent{Space}
-Else IfEqual key0,ead, Send dead{Space}
-Else IfEqual key0,eadhln, Send handle{Space}
-Else IfEqual key0,eagbn, Send began{Space}
-Else IfEqual key0,eashk, Send shake{Space}
-Else IfEqual key0,edcvn, Send evidence{Space}
-Else IfEqual key0,eiasd, Send disease{Space}
-Else IfEqual key0,eiasl, Send aisle{Space}
-Else IfEqual key0,eihlcv, Send vehicle{Space}
-Else IfEqual key0,eilm, Send mile{Space}
-Else IfEqual key0,eiom, Send emotion{Space}
-Else IfEqual key0,eisdn, Send inside{Space}
-Else IfEqual key0,eishn, Send shine{Space}
-Else IfEqual key0,eislcn, Send silence{Space}
-Else IfEqual key0,eakl, Send lake{Space}
-Else IfEqual key0,eoaln, Send alone{Space}
-Else IfEqual key0,eocvn, Send convene{Space}
-Else IfEqual key0,eodgl, Send lodge{Space}
-Else IfEqual key0,eolcn, Send clone{Space}
-Else IfEqual key0,eolnm, Send lemon{Space}
-Else IfEqual key0,eolnm, Send melon{Space}
-Else IfEqual key0,eopk, Send poke{Space}
-Else IfEqual key0,eoslv, Send solve{Space}
-Else IfEqual key0,eoslv, Send solve{Space}
-Else IfEqual key0,epahc, Send cheap{Space}
-Else IfEqual key0,eradg, Send grade{Space}
-Else IfEqual key0,erafm, Send frame{Space}
-Else IfEqual key0,eraghc, Send charge{Space}
-Else IfEqual key0,eragnm, Send manager{Space}
-Else IfEqual key0,erc, Send rec recognize{Space}
-Else IfEqual key0,erdh, Send herd{Space}
-Else IfEqual key0,ergcnm, Send emergency{Space}
-Else IfEqual key0,ergm, Send merge{Space}
-Else IfEqual key0,erial, Send earlier{Space}
-Else IfEqual key0,erialcm, Send miracle{Space}
-Else IfEqual key0,erif, Send fire{Space}
-Else IfEqual key0,eriosn, Send senior{Space}
-Else IfEqual key0,eripl, Send ripple{Space}
-Else IfEqual key0,eriplcn, Send principle{Space}
-Else IfEqual key0,eripsn, Send inspire{Space}
-Else IfEqual key0,erlv, Send lever{Space}
-Else IfEqual key0,ern, Send {backspace}ern{Space}
-Else IfEqual key0,eroc, Send core{Space}
-Else IfEqual key0,eroc, Send core{Space}
-Else IfEqual key0,eroh, Send hero{Space}
-Else IfEqual key0,erohl, Send holler{Space}
-Else IfEqual key0,erosc, Send score{Space}
-Else IfEqual key0,eroslc, Send closer{Space}
-Else IfEqual key0,erta, Send tear{Space}
-Else IfEqual key0,ertad, Send trade{Space}
-Else IfEqual key0,ertd, Send editor{Space}
-Else IfEqual key0,ertihn, Send neither{Space}
-Else IfEqual key0,ertilc, Send electric{Space}
-Else IfEqual key0,ertiod, Send editor{Space}
-Else IfEqual key0,ertipac, Send practice{Space}
-Else IfEqual key0,ertipac, Send practice{Space}
-Else IfEqual key0,ertish, Send theirs{Space}
-Else IfEqual key0,ertjc, Send reject{Space}
-Else IfEqual key0,ertlc, Send electric{Space}
-Else IfEqual key0,ertofgn, Send forgotten{Space}
-Else IfEqual key0,ertpvn, Send prevent{Space}
-Else IfEqual key0,ertuic, Send recruit{Space}
-Else IfEqual key0,ertul, Send turtle{Space}
-Else IfEqual key0,ertun, Send return{Space}
-Else IfEqual key0,ertuo, Send route{Space}
-Else IfEqual key0,eruag, Send argue{Space}
-Else IfEqual key0,eruas, Send assure{Space}
-Else IfEqual key0,erubm, Send bummer{Space}
-Else IfEqual key0,eruoslcn, Send counselor{Space}
-Else IfEqual key0,eruosvn, Send nervous{Space}
-Else IfEqual key0,erusn, Send nurse{Space}
-Else IfEqual key0,eshl, Send shell{Space}
-Else IfEqual key0,etas, Send state{Space}
-Else IfEqual key0,etb, Send bet{Space}
-Else IfEqual key0,etb, Send bet{Space}
-Else IfEqual key0,etdn, Send tend{Space}
-Else IfEqual key0,etfcn, Send efficient{Space}
-Else IfEqual key0,etfcn, Send efficient{Space}
-Else IfEqual key0,etihkcn, Send kitchen{Space}
-Else IfEqual key0,etion, Send intention{Space}
-Else IfEqual key0,etionm, Send emotion{Space}
-Else IfEqual key0,etipdn, Send independent{Space}
-Else IfEqual key0,etisln, Send nationalities{Space}
-Else IfEqual key0,etlvt, Send evaluate{Space}
-Else IfEqual key0,etop, Send poet{Space}
-Else IfEqual key0,etpaln, Send planet{Space}
-Else IfEqual key0,etpxm, Send exempt{Space}
-Else IfEqual key0,etsg, Send setting{Space}
-Else IfEqual key0,etsg, Send gets{Space}
-Else IfEqual key0,etsln, Send essential{Space}
-Else IfEqual key0,etualv, Send evaluate{Space}
-Else IfEqual key0,etuascbn, Send substance{Space}
-Else IfEqual key0,etuisn, Send institute{Space}
-Else IfEqual key0,etypln, Send plenty{Space}
-Else IfEqual key0,euag, Send gauge{Space}
-Else IfEqual key0,euagv, Send vague{Space}
-Else IfEqual key0,euasb, Send abuse{Space}
-Else IfEqual key0,euh, Send hue{Space}
-Else IfEqual key0,euiflcn, Send influence{Space}
-Else IfEqual key0,euisdc, Send suicide{Space}
-Else IfEqual key0,euoslcn, Send counsel{Space}
-Else IfEqual key0,eupdl, Send puddle{Space}
-Else IfEqual key0,ey, Send eye{Space}
-Else IfEqual key0,eyadl, Send delay{Space}
-Else IfEqual key0,eyiafc, Send efficacy{Space}
-Else IfEqual key0,eyl, Send yell{Space}
-Else IfEqual key0,eyocvn, Send convey{Space}	
-Else IfEqual key0,erpisn, Send inspire{Space}
-Else IfEqual key0,eopsk, Send spoke{Space}
-Else IfEqual key0,epal, Send leap{Space}
-Else IfEqual key0,epdxn, Send expend{Space}
-Else IfEqual key0,eriav, Send arrive{Space}
-Else IfEqual key0,erop, Send proper{Space}
-Else IfEqual key0,erpdc, Send deprec{Space}
-Else IfEqual key0,ertipn, Send interpret{Space}
-Else IfEqual key0,ertuipn, Send interrupt{Space}
-Else IfEqual key0,etialnm, Send eliminate{Space}
-Else IfEqual key0,etiascn, Send instance{Space}
-Else IfEqual key0,etiscn, Send scientist{Space}
-Else IfEqual key0,etivn, Send invite{Space}
-Else IfEqual key0,eruopd, Send produce{Space}
-Else IfEqual key0,eacm, Send came{Space}	
-Else IfEqual key0,eadcn, Send dance{Space}	
-Else IfEqual key0,erudm, Send drummer{Space}
-Else IfEqual key0,easfl, Send false{Space}
-Else IfEqual key0,easl, Send sale{Space}
-Else IfEqual key0,easlc, Send scale{Space}
-Else IfEqual key0,edg, Send edge{Space}
-Else IfEqual key0,efb, Send beef{Space}
-Else IfEqual key0,eicv, Send vice{Space}
-Else IfEqual key0,eidv, Send dive{Space}
-Else IfEqual key0,eign, Send engine{Space}
-Else IfEqual key0,einm, Send mine{Space}
-Else IfEqual key0,eiocvn, Send convince{Space}
-Else IfEqual key0,eiosn, Send session{Space}
-Else IfEqual key0,elc, Send cell{Space}
-Else IfEqual key0,eohn, Send hone{Space}
-Else IfEqual key0,eradm, Send dream{Space}
-Else IfEqual key0,erasd, Send address{Space}
-Else IfEqual key0,erdg, Send degree{Space}
-Else IfEqual key0,ergcn, Send encourage{Space}
-Else IfEqual key0,erih, Send hire{Space}
-Else IfEqual key0,erilc, Send circle{Space}
-Else IfEqual key0,erpscn, Send presence{Space}
-Else IfEqual key0,erti, Send tire{Space}
-Else IfEqual key0,ertipac, Send practice{Space}
-Else IfEqual key0,ertlcn, Send electronic{Space}
-Else IfEqual key0,ertocn, Send concert{Space}
-Else IfEqual key0,ertof, Send effort{Space}
-Else IfEqual key0,ertopc, Send protect{Space}
-Else IfEqual key0,ertpx, Send expert{Space}
-Else IfEqual key0,ertuion, Send routine{Space}
-Else IfEqual key0,ertuo, Send route{Space}
-Else IfEqual key0,eruosc, Send course{Space}
-Else IfEqual key0,eruosc, Send course{Space}
-Else IfEqual key0,erusc, Send secure{Space}
-Else IfEqual key0,erusc, Send secure{Space}
-Else IfEqual key0,eryl, Send rely{Space}
-Else IfEqual key0,escn, Send scene{Space}
-Else IfEqual key0,esg, Send seeing{Space}
-Else IfEqual key0,etab, Send beat{Space}
-Else IfEqual key0,etad, Send date{Space}
-Else IfEqual key0,etad, Send date{Space}
-Else IfEqual key0,etadh, Send death{Space}
-Else IfEqual key0,etalm, Send metal{Space}
-Else IfEqual key0,etfh, Send theft{Space}
-Else IfEqual key0,etiadc, Send dictate{Space}
-Else IfEqual key0,etin, Send intent{Space}
-Else IfEqual key0,etiocm, Send committee{Space}
-Else IfEqual key0,etivn, Send invent{Space}
-Else IfEqual key0,etogn, Send gotten{Space}
-Else IfEqual key0,etoscn, Send consent{Space}
-Else IfEqual key0,etov, Send vote{Space}
-Else IfEqual key0,etpxc, Send except{Space}
-Else IfEqual key0,etupad, Send update{Space}
-Else IfEqual key0,ety, Send yet{Space}
-Else IfEqual key0,etyuab, Send beauty{Space}
-Else IfEqual key0,euagln, Send language{Space}
-Else IfEqual key0,euasm, Send assume{Space}
-Else IfEqual key0,euisdc, Send suicide{Space}
-Else IfEqual key0,eulb, Send blue{Space}
-Else IfEqual key0,eunm, Send menu{Space}
-Else IfEqual key0,eunm, Send menu{Space}
-Else IfEqual key0,eupas, Send pause{Space}
-Else IfEqual key0,eradcn, Send dancer{Space}	
-Else IfEqual key0,eagn, Send engage{Space}
-Else IfEqual key0,eiom, Send emotion{Space}
-Else IfEqual key0,eoavb, Send above{Space}
-Else IfEqual key0,eojk, Send joke{Space}
-Else IfEqual key0,epd, Send deep{Space}
-Else IfEqual key0,ergn, Send green{Space}
-Else IfEqual key0,erianm, Send remain{Space}
-Else IfEqual key0,eropv, Send prove{Space}
-Else IfEqual key0,erpf, Send prefer{Space}
-Else IfEqual key0,ertah, Send heart{Space}
-Else IfEqual key0,ertahb, Send breathe{Space}
-Else IfEqual key0,ertan, Send aren't{Space}
-Else IfEqual key0,ertioa, Send iteration{Space}
-Else IfEqual key0,ertioa, Send iteration{Space}
-Else IfEqual key0,ertipac, Send practice{Space}
-Else IfEqual key0,ertpan, Send parent{Space}
-Else IfEqual key0,erygn, Send energy{Space}
-Else IfEqual key0,esdn, Send send{Space}
-Else IfEqual key0,etasg, Send stage{Space}
-Else IfEqual key0,etasg, Send stage{Space}
-Else IfEqual key0,etiops, Send opposite{Space}
-Else IfEqual key0,etlnm, Send element{Space}
-Else IfEqual key0,etolc, Send collect{Space}
-Else IfEqual key0,eton, Send note{Space}
-Else IfEqual key0,etuc, Send cute{Space}
-Else IfEqual key0,etusg, Send suggest{Space}
-Else IfEqual key0,etvn, Send event{Space}
-Else IfEqual key0,etyhd, Send they'd{Space}
-Else IfEqual key0,etyhl, Send theyll{Space}
-Else IfEqual key0,euasc, Send cause{Space}
-Else IfEqual key0,euoacn, Send announce{Space}
-Else IfEqual key0,eusdc, Send succeed{Space}
-Else IfEqual key0,eusdc, Send succeed{Space}
-Else IfEqual key0,eusln, Send unless{Space}
-Else IfEqual key0,eyojn, Send enjoy{Space}
-Else IfEqual key0,eps, Send especially{Space} 
-Else IfEqual key0,eacn, Send {BackSpace}ance{Space}	
-Else IfEqual key0,eadh, Send head{Space}		
-Else IfEqual key0,eadl, Send lead{Space}	
-Else IfEqual key0,eadm, Send made{Space}	
-Else IfEqual key0,eafc, Send face{Space}	
-Else IfEqual key0,eaflm, Send female{Space}	
-Else IfEqual key0,eafm, Send fame{Space}	
-Else IfEqual key0,eag, Send age{Space}	
-Else IfEqual key0,eaghcn, Send change{Space}	
-Else IfEqual key0,eaghlcn, Send challenge{Space}	
-Else IfEqual key0,eagm, Send game{Space}	
-Else IfEqual key0,eagnm, Send manage{Space}	
-Else IfEqual key0,eagv, Send gave{Space}	
-Else IfEqual key0,eahc, Send each{Space}	
-Else IfEqual key0,eahcn, Send chance{Space}	
-Else IfEqual key0,eahl, Send heal{Space}	
-Else IfEqual key0,eahv, Send have{Space}	
-Else IfEqual key0,eakm, Send make{Space}	
-Else IfEqual key0,ealb, Send able{Space}	
-Else IfEqual key0,ealcn, Send clean{Space}	
-Else IfEqual key0,ealm, Send male{Space}	
-Else IfEqual key0,ealn, Send lean{Space}	
-Else IfEqual key0,eanm, Send name{Space}	
-Else IfEqual key0,easb, Send base{Space}	
-Else IfEqual key0,easc, Send case{Space}	
-Else IfEqual key0,easdk, Send asked{Space}	
-Else IfEqual key0,easf, Send safe{Space}	
-Else IfEqual key0,easkm, Send makes{Space}	
-Else IfEqual key0,easm, Send same{Space}	
-Else IfEqual key0,easv, Send save{Space}	
-Else IfEqual key0,eb, Send be{Space}	
-Else IfEqual key0,ecn, Send necessary{Space}	
-Else IfEqual key0,ecn, Send {BackSpace}ence{Space}	
-Else IfEqual key0,ed, Send {BackSpace}ed{Space}	
-Else IfEqual key0,edc, Send dec{Space}	
-Else IfEqual key0,edf, Send definitely{Space}	
-Else IfEqual key0,edl, Send led{Space}	
-Else IfEqual key0,edn, Send need{Space}	
-Else IfEqual key0,edn, Send end{Space}	
-Else IfEqual key0,edv, Send develop{Space}	
-Else IfEqual key0,ef, Send for example{Space}	
-Else IfEqual key0,eg, Send everything{Space}	
-Else IfEqual key0,egb, Send being{Space}	
-Else IfEqual key0,egl, Send leg{Space}	
-Else IfEqual key0,eh, Send he{Space}	
-Else IfEqual key0,ehkc, Send check{Space}	
-Else IfEqual key0,eiacvn, Send vaccine{Space}	
-Else IfEqual key0,eiad, Send idea{Space}	
-Else IfEqual key0,eiadm, Send media{Space}	
-Else IfEqual key0,eiagnm, Send imagine{Space}	
-Else IfEqual key0,eialm, Send email{Space}	
-Else IfEqual key0,eic, Send ice{Space}
-Else IfEqual key0,eicn, Send nice{Space}	
-Else IfEqual key0,eid, Send ide	
-Else IfEqual key0,eidc, Send decide{Space}	
-Else IfEqual key0,eidfl, Send field{Space}	
-Else IfEqual key0,eidfl, Send field{Space}	
-Else IfEqual key0,eidfn, Send define{Space}	
-Else IfEqual key0,eidlm, Send middle{Space}	
-Else IfEqual key0,eidn, Send indeed{Space}	
-Else IfEqual key0,eifl, Send life{Space}	
-Else IfEqual key0,eigbn, Send begin{Space}	
-Else IfEqual key0,eigbn, Send beginning{Space}	
-Else IfEqual key0,eilb, Send {BackSpace}ible{Space}	
-Else IfEqual key0,eilv, Send live{Space}	
-Else IfEqual key0,eiocv, Send voice{Space}	
-Else IfEqual key0,eiodv, Send video{Space}	
-Else IfEqual key0,eiofc, Send office{Space}	
-Else IfEqual key0,eiohc, Send choice{Space}	
-Else IfEqual key0,eiolvn, Send involve{Space}	
-Else IfEqual key0,eiosc, Send section{Space}	
-Else IfEqual key0,eiosn, Send noise{Space}	
-Else IfEqual key0,eip, Send pipe{Space}	
-Else IfEqual key0,eipc, Send piece{Space}	
-Else IfEqual key0,eis, Send {BackSpace}ies{Space}	
-Else IfEqual key0,eiscn, Send since{Space}	
-Else IfEqual key0,eisd, Send side{Space}	
-Else IfEqual key0,eisgln, Send single{Space}	
-Else IfEqual key0,eiv, Send I've{Space}	
-Else IfEqual key0,eiz, Send {BackSpace}ize{Space}	
-Else IfEqual key0,ekcn, Send neck{Space}	
-Else IfEqual key0,elcn, Send necessarily{Space}	
-Else IfEqual key0,elv, Send level{Space}	
-Else IfEqual key0,em, Send me{Space}	
-Else IfEqual key0,en, Send en	
-Else IfEqual key0,en, Send en	
-Else IfEqual key0,enm, Send men{Space}	
-Else IfEqual key0,eoasn, Send season{Space}	
-Else IfEqual key0,eoc, Send eco{Space}	
-Else IfEqual key0,eocn, Send once{Space}	
-Else IfEqual key0,eodc, Send code{Space}	
-Else IfEqual key0,eodlm, Send model{Space}	
-Else IfEqual key0,eodn, Send done{Space}	
-Else IfEqual key0,eogn, Send enough{Space}
-Else IfEqual key0,euoghn, Send gone{Space}	
-Else IfEqual key0,eohl, Send hole{Space}	
-Else IfEqual key0,eohm, Send home{Space}	
-Else IfEqual key0,eolv, Send love{Space}	
-Else IfEqual key0,eon, Send one{Space}	
-Else IfEqual key0,eop, Send people{Space}	
-Else IfEqual key0,eopdlv, Send develop{Space}	
-Else IfEqual key0,eoph, Send hope{Space}	
-Else IfEqual key0,eophn, Send phone{Space}	
-Else IfEqual key0,eopn, Send open{Space}	
-Else IfEqual key0,eops, Send pose{Space}	
-Else IfEqual key0,eopshn, Send phones{Space}	
-Else IfEqual key0,eosd, Send does{Space}	
-Else IfEqual key0,eosg, Send goes{Space}	
-Else IfEqual key0,eosh, Send shoe{Space}	
-Else IfEqual key0,eoshc, Send chose{Space}	
-Else IfEqual key0,eosl, Send lose{Space}	
-Else IfEqual key0,eoslc, Send close{Space}	
-Else IfEqual key0,eosm, Send some{Space}	
-Else IfEqual key0,eov, Send everyone{Space}	
-Else IfEqual key0,eozn, Send zone{Space}	
-Else IfEqual key0,epac, Send pace{Space}	
-Else IfEqual key0,epag, Send page{Space}	
-Else IfEqual key0,epak, Send peak{Space}	
-Else IfEqual key0,epalc, Send place{Space}	
-Else IfEqual key0,epasc, Send space{Space}	
-Else IfEqual key0,epash, Send shape{Space}	
-Else IfEqual key0,epask, Send speak{Space}	
-Else IfEqual key0,epasl, Send please{Space}	
-Else IfEqual key0,epdn, Send depend{Space}	
-Else IfEqual key0,ephl, Send help{Space}	
-Else IfEqual key0,epk, Send keep{Space}	
-Else IfEqual key0,epsc, Send spec{Space}	
-Else IfEqual key0,epscl, Send specifically{Space}	
-Else IfEqual key0,epsdn, Send spend{Space}	
-Else IfEqual key0,epsh, Send sheep{Space}	
-Else IfEqual key0,epsl, Send sleep{Space}	
-Else IfEqual key0,epx, Send experience{Space}	
-Else IfEqual key0,er, Send {BackSpace}er{Space}	
-Else IfEqual key0,era, Send are{Space}	
-Else IfEqual key0,erac, Send care{Space}	
-Else IfEqual key0,eracm, Send camera{Space}	
-Else IfEqual key0,eradfl, Send federal	
-Else IfEqual key0,eradh, Send heard{Space}	
-Else IfEqual key0,erady, Send ready{Space}	
-Else IfEqual key0,erag, Send agree{Space}	
-Else IfEqual key0,eragh, Send hearing{Space}	
-Else IfEqual key0,eragl, Send large{Space}	
-Else IfEqual key0,eragn, Send range{Space}	
-Else IfEqual key0,erah, Send hear{Space}	
-Else IfEqual key0,erahc, Send reach{Space}	
-Else IfEqual key0,erakb, Send break{Space}	
-Else IfEqual key0,eral, Send real{Space}	
-Else IfEqual key0,eralc, Send clear{Space}	
-Else IfEqual key0,eraln, Send learn{Space}	
-Else IfEqual key0,eran, Send near{Space}	
-Else IfEqual key0,erash, Send share{Space}	
-Else IfEqual key0,erashc, Send search{Space}	
-Else IfEqual key0,erbm, Send member{Space}	
-Else IfEqual key0,erf, Send free{Space}	
-Else IfEqual key0,erh, Send her{Space}	
-Else IfEqual key0,erias, Send raise{Space}	
-Else IfEqual key0,eridfn, Send friend{Space}	
-Else IfEqual key0,eridlv, Send deliver{Space}	
-Else IfEqual key0,eridlv, Send deliver{Space}	
-Else IfEqual key0,eridnm, Send remind{Space}	
-Else IfEqual key0,eridv, Send derive{Space}	
-Else IfEqual key0,erifb, Send brief{Space}	
-Else IfEqual key0,erifn, Send infer{Space}	
-Else IfEqual key0,erign, Send engineer{Space}	
-Else IfEqual key0,eriogn, Send region{Space}	
-Else IfEqual key0,eriopa, Send operation{Space}	
-Else IfEqual key0,eriopdv, Send provide{Space}	
-Else IfEqual key0,erioscn, Send scenario{Space}	
-Else IfEqual key0,eriosdc, Send description{Space}	
-Else IfEqual key0,eriovn, Send environment{Space}	
-Else IfEqual key0,eripc, Send price{Space}	
-Else IfEqual key0,eriscb, Send scribe{Space}	
-Else IfEqual key0,erisdc, Send describe{Space}	
-Else IfEqual key0,eroasn, Send reason{Space}	
-Else IfEqual key0,erocn, Send concern{Space}	
-Else IfEqual key0,erocv, Send cover{Space}	
-Else IfEqual key0,erod, Send order{Space}	
-Else IfEqual key0,erodc, Send record{Space}	
-Else IfEqual key0,erof, Send offer{Space}	
-Else IfEqual key0,erol, Send role{Space}	
-Else IfEqual key0,eropacm, Send compare{Space}	
-Else IfEqual key0,eropafcnm, Send performance{Space}	
-Else IfEqual key0,eroplbm, Send problem{Space}	
-Else IfEqual key0,eroplx, Send explore{Space}	
-Else IfEqual key0,eropsg, Send progress{Space}	
-Else IfEqual key0,eropsn, Send person{Space}	
-Else IfEqual key0,erosh, Send horse{Space}	
-Else IfEqual key0,erov, Send over{Space}	
-Else IfEqual key0,erp, Send per{Space}
-Else IfEqual key0,erpa, Send prepare{Space}	
-Else IfEqual key0,erpalc, Send replace{Space}	
-Else IfEqual key0,erps, Send press{Space}	
-Else IfEqual key0,ers, Send res{Space}	
-Else IfEqual key0,erscn, Send screen{Space}	
-Else IfEqual key0,ersv, Send serve{Space}	
-Else IfEqual key0,ert, Send tree{Space}	
-Else IfEqual key0,erta, Send rate{Space}	
-Else IfEqual key0,ertac, Send react{Space}	
-Else IfEqual key0,ertafh, Send father{Space}	
-Else IfEqual key0,ertag, Send great{Space}	
-Else IfEqual key0,ertahc, Send character{Space}	
-Else IfEqual key0,ertal, Send later{Space}	
-Else IfEqual key0,ertalcn, Send central{Space}	
-Else IfEqual key0,ertam, Send matter{Space}	
-Else IfEqual key0,ertax, Send extra	
-Else IfEqual key0,ertb, Send better{Space}	
-Else IfEqual key0,ertcn, Send recent{Space}	
-Else IfEqual key0,erth, Send there{Space}	
-Else IfEqual key0,erths, Send there's{Space}	
-Else IfEqual key0,ertiacn, Send certain{Space}	
-Else IfEqual key0,ertiagn, Send integrate{Space}	
-Else IfEqual key0,ertial, Send retail{Space}	
-Else IfEqual key0,ertialcv, Send vertical{Space}	
-Else IfEqual key0,ertialv, Send relative{Space}	
-Else IfEqual key0,ertidc, Send credit{Space}	
-Else IfEqual key0,ertifl, Send filter{Space}	
-Else IfEqual key0,ertih, Send their{Space}	
-Else IfEqual key0,ertin, Send inter	
-Else IfEqual key0,ertioadcn, Send coordinate{Space}	
-Else IfEqual key0,ertipa, Send therapist{Space}	
-Else IfEqual key0,ertipah, Send therapist{Space}	
-Else IfEqual key0,ertipash, Send therapist{Space}	
-Else IfEqual key0,ertiph, Send therapist{Space}	
-Else IfEqual key0,ertis, Send sister{Space}	
-Else IfEqual key0,ertl, Send letter{Space}	
-Else IfEqual key0,ertm, Send term{Space}	
-Else IfEqual key0,ertn, Send enter{Space}	
-Else IfEqual key0,erto, Send tore{Space}	
-Else IfEqual key0,ertoasg, Send storage{Space}	
-Else IfEqual key0,ertoc, Send correct{Space}	
-Else IfEqual key0,ertogh, Send together{Space}	
-Else IfEqual key0,ertoh, Send other{Space}	
-Else IfEqual key0,ertohb, Send bother{Space}	
-Else IfEqual key0,ertohm, Send mother{Space}	
-Else IfEqual key0,ertop, Send report{Space}	
-Else IfEqual key0,ertos, Send store{Space}	
-Else IfEqual key0,ertosn, Send testosterone{Space}	
-Else IfEqual key0,ertpa, Send parate{Space}	
-Else IfEqual key0,ertpan, Send partner{Space}	
-Else IfEqual key0,ertpcn, Send percent{Space}	
-Else IfEqual key0,ertpsn, Send present{Space}	
-Else IfEqual key0,erts, Send rest{Space}	
-Else IfEqual key0,ertsh, Send there's{Space}	
-Else IfEqual key0,ertu, Send true{Space}	
-Else IfEqual key0,ertuac, Send accurate{Space}	
-Else IfEqual key0,ertuafcnm, Send manufacture{Space}	
-Else IfEqual key0,ertuan, Send nature{Space}	
-Else IfEqual key0,ertucn, Send current{Space}	
-Else IfEqual key0,ertuf, Send future{Space}	
-Else IfEqual key0,ertuipc, Send picture{Space}	
-Else IfEqual key0,ertulc, Send culture{Space}	
-Else IfEqual key0,ertusl, Send result{Space}	
-Else IfEqual key0,ertvnm, Send environment{Space}	
-Else IfEqual key0,ertxm, Send extreme{Space}	
-Else IfEqual key0,ertyh, Send they're{Space}	
-Else IfEqual key0,ertyn, Send entry{Space}	
-Else IfEqual key0,eru, Send you're{Space}	
-Else IfEqual key0,erudc, Send reduce{Space}	
-Else IfEqual key0,erudn, Send under{Space}	
-Else IfEqual key0,erul, Send rule{Space}	
-Else IfEqual key0,eruops, Send purpose{Space}	
-Else IfEqual key0,erups, Send super{Space}	
-Else IfEqual key0,erus, Send sure{Space}	
-Else IfEqual key0,erusfl, Send yourself{Space}	
-Else IfEqual key0,erusm, Send summer{Space}	
-Else IfEqual key0,erv, Send ever{Space}	
-Else IfEqual key0,ervn, Send never{Space}	
-Else IfEqual key0,ervn, Send never{Space}	
-Else IfEqual key0,ery, Send every{Space}	
-Else IfEqual key0,eryal, Send early{Space}	
-Else IfEqual key0,eryogc, Send grocery{Space}	
-Else IfEqual key0,eryph, Send hyper	
-Else IfEqual key0,eryusg, Send surgery{Space}	
-Else IfEqual key0,eryv, Send every{Space}	
-Else IfEqual key0,es, Send see{Space}	
-Else IfEqual key0,esc, Send second{Space}	
-Else IfEqual key0,esdn, Send send{Space}	
-Else IfEqual key0,esfl, Send self{Space}	
-Else IfEqual key0,esh, Send she{Space}	
-Else IfEqual key0,esk, Send seek{Space}	
-Else IfEqual key0,esl, Send else{Space}	
-Else IfEqual key0,eslv, Send {BackSpace}selves{Space}	
-Else IfEqual key0,esm, Send seem{Space}	
-Else IfEqual key0,esn, Send sense{Space}	
-Else IfEqual key0,et, Send even though{Space}	
-Else IfEqual key0,eta, Send ate{Space}	
-Else IfEqual key0,etadh, Send hated{Space}	
-Else IfEqual key0,etadln, Send dental{Space}	
-Else IfEqual key0,etafc, Send affect{Space}	
-Else IfEqual key0,etaghc, Send teaching{Space}	
-Else IfEqual key0,etah, Send hate{Space}	
-Else IfEqual key0,etahc, Send teach{Space}	
-Else IfEqual key0,etahl, Send health{Space}	
-Else IfEqual key0,etak, Send take{Space}	
-Else IfEqual key0,etal, Send late{Space}	
-Else IfEqual key0,etalb, Send table{Space}	
-Else IfEqual key0,etam, Send team{Space}	
-Else IfEqual key0,etan, Send neat{Space}	
-Else IfEqual key0,etas, Send state{Space}	
-Else IfEqual key0,etascn, Send stance{Space}	
-Else IfEqual key0,etasl, Send least{Space}	
-Else IfEqual key0,etaxc, Send exact{Space}	
-Else IfEqual key0,etc, Send et cetera{Space}	
-Else IfEqual key0,etcn, Send cent{Space}	
-Else IfEqual key0,etdn, Send tend{Space}	
-Else IfEqual key0,etfc, Send effect{Space}	
-Else IfEqual key0,etfl, Send felt{Space}	
-Else IfEqual key0,etg, Send get{Space}	
-Else IfEqual key0,etgv, Send everything{Space}	
-Else IfEqual key0,eth, Send the{Space}	
-Else IfEqual key0,ethc, Send tech{Space}	
-Else IfEqual key0,ethcn, Send technology{Space}	
-Else IfEqual key0,ethm, Send them{Space}	
-Else IfEqual key0,ethn, Send then{Space}	
-Else IfEqual key0,etiacv, Send active{Space}	
-Else IfEqual key0,etiav, Send ative	
-Else IfEqual key0,etiglcn, Send intelligence{Space}	
-Else IfEqual key0,etigln, Send intelligent{Space}	
-Else IfEqual key0,etihc, Send ethic{Space}	
-Else IfEqual key0,etil, Send little{Space}	
-Else IfEqual key0,etilcn, Send client{Space}	
-Else IfEqual key0,etim, Send item{Space}	
-Else IfEqual key0,etim, Send time{Space}	
-Else IfEqual key0,etiocm, Send committee{Space}	
-Else IfEqual key0,etiocn, Send notice{Space}	
-Else IfEqual key0,etionm, Send mention{Space}	
-Else IfEqual key0,etipan, Send patient{Space}	
-Else IfEqual key0,etis, Send site{Space}	
-Else IfEqual key0,etis, Send ities{Space}	
-Else IfEqual key0,etism, Send times{Space}	
-Else IfEqual key0,etisvn, Send invest{Space}	
-Else IfEqual key0,etisx, Send exist{Space}	
-Else IfEqual key0,etiv, Send tive{Space}	
-Else IfEqual key0,etixc, Send excite{Space}	
-Else IfEqual key0,etl, Send let{Space}	
-Else IfEqual key0,etm, Send met{Space}	
-Else IfEqual key0,etm, Send met{Space}	
-Else IfEqual key0,etn, Send net{Space}	
-Else IfEqual key0,etnm, Send {BackSpace}ment{Space}	
-Else IfEqual key0,etoalc, Send locate{Space}	
-Else IfEqual key0,etocn, Send connect{Space}	
-Else IfEqual key0,etocnm, Send comment{Space}	
-Else IfEqual key0,etofn, Send often{Space}	
-Else IfEqual key0,etogh, Send together{Space}	
-Else IfEqual key0,etohl, Send hotel{Space}	
-Else IfEqual key0,etojcb, Send object{Space}	
-Else IfEqual key0,etonm, Send moment{Space}	
-Else IfEqual key0,etopcn, Send concept{Space}	
-Else IfEqual key0,etopkc, Send pocket{Space}	
-Else IfEqual key0,etosh, Send those{Space}	
-Else IfEqual key0,etoshn, Send honest{Space}	
-Else IfEqual key0,etpac, Send accept{Space}	
-Else IfEqual key0,etpdn, Send dependent{Space}	
-Else IfEqual key0,etpk, Send kept{Space}	
-Else IfEqual key0,etps, Send step{Space}	
-Else IfEqual key0,etps, Send step{Space}	
-Else IfEqual key0,etpsn, Send spent{Space}	
-Else IfEqual key0,tpxc, Send expect{Space}	
-Else IfEqual key0,ets, Send set{Space}	
-Else IfEqual key0,etsb, Send best{Space}	
-Else IfEqual key0,etsh, Send these{Space}	
-Else IfEqual key0,etshc, Send chest{Space}	
-Else IfEqual key0,etshlb, Send establish{Space}	
-Else IfEqual key0,etsl, Send let's{Space}	
-Else IfEqual key0,etslc, Send select{Space}	
-Else IfEqual key0,etsn, Send sent{Space}
-Else IfEqual key0,etysln, Send sent{Space}	
-Else IfEqual key0,etuadc, Send educate{Space}	
-Else IfEqual key0,etuagnm, Send augment{Space}	
-Else IfEqual key0,etuinm, Send minute{Space}	
-Else IfEqual key0,etuipadlc, Send duplicate{Space}	
-Else IfEqual key0,etuodcnm, Send document{Space}	
-Else IfEqual key0,etusdn, Send student{Space}	
-Else IfEqual key0,etuvn, Send eventually{Space}	
-Else IfEqual key0,etx, Send external{Space}	
-Else IfEqual key0,etxn, Send next{Space}	
-Else IfEqual key0,etyh, Send they{Space}	
-Else IfEqual key0,etyhv, Send they've{Space}	
-Else IfEqual key0,etyidn, Send identity{Space}	
-Else IfEqual key0,etyoscm, Send ecosystem{Space}	
-Else IfEqual key0,etyp, Send type{Space}	
-Else IfEqual key0,etysl, Send style{Space}	
-Else IfEqual key0,etysm, Send system{Space}	
-Else IfEqual key0,euaglc, Send colleague{Space}	
-Else IfEqual key0,eualv, Send value{Space}	
-Else IfEqual key0,eud, Send education{Space}	
-Else IfEqual key0,eugh, Send huge{Space}	
-Else IfEqual key0,euiadcn, Send audience{Space}	
-Else IfEqual key0,euis, Send issue{Space}	
-Else IfEqual key0,euops, Send suppose{Space}	
-Else IfEqual key0,euosfcn, Send confuse{Space}	
-Else IfEqual key0,euosh, Send house{Space}	
-Else IfEqual key0,eus, Send use{Space}	
-Else IfEqual key0,eusc, Send success{Space}	
-Else IfEqual key0,eusdn, Send sudden{Space}	
-Else IfEqual key0,eusg, Send guess{Space}	
-Else IfEqual key0,euv, Send you've{Space}	
-Else IfEqual key0,ev, Send ever{Space}	
-Else IfEqual key0,evb, Send everybody{Space}	
-Else IfEqual key0,evn, Send even{Space}	
-Else IfEqual key0,ex, Send exactly{Space}	
-Else IfEqual key0,ex, Send ex	
-Else IfEqual key0,exc, Send excellent{Space}	
-Else IfEqual key0,eyalzn, Send analyze{Space}	
-Else IfEqual key0,eyas, Send easy{Space}	
-Else IfEqual key0,eyb, Send bye{Space}	
-Else IfEqual key0,eyk, Send key{Space}	
-Else IfEqual key0,eylc, Send cycle{Space}	
-Else IfEqual key0,eyonm, Send money{Space}	
-Else IfEqual key0,eys, Send yes{Space}	
-Else IfEqual key0,eysflm, Send myself{Space}	
-Else IfEqual key0,eysflm, Send myself{Space}	
-Else IfEqual key0,eyv, Send every{Space}
-Else IfEqual key0,ealbm, Send blame{Space}
-Else IfEqual key0,easl, Send lease{Space}
-Else IfEqual key0,edkc, Send deck{Space}
-Else IfEqual key0,eranm, Send manner{Space}
-Else IfEqual key0,erfl, Send freelance{Space}
-Else IfEqual key0,eriopd, Send period{Space}
-Else IfEqual key0,eripx, Send expire{Space}
-Else IfEqual key0,erpdc, Send precede{Space}
-Else IfEqual key0,ertian, Send entertain{Space}
-Else IfEqual key0,etid, Send edit{Space}
-Else IfEqual key0,etlc, Send elect{Space}
-Else IfEqual key0,euidg, Send guide{Space}
-Else IfEqual key0,euign, Send genuine{Space}
-Else IfEqual key0,eyaglc, Send legacy{Space}	
+ if (key0 = "ea" or key0 = "ea;" or key0 = "EA")
+    str = ea
+Else if (key0 = "epalcb" or key0 = "epalcb;" or key0 = "EPALCB")
+    str = capable{Space}
+Else if (key0 = "eriv" or key0 = "eriv;" or key0 = "ERIV")
+    str = river{Space}
+Else if (key0 = "eruipm" or key0 = "eruipm;" or key0 = "ERUIPM")
+    str = premium{Space}
+Else if (key0 = "etf" or key0 = "etf;" or key0 = "ETF")
+    str = feet{Space}
+Else if (key0 = "eri" or key0 = "eri;" or key0 = "ERI")
+    str = {BackSpace}ier{Space}
+Else if (key0 = "ertypah" or key0 = "ertypah;" or key0 = "ERTYPAH")
+    str = therapy{Space}
+Else if (key0 = "eriacm" or key0 = "eriacm;" or key0 = "ERIACM")
+    str = America{Space}
+Else if (key0 = "eruop" or key0 = "eruop;" or key0 = "ERUOP")
+    str = Europe{Space}
+Else if (key0 = "eosln" or key0 = "eosln;" or key0 = "EOSLN")
+    str = lesson{Space}
+Else if (key0 = "epaln" or key0 = "epaln;" or key0 = "EPALN")
+    str = plane{Space}
+Else if (key0 = "ealcn" or key0 = "ealcn;" or key0 = "EALCN")
+    str = cancel{Space}
+Else if (key0 = "epaslc" or key0 = "epaslc;" or key0 = "EPASLC")
+    str = places{Space}
+Else if (key0 = "ealn" or key0 = "ealn;" or key0 = "EALN")
+    str = lane{Space}
+Else if (key0 = "etpasln" or key0 = "etpasln;" or key0 = "ETPASLN")
+    str = pleasant{Space}
+Else if (key0 = "eas" or key0 = "eas;" or key0 = "EAS")
+    str = assess{Space}
+Else if (key0 = "eruips" or key0 = "eruips;" or key0 = "ERUIPS")
+    str = surprise{Space}
+Else if (key0 = "easf" or key0 = "easf;" or key0 = "EASF")
+    str = safety{Space}
+Else if (key0 = "efhc" or key0 = "efhc;" or key0 = "EFHC")
+    str = chef{Space}
+Else if (key0 = "erualcn" or key0 = "erualcn;" or key0 = "ERUALCN")
+    str = nuclear{Space}
+Else if (key0 = "eialv" or key0 = "eialv;" or key0 = "EIALV")
+    str = alive{Space}
+Else if (key0 = "eyiasl" or key0 = "eyiasl;" or key0 = "EYIASL")
+    str = easily{Space}
+Else if (key0 = "eiasn" or key0 = "eiasn;" or key0 = "EIASN")
+    str = insane{Space}
+Else if (key0 = "eifkn" or key0 = "eifkn;" or key0 = "EIFKN")
+    str = knife{Space}
+Else if (key0 = "eihcn" or key0 = "eihcn;" or key0 = "EIHCN")
+    str = niche{Space}
+Else if (key0 = "eihk" or key0 = "eihk;" or key0 = "EIHK")
+    str = hike{Space}
+Else if (key0 = "eil" or key0 = "eil;" or key0 = "EIL")
+    str = lie{Space}
+Else if (key0 = "eilcn" or key0 = "eilcn;" or key0 = "EILCN")
+    str = incline{Space}
+Else if (key0 = "eiocnm" or key0 = "eiocnm;" or key0 = "EIOCNM")
+    str = economic{Space}
+Else if (key0 = "eiocnm" or key0 = "eiocnm;" or key0 = "EIOCNM")
+    str = income{Space}
+Else if (key0 = "eiplcn" or key0 = "eiplcn;" or key0 = "EIPLCN")
+    str = pencil{Space}
+Else if (key0 = "eisdl" or key0 = "eisdl;" or key0 = "EISDL")
+    str = slide{Space}
+Else if (key0 = "eiskvn" or key0 = "eiskvn;" or key0 = "EISKVN")
+    str = knives{Space}
+Else if (key0 = "eislm" or key0 = "eislm;" or key0 = "EISLM")
+    str = smile{Space}
+Else if (key0 = "eisz" or key0 = "eisz;" or key0 = "EISZ")
+    str = seize{Space}
+Else if (key0 = "ekn" or key0 = "ekn;" or key0 = "EKN")
+    str = knee{Space}
+Else if (key0 = "elb" or key0 = "elb;" or key0 = "ELB")
+    str = bell{Space}
+Else if (key0 = "eoadb" or key0 = "eoadb;" or key0 = "EOADB")
+    str = Adobe{Space}
+Else if (key0 = "eoaslm" or key0 = "eoaslm;" or key0 = "EOASLM")
+    str = molasses{Space}
+Else if (key0 = "eofc" or key0 = "eofc;" or key0 = "EOFC")
+    str = coffee{Space}
+Else if (key0 = "eosdcn" or key0 = "eosdcn;" or key0 = "EOSDCN")
+    str = condense{Space}
+Else if (key0 = "eosln" or key0 = "eosln;" or key0 = "EOSLN")
+    str = lesson{Space}
+Else if (key0 = "eosn" or key0 = "eosn;" or key0 = "EOSN")
+    str = nose{Space}
+Else if (key0 = "epa" or key0 = "epa;" or key0 = "EPA")
+    str = ape{Space}
+Else if (key0 = "epn" or key0 = "epn;" or key0 = "EPN")
+    str = pen{Space}
+Else if (key0 = "epsl" or key0 = "epsl;" or key0 = "EPSL")
+    str = spell{Space}
+Else if (key0 = "erab" or key0 = "erab;" or key0 = "ERAB")
+    str = bear{Space}
+Else if (key0 = "eradg" or key0 = "eradg;" or key0 = "ERADG")
+    str = regard{Space}
+Else if (key0 = "eradlc" or key0 = "eradlc;" or key0 = "ERADLC")
+    str = declare{Space}
+Else if (key0 = "eraf" or key0 = "eraf;" or key0 = "ERAF")
+    str = fear{Space}
+Else if (key0 = "eraf" or key0 = "eraf;" or key0 = "ERAF")
+    str = fear{Space}
+Else if (key0 = "eralx" or key0 = "eralx;" or key0 = "ERALX")
+    str = relax{Space}
+Else if (key0 = "eras" or key0 = "eras;" or key0 = "ERAS")
+    str = erase{Space}
+Else if (key0 = "erdcbm" or key0 = "erdcbm;" or key0 = "ERDCBM")
+    str = December{Space}
+Else if (key0 = "erf" or key0 = "erf;" or key0 = "ERF")
+    str = refer{Space}
+Else if (key0 = "erhc" or key0 = "erhc;" or key0 = "ERHC")
+    str = cheer{Space}
+Else if (key0 = "erias" or key0 = "erias;" or key0 = "ERIAS")
+    str = raise{Space}
+Else if (key0 = "eridb" or key0 = "eridb;" or key0 = "ERIDB")
+    str = bride{Space}
+Else if (key0 = "eridgb" or key0 = "eridgb;" or key0 = "ERIDGB")
+    str = bridge{Space}
+Else if (key0 = "eridl" or key0 = "eridl;" or key0 = "ERIDL")
+    str = riddle{Space}
+Else if (key0 = "erin" or key0 = "erin;" or key0 = "ERIN")
+    str = inner{Space}
+Else if (key0 = "eriopscm" or key0 = "eriopscm;" or key0 = "ERIOPSCM")
+    str = comprise{Space}
+Else if (key0 = "eripscb" or key0 = "eripscb;" or key0 = "ERIPSCB")
+    str = prescribe{Space}
+Else if (key0 = "erm" or key0 = "erm;" or key0 = "ERM")
+    str = mere{Space}
+Else if (key0 = "ero" or key0 = "ero;" or key0 = "ERO")
+    str = error{Space}
+Else if (key0 = "eroash" or key0 = "eroash;" or key0 = "EROASH")
+    str = hoarse{Space}
+Else if (key0 = "erocm" or key0 = "erocm;" or key0 = "EROCM")
+    str = commerce{Space}
+Else if (key0 = "erokb" or key0 = "erokb;" or key0 = "EROKB")
+    str = broke{Space}
+Else if (key0 = "eros" or key0 = "eros;" or key0 = "EROS")
+    str = rose{Space}
+Else if (key0 = "eroscn" or key0 = "eroscn;" or key0 = "EROSCN")
+    str = censor{Space}
+Else if (key0 = "erovbnm" or key0 = "erovbnm;" or key0 = "EROVBNM")
+    str = November{Space}
+Else if (key0 = "erpas" or key0 = "erpas;" or key0 = "ERPAS")
+    str = spare{Space}
+Else if (key0 = "ertag" or key0 = "ertag;" or key0 = "ERTAG")
+    str = target{Space}
+Else if (key0 = "ertagn" or key0 = "ertagn;" or key0 = "ERTAGN")
+    str = generate{Space}
+Else if (key0 = "ertiacn" or key0 = "ertiacn;" or key0 = "ERTIACN")
+    str = interact{Space}
+Else if (key0 = "ertiagc" or key0 = "ertiagc;" or key0 = "ERTIAGC")
+    str = cigarette{Space}
+Else if (key0 = "ertihn" or key0 = "ertihn;" or key0 = "ERTIHN")
+    str = inherent{Space}
+Else if (key0 = "ertion" or key0 = "ertion;" or key0 = "ERTION")
+    str = orient{Space}
+Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
+    str = practice{Space}
+Else if (key0 = "ertoa" or key0 = "ertoa;" or key0 = "ERTOA")
+    str = rotate{Space}
+Else if (key0 = "ertocb" or key0 = "ertocb;" or key0 = "ERTOCB")
+    str = October{Space}
+Else if (key0 = "ertosk" or key0 = "ertosk;" or key0 = "ERTOSK")
+    str = stroke{Space}
+Else if (key0 = "ertpsbm" or key0 = "ertpsbm;" or key0 = "ERTPSBM")
+    str = September{Space}
+Else if (key0 = "ertuanm" or key0 = "ertuanm;" or key0 = "ERTUANM")
+    str = remunerate{Space}
+Else if (key0 = "ertycm" or key0 = "ertycm;" or key0 = "ERTYCM")
+    str = cemetery{Space}
+Else if (key0 = "ertyop" or key0 = "ertyop;" or key0 = "ERTYOP")
+    str = property{Space}
+Else if (key0 = "erud" or key0 = "erud;" or key0 = "ERUD")
+    str = educator{Space}
+Else if (key0 = "erudbn" or key0 = "erudbn;" or key0 = "ERUDBN")
+    str = burden{Space}
+Else if (key0 = "eruin" or key0 = "eruin;" or key0 = "ERUIN")
+    str = urine{Space}
+Else if (key0 = "eruopcn" or key0 = "eruopcn;" or key0 = "ERUOPCN")
+    str = pronounce{Space}
+Else if (key0 = "erusc" or key0 = "erusc;" or key0 = "ERUSC")
+    str = rescue{Space}
+Else if (key0 = "eruvn" or key0 = "eruvn;" or key0 = "ERUVN")
+    str = revenue{Space}
+Else if (key0 = "eryoasc" or key0 = "eryoasc;" or key0 = "ERYOASC")
+    str = accessory{Space}
+Else if (key0 = "eshcm" or key0 = "eshcm;" or key0 = "ESHCM")
+    str = scheme{Space}
+Else if (key0 = "eslm" or key0 = "eslm;" or key0 = "ESLM")
+    str = smell{Space}
+Else if (key0 = "etadn" or key0 = "etadn;" or key0 = "ETADN")
+    str = attend{Space}
+Else if (key0 = "etagn" or key0 = "etagn;" or key0 = "ETAGN")
+    str = agent{Space}
+Else if (key0 = "etagn" or key0 = "etagn;" or key0 = "ETAGN")
+    str = tangent{Space}
+Else if (key0 = "etaln" or key0 = "etaln;" or key0 = "ETALN")
+    str = talent{Space}
+Else if (key0 = "etanm" or key0 = "etanm;" or key0 = "ETANM")
+    str = meant{Space}
+Else if (key0 = "etask" or key0 = "etask;" or key0 = "ETASK")
+    str = stake{Space}
+Else if (key0 = "etghln" or key0 = "etghln;" or key0 = "ETGHLN")
+    str = length{Space}
+Else if (key0 = "etiahlcn" or key0 = "etiahlcn;" or key0 = "ETIAHLCN")
+    str = technical{Space}
+Else if (key0 = "etioanm" or key0 = "etioanm;" or key0 = "ETIOANM")
+    str = nominate{Space}
+Else if (key0 = "etiosn" or key0 = "etiosn;" or key0 = "ETIOSN")
+    str = tension{Space}
+Else if (key0 = "etiosn" or key0 = "etiosn;" or key0 = "ETIOSN")
+    str = tension{Space}
+Else if (key0 = "etolb" or key0 = "etolb;" or key0 = "ETOLB")
+    str = bottle{Space}
+Else if (key0 = "etolb" or key0 = "etolb;" or key0 = "ETOLB")
+    str = bottle{Space}
+Else if (key0 = "etoshlc" or key0 = "etoshlc;" or key0 = "ETOSHLC")
+    str = clothes{Space}
+Else if (key0 = "etpal" or key0 = "etpal;" or key0 = "ETPAL")
+    str = plate{Space}
+Else if (key0 = "etpasc" or key0 = "etpasc;" or key0 = "ETPASC")
+    str = aspect{Space}
+Else if (key0 = "etps" or key0 = "etps;" or key0 = "ETPS")
+    str = steep{Space}
+Else if (key0 = "etscn" or key0 = "etscn;" or key0 = "ETSCN")
+    str = sentence{Space}
+Else if (key0 = "etub" or key0 = "etub;" or key0 = "ETUB")
+    str = tube{Space}
+Else if (key0 = "etuhc" or key0 = "etuhc;" or key0 = "ETUHC")
+    str = chute{Space}
+Else if (key0 = "etum" or key0 = "etum;" or key0 = "ETUM")
+    str = mute{Space}
+Else if (key0 = "etuocm" or key0 = "etuocm;" or key0 = "ETUOCM")
+    str = outcome{Space}
+Else if (key0 = "etups" or key0 = "etups;" or key0 = "ETUPS")
+    str = upset{Space}
+Else if (key0 = "etyoscm" or key0 = "etyoscm;" or key0 = "ETYOSCM")
+    str = ecosystem{Space}
+Else if (key0 = "eudgj" or key0 = "eudgj;" or key0 = "EUDGJ")
+    str = judge{Space}
+Else if (key0 = "eudgn" or key0 = "eudgn;" or key0 = "EUDGN")
+    str = nudge{Space}
+Else if (key0 = "eujn" or key0 = "eujn;" or key0 = "EUJN")
+    str = June{Space}
+Else if (key0 = "eupsl" or key0 = "eupsl;" or key0 = "EUPSL")
+    str = pulse{Space}
+Else if (key0 = "eyagcn" or key0 = "eyagcn;" or key0 = "EYAGCN")
+    str = agency{Space}
+Else if (key0 = "eyp" or key0 = "eyp;" or key0 = "EYP")
+    str = yep{Space}
+Else if (key0 = "rtyl" or key0 = "rtyl;" or key0 = "RTYL")
+    str = reality{Space}
+Else if (key0 = "etanm" or key0 = "etanm;" or key0 = "ETANM")
+    str = meant{Space}
+Else if (key0 = "easn" or key0 = "easn;" or key0 = "EASN")
+    str = sane{Space}
+Else if (key0 = "eiasn" or key0 = "eiasn;" or key0 = "EIASN")
+    str = insane{Space}
+Else if (key0 = "epsd" or key0 = "epsd;" or key0 = "EPSD")
+    str = sped{Space}
+Else if (key0 = "ec" or key0 = "ec;" or key0 = "EC")
+    str = {BackSpace}{BackSpace}ce{Space}
+Else if (key0 = "etun" or key0 = "etun;" or key0 = "ETUN")
+    str = tune{Space}
+Else if (key0 = "erofc" or key0 = "erofc;" or key0 = "EROFC")
+    str = force{Space}
+Else if (key0 = "etioasc" or key0 = "etioasc;" or key0 = "ETIOASC")
+    str = associate{Space}
+Else if (key0 = "eionm" or key0 = "eionm;" or key0 = "EIONM")
+    str = mention{Space}
+Else if (key0 = "eyh" or key0 = "eyh;" or key0 = "EYH")
+    str = hey{Space}
+Else if (key0 = "eyp" or key0 = "eyp;" or key0 = "EYP")
+    str = yep{Space}
+Else if (key0 = "eodcnm" or key0 = "eodcnm;" or key0 = "EODCNM")
+    str = commend{Space}
+Else if (key0 = "etisn" or key0 = "etisn;" or key0 = "ETISN")
+    str = intense{Space}
+Else if (key0 = "eruios" or key0 = "eruios;" or key0 = "ERUIOS")
+    str = capable{Space}
+Else if (key0 = "eualvb" or key0 = "eualvb;" or key0 = "EUALVB")
+    str = valuable{Space}
+Else if (key0 = "etiagvn" or key0 = "etiagvn;" or key0 = "ETIAGVN")
+    str = navigate{Space}
+Else if (key0 = "erasc" or key0 = "erasc;" or key0 = "ERASC")
+    str = scare{Space}
+Else if (key0 = "ertom" or key0 = "ertom;" or key0 = "ERTOM")
+    str = remote{Space}
+Else if (key0 = "ertlxn" or key0 = "ertlxn;" or key0 = "ERTLXN")
+    str = internal{Space}
+Else if (key0 = "eropsc" or key0 = "eropsc;" or key0 = "EROPSC")
+    str = process{Space}
+Else if (key0 = "eacbm" or key0 = "eacbm;" or key0 = "EACBM")
+    str = became{Space}
+Else if (key0 = "eaghlcn" or key0 = "eaghlcn;" or key0 = "EAGHLCN")
+    str = challenge{Space}
+Else if (key0 = "etakn" or key0 = "etakn;" or key0 = "ETAKN")
+    str = taken{Space}
+Else if (key0 = "etpam" or key0 = "etpam;" or key0 = "ETPAM")
+    str = attempt{Space}
+Else if (key0 = "eivn" or key0 = "eivn;" or key0 = "EIVN")
+    str = vein{Space}
+Else if (key0 = "erpash" or key0 = "erpash;" or key0 = "ERPASH")
+    str = phrase{Space}
+Else if (key0 = "ertpasn" or key0 = "ertpasn;" or key0 = "ERTPASN")
+    str = transparent{Space}
+Else if (key0 = "ead" or key0 = "ead;" or key0 = "EAD")
+    str = dead{Space}
+Else if (key0 = "eadhln" or key0 = "eadhln;" or key0 = "EADHLN")
+    str = handle{Space}
+Else if (key0 = "eagbn" or key0 = "eagbn;" or key0 = "EAGBN")
+    str = began{Space}
+Else if (key0 = "eashk" or key0 = "eashk;" or key0 = "EASHK")
+    str = shake{Space}
+Else if (key0 = "edcvn" or key0 = "edcvn;" or key0 = "EDCVN")
+    str = evidence{Space}
+Else if (key0 = "eiasd" or key0 = "eiasd;" or key0 = "EIASD")
+    str = disease{Space}
+Else if (key0 = "eiasl" or key0 = "eiasl;" or key0 = "EIASL")
+    str = aisle{Space}
+Else if (key0 = "eihlcv" or key0 = "eihlcv;" or key0 = "EIHLCV")
+    str = vehicle{Space}
+Else if (key0 = "eilm" or key0 = "eilm;" or key0 = "EILM")
+    str = mile{Space}
+Else if (key0 = "eiom" or key0 = "eiom;" or key0 = "EIOM")
+    str = emotion{Space}
+Else if (key0 = "eisdn" or key0 = "eisdn;" or key0 = "EISDN")
+    str = inside{Space}
+Else if (key0 = "eishn" or key0 = "eishn;" or key0 = "EISHN")
+    str = shine{Space}
+Else if (key0 = "eislcn" or key0 = "eislcn;" or key0 = "EISLCN")
+    str = silence{Space}
+Else if (key0 = "eakl" or key0 = "eakl;" or key0 = "EAKL")
+    str = lake{Space}
+Else if (key0 = "eoaln" or key0 = "eoaln;" or key0 = "EOALN")
+    str = alone{Space}
+Else if (key0 = "eocvn" or key0 = "eocvn;" or key0 = "EOCVN")
+    str = convene{Space}
+Else if (key0 = "eodgl" or key0 = "eodgl;" or key0 = "EODGL")
+    str = lodge{Space}
+Else if (key0 = "eolcn" or key0 = "eolcn;" or key0 = "EOLCN")
+    str = clone{Space}
+Else if (key0 = "eolnm" or key0 = "eolnm;" or key0 = "EOLNM")
+    str = lemon{Space}
+Else if (key0 = "eolnm" or key0 = "eolnm;" or key0 = "EOLNM")
+    str = melon{Space}
+Else if (key0 = "eopk" or key0 = "eopk;" or key0 = "EOPK")
+    str = poke{Space}
+Else if (key0 = "eoslv" or key0 = "eoslv;" or key0 = "EOSLV")
+    str = solve{Space}
+Else if (key0 = "eoslv" or key0 = "eoslv;" or key0 = "EOSLV")
+    str = solve{Space}
+Else if (key0 = "epahc" or key0 = "epahc;" or key0 = "EPAHC")
+    str = cheap{Space}
+Else if (key0 = "eradg" or key0 = "eradg;" or key0 = "ERADG")
+    str = grade{Space}
+Else if (key0 = "erafm" or key0 = "erafm;" or key0 = "ERAFM")
+    str = frame{Space}
+Else if (key0 = "eraghc" or key0 = "eraghc;" or key0 = "ERAGHC")
+    str = charge{Space}
+Else if (key0 = "eragnm" or key0 = "eragnm;" or key0 = "ERAGNM")
+    str = manager{Space}
+Else if (key0 = "erc" or key0 = "erc;" or key0 = "ERC")
+    str = rec recognize{Space}
+Else if (key0 = "erdh" or key0 = "erdh;" or key0 = "ERDH")
+    str = herd{Space}
+Else if (key0 = "ergcnm" or key0 = "ergcnm;" or key0 = "ERGCNM")
+    str = emergency{Space}
+Else if (key0 = "ergm" or key0 = "ergm;" or key0 = "ERGM")
+    str = merge{Space}
+Else if (key0 = "erial" or key0 = "erial;" or key0 = "ERIAL")
+    str = earlier{Space}
+Else if (key0 = "erialcm" or key0 = "erialcm;" or key0 = "ERIALCM")
+    str = miracle{Space}
+Else if (key0 = "erif" or key0 = "erif;" or key0 = "ERIF")
+    str = fire{Space}
+Else if (key0 = "eriosn" or key0 = "eriosn;" or key0 = "ERIOSN")
+    str = senior{Space}
+Else if (key0 = "eripl" or key0 = "eripl;" or key0 = "ERIPL")
+    str = ripple{Space}
+Else if (key0 = "eriplcn" or key0 = "eriplcn;" or key0 = "ERIPLCN")
+    str = principle{Space}
+Else if (key0 = "eripsn" or key0 = "eripsn;" or key0 = "ERIPSN")
+    str = inspire{Space}
+Else if (key0 = "erlv" or key0 = "erlv;" or key0 = "ERLV")
+    str = lever{Space}
+Else if (key0 = "ern" or key0 = "ern;" or key0 = "ERN")
+    str = {backspace}ern{Space}
+Else if (key0 = "eroc" or key0 = "eroc;" or key0 = "EROC")
+    str = core{Space}
+Else if (key0 = "eroc" or key0 = "eroc;" or key0 = "EROC")
+    str = core{Space}
+Else if (key0 = "eroh" or key0 = "eroh;" or key0 = "EROH")
+    str = hero{Space}
+Else if (key0 = "erohl" or key0 = "erohl;" or key0 = "EROHL")
+    str = holler{Space}
+Else if (key0 = "erosc" or key0 = "erosc;" or key0 = "EROSC")
+    str = score{Space}
+Else if (key0 = "eroslc" or key0 = "eroslc;" or key0 = "EROSLC")
+    str = closer{Space}
+Else if (key0 = "erta" or key0 = "erta;" or key0 = "ERTA")
+    str = tear{Space}
+Else if (key0 = "ertad" or key0 = "ertad;" or key0 = "ERTAD")
+    str = trade{Space}
+Else if (key0 = "ertd" or key0 = "ertd;" or key0 = "ERTD")
+    str = editor{Space}
+Else if (key0 = "ertihn" or key0 = "ertihn;" or key0 = "ERTIHN")
+    str = neither{Space}
+Else if (key0 = "ertilc" or key0 = "ertilc;" or key0 = "ERTILC")
+    str = electric{Space}
+Else if (key0 = "ertiod" or key0 = "ertiod;" or key0 = "ERTIOD")
+    str = editor{Space}
+Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
+    str = practice{Space}
+Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
+    str = practice{Space}
+Else if (key0 = "ertish" or key0 = "ertish;" or key0 = "ERTISH")
+    str = theirs{Space}
+Else if (key0 = "ertjc" or key0 = "ertjc;" or key0 = "ERTJC")
+    str = reject{Space}
+Else if (key0 = "ertlc" or key0 = "ertlc;" or key0 = "ERTLC")
+    str = electric{Space}
+Else if (key0 = "ertofgn" or key0 = "ertofgn;" or key0 = "ERTOFGN")
+    str = forgotten{Space}
+Else if (key0 = "ertpvn" or key0 = "ertpvn;" or key0 = "ERTPVN")
+    str = prevent{Space}
+Else if (key0 = "ertuic" or key0 = "ertuic;" or key0 = "ERTUIC")
+    str = recruit{Space}
+Else if (key0 = "ertul" or key0 = "ertul;" or key0 = "ERTUL")
+    str = turtle{Space}
+Else if (key0 = "ertun" or key0 = "ertun;" or key0 = "ERTUN")
+    str = return{Space}
+Else if (key0 = "ertuo" or key0 = "ertuo;" or key0 = "ERTUO")
+    str = route{Space}
+Else if (key0 = "eruag" or key0 = "eruag;" or key0 = "ERUAG")
+    str = argue{Space}
+Else if (key0 = "eruas" or key0 = "eruas;" or key0 = "ERUAS")
+    str = assure{Space}
+Else if (key0 = "erubm" or key0 = "erubm;" or key0 = "ERUBM")
+    str = bummer{Space}
+Else if (key0 = "eruoslcn" or key0 = "eruoslcn;" or key0 = "ERUOSLCN")
+    str = counselor{Space}
+Else if (key0 = "eruosvn" or key0 = "eruosvn;" or key0 = "ERUOSVN")
+    str = nervous{Space}
+Else if (key0 = "erusn" or key0 = "erusn;" or key0 = "ERUSN")
+    str = nurse{Space}
+Else if (key0 = "eshl" or key0 = "eshl;" or key0 = "ESHL")
+    str = shell{Space}
+Else if (key0 = "etas" or key0 = "etas;" or key0 = "ETAS")
+    str = state{Space}
+Else if (key0 = "etb" or key0 = "etb;" or key0 = "ETB")
+    str = bet{Space}
+Else if (key0 = "etb" or key0 = "etb;" or key0 = "ETB")
+    str = bet{Space}
+Else if (key0 = "etdn" or key0 = "etdn;" or key0 = "ETDN")
+    str = tend{Space}
+Else if (key0 = "etfcn" or key0 = "etfcn;" or key0 = "ETFCN")
+    str = efficient{Space}
+Else if (key0 = "etfcn" or key0 = "etfcn;" or key0 = "ETFCN")
+    str = efficient{Space}
+Else if (key0 = "etihkcn" or key0 = "etihkcn;" or key0 = "ETIHKCN")
+    str = kitchen{Space}
+Else if (key0 = "etion" or key0 = "etion;" or key0 = "ETION")
+    str = intention{Space}
+Else if (key0 = "etionm" or key0 = "etionm;" or key0 = "ETIONM")
+    str = emotion{Space}
+Else if (key0 = "etipdn" or key0 = "etipdn;" or key0 = "ETIPDN")
+    str = independent{Space}
+Else if (key0 = "etisln" or key0 = "etisln;" or key0 = "ETISLN")
+    str = nationalities{Space}
+Else if (key0 = "etlvt" or key0 = "etlvt;" or key0 = "ETLVT")
+    str = evaluate{Space}
+Else if (key0 = "etop" or key0 = "etop;" or key0 = "ETOP")
+    str = poet{Space}
+Else if (key0 = "etpaln" or key0 = "etpaln;" or key0 = "ETPALN")
+    str = planet{Space}
+Else if (key0 = "etpxm" or key0 = "etpxm;" or key0 = "ETPXM")
+    str = exempt{Space}
+Else if (key0 = "etsg" or key0 = "etsg;" or key0 = "ETSG")
+    str = setting{Space}
+Else if (key0 = "etsg" or key0 = "etsg;" or key0 = "ETSG")
+    str = gets{Space}
+Else if (key0 = "etsln" or key0 = "etsln;" or key0 = "ETSLN")
+    str = essential{Space}
+Else if (key0 = "etualv" or key0 = "etualv;" or key0 = "ETUALV")
+    str = evaluate{Space}
+Else if (key0 = "etuascbn" or key0 = "etuascbn;" or key0 = "ETUASCBN")
+    str = substance{Space}
+Else if (key0 = "etuisn" or key0 = "etuisn;" or key0 = "ETUISN")
+    str = institute{Space}
+Else if (key0 = "etypln" or key0 = "etypln;" or key0 = "ETYPLN")
+    str = plenty{Space}
+Else if (key0 = "euag" or key0 = "euag;" or key0 = "EUAG")
+    str = gauge{Space}
+Else if (key0 = "euagv" or key0 = "euagv;" or key0 = "EUAGV")
+    str = vague{Space}
+Else if (key0 = "euasb" or key0 = "euasb;" or key0 = "EUASB")
+    str = abuse{Space}
+Else if (key0 = "euh" or key0 = "euh;" or key0 = "EUH")
+    str = hue{Space}
+Else if (key0 = "euiflcn" or key0 = "euiflcn;" or key0 = "EUIFLCN")
+    str = influence{Space}
+Else if (key0 = "euisdc" or key0 = "euisdc;" or key0 = "EUISDC")
+    str = suicide{Space}
+Else if (key0 = "euoslcn" or key0 = "euoslcn;" or key0 = "EUOSLCN")
+    str = counsel{Space}
+Else if (key0 = "eupdl" or key0 = "eupdl;" or key0 = "EUPDL")
+    str = puddle{Space}
+Else if (key0 = "ey" or key0 = "ey;" or key0 = "EY")
+    str = eye{Space}
+Else if (key0 = "eyadl" or key0 = "eyadl;" or key0 = "EYADL")
+    str = delay{Space}
+Else if (key0 = "eyiafc" or key0 = "eyiafc;" or key0 = "EYIAFC")
+    str = efficacy{Space}
+Else if (key0 = "eyl" or key0 = "eyl;" or key0 = "EYL")
+    str = yell{Space}
+Else if (key0 = "eyocvn" or key0 = "eyocvn;" or key0 = "EYOCVN")
+    str = convey{Space}
+Else if (key0 = "erpisn" or key0 = "erpisn;" or key0 = "ERPISN")
+    str = inspire{Space}
+Else if (key0 = "eopsk" or key0 = "eopsk;" or key0 = "EOPSK")
+    str = spoke{Space}
+Else if (key0 = "epal" or key0 = "epal;" or key0 = "EPAL")
+    str = leap{Space}
+Else if (key0 = "epdxn" or key0 = "epdxn;" or key0 = "EPDXN")
+    str = expend{Space}
+Else if (key0 = "eriav" or key0 = "eriav;" or key0 = "ERIAV")
+    str = arrive{Space}
+Else if (key0 = "erop" or key0 = "erop;" or key0 = "EROP")
+    str = proper{Space}
+Else if (key0 = "erpdc" or key0 = "erpdc;" or key0 = "ERPDC")
+    str = deprec{Space}
+Else if (key0 = "ertipn" or key0 = "ertipn;" or key0 = "ERTIPN")
+    str = interpret{Space}
+Else if (key0 = "ertuipn" or key0 = "ertuipn;" or key0 = "ERTUIPN")
+    str = interrupt{Space}
+Else if (key0 = "etialnm" or key0 = "etialnm;" or key0 = "ETIALNM")
+    str = eliminate{Space}
+Else if (key0 = "etiascn" or key0 = "etiascn;" or key0 = "ETIASCN")
+    str = instance{Space}
+Else if (key0 = "etiscn" or key0 = "etiscn;" or key0 = "ETISCN")
+    str = scientist{Space}
+Else if (key0 = "etivn" or key0 = "etivn;" or key0 = "ETIVN")
+    str = invite{Space}
+Else if (key0 = "eruopd" or key0 = "eruopd;" or key0 = "ERUOPD")
+    str = produce{Space}
+Else if (key0 = "eacm" or key0 = "eacm;" or key0 = "EACM")
+    str = came{Space}
+Else if (key0 = "eadcn" or key0 = "eadcn;" or key0 = "EADCN")
+    str = dance{Space}
+Else if (key0 = "erudm" or key0 = "erudm;" or key0 = "ERUDM")
+    str = drummer{Space}
+Else if (key0 = "easfl" or key0 = "easfl;" or key0 = "EASFL")
+    str = false{Space}
+Else if (key0 = "easl" or key0 = "easl;" or key0 = "EASL")
+    str = sale{Space}
+Else if (key0 = "easlc" or key0 = "easlc;" or key0 = "EASLC")
+    str = scale{Space}
+Else if (key0 = "edg" or key0 = "edg;" or key0 = "EDG")
+    str = edge{Space}
+Else if (key0 = "efb" or key0 = "efb;" or key0 = "EFB")
+    str = beef{Space}
+Else if (key0 = "eicv" or key0 = "eicv;" or key0 = "EICV")
+    str = vice{Space}
+Else if (key0 = "eidv" or key0 = "eidv;" or key0 = "EIDV")
+    str = dive{Space}
+Else if (key0 = "eign" or key0 = "eign;" or key0 = "EIGN")
+    str = engine{Space}
+Else if (key0 = "einm" or key0 = "einm;" or key0 = "EINM")
+    str = mine{Space}
+Else if (key0 = "eiocvn" or key0 = "eiocvn;" or key0 = "EIOCVN")
+    str = convince{Space}
+Else if (key0 = "eiosn" or key0 = "eiosn;" or key0 = "EIOSN")
+    str = noise{Space}
+Else if (key0 = "elc" or key0 = "elc;" or key0 = "ELC")
+    str = cell{Space}
+Else if (key0 = "eohn" or key0 = "eohn;" or key0 = "EOHN")
+    str = hone{Space}
+Else if (key0 = "eradm" or key0 = "eradm;" or key0 = "ERADM")
+    str = dream{Space}
+Else if (key0 = "erasd" or key0 = "erasd;" or key0 = "ERASD")
+    str = address{Space}
+Else if (key0 = "erdg" or key0 = "erdg;" or key0 = "ERDG")
+    str = degree{Space}
+Else if (key0 = "ergcn" or key0 = "ergcn;" or key0 = "ERGCN")
+    str = encourage{Space}
+Else if (key0 = "erih" or key0 = "erih;" or key0 = "ERIH")
+    str = hire{Space}
+Else if (key0 = "erilc" or key0 = "erilc;" or key0 = "ERILC")
+    str = circle{Space}
+Else if (key0 = "erpscn" or key0 = "erpscn;" or key0 = "ERPSCN")
+    str = presence{Space}
+Else if (key0 = "erti" or key0 = "erti;" or key0 = "ERTI")
+    str = tire{Space}
+Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
+    str = practice{Space}
+Else if (key0 = "ertlcn" or key0 = "ertlcn;" or key0 = "ERTLCN")
+    str = electronic{Space}
+Else if (key0 = "ertocn" or key0 = "ertocn;" or key0 = "ERTOCN")
+    str = concert{Space}
+Else if (key0 = "ertof" or key0 = "ertof;" or key0 = "ERTOF")
+    str = effort{Space}
+Else if (key0 = "ertopc" or key0 = "ertopc;" or key0 = "ERTOPC")
+    str = protect{Space}
+Else if (key0 = "ertpx" or key0 = "ertpx;" or key0 = "ERTPX")
+    str = expert{Space}
+Else if (key0 = "ertuion" or key0 = "ertuion;" or key0 = "ERTUION")
+    str = routine{Space}
+Else if (key0 = "ertuo" or key0 = "ertuo;" or key0 = "ERTUO")
+    str = route{Space}
+Else if (key0 = "eruosc" or key0 = "eruosc;" or key0 = "ERUOSC")
+    str = course{Space}
+Else if (key0 = "eruosc" or key0 = "eruosc;" or key0 = "ERUOSC")
+    str = course{Space}
+Else if (key0 = "erusc" or key0 = "erusc;" or key0 = "ERUSC")
+    str = secure{Space}
+Else if (key0 = "erusc" or key0 = "erusc;" or key0 = "ERUSC")
+    str = secure{Space}
+Else if (key0 = "eryl" or key0 = "eryl;" or key0 = "ERYL")
+    str = rely{Space}
+Else if (key0 = "escn" or key0 = "escn;" or key0 = "ESCN")
+    str = scene{Space}
+Else if (key0 = "esg" or key0 = "esg;" or key0 = "ESG")
+    str = seeing{Space}
+Else if (key0 = "etab" or key0 = "etab;" or key0 = "ETAB")
+    str = beat{Space}
+Else if (key0 = "etad" or key0 = "etad;" or key0 = "ETAD")
+    str = date{Space}
+Else if (key0 = "etad" or key0 = "etad;" or key0 = "ETAD")
+    str = date{Space}
+Else if (key0 = "etadh" or key0 = "etadh;" or key0 = "ETADH")
+    str = death{Space}
+Else if (key0 = "etalm" or key0 = "etalm;" or key0 = "ETALM")
+    str = metal{Space}
+Else if (key0 = "etfh" or key0 = "etfh;" or key0 = "ETFH")
+    str = theft{Space}
+Else if (key0 = "etiadc" or key0 = "etiadc;" or key0 = "ETIADC")
+    str = dictate{Space}
+Else if (key0 = "etin" or key0 = "etin;" or key0 = "ETIN")
+    str = intent{Space}
+Else if (key0 = "etiocm" or key0 = "etiocm;" or key0 = "ETIOCM")
+    str = committee{Space}
+Else if (key0 = "etivn" or key0 = "etivn;" or key0 = "ETIVN")
+    str = invent{Space}
+Else if (key0 = "etogn" or key0 = "etogn;" or key0 = "ETOGN")
+    str = gotten{Space}
+Else if (key0 = "etoscn" or key0 = "etoscn;" or key0 = "ETOSCN")
+    str = consent{Space}
+Else if (key0 = "etov" or key0 = "etov;" or key0 = "ETOV")
+    str = vote{Space}
+Else if (key0 = "etpxc" or key0 = "etpxc;" or key0 = "ETPXC")
+    str = except{Space}
+Else if (key0 = "etupad" or key0 = "etupad;" or key0 = "ETUPAD")
+    str = update{Space}
+Else if (key0 = "ety" or key0 = "ety;" or key0 = "ETY")
+    str = yet{Space}
+Else if (key0 = "etyuab" or key0 = "etyuab;" or key0 = "ETYUAB")
+    str = beauty{Space}
+Else if (key0 = "euagln" or key0 = "euagln;" or key0 = "EUAGLN")
+    str = language{Space}
+Else if (key0 = "euasm" or key0 = "euasm;" or key0 = "EUASM")
+    str = assume{Space}
+Else if (key0 = "euisdc" or key0 = "euisdc;" or key0 = "EUISDC")
+    str = suicide{Space}
+Else if (key0 = "eulb" or key0 = "eulb;" or key0 = "EULB")
+    str = blue{Space}
+Else if (key0 = "eunm" or key0 = "eunm;" or key0 = "EUNM")
+    str = menu{Space}
+Else if (key0 = "eunm" or key0 = "eunm;" or key0 = "EUNM")
+    str = menu{Space}
+Else if (key0 = "eupas" or key0 = "eupas;" or key0 = "EUPAS")
+    str = pause{Space}
+Else if (key0 = "eradcn" or key0 = "eradcn;" or key0 = "ERADCN")
+    str = dancer{Space}
+Else if (key0 = "eagn" or key0 = "eagn;" or key0 = "EAGN")
+    str = engage{Space}
+Else if (key0 = "eiom" or key0 = "eiom;" or key0 = "EIOM")
+    str = emotion{Space}
+Else if (key0 = "eoavb" or key0 = "eoavb;" or key0 = "EOAVB")
+    str = above{Space}
+Else if (key0 = "eojk" or key0 = "eojk;" or key0 = "EOJK")
+    str = joke{Space}
+Else if (key0 = "epd" or key0 = "epd;" or key0 = "EPD")
+    str = deep{Space}
+Else if (key0 = "ergn" or key0 = "ergn;" or key0 = "ERGN")
+    str = green{Space}
+Else if (key0 = "erianm" or key0 = "erianm;" or key0 = "ERIANM")
+    str = remain{Space}
+Else if (key0 = "eropv" or key0 = "eropv;" or key0 = "EROPV")
+    str = prove{Space}
+Else if (key0 = "erpf" or key0 = "erpf;" or key0 = "ERPF")
+    str = prefer{Space}
+Else if (key0 = "ertah" or key0 = "ertah;" or key0 = "ERTAH")
+    str = heart{Space}
+Else if (key0 = "ertahb" or key0 = "ertahb;" or key0 = "ERTAHB")
+    str = breathe{Space}
+Else if (key0 = "ertan" or key0 = "ertan;" or key0 = "ERTAN")
+    str = aren't{Space}
+Else if (key0 = "ertioa" or key0 = "ertioa;" or key0 = "ERTIOA")
+    str = iteration{Space}
+Else if (key0 = "ertioa" or key0 = "ertioa;" or key0 = "ERTIOA")
+    str = iteration{Space}
+Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
+    str = practice{Space}
+Else if (key0 = "ertpan" or key0 = "ertpan;" or key0 = "ERTPAN")
+    str = parent{Space}
+Else if (key0 = "erygn" or key0 = "erygn;" or key0 = "ERYGN")
+    str = energy{Space}
+Else if (key0 = "esdn" or key0 = "esdn;" or key0 = "ESDN")
+    str = send{Space}
+Else if (key0 = "etasg" or key0 = "etasg;" or key0 = "ETASG")
+    str = stage{Space}
+Else if (key0 = "etasg" or key0 = "etasg;" or key0 = "ETASG")
+    str = stage{Space}
+Else if (key0 = "etiops" or key0 = "etiops;" or key0 = "ETIOPS")
+    str = opposite{Space}
+Else if (key0 = "etlnm" or key0 = "etlnm;" or key0 = "ETLNM")
+    str = element{Space}
+Else if (key0 = "etolc" or key0 = "etolc;" or key0 = "ETOLC")
+    str = collect{Space}
+Else if (key0 = "eton" or key0 = "eton;" or key0 = "ETON")
+    str = note{Space}
+Else if (key0 = "etuc" or key0 = "etuc;" or key0 = "ETUC")
+    str = cute{Space}
+Else if (key0 = "etusg" or key0 = "etusg;" or key0 = "ETUSG")
+    str = suggest{Space}
+Else if (key0 = "etvn" or key0 = "etvn;" or key0 = "ETVN")
+    str = event{Space}
+Else if (key0 = "etyhd" or key0 = "etyhd;" or key0 = "ETYHD")
+    str = they'd{Space}
+Else if (key0 = "etyhl" or key0 = "etyhl;" or key0 = "ETYHL")
+    str = theyll{Space}
+Else if (key0 = "euasc" or key0 = "euasc;" or key0 = "EUASC")
+    str = cause{Space}
+Else if (key0 = "euoacn" or key0 = "euoacn;" or key0 = "EUOACN")
+    str = announce{Space}
+Else if (key0 = "eusdc" or key0 = "eusdc;" or key0 = "EUSDC")
+    str = succeed{Space}
+Else if (key0 = "eusdc" or key0 = "eusdc;" or key0 = "EUSDC")
+    str = succeed{Space}
+Else if (key0 = "eusln" or key0 = "eusln;" or key0 = "EUSLN")
+    str = unless{Space}
+Else if (key0 = "eyojn" or key0 = "eyojn;" or key0 = "EYOJN")
+    str = enjoy{Space}
+Else if (key0 = "eps" or key0 = "eps;" or key0 = "EPS")
+    str = especially{Space}
+Else if (key0 = "eacn" or key0 = "eacn;" or key0 = "EACN")
+    str = {BackSpace}ance{Space}
+Else if (key0 = "eadh" or key0 = "eadh;" or key0 = "EADH")
+    str = head{Space}
+Else if (key0 = "eadl" or key0 = "eadl;" or key0 = "EADL")
+    str = lead{Space}
+Else if (key0 = "eadm" or key0 = "eadm;" or key0 = "EADM")
+    str = made{Space}
+Else if (key0 = "eafc" or key0 = "eafc;" or key0 = "EAFC")
+    str = face{Space}
+Else if (key0 = "eaflm" or key0 = "eaflm;" or key0 = "EAFLM")
+    str = female{Space}
+Else if (key0 = "eafm" or key0 = "eafm;" or key0 = "EAFM")
+    str = fame{Space}
+Else if (key0 = "eag" or key0 = "eag;" or key0 = "EAG")
+    str = age{Space}
+Else if (key0 = "eaghcn" or key0 = "eaghcn;" or key0 = "EAGHCN")
+    str = change{Space}
+Else if (key0 = "eaghlcn" or key0 = "eaghlcn;" or key0 = "EAGHLCN")
+    str = challenge{Space}
+Else if (key0 = "eagm" or key0 = "eagm;" or key0 = "EAGM")
+    str = game{Space}
+Else if (key0 = "eagnm" or key0 = "eagnm;" or key0 = "EAGNM")
+    str = manage{Space}
+Else if (key0 = "eagv" or key0 = "eagv;" or key0 = "EAGV")
+    str = gave{Space}
+Else if (key0 = "eahc" or key0 = "eahc;" or key0 = "EAHC")
+    str = each{Space}
+Else if (key0 = "eahcn" or key0 = "eahcn;" or key0 = "EAHCN")
+    str = chance{Space}
+Else if (key0 = "eahl" or key0 = "eahl;" or key0 = "EAHL")
+    str = heal{Space}
+Else if (key0 = "eahv" or key0 = "eahv;" or key0 = "EAHV")
+    str = have{Space}
+Else if (key0 = "eakm" or key0 = "eakm;" or key0 = "EAKM")
+    str = make{Space}
+Else if (key0 = "ealb" or key0 = "ealb;" or key0 = "EALB")
+    str = able{Space}
+Else if (key0 = "ealcn" or key0 = "ealcn;" or key0 = "EALCN")
+    str = clean{Space}
+Else if (key0 = "ealm" or key0 = "ealm;" or key0 = "EALM")
+    str = male{Space}
+Else if (key0 = "ealn" or key0 = "ealn;" or key0 = "EALN")
+    str = lean{Space}
+Else if (key0 = "eanm" or key0 = "eanm;" or key0 = "EANM")
+    str = name{Space}
+Else if (key0 = "easb" or key0 = "easb;" or key0 = "EASB")
+    str = base{Space}
+Else if (key0 = "easc" or key0 = "easc;" or key0 = "EASC")
+    str = case{Space}
+Else if (key0 = "easdk" or key0 = "easdk;" or key0 = "EASDK")
+    str = asked{Space}
+Else if (key0 = "easf" or key0 = "easf;" or key0 = "EASF")
+    str = safe{Space}
+Else if (key0 = "easkm" or key0 = "easkm;" or key0 = "EASKM")
+    str = makes{Space}
+Else if (key0 = "easm" or key0 = "easm;" or key0 = "EASM")
+    str = same{Space}
+Else if (key0 = "easv" or key0 = "easv;" or key0 = "EASV")
+    str = save{Space}
+Else if (key0 = "eb" or key0 = "eb;" or key0 = "EB")
+    str = be{Space}
+Else if (key0 = "ecn" or key0 = "ecn;" or key0 = "ECN")
+    str = necessary{Space}
+Else if (key0 = "ecn" or key0 = "ecn;" or key0 = "ECN")
+    str = {BackSpace}ence{Space}
+Else if (key0 = "ed" or key0 = "ed;" or key0 = "ED")
+    str = {BackSpace}ed{Space}
+Else if (key0 = "edc" or key0 = "edc;" or key0 = "EDC")
+    str = dec{Space}
+Else if (key0 = "edf" or key0 = "edf;" or key0 = "EDF")
+    str = definitely{Space}
+Else if (key0 = "edl" or key0 = "edl;" or key0 = "EDL")
+    str = led{Space}
+Else if (key0 = "edn" or key0 = "edn;" or key0 = "EDN")
+    str = need{Space}
+Else if (key0 = "edn" or key0 = "edn;" or key0 = "EDN")
+    str = end{Space}
+Else if (key0 = "edv" or key0 = "edv;" or key0 = "EDV")
+    str = develop{Space}
+Else if (key0 = "ef" or key0 = "ef;" or key0 = "EF")
+    str = for example{Space}
+Else if (key0 = "eg" or key0 = "eg;" or key0 = "EG")
+    str = everything{Space}
+Else if (key0 = "egb" or key0 = "egb;" or key0 = "EGB")
+    str = being{Space}
+Else if (key0 = "egl" or key0 = "egl;" or key0 = "EGL")
+    str = leg{Space}
+Else if (key0 = "eh" or key0 = "eh;" or key0 = "EH")
+    str = he{Space}
+Else if (key0 = "ehkc" or key0 = "ehkc;" or key0 = "EHKC")
+    str = check{Space}
+Else if (key0 = "eiacvn" or key0 = "eiacvn;" or key0 = "EIACVN")
+    str = vaccine{Space}
+Else if (key0 = "eiad" or key0 = "eiad;" or key0 = "EIAD")
+    str = idea{Space}
+Else if (key0 = "eiadm" or key0 = "eiadm;" or key0 = "EIADM")
+    str = media{Space}
+Else if (key0 = "eiagnm" or key0 = "eiagnm;" or key0 = "EIAGNM")
+    str = imagine{Space}
+Else if (key0 = "eialm" or key0 = "eialm;" or key0 = "EIALM")
+    str = email{Space}
+Else if (key0 = "eic" or key0 = "eic;" or key0 = "EIC")
+    str = ice{Space}
+Else if (key0 = "eicn" or key0 = "eicn;" or key0 = "EICN")
+    str = nice{Space}
+Else if (key0 = "eid" or key0 = "eid;" or key0 = "EID")
+    str = ide
+Else if (key0 = "eidc" or key0 = "eidc;" or key0 = "EIDC")
+    str = decide{Space}
+Else if (key0 = "eidfl" or key0 = "eidfl;" or key0 = "EIDFL")
+    str = field{Space}
+Else if (key0 = "eidfl" or key0 = "eidfl;" or key0 = "EIDFL")
+    str = field{Space}
+Else if (key0 = "eidfn" or key0 = "eidfn;" or key0 = "EIDFN")
+    str = define{Space}
+Else if (key0 = "eidlm" or key0 = "eidlm;" or key0 = "EIDLM")
+    str = middle{Space}
+Else if (key0 = "eidn" or key0 = "eidn;" or key0 = "EIDN")
+    str = indeed{Space}
+Else if (key0 = "eifl" or key0 = "eifl;" or key0 = "EIFL")
+    str = life{Space}
+Else if (key0 = "eigbn" or key0 = "eigbn;" or key0 = "EIGBN")
+    str = begin{Space}
+Else if (key0 = "eigbn" or key0 = "eigbn;" or key0 = "EIGBN")
+    str = beginning{Space}
+Else if (key0 = "eilb" or key0 = "eilb;" or key0 = "EILB")
+    str = {BackSpace}ible{Space}
+Else if (key0 = "eilv" or key0 = "eilv;" or key0 = "EILV")
+    str = live{Space}
+Else if (key0 = "eiocv" or key0 = "eiocv;" or key0 = "EIOCV")
+    str = voice{Space}
+Else if (key0 = "eiodv" or key0 = "eiodv;" or key0 = "EIODV")
+    str = video{Space}
+Else if (key0 = "eiofc" or key0 = "eiofc;" or key0 = "EIOFC")
+    str = office{Space}
+Else if (key0 = "eiohc" or key0 = "eiohc;" or key0 = "EIOHC")
+    str = choice{Space}
+Else if (key0 = "eiolvn" or key0 = "eiolvn;" or key0 = "EIOLVN")
+    str = involve{Space}
+Else if (key0 = "eiosc" or key0 = "eiosc;" or key0 = "EIOSC")
+    str = section{Space}
+Else if (key0 = "eiosn" or key0 = "eiosn;" or key0 = "EIOSN")
+    str = noise{Space}
+Else if (key0 = "eip" or key0 = "eip;" or key0 = "EIP")
+    str = pipe{Space}
+Else if (key0 = "eipc" or key0 = "eipc;" or key0 = "EIPC")
+    str = piece{Space}
+Else if (key0 = "eis" or key0 = "eis;" or key0 = "EIS")
+    str = {BackSpace}ies{Space}
+Else if (key0 = "eiscn" or key0 = "eiscn;" or key0 = "EISCN")
+    str = since{Space}
+Else if (key0 = "eisd" or key0 = "eisd;" or key0 = "EISD")
+    str = side{Space}
+Else if (key0 = "eisgln" or key0 = "eisgln;" or key0 = "EISGLN")
+    str = single{Space}
+Else if (key0 = "eiv" or key0 = "eiv;" or key0 = "EIV")
+    str = I've{Space}
+Else if (key0 = "eiz" or key0 = "eiz;" or key0 = "EIZ")
+    str = {BackSpace}ize{Space}
+Else if (key0 = "ekcn" or key0 = "ekcn;" or key0 = "EKCN")
+    str = neck{Space}
+Else if (key0 = "elcn" or key0 = "elcn;" or key0 = "ELCN")
+    str = necessarily{Space}
+Else if (key0 = "elv" or key0 = "elv;" or key0 = "ELV")
+    str = level{Space}
+Else if (key0 = "em" or key0 = "em;" or key0 = "EM")
+    str = me{Space}
+Else if (key0 = "en" or key0 = "en;" or key0 = "EN")
+    str = {BackSpace}en{Space}
+Else if (key0 = "enm" or key0 = "enm;" or key0 = "ENM")
+    str = men{Space}
+Else if (key0 = "eoasn" or key0 = "eoasn;" or key0 = "EOASN")
+    str = season{Space}
+Else if (key0 = "eoc" or key0 = "eoc;" or key0 = "EOC")
+    str = eco{Space}
+Else if (key0 = "eocn" or key0 = "eocn;" or key0 = "EOCN")
+    str = once{Space}
+Else if (key0 = "eodc" or key0 = "eodc;" or key0 = "EODC")
+    str = code{Space}
+Else if (key0 = "eodlm" or key0 = "eodlm;" or key0 = "EODLM")
+    str = model{Space}
+Else if (key0 = "eodn" or key0 = "eodn;" or key0 = "EODN")
+    str = done{Space}
+Else if (key0 = "eogn" or key0 = "eogn;" or key0 = "EOGN")
+    str = enough{Space}
+Else if (key0 = "euoghn" or key0 = "euoghn;" or key0 = "EUOGHN")
+    str = gone{Space}
+Else if (key0 = "eohl" or key0 = "eohl;" or key0 = "EOHL")
+    str = hole{Space}
+Else if (key0 = "eohm" or key0 = "eohm;" or key0 = "EOHM")
+    str = home{Space}
+Else if (key0 = "eolv" or key0 = "eolv;" or key0 = "EOLV")
+    str = love{Space}
+Else if (key0 = "eon" or key0 = "eon;" or key0 = "EON")
+    str = one{Space}
+Else if (key0 = "eop" or key0 = "eop;" or key0 = "EOP")
+    str = people{Space}
+Else if (key0 = "eopdlv" or key0 = "eopdlv;" or key0 = "EOPDLV")
+    str = develop{Space}
+Else if (key0 = "eoph" or key0 = "eoph;" or key0 = "EOPH")
+    str = hope{Space}
+Else if (key0 = "eophn" or key0 = "eophn;" or key0 = "EOPHN")
+    str = phone{Space}
+Else if (key0 = "eopn" or key0 = "eopn;" or key0 = "EOPN")
+    str = open{Space}
+Else if (key0 = "eops" or key0 = "eops;" or key0 = "EOPS")
+    str = pose{Space}
+Else if (key0 = "eopshn" or key0 = "eopshn;" or key0 = "EOPSHN")
+    str = phones{Space}
+Else if (key0 = "eosd" or key0 = "eosd;" or key0 = "EOSD")
+    str = does{Space}
+Else if (key0 = "eosg" or key0 = "eosg;" or key0 = "EOSG")
+    str = goes{Space}
+Else if (key0 = "eosh" or key0 = "eosh;" or key0 = "EOSH")
+    str = shoe{Space}
+Else if (key0 = "eoshc" or key0 = "eoshc;" or key0 = "EOSHC")
+    str = chose{Space}
+Else if (key0 = "eosl" or key0 = "eosl;" or key0 = "EOSL")
+    str = lose{Space}
+Else if (key0 = "eoslc" or key0 = "eoslc;" or key0 = "EOSLC")
+    str = close{Space}
+Else if (key0 = "eosm" or key0 = "eosm;" or key0 = "EOSM")
+    str = some{Space}
+Else if (key0 = "eov" or key0 = "eov;" or key0 = "EOV")
+    str = everyone{Space}
+Else if (key0 = "eozn" or key0 = "eozn;" or key0 = "EOZN")
+    str = zone{Space}
+Else if (key0 = "epac" or key0 = "epac;" or key0 = "EPAC")
+    str = pace{Space}
+Else if (key0 = "epag" or key0 = "epag;" or key0 = "EPAG")
+    str = page{Space}
+Else if (key0 = "epak" or key0 = "epak;" or key0 = "EPAK")
+    str = peak{Space}
+Else if (key0 = "epalc" or key0 = "epalc;" or key0 = "EPALC")
+    str = place{Space}
+Else if (key0 = "epasc" or key0 = "epasc;" or key0 = "EPASC")
+    str = space{Space}
+Else if (key0 = "epash" or key0 = "epash;" or key0 = "EPASH")
+    str = shape{Space}
+Else if (key0 = "epask" or key0 = "epask;" or key0 = "EPASK")
+    str = speak{Space}
+Else if (key0 = "epasl" or key0 = "epasl;" or key0 = "EPASL")
+    str = please{Space}
+Else if (key0 = "epdn" or key0 = "epdn;" or key0 = "EPDN")
+    str = depend{Space}
+Else if (key0 = "ephl" or key0 = "ephl;" or key0 = "EPHL")
+    str = help{Space}
+Else if (key0 = "epk" or key0 = "epk;" or key0 = "EPK")
+    str = keep{Space}
+Else if (key0 = "epsc" or key0 = "epsc;" or key0 = "EPSC")
+    str = spec{Space}
+Else if (key0 = "epscl" or key0 = "epscl;" or key0 = "EPSCL")
+    str = specifically{Space}
+Else if (key0 = "epsdn" or key0 = "epsdn;" or key0 = "EPSDN")
+    str = spend{Space}
+Else if (key0 = "epsh" or key0 = "epsh;" or key0 = "EPSH")
+    str = sheep{Space}
+Else if (key0 = "epsl" or key0 = "epsl;" or key0 = "EPSL")
+    str = sleep{Space}
+Else if (key0 = "epx" or key0 = "epx;" or key0 = "EPX")
+    str = experience{Space}
+Else if (key0 = "er" or key0 = "er;" or key0 = "ER")
+    str = {BackSpace}er{Space}
+Else if (key0 = "era" or key0 = "era;" or key0 = "ERA")
+    str = are{Space}
+Else if (key0 = "erac" or key0 = "erac;" or key0 = "ERAC")
+    str = care{Space}
+Else if (key0 = "eracm" or key0 = "eracm;" or key0 = "ERACM")
+    str = camera{Space}
+Else if (key0 = "eradfl" or key0 = "eradfl;" or key0 = "ERADFL")
+    str = federal
+Else if (key0 = "eradh" or key0 = "eradh;" or key0 = "ERADH")
+    str = heard{Space}
+Else if (key0 = "erady" or key0 = "erady;" or key0 = "ERADY")
+    str = ready{Space}
+Else if (key0 = "erag" or key0 = "erag;" or key0 = "ERAG")
+    str = agree{Space}
+Else if (key0 = "eragh" or key0 = "eragh;" or key0 = "ERAGH")
+    str = hearing{Space}
+Else if (key0 = "eragl" or key0 = "eragl;" or key0 = "ERAGL")
+    str = large{Space}
+Else if (key0 = "eragn" or key0 = "eragn;" or key0 = "ERAGN")
+    str = range{Space}
+Else if (key0 = "erah" or key0 = "erah;" or key0 = "ERAH")
+    str = hear{Space}
+Else if (key0 = "erahc" or key0 = "erahc;" or key0 = "ERAHC")
+    str = reach{Space}
+Else if (key0 = "erakb" or key0 = "erakb;" or key0 = "ERAKB")
+    str = break{Space}
+Else if (key0 = "eral" or key0 = "eral;" or key0 = "ERAL")
+    str = real{Space}
+Else if (key0 = "eralc" or key0 = "eralc;" or key0 = "ERALC")
+    str = clear{Space}
+Else if (key0 = "eraln" or key0 = "eraln;" or key0 = "ERALN")
+    str = learn{Space}
+Else if (key0 = "eran" or key0 = "eran;" or key0 = "ERAN")
+    str = near{Space}
+Else if (key0 = "erash" or key0 = "erash;" or key0 = "ERASH")
+    str = share{Space}
+Else if (key0 = "erashc" or key0 = "erashc;" or key0 = "ERASHC")
+    str = search{Space}
+Else if (key0 = "erbm" or key0 = "erbm;" or key0 = "ERBM")
+    str = member{Space}
+Else if (key0 = "erf" or key0 = "erf;" or key0 = "ERF")
+    str = free{Space}
+Else if (key0 = "erh" or key0 = "erh;" or key0 = "ERH")
+    str = her{Space}
+Else if (key0 = "erias" or key0 = "erias;" or key0 = "ERIAS")
+    str = raise{Space}
+Else if (key0 = "eridfn" or key0 = "eridfn;" or key0 = "ERIDFN")
+    str = friend{Space}
+Else if (key0 = "eridlv" or key0 = "eridlv;" or key0 = "ERIDLV")
+    str = deliver{Space}
+Else if (key0 = "eridlv" or key0 = "eridlv;" or key0 = "ERIDLV")
+    str = deliver{Space}
+Else if (key0 = "eridnm" or key0 = "eridnm;" or key0 = "ERIDNM")
+    str = remind{Space}
+Else if (key0 = "eridv" or key0 = "eridv;" or key0 = "ERIDV")
+    str = derive{Space}
+Else if (key0 = "erifb" or key0 = "erifb;" or key0 = "ERIFB")
+    str = brief{Space}
+Else if (key0 = "erifn" or key0 = "erifn;" or key0 = "ERIFN")
+    str = infer{Space}
+Else if (key0 = "erign" or key0 = "erign;" or key0 = "ERIGN")
+    str = engineer{Space}
+Else if (key0 = "eriogn" or key0 = "eriogn;" or key0 = "ERIOGN")
+    str = region{Space}
+Else if (key0 = "eriopa" or key0 = "eriopa;" or key0 = "ERIOPA")
+    str = operation{Space}
+Else if (key0 = "eriopdv" or key0 = "eriopdv;" or key0 = "ERIOPDV")
+    str = provide{Space}
+Else if (key0 = "erioscn" or key0 = "erioscn;" or key0 = "ERIOSCN")
+    str = scenario{Space}
+Else if (key0 = "eriosdc" or key0 = "eriosdc;" or key0 = "ERIOSDC")
+    str = description{Space}
+Else if (key0 = "eriovn" or key0 = "eriovn;" or key0 = "ERIOVN")
+    str = environment{Space}
+Else if (key0 = "eripc" or key0 = "eripc;" or key0 = "ERIPC")
+    str = price{Space}
+Else if (key0 = "eriscb" or key0 = "eriscb;" or key0 = "ERISCB")
+    str = scribe{Space}
+Else if (key0 = "erisdc" or key0 = "erisdc;" or key0 = "ERISDC")
+    str = describe{Space}
+Else if (key0 = "eroasn" or key0 = "eroasn;" or key0 = "EROASN")
+    str = reason{Space}
+Else if (key0 = "erocn" or key0 = "erocn;" or key0 = "EROCN")
+    str = concern{Space}
+Else if (key0 = "erocv" or key0 = "erocv;" or key0 = "EROCV")
+    str = cover{Space}
+Else if (key0 = "erod" or key0 = "erod;" or key0 = "EROD")
+    str = order{Space}
+Else if (key0 = "erodc" or key0 = "erodc;" or key0 = "ERODC")
+    str = record{Space}
+Else if (key0 = "erof" or key0 = "erof;" or key0 = "EROF")
+    str = offer{Space}
+Else if (key0 = "erol" or key0 = "erol;" or key0 = "EROL")
+    str = role{Space}
+Else if (key0 = "eropacm" or key0 = "eropacm;" or key0 = "EROPACM")
+    str = compare{Space}
+Else if (key0 = "eropafcnm" or key0 = "eropafcnm;" or key0 = "EROPAFCNM")
+    str = performance{Space}
+Else if (key0 = "eroplbm" or key0 = "eroplbm;" or key0 = "EROPLBM")
+    str = problem{Space}
+Else if (key0 = "eroplx" or key0 = "eroplx;" or key0 = "EROPLX")
+    str = explore{Space}
+Else if (key0 = "eropsg" or key0 = "eropsg;" or key0 = "EROPSG")
+    str = progress{Space}
+Else if (key0 = "eropsn" or key0 = "eropsn;" or key0 = "EROPSN")
+    str = person{Space}
+Else if (key0 = "erosh" or key0 = "erosh;" or key0 = "EROSH")
+    str = horse{Space}
+Else if (key0 = "erov" or key0 = "erov;" or key0 = "EROV")
+    str = over{Space}
+Else if (key0 = "erp" or key0 = "erp;" or key0 = "ERP")
+    str = per{Space}
+Else if (key0 = "erpa" or key0 = "erpa;" or key0 = "ERPA")
+    str = prepare{Space}
+Else if (key0 = "erpalc" or key0 = "erpalc;" or key0 = "ERPALC")
+    str = replace{Space}
+Else if (key0 = "erps" or key0 = "erps;" or key0 = "ERPS")
+    str = press{Space}
+Else if (key0 = "ers" or key0 = "ers;" or key0 = "ERS")
+    str = res{Space}
+Else if (key0 = "erscn" or key0 = "erscn;" or key0 = "ERSCN")
+    str = screen{Space}
+Else if (key0 = "ersv" or key0 = "ersv;" or key0 = "ERSV")
+    str = serve{Space}
+Else if (key0 = "ert" or key0 = "ert;" or key0 = "ERT")
+    str = tree{Space}
+Else if (key0 = "erta" or key0 = "erta;" or key0 = "ERTA")
+    str = rate{Space}
+Else if (key0 = "ertac" or key0 = "ertac;" or key0 = "ERTAC")
+    str = react{Space}
+Else if (key0 = "ertafh" or key0 = "ertafh;" or key0 = "ERTAFH")
+    str = father{Space}
+Else if (key0 = "ertag" or key0 = "ertag;" or key0 = "ERTAG")
+    str = great{Space}
+Else if (key0 = "ertahc" or key0 = "ertahc;" or key0 = "ERTAHC")
+    str = character{Space}
+Else if (key0 = "ertal" or key0 = "ertal;" or key0 = "ERTAL")
+    str = later{Space}
+Else if (key0 = "ertalcn" or key0 = "ertalcn;" or key0 = "ERTALCN")
+    str = central{Space}
+Else if (key0 = "ertam" or key0 = "ertam;" or key0 = "ERTAM")
+    str = matter{Space}
+Else if (key0 = "ertax" or key0 = "ertax;" or key0 = "ERTAX")
+    str = extra
+Else if (key0 = "ertb" or key0 = "ertb;" or key0 = "ERTB")
+    str = better{Space}
+Else if (key0 = "ertcn" or key0 = "ertcn;" or key0 = "ERTCN")
+    str = recent{Space}
+Else if (key0 = "erth" or key0 = "erth;" or key0 = "ERTH")
+    str = there{Space}
+Else if (key0 = "erths" or key0 = "erths;" or key0 = "ERTHS")
+    str = there's{Space}
+Else if (key0 = "ertiacn" or key0 = "ertiacn;" or key0 = "ERTIACN")
+    str = certain{Space}
+Else if (key0 = "ertiagn" or key0 = "ertiagn;" or key0 = "ERTIAGN")
+    str = integrate{Space}
+Else if (key0 = "ertial" or key0 = "ertial;" or key0 = "ERTIAL")
+    str = retail{Space}
+Else if (key0 = "ertialcv" or key0 = "ertialcv;" or key0 = "ERTIALCV")
+    str = vertical{Space}
+Else if (key0 = "ertialv" or key0 = "ertialv;" or key0 = "ERTIALV")
+    str = relative{Space}
+Else if (key0 = "ertidc" or key0 = "ertidc;" or key0 = "ERTIDC")
+    str = credit{Space}
+Else if (key0 = "ertifl" or key0 = "ertifl;" or key0 = "ERTIFL")
+    str = filter{Space}
+Else if (key0 = "ertih" or key0 = "ertih;" or key0 = "ERTIH")
+    str = their{Space}
+Else if (key0 = "ertin" or key0 = "ertin;" or key0 = "ERTIN")
+    str = inter
+Else if (key0 = "ertioadcn" or key0 = "ertioadcn;" or key0 = "ERTIOADCN")
+    str = coordinate{Space}
+Else if (key0 = "ertipa" or key0 = "ertipa;" or key0 = "ERTIPA")
+    str = therapist{Space}
+Else if (key0 = "ertipah" or key0 = "ertipah;" or key0 = "ERTIPAH")
+    str = therapist{Space}
+Else if (key0 = "ertipash" or key0 = "ertipash;" or key0 = "ERTIPASH")
+    str = therapist{Space}
+Else if (key0 = "ertiph" or key0 = "ertiph;" or key0 = "ERTIPH")
+    str = therapist{Space}
+Else if (key0 = "ertis" or key0 = "ertis;" or key0 = "ERTIS")
+    str = sister{Space}
+Else if (key0 = "ertl" or key0 = "ertl;" or key0 = "ERTL")
+    str = letter{Space}
+Else if (key0 = "ertm" or key0 = "ertm;" or key0 = "ERTM")
+    str = term{Space}
+Else if (key0 = "ertn" or key0 = "ertn;" or key0 = "ERTN")
+    str = enter{Space}
+Else if (key0 = "erto" or key0 = "erto;" or key0 = "ERTO")
+    str = tore{Space}
+Else if (key0 = "ertoasg" or key0 = "ertoasg;" or key0 = "ERTOASG")
+    str = storage{Space}
+Else if (key0 = "ertoc" or key0 = "ertoc;" or key0 = "ERTOC")
+    str = correct{Space}
+Else if (key0 = "ertogh" or key0 = "ertogh;" or key0 = "ERTOGH")
+    str = together{Space}
+Else if (key0 = "ertoh" or key0 = "ertoh;" or key0 = "ERTOH")
+    str = other{Space}
+Else if (key0 = "ertohb" or key0 = "ertohb;" or key0 = "ERTOHB")
+    str = bother{Space}
+Else if (key0 = "ertohm" or key0 = "ertohm;" or key0 = "ERTOHM")
+    str = mother{Space}
+Else if (key0 = "ertop" or key0 = "ertop;" or key0 = "ERTOP")
+    str = report{Space}
+Else if (key0 = "ertos" or key0 = "ertos;" or key0 = "ERTOS")
+    str = store{Space}
+Else if (key0 = "ertosn" or key0 = "ertosn;" or key0 = "ERTOSN")
+    str = testosterone{Space}
+Else if (key0 = "ertpa" or key0 = "ertpa;" or key0 = "ERTPA")
+    str = parate{Space}
+Else if (key0 = "ertpan" or key0 = "ertpan;" or key0 = "ERTPAN")
+    str = partner{Space}
+Else if (key0 = "ertpcn" or key0 = "ertpcn;" or key0 = "ERTPCN")
+    str = percent{Space}
+Else if (key0 = "ertpsn" or key0 = "ertpsn;" or key0 = "ERTPSN")
+    str = present{Space}
+Else if (key0 = "erts" or key0 = "erts;" or key0 = "ERTS")
+    str = rest{Space}
+Else if (key0 = "ertsh" or key0 = "ertsh;" or key0 = "ERTSH")
+    str = there's{Space}
+Else if (key0 = "ertu" or key0 = "ertu;" or key0 = "ERTU")
+    str = true{Space}
+Else if (key0 = "ertuac" or key0 = "ertuac;" or key0 = "ERTUAC")
+    str = accurate{Space}
+Else if (key0 = "ertuafcnm" or key0 = "ertuafcnm;" or key0 = "ERTUAFCNM")
+    str = manufacture{Space}
+Else if (key0 = "ertuan" or key0 = "ertuan;" or key0 = "ERTUAN")
+    str = nature{Space}
+Else if (key0 = "ertucn" or key0 = "ertucn;" or key0 = "ERTUCN")
+    str = current{Space}
+Else if (key0 = "ertuf" or key0 = "ertuf;" or key0 = "ERTUF")
+    str = future{Space}
+Else if (key0 = "ertuipc" or key0 = "ertuipc;" or key0 = "ERTUIPC")
+    str = picture{Space}
+Else if (key0 = "ertulc" or key0 = "ertulc;" or key0 = "ERTULC")
+    str = culture{Space}
+Else if (key0 = "ertusl" or key0 = "ertusl;" or key0 = "ERTUSL")
+    str = result{Space}
+Else if (key0 = "ertvnm" or key0 = "ertvnm;" or key0 = "ERTVNM")
+    str = environment{Space}
+Else if (key0 = "ertxm" or key0 = "ertxm;" or key0 = "ERTXM")
+    str = extreme{Space}
+Else if (key0 = "ertyh" or key0 = "ertyh;" or key0 = "ERTYH")
+    str = they're{Space}
+Else if (key0 = "ertyn" or key0 = "ertyn;" or key0 = "ERTYN")
+    str = entry{Space}
+Else if (key0 = "eru" or key0 = "eru;" or key0 = "ERU")
+    str = you're{Space}
+Else if (key0 = "erudc" or key0 = "erudc;" or key0 = "ERUDC")
+    str = reduce{Space}
+Else if (key0 = "erudn" or key0 = "erudn;" or key0 = "ERUDN")
+    str = under{Space}
+Else if (key0 = "erul" or key0 = "erul;" or key0 = "ERUL")
+    str = rule{Space}
+Else if (key0 = "eruops" or key0 = "eruops;" or key0 = "ERUOPS")
+    str = purpose{Space}
+Else if (key0 = "erups" or key0 = "erups;" or key0 = "ERUPS")
+    str = super{Space}
+Else if (key0 = "erus" or key0 = "erus;" or key0 = "ERUS")
+    str = sure{Space}
+Else if (key0 = "erusfl" or key0 = "erusfl;" or key0 = "ERUSFL")
+    str = yourself{Space}
+Else if (key0 = "erusm" or key0 = "erusm;" or key0 = "ERUSM")
+    str = summer{Space}
+Else if (key0 = "erv" or key0 = "erv;" or key0 = "ERV")
+    str = ever{Space}
+Else if (key0 = "ervn" or key0 = "ervn;" or key0 = "ERVN")
+    str = never{Space}
+Else if (key0 = "ervn" or key0 = "ervn;" or key0 = "ERVN")
+    str = never{Space}
+Else if (key0 = "ery" or key0 = "ery;" or key0 = "ERY")
+    str = every{Space}
+Else if (key0 = "eryal" or key0 = "eryal;" or key0 = "ERYAL")
+    str = early{Space}
+Else if (key0 = "eryogc" or key0 = "eryogc;" or key0 = "ERYOGC")
+    str = grocery{Space}
+Else if (key0 = "eryph" or key0 = "eryph;" or key0 = "ERYPH")
+    str = hyper
+Else if (key0 = "eryusg" or key0 = "eryusg;" or key0 = "ERYUSG")
+    str = surgery{Space}
+Else if (key0 = "eryv" or key0 = "eryv;" or key0 = "ERYV")
+    str = every{Space}
+Else if (key0 = "es" or key0 = "es;" or key0 = "ES")
+    str = see{Space}
+Else if (key0 = "esc" or key0 = "esc;" or key0 = "ESC")
+    str = second{Space}
+Else if (key0 = "esdn" or key0 = "esdn;" or key0 = "ESDN")
+    str = send{Space}
+Else if (key0 = "esfl" or key0 = "esfl;" or key0 = "ESFL")
+    str = self{Space}
+Else if (key0 = "esh" or key0 = "esh;" or key0 = "ESH")
+    str = she{Space}
+Else if (key0 = "esk" or key0 = "esk;" or key0 = "ESK")
+    str = seek{Space}
+Else if (key0 = "esl" or key0 = "esl;" or key0 = "ESL")
+    str = else{Space}
+Else if (key0 = "eslv" or key0 = "eslv;" or key0 = "ESLV")
+    str = {BackSpace}selves{Space}
+Else if (key0 = "esm" or key0 = "esm;" or key0 = "ESM")
+    str = seem{Space}
+Else if (key0 = "esn" or key0 = "esn;" or key0 = "ESN")
+    str = sense{Space}
+Else if (key0 = "et" or key0 = "et;" or key0 = "ET")
+    str = even though{Space}
+Else if (key0 = "eta" or key0 = "eta;" or key0 = "ETA")
+    str = ate{Space}
+Else if (key0 = "etadh" or key0 = "etadh;" or key0 = "ETADH")
+    str = hated{Space}
+Else if (key0 = "etadln" or key0 = "etadln;" or key0 = "ETADLN")
+    str = dental{Space}
+Else if (key0 = "etafc" or key0 = "etafc;" or key0 = "ETAFC")
+    str = affect{Space}
+Else if (key0 = "etaghc" or key0 = "etaghc;" or key0 = "ETAGHC")
+    str = teaching{Space}
+Else if (key0 = "etah" or key0 = "etah;" or key0 = "ETAH")
+    str = hate{Space}
+Else if (key0 = "etahc" or key0 = "etahc;" or key0 = "ETAHC")
+    str = teach{Space}
+Else if (key0 = "etahl" or key0 = "etahl;" or key0 = "ETAHL")
+    str = health{Space}
+Else if (key0 = "etak" or key0 = "etak;" or key0 = "ETAK")
+    str = take{Space}
+Else if (key0 = "etal" or key0 = "etal;" or key0 = "ETAL")
+    str = late{Space}
+Else if (key0 = "etalb" or key0 = "etalb;" or key0 = "ETALB")
+    str = table{Space}
+Else if (key0 = "etam" or key0 = "etam;" or key0 = "ETAM")
+    str = team{Space}
+Else if (key0 = "etan" or key0 = "etan;" or key0 = "ETAN")
+    str = neat{Space}
+Else if (key0 = "etas" or key0 = "etas;" or key0 = "ETAS")
+    str = state{Space}
+Else if (key0 = "etascn" or key0 = "etascn;" or key0 = "ETASCN")
+    str = stance{Space}
+Else if (key0 = "etasl" or key0 = "etasl;" or key0 = "ETASL")
+    str = least{Space}
+Else if (key0 = "etaxc" or key0 = "etaxc;" or key0 = "ETAXC")
+    str = exact{Space}
+Else if (key0 = "etc" or key0 = "etc;" or key0 = "ETC")
+    str = et cetera{Space}
+Else if (key0 = "etcn" or key0 = "etcn;" or key0 = "ETCN")
+    str = cent{Space}
+Else if (key0 = "etdn" or key0 = "etdn;" or key0 = "ETDN")
+    str = tend{Space}
+Else if (key0 = "etfc" or key0 = "etfc;" or key0 = "ETFC")
+    str = effect{Space}
+Else if (key0 = "etfl" or key0 = "etfl;" or key0 = "ETFL")
+    str = felt{Space}
+Else if (key0 = "etg" or key0 = "etg;" or key0 = "ETG")
+    str = get{Space}
+Else if (key0 = "etgv" or key0 = "etgv;" or key0 = "ETGV")
+    str = everything{Space}
+Else if (key0 = "eth" or key0 = "eth;" or key0 = "ETH")
+    str = the{Space}
+Else if (key0 = "ethc" or key0 = "ethc;" or key0 = "ETHC")
+    str = tech{Space}
+Else if (key0 = "ethcn" or key0 = "ethcn;" or key0 = "ETHCN")
+    str = technology{Space}
+Else if (key0 = "ethm" or key0 = "ethm;" or key0 = "ETHM")
+    str = them{Space}
+Else if (key0 = "ethn" or key0 = "ethn;" or key0 = "ETHN")
+    str = then{Space}
+Else if (key0 = "etiacv" or key0 = "etiacv;" or key0 = "ETIACV")
+    str = active{Space}
+Else if (key0 = "etiav" or key0 = "etiav;" or key0 = "ETIAV")
+    str = ative
+Else if (key0 = "etiglcn" or key0 = "etiglcn;" or key0 = "ETIGLCN")
+    str = intelligence{Space}
+Else if (key0 = "etigln" or key0 = "etigln;" or key0 = "ETIGLN")
+    str = intelligent{Space}
+Else if (key0 = "etihc" or key0 = "etihc;" or key0 = "ETIHC")
+    str = ethic{Space}
+Else if (key0 = "etil" or key0 = "etil;" or key0 = "ETIL")
+    str = little{Space}
+Else if (key0 = "etilcn" or key0 = "etilcn;" or key0 = "ETILCN")
+    str = client{Space}
+Else if (key0 = "etim" or key0 = "etim;" or key0 = "ETIM")
+    str = item{Space}
+Else if (key0 = "etim" or key0 = "etim;" or key0 = "ETIM")
+    str = time{Space}
+Else if (key0 = "etiocm" or key0 = "etiocm;" or key0 = "ETIOCM")
+    str = committee{Space}
+Else if (key0 = "etiocn" or key0 = "etiocn;" or key0 = "ETIOCN")
+    str = notice{Space}
+Else if (key0 = "etionm" or key0 = "etionm;" or key0 = "ETIONM")
+    str = mention{Space}
+Else if (key0 = "etipan" or key0 = "etipan;" or key0 = "ETIPAN")
+    str = patient{Space}
+Else if (key0 = "etis" or key0 = "etis;" or key0 = "ETIS")
+    str = site{Space}
+Else if (key0 = "etis" or key0 = "etis;" or key0 = "ETIS")
+    str = ities{Space}
+Else if (key0 = "etism" or key0 = "etism;" or key0 = "ETISM")
+    str = times{Space}
+Else if (key0 = "etisvn" or key0 = "etisvn;" or key0 = "ETISVN")
+    str = invest{Space}
+Else if (key0 = "etisx" or key0 = "etisx;" or key0 = "ETISX")
+    str = exist{Space}
+Else if (key0 = "etiv" or key0 = "etiv;" or key0 = "ETIV")
+    str = tive{Space}
+Else if (key0 = "etixc" or key0 = "etixc;" or key0 = "ETIXC")
+    str = excite{Space}
+Else if (key0 = "etl" or key0 = "etl;" or key0 = "ETL")
+    str = let{Space}
+Else if (key0 = "etm" or key0 = "etm;" or key0 = "ETM")
+    str = met{Space}
+Else if (key0 = "etm" or key0 = "etm;" or key0 = "ETM")
+    str = met{Space}
+Else if (key0 = "etn" or key0 = "etn;" or key0 = "ETN")
+    str = net{Space}
+Else if (key0 = "etnm" or key0 = "etnm;" or key0 = "ETNM")
+    str = {BackSpace}ment{Space}
+Else if (key0 = "etoalc" or key0 = "etoalc;" or key0 = "ETOALC")
+    str = locate{Space}
+Else if (key0 = "etocn" or key0 = "etocn;" or key0 = "ETOCN")
+    str = connect{Space}
+Else if (key0 = "etocnm" or key0 = "etocnm;" or key0 = "ETOCNM")
+    str = comment{Space}
+Else if (key0 = "etofn" or key0 = "etofn;" or key0 = "ETOFN")
+    str = often{Space}
+Else if (key0 = "etogh" or key0 = "etogh;" or key0 = "ETOGH")
+    str = together{Space}
+Else if (key0 = "etohl" or key0 = "etohl;" or key0 = "ETOHL")
+    str = hotel{Space}
+Else if (key0 = "etojcb" or key0 = "etojcb;" or key0 = "ETOJCB")
+    str = object{Space}
+Else if (key0 = "etonm" or key0 = "etonm;" or key0 = "ETONM")
+    str = moment{Space}
+Else if (key0 = "etopcn" or key0 = "etopcn;" or key0 = "ETOPCN")
+    str = concept{Space}
+Else if (key0 = "etopkc" or key0 = "etopkc;" or key0 = "ETOPKC")
+    str = pocket{Space}
+Else if (key0 = "etosh" or key0 = "etosh;" or key0 = "ETOSH")
+    str = those{Space}
+Else if (key0 = "etoshn" or key0 = "etoshn;" or key0 = "ETOSHN")
+    str = honest{Space}
+Else if (key0 = "etpac" or key0 = "etpac;" or key0 = "ETPAC")
+    str = accept{Space}
+Else if (key0 = "etpdn" or key0 = "etpdn;" or key0 = "ETPDN")
+    str = dependent{Space}
+Else if (key0 = "etpk" or key0 = "etpk;" or key0 = "ETPK")
+    str = kept{Space}
+Else if (key0 = "etps" or key0 = "etps;" or key0 = "ETPS")
+    str = step{Space}
+Else if (key0 = "etps" or key0 = "etps;" or key0 = "ETPS")
+    str = step{Space}
+Else if (key0 = "etpsn" or key0 = "etpsn;" or key0 = "ETPSN")
+    str = spent{Space}
+Else if (key0 = "tpxc" or key0 = "tpxc;" or key0 = "TPXC")
+    str = expect{Space}
+Else if (key0 = "ets" or key0 = "ets;" or key0 = "ETS")
+    str = set{Space}
+Else if (key0 = "etsb" or key0 = "etsb;" or key0 = "ETSB")
+    str = best{Space}
+Else if (key0 = "etsh" or key0 = "etsh;" or key0 = "ETSH")
+    str = these{Space}
+Else if (key0 = "etshc" or key0 = "etshc;" or key0 = "ETSHC")
+    str = chest{Space}
+Else if (key0 = "etshlb" or key0 = "etshlb;" or key0 = "ETSHLB")
+    str = establish{Space}
+Else if (key0 = "etsl" or key0 = "etsl;" or key0 = "ETSL")
+    str = let's{Space}
+Else if (key0 = "etslc" or key0 = "etslc;" or key0 = "ETSLC")
+    str = select{Space}
+Else if (key0 = "etsn" or key0 = "etsn;" or key0 = "ETSN")
+    str = sent{Space}
+Else if (key0 = "etysln" or key0 = "etysln;" or key0 = "ETYSLN")
+    str = sent{Space}
+Else if (key0 = "etuadc" or key0 = "etuadc;" or key0 = "ETUADC")
+    str = educate{Space}
+Else if (key0 = "etuagnm" or key0 = "etuagnm;" or key0 = "ETUAGNM")
+    str = augment{Space}
+Else if (key0 = "etuinm" or key0 = "etuinm;" or key0 = "ETUINM")
+    str = minute{Space}
+Else if (key0 = "etuipadlc" or key0 = "etuipadlc;" or key0 = "ETUIPADLC")
+    str = duplicate{Space}
+Else if (key0 = "etuodcnm" or key0 = "etuodcnm;" or key0 = "ETUODCNM")
+    str = document{Space}
+Else if (key0 = "etusdn" or key0 = "etusdn;" or key0 = "ETUSDN")
+    str = student{Space}
+Else if (key0 = "etuvn" or key0 = "etuvn;" or key0 = "ETUVN")
+    str = eventually{Space}
+Else if (key0 = "etx" or key0 = "etx;" or key0 = "ETX")
+    str = external{Space}
+Else if (key0 = "etxn" or key0 = "etxn;" or key0 = "ETXN")
+    str = next{Space}
+Else if (key0 = "etyh" or key0 = "etyh;" or key0 = "ETYH")
+    str = they{Space}
+Else if (key0 = "etyhv" or key0 = "etyhv;" or key0 = "ETYHV")
+    str = they've{Space}
+Else if (key0 = "etyidn" or key0 = "etyidn;" or key0 = "ETYIDN")
+    str = identity{Space}
+Else if (key0 = "etyoscm" or key0 = "etyoscm;" or key0 = "ETYOSCM")
+    str = ecosystem{Space}
+Else if (key0 = "etyp" or key0 = "etyp;" or key0 = "ETYP")
+    str = type{Space}
+Else if (key0 = "etysl" or key0 = "etysl;" or key0 = "ETYSL")
+    str = style{Space}
+Else if (key0 = "etysm" or key0 = "etysm;" or key0 = "ETYSM")
+    str = system{Space}
+Else if (key0 = "euaglc" or key0 = "euaglc;" or key0 = "EUAGLC")
+    str = colleague{Space}
+Else if (key0 = "eualv" or key0 = "eualv;" or key0 = "EUALV")
+    str = value{Space}
+Else if (key0 = "eud" or key0 = "eud;" or key0 = "EUD")
+    str = education{Space}
+Else if (key0 = "eugh" or key0 = "eugh;" or key0 = "EUGH")
+    str = huge{Space}
+Else if (key0 = "euiadcn" or key0 = "euiadcn;" or key0 = "EUIADCN")
+    str = audience{Space}
+Else if (key0 = "euis" or key0 = "euis;" or key0 = "EUIS")
+    str = issue{Space}
+Else if (key0 = "euops" or key0 = "euops;" or key0 = "EUOPS")
+    str = suppose{Space}
+Else if (key0 = "euosfcn" or key0 = "euosfcn;" or key0 = "EUOSFCN")
+    str = confuse{Space}
+Else if (key0 = "euosh" or key0 = "euosh;" or key0 = "EUOSH")
+    str = house{Space}
+Else if (key0 = "eus" or key0 = "eus;" or key0 = "EUS")
+    str = use{Space}
+Else if (key0 = "eusc" or key0 = "eusc;" or key0 = "EUSC")
+    str = success{Space}
+Else if (key0 = "eusdn" or key0 = "eusdn;" or key0 = "EUSDN")
+    str = sudden{Space}
+Else if (key0 = "eusg" or key0 = "eusg;" or key0 = "EUSG")
+    str = guess{Space}
+Else if (key0 = "euv" or key0 = "euv;" or key0 = "EUV")
+    str = you've{Space}
+Else if (key0 = "ev" or key0 = "ev;" or key0 = "EV")
+    str = ever{Space}
+Else if (key0 = "evb" or key0 = "evb;" or key0 = "EVB")
+    str = everybody{Space}
+Else if (key0 = "evn" or key0 = "evn;" or key0 = "EVN")
+    str = even{Space}
+Else if (key0 = "ex" or key0 = "ex;" or key0 = "EX")
+    str = exactly{Space}
+Else if (key0 = "ex" or key0 = "ex;" or key0 = "EX")
+    str = ex
+Else if (key0 = "exc" or key0 = "exc;" or key0 = "EXC")
+    str = excellent{Space}
+Else if (key0 = "eyalzn" or key0 = "eyalzn;" or key0 = "EYALZN")
+    str = analyze{Space}
+Else if (key0 = "eyas" or key0 = "eyas;" or key0 = "EYAS")
+    str = easy{Space}
+Else if (key0 = "eyb" or key0 = "eyb;" or key0 = "EYB")
+    str = bye{Space}
+Else if (key0 = "eyk" or key0 = "eyk;" or key0 = "EYK")
+    str = key{Space}
+Else if (key0 = "eylc" or key0 = "eylc;" or key0 = "EYLC")
+    str = cycle{Space}
+Else if (key0 = "eyonm" or key0 = "eyonm;" or key0 = "EYONM")
+    str = money{Space}
+Else if (key0 = "eys" or key0 = "eys;" or key0 = "EYS")
+    str = yes{Space}
+Else if (key0 = "eysflm" or key0 = "eysflm;" or key0 = "EYSFLM")
+    str = myself{Space}
+Else if (key0 = "eysflm" or key0 = "eysflm;" or key0 = "EYSFLM")
+    str = myself{Space}
+Else if (key0 = "eyv" or key0 = "eyv;" or key0 = "EYV")
+    str = every{Space}
+Else if (key0 = "ealbm" or key0 = "ealbm;" or key0 = "EALBM")
+    str = blame{Space}
+Else if (key0 = "easl" or key0 = "easl;" or key0 = "EASL")
+    str = lease{Space}
+Else if (key0 = "edkc" or key0 = "edkc;" or key0 = "EDKC")
+    str = deck{Space}
+Else if (key0 = "eranm" or key0 = "eranm;" or key0 = "ERANM")
+    str = manner{Space}
+Else if (key0 = "erfl" or key0 = "erfl;" or key0 = "ERFL")
+    str = freelance{Space}
+Else if (key0 = "eriopd" or key0 = "eriopd;" or key0 = "ERIOPD")
+    str = period{Space}
+Else if (key0 = "eripx" or key0 = "eripx;" or key0 = "ERIPX")
+    str = expire{Space}
+Else if (key0 = "erpdc" or key0 = "erpdc;" or key0 = "ERPDC")
+    str = precede{Space}
+Else if (key0 = "ertian" or key0 = "ertian;" or key0 = "ERTIAN")
+    str = entertain{Space}
+Else if (key0 = "etid" or key0 = "etid;" or key0 = "ETID")
+    str = edit{Space}
+Else if (key0 = "etlc" or key0 = "etlc;" or key0 = "ETLC")
+    str = elect{Space}
+Else if (key0 = "euidg" or key0 = "euidg;" or key0 = "EUIDG")
+    str = guide{Space}
+Else if (key0 = "euign" or key0 = "euign;" or key0 = "EUIGN")
+    str = genuine{Space}
+Else if (key0 = "eyaglc" or key0 = "eyaglc;" or key0 = "EYAGLC")
+    str = legacy{Space}
 Return
+
 SENDO:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,oa, Send anyone{Space}
-Else IfEqual key0,oan, Send anyone{Space}
-Else IfEqual key0,oadl, Send load{Space}
-Else IfEqual key0,oagnm, Send among{Space}
-Else IfEqual key0,odfl, Send fold{Space}
-Else IfEqual key0,ogm, Send Oh my god.{Space}
-Else IfEqual key0,oahlc, Send alcohol{Space}
-Else IfEqual key0,odgl, Send gold{Space}
-Else IfEqual key0,odlb, Send bold{Space}
-Else IfEqual key0,odlc, Send cold{Space}
-Else IfEqual key0,ofkl, Send folk{Space}
-Else IfEqual key0,ogl, Send log{Space}
-Else IfEqual key0,ozm, Send zoom{Space}
-Else IfEqual key0,omsgh, Send Oh my gosh.{Space}
-Else IfEqual key0,osgh, Send gosh{Space}
-Else IfEqual key0,osn, Send soon{Space}
-Else IfEqual key0,oaln, Send loan{Space}
-Else IfEqual key0,obm, Send bomb{Space}
-Else IfEqual key0,oshkc, Send shock{Space}
-Else IfEqual key0,oxb, Send box{Space}
-Else IfEqual key0,oag, Send ago{Space}
-Else IfEqual key0,osn, Send son{Space}
-Else IfEqual key0,oagl, Send goal{Space}
-Else IfEqual key0,oagln, Send along{Space}
-Else IfEqual key0,oagn, Send going to{Space}
-Else IfEqual key0,oasl, Send also{Space}
-Else IfEqual key0,oc, Send could{Space}
-Else IfEqual key0,ocm, Send com
-Else IfEqual key0,ocn, Send con
-Else IfEqual key0,ocnm, Send common{Space}
-Else IfEqual key0,od, Send do{Space}
-Else IfEqual key0,odc, Send document{Space}
-Else IfEqual key0,odf, Send food{Space}
-Else IfEqual key0,odg, Send doing{Space}
-Else IfEqual key0,odhl, Send hold{Space}
-Else IfEqual key0,odl, Send old{Space}
-Else IfEqual key0,odm, Send {BackSpace}dom{Space}
-Else IfEqual key0,of, Send of{Space}
-Else IfEqual key0,ofc, Send of course{Space}
-Else IfEqual key0,ofc, Send of course{Space}
-Else IfEqual key0,ofcn, Send confirm{Space}
-Else IfEqual key0,ofn, Send information{Space}
-Else IfEqual key0,og, Send go{Space}
-Else IfEqual key0,ogln, Send long{Space}
-Else IfEqual key0,oglv, Send loving{Space}
-Else IfEqual key0,ogn, Send gone{Space}
-Else IfEqual key0,ohm, Send homo
-Else IfEqual key0,ojb, Send job{Space}
-Else IfEqual key0,ok, Send kind of{Space}
-Else IfEqual key0,okb, Send book{Space}
-Else IfEqual key0,okc, Send cook{Space}
-Else IfEqual key0,okl, Send look{Space}
-Else IfEqual key0,oklc, Send lock{Space}
-Else IfEqual key0,oln, Send online{Space}
-Else IfEqual key0,on, Send on{Space}
-Else IfEqual key0,onm, Send moon{Space}
-Else IfEqual key0,op, Send opportunity{Space}
-Else IfEqual key0,opn, Send open{Space}
-Else IfEqual key0,ops, Send opportunities{Space}
-Else IfEqual key0,opsh, Send shop{Space}
-Else IfEqual key0,os, Send so{Space}
-Else IfEqual key0,osf, Send sort of{Space}
-Else IfEqual key0,osfkl, Send folks{Space}
-Else IfEqual key0,osgn, Send song{Space}
-Else IfEqual key0,oshlc, Send school{Space}
-Else IfEqual key0,osm, Send someone{Space}
-Else IfEqual key0,osn, Send soon{Space}
-Else IfEqual key0,ovb, Send obviously{Space}
-Else IfEqual key0,oalc, Send local{Space}
-Else IfEqual key0,oflc, Send official{Space}
-Else IfEqual key0,oh, Send Oh,{Space}
-Else IfEqual key0,osdl, Send sold{Space}
+ if (key0 = "oa" or key0 = "oa;" or key0 = "OA")
+    str = anyone{Space}
+Else if (key0 = "oan" or key0 = "oan;" or key0 = "OAN")
+    str = anyone{Space}
+Else if (key0 = "oadl" or key0 = "oadl;" or key0 = "OADL")
+    str = load{Space}
+Else if (key0 = "oagnm" or key0 = "oagnm;" or key0 = "OAGNM")
+    str = among{Space}
+Else if (key0 = "odfl" or key0 = "odfl;" or key0 = "ODFL")
+    str = fold{Space}
+Else if (key0 = "ogm" or key0 = "ogm;" or key0 = "OGM")
+    str = Oh my god.{Space}
+Else if (key0 = "oahlc" or key0 = "oahlc;" or key0 = "OAHLC")
+    str = alcohol{Space}
+Else if (key0 = "odgl" or key0 = "odgl;" or key0 = "ODGL")
+    str = gold{Space}
+Else if (key0 = "odlb" or key0 = "odlb;" or key0 = "ODLB")
+    str = bold{Space}
+Else if (key0 = "odlc" or key0 = "odlc;" or key0 = "ODLC")
+    str = cold{Space}
+Else if (key0 = "ofkl" or key0 = "ofkl;" or key0 = "OFKL")
+    str = folk{Space}
+Else if (key0 = "ogl" or key0 = "ogl;" or key0 = "OGL")
+    str = log{Space}
+Else if (key0 = "ozm" or key0 = "ozm;" or key0 = "OZM")
+    str = zoom{Space}
+Else if (key0 = "omsgh" or key0 = "omsgh;" or key0 = "OMSGH")
+    str = Oh my gosh.{Space}
+Else if (key0 = "osgh" or key0 = "osgh;" or key0 = "OSGH")
+    str = gosh{Space}
+Else if (key0 = "osn" or key0 = "osn;" or key0 = "OSN")
+    str = soon{Space}
+Else if (key0 = "oaln" or key0 = "oaln;" or key0 = "OALN")
+    str = loan{Space}
+Else if (key0 = "obm" or key0 = "obm;" or key0 = "OBM")
+    str = bomb{Space}
+Else if (key0 = "oshkc" or key0 = "oshkc;" or key0 = "OSHKC")
+    str = shock{Space}
+Else if (key0 = "oxb" or key0 = "oxb;" or key0 = "OXB")
+    str = box{Space}
+Else if (key0 = "oag" or key0 = "oag;" or key0 = "OAG")
+    str = ago{Space}
+Else if (key0 = "osn" or key0 = "osn;" or key0 = "OSN")
+    str = son{Space}
+Else if (key0 = "oagl" or key0 = "oagl;" or key0 = "OAGL")
+    str = goal{Space}
+Else if (key0 = "oagln" or key0 = "oagln;" or key0 = "OAGLN")
+    str = along{Space}
+Else if (key0 = "oagn" or key0 = "oagn;" or key0 = "OAGN")
+    str = going to{Space}
+Else if (key0 = "oasl" or key0 = "oasl;" or key0 = "OASL")
+    str = also{Space}
+Else if (key0 = "oc" or key0 = "oc;" or key0 = "OC")
+    str = could{Space}
+Else if (key0 = "ocm" or key0 = "ocm;" or key0 = "OCM")
+    str = com
+Else if (key0 = "ocn" or key0 = "ocn;" or key0 = "OCN")
+    str = con
+Else if (key0 = "ocnm" or key0 = "ocnm;" or key0 = "OCNM")
+    str = common{Space}
+Else if (key0 = "od" or key0 = "od;" or key0 = "OD")
+    str = do{Space}
+Else if (key0 = "odc" or key0 = "odc;" or key0 = "ODC")
+    str = document{Space}
+Else if (key0 = "odf" or key0 = "odf;" or key0 = "ODF")
+    str = food{Space}
+Else if (key0 = "odg" or key0 = "odg;" or key0 = "ODG")
+    str = doing{Space}
+Else if (key0 = "odhl" or key0 = "odhl;" or key0 = "ODHL")
+    str = hold{Space}
+Else if (key0 = "odl" or key0 = "odl;" or key0 = "ODL")
+    str = old{Space}
+Else if (key0 = "odm" or key0 = "odm;" or key0 = "ODM")
+    str = {BackSpace}dom{Space}
+Else if (key0 = "of" or key0 = "of;" or key0 = "OF")
+    str = of{Space}
+Else if (key0 = "ofc" or key0 = "ofc;" or key0 = "OFC")
+    str = of course{Space}
+Else if (key0 = "ofc" or key0 = "ofc;" or key0 = "OFC")
+    str = of course{Space}
+Else if (key0 = "ofcn" or key0 = "ofcn;" or key0 = "OFCN")
+    str = confirm{Space}
+Else if (key0 = "ofn" or key0 = "ofn;" or key0 = "OFN")
+    str = information{Space}
+Else if (key0 = "og" or key0 = "og;" or key0 = "OG")
+    str = go{Space}
+Else if (key0 = "ogln" or key0 = "ogln;" or key0 = "OGLN")
+    str = long{Space}
+Else if (key0 = "oglv" or key0 = "oglv;" or key0 = "OGLV")
+    str = loving{Space}
+Else if (key0 = "ogn" or key0 = "ogn;" or key0 = "OGN")
+    str = gone{Space}
+Else if (key0 = "ohm" or key0 = "ohm;" or key0 = "OHM")
+    str = homo
+Else if (key0 = "ojb" or key0 = "ojb;" or key0 = "OJB")
+    str = job{Space}
+Else if (key0 = "ok" or key0 = "ok;" or key0 = "OK")
+    str = kind of{Space}
+Else if (key0 = "okb" or key0 = "okb;" or key0 = "OKB")
+    str = book{Space}
+Else if (key0 = "okc" or key0 = "okc;" or key0 = "OKC")
+    str = cook{Space}
+Else if (key0 = "okl" or key0 = "okl;" or key0 = "OKL")
+    str = look{Space}
+Else if (key0 = "oklc" or key0 = "oklc;" or key0 = "OKLC")
+    str = lock{Space}
+Else if (key0 = "oln" or key0 = "oln;" or key0 = "OLN")
+    str = online{Space}
+Else if (key0 = "on" or key0 = "on;" or key0 = "ON")
+    str = on{Space}
+Else if (key0 = "onm" or key0 = "onm;" or key0 = "ONM")
+    str = moon{Space}
+Else if (key0 = "op" or key0 = "op;" or key0 = "OP")
+    str = opportunity{Space}
+Else if (key0 = "opn" or key0 = "opn;" or key0 = "OPN")
+    str = open{Space}
+Else if (key0 = "ops" or key0 = "ops;" or key0 = "OPS")
+    str = opportunities{Space}
+Else if (key0 = "opsh" or key0 = "opsh;" or key0 = "OPSH")
+    str = shop{Space}
+Else if (key0 = "os" or key0 = "os;" or key0 = "OS")
+    str = so{Space}
+Else if (key0 = "osf" or key0 = "osf;" or key0 = "OSF")
+    str = sort of{Space}
+Else if (key0 = "osfkl" or key0 = "osfkl;" or key0 = "OSFKL")
+    str = folks{Space}
+Else if (key0 = "osgn" or key0 = "osgn;" or key0 = "OSGN")
+    str = song{Space}
+Else if (key0 = "oshlc" or key0 = "oshlc;" or key0 = "OSHLC")
+    str = school{Space}
+Else if (key0 = "osm" or key0 = "osm;" or key0 = "OSM")
+    str = someone{Space}
+Else if (key0 = "osn" or key0 = "osn;" or key0 = "OSN")
+    str = soon{Space}
+Else if (key0 = "ovb" or key0 = "ovb;" or key0 = "OVB")
+    str = obviously{Space}
+Else if (key0 = "oalc" or key0 = "oalc;" or key0 = "OALC")
+    str = local{Space}
+Else if (key0 = "oflc" or key0 = "oflc;" or key0 = "OFLC")
+    str = official{Space}
+Else if (key0 = "oh" or key0 = "oh;" or key0 = "OH")
+    str = Oh,{Space}
+Else if (key0 = "osdl" or key0 = "osdl;" or key0 = "OSDL")
+    str = sold{Space}
 Return
+
 SENDP:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,pac, Send cap{Space}
-Else IfEqual key0,pk, Send keep{Space}	
-Else IfEqual key0,updg, Send pudding{Space}		
-Else IfEqual key0,psfc, Send specific{Space}
-Else IfEqual key0,pfhl, Send helpful{Space}
-Else IfEqual key0,phl, Send helpful{Space}
-Else IfEqual key0,pakc, Send pack{Space}
-Else IfEqual key0,pam, Send map{Space}
-Else IfEqual key0,pasm, Send spam{Space}
-Else IfEqual key0,pgk, Send package{Space}
-Else IfEqual key0,pk, Send keep{Space}
-Else IfEqual key0,pal, Send application{Space}
-Else IfEqual key0,pb, Send possible{Space}
-Else IfEqual key0,pag, Send gap{Space}
-Else IfEqual key0,pasl, Send applies{Space}
-Else IfEqual key0,pcnm, Send companion{Space}
-Else IfEqual key0,pdxn, Send expand{Space}
-Else IfEqual key0,pgk, Send package{Space}
-Else IfEqual key0,plcnm, Send complain{Space}
-Else IfEqual key0,plcnm, Send complain{Space}
-Else IfEqual key0,psdn, Send dispense{Space}
-Else IfEqual key0,psxvn, Send expansive{Space}
-Else IfEqual key0,pa, Send app{Space}
-Else IfEqual key0,paglz, Send apologize{Space}
-Else IfEqual key0,palcm, Send accomplish{Space}
-Else IfEqual key0,pashlcm, Send accomplish{Space}
-Else IfEqual key0,psk, Send speak{Space}
-Else IfEqual key0,pslbm, Send impossible{Space}
-Else IfEqual key0,psx, Send expose{Space}
-Else IfEqual key0,paln, Send plan{Space}
-Else IfEqual key0,pas, Send pass{Space}
-Else IfEqual key0,pfh, Send hopefully{Space}
-Else IfEqual key0,ph, Send hope{Space}
-Else IfEqual key0,pslc, Send special{Space}
-Else IfEqual key0,pcm, Send company{Space}
-Else IfEqual key0,pdcm, Send pandemic{Space}
-Else IfEqual key0,pf, Send perfect{Space}
-Else IfEqual key0,pfh, Send hopefully{Space}
-Else IfEqual key0,pg, Send page{Space}
-Else IfEqual key0,pgh, Send happening{Space}
-Else IfEqual key0,pglb, Send publishing{Space}
-Else IfEqual key0,phn, Send happen{Space}
-Else IfEqual key0,pjm, Send jump{Space}
-Else IfEqual key0,pl, Send people{Space}
-Else IfEqual key0,plb, Send possibly{Space}
-Else IfEqual key0,plc, Send couple{Space}
-Else IfEqual key0,plcb, Send public{Space}
-Else IfEqual key0,plcm, Send complete{Space}
-Else IfEqual key0,plxm, Send example{Space}
-Else IfEqual key0,plxn, Send explain{Space}
-Else IfEqual key0,pn, Send no problem{Space}
-Else IfEqual key0,ps, Send specifically{Space}
-Else IfEqual key0,pscm, Send companies{Space}
-Else IfEqual key0,psd, Send speed{Space}
-Else IfEqual key0,psh, Send hospital{Space}
-Else IfEqual key0,psl, Send please{Space}
-Else IfEqual key0,pslb, Send possible{Space}
-Else IfEqual key0,pslm, Send simple{Space}
-Else IfEqual key0,psn, Send passion{Space}
-Else IfEqual key0,px, Send experience{Space}
-Else IfEqual key0,pshlb, Send publish{Space}
+ if (key0 = "pac" or key0 = "pac;" or key0 = "PAC")
+    str = cap{Space}
+Else if (key0 = "pk" or key0 = "pk;" or key0 = "PK")
+    str = keep{Space}
+Else if (key0 = "updg" or key0 = "updg;" or key0 = "UPDG")
+    str = pudding{Space}
+Else if (key0 = "psfc" or key0 = "psfc;" or key0 = "PSFC")
+    str = specific{Space}
+Else if (key0 = "pfhl" or key0 = "pfhl;" or key0 = "PFHL")
+    str = helpful{Space}
+Else if (key0 = "phl" or key0 = "phl;" or key0 = "PHL")
+    str = helpful{Space}
+Else if (key0 = "pakc" or key0 = "pakc;" or key0 = "PAKC")
+    str = pack{Space}
+Else if (key0 = "pam" or key0 = "pam;" or key0 = "PAM")
+    str = map{Space}
+Else if (key0 = "pasm" or key0 = "pasm;" or key0 = "PASM")
+    str = spam{Space}
+Else if (key0 = "pgk" or key0 = "pgk;" or key0 = "PGK")
+    str = package{Space}
+Else if (key0 = "pk" or key0 = "pk;" or key0 = "PK")
+    str = keep{Space}
+Else if (key0 = "pal" or key0 = "pal;" or key0 = "PAL")
+    str = application{Space}
+Else if (key0 = "pb" or key0 = "pb;" or key0 = "PB")
+    str = possible{Space}
+Else if (key0 = "pag" or key0 = "pag;" or key0 = "PAG")
+    str = gap{Space}
+Else if (key0 = "pasl" or key0 = "pasl;" or key0 = "PASL")
+    str = applies{Space}
+Else if (key0 = "pcnm" or key0 = "pcnm;" or key0 = "PCNM")
+    str = companion{Space}
+Else if (key0 = "pdxn" or key0 = "pdxn;" or key0 = "PDXN")
+    str = expand{Space}
+Else if (key0 = "pgk" or key0 = "pgk;" or key0 = "PGK")
+    str = package{Space}
+Else if (key0 = "plcnm" or key0 = "plcnm;" or key0 = "PLCNM")
+    str = complain{Space}
+Else if (key0 = "plcnm" or key0 = "plcnm;" or key0 = "PLCNM")
+    str = complain{Space}
+Else if (key0 = "psdn" or key0 = "psdn;" or key0 = "PSDN")
+    str = dispense{Space}
+Else if (key0 = "psxvn" or key0 = "psxvn;" or key0 = "PSXVN")
+    str = expansive{Space}
+Else if (key0 = "pa" or key0 = "pa;" or key0 = "PA")
+    str = app{Space}
+Else if (key0 = "paglz" or key0 = "paglz;" or key0 = "PAGLZ")
+    str = apologize{Space}
+Else if (key0 = "palcm" or key0 = "palcm;" or key0 = "PALCM")
+    str = accomplish{Space}
+Else if (key0 = "pashlcm" or key0 = "pashlcm;" or key0 = "PASHLCM")
+    str = accomplish{Space}
+Else if (key0 = "psk" or key0 = "psk;" or key0 = "PSK")
+    str = speak{Space}
+Else if (key0 = "pslbm" or key0 = "pslbm;" or key0 = "PSLBM")
+    str = impossible{Space}
+Else if (key0 = "psx" or key0 = "psx;" or key0 = "PSX")
+    str = expose{Space}
+Else if (key0 = "paln" or key0 = "paln;" or key0 = "PALN")
+    str = plan{Space}
+Else if (key0 = "pas" or key0 = "pas;" or key0 = "PAS")
+    str = pass{Space}
+Else if (key0 = "pfh" or key0 = "pfh;" or key0 = "PFH")
+    str = hopefully{Space}
+Else if (key0 = "ph" or key0 = "ph;" or key0 = "PH")
+    str = hope{Space}
+Else if (key0 = "pslc" or key0 = "pslc;" or key0 = "PSLC")
+    str = special{Space}
+Else if (key0 = "pcm" or key0 = "pcm;" or key0 = "PCM")
+    str = company{Space}
+Else if (key0 = "pdcm" or key0 = "pdcm;" or key0 = "PDCM")
+    str = pandemic{Space}
+Else if (key0 = "pf" or key0 = "pf;" or key0 = "PF")
+    str = perfect{Space}
+Else if (key0 = "pfh" or key0 = "pfh;" or key0 = "PFH")
+    str = hopefully{Space}
+Else if (key0 = "pg" or key0 = "pg;" or key0 = "PG")
+    str = page{Space}
+Else if (key0 = "pgh" or key0 = "pgh;" or key0 = "PGH")
+    str = happening{Space}
+Else if (key0 = "pglb" or key0 = "pglb;" or key0 = "PGLB")
+    str = publishing{Space}
+Else if (key0 = "phn" or key0 = "phn;" or key0 = "PHN")
+    str = happen{Space}
+Else if (key0 = "pjm" or key0 = "pjm;" or key0 = "PJM")
+    str = jump{Space}
+Else if (key0 = "pl" or key0 = "pl;" or key0 = "PL")
+    str = people{Space}
+Else if (key0 = "plb" or key0 = "plb;" or key0 = "PLB")
+    str = possibly{Space}
+Else if (key0 = "plc" or key0 = "plc;" or key0 = "PLC")
+    str = couple{Space}
+Else if (key0 = "plcb" or key0 = "plcb;" or key0 = "PLCB")
+    str = public{Space}
+Else if (key0 = "plcm" or key0 = "plcm;" or key0 = "PLCM")
+    str = complete{Space}
+Else if (key0 = "plxm" or key0 = "plxm;" or key0 = "PLXM")
+    str = example{Space}
+Else if (key0 = "plxn" or key0 = "plxn;" or key0 = "PLXN")
+    str = explain{Space}
+Else if (key0 = "pn" or key0 = "pn;" or key0 = "PN")
+    str = no problem{Space}
+Else if (key0 = "ps" or key0 = "ps;" or key0 = "PS")
+    str = specifically{Space}
+Else if (key0 = "pscm" or key0 = "pscm;" or key0 = "PSCM")
+    str = companies{Space}
+Else if (key0 = "psd" or key0 = "psd;" or key0 = "PSD")
+    str = speed{Space}
+Else if (key0 = "psh" or key0 = "psh;" or key0 = "PSH")
+    str = hospital{Space}
+Else if (key0 = "psl" or key0 = "psl;" or key0 = "PSL")
+    str = please{Space}
+Else if (key0 = "pslb" or key0 = "pslb;" or key0 = "PSLB")
+    str = possible{Space}
+Else if (key0 = "pslm" or key0 = "pslm;" or key0 = "PSLM")
+    str = simple{Space}
+Else if (key0 = "psn" or key0 = "psn;" or key0 = "PSN")
+    str = passion{Space}
+Else if (key0 = "px" or key0 = "px;" or key0 = "PX")
+    str = experience{Space}
+Else if (key0 = "pshlb" or key0 = "pshlb;" or key0 = "PSHLB")
+    str = publish{Space}
 Return
+
 SENDA:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,ab, Send about{Space}
-Else IfEqual key0,adv, Send avoid{Space}
-Else IfEqual key0,adcvn, Send advance{Space}
-Else IfEqual key0,askc, Send sack{Space}
-Else IfEqual key0,abn, Send banana{Space}
-Else IfEqual key0,afv, Send favorite{Space}
-Else IfEqual key0,ac, Send actually{Space}
-Else IfEqual key0,adgl, Send glad{Space}
-Else IfEqual key0,adbn, Send band{Space}
-Else IfEqual key0,adln, Send land{Space}
-Else IfEqual key0,adnm, Send damn{Space}
-Else IfEqual key0,aghn, Send hang{Space}
-Else IfEqual key0,agkbn, Send banking{Space}
-Else IfEqual key0,alcm, Send calm{Space}
-Else IfEqual key0,ascn, Send scan{Space}
-Else IfEqual key0,asdhn, Send hands{Space}
-Else IfEqual key0,asdnm, Send admission{Space}
-Else IfEqual key0,adcm, Send academic{Space}
-Else IfEqual key0,adcm, Send academic{Space}
-Else IfEqual key0,adcv, Send advice{Space}
-Else IfEqual key0,adcv, Send advice{Space}
-Else IfEqual key0,adm, Send mad{Space}
-Else IfEqual key0,adv, Send advertise{Space}
-Else IfEqual key0,agcn, Send agency{Space}
-Else IfEqual key0,agnm, Send among{Space}
-Else IfEqual key0,ahkc, Send hack{Space}
-Else IfEqual key0,ahl, Send hall{Space}
-Else IfEqual key0,aln, Send alone{Space}
-Else IfEqual key0,asd, Send ads{Space}
-Else IfEqual key0,asdv, Send advise{Space}
-Else IfEqual key0,ashc, Send cash{Space}
-Else IfEqual key0,asm, Send assume{Space}
-Else IfEqual key0,agv, Send average{Space}
-Else IfEqual key0,ahcv, Send achieve{Space}
-Else IfEqual key0,aklcb, Send black{Space}
-Else IfEqual key0,avb, Send above{Space}
-Else IfEqual key0,acn, Send can{Space}
-Else IfEqual key0,adgcn, Send dancing{Space}	
-Else IfEqual key0,adb, Send anybody{Space}
-Else IfEqual key0,adf, Send afterwards{Space}
-Else IfEqual key0,adgc, Send according{Space}
-Else IfEqual key0,adh, Send had{Space}
-Else IfEqual key0,adhn, Send hand{Space}
-Else IfEqual key0,adl, Send already{Space}
-Else IfEqual key0,af, Send after{Space}
-Else IfEqual key0,afg, Send affecting{Space}
-Else IfEqual key0,afhl, Send half{Space}
-Else IfEqual key0,afl, Send fall{Space}
-Else IfEqual key0,ag, Send anything{Space}
-Else IfEqual key0,agm, Send amazing{Space}
-Else IfEqual key0,agn, Send again{Space}
-Else IfEqual key0,akc, Send {Backspace}ack{Space}
-Else IfEqual key0,akcb, Send back{Space}
-Else IfEqual key0,al, Send all{Space}
-Else IfEqual key0,alb, Send lab{Space}
-Else IfEqual key0,alc, Send call{Space}
-Else IfEqual key0,alm, Send almost{Space}
-Else IfEqual key0,alvb, Send available{Space}
-Else IfEqual key0,am, Send am{Space}
-Else IfEqual key0,an, Send an{Space}
-Else IfEqual key0,anm, Send man{Space}
-Else IfEqual key0,as, Send as{Space}
-Else IfEqual key0,asb, Send absolutely{Space}
-Else IfEqual key0,asdk, Send asked{Space}
-Else IfEqual key0,asgl, Send glass{Space}
-Else IfEqual key0,ash, Send has{Space}
-Else IfEqual key0,ashl, Send lash{Space}
-Else IfEqual key0,ask, Send ask{Space}
-Else IfEqual key0,aslc, Send class{Space}
-Else IfEqual key0,aslm, Send small{Space}
-Else IfEqual key0,akbn, Send bank{Space}
-Else IfEqual key0,asn, Send answer{Space}
-Else IfEqual key0,axv, Send vaccine{Space}
-Else IfEqual key0,azm, Send Amazon{Space}
-Else IfEqual key0,ad, Send ad{Space}
+ if (key0 = "ab" or key0 = "ab;" or key0 = "AB")
+    str = about{Space}
+Else if (key0 = "adv" or key0 = "adv;" or key0 = "ADV")
+    str = avoid{Space}
+Else if (key0 = "adcvn" or key0 = "adcvn;" or key0 = "ADCVN")
+    str = advance{Space}
+Else if (key0 = "askc" or key0 = "askc;" or key0 = "ASKC")
+    str = sack{Space}
+Else if (key0 = "abn" or key0 = "abn;" or key0 = "ABN")
+    str = banana{Space}
+Else if (key0 = "afv" or key0 = "afv;" or key0 = "AFV")
+    str = favorite{Space}
+Else if (key0 = "ac" or key0 = "ac;" or key0 = "AC")
+    str = actually{Space}
+Else if (key0 = "adgl" or key0 = "adgl;" or key0 = "ADGL")
+    str = glad{Space}
+Else if (key0 = "adbn" or key0 = "adbn;" or key0 = "ADBN")
+    str = band{Space}
+Else if (key0 = "adln" or key0 = "adln;" or key0 = "ADLN")
+    str = land{Space}
+Else if (key0 = "adnm" or key0 = "adnm;" or key0 = "ADNM")
+    str = damn{Space}
+Else if (key0 = "aghn" or key0 = "aghn;" or key0 = "AGHN")
+    str = hang{Space}
+Else if (key0 = "agkbn" or key0 = "agkbn;" or key0 = "AGKBN")
+    str = banking{Space}
+Else if (key0 = "alcm" or key0 = "alcm;" or key0 = "ALCM")
+    str = calm{Space}
+Else if (key0 = "ascn" or key0 = "ascn;" or key0 = "ASCN")
+    str = scan{Space}
+Else if (key0 = "asdhn" or key0 = "asdhn;" or key0 = "ASDHN")
+    str = hands{Space}
+Else if (key0 = "asdnm" or key0 = "asdnm;" or key0 = "ASDNM")
+    str = admission{Space}
+Else if (key0 = "adcm" or key0 = "adcm;" or key0 = "ADCM")
+    str = academic{Space}
+Else if (key0 = "adcm" or key0 = "adcm;" or key0 = "ADCM")
+    str = academic{Space}
+Else if (key0 = "adcv" or key0 = "adcv;" or key0 = "ADCV")
+    str = advice{Space}
+Else if (key0 = "adcv" or key0 = "adcv;" or key0 = "ADCV")
+    str = advice{Space}
+Else if (key0 = "adm" or key0 = "adm;" or key0 = "ADM")
+    str = mad{Space}
+Else if (key0 = "adv" or key0 = "adv;" or key0 = "ADV")
+    str = advertise{Space}
+Else if (key0 = "agcn" or key0 = "agcn;" or key0 = "AGCN")
+    str = agency{Space}
+Else if (key0 = "agnm" or key0 = "agnm;" or key0 = "AGNM")
+    str = among{Space}
+Else if (key0 = "ahkc" or key0 = "ahkc;" or key0 = "AHKC")
+    str = hack{Space}
+Else if (key0 = "ahl" or key0 = "ahl;" or key0 = "AHL")
+    str = hall{Space}
+Else if (key0 = "aln" or key0 = "aln;" or key0 = "ALN")
+    str = alone{Space}
+Else if (key0 = "asd" or key0 = "asd;" or key0 = "ASD")
+    str = ads{Space}
+Else if (key0 = "asdv" or key0 = "asdv;" or key0 = "ASDV")
+    str = advise{Space}
+Else if (key0 = "ashc" or key0 = "ashc;" or key0 = "ASHC")
+    str = cash{Space}
+Else if (key0 = "asm" or key0 = "asm;" or key0 = "ASM")
+    str = mass{Space}
+Else if (key0 = "agv" or key0 = "agv;" or key0 = "AGV")
+    str = average{Space}
+Else if (key0 = "ahcv" or key0 = "ahcv;" or key0 = "AHCV")
+    str = achieve{Space}
+Else if (key0 = "aklcb" or key0 = "aklcb;" or key0 = "AKLCB")
+    str = black{Space}
+Else if (key0 = "avb" or key0 = "avb;" or key0 = "AVB")
+    str = above{Space}
+Else if (key0 = "acn" or key0 = "acn;" or key0 = "ACN")
+    str = can{Space}
+Else if (key0 = "adgcn" or key0 = "adgcn;" or key0 = "ADGCN")
+    str = dancing{Space}
+Else if (key0 = "adb" or key0 = "adb;" or key0 = "ADB")
+    str = anybody{Space}
+Else if (key0 = "adf" or key0 = "adf;" or key0 = "ADF")
+    str = afterwards{Space}
+Else if (key0 = "adgc" or key0 = "adgc;" or key0 = "ADGC")
+    str = according{Space}
+Else if (key0 = "adh" or key0 = "adh;" or key0 = "ADH")
+    str = had{Space}
+Else if (key0 = "adhn" or key0 = "adhn;" or key0 = "ADHN")
+    str = hand{Space}
+Else if (key0 = "adl" or key0 = "adl;" or key0 = "ADL")
+    str = already{Space}
+Else if (key0 = "af" or key0 = "af;" or key0 = "AF")
+    str = after{Space}
+Else if (key0 = "afg" or key0 = "afg;" or key0 = "AFG")
+    str = affecting{Space}
+Else if (key0 = "afhl" or key0 = "afhl;" or key0 = "AFHL")
+    str = half{Space}
+Else if (key0 = "afl" or key0 = "afl;" or key0 = "AFL")
+    str = fall{Space}
+Else if (key0 = "ag" or key0 = "ag;" or key0 = "AG")
+    str = anything{Space}
+Else if (key0 = "agm" or key0 = "agm;" or key0 = "AGM")
+    str = amazing{Space}
+Else if (key0 = "agn" or key0 = "agn;" or key0 = "AGN")
+    str = again{Space}
+Else if (key0 = "akc" or key0 = "akc;" or key0 = "AKC")
+    str = {Backspace}ack{Space}
+Else if (key0 = "akcb" or key0 = "akcb;" or key0 = "AKCB")
+    str = back{Space}
+Else if (key0 = "al" or key0 = "al;" or key0 = "AL")
+    str = all{Space}
+Else if (key0 = "alb" or key0 = "alb;" or key0 = "ALB")
+    str = lab{Space}
+Else if (key0 = "alc" or key0 = "alc;" or key0 = "ALC")
+    str = call{Space}
+Else if (key0 = "alm" or key0 = "alm;" or key0 = "ALM")
+    str = almost{Space}
+Else if (key0 = "alvb" or key0 = "alvb;" or key0 = "ALVB")
+    str = available{Space}
+Else if (key0 = "am" or key0 = "am;" or key0 = "AM")
+    str = am{Space}
+Else if (key0 = "an" or key0 = "an;" or key0 = "AN")
+    str = an{Space}
+Else if (key0 = "anm" or key0 = "anm;" or key0 = "ANM")
+    str = man{Space}
+Else if (key0 = "as" or key0 = "as;" or key0 = "AS")
+    str = as{Space}
+Else if (key0 = "asb" or key0 = "asb;" or key0 = "ASB")
+    str = absolutely{Space}
+Else if (key0 = "asdk" or key0 = "asdk;" or key0 = "ASDK")
+    str = asked{Space}
+Else if (key0 = "asgl" or key0 = "asgl;" or key0 = "ASGL")
+    str = glass{Space}
+Else if (key0 = "ash" or key0 = "ash;" or key0 = "ASH")
+    str = has{Space}
+Else if (key0 = "ashl" or key0 = "ashl;" or key0 = "ASHL")
+    str = lash{Space}
+Else if (key0 = "ask" or key0 = "ask;" or key0 = "ASK")
+    str = ask{Space}
+Else if (key0 = "aslc" or key0 = "aslc;" or key0 = "ASLC")
+    str = class{Space}
+Else if (key0 = "aslm" or key0 = "aslm;" or key0 = "ASLM")
+    str = small{Space}
+Else if (key0 = "akbn" or key0 = "akbn;" or key0 = "AKBN")
+    str = bank{Space}
+Else if (key0 = "asn" or key0 = "asn;" or key0 = "ASN")
+    str = answer{Space}
+Else if (key0 = "axv" or key0 = "axv;" or key0 = "AXV")
+    str = vaccine{Space}
+Else if (key0 = "azm" or key0 = "azm;" or key0 = "AZM")
+    str = Amazon{Space}
+Else if (key0 = "ad" or key0 = "ad;" or key0 = "AD")
+    str = ad{Space}
 Return
+
 SENDS:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,sbn, Send business{Space}
-Else IfEqual key0,scb, Send basic{Space}
-Else IfEqual key0,shm, Send somehow{Space}
-Else IfEqual key0,sdhlc, Send schedule{Space}
-Else IfEqual key0,sz, Send size{Space}
-Else IfEqual key0,scm, Send comes{Space}
-Else IfEqual key0,sdb, Send besides{Space}
-Else IfEqual key0,sdhbn, Send husband{Space}
-Else IfEqual key0,sdn, Send inside{Space}
-Else IfEqual key0,shl, Send she'll{Space}
-Else IfEqual key0,slvb, Send visible{Space}
-Else IfEqual key0,sd, Send somebody{Space}
-Else IfEqual key0,scnm, Send consume{Space}
-Else IfEqual key0,slcn, Send license{Space}
-Else IfEqual key0,sln, Send lesson{Space}
-Else IfEqual key0,snm, Send mission{Space}
-Else IfEqual key0,snm, Send mission{Space}
-Else IfEqual key0,svm, Send massive{Space}
-Else IfEqual key0,svn, Send vision{Space}
-Else IfEqual key0,sdc, Send describe{Space}
-Else IfEqual key0,sfcn, Send confuse{Space}
-Else IfEqual key0,sfl, Send {BackSpace}self{Space}
-Else IfEqual key0,shn, Send hasn't{Space}
-Else IfEqual key0,sdcn, Send decision{Space}
-Else IfEqual key0,sdgn, Send design{Space}
-Else IfEqual key0,sdlcm, Send social media{Space}
-Else IfEqual key0,sf, Send For sure.{Space}
-Else IfEqual key0,sfgcn, Send significant{Space}
-Else IfEqual key0,sflm, Send myself{Space}
-Else IfEqual key0,sg, Send something{Space}
-Else IfEqual key0,sgm, Send message{Space}
-Else IfEqual key0,sh, Send should{Space}
-Else IfEqual key0,sdhn, Send shouldn't{Space}
-Else IfEqual key0,shn, Send shouldn't{Space}
-Else IfEqual key0,sh, Send should{Space}
-Else IfEqual key0,sl, Send sell{Space}
-Else IfEqual key0,slc, Send social{Space}
-Else IfEqual key0,slcb, Send basically{Space}
-Else IfEqual key0,slp, Send sleep{Space}
-Else IfEqual key0,slv, Send visual{Space}
-Else IfEqual key0,sm, Send some{Space}
-Else IfEqual key0,sn, Send seen{Space}
-Else IfEqual key0,srcv, Send service{Space}
-Else IfEqual key0,st, Send street{Space}
-Else IfEqual key0,sv, Send versus{Space}
-Else IfEqual key0,sxcvl, Send exclusive{Space}
+ if (key0 = "sbn" or key0 = "sbn;" or key0 = "SBN")
+    str = business{Space}
+Else if (key0 = "scb" or key0 = "scb;" or key0 = "SCB")
+    str = basic{Space}
+Else if (key0 = "shm" or key0 = "shm;" or key0 = "SHM")
+    str = somehow{Space}
+Else if (key0 = "sdhlc" or key0 = "sdhlc;" or key0 = "SDHLC")
+    str = schedule{Space}
+Else if (key0 = "sz" or key0 = "sz;" or key0 = "SZ")
+    str = size{Space}
+Else if (key0 = "scm" or key0 = "scm;" or key0 = "SCM")
+    str = comes{Space}
+Else if (key0 = "sdb" or key0 = "sdb;" or key0 = "SDB")
+    str = besides{Space}
+Else if (key0 = "sdhbn" or key0 = "sdhbn;" or key0 = "SDHBN")
+    str = husband{Space}
+Else if (key0 = "sdn" or key0 = "sdn;" or key0 = "SDN")
+    str = inside{Space}
+Else if (key0 = "shl" or key0 = "shl;" or key0 = "SHL")
+    str = she'll{Space}
+Else if (key0 = "slvb" or key0 = "slvb;" or key0 = "SLVB")
+    str = visible{Space}
+Else if (key0 = "sd" or key0 = "sd;" or key0 = "SD")
+    str = somebody{Space}
+Else if (key0 = "scnm" or key0 = "scnm;" or key0 = "SCNM")
+    str = consume{Space}
+Else if (key0 = "slcn" or key0 = "slcn;" or key0 = "SLCN")
+    str = license{Space}
+Else if (key0 = "sln" or key0 = "sln;" or key0 = "SLN")
+    str = lesson{Space}
+Else if (key0 = "snm" or key0 = "snm;" or key0 = "SNM")
+    str = mission{Space}
+Else if (key0 = "snm" or key0 = "snm;" or key0 = "SNM")
+    str = mission{Space}
+Else if (key0 = "svm" or key0 = "svm;" or key0 = "SVM")
+    str = massive{Space}
+Else if (key0 = "svn" or key0 = "svn;" or key0 = "SVN")
+    str = vision{Space}
+Else if (key0 = "sdc" or key0 = "sdc;" or key0 = "SDC")
+    str = describe{Space}
+Else if (key0 = "sfcn" or key0 = "sfcn;" or key0 = "SFCN")
+    str = confuse{Space}
+Else if (key0 = "sfl" or key0 = "sfl;" or key0 = "SFL")
+    str = {BackSpace}self{Space}
+Else if (key0 = "shn" or key0 = "shn;" or key0 = "SHN")
+    str = hasn't{Space}
+Else if (key0 = "sdcn" or key0 = "sdcn;" or key0 = "SDCN")
+    str = decision{Space}
+Else if (key0 = "sdgn" or key0 = "sdgn;" or key0 = "SDGN")
+    str = design{Space}
+Else if (key0 = "sdlcm" or key0 = "sdlcm;" or key0 = "SDLCM")
+    str = social media{Space}
+Else if (key0 = "sf" or key0 = "sf;" or key0 = "SF")
+    str = For sure.{Space}
+Else if (key0 = "sfgcn" or key0 = "sfgcn;" or key0 = "SFGCN")
+    str = significant{Space}
+Else if (key0 = "sflm" or key0 = "sflm;" or key0 = "SFLM")
+    str = myself{Space}
+Else if (key0 = "sg" or key0 = "sg;" or key0 = "SG")
+    str = something{Space}
+Else if (key0 = "sgm" or key0 = "sgm;" or key0 = "SGM")
+    str = message{Space}
+Else if (key0 = "sh" or key0 = "sh;" or key0 = "SH")
+    str = should{Space}
+Else if (key0 = "sdhn" or key0 = "sdhn;" or key0 = "SDHN")
+    str = shouldn't{Space}
+Else if (key0 = "shn" or key0 = "shn;" or key0 = "SHN")
+    str = shouldn't{Space}
+Else if (key0 = "sh" or key0 = "sh;" or key0 = "SH")
+    str = should{Space}
+Else if (key0 = "sl" or key0 = "sl;" or key0 = "SL")
+    str = sell{Space}
+Else if (key0 = "slc" or key0 = "slc;" or key0 = "SLC")
+    str = social{Space}
+Else if (key0 = "slcb" or key0 = "slcb;" or key0 = "SLCB")
+    str = basically{Space}
+Else if (key0 = "slp" or key0 = "slp;" or key0 = "SLP")
+    str = sleep{Space}
+Else if (key0 = "slv" or key0 = "slv;" or key0 = "SLV")
+    str = visual{Space}
+Else if (key0 = "sm" or key0 = "sm;" or key0 = "SM")
+    str = some{Space}
+Else if (key0 = "sn" or key0 = "sn;" or key0 = "SN")
+    str = seen{Space}
+Else if (key0 = "srcv" or key0 = "srcv;" or key0 = "SRCV")
+    str = service{Space}
+Else if (key0 = "st" or key0 = "st;" or key0 = "ST")
+    str = street{Space}
+Else if (key0 = "sv" or key0 = "sv;" or key0 = "SV")
+    str = versus{Space}
+Else if (key0 = "sxcvl" or key0 = "sxcvl;" or key0 = "SXCVL")
+    str = exclusive{Space}
 Return
+
 SENDD:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,dbn, Send nobody{Space}
-Else IfEqual key0,dcm, Send command{Space}
-Else IfEqual key0,dhln, Send handle{Space}
-Else IfEqual key0,dnm, Send domain{Space}
-Else IfEqual key0,dhln, Send handle{Space}
-Else IfEqual key0,dghln, Send handling{Space}
-Else IfEqual key0,dcn, Send couldn't{Space}
-Else IfEqual key0,dcn, Send candid{Space}
-Else IfEqual key0,dcnm, Send medicine{Space}
-Else IfEqual key0,dhn, Send hadn't{Space}
-Else IfEqual key0,dlcn, Send include{Space}
-Else IfEqual key0,dcv, Send device{Space}
-Else IfEqual key0,dfkb, Send feedback{Space}
-Else IfEqual key0,dfn, Send found{Space}
-Else IfEqual key0,dg, Send good{Space}
-Else IfEqual key0,dgb, Send background{Space}
-Else IfEqual key0,dglb, Send building{Space}
-Else IfEqual key0,dgm, Send damage{Space}
-Else IfEqual key0,dgn, Send ground{Space}
-Else IfEqual key0,dhbn, Send behind{Space}
-Else IfEqual key0,dl, Send deal{Space}
-Else IfEqual key0,dlb, Send build{Space}
-Else IfEqual key0,dlcbn, Send incredible{Space}
-Else IfEqual key0,dlcm, Send medical{Space}
-Else IfEqual key0,dlcm, Send medical{Space}
-Else IfEqual key0,dm, Send made{Space}
-Else IfEqual key0,dn, Send done{Space}
-Else IfEqual key0,drg, Send during {Space}
-Else IfEqual key0,dv, Send everyday{Space}
-Else IfEqual key0,dvm, Send development{Space}
-Else IfEqual key0,dx, Send excited{Space}
+ if (key0 = "dbn" or key0 = "dbn;" or key0 = "DBN")
+    str = nobody{Space}
+Else if (key0 = "dcm" or key0 = "dcm;" or key0 = "DCM")
+    str = command{Space}
+Else if (key0 = "dhln" or key0 = "dhln;" or key0 = "DHLN")
+    str = handle{Space}
+Else if (key0 = "dnm" or key0 = "dnm;" or key0 = "DNM")
+    str = domain{Space}
+Else if (key0 = "dhln" or key0 = "dhln;" or key0 = "DHLN")
+    str = handle{Space}
+Else if (key0 = "dghln" or key0 = "dghln;" or key0 = "DGHLN")
+    str = handling{Space}
+Else if (key0 = "dcn" or key0 = "dcn;" or key0 = "DCN")
+    str = couldn't{Space}
+Else if (key0 = "dcn" or key0 = "dcn;" or key0 = "DCN")
+    str = candid{Space}
+Else if (key0 = "dcnm" or key0 = "dcnm;" or key0 = "DCNM")
+    str = medicine{Space}
+Else if (key0 = "dhn" or key0 = "dhn;" or key0 = "DHN")
+    str = hadn't{Space}
+Else if (key0 = "dlcn" or key0 = "dlcn;" or key0 = "DLCN")
+    str = include{Space}
+Else if (key0 = "dcv" or key0 = "dcv;" or key0 = "DCV")
+    str = device{Space}
+Else if (key0 = "dfkb" or key0 = "dfkb;" or key0 = "DFKB")
+    str = feedback{Space}
+Else if (key0 = "dfn" or key0 = "dfn;" or key0 = "DFN")
+    str = found{Space}
+Else if (key0 = "dg" or key0 = "dg;" or key0 = "DG")
+    str = good{Space}
+Else if (key0 = "dgb" or key0 = "dgb;" or key0 = "DGB")
+    str = background{Space}
+Else if (key0 = "dglb" or key0 = "dglb;" or key0 = "DGLB")
+    str = building{Space}
+Else if (key0 = "dgm" or key0 = "dgm;" or key0 = "DGM")
+    str = damage{Space}
+Else if (key0 = "dgn" or key0 = "dgn;" or key0 = "DGN")
+    str = ground{Space}
+Else if (key0 = "dhbn" or key0 = "dhbn;" or key0 = "DHBN")
+    str = behind{Space}
+Else if (key0 = "dl" or key0 = "dl;" or key0 = "DL")
+    str = deal{Space}
+Else if (key0 = "dlb" or key0 = "dlb;" or key0 = "DLB")
+    str = build{Space}
+Else if (key0 = "dlcbn" or key0 = "dlcbn;" or key0 = "DLCBN")
+    str = incredible{Space}
+Else if (key0 = "dlcm" or key0 = "dlcm;" or key0 = "DLCM")
+    str = medical{Space}
+Else if (key0 = "dlcm" or key0 = "dlcm;" or key0 = "DLCM")
+    str = medical{Space}
+Else if (key0 = "dm" or key0 = "dm;" or key0 = "DM")
+    str = made{Space}
+Else if (key0 = "dn" or key0 = "dn;" or key0 = "DN")
+    str = done{Space}
+Else if (key0 = "drg" or key0 = "drg;" or key0 = "DRG")
+    str = during {Space}
+Else if (key0 = "dv" or key0 = "dv;" or key0 = "DV")
+    str = everyday{Space}
+Else if (key0 = "dvm" or key0 = "dvm;" or key0 = "DVM")
+    str = development{Space}
+Else if (key0 = "dx" or key0 = "dx;" or key0 = "DX")
+    str = excited{Space}
 Return
+
 SENDF:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,fb, Send before{Space}
-Else IfEqual key0,fcm, Send comfortable{Space}
-Else IfEqual key0,fcn, Send finance{Space}
-Else IfEqual key0,flb, Send belief{Space}
-Else IfEqual key0,flcbn, Send beneficial{Space}
-Else IfEqual key0,fh, Send helpful{Space}
-Else IfEqual key0,fgl, Send feeling{Space}	
-Else IfEqual key0,fl, Send feel{Space}
-Else IfEqual key0,flcn, Send financial{Space}
-Else IfEqual key0,fln, Send final{Space}
-Else IfEqual key0,fn, Send fine{Space}
+if (key0 = "fb" or key0 = "fb;" or key0 = "FB")
+    str = before{Space}
+Else if (key0 = "fcm" or key0 = "fcm;" or key0 = "FCM")
+    str = comfortable{Space}
+Else if (key0 = "fcn" or key0 = "fcn;" or key0 = "FCN")
+    str = finance{Space}
+Else if (key0 = "flb" or key0 = "flb;" or key0 = "FLB")
+    str = belief{Space}
+Else if (key0 = "flcbn" or key0 = "flcbn;" or key0 = "FLCBN")
+    str = beneficial{Space}
+Else if (key0 = "fh" or key0 = "fh;" or key0 = "FH")
+    str = helpful{Space}
+Else if (key0 = "fgl" or key0 = "fgl;" or key0 = "FGL")
+    str = feeling{Space}
+Else if (key0 = "fl" or key0 = "fl;" or key0 = "FL")
+    str = feel{Space}
+Else if (key0 = "flcn" or key0 = "flcn;" or key0 = "FLCN")
+    str = financial{Space}
+Else if (key0 = "fln" or key0 = "fln;" or key0 = "FLN")
+    str = final{Space}
+Else if (key0 = "fn" or key0 = "fn;" or key0 = "FN")
+    str = fine{Space}
 Return
+
 SENDG:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0% 
-IfEqual key0,gb, Send being{Space}
-Else IfEqual key0,gc, Send coming{Space}
-Else IfEqual key0,gen, Send general{Space}
-Else IfEqual key0,ghcn, Send change{Space}
-Else IfEqual key0,glbn, Send belong{Space}
-Else IfEqual key0,gcm, Send magic{Space}
-Else IfEqual key0,gh, Send having{Space}
-Else IfEqual key0,gkl, Send looking{Space}
-Else IfEqual key0,ghlcn, Send challenge{Space}
-Else IfEqual key0,gkm, Send making{Space}
-Else IfEqual key0,gl, Send learning{Space}
-Else IfEqual key0,glc, Send college{Space}
-Else IfEqual key0,gln, Send general{Space}
-Else IfEqual key0,glv, Send leaving{Space}
-Else IfEqual key0,gf, Send girlfriend{Space}
-Else IfEqual key0,gvn, Send given{Space}
-Else IfEqual key0,gm, Send making{Space}
-Else IfEqual key0,gn, Send nothing{Space}
-Else IfEqual key0,gnm, Send manage{Space}
-Else IfEqual key0,gv, Send give{Space}
-Else IfEqual key0,gv, Send very good{Space}
-Else IfEqual key0,gvm, Send moving{Space}
-Else IfEqual key0,gx, Send exciting{Space}
-Else IfEqual key0,gznm, Send magazine{Space}
+if (key0 = "gb" or key0 = "gb;" or key0 = "GB")
+    str = being{Space}
+Else if (key0 = "gc" or key0 = "gc;" or key0 = "GC")
+    str = coming{Space}
+Else if (key0 = "gen" or key0 = "gen;" or key0 = "GEN")
+    str = general{Space}
+Else if (key0 = "ghcn" or key0 = "ghcn;" or key0 = "GHCN")
+    str = change{Space}
+Else if (key0 = "glbn" or key0 = "glbn;" or key0 = "GLBN")
+    str = belong{Space}
+Else if (key0 = "gcm" or key0 = "gcm;" or key0 = "GCM")
+    str = magic{Space}
+Else if (key0 = "gh" or key0 = "gh;" or key0 = "GH")
+    str = having{Space}
+Else if (key0 = "gkl" or key0 = "gkl;" or key0 = "GKL")
+    str = looking{Space}
+Else if (key0 = "ghlcn" or key0 = "ghlcn;" or key0 = "GHLCN")
+    str = challenge{Space}
+Else if (key0 = "gkm" or key0 = "gkm;" or key0 = "GKM")
+    str = making{Space}
+Else if (key0 = "gl" or key0 = "gl;" or key0 = "GL")
+    str = learning{Space}
+Else if (key0 = "glc" or key0 = "glc;" or key0 = "GLC")
+    str = college{Space}
+Else if (key0 = "gln" or key0 = "gln;" or key0 = "GLN")
+    str = general{Space}
+Else if (key0 = "glv" or key0 = "glv;" or key0 = "GLV")
+    str = leaving{Space}
+Else if (key0 = "gf" or key0 = "gf;" or key0 = "GF")
+    str = girlfriend{Space}
+Else if (key0 = "gvn" or key0 = "gvn;" or key0 = "GVN")
+    str = given{Space}
+Else if (key0 = "gm" or key0 = "gm;" or key0 = "GM")
+    str = making{Space}
+Else if (key0 = "gn" or key0 = "gn;" or key0 = "GN")
+    str = nothing{Space}
+Else if (key0 = "gnm" or key0 = "gnm;" or key0 = "GNM")
+    str = manage{Space}
+Else if (key0 = "gv" or key0 = "gv;" or key0 = "GV")
+    str = give{Space}
+Else if (key0 = "gv" or key0 = "gv;" or key0 = "GV")
+    str = very good{Space}
+Else if (key0 = "gvm" or key0 = "gvm;" or key0 = "GVM")
+    str = moving{Space}
+Else if (key0 = "gx" or key0 = "gx;" or key0 = "GX")
+    str = exciting{Space}
+Else if (key0 = "gznm" or key0 = "gznm;" or key0 = "GZNM")
+    str = magazine{Space}
 Return
+
 SENDH:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,hc, Send choice{Space}
-Else IfEqual key0,hkcn, Send chicken{Space}
-Else IfEqual key0,hl, Send he'll{Space}
-Else IfEqual key0,hlcv, Send vehicle{Space}
- Else IfEqual key0,hm, Send Mm-hmm.{Space}
-Else IfEqual key0,hv, Send have{Space}
-Else IfEqual key0,hcnm, Send machine{Space}
-Else IfEqual key0,hlcn, Send channel{Space}
+ if (key0 = "hc" or key0 = "hc;" or key0 = "HC")
+    str = choice{Space}
+Else if (key0 = "hkcn" or key0 = "hkcn;" or key0 = "HKCN")
+    str = chicken{Space}
+Else if (key0 = "hl" or key0 = "hl;" or key0 = "HL")
+    str = he'll{Space}
+Else if (key0 = "hlcv" or key0 = "hlcv;" or key0 = "HLCV")
+    str = vehicle{Space}
+Else if (key0 = "hm" or key0 = "hm;" or key0 = "HM")
+    str = Mm-hmm.{Space}
+Else if (key0 = "hv" or key0 = "hv;" or key0 = "HV")
+    str = have{Space}
+Else if (key0 = "hcnm" or key0 = "hcnm;" or key0 = "HCNM")
+    str = machine{Space}
+Else if (key0 = "hlcn" or key0 = "hlcn;" or key0 = "HLCN")
+    str = channel{Space}
 Return
 
 SENDI:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,ia, Send ai
-Else IfEqual key0,idfc, Send difficult{Space}
-Else IfEqual key0,idm, Send mid{Space}
-Else IfEqual key0,iahcn, Send China{Space}
-Else IfEqual key0,ias, Send Asia{Space}
-Else IfEqual key0,ialnm, Send animal{Space}
-Else IfEqual key0,iahcn, Send chain{Space}
-Else IfEqual key0,iam, Send aim{Space}
-Else IfEqual key0,iasl, Send sail{Space}
-Else IfEqual key0,iav, Send via{Space}
-Else IfEqual key0,igkln, Send inkling{Space}
-Else IfEqual key0,iol, Send oil{Space}
-Else IfEqual key0,iolbm, Send limbo{Space}
-Else IfEqual key0,iphc, Send chip{Space}
-Else IfEqual key0,ipl, Send pill{Space}
-Else IfEqual key0,ipsn, Send spin{Space}
-Else IfEqual key0,iskl, Send skill{Space}
-Else IfEqual key0,ixm, Send mix{Space}
-Else IfEqual key0,ian, Send {BackSpace}ian{Space}
-Else IfEqual key0,iafl, Send fail{Space}
-Else IfEqual key0,ipslbm, Send impossible{Space}
-Else IfEqual key0,ioa, Send {BackSpace}ation{Space}
-Else IfEqual key0,ioadv, Send avoid{Space}
-Else IfEqual key0,igz, Send {BackSpace}izing{Space}
-Else IfEqual key0,iadc, Send acid{Space}
-Else IfEqual key0,iagcm, Send magic{Space}
-Else IfEqual key0,idg, Send dig{Space}
-Else IfEqual key0,iflcn, Send influence{Space}
-Else IfEqual key0,ikc, Send kick{Space}
-Else IfEqual key0,ikn, Send ink{Space}
-Else IfEqual key0,inm, Send mini{Space}
-Else IfEqual key0,ioadnm, Send domain{Space}
-Else IfEqual key0,iodb, Send biodegradable{Space}
-Else IfEqual key0,iodv, Send void{Space}
-Else IfEqual key0,iom, Send in my opinion{Space}
-Else IfEqual key0,iosdl, Send solid{Space}
-Else IfEqual key0,ips, Send piss{Space}
-Else IfEqual key0,ipsgl, Send slipping{Space}
-Else IfEqual key0,ipsl, Send slip{Space}
-Else IfEqual key0,ipsl, Send slip{Space}
-Else IfEqual key0,iajl, Send jail{Space}
-Else IfEqual key0,iagn, Send gain{Space}
-Else IfEqual key0,ib, Send no{Space}
-Else IfEqual key0,iadlv, Send valid{Space}
-Else IfEqual key0,ioan, Send nation{Space}
-Else IfEqual key0,ishcm, Send schism{Space}
-Else IfEqual key0,iasb, Send basis{Space}
-Else IfEqual key0,iaslc, Send classic{Space}
-Else IfEqual key0,ihcn, Send inch{Space}
-Else IfEqual key0,ikl, Send kill{Space}
-Else IfEqual key0,ilcn, Send clinic{Space}
-Else IfEqual key0,iofn, Send info{Space}
-Else IfEqual key0,iphn, Send iphone{Space}
-Else IfEqual key0,iskn, Send skin{Space}
-Else IfEqual key0,ism, Send miss{Space}
-Else IfEqual key0,iadnm, Send admin{Space}
-Else IfEqual key0,iasdnm, Send administrator{Space}
-Else IfEqual key0,igm, Send image{Space}
-Else IfEqual key0,ikln, Send link{Space}
-Else IfEqual key0,ioadnm, Send administration{Space}
-Else IfEqual key0,isn, Send isn't{Space}
-Else IfEqual key0,ialcm, Send claim{Space}
-Else IfEqual key0,ianm, Send main{Space}
-Else IfEqual key0,iasd, Send said{Space}
-Else IfEqual key0,id, Send did{Space}
-Else IfEqual key0,idf, Send different{Space}
-Else IfEqual key0,idfn, Send find{Space}
-Else IfEqual key0,idhlc, Send child{Space}
-Else IfEqual key0,idk, Send I don't know{Space}
-Else IfEqual key0,idkn, Send kind{Space}
-Else IfEqual key0,idn, Send individual{Space}
-Else IfEqual key0,idnm, Send mind{Space}
-Else IfEqual key0,if, Send if{Space}
-Else IfEqual key0,ifl, Send fill{Space}
-Else IfEqual key0,ifx, Send fix{Space}
-Else IfEqual key0,ig, Send I guess{Space}
-Else IfEqual key0,igb, Send big{Space}
-Else IfEqual key0,igh, Send high{Space}
-Else IfEqual key0,iglv, Send living{Space}
-Else IfEqual key0,ign, Send {BackSpace}ing{Space}
-Else IfEqual key0,ihl, Send hill{Space}
-Else IfEqual key0,ihm, Send him{Space}
-Else IfEqual key0,ik, Send I know{Space}
-Else IfEqual key0,iklbn, Send blink{Space}
-Else IfEqual key0,iklc, Send click{Space}
-Else IfEqual key0,iklm, Send milk{Space}
-Else IfEqual key0,il, Send I'll{Space}
-Else IfEqual key0,ilv, Send live{Space}
-Else IfEqual key0,im, Send I'm{Space}
-Else IfEqual key0,in, Send in{Space}
-Else IfEqual key0,in, Send in{Space}
-Else IfEqual key0,io, Send {BackSpace}tion{Space}
-Else IfEqual key0,ioac, Send action{Space}
-Else IfEqual key0,ioalc, Send location{Space}
-Else IfEqual key0,iojn, Send join{Space}
-Else IfEqual key0,ion, Send {BackSpace}ion{Space}
-Else IfEqual key0,ionm, Send omni
-Else IfEqual key0,iop, Send option{Space}
-Else IfEqual key0,iopn, Send opinion{Space}
-Else IfEqual key0,iosn, Send {BackSpace}sion{Space}
-Else IfEqual key0,iosn, Send ision{Space}
-Else IfEqual key0,ipad, Send paid{Space}
-Else IfEqual key0,ipafn, Send painful{Space}
-Else IfEqual key0,ipan, Send pain{Space}
-Else IfEqual key0,ipfl, Send flip{Space}
-Else IfEqual key0,ipg, Send pig{Space}
-Else IfEqual key0,ipkc, Send pick{Space}
-Else IfEqual key0,ipm, Send important{Space}
-Else IfEqual key0,ipsh, Send {BackSpace}ship{Space}
-Else IfEqual key0,ipsk, Send skip{Space}
-Else IfEqual key0,is, Send is{Space}
-Else IfEqual key0,isd, Send dis
-Else IfEqual key0,isdk, Send kids{Space}
-Else IfEqual key0,isfhn, Send finish{Space}
-Else IfEqual key0,isg, Send significant{Space}
-Else IfEqual key0,isgn, Send sign{Space}
-Else IfEqual key0,ish, Send his{Space}
-Else IfEqual key0,ish, Send {BackSpace}ish{Space}
-Else IfEqual key0,iskc, Send sick{Space}
-Else IfEqual key0,ism, Send mis
-Else IfEqual key0,iflm, Send film{Space}
+ if (key0 = "ia" or key0 = "ia;" or key0 = "IA")
+    str = ai
+Else if (key0 = "idfc" or key0 = "idfc;" or key0 = "IDFC")
+    str = difficult{Space}
+Else if (key0 = "idm" or key0 = "idm;" or key0 = "IDM")
+    str = mid{Space}
+Else if (key0 = "iahcn" or key0 = "iahcn;" or key0 = "IAHCN")
+    str = China{Space}
+Else if (key0 = "ias" or key0 = "ias;" or key0 = "IAS")
+    str = Asia{Space}
+Else if (key0 = "ialnm" or key0 = "ialnm;" or key0 = "IALNM")
+    str = animal{Space}
+Else if (key0 = "iahcn" or key0 = "iahcn;" or key0 = "IAHCN")
+    str = chain{Space}
+Else if (key0 = "iam" or key0 = "iam;" or key0 = "IAM")
+    str = aim{Space}
+Else if (key0 = "iasl" or key0 = "iasl;" or key0 = "IASL")
+    str = sail{Space}
+Else if (key0 = "iav" or key0 = "iav;" or key0 = "IAV")
+    str = via{Space}
+Else if (key0 = "igkln" or key0 = "igkln;" or key0 = "IGKLN")
+    str = inkling{Space}
+Else if (key0 = "iol" or key0 = "iol;" or key0 = "IOL")
+    str = oil{Space}
+Else if (key0 = "iolbm" or key0 = "iolbm;" or key0 = "IOLBM")
+    str = limbo{Space}
+Else if (key0 = "iphc" or key0 = "iphc;" or key0 = "IPHC")
+    str = chip{Space}
+Else if (key0 = "ipl" or key0 = "ipl;" or key0 = "IPL")
+    str = pill{Space}
+Else if (key0 = "ipsn" or key0 = "ipsn;" or key0 = "IPSN")
+    str = spin{Space}
+Else if (key0 = "iskl" or key0 = "iskl;" or key0 = "ISKL")
+    str = skill{Space}
+Else if (key0 = "ixm" or key0 = "ixm;" or key0 = "IXM")
+    str = mix{Space}
+Else if (key0 = "ian" or key0 = "ian;" or key0 = "IAN")
+    str = {BackSpace}ian{Space}
+Else if (key0 = "iafl" or key0 = "iafl;" or key0 = "IAFL")
+    str = fail{Space}
+Else if (key0 = "ipslbm" or key0 = "ipslbm;" or key0 = "IPSLBM")
+    str = impossible{Space}
+Else if (key0 = "ioa" or key0 = "ioa;" or key0 = "IOA")
+    str = {BackSpace}ation{Space}
+Else if (key0 = "ioadv" or key0 = "ioadv;" or key0 = "IOADV")
+    str = avoid{Space}
+Else if (key0 = "igz" or key0 = "igz;" or key0 = "IGZ")
+    str = {BackSpace}izing{Space}
+Else if (key0 = "iadc" or key0 = "iadc;" or key0 = "IADC")
+    str = acid{Space}
+Else if (key0 = "iagcm" or key0 = "iagcm;" or key0 = "IAGCM")
+    str = magic{Space}
+Else if (key0 = "idg" or key0 = "idg;" or key0 = "IDG")
+    str = dig{Space}
+Else if (key0 = "iflcn" or key0 = "iflcn;" or key0 = "IFLCN")
+    str = influence{Space}
+Else if (key0 = "ikc" or key0 = "ikc;" or key0 = "IKC")
+    str = kick{Space}
+Else if (key0 = "ikn" or key0 = "ikn;" or key0 = "IKN")
+    str = ink{Space}
+Else if (key0 = "inm" or key0 = "inm;" or key0 = "INM")
+    str = mini{Space}
+Else if (key0 = "ioadnm" or key0 = "ioadnm;" or key0 = "IOADNM")
+    str = domain{Space}
+Else if (key0 = "iodb" or key0 = "iodb;" or key0 = "IODB")
+    str = biodegradable{Space}
+Else if (key0 = "iodv" or key0 = "iodv;" or key0 = "IODV")
+    str = void{Space}
+Else if (key0 = "iom" or key0 = "iom;" or key0 = "IOM")
+    str = in my opinion{Space}
+Else if (key0 = "iosdl" or key0 = "iosdl;" or key0 = "IOSDL")
+    str = solid{Space}
+Else if (key0 = "ips" or key0 = "ips;" or key0 = "IPS")
+    str = piss{Space}
+Else if (key0 = "ipsgl" or key0 = "ipsgl;" or key0 = "IPSGL")
+    str = slipping{Space}
+Else if (key0 = "ipsl" or key0 = "ipsl;" or key0 = "IPSL")
+    str = slip{Space}
+Else if (key0 = "ipsl" or key0 = "ipsl;" or key0 = "IPSL")
+    str = slip{Space}
+Else if (key0 = "iajl" or key0 = "iajl;" or key0 = "IAJL")
+    str = jail{Space}
+Else if (key0 = "iagn" or key0 = "iagn;" or key0 = "IAGN")
+    str = gain{Space}
+Else if (key0 = "ib" or key0 = "ib;" or key0 = "IB")
+    str = no{Space}
+Else if (key0 = "iadlv" or key0 = "iadlv;" or key0 = "IADLV")
+    str = valid{Space}
+Else if (key0 = "ioan" or key0 = "ioan;" or key0 = "IOAN")
+    str = nation{Space}
+Else if (key0 = "ishcm" or key0 = "ishcm;" or key0 = "ISHCM")
+    str = schism{Space}
+Else if (key0 = "iasb" or key0 = "iasb;" or key0 = "IASB")
+    str = basis{Space}
+Else if (key0 = "iaslc" or key0 = "iaslc;" or key0 = "IASLC")
+    str = classic{Space}
+Else if (key0 = "ihcn" or key0 = "ihcn;" or key0 = "IHCN")
+    str = inch{Space}
+Else if (key0 = "ikl" or key0 = "ikl;" or key0 = "IKL")
+    str = kill{Space}
+Else if (key0 = "ilcn" or key0 = "ilcn;" or key0 = "ILCN")
+    str = clinic{Space}
+Else if (key0 = "iofn" or key0 = "iofn;" or key0 = "IOFN")
+    str = info{Space}
+Else if (key0 = "iphn" or key0 = "iphn;" or key0 = "IPHN")
+    str = iphone{Space}
+Else if (key0 = "iskn" or key0 = "iskn;" or key0 = "ISKN")
+    str = skin{Space}
+Else if (key0 = "ism" or key0 = "ism;" or key0 = "ISM")
+    str = miss{Space}
+Else if (key0 = "iadnm" or key0 = "iadnm;" or key0 = "IADNM")
+    str = admin{Space}
+Else if (key0 = "iasdnm" or key0 = "iasdnm;" or key0 = "IASDNM")
+    str = administrator{Space}
+Else if (key0 = "igm" or key0 = "igm;" or key0 = "IGM")
+    str = image{Space}
+Else if (key0 = "ikln" or key0 = "ikln;" or key0 = "IKLN")
+    str = link{Space}
+Else if (key0 = "ioadnm" or key0 = "ioadnm;" or key0 = "IOADNM")
+    str = administration{Space}
+Else if (key0 = "isn" or key0 = "isn;" or key0 = "ISN")
+    str = isn't{Space}
+Else if (key0 = "ialcm" or key0 = "ialcm;" or key0 = "IALCM")
+    str = claim{Space}
+Else if (key0 = "ianm" or key0 = "ianm;" or key0 = "IANM")
+    str = main{Space}
+Else if (key0 = "iasd" or key0 = "iasd;" or key0 = "IASD")
+    str = said{Space}
+Else if (key0 = "id" or key0 = "id;" or key0 = "ID")
+    str = did{Space}
+Else if (key0 = "idf" or key0 = "idf;" or key0 = "IDF")
+    str = different{Space}
+Else if (key0 = "idfn" or key0 = "idfn;" or key0 = "IDFN")
+    str = find{Space}
+Else if (key0 = "idhlc" or key0 = "idhlc;" or key0 = "IDHLC")
+    str = child{Space}
+Else if (key0 = "idk" or key0 = "idk;" or key0 = "IDK")
+    str = I don't know{Space}
+Else if (key0 = "idkn" or key0 = "idkn;" or key0 = "IDKN")
+    str = kind{Space}
+Else if (key0 = "idn" or key0 = "idn;" or key0 = "IDN")
+    str = individual{Space}
+Else if (key0 = "idnm" or key0 = "idnm;" or key0 = "IDNM")
+    str = mind{Space}
+Else if (key0 = "if" or key0 = "if;" or key0 = "IF")
+    str = if{Space}
+Else if (key0 = "ifl" or key0 = "ifl;" or key0 = "IFL")
+    str = fill{Space}
+Else if (key0 = "ifx" or key0 = "ifx;" or key0 = "IFX")
+    str = fix{Space}
+Else if (key0 = "ig" or key0 = "ig;" or key0 = "IG")
+    str = I guess{Space}
+Else if (key0 = "igb" or key0 = "igb;" or key0 = "IGB")
+    str = big{Space}
+Else if (key0 = "igh" or key0 = "igh;" or key0 = "IGH")
+    str = high{Space}
+Else if (key0 = "iglv" or key0 = "iglv;" or key0 = "IGLV")
+    str = living{Space}
+Else if (key0 = "ign" or key0 = "ign;" or key0 = "IGN")
+    str = {BackSpace}ing{Space}
+Else if (key0 = "ihl" or key0 = "ihl;" or key0 = "IHL")
+    str = hill{Space}
+Else if (key0 = "ihm" or key0 = "ihm;" or key0 = "IHM")
+    str = him{Space}
+Else if (key0 = "ik" or key0 = "ik;" or key0 = "IK")
+    str = I know{Space}
+Else if (key0 = "iklbn" or key0 = "iklbn;" or key0 = "IKLBN")
+    str = blink{Space}
+Else if (key0 = "iklc" or key0 = "iklc;" or key0 = "IKLC")
+    str = click{Space}
+Else if (key0 = "iklm" or key0 = "iklm;" or key0 = "IKLM")
+    str = milk{Space}
+Else if (key0 = "il" or key0 = "il;" or key0 = "IL")
+    str = I'll{Space}
+Else if (key0 = "ilv" or key0 = "ilv;" or key0 = "ILV")
+    str = live{Space}
+Else if (key0 = "im" or key0 = "im;" or key0 = "IM")
+    str = I'm{Space}
+Else if (key0 = "in" or key0 = "in;" or key0 = "IN")
+    str = in{Space}
+Else if (key0 = "in" or key0 = "in;" or key0 = "IN")
+    str = in{Space}
+Else if (key0 = "io" or key0 = "io;" or key0 = "IO")
+    str = {BackSpace}tion{Space}
+Else if (key0 = "ioac" or key0 = "ioac;" or key0 = "IOAC")
+    str = action{Space}
+Else if (key0 = "ioalc" or key0 = "ioalc;" or key0 = "IOALC")
+    str = location{Space}
+Else if (key0 = "iojn" or key0 = "iojn;" or key0 = "IOJN")
+    str = join{Space}
+Else if (key0 = "ion" or key0 = "ion;" or key0 = "ION")
+    str = {BackSpace}ion{Space}
+Else if (key0 = "ionm" or key0 = "ionm;" or key0 = "IONM")
+    str = omni
+Else if (key0 = "iop" or key0 = "iop;" or key0 = "IOP")
+    str = option{Space}
+Else if (key0 = "iopn" or key0 = "iopn;" or key0 = "IOPN")
+    str = opinion{Space}
+Else if (key0 = "iosn" or key0 = "iosn;" or key0 = "IOSN")
+    str = {BackSpace}sion{Space}
+Else if (key0 = "iosn" or key0 = "iosn;" or key0 = "IOSN")
+    str = ision{Space}
+Else if (key0 = "ipad" or key0 = "ipad;" or key0 = "IPAD")
+    str = paid{Space}
+Else if (key0 = "ipafn" or key0 = "ipafn;" or key0 = "IPAFN")
+    str = painful{Space}
+Else if (key0 = "ipan" or key0 = "ipan;" or key0 = "IPAN")
+    str = pain{Space}
+Else if (key0 = "ipfl" or key0 = "ipfl;" or key0 = "IPFL")
+    str = flip{Space}
+Else if (key0 = "ipg" or key0 = "ipg;" or key0 = "IPG")
+    str = pig{Space}
+Else if (key0 = "ipkc" or key0 = "ipkc;" or key0 = "IPKC")
+    str = pick{Space}
+Else if (key0 = "ipm" or key0 = "ipm;" or key0 = "IPM")
+    str = important{Space}
+Else if (key0 = "ipsh" or key0 = "ipsh;" or key0 = "IPSH")
+    str = {BackSpace}ship{Space}
+Else if (key0 = "ipsk" or key0 = "ipsk;" or key0 = "IPSK")
+    str = skip{Space}
+Else if (key0 = "is" or key0 = "is;" or key0 = "IS")
+    str = is{Space}
+Else if (key0 = "isd" or key0 = "isd;" or key0 = "ISD")
+    str = dis
+Else if (key0 = "isdk" or key0 = "isdk;" or key0 = "ISDK")
+    str = kids{Space}
+Else if (key0 = "isfhn" or key0 = "isfhn;" or key0 = "ISFHN")
+    str = finish{Space}
+Else if (key0 = "isg" or key0 = "isg;" or key0 = "ISG")
+    str = significant{Space}
+Else if (key0 = "isgn" or key0 = "isgn;" or key0 = "ISGN")
+    str = sign{Space}
+Else if (key0 = "ish" or key0 = "ish;" or key0 = "ISH")
+    str = his{Space}
+Else if (key0 = "ish" or key0 = "ish;" or key0 = "ISH")
+    str = {BackSpace}ish{Space}
+Else if (key0 = "iskc" or key0 = "iskc;" or key0 = "ISKC")
+    str = sick{Space}
+Else if (key0 = "ism" or key0 = "ism;" or key0 = "ISM")
+    str = mis
+Else if (key0 = "iflm" or key0 = "iflm;" or key0 = "IFLM")
+    str = film{Space}
 Return
+
 SENDL:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0% 
-IfEqual key0,lb, Send little bit{Space}
-Else IfEqual key0,lc, Send cool{Space}
-Else IfEqual key0,lcbn, Send balance{Space}
-Else IfEqual key0,lnm, Send manual{Space}
-Else IfEqual key0,lvm, Send volume{Space}
-Else IfEqual key0,lcn, Send clinical{Space}
-Else IfEqual key0,lcbn, Send balance{Space}
-Else IfEqual key0,lcm, Send molecule{Space}
-Else IfEqual key0,ln, Send line{Space}
-Else IfEqual key0,lv, Send leave{Space}
-Else IfEqual key0,lvb, Send believe{Space}
-Else IfEqual key0,lx, Send exactly{Space}
-Else IfEqual key0,lxcn, Send excellence{Space}
+if (key0 = "lb" or key0 = "lb;" or key0 = "LB")
+    str = little bit{Space}
+Else if (key0 = "lc" or key0 = "lc;" or key0 = "LC")
+    str = cool{Space}
+Else if (key0 = "lcbn" or key0 = "lcbn;" or key0 = "LCBN")
+    str = balance{Space}
+Else if (key0 = "lnm" or key0 = "lnm;" or key0 = "LNM")
+    str = manual{Space}
+Else if (key0 = "lvm" or key0 = "lvm;" or key0 = "LVM")
+    str = volume{Space}
+Else if (key0 = "lcn" or key0 = "lcn;" or key0 = "LCN")
+    str = clinical{Space}
+Else if (key0 = "lcbn" or key0 = "lcbn;" or key0 = "LCBN")
+    str = balance{Space}
+Else if (key0 = "lcm" or key0 = "lcm;" or key0 = "LCM")
+    str = molecule{Space}
+Else if (key0 = "ln" or key0 = "ln;" or key0 = "LN")
+    str = line{Space}
+Else if (key0 = "lv" or key0 = "lv;" or key0 = "LV")
+    str = leave{Space}
+Else if (key0 = "lvb" or key0 = "lvb;" or key0 = "LVB")
+    str = believe{Space}
+Else if (key0 = "lx" or key0 = "lx;" or key0 = "LX")
+    str = exactly{Space}
+Else if (key0 = "lxcn" or key0 = "lxcn;" or key0 = "LXCN")
+    str = excellence{Space}
 Return
+
 SENDX:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,xc, Send executive{Space}
-Else IfEqual key0,xnm, Send examine{Space}
-Else IfEqual key0,xnm, Send expect{Space}
+ if (key0 = "xc" or key0 = "xc;" or key0 = "XC")
+    str = executive{Space}
+Else if (key0 = "xnm" or key0 = "xnm;" or key0 = "XNM")
+    str = examine{Space}
+Else if (key0 = "xnm" or key0 = "xnm;" or key0 = "XNM")
+    str = expect{Space}
 Return
+
 SENDV:
-   SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-IfEqual key0,vm, Send move{Space}
-Else IfEqual key0,vn, Send even{Space}
+   SentTick = %A_TickCount%            
+if (key0 = "vm" or key0 = "vm;" or key0 = "VM")
+    str = move{Space}
+Else if (key0 = "vn" or key0 = "vn;" or key0 = "VN")
+    str = even{Space}
 Return
+
 SENDB:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,bm, Send maybe{Space}
-Else IfEqual key0,bf, Send boyfriend{Space}
-Else IfEqual key0,bn, Send been{Space}
-Else IfEqual key0,bsc, Send basic{Space}
-Else IfEqual key0,bscl, Send basically{Space}
+if (key0 = "bm" or key0 = "bm;" or key0 = "BM")
+    str = maybe{Space}
+Else if (key0 = "bf" or key0 = "bf;" or key0 = "BF")
+    str = boyfriend{Space}
+Else if (key0 = "bn" or key0 = "bn;" or key0 = "BN")
+    str = been{Space}
+Else if (key0 = "bsc" or key0 = "bsc;" or key0 = "BSC")
+    str = basic{Space}
+Else if (key0 = "bscl" or key0 = "bscl;" or key0 = "BSCL")
+    str = basically{Space}
 Return
+
 SENDC:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%          
    SentKeys = %key0%
-IfEqual key0,cb, Send because{Space}
-Else IfEqual key0,cbm, Send become{Space}
-Else IfEqual key0,cm, Send come{Space}
-Else IfEqual key0,dfcn, Send confidence{Space}
-Else IfEqual key0,cbnm, Send combine{Space}
-Else IfEqual key0,cmg, Send coming{Space}
-Else IfEqual key0,cn, Send can{Space}
-Else IfEqual key0,cnm, Send common{Space}
-Else IfEqual key0,cvn, Send conversation{Space}
+if (key0 = "cb" or key0 = "cb;" or key0 = "CB")
+    str = because{Space}
+Else if (key0 = "cbm" or key0 = "cbm;" or key0 = "CBM")
+    str = become{Space}
+Else if (key0 = "cm" or key0 = "cm;" or key0 = "CM")
+    str = come{Space}
+Else if (key0 = "dfcn" or key0 = "dfcn;" or key0 = "DFCN")
+    str = confidence{Space}
+Else if (key0 = "cbnm" or key0 = "cbnm;" or key0 = "CBNM")
+    str = combine{Space}
+Else if (key0 = "cmg" or key0 = "cmg;" or key0 = "CMG")
+    str = coming{Space}
+Else if (key0 = "cn" or key0 = "cn;" or key0 = "CN")
+    str = can{Space}
+Else if (key0 = "cnm" or key0 = "cnm;" or key0 = "CNM")
+    str = common{Space}
+Else if (key0 = "cvn" or key0 = "cvn;" or key0 = "CVN")
+    str = conversation{Space}
 Return
+
 SENDK:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
-IfEqual key0,kc, Send {Backspace}ck{Space}
-Else IfEqual key0,kl, Send look{Space}
-Else IfEqual key0,kln, Send knowledge{Space}
-Else IfEqual key0,km, Send make{Space}
-Else IfEqual key0,kn, Send know{Space}
+ if (key0 = "kc" or key0 = "kc;" or key0 = "KC")
+    str = {Backspace}ck{Space}
+Else if (key0 = "kl" or key0 = "kl;" or key0 = "KL")
+    str = look{Space}
+Else if (key0 = "kln" or key0 = "kln;" or key0 = "KLN")
+    str = knowledge{Space}
+Else if (key0 = "km" or key0 = "km;" or key0 = "KM")
+    str = make{Space}
+Else if (key0 = "kn" or key0 = "kn;" or key0 = "KN")
+    str = know{Space}
 Return
+
 SENDJ:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0% 
     
-    Return
-SENDZ:
-   SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
-  
-IfEqual key0,zm, Send Zoom{Space}
-
 Return
+ 
+SENDZ:
+   SentTick = %A_TickCount%            
+   SentKeys = %key0%
+ if (key0 = "zm" or key0 = "zm;" or key0 = "ZM")
+    str = zoom{Space}
+Return
+
 SENDM:
-   SentTick = %A_TickCount%            ; remember time of send
+   SentTick = %A_TickCount%            
    SentKeys = %key0%
  
 Return
-SENDN:
-   SentTick = %A_TickCount%            ; remember time of send
-   SentKeys = %key0%
 
-IfEqual key0,nm, Send mean{Space}
+SENDN:
+   SentTick = %A_TickCount%            
+   SentKeys = %key0%
+ if (key0 = "nm" or key0 = "nm;" or key0 = "NM")
+    str = mean{Space}
 Return
+
 SENDDOT:
    SentTick = %A_TickCount%            ; remember time of send
    SentKeys = %key0%
 
-IfEqual key0,r', Send {BackSpace}r{Space}
-Else IfEqual key0,udn., Send understood{Space}
-Else IfEqual key0,werth., Send threw{Space}
-Else IfEqual key0,rsv., Send verse{Space}
-Else IfEqual key0,onm., Send moon{Space}
-Else IfEqual key0,rsv', Send verse{Space}
-Else IfEqual key0,tasl., Send salt{Space}
-Else IfEqual key0,ertah., Send earth{Space}
-Else IfEqual key0,us., Send United States{Space}
-Else IfEqual key0,uosdn., Send sounds{Space}
-Else IfEqual key0,tasl., Send last{Space}
-Else IfEqual key0,tioan., Send {BackSpace}{BackSpace}ation{Space}
-Else IfEqual key0,epsd., Send speed{Space}
-Else IfEqual key0,iadn., Send Indian{Space}
-Else IfEqual key0,eas., Send sea{Space}
-Else IfEqual key0,tisl., Send list{Space}
-Else IfEqual key0,eragn., Send arrange{Space}
-Else IfEqual key0,erp', Send pepper{Space}
-Else IfEqual key0,epa., Send pea{Space}
-Else IfEqual key0,eadh., Send ahead{Space}
-Else IfEqual key0,ajn., Send January{Space}
-Else IfEqual key0,edc., Send December{Space}
-Else IfEqual key0,efb., Send February{Space}
-Else IfEqual key0,erign., Send reign{Space}
-Else IfEqual key0,erin., Send rein{Space}
-Else IfEqual key0,eros., Send sore{Space}
-Else IfEqual key0,ersv., Send severe{Space}
-Else IfEqual key0,ertihn., Send inherit{Space}
-Else IfEqual key0,eryal., Send relay{Space}
-Else IfEqual key0,etask., Send steak{Space}
-Else IfEqual key0,ethm., Send theme{Space}
-Else IfEqual key0,etivn., Send invent{Space}
-Else IfEqual key0,etps., Send September{Space}
-Else IfEqual key0,etups., Send setup{Space}
-Else IfEqual key0,eus., Send sue{Space}
-Else IfEqual key0,iskn., Send sink{Space}
-Else IfEqual key0,ovn., Send November{Space}
-Else IfEqual key0,rahcm., Send March{Space}
-Else IfEqual key0,udn., Send understood{Space}
-Else IfEqual key0,wra., Send raw{Space}
-Else IfEqual key0,tian', Send ain’t{Space}
-Else IfEqual key0,yam., Send May{Space}
-Else IfEqual key0,adh., Send dah{Space}
-Else IfEqual key0,uag., Send August{Space}
-Else IfEqual key0,tush., Send thus{Space}
-Else IfEqual key0,toc., Send October{Space}
-Else IfEqual key0,tsfcn., Send fascinate{Space}
-Else IfEqual key0,ertial., Send literal{Space}	
-Else IfEqual key0,ian., Send {BackSpace}{BackSpace}ian{Space}
-Else IfEqual key0,iofn., Send information{Space}
-Else IfEqual key0,rpdc., Send procedure{Space}
-Else IfEqual key0,ion., Send {BackSpace}{BackSpace}ion{Space}
-Else IfEqual key0,asd., Send sad{Space}
-Else IfEqual key0,rpgm., Send programmer{Space}
-Else IfEqual key0,etas', Send east{Space}
-Else IfEqual key0,ioa., Send {BackSpace}{BackSpace}ation{Space}
-Else IfEqual key0,etn., Send {BackSpace}ent{Space}
-Else IfEqual key0,epasc., Send escape{Space}
-Else IfEqual key0,alb., Send ball{Space}
-Else IfEqual key0,wton', Send won't{Space}
-Else IfEqual key0,ok', Send okay{Space}
-Else IfEqual key0,epsl., Send spell{Space}
-Else IfEqual key0,eops., Send oppose{Space}
-Else IfEqual key0,erias., Send easier{Space}
-Else IfEqual key0,tkn., Send taken{Space}
-Else IfEqual key0,erashc., Send research{Space}
-Else IfEqual key0,flcn., Send influence{Space}
-Else IfEqual key0,lcn., Send council{Space}
-Else IfEqual key0,ro., Send {backspace}or{Space}
-Else IfEqual key0,tnm., Send mountain{Space}
-Else IfEqual key0,ef., Send fee{Space}
-Else IfEqual key0,rplcn., Send principal{Space}
-Else IfEqual key0,etam., Send meat{Space}
-Else IfEqual key0,ogl., Send logging{Space}
-Else IfEqual key0,ozm., Send zoom{Space}
-Else IfEqual key0,qrts., Send squirt{Space}
-Else IfEqual key0,ram., Send ram{Space}
-Else IfEqual key0,rdg., Send grade{Space}
-Else IfEqual key0,flcn., Send influence{Space}
-Else IfEqual key0,rgnm., Send manager{Space}
-Else IfEqual key0,rslv., Send resolve{Space}
-Else IfEqual key0,rsvn., Send nervous{Space}
-Else IfEqual key0,rtfg., Send forgot{Space}
-Else IfEqual key0,rtsg., Send string{Space}
-Else IfEqual key0,wal., Send wall{Space}
-Else IfEqual key0,ruos., Send sour{Space}
-Else IfEqual key0,slcn., Send silence{Space}
-Else IfEqual key0,slv., Send solve{Space}
-Else IfEqual key0,tac., Send cat{Space}
-Else IfEqual key0,tcn., Send contain{Space}
-Else IfEqual key0,tiac., Send {backspace}atic{Space}
-Else IfEqual key0,tian., Send taint{Space}
-Else IfEqual key0,wo., Send wow{Space}
-Else IfEqual key0,yas., Send says{Space}
-Else IfEqual key0,ypal., Send apply{Space}
-Else IfEqual key0,l', Send {backspace}‘ll{Space}
-Else IfEqual key0,ghcn., Send changing{Space}
-Else IfEqual key0,in., Send in
-Else IfEqual key0,idk., Send kid{Space}
-Else IfEqual key0,gln., Send language lng.{Space}
-Else IfEqual key0,eshl., Send she'll{Space}
-Else IfEqual key0,e'v, Send {backspace}‘ve{Space}
-Else IfEqual key0,etsg., Send settings{Space}
-Else IfEqual key0,esc., Send escape{Space}
-Else IfEqual key0,ergm., Send emerge{Space}
-Else IfEqual key0,rtuogh., Send thorough{Space}
-Else IfEqual key0,ealb., Send {backspace}able{Space}
-Else IfEqual key0,ealb., Send {backspace}able{Space}
- Else IfEqual key0,wto', Send two{Space}
-Else IfEqual key0,epal., Send appeal{Space}
-Else IfEqual key0,ets', Send {BackSpace}est{Space}
-Else IfEqual key0,er', Send {backspace}‘re{Space}
-Else IfEqual key0,eiasl., Send liaise{Space}
-Else IfEqual key0,erakb., Send brake{Space}
- Else IfEqual key0,tvm., Send motivate{Space}
-Else IfEqual key0,era., Send rear{Space}
-Else IfEqual key0,rtdc., Send direct{Space}
-Else IfEqual key0,era', Send era{Space}
-Else IfEqual key0,tuogh., Send ought{Space}
-Else IfEqual key0,d., Send{backspace}d{Space}
-  Else IfEqual key0,hm., Send Mm-mmm.{Space}
-  Else IfEqual key0,ign., Send {backspace}{backspace}ing{Space}
- Else IfEqual key0,esl., Send less{Space}
- Else IfEqual key0,etan., Send tenant{Space}
-Else IfEqual key0,rtfh., Send further{Space}
- Else IfEqual key0,tivn., Send invite{Space}
- Else IfEqual key0,esdn., Send dense{Space}
-Else IfEqual key0,erias, Send easier{Space}
-Else IfEqual key0,rtln., Send natural{Space}
-Else IfEqual key0,.ertpsn, Send represent{Space}
-Else IfEqual key0,erf., Send refer{Space}
-Else IfEqual key0,eru., Send {backspace}ure{Space}
-Else IfEqual key0,etsh., Send sheet{Space}
-Else IfEqual key0,on., Send non{Space}
-Else IfEqual key0,rtipn., Send interrupt{Space}
-Else IfEqual key0,tas., Send asset{Space}
-Else IfEqual key0,scnm., Send musician{Space}
- Else IfEqual key0,tgvn., Send vintage{Space}
- Else IfEqual key0,rtsg., Send register{Space}
- Else IfEqual key0,eivn., Send vine{Space}
- Else IfEqual key0,etas., Send taste{Space}
-Else IfEqual key0,etsn., Send nest{Space}
-  Else IfEqual key0,tan., Send {BackSpace}ant{Space}
- Else IfEqual key0,eon., Send none{Space}	
- Else IfEqual key0,apl., Send appeal{Space}
- Else IfEqual key0,eis., Send {BackSpace}{BackSpace}ies{Space}	
-Else IfEqual key0,asb., Send bass{Space}
-Else IfEqual key0,dlb., Send double{Space}
-Else IfEqual key0,eag., Send {BackSpace}age{Space}
-Else IfEqual key0,ecn., Send {BackSpace}ence{Space}
-Else IfEqual key0,erta., Send treat{Space}
-Else IfEqual key0,ertcn., Send center{Space}
-Else IfEqual key0,eta., Send eat{Space}
-Else IfEqual key0,ipsh., Send ship{Space}
-Else IfEqual key0,rpsf., Send professor{Space}
-Else IfEqual key0,rtg., Send guitar{Space}
-Else IfEqual key0,rtlb., Send terrible{Space}
-Else IfEqual key0,rtpa., Send appropriate{Space}
-Else IfEqual key0,rtpc., Send participate{Space}
-Else IfEqual key0,rtpn., Send partner{Space}
-Else IfEqual key0,rtuh., Send truth{Space}
-Else IfEqual key0,tgn., Send negotiation{Space}
-Else IfEqual key0,tidn., Send identity{Space}
-Else IfEqual key0,tih., Send hit{Space}
-Else IfEqual key0,tplc., Send political{Space}
-Else IfEqual key0,tsn., Send situation{Space}
-Else IfEqual key0,ty., Send YouTube{Space}
-Else IfEqual key0,wn., Send No worries.{Space}
- Else IfEqual key0,adb., Send bad{Space}
- Else IfEqual key0,asb., Send bass{Space}
-Else IfEqual key0,efl., Send fell{Space}
-Else IfEqual key0,eifv., Send five{Space}
-Else IfEqual key0,ein., Send nine{Space}
-Else IfEqual key0,eiv., Send {BackSpace}ive{Space}
-Else IfEqual key0,em., Send em{Space}
-Else IfEqual key0,eran., Send earn{Space}
-Else IfEqual key0,erth., Send three{Space}
-Else IfEqual key0,esh., Send he's{Space}
-Else IfEqual key0,esvn., Send seven{Space}
-Else IfEqual key0,etigh., Send eight{Space}
-Else IfEqual key0,eton., Send tone{Space}
-Else IfEqual key0,isx., Send six{Space}
-Else IfEqual key0,rpa., Send appear{Space}
-Else IfEqual key0,ruof., Send four{Space}
-Else IfEqual key0,til., Send till{Space}
-Else IfEqual key0,tosh., Send shoot{Space}
-Else IfEqual key0,wto., Send two{Space}
- Else IfEqual key0,rtos., Send sort of{Space} 
- Else IfEqual key0,og., Send going{Space}
- Else IfEqual key0,tish., Send shit{Space} 
- Else IfEqual key0,tm., Send might{Space}
- Else IfEqual key0,idf., Send difficult{Space} 
- Else IfEqual key0,tdn., Send didn't{Space}
- Else IfEqual key0,tidn., Send didn't{Space} 
- Else IfEqual key0,er., Send re
-  Else IfEqual key0,erp., Send pre
- Else IfEqual key0,em., Send them{Space} 
- Else IfEqual key0,ig., Send Instagram{Space} 
- Else IfEqual key0,fb., Send Facebook{Space} 
- Else IfEqual key0,gl., Send Google{Space} 
- Else IfEqual key0,id., Send I'd{Space} 
- Else IfEqual key0,ok., Send okay{Space} 
- Else IfEqual key0,sm., Send so much{Space} 
- Else IfEqual key0,etc., Send technology{Space}
- Else IfEqual key0,th., Send th{Space} 
- Else IfEqual key0,tsh., Send that's{Space}
- Else IfEqual key0,ev., Send ve{Space} 
- Else IfEqual key0,c., Send see{Space}
- Else IfEqual key0,u., Send you{Space}
- Else IfEqual key0,n., Send and{Space}
- Else IfEqual key0,t., Send the{Space}
- Else IfEqual key0,y., Send yeah{Space}
- Else IfEqual key0,b., Send but{Space}
- Else IfEqual key0,tion., Send ition{Space}
- Else IfEqual key0,w., Send with{Space}
- Else IfEqual key0,p., Send pretty{Space}
- Else IfEqual key0,k., Send know{Space}
- Else IfEqual key0,q., Send quick{Space}
- Else IfEqual key0,g., Send great{Space}
- Else IfEqual key0,l., Send like{Space}
- Else IfEqual key0,r., Send really{Space}
- Else IfEqual key0,sh., Send sh{Space} 
- Else IfEqual key0,j., Send just{Space}
- Else IfEqual key0,m., Send much{Space}
- Else IfEqual key0,e., Send even{Space}
- Else IfEqual key0,d., Send ed{Space}
- Else IfEqual key0,f., Send for{Space}
- Else IfEqual key0,v., Send very{Space}
- Else IfEqual key0,io., Send {BackSpace}{BackSpace}tion{Space} 
- Else IfEqual key0,th., Send th{Space} 
- Else IfEqual key0,hc., Send ch{Space} 
- Else IfEqual key0,to., Send too{Space} 
- Else IfEqual key0,tuagh., Send aught{Space}
- Else IfEqual key0,ocn., Send con{Space}
- Else IfEqual key0,era., Send are{Space}
- Else IfEqual key0,gc., Send seeing{Space} 
- Else IfEqual key0,wya., Send away{Space}
- Else IfEqual key0,was., Send saw{Space}
- Else IfEqual key0,3., Send three{Space}
- Else IfEqual key0,1., Send one{Space}
- Else IfEqual key0,2., Send two{Space}
- Else IfEqual key0,4., Send four{Space}
- Else IfEqual key0,5., Send five{Space}
- Else IfEqual key0,ex., Send exact{Space}
- Else IfEqual key0,6., Send six{Space}
- Else IfEqual key0,7., Send seven{Space}
- Else IfEqual key0,8., Send eight{Space}
- Else IfEqual key0,9., Send nine{Space}
- Else IfEqual key0,0., Send 10{Space}
- Else IfEqual key0,woh., Send who{Space} 
- Else IfEqual key0,etl., Send tell{Space}
- Else IfEqual key0,erts., Send stress{Space} 
- Else IfEqual key0,st., Send st{Space} 
- Else IfEqual key0,tops., Send post{Space} 
- Else IfEqual key0,tis., Send sit{Space}
- Else IfEqual key0,ashl., Send shall{Space} 
- Else IfEqual key0,esd., Send seed{Space}
- Else IfEqual key0,was., Send saw{Space}
- Else IfEqual key0,won., Send own{Space}
- Else IfEqual key0,on., Send on{Space} 
- Else IfEqual key0,etfl., Send left{Space} 
- Else IfEqual key0,wtah., Send thaw{Space} 
- Else IfEqual key0,of., Send off{Space} 
- Else IfEqual key0,eanm., Send name{Space} 
- Else IfEqual key0,eilv., Send evil{Space} 
- Else IfEqual key0,epk., Send peek{Space}
- Else IfEqual key0,rtuh., Send hurt{Space} 
- Else IfEqual key0,toh., Send hot{Space} 
- Else IfEqual key0,ish., Send ish{Space}
- Else IfEqual key0,erh., Send here{Space}
- Else IfEqual key0,og., Send original{Space} 
- Else IfEqual key0,ed., Send de
- Else IfEqual key0,tops., Send post
- Else IfEqual key0,ism., Send mis{Space}
- Else IfEqual key0,al., Send {BackSpace}al{Space}
- Else IfEqual key0,s., Send {BackSpace}s{Space}
- Else IfEqual key0,esn., Send {BackSpace}ness{Space}
- Else IfEqual key0,i., Send I{Space}
- Else IfEqual key0,a., Send a{Space}
- Else IfEqual key0,ufl., Send {BackSpace}ful{Space}
- Else IfEqual key0,er., Send re
- Else IfEqual key0,toh., Send oth{Space} 
- Else IfEqual key0,ton., Send ton{Space} 
-Else IfEqual key0,yal., Send {BackSpace}ally{Space}
-Else IfEqual key0,able., Send able
-Else IfEqual key0,ua., Send ua   
-Else IfEqual key0,edn., Send end{Space}
-Else IfEqual key0,er., Send {BackSpace}er
-Else IfEqual key0,etm., Send meet{Space}
-Else IfEqual key0,etg., Send getting{Space}
-Else IfEqual key0,al., Send {BackSpace}al
-Else IfEqual key0,tops., Send post{Space}
-Else IfEqual key0,eag., Send age
-Else IfEqual key0,ertih., Send either{Space}
-Else IfEqual key0,gv., Send giving{Space}
-Else IfEqual key0,erashc., Send research{Space}
-Else IfEqual key0,edf., Send feed{Space}
-Else IfEqual key0,eoshc., Send choose{Space}
-Else IfEqual key0,eigbn., Send beginning{Space}
-Else IfEqual key0,opsh., Send shops{Space}
-Else IfEqual key0,esm., Send seems{Space}
-Else IfEqual key0,ertal., Send relate{Space}
-Else IfEqual key0,etis., Send {BackSpace}ities{Space}
-Else IfEqual key0,tol., Send tool{Space}
-Else IfEqual key0,tasf., Send staff{Space}
-Else IfEqual key0,sn., Send season{Space}
- Else IfEqual key0,isgn., Send sing{Space}
-  Else IfEqual key0,erpa., Send paper{Space}
- Else IfEqual key0,es., Send {BackSpace}es{Space}
-Else IfEqual key0,epsdn., Send depends{Space}
-Else IfEqual key0,rtlc., Send critical{Space}
-Else IfEqual key0,ertpsn., Send represent{Space}
-Else IfEqual key0,oagln., Send analog{Space}
-Else IfEqual key0,ral., Send lar
-Else IfEqual key0,tahc., Send attach{Space}
-Else IfEqual key0,ertpan., Send parent{Space}
-Else IfEqual key0,igh., Send igh{Space}
-Else IfEqual key0,ets., Send test{Space}	
-Else IfEqual key0,etsn., Send sent{Space}
-Else IfEqual key0,esfl., Send self{Space}
-Else IfEqual key0,epal., Send Apple{Space}
-Else IfEqual key0,eiscn., Send science{Space}
-Else IfEqual key0,rtlv., Send virtual{Space}
-Else IfEqual key0,ts., Send street{Space}
-Else IfEqual key0,odg., Send dog{Space}
-Else IfEqual key0,ertin., Send internet{Space}
-Else IfEqual key0,rtpcn., Send corporation{Space}
-Else IfEqual key0,werti., Send Twitter{Space}
-Else IfEqual key0,erac., Send race{Space}
-Else IfEqual key0,erus., Send user{Space}
-Else IfEqual key0,rac., Send car{Space}
-Else IfEqual key0,roadb., Send broad{Space}
-Else IfEqual key0,wera., Send aware{Space}
-Else IfEqual key0,wrtoh., Send worth{Space}
-Else IfEqual key0,ertafh., Send farther{Space}
-Else IfEqual key0,ypal., Send apply{Space}
-Else IfEqual key0,rtpc., Send capture{Space}
-Else IfEqual key0,erups., Send pressure{Space}
-Else IfEqual key0,esl., Send sell{Space}
-Else IfEqual key0,eifl., Send file{Space}
-Else IfEqual key0,weak., Send wake{Space}
-Else IfEqual key0,deadl., Send lead{Space}
- Else IfEqual key0,wer', Send we're{Space}
- Else IfEqual key0,esh', Send he's{Space} 
-  Else IfEqual key0,id', Send I'd{Space}
- Else IfEqual key0,yal', Send y'all{Space}
- Else IfEqual key0,t', Send {BackSpace}'t{Space} 
- Else IfEqual key0,wosh', Send who's{Space} 
- Else IfEqual key0,tid'n, Send didn't{Space} 
- Else IfEqual key0,t'n, Send {BackSpace}n't{Space}
- Else IfEqual key0,d', Send {BackSpace}'d{Space}
- Else IfEqual key0,ts', Send that's{Space} 
- Else IfEqual key0,s', Send {BackSpace}'s{Space}
- Else IfEqual key0,'l, Send {BackSpace}'ll{Space}
-Else IfEqual key0,ad., Send add{Space}
-Else IfEqual key0,easc., Send access{Space}
-Else IfEqual key0,edc., Send {BackSpace}cede{Space}
-Else IfEqual key0,eis., Send {BackSpace}ies{Space}
-Else IfEqual key0,eolv., Send evolve{Space}
-Else IfEqual key0,epash., Send phase{Space}
-Else IfEqual key0,ertal., Send alter{Space}
-Else IfEqual key0,fl., Send full{Space}
-Else IfEqual key0,til., Send it'll{Space}
-Else IfEqual key0,til', Send it'll{Space}
-Else IfEqual key0,tpln., Send population{Space}
-Else IfEqual key0,vm., Send movie{Space}
+If (key0 = "r'" or key0 = "r';" or key0 = "R'")
+    str = {BackSpace}r{Space}
+Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
+    str = understood{Space}
+Else if (key0 = "werth." or key0 = "werth.;" or key0 = "WERTH>")
+    str = threw{Space}
+Else if (key0 = "eiosn." or key0 = "eiosn.;" or key0 = "EIOSN>")
+    str = session{Space}
+Else if (key0 = "rsv." or key0 = "rsv.;" or key0 = "RSV>")
+    str = verse{Space}
+Else if (key0 = "onm." or key0 = "onm.;" or key0 = "ONM>")
+    str = moon{Space}
+Else if (key0 = "eri." or key0 = "eri.;" or key0 = "ERI>")
+    str = {BackSpace}{BackSpace}ier{Space}
+Else if (key0 = "rsv'" or key0 = "rsv';" or key0 = "RSV'")
+    str = verse{Space}
+Else if (key0 = "tasl." or key0 = "tasl.;" or key0 = "TASL>")
+    str = salt{Space}
+Else if (key0 = "ertah." or key0 = "ertah.;" or key0 = "ERTAH>")
+    str = earth{Space}
+Else if (key0 = "us." or key0 = "us.;" or key0 = "US>")
+    str = United States{Space}
+Else if (key0 = "uosdn." or key0 = "uosdn.;" or key0 = "UOSDN>")
+    str = sounds{Space}
+Else if (key0 = "tasl." or key0 = "tasl.;" or key0 = "TASL>")
+    str = last{Space}
+Else if (key0 = "tioan." or key0 = "tioan.;" or key0 = "TIOAN>")
+    str = {BackSpace}{BackSpace}ation{Space}
+Else if (key0 = "epsd." or key0 = "epsd.;" or key0 = "EPSD>")
+    str = speed{Space}
+Else if (key0 = "iadn." or key0 = "iadn.;" or key0 = "IADN>")
+    str = Indian{Space}
+Else if (key0 = "eas." or key0 = "eas.;" or key0 = "EAS>")
+    str = sea{Space}
+Else if (key0 = "tisl." or key0 = "tisl.;" or key0 = "TISL>")
+    str = list{Space}
+Else if (key0 = "eragn." or key0 = "eragn.;" or key0 = "ERAGN>")
+    str = arrange{Space}
+Else if (key0 = "erp'" or key0 = "erp';" or key0 = "ERP'")
+    str = pepper{Space}
+Else if (key0 = "epa." or key0 = "epa.;" or key0 = "EPA>")
+    str = pea{Space}
+Else if (key0 = "eadh." or key0 = "eadh.;" or key0 = "EADH>")
+    str = ahead{Space}
+Else if (key0 = "ajn." or key0 = "ajn.;" or key0 = "AJN>")
+    str = January{Space}
+Else if (key0 = "edc." or key0 = "edc.;" or key0 = "EDC>")
+    str = December{Space}
+Else if (key0 = "efb." or key0 = "efb.;" or key0 = "EFB>")
+    str = February{Space}
+Else if (key0 = "erign." or key0 = "erign.;" or key0 = "ERIGN>")
+    str = reign{Space}
+Else if (key0 = "erin." or key0 = "erin.;" or key0 = "ERIN>")
+    str = rein{Space}
+Else if (key0 = "eros." or key0 = "eros.;" or key0 = "EROS>")
+    str = sore{Space}
+Else if (key0 = "ersv." or key0 = "ersv.;" or key0 = "ERSV>")
+    str = severe{Space}
+Else if (key0 = "ertihn." or key0 = "ertihn.;" or key0 = "ERTIHN>")
+    str = inherit{Space}
+Else if (key0 = "eryal." or key0 = "eryal.;" or key0 = "ERYAL>")
+    str = relay{Space}
+Else if (key0 = "etask." or key0 = "etask.;" or key0 = "ETASK>")
+    str = steak{Space}
+Else if (key0 = "ethm." or key0 = "ethm.;" or key0 = "ETHM>")
+    str = theme{Space}
+Else if (key0 = "etivn." or key0 = "etivn.;" or key0 = "ETIVN>")
+    str = invent{Space}
+Else if (key0 = "etps." or key0 = "etps.;" or key0 = "ETPS>")
+    str = September{Space}
+Else if (key0 = "etups." or key0 = "etups.;" or key0 = "ETUPS>")
+    str = setup{Space}
+Else if (key0 = "eus." or key0 = "eus.;" or key0 = "EUS>")
+    str = sue{Space}
+Else if (key0 = "iskn." or key0 = "iskn.;" or key0 = "ISKN>")
+    str = sink{Space}
+Else if (key0 = "ovn." or key0 = "ovn.;" or key0 = "OVN>")
+    str = November{Space}
+Else if (key0 = "rahcm." or key0 = "rahcm.;" or key0 = "RAHCM>")
+    str = March{Space}
+Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
+    str = understood{Space}
+Else if (key0 = "wra." or key0 = "wra.;" or key0 = "WRA>")
+    str = raw{Space}
+Else if (key0 = "tian'" or key0 = "tian';" or key0 = "TIAN'")
+    str = ain’t{Space}
+Else if (key0 = "yam." or key0 = "yam.;" or key0 = "YAM>")
+    str = May{Space}
+Else if (key0 = "adh." or key0 = "adh.;" or key0 = "ADH>")
+    str = dah{Space}
+Else if (key0 = "uag." or key0 = "uag.;" or key0 = "UAG>")
+    str = August{Space}
+Else if (key0 = "tush." or key0 = "tush.;" or key0 = "TUSH>")
+    str = thus{Space}
+Else if (key0 = "toc." or key0 = "toc.;" or key0 = "TOC>")
+    str = October{Space}
+Else if (key0 = "tsfcn." or key0 = "tsfcn.;" or key0 = "TSFCN>")
+    str = fascinate{Space}
+Else if (key0 = "ertial." or key0 = "ertial.;" or key0 = "ERTIAL>")
+    str = literal{Space}
+Else if (key0 = "ian." or key0 = "ian.;" or key0 = "IAN>")
+    str = {BackSpace}{BackSpace}ian{Space}
+Else if (key0 = "iofn." or key0 = "iofn.;" or key0 = "IOFN>")
+    str = information{Space}
+Else if (key0 = "rpdc." or key0 = "rpdc.;" or key0 = "RPDC>")
+    str = procedure{Space}
+Else if (key0 = "ion." or key0 = "ion.;" or key0 = "ION>")
+    str = {BackSpace}{BackSpace}ion{Space}
+Else if (key0 = "asd." or key0 = "asd.;" or key0 = "ASD>")
+    str = sad{Space}
+Else if (key0 = "rpgm." or key0 = "rpgm.;" or key0 = "RPGM>")
+    str = programmer{Space}
+Else if (key0 = "etas'" or key0 = "etas';" or key0 = "ETAS'")
+    str = east{Space}
+Else if (key0 = "ioa." or key0 = "ioa.;" or key0 = "IOA>")
+    str = {BackSpace}{BackSpace}ation{Space}
+Else if (key0 = "etn." or key0 = "etn.;" or key0 = "ETN>")
+    str = {BackSpace}ent{Space}
+Else if (key0 = "epasc." or key0 = "epasc.;" or key0 = "EPASC>")
+    str = escape{Space}
+Else if (key0 = "alb." or key0 = "alb.;" or key0 = "ALB>")
+    str = ball{Space}
+Else if (key0 = "wton'" or key0 = "wton';" or key0 = "WTON'")
+    str = won't{Space}
+Else if (key0 = "ok'" or key0 = "ok';" or key0 = "OK'")
+    str = okay{Space}
+Else if (key0 = "epsl." or key0 = "epsl.;" or key0 = "EPSL>")
+    str = spell{Space}
+Else if (key0 = "eops." or key0 = "eops.;" or key0 = "EOPS>")
+    str = oppose{Space}
+Else if (key0 = "erias." or key0 = "erias.;" or key0 = "ERIAS>")
+    str = easier{Space}
+Else if (key0 = "tkn." or key0 = "tkn.;" or key0 = "TKN>")
+    str = taken{Space}
+Else if (key0 = "erashc." or key0 = "erashc.;" or key0 = "ERASHC>")
+    str = research{Space}
+Else if (key0 = "flcn." or key0 = "flcn.;" or key0 = "FLCN>")
+    str = influence{Space}
+Else if (key0 = "lcn." or key0 = "lcn.;" or key0 = "LCN>")
+    str = council{Space}
+Else if (key0 = "ro." or key0 = "ro.;" or key0 = "RO>")
+    str = {backspace}or{Space}
+Else if (key0 = "tnm." or key0 = "tnm.;" or key0 = "TNM>")
+    str = mountain{Space}
+Else if (key0 = "ef." or key0 = "ef.;" or key0 = "EF>")
+    str = fee{Space}
+Else if (key0 = "rplcn." or key0 = "rplcn.;" or key0 = "RPLCN>")
+    str = principal{Space}
+Else if (key0 = "etam." or key0 = "etam.;" or key0 = "ETAM>")
+    str = meat{Space}
+Else if (key0 = "ogl." or key0 = "ogl.;" or key0 = "OGL>")
+    str = logging{Space}
+Else if (key0 = "ozm." or key0 = "ozm.;" or key0 = "OZM>")
+    str = zoom{Space}
+Else if (key0 = "qrts." or key0 = "qrts.;" or key0 = "QRTS>")
+    str = squirt{Space}
+Else if (key0 = "ram." or key0 = "ram.;" or key0 = "RAM>")
+    str = ram{Space}
+Else if (key0 = "rdg." or key0 = "rdg.;" or key0 = "RDG>")
+    str = grade{Space}
+Else if (key0 = "flcn." or key0 = "flcn.;" or key0 = "FLCN>")
+    str = influence{Space}
+Else if (key0 = "rgnm." or key0 = "rgnm.;" or key0 = "RGNM>")
+    str = manager{Space}
+Else if (key0 = "rslv." or key0 = "rslv.;" or key0 = "RSLV>")
+    str = resolve{Space}
+Else if (key0 = "rsvn." or key0 = "rsvn.;" or key0 = "RSVN>")
+    str = nervous{Space}
+Else if (key0 = "rtfg." or key0 = "rtfg.;" or key0 = "RTFG>")
+    str = forgot{Space}
+Else if (key0 = "rtsg." or key0 = "rtsg.;" or key0 = "RTSG>")
+    str = string{Space}
+Else if (key0 = "wal." or key0 = "wal.;" or key0 = "WAL>")
+    str = wall{Space}
+Else if (key0 = "ruos." or key0 = "ruos.;" or key0 = "RUOS>")
+    str = sour{Space}
+Else if (key0 = "slcn." or key0 = "slcn.;" or key0 = "SLCN>")
+    str = silence{Space}
+Else if (key0 = "slv." or key0 = "slv.;" or key0 = "SLV>")
+    str = solve{Space}
+Else if (key0 = "tac." or key0 = "tac.;" or key0 = "TAC>")
+    str = cat{Space}
+Else if (key0 = "tcn." or key0 = "tcn.;" or key0 = "TCN>")
+    str = contain{Space}
+Else if (key0 = "tiac." or key0 = "tiac.;" or key0 = "TIAC>")
+    str = {backspace}atic{Space}
+Else if (key0 = "tian." or key0 = "tian.;" or key0 = "TIAN>")
+    str = taint{Space}
+Else if (key0 = "wo." or key0 = "wo.;" or key0 = "WO>")
+    str = wow{Space}
+Else if (key0 = "yas." or key0 = "yas.;" or key0 = "YAS>")
+    str = says{Space}
+Else if (key0 = "ypal." or key0 = "ypal.;" or key0 = "YPAL>")
+    str = apply{Space}
+Else if (key0 = "l'" or key0 = "l';" or key0 = "L'")
+    str = {backspace}‘ll{Space}
+Else if (key0 = "ghcn." or key0 = "ghcn.;" or key0 = "GHCN>")
+    str = changing{Space}
+Else if (key0 = "in." or key0 = "in.;" or key0 = "IN>")
+    str = in
+Else if (key0 = "idk." or key0 = "idk.;" or key0 = "IDK>")
+    str = kid{Space}
+Else if (key0 = "gln." or key0 = "gln.;" or key0 = "GLN>")
+    str = language lng.{Space}
+Else if (key0 = "eshl." or key0 = "eshl.;" or key0 = "ESHL>")
+    str = she'll{Space}
+Else if (key0 = "e'v" or key0 = "e'v;" or key0 = "E'V")
+    str = {backspace}‘ve{Space}
+Else if (key0 = "etsg." or key0 = "etsg.;" or key0 = "ETSG>")
+    str = settings{Space}
+Else if (key0 = "esc." or key0 = "esc.;" or key0 = "ESC>")
+    str = escape{Space}
+Else if (key0 = "ergm." or key0 = "ergm.;" or key0 = "ERGM>")
+    str = emerge{Space}
+Else if (key0 = "rtuogh." or key0 = "rtuogh.;" or key0 = "RTUOGH>")
+    str = thorough{Space}
+Else if (key0 = "ealb." or key0 = "ealb.;" or key0 = "EALB>")
+    str = {backspace}able{Space}
+Else if (key0 = "ealb." or key0 = "ealb.;" or key0 = "EALB>")
+    str = {backspace}able{Space}
+Else if (key0 = "wto'" or key0 = "wto';" or key0 = "WTO'")
+    str = two{Space}
+Else if (key0 = "epal." or key0 = "epal.;" or key0 = "EPAL>")
+    str = appeal{Space}
+Else if (key0 = "ets'" or key0 = "ets';" or key0 = "ETS'")
+    str = {BackSpace}{BackSpace}est{Space}
+Else if (key0 = "er'" or key0 = "er';" or key0 = "ER'")
+    str = {backspace}‘re{Space}
+Else if (key0 = "eiasl." or key0 = "eiasl.;" or key0 = "EIASL>")
+    str = liaise{Space}
+Else if (key0 = "erakb." or key0 = "erakb.;" or key0 = "ERAKB>")
+    str = brake{Space}
+Else if (key0 = "tvm." or key0 = "tvm.;" or key0 = "TVM>")
+    str = motivate{Space}
+Else if (key0 = "era." or key0 = "era.;" or key0 = "ERA>")
+    str = rear{Space}
+Else if (key0 = "rtdc." or key0 = "rtdc.;" or key0 = "RTDC>")
+    str = direct{Space}
+Else if (key0 = "era'" or key0 = "era';" or key0 = "ERA'")
+    str = era{Space}
+Else if (key0 = "tuogh." or key0 = "tuogh.;" or key0 = "TUOGH>")
+    str = ought{Space}
+Else if (key0 = "d." or key0 = "d.;" or key0 = "D>")
+    str ={backspace}d{Space}
+Else if (key0 = "hm." or key0 = "hm.;" or key0 = "HM>")
+    str = Mm-mmm.{Space}
+Else if (key0 = "ign." or key0 = "ign.;" or key0 = "IGN>")
+    str = {backspace}{backspace}ing{Space}
+Else if (key0 = "esl." or key0 = "esl.;" or key0 = "ESL>")
+    str = less{Space}
+Else if (key0 = "etan." or key0 = "etan.;" or key0 = "ETAN>")
+    str = tenant{Space}
+Else if (key0 = "rtfh." or key0 = "rtfh.;" or key0 = "RTFH>")
+    str = further{Space}
+Else if (key0 = "tivn." or key0 = "tivn.;" or key0 = "TIVN>")
+    str = invite{Space}
+Else if (key0 = "esdn." or key0 = "esdn.;" or key0 = "ESDN>")
+    str = dense{Space}
+Else if (key0 = "erias" or key0 = "erias;" or key0 = "ERIAS")
+    str = easier{Space}
+Else if (key0 = "rtln." or key0 = "rtln.;" or key0 = "RTLN>")
+    str = natural{Space}
+Else if (key0 = ".ertpsn" or key0 = ".ertpsn;" or key0 = ".ERTPSN")
+    str = represent{Space}
+Else if (key0 = "erf." or key0 = "erf.;" or key0 = "ERF>")
+    str = refer{Space}
+Else if (key0 = "eru." or key0 = "eru.;" or key0 = "ERU>")
+    str = {backspace}ure{Space}
+Else if (key0 = "etsh." or key0 = "etsh.;" or key0 = "ETSH>")
+    str = sheet{Space}
+Else if (key0 = "on." or key0 = "on.;" or key0 = "ON>")
+    str = non{Space}
+Else if (key0 = "rtipn." or key0 = "rtipn.;" or key0 = "RTIPN>")
+    str = interrupt{Space}
+Else if (key0 = "tas." or key0 = "tas.;" or key0 = "TAS>")
+    str = asset{Space}
+Else if (key0 = "scnm." or key0 = "scnm.;" or key0 = "SCNM>")
+    str = musician{Space}
+Else if (key0 = "tgvn." or key0 = "tgvn.;" or key0 = "TGVN>")
+    str = vintage{Space}
+Else if (key0 = "rtsg." or key0 = "rtsg.;" or key0 = "RTSG>")
+    str = register{Space}
+Else if (key0 = "eivn." or key0 = "eivn.;" or key0 = "EIVN>")
+    str = vine{Space}
+Else if (key0 = "etas." or key0 = "etas.;" or key0 = "ETAS>")
+    str = taste{Space}
+Else if (key0 = "etsn." or key0 = "etsn.;" or key0 = "ETSN>")
+    str = nest{Space}
+Else if (key0 = "tan." or key0 = "tan.;" or key0 = "TAN>")
+    str = {BackSpace}ant{Space}
+Else if (key0 = "eon." or key0 = "eon.;" or key0 = "EON>")
+    str = none{Space}
+Else if (key0 = "apl." or key0 = "apl.;" or key0 = "APL>")
+    str = appeal{Space}
+Else if (key0 = "eis." or key0 = "eis.;" or key0 = "EIS>")
+    str = {BackSpace}{BackSpace}ies{Space}
+Else if (key0 = "asb." or key0 = "asb.;" or key0 = "ASB>")
+    str = bass{Space}
+Else if (key0 = "dlb." or key0 = "dlb.;" or key0 = "DLB>")
+    str = double{Space}
+Else if (key0 = "eag." or key0 = "eag.;" or key0 = "EAG>")
+    str = {BackSpace}age{Space}
+Else if (key0 = "ecn." or key0 = "ecn.;" or key0 = "ECN>")
+    str = {BackSpace}ence{Space}
+Else if (key0 = "erta." or key0 = "erta.;" or key0 = "ERTA>")
+    str = treat{Space}
+Else if (key0 = "ertcn." or key0 = "ertcn.;" or key0 = "ERTCN>")
+    str = center{Space}
+Else if (key0 = "eta." or key0 = "eta.;" or key0 = "ETA>")
+    str = eat{Space}
+Else if (key0 = "ipsh." or key0 = "ipsh.;" or key0 = "IPSH>")
+    str = ship{Space}
+Else if (key0 = "rpsf." or key0 = "rpsf.;" or key0 = "RPSF>")
+    str = professor{Space}
+Else if (key0 = "rtg." or key0 = "rtg.;" or key0 = "RTG>")
+    str = guitar{Space}
+Else if (key0 = "rtlb." or key0 = "rtlb.;" or key0 = "RTLB>")
+    str = terrible{Space}
+Else if (key0 = "rtpa." or key0 = "rtpa.;" or key0 = "RTPA>")
+    str = appropriate{Space}
+Else if (key0 = "rtpc." or key0 = "rtpc.;" or key0 = "RTPC>")
+    str = participate{Space}
+Else if (key0 = "rtpn." or key0 = "rtpn.;" or key0 = "RTPN>")
+    str = partner{Space}
+Else if (key0 = "rtuh." or key0 = "rtuh.;" or key0 = "RTUH>")
+    str = truth{Space}
+Else if (key0 = "tgn." or key0 = "tgn.;" or key0 = "TGN>")
+    str = negotiation{Space}
+Else if (key0 = "tidn." or key0 = "tidn.;" or key0 = "TIDN>")
+    str = identity{Space}
+Else if (key0 = "tih." or key0 = "tih.;" or key0 = "TIH>")
+    str = hit{Space}
+Else if (key0 = "tplc." or key0 = "tplc.;" or key0 = "TPLC>")
+    str = political{Space}
+Else if (key0 = "tsn." or key0 = "tsn.;" or key0 = "TSN>")
+    str = situation{Space}
+Else if (key0 = "ty." or key0 = "ty.;" or key0 = "TY>")
+    str = YouTube{Space}
+Else if (key0 = "wn." or key0 = "wn.;" or key0 = "WN>")
+    str = No worries.{Space}
+Else if (key0 = "adb." or key0 = "adb.;" or key0 = "ADB>")
+    str = bad{Space}
+Else if (key0 = "asb." or key0 = "asb.;" or key0 = "ASB>")
+    str = bass{Space}
+Else if (key0 = "efl." or key0 = "efl.;" or key0 = "EFL>")
+    str = fell{Space}
+Else if (key0 = "eifv." or key0 = "eifv.;" or key0 = "EIFV>")
+    str = five{Space}
+Else if (key0 = "ein." or key0 = "ein.;" or key0 = "EIN>")
+    str = nine{Space}
+Else if (key0 = "eiv." or key0 = "eiv.;" or key0 = "EIV>")
+    str = {BackSpace}ive{Space}
+Else if (key0 = "em." or key0 = "em.;" or key0 = "EM>")
+    str = em{Space}
+Else if (key0 = "eran." or key0 = "eran.;" or key0 = "ERAN>")
+    str = earn{Space}
+Else if (key0 = "erth." or key0 = "erth.;" or key0 = "ERTH>")
+    str = three{Space}
+Else if (key0 = "esh." or key0 = "esh.;" or key0 = "ESH>")
+    str = he's{Space}
+Else if (key0 = "esvn." or key0 = "esvn.;" or key0 = "ESVN>")
+    str = seven{Space}
+Else if (key0 = "etigh." or key0 = "etigh.;" or key0 = "ETIGH>")
+    str = eight{Space}
+Else if (key0 = "eton." or key0 = "eton.;" or key0 = "ETON>")
+    str = tone{Space}
+Else if (key0 = "isx." or key0 = "isx.;" or key0 = "ISX>")
+    str = six{Space}
+Else if (key0 = "rpa." or key0 = "rpa.;" or key0 = "RPA>")
+    str = appear{Space}
+Else if (key0 = "ruof." or key0 = "ruof.;" or key0 = "RUOF>")
+    str = four{Space}
+Else if (key0 = "til." or key0 = "til.;" or key0 = "TIL>")
+    str = till{Space}
+Else if (key0 = "tosh." or key0 = "tosh.;" or key0 = "TOSH>")
+    str = shoot{Space}
+Else if (key0 = "wto." or key0 = "wto.;" or key0 = "WTO>")
+    str = two{Space}
+Else if (key0 = "rtos." or key0 = "rtos.;" or key0 = "RTOS>")
+    str = sort of{Space}
+Else if (key0 = "og." or key0 = "og.;" or key0 = "OG>")
+    str = going{Space}
+Else if (key0 = "tish." or key0 = "tish.;" or key0 = "TISH>")
+    str = shit{Space}
+Else if (key0 = "tm." or key0 = "tm.;" or key0 = "TM>")
+    str = might{Space}
+Else if (key0 = "idf." or key0 = "idf.;" or key0 = "IDF>")
+    str = difficult{Space}
+Else if (key0 = "tdn." or key0 = "tdn.;" or key0 = "TDN>")
+    str = didn't{Space}
+Else if (key0 = "tidn." or key0 = "tidn.;" or key0 = "TIDN>")
+    str = didn't{Space}
+Else if (key0 = "er." or key0 = "er.;" or key0 = "ER>")
+    str = re
+Else if (key0 = "erp." or key0 = "erp.;" or key0 = "ERP>")
+    str = pre
+Else if (key0 = "em." or key0 = "em.;" or key0 = "EM>")
+    str = them{Space}
+Else if (key0 = "ig." or key0 = "ig.;" or key0 = "IG>")
+    str = Instagram{Space}
+Else if (key0 = "fb." or key0 = "fb.;" or key0 = "FB>")
+    str = Facebook{Space}
+Else if (key0 = "gl." or key0 = "gl.;" or key0 = "GL>")
+    str = Google{Space}
+Else if (key0 = "id." or key0 = "id.;" or key0 = "ID>")
+    str = I'd{Space}
+Else if (key0 = "ok." or key0 = "ok.;" or key0 = "OK>")
+    str = okay{Space}
+Else if (key0 = "sm." or key0 = "sm.;" or key0 = "SM>")
+    str = so much{Space}
+Else if (key0 = "etc." or key0 = "etc.;" or key0 = "ETC>")
+    str = technology{Space}
+Else if (key0 = "th." or key0 = "th.;" or key0 = "TH>")
+    str = th{Space}
+Else if (key0 = "tsh." or key0 = "tsh.;" or key0 = "TSH>")
+    str = that's{Space}
+Else if (key0 = "ev." or key0 = "ev.;" or key0 = "EV>")
+    str = ve{Space}
+Else if (key0 = "c." or key0 = "c.;" or key0 = "C>")
+    str = see{Space}
+Else if (key0 = "u." or key0 = "u.;" or key0 = "U>")
+    str = you{Space}
+Else if (key0 = "n." or key0 = "n.;" or key0 = "N>")
+    str = and{Space}
+Else if (key0 = "t." or key0 = "t.;" or key0 = "T>")
+    str = the{Space}
+Else if (key0 = "y." or key0 = "y.;" or key0 = "Y>")
+    str = yeah{Space}
+Else if (key0 = "b." or key0 = "b.;" or key0 = "B>")
+    str = but{Space}
+Else if (key0 = "tion." or key0 = "tion.;" or key0 = "TION>")
+    str = ition{Space}
+Else if (key0 = "w." or key0 = "w.;" or key0 = "W>")
+    str = with{Space}
+Else if (key0 = "p." or key0 = "p.;" or key0 = "P>")
+    str = pretty{Space}
+Else if (key0 = "k." or key0 = "k.;" or key0 = "K>")
+    str = know{Space}
+Else if (key0 = "q." or key0 = "q.;" or key0 = "Q>")
+    str = quick{Space}
+Else if (key0 = "g." or key0 = "g.;" or key0 = "G>")
+    str = great{Space}
+Else if (key0 = "l." or key0 = "l.;" or key0 = "L>")
+    str = like{Space}
+Else if (key0 = "r." or key0 = "r.;" or key0 = "R>")
+    str = really{Space}
+Else if (key0 = "sh." or key0 = "sh.;" or key0 = "SH>")
+    str = sh{Space}
+Else if (key0 = "j." or key0 = "j.;" or key0 = "J>")
+    str = just{Space}
+Else if (key0 = "m." or key0 = "m.;" or key0 = "M>")
+    str = much{Space}
+Else if (key0 = "e." or key0 = "e.;" or key0 = "E>")
+    str = even{Space}
+Else if (key0 = "d." or key0 = "d.;" or key0 = "D>")
+    str = ed{Space}
+Else if (key0 = "f." or key0 = "f.;" or key0 = "F>")
+    str = for{Space}
+Else if (key0 = "v." or key0 = "v.;" or key0 = "V>")
+    str = very{Space}
+Else if (key0 = "io." or key0 = "io.;" or key0 = "IO>")
+    str = {BackSpace}{BackSpace}tion{Space}
+Else if (key0 = "th." or key0 = "th.;" or key0 = "TH>")
+    str = th{Space}
+Else if (key0 = "hc." or key0 = "hc.;" or key0 = "HC>")
+    str = ch{Space}
+Else if (key0 = "to." or key0 = "to.;" or key0 = "TO>")
+    str = too{Space}
+Else if (key0 = "tuagh." or key0 = "tuagh.;" or key0 = "TUAGH>")
+    str = aught{Space}
+Else if (key0 = "ocn." or key0 = "ocn.;" or key0 = "OCN>")
+    str = con{Space}
+Else if (key0 = "era." or key0 = "era.;" or key0 = "ERA>")
+    str = are{Space}
+Else if (key0 = "gc." or key0 = "gc.;" or key0 = "GC>")
+    str = seeing{Space}
+Else if (key0 = "wya." or key0 = "wya.;" or key0 = "WYA>")
+    str = away{Space}
+Else if (key0 = "was." or key0 = "was.;" or key0 = "WAS>")
+    str = saw{Space}
+Else if (key0 = "3" or key0 = "3;" or key0 = "3")
+    str = three{Space}
+Else if (key0 = "1" or key0 = "1;" or key0 = "1")
+    str = one{Space}
+Else if (key0 = "2" or key0 = "2;" or key0 = "2")
+    str = two{Space}
+Else if (key0 = "4" or key0 = "4;" or key0 = "4")
+    str = four{Space}
+Else if (key0 = "5" or key0 = "5;" or key0 = "5")
+    str = five{Space}
+Else if (key0 = "ex." or key0 = "ex.;" or key0 = "EX>")
+    str = exact{Space}
+Else if (key0 = "6" or key0 = "6;" or key0 = "6")
+    str = six{Space}
+Else if (key0 = "7" or key0 = "7;" or key0 = "7")
+    str = seven{Space}
+Else if (key0 = "8" or key0 = "8;" or key0 = "8")
+    str = eight{Space}
+Else if (key0 = "9" or key0 = "9;" or key0 = "9")
+    str = nine{Space}
+Else if (key0 = "0" or key0 = "0;" or key0 = "0")
+    str = 10{Space}
+Else if (key0 = "woh." or key0 = "woh.;" or key0 = "WOH>")
+    str = who{Space}
+Else if (key0 = "etl." or key0 = "etl.;" or key0 = "ETL>")
+    str = tell{Space}
+Else if (key0 = "erts." or key0 = "erts.;" or key0 = "ERTS>")
+    str = stress{Space}
+Else if (key0 = "st." or key0 = "st.;" or key0 = "ST>")
+    str = st{Space}
+Else if (key0 = "tops." or key0 = "tops.;" or key0 = "TOPS>")
+    str = post{Space}
+Else if (key0 = "tis." or key0 = "tis.;" or key0 = "TIS>")
+    str = sit{Space}
+Else if (key0 = "ashl." or key0 = "ashl.;" or key0 = "ASHL>")
+    str = shall{Space}
+Else if (key0 = "esd." or key0 = "esd.;" or key0 = "ESD>")
+    str = seed{Space}
+Else if (key0 = "was." or key0 = "was.;" or key0 = "WAS>")
+    str = saw{Space}
+Else if (key0 = "won." or key0 = "won.;" or key0 = "WON>")
+    str = own{Space}
+Else if (key0 = "on." or key0 = "on.;" or key0 = "ON>")
+    str = on{Space}
+Else if (key0 = "etfl." or key0 = "etfl.;" or key0 = "ETFL>")
+    str = left{Space}
+Else if (key0 = "wtah." or key0 = "wtah.;" or key0 = "WTAH>")
+    str = thaw{Space}
+Else if (key0 = "of." or key0 = "of.;" or key0 = "OF>")
+    str = off{Space}
+Else if (key0 = "eanm." or key0 = "eanm.;" or key0 = "EANM>")
+    str = name{Space}
+Else if (key0 = "eilv." or key0 = "eilv.;" or key0 = "EILV>")
+    str = evil{Space}
+Else if (key0 = "epk." or key0 = "epk.;" or key0 = "EPK>")
+    str = peek{Space}
+Else if (key0 = "rtuh." or key0 = "rtuh.;" or key0 = "RTUH>")
+    str = hurt{Space}
+Else if (key0 = "toh." or key0 = "toh.;" or key0 = "TOH>")
+    str = hot{Space}
+Else if (key0 = "ish." or key0 = "ish.;" or key0 = "ISH>")
+    str = ish{Space}
+Else if (key0 = "erh." or key0 = "erh.;" or key0 = "ERH>")
+    str = here{Space}
+Else if (key0 = "og." or key0 = "og.;" or key0 = "OG>")
+    str = original{Space}
+Else if (key0 = "ed." or key0 = "ed.;" or key0 = "ED>")
+    str = de
+Else if (key0 = "tops." or key0 = "tops.;" or key0 = "TOPS>")
+    str = post
+Else if (key0 = "ism." or key0 = "ism.;" or key0 = "ISM>")
+    str = mis{Space}
+Else if (key0 = "al." or key0 = "al.;" or key0 = "AL>")
+    str = {BackSpace}al{Space}
+Else if (key0 = "s." or key0 = "s.;" or key0 = "S>")
+    str = {BackSpace}s{Space}
+Else if (key0 = "esn." or key0 = "esn.;" or key0 = "ESN>")
+    str = {BackSpace}ness{Space}
+Else if (key0 = "i." or key0 = "i.;" or key0 = "I>")
+    str = I{Space}
+Else if (key0 = "a." or key0 = "a.;" or key0 = "A>")
+    str = a{Space}
+Else if (key0 = "ufl." or key0 = "ufl.;" or key0 = "UFL>")
+    str = {BackSpace}ful{Space}
+Else if (key0 = "er." or key0 = "er.;" or key0 = "ER>")
+    str = re
+Else if (key0 = "toh." or key0 = "toh.;" or key0 = "TOH>")
+    str = oth{Space}
+Else if (key0 = "ton." or key0 = "ton.;" or key0 = "TON>")
+    str = ton{Space}
+Else if (key0 = "yal." or key0 = "yal.;" or key0 = "YAL>")
+    str = {BackSpace}ally{Space}
+Else if (key0 = "able." or key0 = "able.;" or key0 = "ABLE>")
+    str = able
+Else if (key0 = "ua." or key0 = "ua.;" or key0 = "UA>")
+    str = ua
+Else if (key0 = "edn." or key0 = "edn.;" or key0 = "EDN>")
+    str = end{Space}
+Else if (key0 = "er." or key0 = "er.;" or key0 = "ER>")
+    str = {BackSpace}er
+Else if (key0 = "etm." or key0 = "etm.;" or key0 = "ETM>")
+    str = meet{Space}
+Else if (key0 = "etg." or key0 = "etg.;" or key0 = "ETG>")
+    str = getting{Space}
+Else if (key0 = "al." or key0 = "al.;" or key0 = "AL>")
+    str = {BackSpace}al
+Else if (key0 = "tops." or key0 = "tops.;" or key0 = "TOPS>")
+    str = post{Space}
+Else if (key0 = "eag." or key0 = "eag.;" or key0 = "EAG>")
+    str = age
+Else if (key0 = "ertih." or key0 = "ertih.;" or key0 = "ERTIH>")
+    str = either{Space}
+Else if (key0 = "gv." or key0 = "gv.;" or key0 = "GV>")
+    str = giving{Space}
+Else if (key0 = "erashc." or key0 = "erashc.;" or key0 = "ERASHC>")
+    str = research{Space}
+Else if (key0 = "edf." or key0 = "edf.;" or key0 = "EDF>")
+    str = feed{Space}
+Else if (key0 = "eoshc." or key0 = "eoshc.;" or key0 = "EOSHC>")
+    str = choose{Space}
+Else if (key0 = "eigbn." or key0 = "eigbn.;" or key0 = "EIGBN>")
+    str = beginning{Space}
+Else if (key0 = "opsh." or key0 = "opsh.;" or key0 = "OPSH>")
+    str = shops{Space}
+Else if (key0 = "esm." or key0 = "esm.;" or key0 = "ESM>")
+    str = seems{Space}
+Else if (key0 = "ertal." or key0 = "ertal.;" or key0 = "ERTAL>")
+    str = relate{Space}
+Else if (key0 = "etis." or key0 = "etis.;" or key0 = "ETIS>")
+    str = {BackSpace}ities{Space}
+Else if (key0 = "tol." or key0 = "tol.;" or key0 = "TOL>")
+    str = tool{Space}
+Else if (key0 = "tasf." or key0 = "tasf.;" or key0 = "TASF>")
+    str = staff{Space}
+Else if (key0 = "sn." or key0 = "sn.;" or key0 = "SN>")
+    str = season{Space}
+Else if (key0 = "isgn." or key0 = "isgn.;" or key0 = "ISGN>")
+    str = sing{Space}
+Else if (key0 = "erpa." or key0 = "erpa.;" or key0 = "ERPA>")
+    str = paper{Space}
+Else if (key0 = "es." or key0 = "es.;" or key0 = "ES>")
+    str = {BackSpace}es{Space}
+Else if (key0 = "epsdn." or key0 = "epsdn.;" or key0 = "EPSDN>")
+    str = depends{Space}
+Else if (key0 = "rtlc." or key0 = "rtlc.;" or key0 = "RTLC>")
+    str = critical{Space}
+Else if (key0 = "ertpsn." or key0 = "ertpsn.;" or key0 = "ERTPSN>")
+    str = represent{Space}
+Else if (key0 = "oagln." or key0 = "oagln.;" or key0 = "OAGLN>")
+    str = analog{Space}
+Else if (key0 = "ral." or key0 = "ral.;" or key0 = "RAL>")
+    str = lar
+Else if (key0 = "tahc." or key0 = "tahc.;" or key0 = "TAHC>")
+    str = attach{Space}
+Else if (key0 = "ertpan." or key0 = "ertpan.;" or key0 = "ERTPAN>")
+    str = parent{Space}
+Else if (key0 = "igh." or key0 = "igh.;" or key0 = "IGH>")
+    str = igh{Space}
+Else if (key0 = "ets." or key0 = "ets.;" or key0 = "ETS>")
+    str = test{Space}
+Else if (key0 = "etsn." or key0 = "etsn.;" or key0 = "ETSN>")
+    str = sent{Space}
+Else if (key0 = "esfl." or key0 = "esfl.;" or key0 = "ESFL>")
+    str = self{Space}
+Else if (key0 = "epal." or key0 = "epal.;" or key0 = "EPAL>")
+    str = Apple{Space}
+Else if (key0 = "eiscn." or key0 = "eiscn.;" or key0 = "EISCN>")
+    str = science{Space}
+Else if (key0 = "rtlv." or key0 = "rtlv.;" or key0 = "RTLV>")
+    str = virtual{Space}
+Else if (key0 = "ts." or key0 = "ts.;" or key0 = "TS>")
+    str = street{Space}
+Else if (key0 = "odg." or key0 = "odg.;" or key0 = "ODG>")
+    str = dog{Space}
+Else if (key0 = "ertin." or key0 = "ertin.;" or key0 = "ERTIN>")
+    str = internet{Space}
+Else if (key0 = "rtpcn." or key0 = "rtpcn.;" or key0 = "RTPCN>")
+    str = corporation{Space}
+Else if (key0 = "werti." or key0 = "werti.;" or key0 = "WERTI>")
+    str = Twitter{Space}
+Else if (key0 = "erac." or key0 = "erac.;" or key0 = "ERAC>")
+    str = race{Space}
+Else if (key0 = "erus." or key0 = "erus.;" or key0 = "ERUS>")
+    str = user{Space}
+Else if (key0 = "rac." or key0 = "rac.;" or key0 = "RAC>")
+    str = car{Space}
+Else if (key0 = "roadb." or key0 = "roadb.;" or key0 = "ROADB>")
+    str = broad{Space}
+Else if (key0 = "wera." or key0 = "wera.;" or key0 = "WERA>")
+    str = aware{Space}
+Else if (key0 = "wrtoh." or key0 = "wrtoh.;" or key0 = "WRTOH>")
+    str = worth{Space}
+Else if (key0 = "ertafh." or key0 = "ertafh.;" or key0 = "ERTAFH>")
+    str = farther{Space}
+Else if (key0 = "ypal." or key0 = "ypal.;" or key0 = "YPAL>")
+    str = apply{Space}
+Else if (key0 = "rtpc." or key0 = "rtpc.;" or key0 = "RTPC>")
+    str = capture{Space}
+Else if (key0 = "erups." or key0 = "erups.;" or key0 = "ERUPS>")
+    str = pressure{Space}
+Else if (key0 = "esl." or key0 = "esl.;" or key0 = "ESL>")
+    str = sell{Space}
+Else if (key0 = "eifl." or key0 = "eifl.;" or key0 = "EIFL>")
+    str = file{Space}
+Else if (key0 = "weak." or key0 = "weak.;" or key0 = "WEAK>")
+    str = wake{Space}
+Else if (key0 = "deadl." or key0 = "deadl.;" or key0 = "DEADL>")
+    str = lead{Space}
+Else if (key0 = "wer'" or key0 = "wer';" or key0 = "WER'")
+    str = we're{Space}
+Else if (key0 = "esh'" or key0 = "esh';" or key0 = "ESH'")
+    str = he's{Space}
+Else if (key0 = "id'" or key0 = "id';" or key0 = "ID'")
+    str = I'd{Space}
+Else if (key0 = "yal'" or key0 = "yal';" or key0 = "YAL'")
+    str = y'all{Space}
+Else if (key0 = "t'" or key0 = "t';" or key0 = "T'")
+    str = {BackSpace}'t{Space}
+Else if (key0 = "wosh'" or key0 = "wosh';" or key0 = "WOSH'")
+    str = who's{Space}
+Else if (key0 = "tid'n" or key0 = "tid'n;" or key0 = "TID'N")
+    str = didn't{Space}
+Else if (key0 = "t'n" or key0 = "t'n;" or key0 = "T'N")
+    str = {BackSpace}n't{Space}
+Else if (key0 = "d'" or key0 = "d';" or key0 = "D'")
+    str = {BackSpace}'d{Space}
+Else if (key0 = "ts'" or key0 = "ts';" or key0 = "TS'")
+    str = that's{Space}
+Else if (key0 = "s'" or key0 = "s';" or key0 = "S'")
+    str = {BackSpace}'s{Space}
+Else if (key0 = "l" or key0 = "l;" or key0 = "L")
+    str = {BackSpace}'ll{Space}
+Else if (key0 = "ad." or key0 = "ad.;" or key0 = "AD>")
+    str = add{Space}
+Else if (key0 = "easc." or key0 = "easc.;" or key0 = "EASC>")
+    str = access{Space}
+Else if (key0 = "edc." or key0 = "edc.;" or key0 = "EDC>")
+    str = {BackSpace}cede{Space}
+Else if (key0 = "eis." or key0 = "eis.;" or key0 = "EIS>")
+    str = {BackSpace}ies{Space}
+Else if (key0 = "eolv." or key0 = "eolv.;" or key0 = "EOLV>")
+    str = evolve{Space}
+Else if (key0 = "epash." or key0 = "epash.;" or key0 = "EPASH>")
+    str = phase{Space}
+Else if (key0 = "ertal." or key0 = "ertal.;" or key0 = "ERTAL>")
+    str = alter{Space}
+Else if (key0 = "fl." or key0 = "fl.;" or key0 = "FL>")
+    str = full{Space}
+Else if (key0 = "til." or key0 = "til.;" or key0 = "TIL>")
+    str = it'll{Space}
+Else if (key0 = "til'" or key0 = "til';" or key0 = "TIL'")
+    str = it'll{Space}
+Else if (key0 = "tpln." or key0 = "tpln.;" or key0 = "TPLN>")
+    str = population{Space}
+Else if (key0 = "vm." or key0 = "vm.;" or key0 = "VM>")
+    str = movie{Space}
 Return
-
-SENDSLASHup:
-SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, ERA?, Send Ear{Space} 
-Else IfEqual key0, TOPS?, Send Spot{Space} 
-Else IfEqual key0, ERTAL?, Send Latter{Space} 
-Else IfEqual key0, ERTS?, Send Steer{Space} 
-Else IfEqual key0, TOSH?, Send Host{Space} 
-Else IfEqual key0, ERP?, Send Peer{Space} 
-Else IfEqual key0, ETAS?, Send Tease{Space} 
-Else IfEqual key0, WAL?, Send Law{Space} 
-Else IfEqual key0, ERA?, Send Ear{Space} 
-Else IfEqual key0, ERSV?, Send Sever{Space} 	
-Else IfEqual key0, SLCN?, Send Counsel{Space} 
-Else IfEqual key0, ERUPS?, Send Pursue{Space} 
-Else IfEqual key0, WON?, Send Won{Space} 
-
-Return
-SENDQup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, QERF, Send Frequency{Space} 
-Else IfEqual key0, QERFN, Send Frequent{Space} 
-Else IfEqual key0, QERUI, Send Queue{Space} 
-Else IfEqual key0, QEU, Send Queue{Space} 
-Else IfEqual key0, QRAC, Send Acquire{Space} 
-Else IfEqual key0, QRTS, Send Request{Space} 
-Else IfEqual key0, QETUI, Send Quiet{Space} 
-Else IfEqual key0, QEUIN, Send Unique{Space} 
-Else IfEqual key0, QEL, Send Equal{Space} 
-Else IfEqual key0, QERU, Send Queer{Space} 
-Else IfEqual key0, QL, Send Quickly{Space} 
-Else IfEqual key0, QETUO, Send Quote{Space} 
-Else IfEqual key0, QFL, Send Qualify{Space} 
-Else IfEqual key0, QRTUIS, Send Squirt{Space} 
-Else IfEqual key0, QYFL, Send Qualify{Space} 
-Else IfEqual key0, QEUIP, Send Equip{Space} 
-Else IfEqual key0, QEUOSCN, Send Consequence{Space} 
-Else IfEqual key0, QEUS, Send Esque
-Else IfEqual key0, QR, Send Require{Space} 
-Else IfEqual key0, QRSL, Send Squirrel{Space} 
-Else IfEqual key0, QERYU, Send Query{Space} 
-Else IfEqual key0, QES, Send Sequence{Space} 
-Else IfEqual key0, QETYUI, Send Equity{Space} 
-Else IfEqual key0, QRF, Send Frequent{Space} 
-Else IfEqual key0, QRTFN, Send Frequent{Space} 
-Else IfEqual key0, QSCN, Send Sequence{Space} 
-Else IfEqual key0, QTUANM, Send Quantum{Space} 
-Else IfEqual key0, QT, Send Question{Space} 
-Else IfEqual key0, QTI, Send Quite{Space} 
-Else IfEqual key0, QTL, Send Quality{Space} 
-Else IfEqual key0, QTS, Send Questions{Space} 
-Else IfEqual key0, QTUI, Send Quit{Space} 
-Else IfEqual key0, QUN, Send Unique{Space} 
-Else IfEqual key0, QRT, Send Quarter{Space} 
-Return
-SENDWup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, WA, Send As Well{Space} 
-Else IfEqual key0, WRHV, Send However{Space} 
-Else IfEqual key0, WTN, Send Won't{Space} 
-Else IfEqual key0, WERHVN, Send Whenever{Space} 
-Else IfEqual key0, WEOASM, Send Awesome{Space} 
-Else IfEqual key0, WRPA, Send Wrap{Space} 
-Else IfEqual key0, WLB, Send Below{Space} 
-Else IfEqual key0, WEOLB, Send Below{Space} 
-Else IfEqual key0, WAN, Send Want To{Space} 
-Else IfEqual key0, WEHC, Send Chew{Space} 
-Else IfEqual key0, WEIF, Send Wife{Space} 
-Else IfEqual key0, WEISLV, Send Swivel{Space} 
-Else IfEqual key0, WERASH, Send Whereas{Space} 
-Else IfEqual key0, WERHVN, Send Whenever{Space} 
-Else IfEqual key0, WERIN, Send Winner{Space} 
-Else IfEqual key0, WEROPM, Send Empower{Space} 
-Else IfEqual key0, WEROSH, Send Shower{Space} 
-Else IfEqual key0, WERTIH, Send Wither{Space} 
-Else IfEqual key0, WESK, Send Skew{Space} 
-Else IfEqual key0, WETISHL, Send Whistle{Space} 
-Else IfEqual key0, WHKM, Send Homework{Space} 
-Else IfEqual key0, WISM, Send Swim{Space} 
-Else IfEqual key0, WOASL, Send Swallow{Space} 
-Else IfEqual key0, WOLB, Send Blow{Space} 
-Else IfEqual key0, WRA, Send War{Space} 
-Else IfEqual key0, WRB, Send Borrow{Space} 
-Else IfEqual key0, WRSM, Send Worrisome{Space} 
-Else IfEqual key0, WRPF, Send Powerful{Space} 
-Else IfEqual key0, WDV, Send Would've{Space} 
-Else IfEqual key0, WEROHN, Send Nowhere{Space} 
-Else IfEqual key0, WEROHV, Send However{Space} 
-Else IfEqual key0, WRTH, Send Worth{Space} 
-Else IfEqual key0, WEROS, Send Worse{Space} 
-Else IfEqual key0, WED, Send We'd{Space} 
-Else IfEqual key0, WEIN, Send Wine{Space} 
-Else IfEqual key0, WETAH, Send Weather{Space} 
-Else IfEqual key0, WETAHL, Send Wealth{Space} 
-Else IfEqual key0, WOFL, Send Flow{Space} 
-Else IfEqual key0, WEROP, Send Power{Space} 
-Else IfEqual key0, WERTN, Send Weren't{Space} 
-Else IfEqual key0, WRTN, Send Written{Space} 
-Else IfEqual key0, WADN, Send Wand{Space} 
-Else IfEqual key0, WDL, Send Wield{Space} 
-Else IfEqual key0, WEAV, Send Wave{Space} 
-Else IfEqual key0, WELB, Send Blew{Space} 
-Else IfEqual key0, WELB, Send Blew{Space} 
-Else IfEqual key0, WEONM, Send Women{Space} 
-Else IfEqual key0, WERTO, Send Wrote{Space} 
-Else IfEqual key0, WERTO, Send Wrote{Space} 
-Else IfEqual key0, WLCM, Send Welcome{Space} 
-Else IfEqual key0, WNM, Send Women{Space} 
-Else IfEqual key0, WNM, Send Woman{Space} 
-Else IfEqual key0, WOSL, Send Slow{Space} 
-Else IfEqual key0, WRDH, Send Hardware{Space} 
-Else IfEqual key0, WRTOS, Send Worst{Space} 
-Else IfEqual key0, WRYO, Send Worry{Space} 
-Else IfEqual key0, WAGN, Send Gnaw{Space} 
-Else IfEqual key0, WALN, Send Lawn{Space} 
-Else IfEqual key0, WAN, Send Awn{Space} 
-Else IfEqual key0, WASKL, Send Walks{Space} 
-Else IfEqual key0, WDLN, Send Download{Space} 
-Else IfEqual key0, WEAHL, Send Whale{Space} 
-Else IfEqual key0, WEHL, Send Wheel{Space} 
-Else IfEqual key0, WEIF, Send Wife{Space} 
-Else IfEqual key0, WEIGH, Send Weigh{Space} 
-Else IfEqual key0, WEIS, Send Wise{Space} 
-Else IfEqual key0, WEOSH, Send Whose{Space} 
-Else IfEqual key0, WEOSH, Send Swore{Space} 
-Else IfEqual key0, WERTAH, Send Weather{Space} 
-Else IfEqual key0, WETIGH, Send Weight{Space} 
-Else IfEqual key0, WETS, Send West{Space} 
-Else IfEqual key0, WIDL, Send Wild{Space} 
-Else IfEqual key0, WIN, Send Win{Space} 
-Else IfEqual key0, WOC, Send Cow{Space} 
-Else IfEqual key0, WOM, Send Mow{Space} 
-Else IfEqual key0, WRGLN, Send Wrangle{Space} 
-Else IfEqual key0, WRHN, Send Nowhere{Space} 
-Else IfEqual key0, WRLNM, Send Lawnmower{Space} 
-Else IfEqual key0, WRS, Send Worse{Space} 
-Else IfEqual key0, WRTOS, Send Worst{Space} 
-Else IfEqual key0, WSDM, Send Wisdom{Space} 
-Else IfEqual key0, WAKL, Send Walk{Space} 
-Else IfEqual key0, WAL, Send Always{Space} 
-Else IfEqual key0, WAS, Send Was{Space} 
-Else IfEqual key0, WAS, Send Was{Space} 
-Else IfEqual key0, WASH, Send Wash{Space} 
-Else IfEqual key0, WDF, Send Forward{Space} 
-Else IfEqual key0, WDN, Send Wouldn't{Space} 
-Else IfEqual key0, WE, Send We{Space} 
-Else IfEqual key0, WEAK, Send Weak{Space} 
-Else IfEqual key0, WEASM, Send Awesome{Space} 
-Else IfEqual key0, WEF, Send Few{Space} 
-Else IfEqual key0, WEH, Send When{Space} 
-Else IfEqual key0, WEHN, Send When{Space} 
-Else IfEqual key0, WEID, Send Wide{Space} 
-Else IfEqual key0, WEID, Send Wide{Space} 
-Else IfEqual key0, WEIHL, Send While{Space} 
-Else IfEqual key0, WEIS, Send Wise{Space} 
-Else IfEqual key0, WEISDH, Send Wished{Space} 
-Else IfEqual key0, WEIV, Send View{Space} 
-Else IfEqual key0, WEK, Send Week{Space} 
-Else IfEqual key0, WEKN, Send Knew{Space} 
-Else IfEqual key0, WEL, Send Well{Space} 
-Else IfEqual key0, WEN, Send New{Space} 
-Else IfEqual key0, WEOHL, Send Whole{Space} 
-Else IfEqual key0, WEOHL, Send Whole{Space} 
-Else IfEqual key0, WEOHL, Send Whole{Space} 
-Else IfEqual key0, WER, Send Were{Space} 
-Else IfEqual key0, WERA, Send Wear{Space} 
-Else IfEqual key0, WERASN, Send Answer{Space} 
-Else IfEqual key0, WERC, Send Crew{Space} 
-Else IfEqual key0, WERH, Send Where{Space} 
-Else IfEqual key0, WERID, Send Weird{Space} 
-Else IfEqual key0, WERIV, Send Review{Space} 
-Else IfEqual key0, WEROSB, Send Browse{Space} 
-Else IfEqual key0, WERTA, Send Water{Space} 
-Else IfEqual key0, WERTH, Send Whether{Space} 
-Else IfEqual key0, WERTI, Send Twitter{Space} 
-Else IfEqual key0, WETADN, Send Wanted{Space} 
-Else IfEqual key0, WETBN, Send Between{Space} 
-Else IfEqual key0, WETIH, Send White{Space} 
-Else IfEqual key0, WETN, Send Went{Space} 
-Else IfEqual key0, WEV, Send Everywhere{Space} 
-Else IfEqual key0, WFL, Send Follow{Space} 
-Else IfEqual key0, WGK, Send Working{Space} 
-Else IfEqual key0, WGKL, Send Walking{Space} 
-Else IfEqual key0, WH, Send Who{Space} 
-Else IfEqual key0, WHEN, Send When{Space} 
-Else IfEqual key0, WHL, Send Whole{Space} 
-Else IfEqual key0, WHN, Send When{Space} 
-Else IfEqual key0, WIDN, Send Wind{Space} 
-Else IfEqual key0, WIHC, Send Which{Space} 
-Else IfEqual key0, WIL, Send Will{Space} 
-Else IfEqual key0, WIODN, Send Window{Space} 
-Else IfEqual key0, WISH, Send Wish{Space} 
-Else IfEqual key0, WK, Send Work{Space} 
-Else IfEqual key0, WKL, Send Walk{Space} 
-Else IfEqual key0, WL, Send We'll{Space} 
-Else IfEqual key0, WN, Send Network{Space} 
-Else IfEqual key0, WO, Send Would{Space} 
-Else IfEqual key0, WOAL, Send Allow{Space} 
-Else IfEqual key0, WOD, Send Wood{Space} 
-Else IfEqual key0, WODN, Send Down{Space} 
-Else IfEqual key0, WOH, Send How{Space} 
-Else IfEqual key0, WOKN, Send Know{Space} 
-Else IfEqual key0, WOL, Send Low{Space} 
-Else IfEqual key0, WON, Send Now{Space} 
-Else IfEqual key0, WOSH, Send Show{Space} 
-Else IfEqual key0, WOSN, Send Snow{Space} 
-Else IfEqual key0, WPN, Send Newspaper{Space} 
-Else IfEqual key0, WR, Send We're{Space} 
-Else IfEqual key0, WR, Send We're{Space} 
-Else IfEqual key0, WRAD, Send Draw{Space} 
-Else IfEqual key0, WRAM, Send Warm{Space} 
-Else IfEqual key0, WRDF, Send Wonderful{Space} 
-Else IfEqual key0, WRDFN, Send Wonderful{Space} 
-Else IfEqual key0, WRDN, Send Wonder{Space} 
-Else IfEqual key0, WRK, Send Work{Space} 
-Else IfEqual key0, WROD, Send Word{Space} 
-Else IfEqual key0, WRODL, Send World{Space} 
-Else IfEqual key0, WROG, Send Grow{Space} 
-Else IfEqual key0, WROGN, Send Wrong{Space} 
-Else IfEqual key0, WROK, Send Work{Space} 
-Else IfEqual key0, WRT, Send Write{Space} 
-Else IfEqual key0, WRTG, Send Writing{Space} 
-Else IfEqual key0, WRTM, Send Tomorrow{Space} 
-Else IfEqual key0, WRTOH, Send Throw{Space} 
-Else IfEqual key0, WRTV, Send Whatever{Space} 
-Else IfEqual key0, WRV, Send Review{Space} 
-Else IfEqual key0, WS, Send Website{Space} 
-Else IfEqual key0, WSF, Send Software{Space} 
-Else IfEqual key0, WSM, Send Somewhere{Space} 
-Else IfEqual key0, WT, Send What{Space} 
-Else IfEqual key0, WTADN, Send Wanted{Space} 
-Else IfEqual key0, WTADN, Send Wanted{Space} 
-Else IfEqual key0, WTAH, Send What{Space} 
-Else IfEqual key0, WTAHC, Send Watch{Space} 
-Else IfEqual key0, WTAN, Send Want{Space} 
-Else IfEqual key0, WTASN, Send Wasn't{Space} 
-Else IfEqual key0, WSN, Send Wasn't{Space} 
-Else IfEqual key0, WTB, Send By The Way{Space} 
-Else IfEqual key0, WTD, Send Toward{Space} 
-Else IfEqual key0, WTH, Send Whether{Space} 
-Else IfEqual key0, WTHC, Send Watch{Space} 
-Else IfEqual key0, WTI, Send Within{Space} 
-Else IfEqual key0, WTIA, Send Wait{Space} 
-Else IfEqual key0, WTISHC, Send Switch{Space} 
-Else IfEqual key0, WTO, Send Without{Space} 
-Else IfEqual key0, WTON, Send Town{Space} 
-Else IfEqual key0, WTUO, Send Without{Space} 
-Else IfEqual key0, WTV, Send Whatever{Space} 
-Else IfEqual key0, WTVN, Send Interview{Space} 
-Else IfEqual key0, WV, Send We've{Space} 
-Else IfEqual key0, WV, Send We've{Space} 
-Else IfEqual key0, WYA, Send Way{Space} 
-Else IfEqual key0, WYAHN, Send Anywhere{Space} 
-Else IfEqual key0, WYAN, Send Anyway{Space} 
-Else IfEqual key0, WYH, Send Why{Space} 
-Else IfEqual key0, WYL, Send Yellow{Space} 
-Else IfEqual key0, WERG, Send Grew{Space} 
-Else IfEqual key0, WETIC, Send Twice{Space} 
-Else IfEqual key0, WTASH, Send What's{Space} 
-Else IfEqual key0, WTS, Send What's{Space} 
-Return
-SENDRup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, RA, Send Around{Space} 
-Else IfEqual key0, RUIOASV, Send Saviour{Space} 
-Else IfEqual key0, RTYPH, Send Therapy{Space} 
-Else IfEqual key0, RTDLNM, Send Detrimental{Space} 
-Else IfEqual key0, RTDLN, Send Traditional{Space} 
-Else IfEqual key0, RYC, Send Cry{Space} 
-Else IfEqual key0, RTPSDN, Send President{Space} 
-Else IfEqual key0, RTUIAG, Send Guitar	{Space} 
-Else IfEqual key0, RTIP, Send Trip{Space} 
-Else IfEqual key0, RUOSH, Send Hours{Space} 
-Else IfEqual key0, RIDKN, Send Drink{Space} 
-Else IfEqual key0, RIAFC, Send Africa{Space} 
-Else IfEqual key0, RTIAC, Send Arctic{Space} 
-Else IfEqual key0, RTIACN, Send Antarctica{Space} 
-Else IfEqual key0, WRB, Send Borrow{Space} 
-Else IfEqual key0, RHLB, Send Horrible{Space} 
-Else IfEqual key0, RP, Send Peer{Space} 
-Else IfEqual key0, RAHCM, Send March{Space} 
-Else IfEqual key0, RDV, Send Drive{Space} 
-Else IfEqual key0, RDBN, Send Burden{Space} 
-Else IfEqual key0, RDGN, Send Garden{Space} 
-Else IfEqual key0, RFCN, Send Conference{Space} 
-Else IfEqual key0, RFNM, Send Inform{Space} 
-Else IfEqual key0, RIAGC, Send Cigar{Space} 
-Else IfEqual key0, RID, Send Rid{Space} 
-Else IfEqual key0, RIDB, Send Bird{Space} 
-Else IfEqual key0, RIOFNM, Send Inform{Space} 
-Else IfEqual key0, RIOM, Send Mirror{Space} 
-Else IfEqual key0, RIONM, Send Minor{Space} 
-Else IfEqual key0, RIPAL, Send April{Space} 
-Else IfEqual key0, RISC, Send Crisis{Space} 
-Else IfEqual key0, RISCN, Send Insurance{Space} 
-Else IfEqual key0, RLCM, Send Commercial{Space} 
-Else IfEqual key0, ROAJM, Send Major{Space} 
-Else IfEqual key0, RODN, Send Donor{Space} 
-Else IfEqual key0, ROLC, Send Color{Space} 
-Else IfEqual key0, ROOGM, Send Groom{Space} 
-Else IfEqual key0, RPCN, Send Pronounce{Space} 
-Else IfEqual key0, RPSCB, Send Prescribe{Space} 
-Else IfEqual key0, RPSCM, Send Compromise{Space} 
-Else IfEqual key0, RSC, Send Source{Space} 
-Else IfEqual key0, RSJLN, Send Journalist{Space} 
-Else IfEqual key0, RTASHC, Send Scratch{Space} 
-Else IfEqual key0, RTAV, Send Avatar{Space} 
-Else IfEqual key0, RTFGL, Send Grateful{Space} 
-Else IfEqual key0, RTGN, Send Generate{Space} 
-Else IfEqual key0, RTIFCN, Send Interface{Space} 
-Else IfEqual key0, RTIOAVN, Send Innovator{Space} 
-Else IfEqual key0, RTIOSCN, Send Constrict{Space} 
-Else IfEqual key0, RTISH, Send Shirt{Space} 
-Else IfEqual key0, RTODC, Send Doctor{Space} 
-Else IfEqual key0, RTOFH, Send Forth{Space} 
-Else IfEqual key0, RTPNM, Send Prominent{Space} 
-Else IfEqual key0, RTPSCN, Send Transcript{Space} 
-Else IfEqual key0, RTPSN, Send Proposition{Space} 
-Else IfEqual key0, RTSDM, Send Mustard{Space} 
-Else IfEqual key0, RTSHLC, Send Historical{Space} 
-Else IfEqual key0, RTSJLN, Send Journalist{Space} 
-Else IfEqual key0, RTUINM, Send Monitor{Space} 
-Else IfEqual key0, RTUKC, Send Truck{Space} 
-Else IfEqual key0, RTUOSCN, Send Construct{Space} 
-Else IfEqual key0, RTUPAB, Send Abrupt{Space} 
-Else IfEqual key0, RTUSKC, Send Struck{Space} 
-Else IfEqual key0, RTYIVN, Send Inventory{Space} 
-Else IfEqual key0, RTYOPH, Send Trophy{Space} 
-Else IfEqual key0, RTYSHLC, Send Hysterical{Space} 
-Else IfEqual key0, RUASG, Send Sugar{Space} 
-Else IfEqual key0, RUOGH, Send Rough{Space} 
-Else IfEqual key0, RYDLV, Send Delivery{Space} 
-Else IfEqual key0, RYFB, Send February{Space} 
-Else IfEqual key0, RYJN, Send January{Space} 
-Else IfEqual key0, RYSDCV, Send Discovery{Space} 
-Else IfEqual key0, RYSG, Send Surgery{Space} 
-Else IfEqual key0, RYUASM, Send Summary{Space} 
-Else IfEqual key0, RUS, Send Yours{Space} 
-Else IfEqual key0, RTIALC, Send Critical{Space} 
-Else IfEqual key0, ROPASL, Send Proposal{Space} 
-Else IfEqual key0, RSHC, Send Proposal{Space} 
-Else IfEqual key0, RSC, Send Source{Space} 
-Else IfEqual key0, RYAGN, Send Angry{Space} 
-Else IfEqual key0, RIGN, Send Ignore{Space} 
-Else IfEqual key0, RTSGLCN, Send Congratulations{Space} 
-Else IfEqual key0, RFV, Send Forever{Space} 
-Else IfEqual key0, RTPCM, Send Competitor{Space} 
-Else IfEqual key0, RL, Send Real{Space} 
-Else IfEqual key0, RTILN, Send Internal{Space} 
-Else IfEqual key0, RTUALN, Send Natural{Space} 
-Else IfEqual key0, RTHB, Send Breath{Space} 
-Else IfEqual key0, RTLCN, Send Control{Space} 
-Else IfEqual key0, RDH, Send Heard{Space} 
-Else IfEqual key0, RLCM, Send Molecular{Space} 
-Else IfEqual key0, RYD, Send Ready{Space} 
-Else IfEqual key0, ROAHCB, Send Broach{Space} 
-Else IfEqual key0, RIAV, Send Vari{Space} 
-Else IfEqual key0, RPSD, Send Spread{Space} 
-Else IfEqual key0, RPSHC, Send Purchase{Space} 
-Else IfEqual key0, RTAGHLM, Send Algorithm{Space} 
-Else IfEqual key0, RODHC, Send Chord{Space} 
-Else IfEqual key0, RTAGNM, Send Argument{Space} 
-Else IfEqual key0, RTFH, Send Further{Space} 
-Else IfEqual key0, RTISDC, Send District{Space} 
-Else IfEqual key0, RTPDXN, Send Expenditure{Space} 
-Else IfEqual key0, RAFM, Send Farm{Space} 
-Else IfEqual key0, RAG, Send Argue{Space} 
-Else IfEqual key0, RAKC, Send Crack{Space} 
-Else IfEqual key0, RAM, Send Arm{Space} 
- Else IfEqual key0, RTLVN, Send Relevant{Space} 
-Else IfEqual key0, RAM, Send Arm{Space} 
-Else IfEqual key0, RDFCN, Send Difference{Space} 
-Else IfEqual key0, RDFL, Send Federal{Space} 
-Else IfEqual key0, RFB, Send Brief{Space} 
-Else IfEqual key0, RFCNM, Send Confirm{Space} 
-Else IfEqual key0, RFGN, Send Finger{Space} 
-Else IfEqual key0, RGHC, Send Charge{Space} 
-Else IfEqual key0, RGLN, Send General{Space} 
-Else IfEqual key0, RGLV, Send Leverage{Space} 
-Else IfEqual key0, RHLCN, Send Chronicle{Space} 
-Else IfEqual key0, RIA, Send Air{Space} 
-Else IfEqual key0, RIABN, Send Brain{Space} 
-Else IfEqual key0, RICB, Send Crib{Space} 
-Else IfEqual key0, RID, Send Rid{Space} 
-Else IfEqual key0, RIF, Send Riff{Space} 
-Else IfEqual key0, RIPAGHC, Send Graphic{Space} 
-Else IfEqual key0, RIPALCN, Send Principal{Space} 
-Else IfEqual key0, RIPSVM, Send Improvise{Space} 
-Else IfEqual key0, RISK, Send Risk{Space} 
-Else IfEqual key0, RJN, Send Junior{Space} 
-Else IfEqual key0, RKM, Send Maker{Space} 
-Else IfEqual key0, RLC, Send Clear{Space} 
-Else IfEqual key0, RLCM, Send Curriculum{Space} 
-Else IfEqual key0, RLCM, Send Miracle{Space} 
-Else IfEqual key0, ROASB, Send Absorb{Space} 
-Else IfEqual key0, ROSVB, Send Observe{Space} 
-Else IfEqual key0, RPAGH, Send Graph{Space} 
-Else IfEqual key0, RPAGHC, Send Graphic{Space} 
-Else IfEqual key0, RPG, Send Grp Group{Space} 
-Else IfEqual key0, RPLCN, Send Principle{Space} 
-Else IfEqual key0, RPSCNM, Send Comparison{Space} 
-Else IfEqual key0, RPSHM, Send Sophomore{Space} 
-Else IfEqual key0, RPSL, Send Pleasure{Space} 
-Else IfEqual key0, RPSLN, Send Personal{Space} 
-Else IfEqual key0, RSFC, Send Surface{Space} 
-Else IfEqual key0, RSFHNM, Send Freshman{Space} 
-Else IfEqual key0, RSFLC, Send Salesforce{Space} 
-Else IfEqual key0, RSGLN, Send Singular{Space} 
-Else IfEqual key0, RSGLN, Send Singular{Space} 
-Else IfEqual key0, RSLCN, Send Counselor{Space} 
-Else IfEqual key0, RSXC, Send Exercise{Space} 
-Else IfEqual key0, RTAGN, Send Grant{Space} 
-Else IfEqual key0, RTASM, Send Smart{Space} 
-Else IfEqual key0, RTFC, Send Factor{Space} 
-Else IfEqual key0, RTFGN, Send Forgotten{Space} 
-Else IfEqual key0, RTHN, Send Neither{Space} 
-Else IfEqual key0, RTIDH, Send Third{Space} 
-Else IfEqual key0, RTIOSHC, Send Historic{Space} 
-Else IfEqual key0, RTISGN, Send String{Space} 
-Else IfEqual key0, RTKM, Send Market{Space} 
-Else IfEqual key0, RTOAFC, Send Factor{Space} 
-Else IfEqual key0, RTOFG, Send Forgot{Space} 
-Else IfEqual key0, RTOHN, Send North{Space} 
-Else IfEqual key0, RTOPA, Send Parrot{Space} 
-Else IfEqual key0, RTOPA, Send Transport{Space} 
-Else IfEqual key0, RTPLC, Send Particular{Space} 
-Else IfEqual key0, RTPSLC, Send Spectacular{Space} 
-Else IfEqual key0, RTPSLC, Send Transport{Space} 
-Else IfEqual key0, RTPSN>, Send Transportation{Space} 
-Else IfEqual key0, RTPVM, Send Primitive{Space} 
-Else IfEqual key0, RTPVN, Send Prevent{Space} 
-Else IfEqual key0, RTPXNM, Send Experiment{Space} 
-Else IfEqual key0, RTSCN, Send Countries{Space} 
-Else IfEqual key0, RTSDB, Send Disturb{Space} 
-Else IfEqual key0, RTSFN, Send Transfer{Space} 
-Else IfEqual key0, RTSHC, Send Historic{Space} 
-Else IfEqual key0, RTUAM, Send Trauma{Space} 
-Else IfEqual key0, RTUO, Send Tour{Space} 
-Else IfEqual key0, RTUOAH, Send Author{Space} 
-Else IfEqual key0, RTYAN, Send Attorney{Space} 
-Else IfEqual key0, RTYP, Send Property{Space} 
-Else IfEqual key0, RTYP, Send Property{Space} 
-Else IfEqual key0, RUADG, Send Guard{Space} 
-Else IfEqual key0, RUBN, Send Burn{Space} 
-Else IfEqual key0, RUODN, Send Round{Space} 
-Else IfEqual key0, RUOS, Send Ours{Space} 
-Else IfEqual key0, RUSH, Send Rush{Space} 
-Else IfEqual key0, RYANM, Send Anymore{Space} 
-Else IfEqual key0, RYANM, Send Anymore{Space} 
-Else IfEqual key0, RYJN, Send Journey{Space} 
-Else IfEqual key0, RYPAS, Send Spray{Space} 
-Else IfEqual key0, RTPHC, Send Chapter{Space} 
-Else IfEqual key0, RTSDC, Send District{Space} 
-Else IfEqual key0, RTYGC, Send Category{Space} 
-Else IfEqual key0, RADC, Send Card{Space} 
-Else IfEqual key0, ROF, Send For{Space} 
-Else IfEqual key0, RYAD, Send Yard{Space} 
-Else IfEqual key0, RADG, Send Grad{Space} 
-Else IfEqual key0, RADH, Send Hard{Space} 
-Else IfEqual key0, RAKM, Send Mark{Space} 
-Else IfEqual key0, RAKM, Send Mark{Space} 
-Else IfEqual key0, RASDV, Send Advisor{Space} 
-Else IfEqual key0, RDCNM, Send Recommend{Space} 
-Else IfEqual key0, RDGN, Send Gender{Space} 
-Else IfEqual key0, RDGN, Send Gender{Space} 
-Else IfEqual key0, RDHN, Send Hundred{Space} 
-Else IfEqual key0, RDLV, Send Deliver{Space} 
-Else IfEqual key0, RDM, Send Dream{Space} 
-Else IfEqual key0, RDN, Send Round{Space} 
-Else IfEqual key0, RDNM, Send Random{Space} 
-Else IfEqual key0, RDVN, Send Vendor{Space} 
-Else IfEqual key0, RFC, Send Force{Space} 
-Else IfEqual key0, RFC, Send Force{Space} 
-Else IfEqual key0, RFCN, Send Reference{Space} 
-Else IfEqual key0, RFCN, Send Reference{Space} 
-Else IfEqual key0, RFCN, Send Conference{Space} 
-Else IfEqual key0, RFLV, Send Flavor{Space} 
-Else IfEqual key0, RFM, Send Firm{Space} 
-Else IfEqual key0, RG, Send Regard{Space} 
-Else IfEqual key0, RGCN, Send Encourage{Space} 
-Else IfEqual key0, RGCN, Send Encourage{Space} 
-Else IfEqual key0, RGL, Send Regular{Space} 
-Else IfEqual key0, RGL, Send Regardless{Space} 
-Else IfEqual key0, RGL, Send Regular{Space} 
-Else IfEqual key0, RGLV, Send Leverage{Space} 
-Else IfEqual key0, RHCBM, Send Chamber{Space} 
-Else IfEqual key0, RHVB, Send Behavior{Space} 
-Else IfEqual key0, RIADN, Send Drain{Space} 
-Else IfEqual key0, RIAH, Send Hair{Space} 
-Else IfEqual key0, RIFM, Send Firm{Space} 
-Else IfEqual key0, RISCN, Send Increase{Space} 
-Else IfEqual key0, RLB, Send Reliable{Space} 
-Else IfEqual key0, RLCM, Send Commercial{Space} 
-Else IfEqual key0, RLV, Send Lever{Space} 
-Else IfEqual key0, ROALB, Send Labor{Space} 
-Else IfEqual key0, ROD, Send Door{Space} 
-Else IfEqual key0, ROGCN, Send Organic{Space} 
-Else IfEqual key0, ROHN, Send Honor{Space} 
-Else IfEqual key0, ROKC, Send Rock{Space} 
-Else IfEqual key0, ROLC, Send Color{Space} 
-Else IfEqual key0, RPD, Send Drop{Space} 
-Else IfEqual key0, RPAV, Send Approve{Space} 
-Else IfEqual key0, RPCV, Send Perceive{Space} 
-Else IfEqual key0, RPDN, Send Pardon{Space} 
-Else IfEqual key0, RPGHC, Send Graphic{Space} 
-Else IfEqual key0, RPL, Send Popular{Space} 
-Else IfEqual key0, RPL, Send Popular{Space} 
-Else IfEqual key0, RPSC, Send Precise{Space} 
-Else IfEqual key0, RPSCN, Send Presence{Space} 
-Else IfEqual key0, RPSF, Send Profess{Space} 
-Else IfEqual key0, RPSG, Send Progress{Space} 
-Else IfEqual key0, RSCN, Send Increase{Space} 
-Else IfEqual key0, RSCN, Send Increase{Space} 
-Else IfEqual key0, RSCNM, Send Consumer{Space} 
-Else IfEqual key0, RSD, Send Desire{Space} 
-Else IfEqual key0, RSDC, Send Decrease{Space} 
-Else IfEqual key0, RSDLC, Send Ridiculous{Space} 
-Else IfEqual key0, RSDLC, Send Ridiculous{Space} 
-Else IfEqual key0, RSDN, Send Surround{Space} 
-Else IfEqual key0, RSDV, Send Deserve{Space} 
-Else IfEqual key0, RSV, Send Various{Space} 
-Else IfEqual key0, RSXC, Send Exercise{Space} 
-Else IfEqual key0, RSXC, Send Exercise{Space} 
-Else IfEqual key0, RTAB, Send Attribute{Space} 
-Else IfEqual key0, RTALC, Send Article{Space} 
-Else IfEqual key0, RTCBN, Send Contribute{Space} 
-Else IfEqual key0, RTDCN, Send Coordinate{Space} 
-Else IfEqual key0, RTIDCN, Send Coordinate{Space} 
-Else IfEqual key0, RTFCNM, Send Manufacture{Space} 
-Else IfEqual key0, RTFLC, Send Reflect{Space} 
-Else IfEqual key0, RTIAL, Send Trial{Space} 
-Else IfEqual key0, RTIKC, Send Trick{Space} 
-Else IfEqual key0, RTLCB, Send Collaborate{Space} 
-Else IfEqual key0, RTO, Send Root{Space} 
-Else IfEqual key0, RTOASHC, Send Orchestra{Space} 
-Else IfEqual key0, RTOPM, Send Prompt{Space} 
-Else IfEqual key0, RTPF, Send Profit{Space} 
-Else IfEqual key0, RTPFN, Send Nonprofit{Space} 
-Else IfEqual key0, RTYPSCN, Send Transparency{Space} 
-Else IfEqual key0, RTPSDCN, Send Description{Space} 
-Else IfEqual key0, RTPSN, Send Inspiration{Space} 
-Else IfEqual key0, RTIPVN, Send Prevent{Space} 
-Else IfEqual key0, RTPVN, Send Prevent{Space} 
-Else IfEqual key0, RTPX, Send Expert{Space} 
-Else IfEqual key0, RTSCN, Send Contrast{Space} 
-Else IfEqual key0, RTSDNM, Send Demonstrate{Space} 
-Else IfEqual key0, RTSGL, Send Struggle{Space} 
-Else IfEqual key0, RTSN, Send Restaurant{Space} 
-Else IfEqual key0, RTSN, Send Resonate{Space} 
-Else IfEqual key0, RTSN, Send Restaurant{Space} 
-Else IfEqual key0, RTSNM, Send Instrument{Space} 
-Else IfEqual key0, RTUOM, Send Tumor{Space} 
-Else IfEqual key0, RTYCN, Send Country{Space} 
-Else IfEqual key0, RTYHCM, Send Chemistry{Space} 
-Else IfEqual key0, RTYHM, Send Rhythm{Space} 
-Else IfEqual key0, RTYSC, Send Security{Space} 
-Else IfEqual key0, RTYSH, Send History{Space} 
-Else IfEqual key0, RUDG, Send Drug{Space} 
-Else IfEqual key0, RVB, Send Brave{Space} 
-Else IfEqual key0, RVM, Send Remove{Space} 
-Else IfEqual key0, RYGLN, Send Neurology{Space} 
-Else IfEqual key0, RIPVM, Send Improve{Space} 	
-Else IfEqual key0, RUDM, Send Drum{Space} 
-Else IfEqual key0, RAGB, Send Grab{Space} 
-Else IfEqual key0, RCV, Send Receive{Space} 
-Else IfEqual key0, RDBN, Send Burden{Space} 
-Else IfEqual key0, RIOP, Send Prior{Space} 
-Else IfEqual key0, RNM, Send Remain{Space} 
-Else IfEqual key0, RPCM, Send Compare{Space} 
-Else IfEqual key0, RPSM, Send Promise{Space} 
-Else IfEqual key0, RPSM, Send Promise{Space} 
-Else IfEqual key0, RSCV, Send Service{Space} 
-Else IfEqual key0, RSDCV, Send Discover{Space} 
-Else IfEqual key0, RSDN, Send Surround{Space} 
-Else IfEqual key0, RSV, Send Survive{Space} 
-Else IfEqual key0, RSVN, Send Version{Space} 
-Else IfEqual key0, RTD, Send Tried{Space} 
-Else IfEqual key0, RTDGH, Send Daughter{Space} 
-Else IfEqual key0, RTFG, Send Forget{Space} 
-Else IfEqual key0, RTHC, Send Teacher{Space} 
-Else IfEqual key0, RTIAN, Send Train{Space} 
-Else IfEqual key0, RTIC, Send Critic{Space} 
-Else IfEqual key0, RTIOSCN, Send Construction{Space} 
-Else IfEqual key0, RTISCM, Send Criticism{Space} 
-Else IfEqual key0, RTLM, Send Material{Space} 
-Else IfEqual key0, RTLN, Send Relation{Space} 
-Else IfEqual key0, RTSCN, Send Construct{Space} 
-Else IfEqual key0, RTSCVN, Send Constructive{Space} 
-Else IfEqual key0, RTSLN, Send Resolution{Space} 
-Else IfEqual key0, RYAC, Send Carry{Space} 
-Else IfEqual key0, RTH, Send Rather{Space} 	
-Else IfEqual key0, RAB, Send Bar{Space} 
-Else IfEqual key0, RAC, Send Across{Space} 
-Else IfEqual key0, RADBN, Send Brand{Space} 
-Else IfEqual key0, RADH, Send Hard{Space} 
-Else IfEqual key0, RAF, Send Far{Space} 
-Else IfEqual key0, RAFKN, Send Frank{Space} 
-Else IfEqual key0, RAL, Send Ral
-Else IfEqual key0, RAX, Send Extra{Space} 
-Else IfEqual key0, RB, Send Br
-Else IfEqual key0, RBM, Send Remember{Space} 
-Else IfEqual key0, RBN, Send Brain{Space} 
-Else IfEqual key0, RC, Send Crazy{Space} 
-Else IfEqual key0, RD, Send Read{Space} 
-Else IfEqual key0, RDG, Send During{Space} 
-Else IfEqual key0, RDLZ, Send Realized{Space} 
-Else IfEqual key0, RF, Send From{Space} 
-Else IfEqual key0, RFG, Send Figure{Space} 
-Else IfEqual key0, RFLM, Send Familiar{Space} 
-Else IfEqual key0, RFN, Send Refine{Space} 
-Else IfEqual key0, RGB, Send Bring{Space} 
-Else IfEqual key0, RGNM, Send Manager{Space} 
-Else IfEqual key0, RIOGNM, Send Morning{Space} 
-Else IfEqual key0, RGZCN, Send Recognize{Space} 
-Else IfEqual key0, RH, Send Here{Space} 
-Else IfEqual key0, RIAF, Send Fair{Space} 
-Else IfEqual key0, RIDHLC, Send Children{Space} 
-Else IfEqual key0, RDHLCN, Send Children{Space} 
-Else IfEqual key0, RIGBN, Send Bring{Space} 
-Else IfEqual key0, RIGL, Send Girl{Space} 
-Else IfEqual key0, RIHC, Send Rich{Space} 
-Else IfEqual key0, RIOCM, Send Micro
-Else IfEqual key0, RIPA, Send Pair{Space} 
-Else IfEqual key0, RJM, Send Major{Space} 
-Else IfEqual key0, RLNM, Send Normal{Space} 
-Else IfEqual key0, RLZ, Send Realize{Space} 
-Else IfEqual key0, RM, Send More{Space} 
-Else IfEqual key0, RN, Send Right Now{Space} 
-Else IfEqual key0, RO, Send Or{Space} 
-Else IfEqual key0, ROACM, Send Macro
-Else IfEqual key0, ROAD, Send Road{Space} 
-Else IfEqual key0, ROADB, Send Board{Space} 
-Else IfEqual key0, ROADBN, Send Onboard{Space} 
-Else IfEqual key0, ROADL, Send Dollar{Space} 
-Else IfEqual key0, ROALNM, Send Normal{Space} 
-Else IfEqual key0, ROFM, Send Form{Space} 
-Else IfEqual key0, ROG, Send Organization{Space} 
-Else IfEqual key0, ROGLN, Send Original{Space} 
-Else IfEqual key0, ROGN, Send Original{Space} 
-Else IfEqual key0, ROGNM, Send Morning{Space} 
-Else IfEqual key0, ROL, Send Roll{Space} 
-Else IfEqual key0, ROLNM, Send Normal{Space} 
-Else IfEqual key0, ROM, Send Room{Space} 
-Else IfEqual key0, ROP, Send Pro
-Else IfEqual key0, ROPB, Send Probably{Space} 
-Else IfEqual key0, ROPD, Send Drop{Space} 
-Else IfEqual key0, RTPDC, Send Product{Space} 
-Else IfEqual key0, ROPJ, Send Project{Space} 
-Else IfEqual key0, ROPLB, Send Problem{Space} 
-Else IfEqual key0, ROSC, Send Cross{Space} 
-Else IfEqual key0, ROSG, Send Organizations{Space} 
-Else IfEqual key0, ROSLC, Send Scroll{Space} 
-Else IfEqual key0, RPA, Send Appreciate{Space} 
-Else IfEqual key0, RPAHC, Send Approach{Space} 
-Else IfEqual key0, RPAK, Send Park{Space} 
-Else IfEqual key0, RPB, Send Problem{Space} 
-Else IfEqual key0, RPC, Send Process{Space} 
-Else IfEqual key0, RPDC, Send Proceed{Space} 
-Else IfEqual key0, RPDV, Send Provide{Space} 
-Else IfEqual key0, RPF, Send Professional{Space} 
-Else IfEqual key0, RPFCNM, Send Performance{Space} 
-Else IfEqual key0, RPFL, Send Profile{Space} 
-Else IfEqual key0, RPFM, Send Perform{Space} 
-Else IfEqual key0, RPGM, Send Program{Space} 
-Else IfEqual key0, RPLB, Send Problem{Space} 
-Else IfEqual key0, RPLX, Send Explore{Space} 
-Else IfEqual key0, RPS, Send Surprise{Space} 
-Else IfEqual key0, RPSLBN, Send Responsible{Space} 
-Else IfEqual key0, RPSDN, Send Respond{Space} 
-Else IfEqual key0, RPSH, Send Perhaps{Space} 
-Else IfEqual key0, RTPSBN, Send Responsibility{Space} 
-Else IfEqual key0, RPSN, Send Response{Space} 
-Else IfEqual key0, RS, Send Sure{Space} 
-Else IfEqual key0, RSDCB, Send Describe{Space} 
-Else IfEqual key0, RSDCN, Send Consider{Space} 
-Else IfEqual key0, RSL, Send Release{Space} 
-Else IfEqual key0, RSLM, Send Similar{Space} 
-Else IfEqual key0, RSLV, Send Several{Space} 
-Else IfEqual key0, RSN, Send Reason{Space} 
-Else IfEqual key0, RT, Send Right{Space} 
-Else IfEqual key0, RTAD, Send Traditional{Space} 
-Else IfEqual key0, RTAKC, Send Track{Space} 
-Else IfEqual key0, RTAL, Send Alright{Space} 
-Else IfEqual key0, RTALC, Send Article{Space} 
-Else IfEqual key0, RTAN, Send Another{Space} 
-Else IfEqual key0, RTAS, Send Strategy{Space} 
-Else IfEqual key0, RTASDN, Send Standard{Space} 
-Else IfEqual key0, RTASN, Send Trans{Space} 
-Else IfEqual key0, RTC, Send Create{Space} 
-Else IfEqual key0, RTCN, Send Certain{Space} 
-Else IfEqual key0, RTCV, Send Creative{Space} 
-Else IfEqual key0, RTFLC, Send Reflect{Space} 
-Else IfEqual key0, RTFN, Send Fortunate{Space} 
-Else IfEqual key0, RTG, Send Trying{Space} 
-Else IfEqual key0, RTGC, Send Creating{Space} 
-Else IfEqual key0, RTGH, Send Together{Space} 
-Else IfEqual key0, RTI, Send Tri
-Else IfEqual key0, RTIAFC, Send Traffic{Space} 
-Else IfEqual key0, RTIAN, Send Intra
-Else IfEqual key0, RTIASN, Send Strain{Space} 
-Else IfEqual key0, RTIOASN, Send Transition{Space} 
-Else IfEqual key0, RTIGN, Send Integrate{Space} 
-Else IfEqual key0, RTIL, Send Literally{Space} 
-Else IfEqual key0, RTIODCN, Send Coordinate{Space} 
-Else IfEqual key0, RTIODN, Send Introduce{Space} 
-Else IfEqual key0, RTION, Send Intro
-Else IfEqual key0, RTIPA, Send Particular{Space} 
-Else IfEqual key0, RTL, Send Literal{Space} 
-Else IfEqual key0, RTLB, Send Trouble{Space} 
-Else IfEqual key0, RTLC, Send Control{Space} 
-Else IfEqual key0, RTLCB, Send Collaborate{Space} 
-Else IfEqual key0, RTLV, Send Relative{Space} 
-Else IfEqual key0, RTM, Send Remote{Space} 
-Else IfEqual key0, RTN, Send Entire{Space} 
-Else IfEqual key0, RTOAC, Send Actor{Space} 
-Else IfEqual key0, RTOACN, Send Contract{Space} 
-Else IfEqual key0, RTOB, Send Obtrusive{Space} 
-Else IfEqual key0, RTOCN, Send Contro
-Else IfEqual key0, RTOFN, Send Front{Space} 
-Else IfEqual key0, RTOM, Send Tomorrow{Space} 
-Else IfEqual key0, RTOS, Send Sort{Space} 
-Else IfEqual key0, RTOSG, Send Storage{Space} 
-Else IfEqual key0, RTOSGN, Send Strong{Space} 
-Else IfEqual key0, RTOSH, Send Short{Space} 
-Else IfEqual key0, RTP, Send Repeat{Space} 
-Else IfEqual key0, RTPA, Send Part{Space} 
-Else IfEqual key0, RTPAC, Send Practice{Space} 
-Else IfEqual key0, RTPAN, Send Apparent{Space} 
-Else IfEqual key0, RTPC, Send Picture{Space} 
-Else IfEqual key0, RTPCN, Send Perception{Space} 
-Else IfEqual key0, RTPS, Send Separate{Space} 
-Else IfEqual key0, RTPSC, Send Respect{Space} 
-Else IfEqual key0, RTPSCV, Send Perspective{Space} 
-Else IfEqual key0, RTPV, Send Private{Space} 
-Else IfEqual key0, RTS, Send Start{Space} 
-Else IfEqual key0, RTSBN, Send Stubborn{Space} 
-Else IfEqual key0, RTSCM, Send Customer{Space} 
-Else IfEqual key0, RTSD, Send Disastrous{Space} 
-Else IfEqual key0, RTSDC, Send Distract{Space} 
-Else IfEqual key0, RTSDN, Send Standard{Space} 
-Else IfEqual key0, RTSG, Send Starting{Space} 
-Else IfEqual key0, RTSGH, Send Straight{Space} 
-Else IfEqual key0, RTSM, Send Stream{Space} 
-Else IfEqual key0, RTUALB, Send Brutal{Space} 
-Else IfEqual key0, RTUALC, Send Cultural{Space} 
-Else IfEqual key0, RTUH, Send Hurt{Space} 
-Else IfEqual key0, RTUOGH, Send Through{Space} 
-Else IfEqual key0, RTUN, Send Turn{Space} 
-Else IfEqual key0, RTUOPS, Send Support{Space} 
-Else IfEqual key0, RTUS, Send Trust{Space} 
-Else IfEqual key0, RTVN, Send Narrative{Space} 
-Else IfEqual key0, RTY, Send Try{Space} 
-Else IfEqual key0, RTYOS, Send Story{Space} 
-Else IfEqual key0, RTYPA, Send Party{Space} 
-Else IfEqual key0, RTYUL, Send Truly{Space} 
-Else IfEqual key0, RU, Send Your{Space} 
-Else IfEqual key0, RUIOASV, Send Various{Space} 
-Else IfEqual key0, RUIOSC, Send Curious{Space} 
-Else IfEqual key0, RUN, Send Run{Space} 
-Else IfEqual key0, RUO, Send Our{Space} 
-Else IfEqual key0, RUOC, Send Occur{Space} 
-Else IfEqual key0, RUODGN, Send Ground{Space} 
-Else IfEqual key0, RUOH, Send Hour{Space} 
-Else IfEqual key0, RUOPG, Send Group{Space} 
-Else IfEqual key0, RUPHC, Send Purchase{Space} 
-Else IfEqual key0, RV, Send Virtual Reality{Space} 
-Else IfEqual key0, RY, Send Year{Space} 
-Else IfEqual key0, RYAFKLN, Send Frankly{Space} 
-Else IfEqual key0, RYAV, Send Vary{Space} 
-Else IfEqual key0, RYOS, Send Sorry{Space} 
-Else IfEqual key0, RYPCV, Send Privacy{Space} 
-Else IfEqual key0, RYS, Send Years{Space} 
-Else IfEqual key0, RAN, Send Ran{Space} 
-Else IfEqual key0, RDCV, Send Received{Space} 
-Else IfEqual key0, RJLN, Send Journal{Space} 
-Else IfEqual key0, ROPA, Send Approach{Space} 
-Else IfEqual key0, ROPAHC, Send Approach{Space} 
-Else IfEqual key0, RPAM, Send Ramp{Space} 
-Else IfEqual key0, RPSV, Send Previous{Space} 
-Else IfEqual key0, RSM, Send Measure{Space} 
-Else IfEqual key0, RTA, Send Art{Space} 
-Else IfEqual key0, RTAC, Send Attract{Space} 
-Else IfEqual key0, RTDC, Send Direct{Space} 
-Else IfEqual key0, RTDG, Send Graduate{Space} 
-Else IfEqual key0, RTDNM, Send Determine{Space} 
-Else IfEqual key0, RTF, Send Feature{Space} 
-Else IfEqual key0, RTGHB, Send Brought{Space} 
-Else IfEqual key0, RTIAN, Send Train{Space} 
-Else IfEqual key0, RTIAS, Send Artist{Space} 
-Else IfEqual key0, RTIPN, Send Print{Space} 
-Else IfEqual key0, RTPL, Send Partial{Space} 
-Else IfEqual key0, RTPM, Send Promote{Space} 
-Else IfEqual key0, RTSDB, Send Distribute{Space} 
-Else IfEqual key0, RUOPD, Send Proud{Space} 
-Else IfEqual key0, RTPN, Send Pattern{Space} 
-Else IfEqual key0, RYPM, Send Primary{Space} 
-Return
-SENDTup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
- IfEqual key0, TA, Send At{Space} 
-Else IfEqual key0, TADH, Send That'd{Space} 
-Else IfEqual key0, TISV, Send Visit{Space} 
-Else IfEqual key0, TIHN, Send Thin{Space} 
-Else IfEqual key0, TPSLN, Send Pleasant{Space} 
-Else IfEqual key0, TADCV, Send Advocate{Space} 
-Else IfEqual key0, TAHM, Send Math{Space} 
-Else IfEqual key0, TUPG, Send Putting{Space} 
-Else IfEqual key0, TAKN, Send Tank{Space} 
-Else IfEqual key0, TGLV, Send Vegetable{Space} 
-Else IfEqual key0, TGVN, Send Navigate{Space} 
-Else IfEqual key0, TIAFH, Send Faith{Space} 
-Else IfEqual key0, TIPSL, Send Split{Space} 
-Else IfEqual key0, TIAL, Send Tail{Space} 
-Else IfEqual key0, TIAS, Send Assist{Space} 
-Else IfEqual key0, TIFGHL, Send Flight{Space} 
-Else IfEqual key0, TIGHM, Send Might{Space} 
-Else IfEqual key0, TILCN, Send Inoculate{Space} 
-Else IfEqual key0, TIOFLCN, Send Conflict{Space} 
-Else IfEqual key0, TIPAN, Send Paint{Space} 
-Else IfEqual key0, TIPAN, Send Paint{Space} 
-Else IfEqual key0, TISV, Send Visit{Space} 
-Else IfEqual key0, TOHCB, Send Botch{Space} 
-Else IfEqual key0, TOHLC, Send Cloth{Space} 
-Else IfEqual key0, TOPSG, Send Stopping{Space} 
-Else IfEqual key0, TOSD, Send Stood{Space} 
-Else IfEqual key0, TOSHM, Send Smooth{Space} 
-Else IfEqual key0, TOSHM, Send Smooth{Space} 
-Else IfEqual key0, TOSL, Send Lost{Space} 
-Else IfEqual key0, TPASNM, Send Assumption{Space} 
-Else IfEqual key0, TPCN, Send Patience{Space} 
-Else IfEqual key0, TPCVM, Send Competitive{Space} 
-Else IfEqual key0, TPHKC, Send Ketchup{Space} 
-Else IfEqual key0, TPSLC, Send Telescope{Space} 
-Else IfEqual key0, TSDNM, Send Disseminate{Space} 
-Else IfEqual key0, TSFC, Send Suffocate{Space} 
-Else IfEqual key0, TSHLB, Send Bullshit{Space} 
-Else IfEqual key0, TUADL, Send Adult{Space} 
-Else IfEqual key0, TUAFL, Send Fault{Space} 
-Else IfEqual key0, TUASG, Send August{Space} 
-Else IfEqual key0, TUHN, Send Hunt{Space} 
-Else IfEqual key0, TUIN, Send Unit{Space} 
-Else IfEqual key0, TUIOACN, Send Caution{Space} 
-Else IfEqual key0, TUIPSD, Send Stupid{Space} 
-Else IfEqual key0, TUISCN, Send Succinct{Space} 
-Else IfEqual key0, TULZ, Send Utilize{Space} 
-Else IfEqual key0, TUOASCM, Send Accustom{Space} 
-Else IfEqual key0, TUOCM, Send Outcome{Space} 
-Else IfEqual key0, TUOSLCN, Send Consult{Space} 
-Else IfEqual key0, TUPG, Send Putting{Space} 
-Else IfEqual key0, TUSKC, Send Stuck{Space} 
-Else IfEqual key0, TYFLC, Send Facility{Space} 
-Else IfEqual key0, TUOGHB, Send Bought{Space} 
-Else IfEqual key0, TPXC, Send Expect{Space} 
-Else IfEqual key0, TPCN, Send Patience{Space} 
-Else IfEqual key0, TPN, Send Patient{Space} 
-Else IfEqual key0, TPCVM, Send Competitive{Space} 
-Else IfEqual key0, TUAGHC, Send Caught{Space} 
-Else IfEqual key0, TPSCNM, Send Compensate{Space} 
-Else IfEqual key0, TFL, Send Left{Space} 
-Else IfEqual key0, TUADL, Send Adult{Space} 
-Else IfEqual key0, TSVN, Send Sensitive{Space} 
-Else IfEqual key0, TGVM, Send Government{Space} 
-Else IfEqual key0, TODN, Send Don't{Space} 
-Else IfEqual key0, TACM, Send Automatic{Space} 
-Else IfEqual key0, TX, Send Text{Space} 
-Else IfEqual key0, TAHC, Send Catch{Space} 
-Else IfEqual key0, TAHCM, Send Match{Space} 
-Else IfEqual key0, TAS, Send Sat{Space} 
-Else IfEqual key0, TADLN, Send Additional{Space} 
-Else IfEqual key0, TADN, Send Addition{Space} 
-Else IfEqual key0, TDLV, Send Validate{Space} 
-Else IfEqual key0, TIDCN, Send Indicate{Space} 
-Else IfEqual key0, TIPALC, Send Capital{Space} 
-Else IfEqual key0, TISDN, Send Instead{Space} 
-Else IfEqual key0, TPXC, Send Expect{Space} 	
-Else IfEqual key0, TOSL, Send Lost{Space} 
-Else IfEqual key0, TPLNM, Send Implement{Space} 
-Else IfEqual key0, TSCNL, Send Constantly{Space} 
-Else IfEqual key0, TSDCN, Send Distance{Space} 
-Else IfEqual key0, TSFGCN, Send Significant{Space} 
-Else IfEqual key0, TUIPN, Send Input{Space} 
-Else IfEqual key0, TYDFN, Send Identify{Space} 
-Else IfEqual key0, TYUSD, Send Study{Space} 
-Else IfEqual key0, TASC, Send Cast{Space} 
-Else IfEqual key0, TADHN, Send Hadn’T{Space} 
-Else IfEqual key0, TAHL, Send That’Ll{Space} 
-Else IfEqual key0, TASGN, Send Against{Space} 
-Else IfEqual key0, TASHKN, Send Thanks{Space} 
-Else IfEqual key0, TBN, Send Button{Space} 	
-Else IfEqual key0, TIAC, Send Attic{Space} 
-Else IfEqual key0, TIASN, Send Instant{Space} 
-Else IfEqual key0, TIDG, Send Digit{Space} 
-Else IfEqual key0, TIF, Send Fit{Space} 
-Else IfEqual key0, TIFG, Send Gift{Space} 
-Else IfEqual key0, TIFGH, Send Fight{Space} 
-Else IfEqual key0, TIHKC, Send Thick{Space} 
-Else IfEqual key0, TILM, Send Limit{Space} 
-Else IfEqual key0, TIOACN, Send Contain{Space} 
-Else IfEqual key0, TIOGHN, Send Tonight{Space} 
-Else IfEqual key0, TIONM, Send Motion{Space} 
-Else IfEqual key0, TISM, Send Mist{Space} 
-Else IfEqual key0, TKN, Send Think{Space} 
-Else IfEqual key0, TOA, Send Tattoo{Space} 
-Else IfEqual key0, TOASC, Send Coast{Space} 
-Else IfEqual key0, TOF, Send Foot{Space} 
-Else IfEqual key0, TOGHN, Send Thong{Space} 
-Else IfEqual key0, TOPS, Send Stop{Space} 
-Else IfEqual key0, TPDN, Send Independent{Space} 
-Else IfEqual key0, TPL, Send Pollute{Space} 
-Else IfEqual key0, TPLCNM, Send Implication{Space} 
-Else IfEqual key0, TPLNM, Send Implement{Space} 
-Else IfEqual key0, TPSLCNM, Send Implications{Space} 
-Else IfEqual key0, TPSM, Send Symptom{Space} 
-Else IfEqual key0, TRADE, Send Trade{Space} 
-Else IfEqual key0, TSBM, Send Submit{Space} 
-Else IfEqual key0, TSCBN, Send Substance{Space} 
-Else IfEqual key0, TSFNM, Send Manifest{Space} 
-Else IfEqual key0, TSGN, Send Suggestion{Space} 
-Else IfEqual key0, TSK, Send Takes{Space} 
-Else IfEqual key0, TSXN, Send Extension{Space} 
-Else IfEqual key0, TUAH, Send Authorize{Space} 
-Else IfEqual key0, TUAHCN, Send Authentic{Space} 
-Else IfEqual key0, TUIOANM, Send Mountain{Space} 
-Else IfEqual key0, TUISLN, Send Insult{Space} 
-Else IfEqual key0, TULC, Send Cult{Space} 
-Else IfEqual key0, TUOSD, Send Outside{Space} 
-Else IfEqual key0, TUOSH, Send South{Space} 
-Else IfEqual key0, TUOSH, Send Shout{Space} 
-Else IfEqual key0, TVN, Send Initiative{Space} 
-Else IfEqual key0, TVNM, Send Motivation{Space} 
-Else IfEqual key0, TYPSM, Send Symptom{Space} 
-Else IfEqual key0, TYUOCN, Send County{Space} 
-Else IfEqual key0, TDCN, Send Condition{Space} 
-Else IfEqual key0, TDCN, Send Candidate{Space} 
-Else IfEqual key0, TDCNM, Send Document{Space} 
-Else IfEqual key0, TDXN, Send Extend{Space} 
-Else IfEqual key0, TGN, Send Negotiate{Space} 
-Else IfEqual key0, TIDC, Send Dict{Space} 
-Else IfEqual key0, TIDFN, Send Identify{Space} 
-Else IfEqual key0, TIDM, Send Immediate{Space} 
-Else IfEqual key0, TIFL, Send Lift{Space} 
-Else IfEqual key0, TIOCM, Send Commit{Space} 
-Else IfEqual key0, TIOPC, Send Topic{Space} 
-Else IfEqual key0, TIP, Send Tip{Space} 
-Else IfEqual key0, TIPS, Send Tips{Space} 
-Else IfEqual key0, TISFH, Send Shift{Space} 
-Else IfEqual key0, TISGHL, Send Slight{Space} 
-Else IfEqual key0, TISN, Send Isn't{Space} 
-Else IfEqual key0, TLCM, Send Climate{Space} 
-Else IfEqual key0, TLN, Send National{Space} 
-Else IfEqual key0, TOCV, Send Octave{Space} 
-Else IfEqual key0, TOJCVB, Send Objective{Space} 
-Else IfEqual key0, TPAN, Send Appoint{Space} 
-Else IfEqual key0, TPANM, Send Appointment{Space} 
-Else IfEqual key0, TPCM, Send Compete{Space} 
-Else IfEqual key0, TPLC, Send Politic{Space} 
-Else IfEqual key0, TPLCNM, Send Complement{Space} 
-Else IfEqual key0, TPSHCN, Send Snapchat{Space} 
-Else IfEqual key0, TPSN, Send Position{Space} 
-Else IfEqual key0, TSCN, Send Constant{Space} 
-Else IfEqual key0, TSCN, Send Consistent{Space} 
-Else IfEqual key0, TSCN, Send Constant{Space} 
-Else IfEqual key0, TSCN, Send Scientist{Space} 
-Else IfEqual key0, TSDCN, Send Distance{Space} 
-Else IfEqual key0, TSDHN, Send Thousand{Space} 
-Else IfEqual key0, TUDC, Send Duct{Space} 
-Else IfEqual key0, TUIOSD, Send Studio{Space} 
-Else IfEqual key0, TUIS, Send Suit{Space} 
-Else IfEqual key0, TUODB, Send Doubt{Space} 
-Else IfEqual key0, TUODCN, Send Conduct{Space} 
-Else IfEqual key0, TUOKL, Send Outlook{Space} 
-Else IfEqual key0, TUSH, Send Shut{Space} 
-Else IfEqual key0, TVM, Send Motive{Space} 
-Else IfEqual key0, TVN, Send Invite{Space} 
-Else IfEqual key0, TYB, Send Beauty{Space} 
-Else IfEqual key0, TYCN, Send County{Space} 
-Else IfEqual key0, TYIN, Send Tiny{Space} 
-Else IfEqual key0, TYPAC, Send Capacity{Space} 
-Else IfEqual key0, TAC, Send Act{Space} 
-Else IfEqual key0, TFLB, Send Beautiful{Space} 
-Else IfEqual key0, TASHN, Send Hasn't{Space} 
-Else IfEqual key0, TFLB, Send Beautiful{Space} 
-Else IfEqual key0, TGVN, Send Negative{Space} 
-Else IfEqual key0, TIANM, Send Maintain{Space} 
-Else IfEqual key0, TIL, Send It'll{Space} 
-Else IfEqual key0, TIPACM, Send Impact{Space} 
-Else IfEqual key0, TOSH, Send Shot{Space} 
-Else IfEqual key0, TSCM, Send Costume{Space} 
-Else IfEqual key0, TSFCN, Send Fantastic{Space} 
-Else IfEqual key0, TUIOAS, Send Situation{Space} 
-Else IfEqual key0, TUIOAS, Send Situation{Space} 
-Else IfEqual key0, TACN, Send Can't{Space} 
-Else IfEqual key0, TAD, Send Data{Space} 
-Else IfEqual key0, TAFC, Send Fact{Space} 
-Else IfEqual key0, TAGKL, Send Talking{Space} 
-Else IfEqual key0, TAGN, Send Against{Space} 
-Else IfEqual key0, TAH, Send That{Space} 
-Else IfEqual key0, TAHC, Send Chat{Space} 
-Else IfEqual key0, TAHKN, Send Thank{Space} 
-Else IfEqual key0, TAHN, Send Than{Space} 
-Else IfEqual key0, TAKL, Send Talk{Space} 
-Else IfEqual key0, TALC, Send Actually{Space} 
-Else IfEqual key0, TAM, Send Amount{Space} 
-Else IfEqual key0, TAN, Send Attention{Space} 
-Else IfEqual key0, TASDN, Send Stand{Space} 
-Else IfEqual key0, TASF, Send Fast{Space} 
-Else IfEqual key0, TASH, Send That's{Space} 
-Else IfEqual key0, TASKC, Send Stack{Space} 
-Else IfEqual key0, TASL, Send Last{Space} 
-Else IfEqual key0, TBM, Send Bottom{Space} 
-Else IfEqual key0, TC, Send Content{Space} 
-Else IfEqual key0, TCM, Send Community{Space} 
-Else IfEqual key0, TCN, Send Continue{Space} 
-Else IfEqual key0, TD, Send Today{Space} 
-Else IfEqual key0, TDCMN, Send Document{Space} 
-Else IfEqual key0, TDFCN, Send Confident{Space} 
-Else IfEqual key0, TDGL, Send Digital{Space} 
-Else IfEqual key0, TDL, Send Detail{Space} 
-Else IfEqual key0, TDN, Send Don't{Space} 
-Else IfEqual key0, TDX, Send Excited{Space} 
-Else IfEqual key0, TF, Send First{Space} 
-Else IfEqual key0, TFBN, Send Benefit{Space} 
-Else IfEqual key0, TG, Send Thing{Space} 
-Else IfEqual key0, TGHLC, Send Glitch{Space} 
-Else IfEqual key0, TGK, Send Taking{Space} 
-Else IfEqual key0, TGK, Send Taking{Space} 
-Else IfEqual key0, TGKL, Send Talking{Space} 
-Else IfEqual key0, TGKL, Send Talking{Space} 
-Else IfEqual key0, TGKN, Send Thinking{Space} 
-Else IfEqual key0, TGM, Send Meeting{Space} 
-Else IfEqual key0, TGNM, Send Management{Space} 
-Else IfEqual key0, TH, Send This{Space} 
-Else IfEqual key0, THB, Send To Be Honest{Space} 
-Else IfEqual key0, THKN, Send Think{Space} 
-Else IfEqual key0, THVN, Send Haven't{Space} 
-Else IfEqual key0, TI, Send It{Space} 
-Else IfEqual key0, TIAGH, Send Aight{Space} 
-Else IfEqual key0, TIALN, Send Initial{Space} 
-Else IfEqual key0, TIAN, Send Anti
-Else IfEqual key0, TIB, Send Bit{Space} 
-Else IfEqual key0, TID, Send It'd{Space} 
-Else IfEqual key0, TIDM, Send Immediate{Space} 
-Else IfEqual key0, TIDN, Send Didn't{Space} 
-Else IfEqual key0, TIGH, Send Tight{Space} 
-Else IfEqual key0, TIGHL, Send Light{Space} 
-Else IfEqual key0, TIGHN, Send Night{Space} 
-Else IfEqual key0, TIGN, Send Interesting{Space} 
-Else IfEqual key0, TIH, Send I Think{Space} 
-Else IfEqual key0, TIHC, Send Itch{Space} 
-Else IfEqual key0, TIHKN, Send Think{Space} 
-Else IfEqual key0, TILN, Send Internal{Space} 
-Else IfEqual key0, TIN, Send Interest{Space} 
-Else IfEqual key0, TIO, Send In Terms Of{Space} 
-Else IfEqual key0, TIOLN, Send International{Space} 
-Else IfEqual key0, TION, Send Into{Space} 
-Else IfEqual key0, TIOPSN, Send Position{Space} 
-Else IfEqual key0, TIS, Send It's{Space} 
-Else IfEqual key0, TISDCN, Send Distinct{Space} 
-Else IfEqual key0, TISGH, Send Sight{Space} 
-Else IfEqual key0, TISH, Send This{Space} 
-Else IfEqual key0, TISH, Send This{Space} 
-Else IfEqual key0, TISKC, Send Stick{Space} 
-Else IfEqual key0, TISL, Send Still{Space} 
-Else IfEqual key0, TISN, Send Instead{Space} 
-Else IfEqual key0, TIVN, Send Interview{Space} 
-Else IfEqual key0, TIZ, Send Ization
-Else IfEqual key0, TK, Send Take{Space} 
-Else IfEqual key0, TKL, Send Talk{Space} 
-Else IfEqual key0, TKM, Send Market{Space} 
-Else IfEqual key0, TLB, Send Built{Space} 
-Else IfEqual key0, TLCN, Send Technical{Space} 
-Else IfEqual key0, TLNM, Send Mental{Space} 
-Else IfEqual key0, TLXN, Send Excellent{Space} 
-Else IfEqual key0, TM, Send Time{Space} 
-Else IfEqual key0, TNM, Send Minute{Space} 
-Else IfEqual key0, TO, Send To{Space} 
-Else IfEqual key0, TO, Send Too{Space} 
-Else IfEqual key0, TOACN, Send Contact{Space} 
-Else IfEqual key0, TOAHL, Send Although{Space} 
-Else IfEqual key0, TOAL, Send Total{Space} 
-Else IfEqual key0, TOBM, Send Bottom{Space} 
-Else IfEqual key0, TOCN, Send Contract{Space} 
-Else IfEqual key0, TODL, Send Told{Space} 
-Else IfEqual key0, TODN, Send Don't{Space} 
-Else IfEqual key0, TOG, Send Got{Space} 
-Else IfEqual key0, TOH, Send Though{Space} 
-Else IfEqual key0, TOHB, Send Both{Space} 
-Else IfEqual key0, TOHNM, Send Month{Space} 
-Else IfEqual key0, TOK, Send Took{Space} 
-Else IfEqual key0, TOL, Send Lot{Space} 
-Else IfEqual key0, TON, Send Not{Space} 
-Else IfEqual key0, TON, Send Not{Space} 
-Else IfEqual key0, TOP, Send Top{Space} 
-Else IfEqual key0, TOPAD, Send Adopt{Space} 
-Else IfEqual key0, TOPH, Send Photo{Space} 
-Else IfEqual key0, TOPS, Send Stop{Space} 
-Else IfEqual key0, TOPZM, Send Optimize{Space} 
-Else IfEqual key0, TOSC, Send Cost{Space} 
-Else IfEqual key0, TOSL, Send Lost{Space} 
-Else IfEqual key0, TOSM, Send Most{Space} 
-Else IfEqual key0, TP, Send Point{Space} 
-Else IfEqual key0, TPAFLM, Send Platform{Space} 
-Else IfEqual key0, TPALN, Send Plant{Space} 
-Else IfEqual key0, TPAS, Send Past{Space} 
-Else IfEqual key0, TPC, Send Corporate{Space} 
-Else IfEqual key0, TPCNM, Send Component{Space} 
-Else IfEqual key0, TPD, Send Department{Space} 
-Else IfEqual key0, TPLM, Send Multiple{Space} 
-Else IfEqual key0, TPLN, Send Potential{Space} 
-Else IfEqual key0, TPS, Send Post{Space} 
-Else IfEqual key0, TPSN, Send Postpone{Space} 
-Else IfEqual key0, TPSV, Send Positive{Space} 
-Else IfEqual key0, TS, Send Its{Space} 
-Else IfEqual key0, TS, Send St
-Else IfEqual key0, TSDN, Send Doesn't{Space} 
-Else IfEqual key0, TSFGN, Send Significant{Space} 
-Else IfEqual key0, TSG, Send Things{Space} 
-Else IfEqual key0, TSDHN, Send Shouldn't{Space} 
-Else IfEqual key0, TSKM, Send Mistake{Space} 
-Else IfEqual key0, TSL, Send List{Space} 
-Else IfEqual key0, TSLN, Send Listen{Space} 
-Else IfEqual key0, TSLVM, Send Themselves{Space} 
-Else IfEqual key0, TSM, Send Sometimes{Space} 
-Else IfEqual key0, TSN, Send Essentially{Space} 
-Else IfEqual key0, TUA, Send Uation
-Else IfEqual key0, TUAGH, Send Taught{Space} 
-Else IfEqual key0, TUALC, Send Actual{Space} 
-Else IfEqual key0, TUB, Send But{Space} 
-Else IfEqual key0, TUC, Send Cut{Space} 
-Else IfEqual key0, TUILN, Send Until{Space} 
-Else IfEqual key0, TUIOASN, Send Situation{Space} 
-Else IfEqual key0, TUIPDLC, Send Duplicate{Space} 
-Else IfEqual key0, TUL, Send Ultimately{Space} 
-Else IfEqual key0, TUO, Send Out{Space} 
-Else IfEqual key0, TUOA, Send Auto{Space} 
-Else IfEqual key0, TUOACN, Send Account{Space} 
-Else IfEqual key0, TUOBN, Send Button{Space} 
-Else IfEqual key0, TUOCN, Send Count{Space} 
-Else IfEqual key0, TUOHC, Send Touch{Space} 
-Else IfEqual key0, TUOHM, Send Mouth{Space} 
-Else IfEqual key0, TUOSCM, Send Custom{Space} 
-Else IfEqual key0, TUP, Send Put{Space} 
-Else IfEqual key0, TUSF, Send Stuff{Space} 
-Else IfEqual key0, TUSM, Send Must{Space} 
-Else IfEqual key0, TXC, Send Context{Space} 
-Else IfEqual key0, TY, Send Thank You{Space} 
-Else IfEqual key0, TYAS, Send Stay{Space} 
-Else IfEqual key0, TYASLV, Send Vastly{Space} 
-Else IfEqual key0, TYD, Send Today{Space} 
-Else IfEqual key0, TYIACV, Send Activity{Space} 
-Else IfEqual key0, TYIALB, Send Ability{Space} 
-Else IfEqual key0, TYIDN, Send Identity{Space} 
-Else IfEqual key0, TYIK, Send Kitty{Space} 
-Else IfEqual key0, TYIL, Send Ility{Space} 
-Else IfEqual key0, TYILB, Send Ibility{Space} 
-Else IfEqual key0, TYO, Send Toy{Space} 
-Else IfEqual key0, TYOAL, Send Totally{Space} 
-Else IfEqual key0, TYPHLC, Send Hypothetical{Space} 
-Else IfEqual key0, TYPLC, Send Typical{Space} 
-Else IfEqual key0, TYVM, Send Thank You Very Much{Space} 
-Else IfEqual key0, TOAGHC, Send Got You.{Space} 
-Else IfEqual key0, TPAH, Send Path{Space} 
-Else IfEqual key0, TSC, Send Society{Space} 
-Else IfEqual key0, TSLVM, Send Themselves{Space} 
-Else IfEqual key0, TUIASN, Send Sustain{Space} 
-Else IfEqual key0, TUIOSN, Send Institution{Space} 
-Else IfEqual key0, TUOGH, Send Thought{Space} 
-Else IfEqual key0, TVN, Send Native{Space} 
-Else IfEqual key0, TYIC, Send City{Space} 
-Return
-SENDYup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
- IfEqual key0, YAD, Send Day{Space} 
-Else IfEqual key0, YUGL, Send Ugly{Space} 
-Else IfEqual key0, TYSG, Send Staying{Space} 
-Else IfEqual key0, EYAGCN, Send Agency{Space} 
-Else IfEqual key0, YADBN, Send Anybody{Space} 
-Else IfEqual key0, YDGB, Send Goodbye{Space} 
-Else IfEqual key0, YPG, Send Paying{Space} 
- Else IfEqual key0, YDVN, Send Vineyard{Space} 
-Else IfEqual key0, YCVN, Send Convey{Space} 
-Else IfEqual key0, YFL, Send Fly{Space} 
-Else IfEqual key0, YOHL, Send Holy{Space} 
-Else IfEqual key0, YOPH, Send Hypo
-Else IfEqual key0, YSLN, Send Analysis{Space} 
-Else IfEqual key0, YUDB, Send Buddy{Space} 
-Else IfEqual key0, YUSG, Send Guys{Space} 
-Else IfEqual key0, YAB, Send Baby{Space} 
-Else IfEqual key0, YOGLCN, Send Oncology{Space} 
-Else IfEqual key0, YPAL, Send Play{Space} 
-Else IfEqual key0, YSNM, Send Mayonnaise{Space} 
-Else IfEqual key0, YUJL, Send July{Space} 
-Else IfEqual key0, YOPC, Send Copy{Space} 
-Else IfEqual key0, YPSHCN, Send Physician{Space} 
-Else IfEqual key0, YAM, Send May{Space} 
-Else IfEqual key0, YGLCN, Send Oncology{Space} 
-Else IfEqual key0, YOGLCN, Send Oncology{Space} 
-Else IfEqual key0, YDBN, Send Beyond{Space} 
-Else IfEqual key0, YOJ, Send Joy{Space} 
-Else IfEqual key0, YPSHLC, Send Physical{Space} 
-Else IfEqual key0, YAN, Send Any{Space} 
-Else IfEqual key0, YANM, Send Many{Space} 
-Else IfEqual key0, YAS, Send Say{Space} 
-Else IfEqual key0, YASG, Send Saying{Space} 
-Else IfEqual key0, YB, Send By{Space} 
-Else IfEqual key0, YD, Send Yesterday{Space} 
-Else IfEqual key0, YFLN, Send Finally{Space} 
-Else IfEqual key0, YIADL, Send Daily{Space} 
-Else IfEqual key0, YIAFLM, Send Family{Space} 
-Else IfEqual key0, YIASLN, Send Analysis{Space} 
-Else IfEqual key0, YIF, Send Ify{Space} 
-Else IfEqual key0, YK, Send You Know{Space} 
-Else IfEqual key0, YM, Send My{Space} 
-Else IfEqual key0, YOAN, Send Annoy{Space} 
-Else IfEqual key0, YOANM, Send Anymore{Space} 
-Else IfEqual key0, YOB, Send Boy{Space} 
-Else IfEqual key0, YODB, Send Body{Space} 
-Else IfEqual key0, YOLN, Send Only{Space} 
-Else IfEqual key0, YPA, Send Pay{Space} 
-Else IfEqual key0, YPAH, Send Happy{Space} 
-Else IfEqual key0, YPAL, Send Play{Space} 
-Else IfEqual key0, YPCM, Send Completely{Space} 
-Else IfEqual key0, YSDA, Send Days{Space} 
-Else IfEqual key0, YSG, Send Saying{Space} 
-Else IfEqual key0, YSM, Send Sym
-Else IfEqual key0, YSN, Send Syn
-Else IfEqual key0, YUASL, Send Usually{Space} 
-Else IfEqual key0, YUB, Send Buy{Space} 
-Else IfEqual key0, YUG, Send Guy{Space} 
-Else IfEqual key0, YUOGN, Send Young{Space} 
-Else IfEqual key0, YAL, Send Lay{Space} 
-Else IfEqual key0, YUFN, Send Funny{Space} 
-Else IfEqual key0, YUSB, Send Busy{Space} 
-Return
-SENDUup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
- IfEqual key0, UA, Send Au
-Else IfEqual key0, UAB, Send A Bunch{Space} 
-Else IfEqual key0, UAHNM, Send Human{Space} 
-Else IfEqual key0, UASDHBN, Send Husband{Space} 
-Else IfEqual key0, UINM, Send Minimum{Space} 
-Else IfEqual key0, UIOLCN, Send Council{Space} 
-Else IfEqual key0, UODBN, Send Bound{Space} 
-Else IfEqual key0, UODC, Send Docu
-Else IfEqual key0, UAHLCN, Send Launch{Space} 
-Else IfEqual key0, UASHBN, Send Husband{Space} 
-Else IfEqual key0, UDH, Send Duh{Space} 
-Else IfEqual key0, UGN, Send Gun{Space} 
-Else IfEqual key0, UHCBN, Send Bunch{Space} 
-Else IfEqual key0, UIOAC, Send Caution{Space} 
-Else IfEqual key0, UPBM, Send Bump{Space} 
-Else IfEqual key0, UANM, Send Manu{Space} 
-Else IfEqual key0, UFKC, Send Fuck{Space} 
-Else IfEqual key0, UKLC, Send Luck{Space} 
-Else IfEqual key0, UISDC, Send Discuss{Space} 
-Else IfEqual key0, USG, Send Using{Space} 
-Else IfEqual key0, USGN, Send Sung{Space} 
-Else IfEqual key0, UALBM, Send Albums{Space} 
-Else IfEqual key0, UIOSL, Send Solution{Space} 
-Else IfEqual key0, UAD, Send Audience{Space} 
-Else IfEqual key0, UAG, Send Aug{Space} 
-Else IfEqual key0, UAGHL, Send Laugh{Space} 
-Else IfEqual key0, UAGL, Send Laugh{Space} 
-Else IfEqual key0, UAHLCN, Send Launch{Space} 
-Else IfEqual key0, UASL, Send Usual{Space} 
-Else IfEqual key0, UCM, Send Communicate{Space} 
-Else IfEqual key0, UD, Send You'd{Space} 
-Else IfEqual key0, UDN, Send Understand{Space} 
-Else IfEqual key0, UFL, Send Full{Space} 
-Else IfEqual key0, UHCM, Send Much{Space} 
-Else IfEqual key0, UICM, Send Communication{Space} 
-Else IfEqual key0, UIOCM, Send Communication{Space} 
-Else IfEqual key0, UIDN, Send Industry{Space} 
-Else IfEqual key0, UIN, Send Uni
-Else IfEqual key0, UIOFCN, Send Function{Space} 
-Else IfEqual key0, UIOS, Send Ious
-Else IfEqual key0, UIOSCN, Send Conscious{Space} 
-Else IfEqual key0, UIOSLCN, Send Conclusion{Space} 
-Else IfEqual key0, UIPDL, Send Dupli{Space} 
-Else IfEqual key0, UISCM, Send Music{Space} 
-Else IfEqual key0, UISN, Send Insurance{Space} 
-Else IfEqual key0, UIVN, Send University{Space} 
-Else IfEqual key0, UL, Send You'll{Space} 
-Else IfEqual key0, UN, Send Un
-Else IfEqual key0, UNM, Send Number{Space} 
-Else IfEqual key0, UO, Send Ou
-Else IfEqual key0, UODFN, Send Found{Space} 
-Else IfEqual key0, UODL, Send Loud{Space} 
-Else IfEqual key0, UODLC, Send Cloud{Space} 
-Else IfEqual key0, UOGH, Send Ough{Space} 
-Else IfEqual key0, UOP, Send Population{Space} 
-Else IfEqual key0, UOPN, Send Upon{Space} 
-Else IfEqual key0, UOSDN, Send Sound{Space} 
-Else IfEqual key0, UOSFC, Send Focus{Space} 
-Else IfEqual key0, UOSM, Send So Much{Space} 
-Else IfEqual key0, UP, Send Up{Space} 
-Else IfEqual key0, UPASCM, Send Campus{Space} 
-Else IfEqual key0, UPC, Send Computer{Space} 
-Else IfEqual key0, UPJM, Send Jump{Space} 
-Else IfEqual key0, UPL, Send Pull{Space} 
-Else IfEqual key0, UPSH, Send Push{Space} 
-Else IfEqual key0, US, Send Us{Space} 
-Else IfEqual key0, USB, Send Sub
-Else IfEqual key0, USF, Send Yourself{Space} 
-Else IfEqual key0, USHC, Send Such{Space} 
-Else IfEqual key0, USN, Send Sun{Space} 
-Else IfEqual key0, UV, Send You've{Space} 
-Else IfEqual key0, UDFN, Send Fund{Space} 
-Else IfEqual key0, UFN, Send Fun{Space} 
-Else IfEqual key0, USFL, Send Yourself{Space} 
-Return
-SENDEup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, EA, Send Ea	
-Else IfEqual key0, EPALCB, Send Capable{Space} 
-Else IfEqual key0, ERIV, Send River{Space} 
-Else IfEqual key0, ERUIPM, Send Premium{Space} 
-Else IfEqual key0, ETF, Send Feet{Space} 
-Else IfEqual key0, ERTYPAH, Send Therapy{Space} 
-Else IfEqual key0, ERIACM, Send America{Space} 
-Else IfEqual key0, ERUOP, Send Europe{Space} 
-Else IfEqual key0, EOSLN, Send Lesson{Space} 
-Else IfEqual key0, EPALN, Send Plane{Space} 
-Else IfEqual key0, EALCN, Send Cancel{Space} 
-Else IfEqual key0, EPASLC, Send Places{Space} 
-Else IfEqual key0, EALN, Send Lane{Space} 
-Else IfEqual key0, ETPASLN, Send Pleasant{Space} 
-Else IfEqual key0, EAS, Send Assess{Space} 
-Else IfEqual key0, ERUIPS, Send Surprise{Space} 
-Else IfEqual key0, EASF, Send Safety{Space} 
-Else IfEqual key0, EFHC, Send Chef{Space} 
-Else IfEqual key0, ERUALCN, Send Nuclear{Space} 
-Else IfEqual key0, EIALV, Send Alive{Space} 
-Else IfEqual key0, EYIASL, Send Easily{Space} 
-Else IfEqual key0, EIASN, Send Insane{Space} 
-Else IfEqual key0, EIFKN, Send Knife{Space} 
-Else IfEqual key0, EIHCN, Send Niche{Space} 
-Else IfEqual key0, EIHK, Send Hike{Space} 
-Else IfEqual key0, EIL, Send Lie{Space} 
-Else IfEqual key0, EIL, Send Lie{Space} 
-Else IfEqual key0, EILCN, Send Incline{Space} 
-Else IfEqual key0, EIOCNM, Send Economic{Space} 
-Else IfEqual key0, EIOCNM, Send Income{Space} 
-Else IfEqual key0, EIPLCN, Send Pencil{Space} 
-Else IfEqual key0, EISDL, Send Slide{Space} 
-Else IfEqual key0, EISKVN, Send Knives{Space} 
-Else IfEqual key0, EISLM, Send Smile{Space} 
-Else IfEqual key0, EISZ, Send Seize{Space} 
-Else IfEqual key0, EKN, Send Knee{Space} 
-Else IfEqual key0, ELB, Send Bell{Space} 
-Else IfEqual key0, EOADB, Send Adobe{Space} 
-Else IfEqual key0, EOASLM, Send Molasses{Space} 
-Else IfEqual key0, EOFC, Send Coffee{Space} 
-Else IfEqual key0, EOSDCN, Send Condense{Space} 
-Else IfEqual key0, EOSLN, Send Lesson{Space} 
-Else IfEqual key0, EOSN, Send Nose{Space} 
-Else IfEqual key0, EPA, Send Ape{Space} 
-Else IfEqual key0, EPN, Send Pen{Space} 
-Else IfEqual key0, EPSL, Send Spell{Space} 
-Else IfEqual key0, ERAB, Send Bear{Space} 
-Else IfEqual key0, ERADG, Send Regard{Space} 
-Else IfEqual key0, ERADLC, Send Declare{Space} 
-Else IfEqual key0, ERAF, Send Fear{Space} 
-Else IfEqual key0, ERAF, Send Fear{Space} 
-Else IfEqual key0, ERALX, Send Relax{Space} 
-Else IfEqual key0, ERAS, Send Erase{Space} 
-Else IfEqual key0, ERDCBM, Send December{Space} 
-Else IfEqual key0, ERF, Send Refer{Space} 
-Else IfEqual key0, ERHC, Send Cheer{Space} 
-Else IfEqual key0, ERIAS, Send Raise{Space} 
-Else IfEqual key0, ERIDB, Send Bride{Space} 
-Else IfEqual key0, ERIDGB, Send Bridge{Space} 
-Else IfEqual key0, ERIDL, Send Riddle{Space} 
-Else IfEqual key0, ERIN, Send Inner{Space} 
-Else IfEqual key0, ERIOPSCM, Send Comprise{Space} 
-Else IfEqual key0, ERIPSCB, Send Prescribe{Space} 
-Else IfEqual key0, ERM, Send Mere{Space} 
-Else IfEqual key0, ERO, Send Error{Space} 
-Else IfEqual key0, EROASH, Send Hoarse{Space} 
-Else IfEqual key0, EROCM, Send Commerce{Space} 
-Else IfEqual key0, EROKB, Send Broke{Space} 
-Else IfEqual key0, EROS, Send Rose{Space} 
-Else IfEqual key0, EROSCN, Send Censor{Space} 
-Else IfEqual key0, EROVBNM, Send November{Space} 
-Else IfEqual key0, ERPAS, Send Spare{Space} 
-Else IfEqual key0, ERTAG, Send Target{Space} 
-Else IfEqual key0, ERTAGN, Send Generate{Space} 
-Else IfEqual key0, ERTIACN, Send Interact{Space} 
-Else IfEqual key0, ERTIAGC, Send Cigarette{Space} 
-Else IfEqual key0, ERTIHN, Send Inherent{Space} 
-Else IfEqual key0, ERTION, Send Orient{Space} 
-Else IfEqual key0, ERTIPAC, Send Practice{Space} 
-Else IfEqual key0, ERTOA, Send Rotate{Space} 
-Else IfEqual key0, ERTOCB, Send October{Space} 
-Else IfEqual key0, ERTOSK, Send Stroke{Space} 
-Else IfEqual key0, ERTPSBM, Send September{Space} 
-Else IfEqual key0, ERTUANM, Send Remunerate{Space} 
-Else IfEqual key0, ERTYCM, Send Cemetery{Space} 
-Else IfEqual key0, ERTYOP, Send Property{Space} 
-Else IfEqual key0, ERUD, Send Educator{Space} 
-Else IfEqual key0, ERUDBN, Send Burden{Space} 
-Else IfEqual key0, ERUIN, Send Urine{Space} 
-Else IfEqual key0, ERUOPCN, Send Pronounce{Space} 
-Else IfEqual key0, ERUSC, Send Rescue{Space} 
-Else IfEqual key0, ERUVN, Send Revenue{Space} 
-Else IfEqual key0, ERYOASC, Send Accessory{Space} 
-Else IfEqual key0, ESHCM, Send Scheme{Space} 
-Else IfEqual key0, ESLM, Send Smell{Space} 
-Else IfEqual key0, ETADN, Send Attend{Space} 
-Else IfEqual key0, ETAGN, Send Agent{Space} 
-Else IfEqual key0, ETAGN, Send Tangent{Space} 
-Else IfEqual key0, ETALN, Send Talent{Space} 
-Else IfEqual key0, ETANM, Send Meant{Space} 
-Else IfEqual key0, ETASK, Send Stake{Space} 
-Else IfEqual key0, ETGHLN, Send Length{Space} 
-Else IfEqual key0, ETIAHLCN, Send Technical{Space} 
-Else IfEqual key0, ETIOANM, Send Nominate{Space} 
-Else IfEqual key0, ETIOSN, Send Tension{Space} 
-Else IfEqual key0, ETIOSN, Send Tension{Space} 
-Else IfEqual key0, ETOLB, Send Bottle{Space} 
-Else IfEqual key0, ETOLB, Send Bottle{Space} 
-Else IfEqual key0, ETOSHLC, Send Clothes{Space} 
-Else IfEqual key0, ETPAL, Send Plate{Space} 
-Else IfEqual key0, ETPASC, Send Aspect{Space} 
-Else IfEqual key0, ETPS, Send Steep{Space} 
-Else IfEqual key0, ETSCN, Send Sentence{Space} 
-Else IfEqual key0, ETUB, Send Tube{Space} 
-Else IfEqual key0, ETUHC, Send Chute{Space} 
-Else IfEqual key0, ETUM, Send Mute{Space} 
-Else IfEqual key0, ETUOCM, Send Outcome{Space} 
-Else IfEqual key0, ETUPS, Send Upset{Space} 
-Else IfEqual key0, ETYOSCM, Send Ecosystem{Space} 
-Else IfEqual key0, EUDGJ, Send Judge{Space} 
-Else IfEqual key0, EUDGN, Send Nudge{Space} 
-Else IfEqual key0, EUJN, Send June{Space} 
-Else IfEqual key0, EUPSL, Send Pulse{Space} 
-Else IfEqual key0, EYAGCN, Send Agency{Space} 
-Else IfEqual key0, EYP, Send Yep{Space} 
-Else IfEqual key0, RTYL, Send Reality{Space} 
-Else IfEqual key0, ETANM, Send Meant{Space} 
-Else IfEqual key0, EASN, Send Sane{Space} 
-Else IfEqual key0, EIASN, Send Insane{Space} 
-Else IfEqual key0, EPSD, Send Sped{Space} 
-Else IfEqual key0, ETUN, Send Tune{Space} 
-Else IfEqual key0, EROFC, Send Force{Space} 
-Else IfEqual key0, ETIOASC, Send Associate{Space} 
-Else IfEqual key0, EIONM, Send Mention{Space} 
-Else IfEqual key0, EYH, Send Hey{Space} 
-Else IfEqual key0, EYP, Send Yep{Space} 
-Else IfEqual key0, EODCNM, Send Commend{Space} 
-Else IfEqual key0, ETISN, Send Intense{Space} 
-Else IfEqual key0, ERUIOS, Send Capable{Space} 
-Else IfEqual key0, EUALVB, Send Valuable{Space} 
-Else IfEqual key0, ETIAGVN, Send Navigate{Space} 
-Else IfEqual key0, ERASC, Send Scare{Space} 
-Else IfEqual key0, ERTOM, Send Remote{Space} 
-Else IfEqual key0, ERTLXN, Send Internal{Space} 
-Else IfEqual key0, EROPSC, Send Process{Space} 
-Else IfEqual key0, EACBM, Send Became{Space} 
-Else IfEqual key0, EAGHLCN, Send Challenge{Space} 
-Else IfEqual key0, ETAKN, Send Taken{Space} 
-Else IfEqual key0, ETPAM, Send Attempt{Space} 
-Else IfEqual key0, EIVN, Send Vein{Space} 
-Else IfEqual key0, ERPASH, Send Phrase{Space} 
-Else IfEqual key0, ERTPASN, Send Transparent{Space} 
-Else IfEqual key0, EAD, Send Dead{Space} 
-Else IfEqual key0, EADHLN, Send Handle{Space} 
-Else IfEqual key0, EAGBN, Send Began{Space} 
-Else IfEqual key0, EASHK, Send Shake{Space} 
-Else IfEqual key0, EDCVN, Send Evidence{Space} 
-Else IfEqual key0, EIASD, Send Disease{Space} 
-Else IfEqual key0, EIASL, Send Aisle{Space} 
-Else IfEqual key0, EIHLCV, Send Vehicle{Space} 
-Else IfEqual key0, EILM, Send Mile{Space} 
-Else IfEqual key0, EIOM, Send Emotion{Space} 
-Else IfEqual key0, EISDN, Send Inside{Space} 
-Else IfEqual key0, EISHN, Send Shine{Space} 
-Else IfEqual key0, EISLCN, Send Silence{Space} 
-Else IfEqual key0, EAKL, Send Lake{Space} 
-Else IfEqual key0, EOALN, Send Alone{Space} 
-Else IfEqual key0, EOCVN, Send Convene{Space} 
-Else IfEqual key0, EODGL, Send Lodge{Space} 
-Else IfEqual key0, EOLCN, Send Clone{Space} 
-Else IfEqual key0, EOLNM, Send Lemon{Space} 
-Else IfEqual key0, EOLNM, Send Melon{Space} 
-Else IfEqual key0, EOPK, Send Poke{Space} 
-Else IfEqual key0, EOSLV, Send Solve{Space} 
-Else IfEqual key0, EOSLV, Send Solve{Space} 
-Else IfEqual key0, EPAHC, Send Cheap{Space} 
-Else IfEqual key0, ERADG, Send Grade{Space} 
-Else IfEqual key0, ERAFM, Send Frame{Space} 
-Else IfEqual key0, ERAGHC, Send Charge{Space} 
-Else IfEqual key0, ERAGNM, Send Manager{Space} 
-Else IfEqual key0, ERC, Send Rec Recognize{Space} 
-Else IfEqual key0, ERDH, Send Herd{Space} 
-Else IfEqual key0, ERGCNM, Send Emergency{Space} 
-Else IfEqual key0, ERGM, Send Merge{Space} 
-Else IfEqual key0, ERIAL, Send Earlier{Space} 
-Else IfEqual key0, ERIALCM, Send Miracle{Space} 
-Else IfEqual key0, ERIF, Send Fire{Space} 
-Else IfEqual key0, ERIOSN, Send Senior{Space} 
-Else IfEqual key0, ERIPL, Send Ripple{Space} 
-Else IfEqual key0, ERIPLCN, Send Principle{Space} 
-Else IfEqual key0, ERIPSN, Send Inspire{Space} 
-Else IfEqual key0, ERLV, Send Lever{Space} 
-Else IfEqual key0, EROC, Send Core{Space} 
-Else IfEqual key0, EROC, Send Core{Space} 
-Else IfEqual key0, EROH, Send Hero{Space} 
-Else IfEqual key0, EROHL, Send Holler{Space} 
-Else IfEqual key0, EROSC, Send Score{Space} 
-Else IfEqual key0, EROSLC, Send Closer{Space} 
-Else IfEqual key0, ERTA, Send Tear{Space} 
-Else IfEqual key0, ERTAD, Send Trade{Space} 
-Else IfEqual key0, ERTD, Send Editor{Space} 
-Else IfEqual key0, ERTIHN, Send Neither{Space} 
-Else IfEqual key0, ERTILC, Send Electric{Space} 
-Else IfEqual key0, ERTIOD, Send Editor{Space} 
-Else IfEqual key0, ERTIPAC, Send Practice{Space} 
-Else IfEqual key0, ERTIPAC, Send Practice{Space} 
-Else IfEqual key0, ERTISH, Send Theirs{Space} 
-Else IfEqual key0, ERTJC, Send Reject{Space} 
-Else IfEqual key0, ERTLC, Send Electric{Space} 
-Else IfEqual key0, ERTOFGN, Send Forgotten{Space} 
-Else IfEqual key0, ERTPVN, Send Prevent{Space} 
-Else IfEqual key0, ERTUIC, Send Recruit{Space} 
-Else IfEqual key0, ERTUL, Send Turtle{Space} 
-Else IfEqual key0, ERTUN, Send Return{Space} 
-Else IfEqual key0, ERTUO, Send Route{Space} 
-Else IfEqual key0, ERUAG, Send Argue{Space} 
-Else IfEqual key0, ERUAS, Send Assure{Space} 
-Else IfEqual key0, ERUBM, Send Bummer{Space} 
-Else IfEqual key0, ERUOSLCN, Send Counselor{Space} 
-Else IfEqual key0, ERUOSVN, Send Nervous{Space} 
-Else IfEqual key0, ERUSN, Send Nurse{Space} 
-Else IfEqual key0, ESHL, Send Shell{Space} 
-Else IfEqual key0, ETAS, Send State{Space} 
-Else IfEqual key0, ETB, Send Bet{Space} 
-Else IfEqual key0, ETB, Send Bet{Space} 
-Else IfEqual key0, ETDN, Send Tend{Space} 
-Else IfEqual key0, ETFCN, Send Efficient{Space} 
-Else IfEqual key0, ETFCN, Send Efficient{Space} 
-Else IfEqual key0, ETIHKCN, Send Kitchen{Space} 
-Else IfEqual key0, ETION, Send Intention{Space} 
-Else IfEqual key0, ETIONM, Send Emotion{Space} 
-Else IfEqual key0, ETIPDN, Send Independent{Space} 
-Else IfEqual key0, ETISLN, Send Nationalities{Space} 
-Else IfEqual key0, ETLVT, Send Evaluate{Space} 
-Else IfEqual key0, ETOP, Send Poet{Space} 
-Else IfEqual key0, ETPALN, Send Planet{Space} 
-Else IfEqual key0, ETPXM, Send Exempt{Space} 
-Else IfEqual key0, ETSG, Send Setting{Space} 
-Else IfEqual key0, ETSG, Send Gets{Space} 
-Else IfEqual key0, ETSLN, Send Essential{Space} 
-Else IfEqual key0, ETUALV, Send Evaluate{Space} 
-Else IfEqual key0, ETUASCBN, Send Substance{Space} 
-Else IfEqual key0, ETUISN, Send Institute{Space} 
-Else IfEqual key0, ETYPLN, Send Plenty{Space} 
-Else IfEqual key0, EUAG, Send Gauge{Space} 
-Else IfEqual key0, EUAGV, Send Vague{Space} 
-Else IfEqual key0, EUASB, Send Abuse{Space} 
-Else IfEqual key0, EUH, Send Hue{Space} 
-Else IfEqual key0, EUIFLCN, Send Influence{Space} 
-Else IfEqual key0, EUISDC, Send Suicide{Space} 
-Else IfEqual key0, EUOSLCN, Send Counsel{Space} 
-Else IfEqual key0, EUPDL, Send Puddle{Space} 
-Else IfEqual key0, EY, Send Eye{Space} 
-Else IfEqual key0, EYADL, Send Delay{Space} 
-Else IfEqual key0, EYIAFC, Send Efficacy{Space} 
-Else IfEqual key0, EYL, Send Yell{Space} 
-Else IfEqual key0, EYOCVN, Send Convey{Space} 	
-Else IfEqual key0, ERPISN, Send Inspire{Space} 
-Else IfEqual key0, EOPSK, Send Spoke{Space} 
-Else IfEqual key0, EPAL, Send Leap{Space} 
-Else IfEqual key0, EPDXN, Send Expend{Space} 
-Else IfEqual key0, ERIAV, Send Arrive{Space} 
-Else IfEqual key0, EROP, Send Proper{Space} 
-Else IfEqual key0, ERPDC, Send Deprec{Space} 
-Else IfEqual key0, ERTIPN, Send Interpret{Space} 
-Else IfEqual key0, ERTUIPN, Send Interrupt{Space} 
-Else IfEqual key0, ETIALNM, Send Eliminate{Space} 
-Else IfEqual key0, ETIASCN, Send Instance{Space} 
-Else IfEqual key0, ETISCN, Send Scientist{Space} 
-Else IfEqual key0, ETIVN, Send Invite{Space} 
-Else IfEqual key0, ERUOPD, Send Produce{Space} 
-Else IfEqual key0, EACM, Send Came{Space} 	
-Else IfEqual key0, EADCN, Send Dance{Space} 	
-Else IfEqual key0, ERUDM, Send Drummer{Space} 
-Else IfEqual key0, EASFL, Send False{Space} 
-Else IfEqual key0, EASL, Send Sale{Space} 
-Else IfEqual key0, EASLC, Send Scale{Space} 
-Else IfEqual key0, EDG, Send Edge{Space} 
-Else IfEqual key0, EFB, Send Beef{Space} 
-Else IfEqual key0, EICV, Send Vice{Space} 
-Else IfEqual key0, EIDV, Send Dive{Space} 
-Else IfEqual key0, EIGN, Send Engine{Space} 
-Else IfEqual key0, EINM, Send Mine{Space} 
-Else IfEqual key0, EIOCVN, Send Convince{Space} 
-Else IfEqual key0, EIOSN, Send Session{Space} 
-Else IfEqual key0, ELC, Send Cell{Space} 
-Else IfEqual key0, EOHN, Send Hone{Space} 
-Else IfEqual key0, ERADM, Send Dream{Space} 
-Else IfEqual key0, ERASD, Send Address{Space} 
-Else IfEqual key0, ERDG, Send Degree{Space} 
-Else IfEqual key0, ERGCN, Send Encourage{Space} 
-Else IfEqual key0, ERIH, Send Hire{Space} 
-Else IfEqual key0, ERILC, Send Circle{Space} 
-Else IfEqual key0, ERPSCN, Send Presence{Space} 
-Else IfEqual key0, ERTI, Send Tire{Space} 
-Else IfEqual key0, ERTIPAC, Send Practice{Space} 
-Else IfEqual key0, ERTLCN, Send Electronic{Space} 
-Else IfEqual key0, ERTOCN, Send Concert{Space} 
-Else IfEqual key0, ERTOF, Send Effort{Space} 
-Else IfEqual key0, ERTOPC, Send Protect{Space} 
-Else IfEqual key0, ERTPX, Send Expert{Space} 
-Else IfEqual key0, ERTUION, Send Routine{Space} 
-Else IfEqual key0, ERTUO, Send Route{Space} 
-Else IfEqual key0, ERUOSC, Send Course{Space} 
-Else IfEqual key0, ERUOSC, Send Course{Space} 
-Else IfEqual key0, ERUSC, Send Secure{Space} 
-Else IfEqual key0, ERUSC, Send Secure{Space} 
-Else IfEqual key0, ERYL, Send Rely{Space} 
-Else IfEqual key0, ESCN, Send Scene{Space} 
-Else IfEqual key0, ESG, Send Seeing{Space} 
-Else IfEqual key0, ETAB, Send Beat{Space} 
-Else IfEqual key0, ETAD, Send Date{Space} 
-Else IfEqual key0, ETAD, Send Date{Space} 
-Else IfEqual key0, ETADH, Send Death{Space} 
-Else IfEqual key0, ETALM, Send Metal{Space} 
-Else IfEqual key0, ETFH, Send Theft{Space} 
-Else IfEqual key0, ETIADC, Send Dictate{Space} 
-Else IfEqual key0, ETIN, Send Intent{Space} 
-Else IfEqual key0, ETIOCM, Send Committee{Space} 
-Else IfEqual key0, ETIVN, Send Invent{Space} 
-Else IfEqual key0, ETOGN, Send Gotten{Space} 
-Else IfEqual key0, ETOSCN, Send Consent{Space} 
-Else IfEqual key0, ETOV, Send Vote{Space} 
-Else IfEqual key0, ETPXC, Send Except{Space} 
-Else IfEqual key0, ETUPAD, Send Update{Space} 
-Else IfEqual key0, ETY, Send Yet{Space} 
-Else IfEqual key0, ETYUAB, Send Beauty{Space} 
-Else IfEqual key0, EUAGLN, Send Language{Space} 
-Else IfEqual key0, EUASM, Send Assume{Space} 
-Else IfEqual key0, EUISDC, Send Suicide{Space} 
-Else IfEqual key0, EULB, Send Blue{Space} 
-Else IfEqual key0, EUNM, Send Menu{Space} 
-Else IfEqual key0, EUNM, Send Menu{Space} 
-Else IfEqual key0, EUPAS, Send Pause{Space} 
-Else IfEqual key0, ERADCN, Send Dancer{Space} 	
-Else IfEqual key0, EAGN, Send Engage{Space} 
-Else IfEqual key0, EIOM, Send Emotion{Space} 
-Else IfEqual key0, EOAVB, Send Above{Space} 
-Else IfEqual key0, EOJK, Send Joke{Space} 
-Else IfEqual key0, EPD, Send Deep{Space} 
-Else IfEqual key0, ERGN, Send Green{Space} 
-Else IfEqual key0, ERIANM, Send Remain{Space} 
-Else IfEqual key0, EROPV, Send Prove{Space} 
-Else IfEqual key0, ERPF, Send Prefer{Space} 
-Else IfEqual key0, ERTAH, Send Heart{Space} 
-Else IfEqual key0, ERTAHB, Send Breathe{Space} 
-Else IfEqual key0, ERTAN, Send Aren't{Space} 
-Else IfEqual key0, ERTIOA, Send Iteration{Space} 
-Else IfEqual key0, ERTIOA, Send Iteration{Space} 
-Else IfEqual key0, ERTIPAC, Send Practice{Space} 
-Else IfEqual key0, ERTPAN, Send Parent{Space} 
-Else IfEqual key0, ERYGN, Send Energy{Space} 
-Else IfEqual key0, ESDN, Send Send {Space} 
-Else IfEqual key0, ETASG, Send Stage{Space} 
-Else IfEqual key0, ETASG, Send Stage{Space} 
-Else IfEqual key0, ETIOPS, Send Opposite{Space} 
-Else IfEqual key0, ETLNM, Send Element{Space} 
-Else IfEqual key0, ETOLC, Send Collect{Space} 
-Else IfEqual key0, ETON, Send Note{Space} 
-Else IfEqual key0, ETUC, Send Cute{Space} 
-Else IfEqual key0, ETUSG, Send Suggest{Space} 
-Else IfEqual key0, ETVN, Send Event{Space} 
-Else IfEqual key0, ETYHD, Send They'd{Space} 
-Else IfEqual key0, ETYHL, Send Theyll{Space} 
-Else IfEqual key0, EUASC, Send Cause{Space} 
-Else IfEqual key0, EUOACN, Send Announce{Space} 
-Else IfEqual key0, EUSDC, Send Succeed{Space} 
-Else IfEqual key0, EUSDC, Send Succeed{Space} 
-Else IfEqual key0, EUSLN, Send Unless{Space} 
-Else IfEqual key0, EYOJN, Send Enjoy{Space} 
-Else IfEqual key0, EPS, Send Especially{Space} 	
-Else IfEqual key0, EADH, Send Head{Space} 		
-Else IfEqual key0, EADL, Send Lead{Space} 	
-Else IfEqual key0, EADM, Send Made{Space} 	
-Else IfEqual key0, EAFC, Send Face{Space} 	
-Else IfEqual key0, EAFLM, Send Female{Space} 	
-Else IfEqual key0, EAFM, Send Fame{Space} 	
-Else IfEqual key0, EAG, Send Age{Space} 	
-Else IfEqual key0, EAGHCN, Send Change{Space} 	
-Else IfEqual key0, EAGHLCN, Send Challenge{Space} 	
-Else IfEqual key0, EAGM, Send Game{Space} 	
-Else IfEqual key0, EAGNM, Send Manage{Space} 	
-Else IfEqual key0, EAGV, Send Gave{Space} 	
-Else IfEqual key0, EAHC, Send Each{Space} 	
-Else IfEqual key0, EAHCN, Send Chance{Space} 	
-Else IfEqual key0, EAHL, Send Heal{Space} 	
-Else IfEqual key0, EAHV, Send Have{Space} 	
-Else IfEqual key0, EAKM, Send Make{Space} 	
-Else IfEqual key0, EALB, Send Able{Space} 	
-Else IfEqual key0, EALCN, Send Clean{Space} 	
-Else IfEqual key0, EALM, Send Male{Space} 	
-Else IfEqual key0, EALN, Send Lean{Space} 	
-Else IfEqual key0, EANM, Send Name{Space} 	
-Else IfEqual key0, EASB, Send Base{Space} 	
-Else IfEqual key0, EASC, Send Case{Space} 	
-Else IfEqual key0, EASDK, Send Asked{Space} 	
-Else IfEqual key0, EASF, Send Safe{Space} 	
-Else IfEqual key0, EASKM, Send Makes{Space} 	
-Else IfEqual key0, EASM, Send Same{Space} 	
-Else IfEqual key0, EASV, Send Save{Space} 	
-Else IfEqual key0, EB, Send Be{Space} 	
-Else IfEqual key0, ECN, Send Necessary{Space}
-Else IfEqual key0, EDC, Send Dec{Space} 	
-Else IfEqual key0, EDF, Send Definitely{Space} 	
-Else IfEqual key0, EDL, Send Led{Space} 	
-Else IfEqual key0, EDN, Send Need{Space} 	
-Else IfEqual key0, EDN, Send End{Space} 	
-Else IfEqual key0, EDV, Send Develop{Space} 	
-Else IfEqual key0, EF, Send For Example{Space} 	
-Else IfEqual key0, EG, Send Everything{Space} 	
-Else IfEqual key0, EGB, Send Being{Space} 	
-Else IfEqual key0, EGL, Send Leg{Space} 	
-Else IfEqual key0, EH, Send He{Space} 	
-Else IfEqual key0, EHKC, Send Check{Space} 	
-Else IfEqual key0, EIACVN, Send Vaccine{Space} 	
-Else IfEqual key0, EIAD, Send Idea{Space} 	
-Else IfEqual key0, EIADM, Send Media{Space} 	
-Else IfEqual key0, EIAGNM, Send Imagine{Space} 	
-Else IfEqual key0, EIALM, Send Email{Space} 	
-Else IfEqual key0, EIC, Send Ice{Space} 
-Else IfEqual key0, EICN, Send Nice{Space} 	
-Else IfEqual key0, EID, Send Ide	
-Else IfEqual key0, EIDC, Send Decide{Space} 	
-Else IfEqual key0, EIDFL, Send Field{Space} 	
-Else IfEqual key0, EIDFL, Send Field{Space} 	
-Else IfEqual key0, EIDFN, Send Define{Space} 	
-Else IfEqual key0, EIDLM, Send Middle{Space} 	
-Else IfEqual key0, EIDN, Send Indeed{Space} 	
-Else IfEqual key0, EIFL, Send Life{Space} 	
-Else IfEqual key0, EIGBN, Send Begin{Space} 	
-Else IfEqual key0, EIGBN, Send Beginning{Space}
-Else IfEqual key0, EILV, Send Live{Space} 	
-Else IfEqual key0, EIOCV, Send Voice{Space} 	
-Else IfEqual key0, EIODV, Send Video{Space} 	
-Else IfEqual key0, EIOFC, Send Office{Space} 	
-Else IfEqual key0, EIOHC, Send Choice{Space} 	
-Else IfEqual key0, EIOLVN, Send Involve{Space} 	
-Else IfEqual key0, EIOSC, Send Section{Space} 	
-Else IfEqual key0, EIOSN, Send Noise{Space} 	
-Else IfEqual key0, EIP, Send Pipe{Space} 	
-Else IfEqual key0, EIPC, Send Piece{Space} 	
-Else IfEqual key0, EISCN, Send Since{Space} 	
-Else IfEqual key0, EISD, Send Side{Space} 	
-Else IfEqual key0, EISGLN, Send Single{Space} 	
-Else IfEqual key0, EIV, Send I've{Space}
-Else IfEqual key0, EKCN, Send Neck{Space} 	
-Else IfEqual key0, ELCN, Send Necessarily{Space} 	
-Else IfEqual key0, ELV, Send Level{Space} 	
-Else IfEqual key0, EM, Send Me{Space} 	
-Else IfEqual key0, EN, Send En	
-Else IfEqual key0, EN, Send En	
-Else IfEqual key0, ENM, Send Men{Space} 	
-Else IfEqual key0, EOASN, Send Season{Space} 	
-Else IfEqual key0, EOC, Send Eco{Space} 	
-Else IfEqual key0, EOCN, Send Once{Space} 	
-Else IfEqual key0, EODC, Send Code{Space} 	
-Else IfEqual key0, EODLM, Send Model{Space} 	
-Else IfEqual key0, EODN, Send Done{Space} 	
-Else IfEqual key0, EOGN, Send Enough{Space} 
-Else IfEqual key0, EUOGHN, Send Gone{Space} 	
-Else IfEqual key0, EOHL, Send Hole{Space} 	
-Else IfEqual key0, EOHM, Send Home{Space} 	
-Else IfEqual key0, EOLV, Send Love{Space} 	
-Else IfEqual key0, EON, Send One{Space} 	
-Else IfEqual key0, EOP, Send People{Space} 	
-Else IfEqual key0, EOPDLV, Send Develop{Space} 	
-Else IfEqual key0, EOPH, Send Hope{Space} 	
-Else IfEqual key0, EOPHN, Send Phone{Space} 	
-Else IfEqual key0, EOPN, Send Open{Space} 	
-Else IfEqual key0, EOPS, Send Pose{Space} 	
-Else IfEqual key0, EOPSHN, Send Phones{Space} 	
-Else IfEqual key0, EOSD, Send Does{Space} 	
-Else IfEqual key0, EOSG, Send Goes{Space} 	
-Else IfEqual key0, EOSH, Send Shoe{Space} 	
-Else IfEqual key0, EOSHC, Send Chose{Space} 	
-Else IfEqual key0, EOSL, Send Lose{Space} 	
-Else IfEqual key0, EOSLC, Send Close{Space} 	
-Else IfEqual key0, EOSM, Send Some{Space} 	
-Else IfEqual key0, EOV, Send Everyone{Space} 	
-Else IfEqual key0, EOZN, Send Zone{Space} 	
-Else IfEqual key0, EPAC, Send Pace{Space} 	
-Else IfEqual key0, EPAG, Send Page{Space} 	
-Else IfEqual key0, EPAK, Send Peak{Space} 	
-Else IfEqual key0, EPALC, Send Place{Space} 	
-Else IfEqual key0, EPASC, Send Space{Space} 	
-Else IfEqual key0, EPASH, Send Shape{Space} 	
-Else IfEqual key0, EPASK, Send Speak{Space} 	
-Else IfEqual key0, EPASL, Send Please{Space} 	
-Else IfEqual key0, EPDN, Send Depend{Space} 	
-Else IfEqual key0, EPHL, Send Help{Space} 	
-Else IfEqual key0, EPK, Send Keep{Space} 	
-Else IfEqual key0, EPSC, Send Spec{Space} 	
-Else IfEqual key0, EPSCL, Send Specifically{Space} 	
-Else IfEqual key0, EPSDN, Send Spend{Space} 	
-Else IfEqual key0, EPSH, Send Sheep{Space} 	
-Else IfEqual key0, EPSL, Send Sleep{Space} 	
-Else IfEqual key0, EPX, Send Experience{Space}
-Else IfEqual key0, ERA, Send Are{Space} 	
-Else IfEqual key0, ERAC, Send Care{Space} 	
-Else IfEqual key0, ERACM, Send Camera{Space} 	
-Else IfEqual key0, ERADFL, Send Federal	
-Else IfEqual key0, ERADH, Send Heard{Space} 	
-Else IfEqual key0, ERADY, Send Ready{Space} 	
-Else IfEqual key0, ERAG, Send Agree{Space} 	
-Else IfEqual key0, ERAGH, Send Hearing{Space} 	
-Else IfEqual key0, ERAGL, Send Large{Space} 	
-Else IfEqual key0, ERAGN, Send Range{Space} 	
-Else IfEqual key0, ERAH, Send Hear{Space} 	
-Else IfEqual key0, ERAHC, Send Reach{Space} 	
-Else IfEqual key0, ERAKB, Send Break{Space} 	
-Else IfEqual key0, ERAL, Send Real{Space} 	
-Else IfEqual key0, ERALC, Send Clear{Space} 	
-Else IfEqual key0, ERALN, Send Learn{Space} 	
-Else IfEqual key0, ERAN, Send Near{Space} 	
-Else IfEqual key0, ERASH, Send Share{Space} 	
-Else IfEqual key0, ERASHC, Send Search{Space} 	
-Else IfEqual key0, ERBM, Send Member{Space} 	
-Else IfEqual key0, ERF, Send Free{Space} 	
-Else IfEqual key0, ERH, Send Her{Space} 	
-Else IfEqual key0, ERIAS, Send Raise{Space} 	
-Else IfEqual key0, ERIDFN, Send Friend{Space} 	
-Else IfEqual key0, ERIDLV, Send Deliver{Space} 	
-Else IfEqual key0, ERIDLV, Send Deliver{Space} 	
-Else IfEqual key0, ERIDNM, Send Remind{Space} 	
-Else IfEqual key0, ERIDV, Send Derive{Space} 	
-Else IfEqual key0, ERIFB, Send Brief{Space} 	
-Else IfEqual key0, ERIFN, Send Infer{Space} 	
-Else IfEqual key0, ERIGN, Send Engineer{Space} 	
-Else IfEqual key0, ERIOGN, Send Region{Space} 	
-Else IfEqual key0, ERIOPA, Send Operation{Space} 	
-Else IfEqual key0, ERIOPDV, Send Provide{Space} 	
-Else IfEqual key0, ERIOSCN, Send Scenario{Space} 	
-Else IfEqual key0, ERIOSDC, Send Description{Space} 	
-Else IfEqual key0, ERIOVN, Send Environment{Space} 	
-Else IfEqual key0, ERIPC, Send Price{Space} 	
-Else IfEqual key0, ERISCB, Send Scribe{Space} 	
-Else IfEqual key0, ERISDC, Send Describe{Space} 	
-Else IfEqual key0, EROASN, Send Reason{Space} 	
-Else IfEqual key0, EROCN, Send Concern{Space} 	
-Else IfEqual key0, EROCV, Send Cover{Space} 	
-Else IfEqual key0, EROD, Send Order{Space} 	
-Else IfEqual key0, ERODC, Send Record{Space} 	
-Else IfEqual key0, EROF, Send Offer{Space} 	
-Else IfEqual key0, EROL, Send Role{Space} 	
-Else IfEqual key0, EROPACM, Send Compare{Space} 	
-Else IfEqual key0, EROPAFCNM, Send Performance{Space} 	
-Else IfEqual key0, EROPLBM, Send Problem{Space} 	
-Else IfEqual key0, EROPLX, Send Explore{Space} 	
-Else IfEqual key0, EROPSG, Send Progress{Space} 	
-Else IfEqual key0, EROPSN, Send Person{Space} 	
-Else IfEqual key0, EROSH, Send Horse{Space} 	
-Else IfEqual key0, EROV, Send Over{Space} 	
-Else IfEqual key0, ERP, Send Per{Space} 
-Else IfEqual key0, ERPA, Send Prepare{Space} 	
-Else IfEqual key0, ERPALC, Send Replace{Space} 	
-Else IfEqual key0, ERPS, Send Press{Space} 	
-Else IfEqual key0, ERS, Send Res{Space} 	
-Else IfEqual key0, ERSCN, Send Screen{Space} 	
-Else IfEqual key0, ERSV, Send Serve{Space} 	
-Else IfEqual key0, ERT, Send Tree{Space} 	
-Else IfEqual key0, ERTA, Send Rate{Space} 	
-Else IfEqual key0, ERTAC, Send React{Space} 	
-Else IfEqual key0, ERTAFH, Send Father{Space} 	
-Else IfEqual key0, ERTAG, Send Great{Space} 	
-Else IfEqual key0, ERTAHC, Send Character{Space} 	
-Else IfEqual key0, ERTAL, Send Later{Space} 	
-Else IfEqual key0, ERTALCN, Send Central{Space} 	
-Else IfEqual key0, ERTAM, Send Matter{Space} 	
-Else IfEqual key0, ERTAX, Send Extra	
-Else IfEqual key0, ERTB, Send Better{Space} 	
-Else IfEqual key0, ERTCN, Send Recent{Space} 	
-Else IfEqual key0, ERTH, Send There{Space} 	
-Else IfEqual key0, ERTHS, Send There's{Space} 	
-Else IfEqual key0, ERTIACN, Send Certain{Space} 	
-Else IfEqual key0, ERTIAGN, Send Integrate{Space} 	
-Else IfEqual key0, ERTIAL, Send Retail{Space} 	
-Else IfEqual key0, ERTIALCV, Send Vertical{Space} 	
-Else IfEqual key0, ERTIALV, Send Relative{Space} 	
-Else IfEqual key0, ERTIDC, Send Credit{Space} 	
-Else IfEqual key0, ERTIFL, Send Filter{Space} 	
-Else IfEqual key0, ERTIH, Send Their{Space} 	
-Else IfEqual key0, ERTIN, Send Inter	
-Else IfEqual key0, ERTIOADCN, Send Coordinate{Space} 	
-Else IfEqual key0, ERTIPA, Send Therapist{Space} 	
-Else IfEqual key0, ERTIPAH, Send Therapist{Space} 	
-Else IfEqual key0, ERTIPASH, Send Therapist{Space} 	
-Else IfEqual key0, ERTIPH, Send Therapist{Space} 	
-Else IfEqual key0, ERTIS, Send Sister{Space} 	
-Else IfEqual key0, ERTL, Send Letter{Space} 	
-Else IfEqual key0, ERTM, Send Term{Space} 	
-Else IfEqual key0, ERTN, Send Enter{Space} 	
-Else IfEqual key0, ERTO, Send Tore{Space} 	
-Else IfEqual key0, ERTOASG, Send Storage{Space} 	
-Else IfEqual key0, ERTOC, Send Correct{Space} 	
-Else IfEqual key0, ERTOGH, Send Together{Space} 	
-Else IfEqual key0, ERTOH, Send Other{Space} 	
-Else IfEqual key0, ERTOHB, Send Bother{Space} 	
-Else IfEqual key0, ERTOHM, Send Mother{Space} 	
-Else IfEqual key0, ERTOP, Send Report{Space} 	
-Else IfEqual key0, ERTOS, Send Store{Space} 	
-Else IfEqual key0, ERTOSN, Send Testosterone{Space} 	
-Else IfEqual key0, ERTPA, Send Parate{Space} 	
-Else IfEqual key0, ERTPAN, Send Partner{Space} 	
-Else IfEqual key0, ERTPCN, Send Percent{Space} 	
-Else IfEqual key0, ERTPSN, Send Present{Space} 	
-Else IfEqual key0, ERTS, Send Rest{Space} 	
-Else IfEqual key0, ERTSH, Send There's{Space} 	
-Else IfEqual key0, ERTU, Send True{Space} 	
-Else IfEqual key0, ERTUAC, Send Accurate{Space} 	
-Else IfEqual key0, ERTUAFCNM, Send Manufacture{Space} 	
-Else IfEqual key0, ERTUAN, Send Nature{Space} 	
-Else IfEqual key0, ERTUCN, Send Current{Space} 	
-Else IfEqual key0, ERTUF, Send Future{Space} 	
-Else IfEqual key0, ERTUIPC, Send Picture{Space} 	
-Else IfEqual key0, ERTULC, Send Culture{Space} 	
-Else IfEqual key0, ERTUSL, Send Result{Space} 	
-Else IfEqual key0, ERTVNM, Send Environment{Space} 	
-Else IfEqual key0, ERTXM, Send Extreme{Space} 	
-Else IfEqual key0, ERTYH, Send They're{Space} 	
-Else IfEqual key0, ERTYN, Send Entry{Space} 	
-Else IfEqual key0, ERU, Send You're{Space} 	
-Else IfEqual key0, ERUDC, Send Reduce{Space} 	
-Else IfEqual key0, ERUDN, Send Under{Space} 	
-Else IfEqual key0, ERUL, Send Rule{Space} 	
-Else IfEqual key0, ERUOPS, Send Purpose{Space} 	
-Else IfEqual key0, ERUPS, Send Super{Space} 	
-Else IfEqual key0, ERUS, Send Sure{Space} 	
-Else IfEqual key0, ERUSFL, Send Yourself{Space} 	
-Else IfEqual key0, ERUSM, Send Summer{Space} 	
-Else IfEqual key0, ERV, Send Ever{Space} 	
-Else IfEqual key0, ERVN, Send Never{Space} 	
-Else IfEqual key0, ERVN, Send Never{Space} 	
-Else IfEqual key0, ERY, Send Every{Space} 	
-Else IfEqual key0, ERYAL, Send Early{Space} 	
-Else IfEqual key0, ERYOGC, Send Grocery{Space} 	
-Else IfEqual key0, ERYPH, Send Hyper	
-Else IfEqual key0, ERYUSG, Send Surgery{Space} 	
-Else IfEqual key0, ERYV, Send Every{Space} 	
-Else IfEqual key0, ES, Send See{Space} 	
-Else IfEqual key0, ESC, Send Second{Space} 	
-Else IfEqual key0, ESDN, Send Send {Space} 	
-Else IfEqual key0, ESFL, Send Self{Space} 	
-Else IfEqual key0, ESH, Send She{Space} 	
-Else IfEqual key0, ESK, Send Seek{Space} 	
-Else IfEqual key0, ESL, Send Else{Space}
-Else IfEqual key0, ESM, Send Seem{Space} 	
-Else IfEqual key0, ESN, Send Sense{Space} 	
-Else IfEqual key0, ET, Send Even Though{Space} 	
-Else IfEqual key0, ETA, Send Ate{Space} 	
-Else IfEqual key0, ETADH, Send Hated{Space} 	
-Else IfEqual key0, ETADLN, Send Dental{Space} 	
-Else IfEqual key0, ETAFC, Send Affect{Space} 	
-Else IfEqual key0, ETAGHC, Send Teaching{Space} 	
-Else IfEqual key0, ETAH, Send Hate{Space} 	
-Else IfEqual key0, ETAHC, Send Teach{Space} 	
-Else IfEqual key0, ETAHL, Send Health{Space} 	
-Else IfEqual key0, ETAK, Send Take{Space} 	
-Else IfEqual key0, ETAL, Send Late{Space} 	
-Else IfEqual key0, ETALB, Send Table{Space} 	
-Else IfEqual key0, ETAM, Send Team{Space} 	
-Else IfEqual key0, ETAN, Send Neat{Space} 	
-Else IfEqual key0, ETAS, Send State{Space} 	
-Else IfEqual key0, ETASCN, Send Stance{Space} 	
-Else IfEqual key0, ETASL, Send Least{Space} 	
-Else IfEqual key0, ETAXC, Send Exact{Space} 	
-Else IfEqual key0, ETC, Send Et Cetera{Space} 	
-Else IfEqual key0, ETCN, Send Cent{Space} 	
-Else IfEqual key0, ETDN, Send Tend{Space} 	
-Else IfEqual key0, ETFC, Send Effect{Space} 	
-Else IfEqual key0, ETFL, Send Felt{Space} 	
-Else IfEqual key0, ETG, Send Get{Space} 	
-Else IfEqual key0, ETGV, Send Everything{Space} 	
-Else IfEqual key0, ETH, Send The{Space} 	
-Else IfEqual key0, ETHC, Send Tech{Space} 	
-Else IfEqual key0, ETHCN, Send Technology{Space} 	
-Else IfEqual key0, ETHM, Send Them{Space} 	
-Else IfEqual key0, ETHN, Send Then{Space} 	
-Else IfEqual key0, ETIACV, Send Active{Space} 	
-Else IfEqual key0, ETIAV, Send Ative	
-Else IfEqual key0, ETIGLCN, Send Intelligence{Space} 	
-Else IfEqual key0, ETIGLN, Send Intelligent{Space} 	
-Else IfEqual key0, ETIHC, Send Ethic{Space} 	
-Else IfEqual key0, ETIL, Send Little{Space} 	
-Else IfEqual key0, ETILCN, Send Client{Space} 	
-Else IfEqual key0, ETIM, Send Item{Space} 	
-Else IfEqual key0, ETIM, Send Time{Space} 	
-Else IfEqual key0, ETIOCM, Send Committee{Space} 	
-Else IfEqual key0, ETIOCN, Send Notice{Space} 	
-Else IfEqual key0, ETIONM, Send Mention{Space} 	
-Else IfEqual key0, ETIPAN, Send Patient{Space} 	
-Else IfEqual key0, ETIS, Send Site{Space} 	
-Else IfEqual key0, ETIS, Send Ities{Space} 	
-Else IfEqual key0, ETISM, Send Times{Space} 	
-Else IfEqual key0, ETISVN, Send Invest{Space} 	
-Else IfEqual key0, ETISX, Send Exist{Space} 	
-Else IfEqual key0, ETIV, Send Tive{Space} 	
-Else IfEqual key0, ETIXC, Send Excite{Space} 	
-Else IfEqual key0, ETL, Send Let{Space} 	
-Else IfEqual key0, ETM, Send Met{Space} 	
-Else IfEqual key0, ETM, Send Met{Space} 	
-Else IfEqual key0, ETN, Send Net{Space}
-Else IfEqual key0, ETOALC, Send Locate{Space} 	
-Else IfEqual key0, ETOCN, Send Connect{Space} 	
-Else IfEqual key0, ETOCNM, Send Comment{Space} 	
-Else IfEqual key0, ETOFN, Send Often{Space} 	
-Else IfEqual key0, ETOGH, Send Together{Space} 	
-Else IfEqual key0, ETOHL, Send Hotel{Space} 	
-Else IfEqual key0, ETOJCB, Send Object{Space} 	
-Else IfEqual key0, ETONM, Send Moment{Space} 	
-Else IfEqual key0, ETOPCN, Send Concept{Space} 	
-Else IfEqual key0, ETOPKC, Send Pocket{Space} 	
-Else IfEqual key0, ETOSH, Send Those{Space} 	
-Else IfEqual key0, ETOSHN, Send Honest{Space} 	
-Else IfEqual key0, ETPAC, Send Accept{Space} 	
-Else IfEqual key0, ETPDN, Send Dependent{Space} 	
-Else IfEqual key0, ETPK, Send Kept{Space} 	
-Else IfEqual key0, ETPS, Send Step{Space} 	
-Else IfEqual key0, ETPS, Send Step{Space} 	
-Else IfEqual key0, ETPSN, Send Spent{Space} 	
-Else IfEqual key0, TPXC, Send Expect{Space} 	
-Else IfEqual key0, ETS, Send Set{Space} 	
-Else IfEqual key0, ETSB, Send Best{Space} 	
-Else IfEqual key0, ETSH, Send These{Space} 	
-Else IfEqual key0, ETSHC, Send Chest{Space} 	
-Else IfEqual key0, ETSHLB, Send Establish{Space} 	
-Else IfEqual key0, ETSL, Send Let's{Space} 	
-Else IfEqual key0, ETSLC, Send Select{Space} 	
-Else IfEqual key0, ETSN, Send Sent{Space} 
-Else IfEqual key0, ETUADC, Send Educate{Space} 	
-Else IfEqual key0, ETUAGNM, Send Augment{Space} 	
-Else IfEqual key0, ETUINM, Send Minute{Space} 	
-Else IfEqual key0, ETUIPADLC, Send Duplicate{Space} 	
-Else IfEqual key0, ETUODCNM, Send Document{Space} 	
-Else IfEqual key0, ETUSDN, Send Student{Space} 	
-Else IfEqual key0, ETUVN, Send Eventually{Space} 	
-Else IfEqual key0, ETX, Send External{Space} 	
-Else IfEqual key0, ETXN, Send Next{Space} 	
-Else IfEqual key0, ETYH, Send They{Space} 	
-Else IfEqual key0, ETYHV, Send They've{Space} 	
-Else IfEqual key0, ETYIDN, Send Identity{Space} 	
-Else IfEqual key0, ETYOSCM, Send Ecosystem{Space} 	
-Else IfEqual key0, ETYP, Send Type{Space} 	
-Else IfEqual key0, ETYSL, Send Style{Space} 	
-Else IfEqual key0, ETYSM, Send System{Space} 	
-Else IfEqual key0, EUAGLC, Send Colleague{Space} 	
-Else IfEqual key0, EUALV, Send Value{Space} 	
-Else IfEqual key0, EUD, Send Education{Space} 	
-Else IfEqual key0, EUGH, Send Huge{Space} 	
-Else IfEqual key0, EUIADCN, Send Audience{Space} 	
-Else IfEqual key0, EUIS, Send Issue{Space} 	
-Else IfEqual key0, EUOPS, Send Suppose{Space} 	
-Else IfEqual key0, EUOSFCN, Send Confuse{Space} 	
-Else IfEqual key0, EUOSH, Send House{Space} 	
-Else IfEqual key0, EUS, Send Use{Space} 	
-Else IfEqual key0, EUSC, Send Success{Space} 	
-Else IfEqual key0, EUSDN, Send Sudden{Space} 	
-Else IfEqual key0, EUSG, Send Guess{Space} 	
-Else IfEqual key0, EUV, Send You've{Space} 	
-Else IfEqual key0, EV, Send Ever{Space} 	
-Else IfEqual key0, EVB, Send Everybody{Space} 	
-Else IfEqual key0, EVN, Send Even{Space} 	
-Else IfEqual key0, EX, Send Exactly{Space} 	
-Else IfEqual key0, EX, Send Ex	
-Else IfEqual key0, EXC, Send Excellent{Space} 	
-Else IfEqual key0, EYALZN, Send Analyze{Space} 	
-Else IfEqual key0, EYAS, Send Easy{Space} 	
-Else IfEqual key0, EYB, Send Bye{Space} 	
-Else IfEqual key0, EYK, Send Key{Space} 	
-Else IfEqual key0, EYLC, Send Cycle{Space} 	
-Else IfEqual key0, EYONM, Send Money{Space} 	
-Else IfEqual key0, EYS, Send Yes{Space} 	
-Else IfEqual key0, EYSFLM, Send Myself{Space} 	
-Else IfEqual key0, EYSFLM, Send Myself{Space} 	
-Else IfEqual key0, EYV, Send Every{Space} 
-Else IfEqual key0, EALBM, Send Blame{Space} 
-Else IfEqual key0, EASL, Send Lease{Space} 
-Else IfEqual key0, EDKC, Send Deck{Space} 
-Else IfEqual key0, ERANM, Send Manner{Space} 
-Else IfEqual key0, ERFL, Send Freelance{Space} 
-Else IfEqual key0, ERIOPD, Send Period{Space} 
-Else IfEqual key0, ERIPX, Send Expire{Space} 
-Else IfEqual key0, ERPDC, Send Precede{Space} 
-Else IfEqual key0, ERTIAN, Send Entertain{Space} 
-Else IfEqual key0, ETID, Send Edit{Space} 
-Else IfEqual key0, ETLC, Send Elect{Space} 
-Else IfEqual key0, EUIDG, Send Guide{Space} 
-Else IfEqual key0, EUIGN, Send Genuine{Space} 
-Else IfEqual key0, EYAGLC, Send Legacy{Space} 	
-Return
-SENDOup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, OA, Send Anyone{Space} 
-Else IfEqual key0, OAN, Send Anyone{Space} 
-Else IfEqual key0, OADL, Send Load{Space} 
-Else IfEqual key0, OAGNM, Send Among{Space} 
-Else IfEqual key0, ODFL, Send Fold{Space} 
-Else IfEqual key0, OGM, Send Oh My God.{Space} 
-Else IfEqual key0, OAHLC, Send Alcohol{Space} 
-Else IfEqual key0, ODGL, Send Gold{Space} 
-Else IfEqual key0, ODLB, Send Bold{Space} 
-Else IfEqual key0, ODLC, Send Cold{Space} 
-Else IfEqual key0, OFKL, Send Folk{Space} 
-Else IfEqual key0, OGL, Send Log{Space} 
-Else IfEqual key0, OZM, Send Zoom{Space} 
-Else IfEqual key0, OMSGH, Send Oh My Gosh.{Space} 
-Else IfEqual key0, OSGH, Send Gosh{Space} 
-Else IfEqual key0, OSN, Send Soon{Space} 
-Else IfEqual key0, OALN, Send Loan{Space} 
-Else IfEqual key0, OBM, Send Bomb{Space} 
-Else IfEqual key0, OSHKC, Send Shock{Space} 
-Else IfEqual key0, OXB, Send Box{Space} 
-Else IfEqual key0, OAG, Send Ago{Space} 
-Else IfEqual key0, OSN, Send Son{Space} 
-Else IfEqual key0, OAGL, Send Goal{Space} 
-Else IfEqual key0, OAGLN, Send Along{Space} 
-Else IfEqual key0, OAGN, Send Going To{Space} 
-Else IfEqual key0, OASL, Send Also{Space} 
-Else IfEqual key0, OC, Send Could{Space} 
-Else IfEqual key0, OCM, Send Com
-Else IfEqual key0, OCN, Send Con
-Else IfEqual key0, OCNM, Send Common{Space} 
-Else IfEqual key0, OD, Send Do{Space} 
-Else IfEqual key0, ODC, Send Document{Space} 
-Else IfEqual key0, ODF, Send Food{Space} 
-Else IfEqual key0, ODG, Send Doing{Space} 
-Else IfEqual key0, ODHL, Send Hold{Space} 
-Else IfEqual key0, ODL, Send Old{Space} 
-Else IfEqual key0, OF, Send Of{Space} 
-Else IfEqual key0, OFC, Send Of Course{Space} 
-Else IfEqual key0, OFC, Send Of Course{Space} 
-Else IfEqual key0, OFCN, Send Confirm{Space} 
-Else IfEqual key0, OFN, Send Information{Space} 
-Else IfEqual key0, OG, Send Go{Space} 
-Else IfEqual key0, OGLN, Send Long{Space} 
-Else IfEqual key0, OGLV, Send Loving{Space} 
-Else IfEqual key0, OGN, Send Gone{Space} 
-Else IfEqual key0, OHM, Send Homo
-Else IfEqual key0, OJB, Send Job{Space} 
-Else IfEqual key0, OK, Send Kind Of{Space} 
-Else IfEqual key0, OKB, Send Book{Space} 
-Else IfEqual key0, OKC, Send Cook{Space} 
-Else IfEqual key0, OKL, Send Look{Space} 
-Else IfEqual key0, OKLC, Send Lock{Space} 
-Else IfEqual key0, OLN, Send Online{Space} 
-Else IfEqual key0, ON, Send On{Space} 
-Else IfEqual key0, ONM, Send Moon{Space} 
-Else IfEqual key0, OP, Send Opportunity{Space} 
-Else IfEqual key0, OPN, Send Open{Space} 
-Else IfEqual key0, OPS, Send Opportunities{Space} 
-Else IfEqual key0, OPSH, Send Shop{Space} 
-Else IfEqual key0, OS, Send So{Space} 
-Else IfEqual key0, OSF, Send Sort Of{Space} 
-Else IfEqual key0, OSFKL, Send Folks{Space} 
-Else IfEqual key0, OSGN, Send Song{Space} 
-Else IfEqual key0, OSHLC, Send School{Space} 
-Else IfEqual key0, OSM, Send Someone{Space} 
-Else IfEqual key0, OSN, Send Soon{Space} 
-Else IfEqual key0, OVB, Send Obviously{Space} 
-Else IfEqual key0, OALC, Send Local{Space} 
-Else IfEqual key0, OFLC, Send Official{Space} 
-Else IfEqual key0, OH, Send Oh, {Space} 
-Else IfEqual key0, OSDL, Send Sold{Space} 
-Return
-SENDPup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, PAC, Send Cap{Space} 
-Else IfEqual key0, PK, Send Keep{Space} 	
-Else IfEqual key0, UPDG, Send Pudding{Space} 		
-Else IfEqual key0, PSFC, Send Specific{Space} 
-Else IfEqual key0, PFHL, Send Helpful{Space} 
-Else IfEqual key0, PHL, Send Helpful{Space} 
-Else IfEqual key0, PAKC, Send Pack{Space} 
-Else IfEqual key0, PAM, Send Map{Space} 
-Else IfEqual key0, PASM, Send Spam{Space} 
-Else IfEqual key0, PGK, Send Package{Space} 
-Else IfEqual key0, PK, Send Keep{Space} 
-Else IfEqual key0, PAL, Send Application{Space} 
-Else IfEqual key0, PB, Send Possible{Space} 
-Else IfEqual key0, PAG, Send Gap{Space} 
-Else IfEqual key0, PASL, Send Applies{Space} 
-Else IfEqual key0, PCNM, Send Companion{Space} 
-Else IfEqual key0, PDXN, Send Expand{Space} 
-Else IfEqual key0, PGK, Send Package{Space} 
-Else IfEqual key0, PLCNM, Send Complain{Space} 
-Else IfEqual key0, PLCNM, Send Complain{Space} 
-Else IfEqual key0, PSDN, Send Dispense{Space} 
-Else IfEqual key0, PSXVN, Send Expansive{Space} 
-Else IfEqual key0, PA, Send App{Space} 
-Else IfEqual key0, PAGLZ, Send Apologize{Space} 
-Else IfEqual key0, PALCM, Send Accomplish{Space} 
-Else IfEqual key0, PASHLCM, Send Accomplish{Space} 
-Else IfEqual key0, PSK, Send Speak{Space} 
-Else IfEqual key0, PSLBM, Send Impossible{Space} 
-Else IfEqual key0, PSX, Send Expose{Space} 
-Else IfEqual key0, PALN, Send Plan{Space} 
-Else IfEqual key0, PAS, Send Pass{Space} 
-Else IfEqual key0, PFH, Send Hopefully{Space} 
-Else IfEqual key0, PH, Send Hope{Space} 
-Else IfEqual key0, PSLC, Send Special{Space} 
-Else IfEqual key0, PCM, Send Company{Space} 
-Else IfEqual key0, PDCM, Send Pandemic{Space} 
-Else IfEqual key0, PF, Send Perfect{Space} 
-Else IfEqual key0, PFH, Send Hopefully{Space} 
-Else IfEqual key0, PG, Send Page{Space} 
-Else IfEqual key0, PGH, Send Happening{Space} 
-Else IfEqual key0, PGLB, Send Publishing{Space} 
-Else IfEqual key0, PHN, Send Happen{Space} 
-Else IfEqual key0, PJM, Send Jump{Space} 
-Else IfEqual key0, PL, Send People{Space} 
-Else IfEqual key0, PLB, Send Possibly{Space} 
-Else IfEqual key0, PLC, Send Couple{Space} 
-Else IfEqual key0, PLCB, Send Public{Space} 
-Else IfEqual key0, PLCM, Send Complete{Space} 
-Else IfEqual key0, PLXM, Send Example{Space} 
-Else IfEqual key0, PLXN, Send Explain{Space} 
-Else IfEqual key0, PN, Send No Problem{Space} 
-Else IfEqual key0, PS, Send Specifically{Space} 
-Else IfEqual key0, PSCM, Send Companies{Space} 
-Else IfEqual key0, PSD, Send Speed{Space} 
-Else IfEqual key0, PSH, Send Hospital{Space} 
-Else IfEqual key0, PSL, Send Please{Space} 
-Else IfEqual key0, PSLB, Send Possible{Space} 
-Else IfEqual key0, PSLM, Send Simple{Space} 
-Else IfEqual key0, PSN, Send Passion{Space} 
-Else IfEqual key0, PX, Send Experience{Space} 
-Else IfEqual key0, PSHLB, Send Publish{Space} 
-Return
-SENDAup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
-IfEqual key0, AB, Send About{Space} 
-Else IfEqual key0, ADV, Send Avoid{Space} 
-Else IfEqual key0, ADCVN, Send Advance{Space} 
-Else IfEqual key0, ASKC, Send Sack{Space} 
-Else IfEqual key0, ABN, Send Banana{Space} 
-Else IfEqual key0, AFV, Send Favorite{Space} 
-Else IfEqual key0, AC, Send Actually{Space} 
-Else IfEqual key0, ADGL, Send Glad{Space} 
-Else IfEqual key0, ADBN, Send Band{Space} 
-Else IfEqual key0, ADLN, Send Land{Space} 
-Else IfEqual key0, ADNM, Send Damn{Space} 
-Else IfEqual key0, AGHN, Send Hang{Space} 
-Else IfEqual key0, AGKBN, Send Banking{Space} 
-Else IfEqual key0, ALCM, Send Calm{Space} 
-Else IfEqual key0, ASCN, Send Scan{Space} 
-Else IfEqual key0, ASDHN, Send Hands{Space} 
-Else IfEqual key0, ASDNM, Send Admission{Space} 
-Else IfEqual key0, ADCM, Send Academic{Space} 
-Else IfEqual key0, ADCM, Send Academic{Space} 
-Else IfEqual key0, ADCV, Send Advice{Space} 
-Else IfEqual key0, ADCV, Send Advice{Space} 
-Else IfEqual key0, ADM, Send Mad{Space} 
-Else IfEqual key0, ADV, Send Advertise{Space} 
-Else IfEqual key0, AGCN, Send Agency{Space} 
-Else IfEqual key0, AGNM, Send Among{Space} 
-Else IfEqual key0, AHKC, Send Hack{Space} 
-Else IfEqual key0, AHL, Send Hall{Space} 
-Else IfEqual key0, ALN, Send Alone{Space} 
-Else IfEqual key0, ASD, Send Ads{Space} 
-Else IfEqual key0, ASDV, Send Advise{Space} 
-Else IfEqual key0, ASHC, Send Cash{Space} 
-Else IfEqual key0, ASM, Send Assume{Space} 
-Else IfEqual key0, AGV, Send Average{Space} 
-Else IfEqual key0, AHCV, Send Achieve{Space} 
-Else IfEqual key0, AKLCB, Send Black{Space} 
-Else IfEqual key0, AVB, Send Above{Space} 
-Else IfEqual key0, ACN, Send Can{Space} 
-Else IfEqual key0, ADGCN, Send Dancing{Space} 	
-Else IfEqual key0, ADB, Send Anybody{Space} 
-Else IfEqual key0, ADF, Send Afterwards{Space} 
-Else IfEqual key0, ADGC, Send According{Space} 
-Else IfEqual key0, ADH, Send Had{Space} 
-Else IfEqual key0, ADHN, Send Hand{Space} 
-Else IfEqual key0, ADL, Send Already{Space} 
-Else IfEqual key0, AF, Send After{Space} 
-Else IfEqual key0, AFG, Send Affecting{Space} 
-Else IfEqual key0, AFHL, Send Half{Space} 
-Else IfEqual key0, AFL, Send Fall{Space} 
-Else IfEqual key0, AG, Send Anything{Space} 
-Else IfEqual key0, AGM, Send Amazing{Space} 
-Else IfEqual key0, AGN, Send Again{Space} 
-Else IfEqual key0, AKCB, Send Back{Space} 
-Else IfEqual key0, AL, Send All{Space} 
-Else IfEqual key0, ALB, Send Lab{Space} 
-Else IfEqual key0, ALC, Send Call{Space} 
-Else IfEqual key0, ALM, Send Almost{Space} 
-Else IfEqual key0, ALVB, Send Available{Space} 
-Else IfEqual key0, AM, Send Am{Space} 
-Else IfEqual key0, AN, Send An{Space} 
-Else IfEqual key0, ANM, Send Man{Space} 
-Else IfEqual key0, AS, Send As{Space} 
-Else IfEqual key0, ASB, Send Absolutely{Space} 
-Else IfEqual key0, ASDK, Send Asked{Space} 
-Else IfEqual key0, ASGL, Send Glass{Space} 
-Else IfEqual key0, ASH, Send Has{Space} 
-Else IfEqual key0, ASHL, Send Lash{Space} 
-Else IfEqual key0, ASK, Send Ask{Space} 
-Else IfEqual key0, ASLC, Send Class{Space} 
-Else IfEqual key0, ASLM, Send Small{Space} 
-Else IfEqual key0, AKBN, Send Bank{Space} 
-Else IfEqual key0, ASN, Send Answer{Space} 
-Else IfEqual key0, AXV, Send Vaccine{Space} 
-Else IfEqual key0, AZM, Send Amazon{Space} 
-Else IfEqual key0, AD, Send Ad{Space} 
-Return
-SENDSup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, SBN, Send Business{Space} 
-Else IfEqual key0, SCB, Send Basic{Space} 
-Else IfEqual key0, SHM, Send Somehow{Space} 
-Else IfEqual key0, SDHLC, Send Schedule{Space} 
-Else IfEqual key0, SZ, Send Size{Space} 
-Else IfEqual key0, SCM, Send Comes{Space} 
-Else IfEqual key0, SDB, Send Besides{Space} 
-Else IfEqual key0, SDHBN, Send Husband{Space} 
-Else IfEqual key0, SDN, Send Inside{Space} 
-Else IfEqual key0, SHL, Send She'll{Space} 
-Else IfEqual key0, SLVB, Send Visible{Space} 
-Else IfEqual key0, SD, Send Somebody{Space} 
-Else IfEqual key0, SCNM, Send Consume{Space} 
-Else IfEqual key0, SLCN, Send License{Space} 
-Else IfEqual key0, SLN, Send Lesson{Space} 
-Else IfEqual key0, SNM, Send Mission{Space} 
-Else IfEqual key0, SNM, Send Mission{Space} 
-Else IfEqual key0, SVM, Send Massive{Space} 
-Else IfEqual key0, SVN, Send Vision{Space} 
-Else IfEqual key0, SDC, Send Describe{Space} 
-Else IfEqual key0, SFCN, Send Confuse{Space} 
-Else IfEqual key0, SHN, Send Hasn't{Space} 
-Else IfEqual key0, SDCN, Send Decision{Space} 
-Else IfEqual key0, SDGN, Send Design{Space} 
-Else IfEqual key0, SDLCM, Send Social Media{Space} 
-Else IfEqual key0, SF, Send For Sure.{Space} 
-Else IfEqual key0, SFGCN, Send Significant{Space} 
-Else IfEqual key0, SFLM, Send Myself{Space} 
-Else IfEqual key0, SG, Send Something{Space} 
-Else IfEqual key0, SGM, Send Message{Space} 
-Else IfEqual key0, SH, Send Should{Space} 
-Else IfEqual key0, SDHN, Send Shouldn't{Space} 
-Else IfEqual key0, SHN, Send Shouldn't{Space} 
-Else IfEqual key0, SH, Send Should{Space} 
-Else IfEqual key0, SL, Send Sell{Space} 
-Else IfEqual key0, SLC, Send Social{Space} 
-Else IfEqual key0, SLCB, Send Basically{Space} 
-Else IfEqual key0, SLP, Send Sleep{Space} 
-Else IfEqual key0, SLV, Send Visual{Space} 
-Else IfEqual key0, SM, Send Some{Space} 
-Else IfEqual key0, SN, Send Seen{Space} 
-Else IfEqual key0, SRCV, Send Service{Space} 
-Else IfEqual key0, ST, Send Street{Space} 
-Else IfEqual key0, SV, Send Versus{Space} 
-Else IfEqual key0, SXCVL, Send Exclusive{Space} 
-Return
-SENDDup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, DBN, Send Nobody{Space} 
-Else IfEqual key0, DCM, Send Command{Space} 
-Else IfEqual key0, DHLN, Send Handle{Space} 
-Else IfEqual key0, DNM, Send Domain{Space} 
-Else IfEqual key0, DHLN, Send Handle{Space} 
-Else IfEqual key0, DGHLN, Send Handling{Space} 
-Else IfEqual key0, DCN, Send Couldn't{Space} 
-Else IfEqual key0, DCN, Send Candid{Space} 
-Else IfEqual key0, DCNM, Send Medicine{Space} 
-Else IfEqual key0, DHN, Send Hadn't{Space} 
-Else IfEqual key0, DLCN, Send Include{Space} 
-Else IfEqual key0, DCV, Send Device{Space} 
-Else IfEqual key0, DFKB, Send Feedback{Space} 
-Else IfEqual key0, DFN, Send Found{Space} 
-Else IfEqual key0, DG, Send Good{Space} 
-Else IfEqual key0, DGB, Send Background{Space} 
-Else IfEqual key0, DGLB, Send Building{Space} 
-Else IfEqual key0, DGM, Send Damage{Space} 
-Else IfEqual key0, DGN, Send Ground{Space} 
-Else IfEqual key0, DHBN, Send Behind{Space} 
-Else IfEqual key0, DL, Send Deal{Space} 
-Else IfEqual key0, DLB, Send Build{Space} 
-Else IfEqual key0, DLCBN, Send Incredible{Space} 
-Else IfEqual key0, DLCM, Send Medical{Space} 
-Else IfEqual key0, DLCM, Send Medical{Space} 
-Else IfEqual key0, DM, Send Made{Space} 
-Else IfEqual key0, DN, Send Done{Space} 
-Else IfEqual key0, DRG, Send During, {Space} 
-Else IfEqual key0, DV, Send Everyday{Space} 
-Else IfEqual key0, DVM, Send Development{Space} 
-Else IfEqual key0, DX, Send Excited{Space} 
-Return
-SENDFup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, FB, Send Before{Space} 
-Else IfEqual key0, FCM, Send Comfortable{Space} 
-Else IfEqual key0, FCN, Send Finance{Space} 
-Else IfEqual key0, FLB, Send Belief{Space} 
-Else IfEqual key0, FLCBN, Send Beneficial{Space} 
-Else IfEqual key0, FH, Send Helpful{Space} 
-Else IfEqual key0, FGL, Send Feeling{Space} 	
-Else IfEqual key0, FL, Send Feel{Space} 
-Else IfEqual key0, FLCN, Send Financial{Space} 
-Else IfEqual key0, FLN, Send Final{Space} 
-Else IfEqual key0, FN, Send Fine{Space} 
-Return
-SENDGup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, GB, Send Being{Space} 
-Else IfEqual key0, GC, Send Coming{Space} 
-Else IfEqual key0, GEN, Send General{Space} 
-Else IfEqual key0, GHCN, Send Change{Space} 
-Else IfEqual key0, GLBN, Send Belong{Space} 
-Else IfEqual key0, GCM, Send Magic{Space} 
-Else IfEqual key0, GH, Send Having{Space} 
-Else IfEqual key0, GKL, Send Looking{Space} 
-Else IfEqual key0, GHLCN, Send Challenge{Space} 
-Else IfEqual key0, GKM, Send Making{Space} 
-Else IfEqual key0, GL, Send Learning{Space} 
-Else IfEqual key0, GLC, Send College{Space} 
-Else IfEqual key0, GLN, Send General{Space} 
-Else IfEqual key0, GLV, Send Leaving{Space} 
-Else IfEqual key0, GF, Send Girlfriend{Space} 
-Else IfEqual key0, GVN, Send Given{Space} 
-Else IfEqual key0, GM, Send Making{Space} 
-Else IfEqual key0, GN, Send Nothing{Space} 
-Else IfEqual key0, GNM, Send Manage{Space} 
-Else IfEqual key0, GV, Send Give{Space} 
-Else IfEqual key0, GV, Send Very Good{Space} 
-Else IfEqual key0, GVM, Send Moving{Space} 
-Else IfEqual key0, GX, Send Exciting{Space} 
-Else IfEqual key0, GZNM, Send Magazine{Space} 
-Return
-SENDHup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, HC, Send Choice{Space} 
-Else IfEqual key0, HKCN, Send Chicken{Space} 
-Else IfEqual key0, HL, Send He'll{Space} 
-Else IfEqual key0, HLCV, Send Vehicle{Space} 
- Else IfEqual key0, HM, Send Mm-hmm.{Space} 
-Else IfEqual key0, HV, Send Have{Space} 
-Else IfEqual key0, HCNM, Send Machine{Space} 
-Else IfEqual key0, HLCN, Send Channel{Space} 
-Return
-
-SENDIup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, IA, Send Ai
-Else IfEqual key0, IDFC, Send Difficult{Space} 
-Else IfEqual key0, IDM, Send Mid{Space} 
-Else IfEqual key0, IAHCN, Send China{Space} 
-Else IfEqual key0, IAS, Send Asia{Space} 
-Else IfEqual key0, IALNM, Send Animal{Space} 
-Else IfEqual key0, IAHCN, Send Chain{Space} 
-Else IfEqual key0, IAM, Send Aim{Space} 
-Else IfEqual key0, IASL, Send Sail{Space} 
-Else IfEqual key0, IAV, Send Via{Space} 
-Else IfEqual key0, IGKLN, Send Inkling{Space} 
-Else IfEqual key0, IOL, Send Oil{Space} 
-Else IfEqual key0, IOLBM, Send Limbo{Space} 
-Else IfEqual key0, IPHC, Send Chip{Space} 
-Else IfEqual key0, IPL, Send Pill{Space} 
-Else IfEqual key0, IPSN, Send Spin{Space} 
-Else IfEqual key0, ISKL, Send Skill{Space} 
-Else IfEqual key0, IXM, Send Mix{Space} 
-Else IfEqual key0, IAFL, Send Fail{Space} 
-Else IfEqual key0, IPSLBM, Send Impossible{Space} 
-Else IfEqual key0, IOADV, Send Avoid{Space} 
-Else IfEqual key0, IADC, Send Acid{Space} 
-Else IfEqual key0, IAGCM, Send Magic{Space} 
-Else IfEqual key0, IDG, Send Dig{Space} 
-Else IfEqual key0, IFLCN, Send Influence{Space} 
-Else IfEqual key0, IKC, Send Kick{Space} 
-Else IfEqual key0, IKN, Send Ink{Space} 
-Else IfEqual key0, INM, Send Mini{Space} 
-Else IfEqual key0, IOADNM, Send Domain{Space} 
-Else IfEqual key0, IODB, Send Biodegradable{Space} 
-Else IfEqual key0, IODV, Send Void{Space} 
-Else IfEqual key0, IOM, Send In My Opinion{Space} 
-Else IfEqual key0, IOSDL, Send Solid{Space} 
-Else IfEqual key0, IPS, Send Piss{Space} 
-Else IfEqual key0, IPSGL, Send Slipping{Space} 
-Else IfEqual key0, IPSL, Send Slip{Space} 
-Else IfEqual key0, IPSL, Send Slip{Space} 
-Else IfEqual key0, IAJL, Send Jail{Space} 
-Else IfEqual key0, IAGN, Send Gain{Space} 
-Else IfEqual key0, IB, Send No{Space} 
-Else IfEqual key0, IADLV, Send Valid{Space} 
-Else IfEqual key0, IOAN, Send Nation{Space} 
-Else IfEqual key0, ISHCM, Send Schism{Space} 
-Else IfEqual key0, IASB, Send Basis{Space} 
-Else IfEqual key0, IASLC, Send Classic{Space} 
-Else IfEqual key0, IHCN, Send Inch{Space} 
-Else IfEqual key0, IKL, Send Kill{Space} 
-Else IfEqual key0, ILCN, Send Clinic{Space} 
-Else IfEqual key0, IOFN, Send Info{Space} 
-Else IfEqual key0, IPHN, Send Iphone{Space} 
-Else IfEqual key0, ISKN, Send Skin{Space} 
-Else IfEqual key0, ISM, Send Miss{Space} 
-Else IfEqual key0, IADNM, Send Admin{Space} 
-Else IfEqual key0, IASDNM, Send Administrator{Space} 
-Else IfEqual key0, IGM, Send Image{Space} 
-Else IfEqual key0, IKLN, Send Link{Space} 
-Else IfEqual key0, IOADNM, Send Administration{Space} 
-Else IfEqual key0, ISN, Send Isn't{Space} 
-Else IfEqual key0, IALCM, Send Claim{Space} 
-Else IfEqual key0, IANM, Send Main{Space} 
-Else IfEqual key0, IASD, Send Said{Space} 
-Else IfEqual key0, ID, Send Did{Space} 
-Else IfEqual key0, IDF, Send Different{Space} 
-Else IfEqual key0, IDFN, Send Find{Space} 
-Else IfEqual key0, IDHLC, Send Child{Space} 
-Else IfEqual key0, IDK, Send I Don't Know{Space} 
-Else IfEqual key0, IDKN, Send Kind{Space} 
-Else IfEqual key0, IDN, Send Individual{Space} 
-Else IfEqual key0, IDNM, Send Mind{Space} 
-Else IfEqual key0, IF, Send If{Space} 
-Else IfEqual key0, IFL, Send Fill{Space} 
-Else IfEqual key0, IFX, Send Fix{Space} 
-Else IfEqual key0, IG, Send I Guess{Space} 
-Else IfEqual key0, IGB, Send Big{Space} 
-Else IfEqual key0, IGH, Send High{Space} 
-Else IfEqual key0, IGLV, Send Living{Space} 
-Else IfEqual key0, IHL, Send Hill{Space} 
-Else IfEqual key0, IHM, Send Him{Space} 
-Else IfEqual key0, IK, Send I Know{Space} 
-Else IfEqual key0, IKLBN, Send Blink{Space} 
-Else IfEqual key0, IKLC, Send Click{Space} 
-Else IfEqual key0, IKLM, Send Milk{Space} 
-Else IfEqual key0, IL, Send I'll{Space} 
-Else IfEqual key0, ILV, Send Live{Space} 
-Else IfEqual key0, IM, Send I'm{Space} 
-Else IfEqual key0, IN, Send In{Space} 
-Else IfEqual key0, IN, Send In{Space} 
-Else IfEqual key0, IOAC, Send Action{Space} 
-Else IfEqual key0, IOALC, Send Location{Space} 
-Else IfEqual key0, IOJN, Send Join{Space}
-Else IfEqual key0, IONM, Send Omni
-Else IfEqual key0, IOP, Send Option{Space} 
-Else IfEqual key0, IOPN, Send Opinion{Space} 
-Else IfEqual key0, IOSN, Send Ision{Space} 
-Else IfEqual key0, IPAD, Send Paid{Space} 
-Else IfEqual key0, IPAFN, Send Painful{Space} 
-Else IfEqual key0, IPAN, Send Pain{Space} 
-Else IfEqual key0, IPFL, Send Flip{Space} 
-Else IfEqual key0, IPG, Send Pig{Space} 
-Else IfEqual key0, IPKC, Send Pick{Space} 
-Else IfEqual key0, IPM, Send Important{Space} 
-Else IfEqual key0, IPSK, Send Skip{Space} 
-Else IfEqual key0, IS, Send Is{Space} 
-Else IfEqual key0, ISD, Send Dis
-Else IfEqual key0, ISDK, Send Kids{Space} 
-Else IfEqual key0, ISFHN, Send Finish{Space} 
-Else IfEqual key0, ISG, Send Significant{Space} 
-Else IfEqual key0, ISGN, Send Sign{Space} 
-Else IfEqual key0, ISH, Send His{Space} 
-Else IfEqual key0, ISKC, Send Sick{Space} 
-Else IfEqual key0, ISM, Send Mis
-Else IfEqual key0, IFLM, Send Film{Space} 
-Return
-SENDLup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, LB, Send Little Bit{Space} 
-Else IfEqual key0, LC, Send Cool{Space} 
-Else IfEqual key0, LCBN, Send Balance{Space} 
-Else IfEqual key0, LNM, Send Manual{Space} 
-Else IfEqual key0, LVM, Send Volume{Space} 
-Else IfEqual key0, LCN, Send Clinical{Space} 
-Else IfEqual key0, LCBN, Send Balance{Space} 
-Else IfEqual key0, LCM, Send Molecule{Space} 
-Else IfEqual key0, LN, Send Line{Space} 
-Else IfEqual key0, LV, Send Leave{Space} 
-Else IfEqual key0, LVB, Send Believe{Space} 
-Else IfEqual key0, LX, Send Exactly{Space} 
-Else IfEqual key0, LXCN, Send Excellence{Space} 
-Return
-SENDXup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, XC, Send Executive{Space} 
-Else IfEqual key0, XNM, Send Examine{Space} 
-Else IfEqual key0, XNM, Send Expect{Space} 
-Return
-SENDVup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, VM, Send Move{Space} 
-Else IfEqual key0, VN, Send Even{Space} 
-Return
-SENDBup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, BM, Send Maybe{Space} 
-Else IfEqual key0, BF, Send Boyfriend{Space} 
-Else IfEqual key0, BN, Send Been{Space} 
-Else IfEqual key0, BSC, Send Basic{Space} 
-Else IfEqual key0, BSCL, Send Basically{Space} 
-Return
-SENDCup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, CB, Send Because{Space} 
-Else IfEqual key0, CBM, Send Become{Space} 
-Else IfEqual key0, CM, Send Come{Space} 
-Else IfEqual key0, DFCN, Send Confidence{Space} 
-Else IfEqual key0, CBNM, Send Combine{Space} 
-Else IfEqual key0, CMG, Send Coming{Space} 
-Else IfEqual key0, CN, Send Can{Space} 
-Else IfEqual key0, CNM, Send Common{Space} 
-Else IfEqual key0, CVN, Send Conversation{Space} 
-Return
-SENDKup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, KL, Send Look{Space} 
-Else IfEqual key0, KLN, Send Knowledge{Space} 
-Else IfEqual key0, KM, Send Make{Space} 
-Else IfEqual key0, KN, Send Know{Space} 
-Return
-SENDJup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- 
- Return
-SENDZup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, ZM, Send Zoom{Space} 
-
-Return
-SENDMup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
-
-Return
-SENDNup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- IfEqual key0, NM, Send Mean{Space} 
-Return
-SENDDOTup:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
- IfEqual key0, UDN>, Send Understood{Space} 
-Else IfEqual key0, WERTH>, Send Threw{Space} 
-Else IfEqual key0, RSV>, Send Verse{Space} 
-Else IfEqual key0, ONM>, Send Moon{Space} 
-Else IfEqual key0, RSV", Send Verse{Space} 
-Else IfEqual key0, TASL>, Send Salt{Space} 
-Else IfEqual key0, ERTAH>, Send Earth{Space} 
-Else IfEqual key0, US>, Send United States{Space} 
-Else IfEqual key0, UOSDN>, Send Sounds{Space} 
-Else IfEqual key0, TASL>, Send Last{Space} 
-Else IfEqual key0, EPSD>, Send Speed{Space} 
-Else IfEqual key0, IADN>, Send Indian{Space} 
-Else IfEqual key0, EAS>, Send Sea{Space} 
-Else IfEqual key0, TISL>, Send List{Space} 
-Else IfEqual key0, ERAGN>, Send Arrange{Space} 
-Else IfEqual key0, ERP", Send Pepper{Space} 
-Else IfEqual key0, EPA>, Send Pea{Space} 
-Else IfEqual key0, EADH>, Send Ahead{Space} 
-Else IfEqual key0, AJN>, Send January{Space} 
-Else IfEqual key0, EDC>, Send December{Space} 
-Else IfEqual key0, EFB>, Send February{Space} 
-Else IfEqual key0, ERIGN>, Send Reign{Space} 
-Else IfEqual key0, ERIN>, Send Rein{Space} 
-Else IfEqual key0, EROS>, Send Sore{Space} 
-Else IfEqual key0, ERSV>, Send Severe{Space} 
-Else IfEqual key0, ERTIHN>, Send Inherit{Space} 
-Else IfEqual key0, ERYAL>, Send Relay{Space} 
-Else IfEqual key0, ETASK>, Send Steak{Space} 
-Else IfEqual key0, ETHM>, Send Theme{Space} 
-Else IfEqual key0, ETIVN>, Send Invent{Space} 
-Else IfEqual key0, ETPS>, Send September{Space} 
-Else IfEqual key0, ETUPS>, Send Setup{Space} 
-Else IfEqual key0, EUS>, Send Sue{Space} 
-Else IfEqual key0, ISKN>, Send Sink{Space} 
-Else IfEqual key0, OVN>, Send November{Space} 
-Else IfEqual key0, RAHCM>, Send March{Space} 
-Else IfEqual key0, UDN>, Send Understood{Space} 
-Else IfEqual key0, WRA>, Send Raw{Space} 
-Else IfEqual key0, TIAN", Send Ain’T{Space} 
-Else IfEqual key0, YAM>, Send May{Space} 
-Else IfEqual key0, ADH>, Send Dah{Space} 
-Else IfEqual key0, UAG>, Send August{Space} 
-Else IfEqual key0, TUSH>, Send Thus{Space} 
-Else IfEqual key0, TOC>, Send October{Space} 
-Else IfEqual key0, TSFCN>, Send Fascinate{Space} 
-Else IfEqual key0, ERTIAL>, Send Literal{Space}
-Else IfEqual key0, IOFN>, Send Information{Space} 
-Else IfEqual key0, RPDC>, Send Procedure{Space} 
-Else IfEqual key0, ASD>, Send Sad{Space} 
-Else IfEqual key0, RPGM>, Send Programmer{Space} 
-Else IfEqual key0, ETAS", Send East{Space} 
-Else IfEqual key0, EPASC>, Send Escape{Space} 
-Else IfEqual key0, ALB>, Send Ball{Space} 
-Else IfEqual key0, WTON", Send Won't{Space} 
-Else IfEqual key0, OK", Send Okay{Space} 
-Else IfEqual key0, EPSL>, Send Spell{Space} 
-Else IfEqual key0, EOPS>, Send Oppose{Space} 
-Else IfEqual key0, ERIAS>, Send Easier{Space} 
-Else IfEqual key0, TKN>, Send Taken{Space} 
-Else IfEqual key0, ERASHC>, Send Research{Space} 
-Else IfEqual key0, FLCN>, Send Influence{Space} 
-Else IfEqual key0, LCN>, Send Council{Space} 
-Else IfEqual key0, TNM>, Send Mountain{Space} 
-Else IfEqual key0, EF>, Send Fee{Space} 
-Else IfEqual key0, RPLCN>, Send Principal{Space} 
-Else IfEqual key0, ETAM>, Send Meat{Space} 
-Else IfEqual key0, OGL>, Send Logging{Space} 
-Else IfEqual key0, OZM>, Send Zoom{Space} 
-Else IfEqual key0, QRTS>, Send Squirt{Space} 
-Else IfEqual key0, RAM>, Send Ram{Space} 
-Else IfEqual key0, RDG>, Send Grade{Space} 
-Else IfEqual key0, FLCN>, Send Influence{Space} 
-Else IfEqual key0, RGNM>, Send Manager{Space} 
-Else IfEqual key0, RSLV>, Send Resolve{Space} 
-Else IfEqual key0, RSVN>, Send Nervous{Space} 
-Else IfEqual key0, RTFG>, Send Forgot{Space} 
-Else IfEqual key0, RTSG>, Send String{Space} 
-Else IfEqual key0, WAL>, Send Wall{Space} 
-Else IfEqual key0, RUOS>, Send Sour{Space} 
-Else IfEqual key0, SLCN>, Send Silence{Space} 
-Else IfEqual key0, SLV>, Send Solve{Space} 
-Else IfEqual key0, TAC>, Send Cat{Space} 
-Else IfEqual key0, TCN>, Send Contain{Space} 
-Else IfEqual key0, TIAN>, Send Taint{Space} 
-Else IfEqual key0, WO>, Send Wow{Space} 
-Else IfEqual key0, YAS>, Send Says{Space} 
-Else IfEqual key0, YPAL>, Send Apply{Space} 
-Else IfEqual key0, GHCN>, Send Changing{Space} 
-Else IfEqual key0, IN>, Send In
-Else IfEqual key0, IDK>, Send Kid{Space} 
-Else IfEqual key0, GLN>, Send Language Lng.{Space} 
-Else IfEqual key0, ESHL>, Send She'll{Space}
-Else IfEqual key0, ETSG>, Send Settings{Space} 
-Else IfEqual key0, ESC>, Send Escape{Space} 
-Else IfEqual key0, ERGM>, Send Emerge{Space} 
-Else IfEqual key0, RTUOGH>, Send Thorough{Space}
- Else IfEqual key0, WTO", Send Two{Space} 
-Else IfEqual key0, EPAL>, Send Appeal{Space}
-Else IfEqual key0, EIASL>, Send Liaise{Space} 
-Else IfEqual key0, ERAKB>, Send Brake{Space} 
- Else IfEqual key0, TVM>, Send Motivate{Space} 
-Else IfEqual key0, ERA>, Send Rear{Space} 
-Else IfEqual key0, RTDC>, Send Direct{Space} 
-Else IfEqual key0, ERA", Send Era{Space} 
-Else IfEqual key0, TUOGH>, Send Ought{Space} 
- Else IfEqual key0, HM>, Send Mm-Mmm.{Space} 
- Else IfEqual key0, ESL>, Send Less{Space} 
- Else IfEqual key0, ETAN>, Send Tenant{Space} 
-Else IfEqual key0, RTFH>, Send Further{Space} 
- Else IfEqual key0, TIVN>, Send Invite{Space} 
- Else IfEqual key0, ESDN>, Send Dense{Space} 
-Else IfEqual key0, ERIAS, Send Easier{Space} 
-Else IfEqual key0, RTLN>, Send Natural{Space} 
-Else IfEqual key0, >ERTPSN, Send Represent{Space} 
-Else IfEqual key0, ERF>, Send Refer{Space} 
-Else IfEqual key0, ETSH>, Send Sheet{Space} 
-Else IfEqual key0, ON>, Send Non{Space} 
-Else IfEqual key0, RTIPN>, Send Interrupt{Space} 
-Else IfEqual key0, TAS>, Send Asset{Space} 
-Else IfEqual key0, SCNM>, Send Musician{Space} 
- Else IfEqual key0, TGVN>, Send Vintage{Space} 
- Else IfEqual key0, RTSG>, Send Register{Space} 
- Else IfEqual key0, EIVN>, Send Vine{Space} 
- Else IfEqual key0, ETAS>, Send Taste{Space} 
-Else IfEqual key0, ETSN>, Send Nest{Space} 
- Else IfEqual key0, TAN>, Send {BackSpace} ant{Space} 
- Else IfEqual key0, EON>, Send None{Space} 	
- Else IfEqual key0, APL>, Send Appeal{Space} 
- Else IfEqual key0, EIS>, Send {BackSpace}{BackSpace} ies{Space} 	
-Else IfEqual key0, ASB>, Send Bass{Space} 
-Else IfEqual key0, DLB>, Send Double{Space} 
-Else IfEqual key0, EAG>, Send {BackSpace} age{Space} 
-Else IfEqual key0, ECN>, Send {BackSpace} ence{Space} 
-Else IfEqual key0, ERTA>, Send Treat{Space} 
-Else IfEqual key0, ERTCN>, Send Center{Space} 
-Else IfEqual key0, ETA>, Send Eat{Space} 
-Else IfEqual key0, IPSH>, Send Ship{Space} 
-Else IfEqual key0, RPSF>, Send Professor{Space} 
-Else IfEqual key0, RTG>, Send Guitar{Space} 
-Else IfEqual key0, RTLB>, Send Terrible{Space} 
-Else IfEqual key0, RTPA>, Send Appropriate{Space} 
-Else IfEqual key0, RTPC>, Send Participate{Space} 
-Else IfEqual key0, RTPN>, Send Partner{Space} 
-Else IfEqual key0, RTUH>, Send Truth{Space} 
-Else IfEqual key0, TGN>, Send Negotiation{Space} 
-Else IfEqual key0, TIDN>, Send Identity{Space} 
-Else IfEqual key0, TIH>, Send Hit{Space} 
-Else IfEqual key0, TPLC>, Send Political{Space} 
-Else IfEqual key0, TSN>, Send Situation{Space} 
-Else IfEqual key0, TY>, Send Youtube{Space} 
-Else IfEqual key0, WN>, Send No Worries.{Space} 
- Else IfEqual key0, ADB>, Send Bad{Space} 
- Else IfEqual key0, ASB>, Send Bass{Space} 
-Else IfEqual key0, EFL>, Send Fell{Space} 
-Else IfEqual key0, EIFV>, Send Five{Space} 
-Else IfEqual key0, EIN>, Send Nine{Space} 
-Else IfEqual key0, EIV>, Send {BackSpace} ive{Space} 
-Else IfEqual key0, EM>, Send Em{Space} 
-Else IfEqual key0, ERAN>, Send Earn{Space} 
-Else IfEqual key0, ERTH>, Send Three{Space} 
-Else IfEqual key0, ESH>, Send He's{Space} 
-Else IfEqual key0, ESVN>, Send Seven{Space} 
-Else IfEqual key0, ETIGH>, Send Eight{Space} 
-Else IfEqual key0, ETON>, Send Tone{Space} 
-Else IfEqual key0, ISX>, Send Six{Space} 
-Else IfEqual key0, RPA>, Send Appear{Space} 
-Else IfEqual key0, RUOF>, Send Four{Space} 
-Else IfEqual key0, TIL>, Send Till{Space} 
-Else IfEqual key0, TOSH>, Send Shoot{Space} 
-Else IfEqual key0, WTO>, Send Two{Space} 
- Else IfEqual key0, RTOS>, Send Sort Of{Space} 
- Else IfEqual key0, OG>, Send Going{Space} 
- Else IfEqual key0, TISH>, Send Shit{Space} 
- Else IfEqual key0, TM>, Send Might{Space} 
- Else IfEqual key0, IDF>, Send Difficult{Space} 
- Else IfEqual key0, TDN>, Send Didn't{Space} 
- Else IfEqual key0, TIDN>, Send Didn't{Space} 
- Else IfEqual key0, ER>, Send Re
- Else IfEqual key0, ERP>, Send Pre
- Else IfEqual key0, EM>, Send Them{Space} 
- Else IfEqual key0, IG>, Send Instagram{Space} 
- Else IfEqual key0, FB>, Send Facebook{Space} 
- Else IfEqual key0, GL>, Send Google{Space} 
- Else IfEqual key0, ID>, Send I'd{Space} 
- Else IfEqual key0, OK>, Send Okay{Space} 
- Else IfEqual key0, SM>, Send So Much{Space} 
- Else IfEqual key0, ETC>, Send Technology{Space} 
- Else IfEqual key0, TH>, Send Th{Space} 
- Else IfEqual key0, TSH>, Send That's{Space} 
- Else IfEqual key0, EV>, Send Ve{Space} 
- Else IfEqual key0, C>, Send See{Space} 
- Else IfEqual key0, U>, Send You{Space} 
- Else IfEqual key0, N>, Send And{Space} 
- Else IfEqual key0, T>, Send The{Space} 
- Else IfEqual key0, Y>, Send Yeah{Space} 
- Else IfEqual key0, B>, Send But{Space} 
- Else IfEqual key0, TION>, Send Ition{Space} 
- Else IfEqual key0, W>, Send With{Space} 
- Else IfEqual key0, P>, Send Pretty{Space} 
- Else IfEqual key0, K>, Send Know{Space} 
- Else IfEqual key0, Q>, Send Quick{Space} 
- Else IfEqual key0, G>, Send Great{Space} 
- Else IfEqual key0, L>, Send Like{Space} 
- Else IfEqual key0, R>, Send Really{Space} 
- Else IfEqual key0, SH>, Send Sh{Space} 
- Else IfEqual key0, J>, Send Just{Space} 
- Else IfEqual key0, M>, Send Much{Space} 
- Else IfEqual key0, E>, Send Even{Space} 
- Else IfEqual key0, D>, Send Ed{Space} 
- Else IfEqual key0, F>, Send For{Space} 
- Else IfEqual key0, V>, Send Very{Space} 
- Else IfEqual key0, IO>, Send {BackSpace}{BackSpace} tion{Space} 
- Else IfEqual key0, TH>, Send Th{Space} 
- Else IfEqual key0, HC>, Send Ch{Space} 
- Else IfEqual key0, TO>, Send Too{Space} 
- Else IfEqual key0, TUAGH>, Send Aught{Space} 
- Else IfEqual key0, OCN>, Send Con{Space} 
- Else IfEqual key0, ERA>, Send Are{Space} 
- Else IfEqual key0, GC>, Send Seeing{Space} 
- Else IfEqual key0, WYA>, Send Away{Space} 
- Else IfEqual key0, WAS>, Send Saw{Space} 
- Else IfEqual key0, 3>, Send Three{Space} 
- Else IfEqual key0, 1>, Send One{Space} 
- Else IfEqual key0, 2>, Send Two{Space} 
- Else IfEqual key0, 4>, Send Four{Space} 
- Else IfEqual key0, 5>, Send Five{Space} 
- Else IfEqual key0, EX>, Send Exact{Space} 
- Else IfEqual key0, 6>, Send Six{Space} 
- Else IfEqual key0, 7>, Send Seven{Space} 
- Else IfEqual key0, 8>, Send Eight{Space} 
- Else IfEqual key0, 9>, Send Nine{Space} 
- Else IfEqual key0, 0>, Send 10{Space} 
- Else IfEqual key0, WOH>, Send Who{Space} 
- Else IfEqual key0, ETL>, Send Tell{Space} 
- Else IfEqual key0, ERTS>, Send Stress{Space} 
- Else IfEqual key0, ST>, Send St{Space} 
- Else IfEqual key0, TOPS>, Send Post{Space} 
- Else IfEqual key0, TIS>, Send Sit{Space} 
- Else IfEqual key0, ASHL>, Send Shall{Space} 
- Else IfEqual key0, ESD>, Send Seed{Space} 
- Else IfEqual key0, WAS>, Send Saw{Space} 
- Else IfEqual key0, WON>, Send Own{Space} 
- Else IfEqual key0, ON>, Send On{Space} 
- Else IfEqual key0, ETFL>, Send Left{Space} 
- Else IfEqual key0, WTAH>, Send Thaw{Space} 
- Else IfEqual key0, OF>, Send Off{Space} 
- Else IfEqual key0, EANM>, Send Name{Space} 
- Else IfEqual key0, EILV>, Send Evil{Space} 
- Else IfEqual key0, EPK>, Send Peek{Space} 
- Else IfEqual key0, RTUH>, Send Hurt{Space} 
- Else IfEqual key0, TOH>, Send Hot{Space} 
- Else IfEqual key0, ISH>, Send Ish{Space} 
- Else IfEqual key0, ERH>, Send Here{Space} 
- Else IfEqual key0, OG>, Send Original{Space} 
- Else IfEqual key0, ED>, Send De
- Else IfEqual key0, TOPS>, Send Post
- Else IfEqual key0, ISM>, Send Mis{Space} 
- Else IfEqual key0, AL>, Send {BackSpace} al{Space} 
- Else IfEqual key0, S>, Send {BackSpace} s{Space} 
- Else IfEqual key0, ESN>, Send {BackSpace} ness{Space} 
- Else IfEqual key0, I>, Send I{Space} 
- Else IfEqual key0, A>, Send A{Space} 
- Else IfEqual key0, UFL>, Send {BackSpace} ful{Space} 
- Else IfEqual key0, ER>, Send Re
- Else IfEqual key0, TOH>, Send Oth{Space} 
- Else IfEqual key0, TON>, Send Ton{Space} 
-Else IfEqual key0, YAL>, Send {BackSpace} ally{Space} 
-Else IfEqual key0, ABLE>, Send Able
-Else IfEqual key0, UA>, Send Ua 
-Else IfEqual key0, EDN>, Send End{Space} 
-Else IfEqual key0, ER>, Send {BackSpace} er
-Else IfEqual key0, ETM>, Send Meet{Space} 
-Else IfEqual key0, ETG>, Send Getting{Space} 
-Else IfEqual key0, AL>, Send {BackSpace} al
-Else IfEqual key0, TOPS>, Send Post{Space} 
-Else IfEqual key0, EAG>, Send Age
-Else IfEqual key0, ERTIH>, Send Either{Space} 
-Else IfEqual key0, GV>, Send Giving{Space} 
-Else IfEqual key0, ERASHC>, Send Research{Space} 
-Else IfEqual key0, EDF>, Send Feed{Space} 
-Else IfEqual key0, EOSHC>, Send Choose{Space} 
-Else IfEqual key0, EIGBN>, Send Beginning{Space} 
-Else IfEqual key0, OPSH>, Send Shops{Space} 
-Else IfEqual key0, ESM>, Send Seems{Space} 
-Else IfEqual key0, ERTAL>, Send Relate{Space} 
-Else IfEqual key0, ETIS>, Send {BackSpace} ities{Space} 
-Else IfEqual key0, TOL>, Send Tool{Space} 
-Else IfEqual key0, TASF>, Send Staff{Space} 
-Else IfEqual key0, SN>, Send Season{Space} 
- Else IfEqual key0, ISGN>, Send Sing{Space} 
- Else IfEqual key0, ERPA>, Send Paper{Space} 
- Else IfEqual key0, ES>, Send {BackSpace} es{Space} 
-Else IfEqual key0, EPSDN>, Send Depends{Space} 
-Else IfEqual key0, RTLC>, Send Critical{Space} 
-Else IfEqual key0, ERTPSN>, Send Represent{Space} 
-Else IfEqual key0, OAGLN>, Send Analog{Space} 
-Else IfEqual key0, RAL>, Send Lar
-Else IfEqual key0, TAHC>, Send Attach{Space} 
-Else IfEqual key0, ERTPAN>, Send Parent{Space} 
-Else IfEqual key0, IGH>, Send Igh{Space} 
-Else IfEqual key0, ETS>, Send Test{Space} 	
-Else IfEqual key0, ETSN>, Send Sent{Space} 
-Else IfEqual key0, ESFL>, Send Self{Space} 
-Else IfEqual key0, EPAL>, Send Apple{Space} 
-Else IfEqual key0, EISCN>, Send Science{Space} 
-Else IfEqual key0, RTLV>, Send Virtual{Space} 
-Else IfEqual key0, TS>, Send Street{Space} 
-Else IfEqual key0, ODG>, Send Dog{Space} 
-Else IfEqual key0, ERTIN>, Send Internet{Space} 
-Else IfEqual key0, RTPCN>, Send Corporation{Space} 
-Else IfEqual key0, WERTI>, Send Twitter{Space} 
-Else IfEqual key0, ERAC>, Send Race{Space} 
-Else IfEqual key0, ERUS>, Send User{Space} 
-Else IfEqual key0, RAC>, Send Car{Space} 
-Else IfEqual key0, ROADB>, Send Broad{Space} 
-Else IfEqual key0, WERA>, Send Aware{Space} 
-Else IfEqual key0, WRTOH>, Send Worth{Space} 
-Else IfEqual key0, ERTAFH>, Send Farther{Space} 
-Else IfEqual key0, YPAL>, Send Apply{Space} 
-Else IfEqual key0, RTPC>, Send Capture{Space} 
-Else IfEqual key0, ERUPS>, Send Pressure{Space} 
-Else IfEqual key0, ESL>, Send Sell{Space} 
-Else IfEqual key0, EIFL>, Send File{Space} 
-Else IfEqual key0, WEAK>, Send Wake{Space} 
-Else IfEqual key0, DEADL>, Send Lead{Space} 
- Else IfEqual key0, WER", Send We're{Space} 
- Else IfEqual key0, ESH", Send He's{Space} 
- Else IfEqual key0, ID", Send I'd{Space} 
- Else IfEqual key0, YAL", Send Y'all{Space} 
- Else IfEqual key0, WOSH", Send Who's{Space} 
- Else IfEqual key0, TID'N, Send Didn't{Space} 
- Else IfEqual key0, TS", Send That's{Space}
-Else IfEqual key0, AD>, Send Add{Space} 
-Else IfEqual key0, EASC>, Send Access{Space} 
-Else IfEqual key0, EOLV>, Send Evolve{Space} 
-Else IfEqual key0, EPASH>, Send Phase{Space} 
-Else IfEqual key0, ERTAL>, Send Alter{Space} 
-Else IfEqual key0, FL>, Send Full{Space} 
-Else IfEqual key0, TIL>, Send It'll{Space} 
-Else IfEqual key0, TIL", Send It'll{Space} 
-Else IfEqual key0, TPLN>, Send Population{Space} 
-Else IfEqual key0, VM>, Send Movie{Space} 
-Return
-
-
-SENDSLASHstart:
-SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, era/;, Send {BackSpace}.{Space}Ear{Space} 
-Else IfEqual key0, tops/;, Send {BackSpace}.{Space}Spot{Space} 
-Else IfEqual key0, ertal/;, Send {BackSpace}.{Space}Latter{Space} 
-Else IfEqual key0, erts/;, Send {BackSpace}.{Space}Steer{Space} 
-Else IfEqual key0, tosh/;, Send {BackSpace}.{Space}Host{Space} 
-Else IfEqual key0, erp/;, Send {BackSpace}.{Space}Peer{Space} 
-Else IfEqual key0, etas/;, Send {BackSpace}.{Space}Tease{Space} 
-Else IfEqual key0, wal/;, Send {BackSpace}.{Space}Law{Space} 
-Else IfEqual key0, era/;, Send {BackSpace}.{Space}Ear{Space} 
-Else IfEqual key0, ersv/;, Send {BackSpace}.{Space}Sever{Space} 	
-Else IfEqual key0, slcn/;, Send {BackSpace}.{Space}Counsel{Space} 
-Else IfEqual key0, erups/;, Send {BackSpace}.{Space}Pursue{Space} 
-Else IfEqual key0, won/;, Send {BackSpace}.{Space}Won{Space} 
-
-Return
-SENDQstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, qerf;, Send {BackSpace}.{Space}Frequency{Space} 
-Else IfEqual key0, qerfn;, Send {BackSpace}.{Space}Frequent{Space} 
-Else IfEqual key0, qerui;, Send {BackSpace}.{Space}Queue{Space} 
-Else IfEqual key0, qeu;, Send {BackSpace}.{Space}Queue{Space} 
-Else IfEqual key0, qrac;, Send {BackSpace}.{Space}Acquire{Space} 
-Else IfEqual key0, qrts;, Send {BackSpace}.{Space}Request{Space} 
-Else IfEqual key0, qetui;, Send {BackSpace}.{Space}Quiet{Space} 
-Else IfEqual key0, qeuin;, Send {BackSpace}.{Space}Unique{Space} 
-Else IfEqual key0, qel;, Send {BackSpace}.{Space}Equal{Space} 
-Else IfEqual key0, qeru;, Send {BackSpace}.{Space}Queer{Space} 
-Else IfEqual key0, ql;, Send {BackSpace}.{Space}Quickly{Space} 
-Else IfEqual key0, qetuo;, Send {BackSpace}.{Space}Quote{Space} 
-Else IfEqual key0, qfl;, Send {BackSpace}.{Space}Qualify{Space} 
-Else IfEqual key0, qrtuis;, Send {BackSpace}.{Space}Squirt{Space} 
-Else IfEqual key0, qyfl;, Send {BackSpace}.{Space}Qualify{Space} 
-Else IfEqual key0, qeuip;, Send {BackSpace}.{Space}Equip{Space} 
-Else IfEqual key0, qeuoscn;, Send {BackSpace}.{Space}Consequence{Space} 
-Else IfEqual key0, qeus;, Send {BackSpace}.{Space}Esque
-Else IfEqual key0, qr;, Send {BackSpace}.{Space}Require{Space} 
-Else IfEqual key0, qrsl;, Send {BackSpace}.{Space}Squirrel{Space} 
-Else IfEqual key0, qeryu;, Send {BackSpace}.{Space}Query{Space} 
-Else IfEqual key0, qes;, Send {BackSpace}.{Space}Sequence{Space} 
-Else IfEqual key0, qetyui;, Send {BackSpace}.{Space}Equity{Space} 
-Else IfEqual key0, qrf;, Send {BackSpace}.{Space}Frequent{Space} 
-Else IfEqual key0, qrtfn;, Send {BackSpace}.{Space}Frequent{Space} 
-Else IfEqual key0, qscn;, Send {BackSpace}.{Space}Sequence{Space} 
-Else IfEqual key0, qtuanm;, Send {BackSpace}.{Space}Quantum{Space} 
-Else IfEqual key0, qt;, Send {BackSpace}.{Space}Question{Space} 
-Else IfEqual key0, qti;, Send {BackSpace}.{Space}Quite{Space} 
-Else IfEqual key0, qtl;, Send {BackSpace}.{Space}Quality{Space} 
-Else IfEqual key0, qts;, Send {BackSpace}.{Space}Questions{Space} 
-Else IfEqual key0, qtui;, Send {BackSpace}.{Space}Quit{Space} 
-Else IfEqual key0, qun;, Send {BackSpace}.{Space}Unique{Space} 
-Else IfEqual key0, qrt;, Send {BackSpace}.{Space}Quarter{Space} 
-Return
-SENDWstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, wa;, Send {BackSpace}.{Space}As Well{Space} 
-Else IfEqual key0, wrhv;, Send {BackSpace}.{Space}However{Space} 
-Else IfEqual key0, wtn;, Send {BackSpace}.{Space}Won't{Space} 
-Else IfEqual key0, werhvn;, Send {BackSpace}.{Space}Whenever{Space} 
-Else IfEqual key0, weoasm;, Send {BackSpace}.{Space}Awesome{Space} 
-Else IfEqual key0, wrpa;, Send {BackSpace}.{Space}Wrap{Space} 
-Else IfEqual key0, wlb;, Send {BackSpace}.{Space}Below{Space} 
-Else IfEqual key0, weolb;, Send {BackSpace}.{Space}Below{Space} 
-Else IfEqual key0, wan;, Send {BackSpace}.{Space}Want To{Space} 
-Else IfEqual key0, wehc;, Send {BackSpace}.{Space}Chew{Space} 
-Else IfEqual key0, weif;, Send {BackSpace}.{Space}Wife{Space} 
-Else IfEqual key0, weislv;, Send {BackSpace}.{Space}Swivel{Space} 
-Else IfEqual key0, werash;, Send {BackSpace}.{Space}Whereas{Space} 
-Else IfEqual key0, werhvn;, Send {BackSpace}.{Space}Whenever{Space} 
-Else IfEqual key0, werin;, Send {BackSpace}.{Space}Winner{Space} 
-Else IfEqual key0, weropm;, Send {BackSpace}.{Space}Empower{Space} 
-Else IfEqual key0, werosh;, Send {BackSpace}.{Space}Shower{Space} 
-Else IfEqual key0, wertih;, Send {BackSpace}.{Space}Wither{Space} 
-Else IfEqual key0, wesk;, Send {BackSpace}.{Space}Skew{Space} 
-Else IfEqual key0, wetishl;, Send {BackSpace}.{Space}Whistle{Space} 
-Else IfEqual key0, whkm;, Send {BackSpace}.{Space}Homework{Space} 
-Else IfEqual key0, wism;, Send {BackSpace}.{Space}Swim{Space} 
-Else IfEqual key0, woasl;, Send {BackSpace}.{Space}Swallow{Space} 
-Else IfEqual key0, wolb;, Send {BackSpace}.{Space}Blow{Space} 
-Else IfEqual key0, wra;, Send {BackSpace}.{Space}War{Space} 
-Else IfEqual key0, wrb;, Send {BackSpace}.{Space}Borrow{Space} 
-Else IfEqual key0, wrsm;, Send {BackSpace}.{Space}Worrisome{Space} 
-Else IfEqual key0, wrpf;, Send {BackSpace}.{Space}Powerful{Space} 
-Else IfEqual key0, wdv;, Send {BackSpace}.{Space}Would've{Space} 
-Else IfEqual key0, werohn;, Send {BackSpace}.{Space}Nowhere{Space} 
-Else IfEqual key0, werohv;, Send {BackSpace}.{Space}However{Space} 
-Else IfEqual key0, wrth;, Send {BackSpace}.{Space}Worth{Space} 
-Else IfEqual key0, weros;, Send {BackSpace}.{Space}Worse{Space} 
-Else IfEqual key0, wed;, Send {BackSpace}.{Space}We'd{Space} 
-Else IfEqual key0, wein;, Send {BackSpace}.{Space}Wine{Space} 
-Else IfEqual key0, wetah;, Send {BackSpace}.{Space}Weather{Space} 
-Else IfEqual key0, wetahl;, Send {BackSpace}.{Space}Wealth{Space} 
-Else IfEqual key0, wofl;, Send {BackSpace}.{Space}Flow{Space} 
-Else IfEqual key0, werop;, Send {BackSpace}.{Space}Power{Space} 
-Else IfEqual key0, wertn;, Send {BackSpace}.{Space}Weren't{Space} 
-Else IfEqual key0, wrtn;, Send {BackSpace}.{Space}Written{Space} 
-Else IfEqual key0, wadn;, Send {BackSpace}.{Space}Wand{Space} 
-Else IfEqual key0, wdl;, Send {BackSpace}.{Space}Wield{Space} 
-Else IfEqual key0, weav;, Send {BackSpace}.{Space}Wave{Space} 
-Else IfEqual key0, welb;, Send {BackSpace}.{Space}Blew{Space} 
-Else IfEqual key0, welb;, Send {BackSpace}.{Space}Blew{Space} 
-Else IfEqual key0, weonm;, Send {BackSpace}.{Space}Women{Space} 
-Else IfEqual key0, werto;, Send {BackSpace}.{Space}Wrote{Space} 
-Else IfEqual key0, werto;, Send {BackSpace}.{Space}Wrote{Space} 
-Else IfEqual key0, wlcm;, Send {BackSpace}.{Space}Welcome{Space} 
-Else IfEqual key0, wnm;, Send {BackSpace}.{Space}Women{Space} 
-Else IfEqual key0, wnm;, Send {BackSpace}.{Space}Woman{Space} 
-Else IfEqual key0, wosl;, Send {BackSpace}.{Space}Slow{Space} 
-Else IfEqual key0, wrdh;, Send {BackSpace}.{Space}Hardware{Space} 
-Else IfEqual key0, wrtos;, Send {BackSpace}.{Space}Worst{Space} 
-Else IfEqual key0, wryo;, Send {BackSpace}.{Space}Worry{Space} 
-Else IfEqual key0, wagn;, Send {BackSpace}.{Space}Gnaw{Space} 
-Else IfEqual key0, waln;, Send {BackSpace}.{Space}Lawn{Space} 
-Else IfEqual key0, wan;, Send {BackSpace}.{Space}Awn{Space} 
-Else IfEqual key0, waskl;, Send {BackSpace}.{Space}Walks{Space} 
-Else IfEqual key0, wdln;, Send {BackSpace}.{Space}Download{Space} 
-Else IfEqual key0, weahl;, Send {BackSpace}.{Space}Whale{Space} 
-Else IfEqual key0, wehl;, Send {BackSpace}.{Space}Wheel{Space} 
-Else IfEqual key0, weif;, Send {BackSpace}.{Space}Wife{Space} 
-Else IfEqual key0, weigh;, Send {BackSpace}.{Space}Weigh{Space} 
-Else IfEqual key0, weis;, Send {BackSpace}.{Space}Wise{Space} 
-Else IfEqual key0, weosh;, Send {BackSpace}.{Space}Whose{Space} 
-Else IfEqual key0, weosh;, Send {BackSpace}.{Space}Swore{Space} 
-Else IfEqual key0, wertah;, Send {BackSpace}.{Space}Weather{Space} 
-Else IfEqual key0, wetigh;, Send {BackSpace}.{Space}Weight{Space} 
-Else IfEqual key0, wets;, Send {BackSpace}.{Space}West{Space} 
-Else IfEqual key0, widl;, Send {BackSpace}.{Space}Wild{Space} 
-Else IfEqual key0, win;, Send {BackSpace}.{Space}Win{Space} 
-Else IfEqual key0, woc;, Send {BackSpace}.{Space}Cow{Space} 
-Else IfEqual key0, wom;, Send {BackSpace}.{Space}Mow{Space} 
-Else IfEqual key0, wrgln;, Send {BackSpace}.{Space}Wrangle{Space} 
-Else IfEqual key0, wrhn;, Send {BackSpace}.{Space}Nowhere{Space} 
-Else IfEqual key0, wrlnm;, Send {BackSpace}.{Space}Lawnmower{Space} 
-Else IfEqual key0, wrs;, Send {BackSpace}.{Space}Worse{Space} 
-Else IfEqual key0, wrtos;, Send {BackSpace}.{Space}Worst{Space} 
-Else IfEqual key0, wsdm;, Send {BackSpace}.{Space}Wisdom{Space} 
-Else IfEqual key0, wakl;, Send {BackSpace}.{Space}Walk{Space} 
-Else IfEqual key0, wal;, Send {BackSpace}.{Space}Always{Space} 
-Else IfEqual key0, was;, Send {BackSpace}.{Space}Was{Space} 
-Else IfEqual key0, was;, Send {BackSpace}.{Space}Was{Space} 
-Else IfEqual key0, wash;, Send {BackSpace}.{Space}Wash{Space} 
-Else IfEqual key0, wdf;, Send {BackSpace}.{Space}Forward{Space} 
-Else IfEqual key0, wdn;, Send {BackSpace}.{Space}Wouldn't{Space} 
-Else IfEqual key0, we;, Send {BackSpace}.{Space}We{Space} 
-Else IfEqual key0, weak;, Send {BackSpace}.{Space}Weak{Space} 
-Else IfEqual key0, weasm;, Send {BackSpace}.{Space}Awesome{Space} 
-Else IfEqual key0, wef;, Send {BackSpace}.{Space}Few{Space} 
-Else IfEqual key0, weh;, Send {BackSpace}.{Space}When{Space} 
-Else IfEqual key0, wehn;, Send {BackSpace}.{Space}When{Space} 
-Else IfEqual key0, weid;, Send {BackSpace}.{Space}Wide{Space} 
-Else IfEqual key0, weid;, Send {BackSpace}.{Space}Wide{Space} 
-Else IfEqual key0, weihl;, Send {BackSpace}.{Space}While{Space} 
-Else IfEqual key0, weis;, Send {BackSpace}.{Space}Wise{Space} 
-Else IfEqual key0, weisdh;, Send {BackSpace}.{Space}Wished{Space} 
-Else IfEqual key0, weiv;, Send {BackSpace}.{Space}View{Space} 
-Else IfEqual key0, wek;, Send {BackSpace}.{Space}Week{Space} 
-Else IfEqual key0, wekn;, Send {BackSpace}.{Space}Knew{Space} 
-Else IfEqual key0, wel;, Send {BackSpace}.{Space}Well{Space} 
-Else IfEqual key0, wen;, Send {BackSpace}.{Space}New{Space} 
-Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
-Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
-Else IfEqual key0, weohl;, Send {BackSpace}.{Space}Whole{Space} 
-Else IfEqual key0, wer;, Send {BackSpace}.{Space}Were{Space} 
-Else IfEqual key0, wera;, Send {BackSpace}.{Space}Wear{Space} 
-Else IfEqual key0, werasn;, Send {BackSpace}.{Space}Answer{Space} 
-Else IfEqual key0, werc;, Send {BackSpace}.{Space}Crew{Space} 
-Else IfEqual key0, werh;, Send {BackSpace}.{Space}Where{Space} 
-Else IfEqual key0, werid;, Send {BackSpace}.{Space}Weird{Space} 
-Else IfEqual key0, weriv;, Send {BackSpace}.{Space}Review{Space} 
-Else IfEqual key0, werosb;, Send {BackSpace}.{Space}Browse{Space} 
-Else IfEqual key0, werta;, Send {BackSpace}.{Space}Water{Space} 
-Else IfEqual key0, werth;, Send {BackSpace}.{Space}Whether{Space} 
-Else IfEqual key0, werti;, Send {BackSpace}.{Space}Twitter{Space} 
-Else IfEqual key0, wetadn;, Send {BackSpace}.{Space}Wanted{Space} 
-Else IfEqual key0, wetbn;, Send {BackSpace}.{Space}Between{Space} 
-Else IfEqual key0, wetih;, Send {BackSpace}.{Space}White{Space} 
-Else IfEqual key0, wetn;, Send {BackSpace}.{Space}Went{Space} 
-Else IfEqual key0, wev;, Send {BackSpace}.{Space}Everywhere{Space} 
-Else IfEqual key0, wfl;, Send {BackSpace}.{Space}Follow{Space} 
-Else IfEqual key0, wgk;, Send {BackSpace}.{Space}Working{Space} 
-Else IfEqual key0, wgkl;, Send {BackSpace}.{Space}Walking{Space} 
-Else IfEqual key0, wh;, Send {BackSpace}.{Space}Who{Space} 
-Else IfEqual key0, when;, Send {BackSpace}.{Space}When{Space} 
-Else IfEqual key0, whl;, Send {BackSpace}.{Space}Whole{Space} 
-Else IfEqual key0, whn;, Send {BackSpace}.{Space}When{Space} 
-Else IfEqual key0, widn;, Send {BackSpace}.{Space}Wind{Space} 
-Else IfEqual key0, wihc;, Send {BackSpace}.{Space}Which{Space} 
-Else IfEqual key0, wil;, Send {BackSpace}.{Space}Will{Space} 
-Else IfEqual key0, wiodn;, Send {BackSpace}.{Space}Window{Space} 
-Else IfEqual key0, wish;, Send {BackSpace}.{Space}Wish{Space} 
-Else IfEqual key0, wk;, Send {BackSpace}.{Space}Work{Space} 
-Else IfEqual key0, wkl;, Send {BackSpace}.{Space}Walk{Space} 
-Else IfEqual key0, wl;, Send {BackSpace}.{Space}We'll{Space} 
-Else IfEqual key0, wn;, Send {BackSpace}.{Space}Network{Space} 
-Else IfEqual key0, wo;, Send {BackSpace}.{Space}Would{Space} 
-Else IfEqual key0, woal;, Send {BackSpace}.{Space}Allow{Space} 
-Else IfEqual key0, wod;, Send {BackSpace}.{Space}Wood{Space} 
-Else IfEqual key0, wodn;, Send {BackSpace}.{Space}Down{Space} 
-Else IfEqual key0, woh;, Send {BackSpace}.{Space}How{Space} 
-Else IfEqual key0, wokn;, Send {BackSpace}.{Space}Know{Space} 
-Else IfEqual key0, wol;, Send {BackSpace}.{Space}Low{Space} 
-Else IfEqual key0, won;, Send {BackSpace}.{Space}Now{Space} 
-Else IfEqual key0, wosh;, Send {BackSpace}.{Space}Show{Space} 
-Else IfEqual key0, wosn;, Send {BackSpace}.{Space}Snow{Space} 
-Else IfEqual key0, wpn;, Send {BackSpace}.{Space}Newspaper{Space} 
-Else IfEqual key0, wr;, Send {BackSpace}.{Space}We're{Space} 
-Else IfEqual key0, wr;, Send {BackSpace}.{Space}We're{Space} 
-Else IfEqual key0, wrad;, Send {BackSpace}.{Space}Draw{Space} 
-Else IfEqual key0, wram;, Send {BackSpace}.{Space}Warm{Space} 
-Else IfEqual key0, wrdf;, Send {BackSpace}.{Space}Wonderful{Space} 
-Else IfEqual key0, wrdfn;, Send {BackSpace}.{Space}Wonderful{Space} 
-Else IfEqual key0, wrdn;, Send {BackSpace}.{Space}Wonder{Space} 
-Else IfEqual key0, wrk;, Send {BackSpace}.{Space}Work{Space} 
-Else IfEqual key0, wrod;, Send {BackSpace}.{Space}Word{Space} 
-Else IfEqual key0, wrodl;, Send {BackSpace}.{Space}World{Space} 
-Else IfEqual key0, wrog;, Send {BackSpace}.{Space}Grow{Space} 
-Else IfEqual key0, wrogn;, Send {BackSpace}.{Space}Wrong{Space} 
-Else IfEqual key0, wrok;, Send {BackSpace}.{Space}Work{Space} 
-Else IfEqual key0, wrt;, Send {BackSpace}.{Space}Write{Space} 
-Else IfEqual key0, wrtg;, Send {BackSpace}.{Space}Writing{Space} 
-Else IfEqual key0, wrtm;, Send {BackSpace}.{Space}Tomorrow{Space} 
-Else IfEqual key0, wrtoh;, Send {BackSpace}.{Space}Throw{Space} 
-Else IfEqual key0, wrtv;, Send {BackSpace}.{Space}Whatever{Space} 
-Else IfEqual key0, wrv;, Send {BackSpace}.{Space}Review{Space} 
-Else IfEqual key0, ws;, Send {BackSpace}.{Space}Website{Space} 
-Else IfEqual key0, wsf;, Send {BackSpace}.{Space}Software{Space} 
-Else IfEqual key0, wsm;, Send {BackSpace}.{Space}Somewhere{Space} 
-Else IfEqual key0, wt;, Send {BackSpace}.{Space}What{Space} 
-Else IfEqual key0, wtadn;, Send {BackSpace}.{Space}Wanted{Space} 
-Else IfEqual key0, wtadn;, Send {BackSpace}.{Space}Wanted{Space} 
-Else IfEqual key0, wtah;, Send {BackSpace}.{Space}What{Space} 
-Else IfEqual key0, wtahc;, Send {BackSpace}.{Space}Watch{Space} 
-Else IfEqual key0, wtan;, Send {BackSpace}.{Space}Want{Space} 
-Else IfEqual key0, wtasn;, Send {BackSpace}.{Space}Wasn't{Space} 
-Else IfEqual key0, wsn;, Send {BackSpace}.{Space}Wasn't{Space} 
-Else IfEqual key0, wtb;, Send {BackSpace}.{Space}By The Way{Space} 
-Else IfEqual key0, wtd;, Send {BackSpace}.{Space}Toward{Space} 
-Else IfEqual key0, wth;, Send {BackSpace}.{Space}Whether{Space} 
-Else IfEqual key0, wthc;, Send {BackSpace}.{Space}Watch{Space} 
-Else IfEqual key0, wti;, Send {BackSpace}.{Space}Within{Space} 
-Else IfEqual key0, wtia;, Send {BackSpace}.{Space}Wait{Space} 
-Else IfEqual key0, wtishc;, Send {BackSpace}.{Space}Switch{Space} 
-Else IfEqual key0, wto;, Send {BackSpace}.{Space}Without{Space} 
-Else IfEqual key0, wton;, Send {BackSpace}.{Space}Town{Space} 
-Else IfEqual key0, wtuo;, Send {BackSpace}.{Space}Without{Space} 
-Else IfEqual key0, wtv;, Send {BackSpace}.{Space}Whatever{Space} 
-Else IfEqual key0, wtvn;, Send {BackSpace}.{Space}Interview{Space} 
-Else IfEqual key0, wv;, Send {BackSpace}.{Space}We've{Space} 
-Else IfEqual key0, wv;, Send {BackSpace}.{Space}We've{Space} 
-Else IfEqual key0, wya;, Send {BackSpace}.{Space}Way{Space} 
-Else IfEqual key0, wyahn;, Send {BackSpace}.{Space}Anywhere{Space} 
-Else IfEqual key0, wyan;, Send {BackSpace}.{Space}Anyway{Space} 
-Else IfEqual key0, wyh;, Send {BackSpace}.{Space}Why{Space} 
-Else IfEqual key0, wyl;, Send {BackSpace}.{Space}Yellow{Space} 
-Else IfEqual key0, werg;, Send {BackSpace}.{Space}Grew{Space} 
-Else IfEqual key0, wetic;, Send {BackSpace}.{Space}Twice{Space} 
-Else IfEqual key0, wtash;, Send {BackSpace}.{Space}What's{Space} 
-Else IfEqual key0, wts;, Send {BackSpace}.{Space}What's{Space} 
-Return
-SENDRstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, ra;, Send {BackSpace}.{Space}Around{Space} 
-Else IfEqual key0, ruioasv;, Send {BackSpace}.{Space}Saviour{Space} 
-Else IfEqual key0, rtyph;, Send {BackSpace}.{Space}Therapy{Space} 
-Else IfEqual key0, rtdlnm;, Send {BackSpace}.{Space}Detrimental{Space} 
-Else IfEqual key0, rtdln;, Send {BackSpace}.{Space}Traditional{Space} 
-Else IfEqual key0, ryc;, Send {BackSpace}.{Space}Cry{Space} 
-Else IfEqual key0, rtpsdn;, Send {BackSpace}.{Space}President{Space} 
-Else IfEqual key0, rtuiag;, Send {BackSpace}.{Space}Guitar	{Space} 
-Else IfEqual key0, rtip;, Send {BackSpace}.{Space}Trip{Space} 
-Else IfEqual key0, ruosh;, Send {BackSpace}.{Space}Hours{Space} 
-Else IfEqual key0, ridkn;, Send {BackSpace}.{Space}Drink{Space} 
-Else IfEqual key0, riafc;, Send {BackSpace}.{Space}Africa{Space} 
-Else IfEqual key0, rtiac;, Send {BackSpace}.{Space}Arctic{Space} 
-Else IfEqual key0, rtiacn;, Send {BackSpace}.{Space}Antarctica{Space} 
-Else IfEqual key0, wrb;, Send {BackSpace}.{Space}Borrow{Space} 
-Else IfEqual key0, rhlb;, Send {BackSpace}.{Space}Horrible{Space} 
-Else IfEqual key0, rp;, Send {BackSpace}.{Space}Peer{Space} 
-Else IfEqual key0, rahcm;, Send {BackSpace}.{Space}March{Space} 
-Else IfEqual key0, rdv;, Send {BackSpace}.{Space}Drive{Space} 
-Else IfEqual key0, rdbn;, Send {BackSpace}.{Space}Burden{Space} 
-Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Garden{Space} 
-Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Conference{Space} 
-Else IfEqual key0, rfnm;, Send {BackSpace}.{Space}Inform{Space} 
-Else IfEqual key0, riagc;, Send {BackSpace}.{Space}Cigar{Space} 
-Else IfEqual key0, rid;, Send {BackSpace}.{Space}Rid{Space} 
-Else IfEqual key0, ridb;, Send {BackSpace}.{Space}Bird{Space} 
-Else IfEqual key0, riofnm;, Send {BackSpace}.{Space}Inform{Space} 
-Else IfEqual key0, riom;, Send {BackSpace}.{Space}Mirror{Space} 
-Else IfEqual key0, rionm;, Send {BackSpace}.{Space}Minor{Space} 
-Else IfEqual key0, ripal;, Send {BackSpace}.{Space}April{Space} 
-Else IfEqual key0, risc;, Send {BackSpace}.{Space}Crisis{Space} 
-Else IfEqual key0, riscn;, Send {BackSpace}.{Space}Insurance{Space} 
-Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Commercial{Space} 
-Else IfEqual key0, roajm;, Send {BackSpace}.{Space}Major{Space} 
-Else IfEqual key0, rodn;, Send {BackSpace}.{Space}Donor{Space} 
-Else IfEqual key0, rolc;, Send {BackSpace}.{Space}Color{Space} 
-Else IfEqual key0, roogm;, Send {BackSpace}.{Space}Groom{Space} 
-Else IfEqual key0, rpcn;, Send {BackSpace}.{Space}Pronounce{Space} 
-Else IfEqual key0, rpscb;, Send {BackSpace}.{Space}Prescribe{Space} 
-Else IfEqual key0, rpscm;, Send {BackSpace}.{Space}Compromise{Space} 
-Else IfEqual key0, rsc;, Send {BackSpace}.{Space}Source{Space} 
-Else IfEqual key0, rsjln;, Send {BackSpace}.{Space}Journalist{Space} 
-Else IfEqual key0, rtashc;, Send {BackSpace}.{Space}Scratch{Space} 
-Else IfEqual key0, rtav;, Send {BackSpace}.{Space}Avatar{Space} 
-Else IfEqual key0, rtfgl;, Send {BackSpace}.{Space}Grateful{Space} 
-Else IfEqual key0, rtgn;, Send {BackSpace}.{Space}Generate{Space} 
-Else IfEqual key0, rtifcn;, Send {BackSpace}.{Space}Interface{Space} 
-Else IfEqual key0, rtioavn;, Send {BackSpace}.{Space}Innovator{Space} 
-Else IfEqual key0, rtioscn;, Send {BackSpace}.{Space}Constrict{Space} 
-Else IfEqual key0, rtish;, Send {BackSpace}.{Space}Shirt{Space} 
-Else IfEqual key0, rtodc;, Send {BackSpace}.{Space}Doctor{Space} 
-Else IfEqual key0, rtofh;, Send {BackSpace}.{Space}Forth{Space} 
-Else IfEqual key0, rtpnm;, Send {BackSpace}.{Space}Prominent{Space} 
-Else IfEqual key0, rtpscn;, Send {BackSpace}.{Space}Transcript{Space} 
-Else IfEqual key0, rtpsn;, Send {BackSpace}.{Space}Proposition{Space} 
-Else IfEqual key0, rtsdm;, Send {BackSpace}.{Space}Mustard{Space} 
-Else IfEqual key0, rtshlc;, Send {BackSpace}.{Space}Historical{Space} 
-Else IfEqual key0, rtsjln;, Send {BackSpace}.{Space}Journalist{Space} 
-Else IfEqual key0, rtuinm;, Send {BackSpace}.{Space}Monitor{Space} 
-Else IfEqual key0, rtukc;, Send {BackSpace}.{Space}Truck{Space} 
-Else IfEqual key0, rtuoscn;, Send {BackSpace}.{Space}Construct{Space} 
-Else IfEqual key0, rtupab;, Send {BackSpace}.{Space}Abrupt{Space} 
-Else IfEqual key0, rtuskc;, Send {BackSpace}.{Space}Struck{Space} 
-Else IfEqual key0, rtyivn;, Send {BackSpace}.{Space}Inventory{Space} 
-Else IfEqual key0, rtyoph;, Send {BackSpace}.{Space}Trophy{Space} 
-Else IfEqual key0, rtyshlc;, Send {BackSpace}.{Space}Hysterical{Space} 
-Else IfEqual key0, ruasg;, Send {BackSpace}.{Space}Sugar{Space} 
-Else IfEqual key0, ruogh;, Send {BackSpace}.{Space}Rough{Space} 
-Else IfEqual key0, rydlv;, Send {BackSpace}.{Space}Delivery{Space} 
-Else IfEqual key0, ryfb;, Send {BackSpace}.{Space}February{Space} 
-Else IfEqual key0, ryjn;, Send {BackSpace}.{Space}January{Space} 
-Else IfEqual key0, rysdcv;, Send {BackSpace}.{Space}Discovery{Space} 
-Else IfEqual key0, rysg;, Send {BackSpace}.{Space}Surgery{Space} 
-Else IfEqual key0, ryuasm;, Send {BackSpace}.{Space}Summary{Space} 
-Else IfEqual key0, rus;, Send {BackSpace}.{Space}Yours{Space} 
-Else IfEqual key0, rtialc;, Send {BackSpace}.{Space}Critical{Space} 
-Else IfEqual key0, ropasl;, Send {BackSpace}.{Space}Proposal{Space} 
-Else IfEqual key0, rshc;, Send {BackSpace}.{Space}Proposal{Space} 
-Else IfEqual key0, rsc;, Send {BackSpace}.{Space}Source{Space} 
-Else IfEqual key0, ryagn;, Send {BackSpace}.{Space}Angry{Space} 
-Else IfEqual key0, rign;, Send {BackSpace}.{Space}Ignore{Space} 
-Else IfEqual key0, rtsglcn;, Send {BackSpace}.{Space}Congratulations{Space} 
-Else IfEqual key0, rfv;, Send {BackSpace}.{Space}Forever{Space} 
-Else IfEqual key0, rtpcm;, Send {BackSpace}.{Space}Competitor{Space} 
-Else IfEqual key0, rl;, Send {BackSpace}.{Space}Real{Space} 
-Else IfEqual key0, rtiln;, Send {BackSpace}.{Space}Internal{Space} 
-Else IfEqual key0, rtualn;, Send {BackSpace}.{Space}Natural{Space} 
-Else IfEqual key0, rthb;, Send {BackSpace}.{Space}Breath{Space} 
-Else IfEqual key0, rtlcn;, Send {BackSpace}.{Space}Control{Space} 
-Else IfEqual key0, rdh;, Send {BackSpace}.{Space}Heard{Space} 
-Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Molecular{Space} 
-Else IfEqual key0, ryd;, Send {BackSpace}.{Space}Ready{Space} 
-Else IfEqual key0, roahcb;, Send {BackSpace}.{Space}Broach{Space} 
-Else IfEqual key0, riav;, Send {BackSpace}.{Space}Vari{Space} 
-Else IfEqual key0, rpsd;, Send {BackSpace}.{Space}Spread{Space} 
-Else IfEqual key0, rpshc;, Send {BackSpace}.{Space}Purchase{Space} 
-Else IfEqual key0, rtaghlm;, Send {BackSpace}.{Space}Algorithm{Space} 
-Else IfEqual key0, rodhc;, Send {BackSpace}.{Space}Chord{Space} 
-Else IfEqual key0, rtagnm;, Send {BackSpace}.{Space}Argument{Space} 
-Else IfEqual key0, rtfh;, Send {BackSpace}.{Space}Further{Space} 
-Else IfEqual key0, rtisdc;, Send {BackSpace}.{Space}District{Space} 
-Else IfEqual key0, rtpdxn;, Send {BackSpace}.{Space}Expenditure{Space} 
-Else IfEqual key0, rafm;, Send {BackSpace}.{Space}Farm{Space} 
-Else IfEqual key0, rag;, Send {BackSpace}.{Space}Argue{Space} 
-Else IfEqual key0, rakc;, Send {BackSpace}.{Space}Crack{Space} 
-Else IfEqual key0, ram;, Send {BackSpace}.{Space}Arm{Space} 
- Else IfEqual key0, rtlvn;, Send {BackSpace}.{Space}Relevant{Space} 
-Else IfEqual key0, ram;, Send {BackSpace}.{Space}Arm{Space} 
-Else IfEqual key0, rdfcn;, Send {BackSpace}.{Space}Difference{Space} 
-Else IfEqual key0, rdfl;, Send {BackSpace}.{Space}Federal{Space} 
-Else IfEqual key0, rfb;, Send {BackSpace}.{Space}Brief{Space} 
-Else IfEqual key0, rfcnm;, Send {BackSpace}.{Space}Confirm{Space} 
-Else IfEqual key0, rfgn;, Send {BackSpace}.{Space}Finger{Space} 
-Else IfEqual key0, rghc;, Send {BackSpace}.{Space}Charge{Space} 
-Else IfEqual key0, rgln;, Send {BackSpace}.{Space}General{Space} 
-Else IfEqual key0, rglv;, Send {BackSpace}.{Space}Leverage{Space} 
-Else IfEqual key0, rhlcn;, Send {BackSpace}.{Space}Chronicle{Space} 
-Else IfEqual key0, ria;, Send {BackSpace}.{Space}Air{Space} 
-Else IfEqual key0, riabn;, Send {BackSpace}.{Space}Brain{Space} 
-Else IfEqual key0, ricb;, Send {BackSpace}.{Space}Crib{Space} 
-Else IfEqual key0, rid;, Send {BackSpace}.{Space}Rid{Space} 
-Else IfEqual key0, rif;, Send {BackSpace}.{Space}Riff{Space} 
-Else IfEqual key0, ripaghc;, Send {BackSpace}.{Space}Graphic{Space} 
-Else IfEqual key0, ripalcn;, Send {BackSpace}.{Space}Principal{Space} 
-Else IfEqual key0, ripsvm;, Send {BackSpace}.{Space}Improvise{Space} 
-Else IfEqual key0, risk;, Send {BackSpace}.{Space}Risk{Space} 
-Else IfEqual key0, rjn;, Send {BackSpace}.{Space}Junior{Space} 
-Else IfEqual key0, rkm;, Send {BackSpace}.{Space}Maker{Space} 
-Else IfEqual key0, rlc;, Send {BackSpace}.{Space}Clear{Space} 
-Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Curriculum{Space} 
-Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Miracle{Space} 
-Else IfEqual key0, roasb;, Send {BackSpace}.{Space}Absorb{Space} 
-Else IfEqual key0, rosvb;, Send {BackSpace}.{Space}Observe{Space} 
-Else IfEqual key0, rpagh;, Send {BackSpace}.{Space}Graph{Space} 
-Else IfEqual key0, rpaghc;, Send {BackSpace}.{Space}Graphic{Space} 
-Else IfEqual key0, rpg;, Send {BackSpace}.{Space}Grp Group{Space} 
-Else IfEqual key0, rplcn;, Send {BackSpace}.{Space}Principle{Space} 
-Else IfEqual key0, rpscnm;, Send {BackSpace}.{Space}Comparison{Space} 
-Else IfEqual key0, rpshm;, Send {BackSpace}.{Space}Sophomore{Space} 
-Else IfEqual key0, rpsl;, Send {BackSpace}.{Space}Pleasure{Space} 
-Else IfEqual key0, rpsln;, Send {BackSpace}.{Space}Personal{Space} 
-Else IfEqual key0, rsfc;, Send {BackSpace}.{Space}Surface{Space} 
-Else IfEqual key0, rsfhnm;, Send {BackSpace}.{Space}Freshman{Space} 
-Else IfEqual key0, rsflc;, Send {BackSpace}.{Space}Salesforce{Space} 
-Else IfEqual key0, rsgln;, Send {BackSpace}.{Space}Singular{Space} 
-Else IfEqual key0, rsgln;, Send {BackSpace}.{Space}Singular{Space} 
-Else IfEqual key0, rslcn;, Send {BackSpace}.{Space}Counselor{Space} 
-Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
-Else IfEqual key0, rtagn;, Send {BackSpace}.{Space}Grant{Space} 
-Else IfEqual key0, rtasm;, Send {BackSpace}.{Space}Smart{Space} 
-Else IfEqual key0, rtfc;, Send {BackSpace}.{Space}Factor{Space} 
-Else IfEqual key0, rtfgn;, Send {BackSpace}.{Space}Forgotten{Space} 
-Else IfEqual key0, rthn;, Send {BackSpace}.{Space}Neither{Space} 
-Else IfEqual key0, rtidh;, Send {BackSpace}.{Space}Third{Space} 
-Else IfEqual key0, rtioshc;, Send {BackSpace}.{Space}Historic{Space} 
-Else IfEqual key0, rtisgn;, Send {BackSpace}.{Space}String{Space} 
-Else IfEqual key0, rtkm;, Send {BackSpace}.{Space}Market{Space} 
-Else IfEqual key0, rtoafc;, Send {BackSpace}.{Space}Factor{Space} 
-Else IfEqual key0, rtofg;, Send {BackSpace}.{Space}Forgot{Space} 
-Else IfEqual key0, rtohn;, Send {BackSpace}.{Space}North{Space} 
-Else IfEqual key0, rtopa;, Send {BackSpace}.{Space}Parrot{Space} 
-Else IfEqual key0, rtopa;, Send {BackSpace}.{Space}Transport{Space} 
-Else IfEqual key0, rtplc;, Send {BackSpace}.{Space}Particular{Space} 
-Else IfEqual key0, rtpslc;, Send {BackSpace}.{Space}Spectacular{Space} 
-Else IfEqual key0, rtpslc;, Send {BackSpace}.{Space}Transport{Space} 
-Else IfEqual key0, rtpsn.;, Send {BackSpace}.{Space}Transportation{Space} 
-Else IfEqual key0, rtpvm;, Send {BackSpace}.{Space}Primitive{Space} 
-Else IfEqual key0, rtpvn;, Send {BackSpace}.{Space}Prevent{Space} 
-Else IfEqual key0, rtpxnm;, Send {BackSpace}.{Space}Experiment{Space} 
-Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Countries{Space} 
-Else IfEqual key0, rtsdb;, Send {BackSpace}.{Space}Disturb{Space} 
-Else IfEqual key0, rtsfn;, Send {BackSpace}.{Space}Transfer{Space} 
-Else IfEqual key0, rtshc;, Send {BackSpace}.{Space}Historic{Space} 
-Else IfEqual key0, rtuam;, Send {BackSpace}.{Space}Trauma{Space} 
-Else IfEqual key0, rtuo;, Send {BackSpace}.{Space}Tour{Space} 
-Else IfEqual key0, rtuoah;, Send {BackSpace}.{Space}Author{Space} 
-Else IfEqual key0, rtyan;, Send {BackSpace}.{Space}Attorney{Space} 
-Else IfEqual key0, rtyp;, Send {BackSpace}.{Space}Property{Space} 
-Else IfEqual key0, rtyp;, Send {BackSpace}.{Space}Property{Space} 
-Else IfEqual key0, ruadg;, Send {BackSpace}.{Space}Guard{Space} 
-Else IfEqual key0, rubn;, Send {BackSpace}.{Space}Burn{Space} 
-Else IfEqual key0, ruodn;, Send {BackSpace}.{Space}Round{Space} 
-Else IfEqual key0, ruos;, Send {BackSpace}.{Space}Ours{Space} 
-Else IfEqual key0, rush;, Send {BackSpace}.{Space}Rush{Space} 
-Else IfEqual key0, ryanm;, Send {BackSpace}.{Space}Anymore{Space} 
-Else IfEqual key0, ryanm;, Send {BackSpace}.{Space}Anymore{Space} 
-Else IfEqual key0, ryjn;, Send {BackSpace}.{Space}Journey{Space} 
-Else IfEqual key0, rypas;, Send {BackSpace}.{Space}Spray{Space} 
-Else IfEqual key0, rtphc;, Send {BackSpace}.{Space}Chapter{Space} 
-Else IfEqual key0, rtsdc;, Send {BackSpace}.{Space}District{Space} 
-Else IfEqual key0, rtygc;, Send {BackSpace}.{Space}Category{Space} 
-Else IfEqual key0, radc;, Send {BackSpace}.{Space}Card{Space} 
-Else IfEqual key0, rof;, Send {BackSpace}.{Space}For{Space} 
-Else IfEqual key0, ryad;, Send {BackSpace}.{Space}Yard{Space} 
-Else IfEqual key0, radg;, Send {BackSpace}.{Space}Grad{Space} 
-Else IfEqual key0, radh;, Send {BackSpace}.{Space}Hard{Space} 
-Else IfEqual key0, rakm;, Send {BackSpace}.{Space}Mark{Space} 
-Else IfEqual key0, rakm;, Send {BackSpace}.{Space}Mark{Space} 
-Else IfEqual key0, rasdv;, Send {BackSpace}.{Space}Advisor{Space} 
-Else IfEqual key0, rdcnm;, Send {BackSpace}.{Space}Recommend{Space} 
-Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Gender{Space} 
-Else IfEqual key0, rdgn;, Send {BackSpace}.{Space}Gender{Space} 
-Else IfEqual key0, rdhn;, Send {BackSpace}.{Space}Hundred{Space} 
-Else IfEqual key0, rdlv;, Send {BackSpace}.{Space}Deliver{Space} 
-Else IfEqual key0, rdm;, Send {BackSpace}.{Space}Dream{Space} 
-Else IfEqual key0, rdn;, Send {BackSpace}.{Space}Round{Space} 
-Else IfEqual key0, rdnm;, Send {BackSpace}.{Space}Random{Space} 
-Else IfEqual key0, rdvn;, Send {BackSpace}.{Space}Vendor{Space} 
-Else IfEqual key0, rfc;, Send {BackSpace}.{Space}Force{Space} 
-Else IfEqual key0, rfc;, Send {BackSpace}.{Space}Force{Space} 
-Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Reference{Space} 
-Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Reference{Space} 
-Else IfEqual key0, rfcn;, Send {BackSpace}.{Space}Conference{Space} 
-Else IfEqual key0, rflv;, Send {BackSpace}.{Space}Flavor{Space} 
-Else IfEqual key0, rfm;, Send {BackSpace}.{Space}Firm{Space} 
-Else IfEqual key0, rg;, Send {BackSpace}.{Space}Regard{Space} 
-Else IfEqual key0, rgcn;, Send {BackSpace}.{Space}Encourage{Space} 
-Else IfEqual key0, rgcn;, Send {BackSpace}.{Space}Encourage{Space} 
-Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regular{Space} 
-Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regardless{Space} 
-Else IfEqual key0, rgl;, Send {BackSpace}.{Space}Regular{Space} 
-Else IfEqual key0, rglv;, Send {BackSpace}.{Space}Leverage{Space} 
-Else IfEqual key0, rhcbm;, Send {BackSpace}.{Space}Chamber{Space} 
-Else IfEqual key0, rhvb;, Send {BackSpace}.{Space}Behavior{Space} 
-Else IfEqual key0, riadn;, Send {BackSpace}.{Space}Drain{Space} 
-Else IfEqual key0, riah;, Send {BackSpace}.{Space}Hair{Space} 
-Else IfEqual key0, rifm;, Send {BackSpace}.{Space}Firm{Space} 
-Else IfEqual key0, riscn;, Send {BackSpace}.{Space}Increase{Space} 
-Else IfEqual key0, rlb;, Send {BackSpace}.{Space}Reliable{Space} 
-Else IfEqual key0, rlcm;, Send {BackSpace}.{Space}Commercial{Space} 
-Else IfEqual key0, rlv;, Send {BackSpace}.{Space}Lever{Space} 
-Else IfEqual key0, roalb;, Send {BackSpace}.{Space}Labor{Space} 
-Else IfEqual key0, rod;, Send {BackSpace}.{Space}Door{Space} 
-Else IfEqual key0, rogcn;, Send {BackSpace}.{Space}Organic{Space} 
-Else IfEqual key0, rohn;, Send {BackSpace}.{Space}Honor{Space} 
-Else IfEqual key0, rokc;, Send {BackSpace}.{Space}Rock{Space} 
-Else IfEqual key0, rolc;, Send {BackSpace}.{Space}Color{Space} 
-Else IfEqual key0, rpd;, Send {BackSpace}.{Space}Drop{Space} 
-Else IfEqual key0, rpav;, Send {BackSpace}.{Space}Approve{Space} 
-Else IfEqual key0, rpcv;, Send {BackSpace}.{Space}Perceive{Space} 
-Else IfEqual key0, rpdn;, Send {BackSpace}.{Space}Pardon{Space} 
-Else IfEqual key0, rpghc;, Send {BackSpace}.{Space}Graphic{Space} 
-Else IfEqual key0, rpl;, Send {BackSpace}.{Space}Popular{Space} 
-Else IfEqual key0, rpl;, Send {BackSpace}.{Space}Popular{Space} 
-Else IfEqual key0, rpsc;, Send {BackSpace}.{Space}Precise{Space} 
-Else IfEqual key0, rpscn;, Send {BackSpace}.{Space}Presence{Space} 
-Else IfEqual key0, rpsf;, Send {BackSpace}.{Space}Profess{Space} 
-Else IfEqual key0, rpsg;, Send {BackSpace}.{Space}Progress{Space} 
-Else IfEqual key0, rscn;, Send {BackSpace}.{Space}Increase{Space} 
-Else IfEqual key0, rscn;, Send {BackSpace}.{Space}Increase{Space} 
-Else IfEqual key0, rscnm;, Send {BackSpace}.{Space}Consumer{Space} 
-Else IfEqual key0, rsd;, Send {BackSpace}.{Space}Desire{Space} 
-Else IfEqual key0, rsdc;, Send {BackSpace}.{Space}Decrease{Space} 
-Else IfEqual key0, rsdlc;, Send {BackSpace}.{Space}Ridiculous{Space} 
-Else IfEqual key0, rsdlc;, Send {BackSpace}.{Space}Ridiculous{Space} 
-Else IfEqual key0, rsdn;, Send {BackSpace}.{Space}Surround{Space} 
-Else IfEqual key0, rsdv;, Send {BackSpace}.{Space}Deserve{Space} 
-Else IfEqual key0, rsv;, Send {BackSpace}.{Space}Various{Space} 
-Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
-Else IfEqual key0, rsxc;, Send {BackSpace}.{Space}Exercise{Space} 
-Else IfEqual key0, rtab;, Send {BackSpace}.{Space}Attribute{Space} 
-Else IfEqual key0, rtalc;, Send {BackSpace}.{Space}Article{Space} 
-Else IfEqual key0, rtcbn;, Send {BackSpace}.{Space}Contribute{Space} 
-Else IfEqual key0, rtdcn;, Send {BackSpace}.{Space}Coordinate{Space} 
-Else IfEqual key0, rtidcn;, Send {BackSpace}.{Space}Coordinate{Space} 
-Else IfEqual key0, rtfcnm;, Send {BackSpace}.{Space}Manufacture{Space} 
-Else IfEqual key0, rtflc;, Send {BackSpace}.{Space}Reflect{Space} 
-Else IfEqual key0, rtial;, Send {BackSpace}.{Space}Trial{Space} 
-Else IfEqual key0, rtikc;, Send {BackSpace}.{Space}Trick{Space} 
-Else IfEqual key0, rtlcb;, Send {BackSpace}.{Space}Collaborate{Space} 
-Else IfEqual key0, rto;, Send {BackSpace}.{Space}Root{Space} 
-Else IfEqual key0, rtoashc;, Send {BackSpace}.{Space}Orchestra{Space} 
-Else IfEqual key0, rtopm;, Send {BackSpace}.{Space}Prompt{Space} 
-Else IfEqual key0, rtpf;, Send {BackSpace}.{Space}Profit{Space} 
-Else IfEqual key0, rtpfn;, Send {BackSpace}.{Space}Nonprofit{Space} 
-Else IfEqual key0, rtypscn;, Send {BackSpace}.{Space}Transparency{Space} 
-Else IfEqual key0, rtpsdcn;, Send {BackSpace}.{Space}Description{Space} 
-Else IfEqual key0, rtpsn;, Send {BackSpace}.{Space}Inspiration{Space} 
-Else IfEqual key0, rtipvn;, Send {BackSpace}.{Space}Prevent{Space} 
-Else IfEqual key0, rtpvn;, Send {BackSpace}.{Space}Prevent{Space} 
-Else IfEqual key0, rtpx;, Send {BackSpace}.{Space}Expert{Space} 
-Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Contrast{Space} 
-Else IfEqual key0, rtsdnm;, Send {BackSpace}.{Space}Demonstrate{Space} 
-Else IfEqual key0, rtsgl;, Send {BackSpace}.{Space}Struggle{Space} 
-Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Restaurant{Space} 
-Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Resonate{Space} 
-Else IfEqual key0, rtsn;, Send {BackSpace}.{Space}Restaurant{Space} 
-Else IfEqual key0, rtsnm;, Send {BackSpace}.{Space}Instrument{Space} 
-Else IfEqual key0, rtuom;, Send {BackSpace}.{Space}Tumor{Space} 
-Else IfEqual key0, rtycn;, Send {BackSpace}.{Space}Country{Space} 
-Else IfEqual key0, rtyhcm;, Send {BackSpace}.{Space}Chemistry{Space} 
-Else IfEqual key0, rtyhm;, Send {BackSpace}.{Space}Rhythm{Space} 
-Else IfEqual key0, rtysc;, Send {BackSpace}.{Space}Security{Space} 
-Else IfEqual key0, rtysh;, Send {BackSpace}.{Space}History{Space} 
-Else IfEqual key0, rudg;, Send {BackSpace}.{Space}Drug{Space} 
-Else IfEqual key0, rvb;, Send {BackSpace}.{Space}Brave{Space} 
-Else IfEqual key0, rvm;, Send {BackSpace}.{Space}Remove{Space} 
-Else IfEqual key0, rygln;, Send {BackSpace}.{Space}Neurology{Space} 
-Else IfEqual key0, ripvm;, Send {BackSpace}.{Space}Improve{Space} 	
-Else IfEqual key0, rudm;, Send {BackSpace}.{Space}Drum{Space} 
-Else IfEqual key0, ragb;, Send {BackSpace}.{Space}Grab{Space} 
-Else IfEqual key0, rcv;, Send {BackSpace}.{Space}Receive{Space} 
-Else IfEqual key0, rdbn;, Send {BackSpace}.{Space}Burden{Space} 
-Else IfEqual key0, riop;, Send {BackSpace}.{Space}Prior{Space} 
-Else IfEqual key0, rnm;, Send {BackSpace}.{Space}Remain{Space} 
-Else IfEqual key0, rpcm;, Send {BackSpace}.{Space}Compare{Space} 
-Else IfEqual key0, rpsm;, Send {BackSpace}.{Space}Promise{Space} 
-Else IfEqual key0, rpsm;, Send {BackSpace}.{Space}Promise{Space} 
-Else IfEqual key0, rscv;, Send {BackSpace}.{Space}Service{Space} 
-Else IfEqual key0, rsdcv;, Send {BackSpace}.{Space}Discover{Space} 
-Else IfEqual key0, rsdn;, Send {BackSpace}.{Space}Surround{Space} 
-Else IfEqual key0, rsv;, Send {BackSpace}.{Space}Survive{Space} 
-Else IfEqual key0, rsvn;, Send {BackSpace}.{Space}Version{Space} 
-Else IfEqual key0, rtd;, Send {BackSpace}.{Space}Tried{Space} 
-Else IfEqual key0, rtdgh;, Send {BackSpace}.{Space}Daughter{Space} 
-Else IfEqual key0, rtfg;, Send {BackSpace}.{Space}Forget{Space} 
-Else IfEqual key0, rthc;, Send {BackSpace}.{Space}Teacher{Space} 
-Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Train{Space} 
-Else IfEqual key0, rtic;, Send {BackSpace}.{Space}Critic{Space} 
-Else IfEqual key0, rtioscn;, Send {BackSpace}.{Space}Construction{Space} 
-Else IfEqual key0, rtiscm;, Send {BackSpace}.{Space}Criticism{Space} 
-Else IfEqual key0, rtlm;, Send {BackSpace}.{Space}Material{Space} 
-Else IfEqual key0, rtln;, Send {BackSpace}.{Space}Relation{Space} 
-Else IfEqual key0, rtscn;, Send {BackSpace}.{Space}Construct{Space} 
-Else IfEqual key0, rtscvn;, Send {BackSpace}.{Space}Constructive{Space} 
-Else IfEqual key0, rtsln;, Send {BackSpace}.{Space}Resolution{Space} 
-Else IfEqual key0, ryac;, Send {BackSpace}.{Space}Carry{Space} 
-Else IfEqual key0, rth;, Send {BackSpace}.{Space}Rather{Space} 	
-Else IfEqual key0, rab;, Send {BackSpace}.{Space}Bar{Space} 
-Else IfEqual key0, rac;, Send {BackSpace}.{Space}Across{Space} 
-Else IfEqual key0, radbn;, Send {BackSpace}.{Space}Brand{Space} 
-Else IfEqual key0, radh;, Send {BackSpace}.{Space}Hard{Space} 
-Else IfEqual key0, raf;, Send {BackSpace}.{Space}Far{Space} 
-Else IfEqual key0, rafkn;, Send {BackSpace}.{Space}Frank{Space} 
-Else IfEqual key0, ral;, Send {BackSpace}.{Space}Ral
-Else IfEqual key0, rax;, Send {BackSpace}.{Space}Extra{Space} 
-Else IfEqual key0, rb;, Send {BackSpace}.{Space}Br
-Else IfEqual key0, rbm;, Send {BackSpace}.{Space}Remember{Space} 
-Else IfEqual key0, rbn;, Send {BackSpace}.{Space}Brain{Space} 
-Else IfEqual key0, rc;, Send {BackSpace}.{Space}Crazy{Space} 
-Else IfEqual key0, rd;, Send {BackSpace}.{Space}Read{Space} 
-Else IfEqual key0, rdg;, Send {BackSpace}.{Space}During{Space} 
-Else IfEqual key0, rdlz;, Send {BackSpace}.{Space}Realized{Space} 
-Else IfEqual key0, rf;, Send {BackSpace}.{Space}From{Space} 
-Else IfEqual key0, rfg;, Send {BackSpace}.{Space}Figure{Space} 
-Else IfEqual key0, rflm;, Send {BackSpace}.{Space}Familiar{Space} 
-Else IfEqual key0, rfn;, Send {BackSpace}.{Space}Refine{Space} 
-Else IfEqual key0, rgb;, Send {BackSpace}.{Space}Bring{Space} 
-Else IfEqual key0, rgnm;, Send {BackSpace}.{Space}Manager{Space} 
-Else IfEqual key0, riognm;, Send {BackSpace}.{Space}Morning{Space} 
-Else IfEqual key0, rgzcn;, Send {BackSpace}.{Space}Recognize{Space} 
-Else IfEqual key0, rh;, Send {BackSpace}.{Space}Here{Space} 
-Else IfEqual key0, riaf;, Send {BackSpace}.{Space}Fair{Space} 
-Else IfEqual key0, ridhlc;, Send {BackSpace}.{Space}Children{Space} 
-Else IfEqual key0, rdhlcn;, Send {BackSpace}.{Space}Children{Space} 
-Else IfEqual key0, rigbn;, Send {BackSpace}.{Space}Bring{Space} 
-Else IfEqual key0, rigl;, Send {BackSpace}.{Space}Girl{Space} 
-Else IfEqual key0, rihc;, Send {BackSpace}.{Space}Rich{Space} 
-Else IfEqual key0, riocm;, Send {BackSpace}.{Space}Micro
-Else IfEqual key0, ripa;, Send {BackSpace}.{Space}Pair{Space} 
-Else IfEqual key0, rjm;, Send {BackSpace}.{Space}Major{Space} 
-Else IfEqual key0, rlnm;, Send {BackSpace}.{Space}Normal{Space} 
-Else IfEqual key0, rlz;, Send {BackSpace}.{Space}Realize{Space} 
-Else IfEqual key0, rm;, Send {BackSpace}.{Space}More{Space} 
-Else IfEqual key0, rn;, Send {BackSpace}.{Space}Right Now{Space} 
-Else IfEqual key0, ro;, Send {BackSpace}.{Space}Or{Space} 
-Else IfEqual key0, roacm;, Send {BackSpace}.{Space}Macro
-Else IfEqual key0, road;, Send {BackSpace}.{Space}Road{Space} 
-Else IfEqual key0, roadb;, Send {BackSpace}.{Space}Board{Space} 
-Else IfEqual key0, roadbn;, Send {BackSpace}.{Space}Onboard{Space} 
-Else IfEqual key0, roadl;, Send {BackSpace}.{Space}Dollar{Space} 
-Else IfEqual key0, roalnm;, Send {BackSpace}.{Space}Normal{Space} 
-Else IfEqual key0, rofm;, Send {BackSpace}.{Space}Form{Space} 
-Else IfEqual key0, rog;, Send {BackSpace}.{Space}Organization{Space} 
-Else IfEqual key0, rogln;, Send {BackSpace}.{Space}Original{Space} 
-Else IfEqual key0, rogn;, Send {BackSpace}.{Space}Original{Space} 
-Else IfEqual key0, rognm;, Send {BackSpace}.{Space}Morning{Space} 
-Else IfEqual key0, rol;, Send {BackSpace}.{Space}Roll{Space} 
-Else IfEqual key0, rolnm;, Send {BackSpace}.{Space}Normal{Space} 
-Else IfEqual key0, rom;, Send {BackSpace}.{Space}Room{Space} 
-Else IfEqual key0, rop;, Send {BackSpace}.{Space}Pro
-Else IfEqual key0, ropb;, Send {BackSpace}.{Space}Probably{Space} 
-Else IfEqual key0, ropd;, Send {BackSpace}.{Space}Drop{Space} 
-Else IfEqual key0, rtpdc;, Send {BackSpace}.{Space}Product{Space} 
-Else IfEqual key0, ropj;, Send {BackSpace}.{Space}Project{Space} 
-Else IfEqual key0, roplb;, Send {BackSpace}.{Space}Problem{Space} 
-Else IfEqual key0, rosc;, Send {BackSpace}.{Space}Cross{Space} 
-Else IfEqual key0, rosg;, Send {BackSpace}.{Space}Organizations{Space} 
-Else IfEqual key0, roslc;, Send {BackSpace}.{Space}Scroll{Space} 
-Else IfEqual key0, rpa;, Send {BackSpace}.{Space}Appreciate{Space} 
-Else IfEqual key0, rpahc;, Send {BackSpace}.{Space}Approach{Space} 
-Else IfEqual key0, rpak;, Send {BackSpace}.{Space}Park{Space} 
-Else IfEqual key0, rpb;, Send {BackSpace}.{Space}Problem{Space} 
-Else IfEqual key0, rpc;, Send {BackSpace}.{Space}Process{Space} 
-Else IfEqual key0, rpdc;, Send {BackSpace}.{Space}Proceed{Space} 
-Else IfEqual key0, rpdv;, Send {BackSpace}.{Space}Provide{Space} 
-Else IfEqual key0, rpf;, Send {BackSpace}.{Space}Professional{Space} 
-Else IfEqual key0, rpfcnm;, Send {BackSpace}.{Space}Performance{Space} 
-Else IfEqual key0, rpfl;, Send {BackSpace}.{Space}Profile{Space} 
-Else IfEqual key0, rpfm;, Send {BackSpace}.{Space}Perform{Space} 
-Else IfEqual key0, rpgm;, Send {BackSpace}.{Space}Program{Space} 
-Else IfEqual key0, rplb;, Send {BackSpace}.{Space}Problem{Space} 
-Else IfEqual key0, rplx;, Send {BackSpace}.{Space}Explore{Space} 
-Else IfEqual key0, rps;, Send {BackSpace}.{Space}Surprise{Space} 
-Else IfEqual key0, rpslbn;, Send {BackSpace}.{Space}Responsible{Space} 
-Else IfEqual key0, rpsdn;, Send {BackSpace}.{Space}Respond{Space} 
-Else IfEqual key0, rpsh;, Send {BackSpace}.{Space}Perhaps{Space} 
-Else IfEqual key0, rtpsbn;, Send {BackSpace}.{Space}Responsibility{Space} 
-Else IfEqual key0, rpsn;, Send {BackSpace}.{Space}Response{Space} 
-Else IfEqual key0, rs;, Send {BackSpace}.{Space}Sure{Space} 
-Else IfEqual key0, rsdcb;, Send {BackSpace}.{Space}Describe{Space} 
-Else IfEqual key0, rsdcn;, Send {BackSpace}.{Space}Consider{Space} 
-Else IfEqual key0, rsl;, Send {BackSpace}.{Space}Release{Space} 
-Else IfEqual key0, rslm;, Send {BackSpace}.{Space}Similar{Space} 
-Else IfEqual key0, rslv;, Send {BackSpace}.{Space}Several{Space} 
-Else IfEqual key0, rsn;, Send {BackSpace}.{Space}Reason{Space} 
-Else IfEqual key0, rt;, Send {BackSpace}.{Space}Right{Space} 
-Else IfEqual key0, rtad;, Send {BackSpace}.{Space}Traditional{Space} 
-Else IfEqual key0, rtakc;, Send {BackSpace}.{Space}Track{Space} 
-Else IfEqual key0, rtal;, Send {BackSpace}.{Space}Alright{Space} 
-Else IfEqual key0, rtalc;, Send {BackSpace}.{Space}Article{Space} 
-Else IfEqual key0, rtan;, Send {BackSpace}.{Space}Another{Space} 
-Else IfEqual key0, rtas;, Send {BackSpace}.{Space}Strategy{Space} 
-Else IfEqual key0, rtasdn;, Send {BackSpace}.{Space}Standard{Space} 
-Else IfEqual key0, rtasn;, Send {BackSpace}.{Space}Trans{Space} 
-Else IfEqual key0, rtc;, Send {BackSpace}.{Space}Create{Space} 
-Else IfEqual key0, rtcn;, Send {BackSpace}.{Space}Certain{Space} 
-Else IfEqual key0, rtcv;, Send {BackSpace}.{Space}Creative{Space} 
-Else IfEqual key0, rtflc;, Send {BackSpace}.{Space}Reflect{Space} 
-Else IfEqual key0, rtfn;, Send {BackSpace}.{Space}Fortunate{Space} 
-Else IfEqual key0, rtg;, Send {BackSpace}.{Space}Trying{Space} 
-Else IfEqual key0, rtgc;, Send {BackSpace}.{Space}Creating{Space} 
-Else IfEqual key0, rtgh;, Send {BackSpace}.{Space}Together{Space} 
-Else IfEqual key0, rti;, Send {BackSpace}.{Space}Tri
-Else IfEqual key0, rtiafc;, Send {BackSpace}.{Space}Traffic{Space} 
-Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Intra
-Else IfEqual key0, rtiasn;, Send {BackSpace}.{Space}Strain{Space} 
-Else IfEqual key0, rtioasn;, Send {BackSpace}.{Space}Transition{Space} 
-Else IfEqual key0, rtign;, Send {BackSpace}.{Space}Integrate{Space} 
-Else IfEqual key0, rtil;, Send {BackSpace}.{Space}Literally{Space} 
-Else IfEqual key0, rtiodcn;, Send {BackSpace}.{Space}Coordinate{Space} 
-Else IfEqual key0, rtiodn;, Send {BackSpace}.{Space}Introduce{Space} 
-Else IfEqual key0, rtion;, Send {BackSpace}.{Space}Intro
-Else IfEqual key0, rtipa;, Send {BackSpace}.{Space}Particular{Space} 
-Else IfEqual key0, rtl;, Send {BackSpace}.{Space}Literal{Space} 
-Else IfEqual key0, rtlb;, Send {BackSpace}.{Space}Trouble{Space} 
-Else IfEqual key0, rtlc;, Send {BackSpace}.{Space}Control{Space} 
-Else IfEqual key0, rtlcb;, Send {BackSpace}.{Space}Collaborate{Space} 
-Else IfEqual key0, rtlv;, Send {BackSpace}.{Space}Relative{Space} 
-Else IfEqual key0, rtm;, Send {BackSpace}.{Space}Remote{Space} 
-Else IfEqual key0, rtn;, Send {BackSpace}.{Space}Entire{Space} 
-Else IfEqual key0, rtoac;, Send {BackSpace}.{Space}Actor{Space} 
-Else IfEqual key0, rtoacn;, Send {BackSpace}.{Space}Contract{Space} 
-Else IfEqual key0, rtob;, Send {BackSpace}.{Space}Obtrusive{Space} 
-Else IfEqual key0, rtocn;, Send {BackSpace}.{Space}Contro
-Else IfEqual key0, rtofn;, Send {BackSpace}.{Space}Front{Space} 
-Else IfEqual key0, rtom;, Send {BackSpace}.{Space}Tomorrow{Space} 
-Else IfEqual key0, rtos;, Send {BackSpace}.{Space}Sort{Space} 
-Else IfEqual key0, rtosg;, Send {BackSpace}.{Space}Storage{Space} 
-Else IfEqual key0, rtosgn;, Send {BackSpace}.{Space}Strong{Space} 
-Else IfEqual key0, rtosh;, Send {BackSpace}.{Space}Short{Space} 
-Else IfEqual key0, rtp;, Send {BackSpace}.{Space}Repeat{Space} 
-Else IfEqual key0, rtpa;, Send {BackSpace}.{Space}Part{Space} 
-Else IfEqual key0, rtpac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, rtpan;, Send {BackSpace}.{Space}Apparent{Space} 
-Else IfEqual key0, rtpc;, Send {BackSpace}.{Space}Picture{Space} 
-Else IfEqual key0, rtpcn;, Send {BackSpace}.{Space}Perception{Space} 
-Else IfEqual key0, rtps;, Send {BackSpace}.{Space}Separate{Space} 
-Else IfEqual key0, rtpsc;, Send {BackSpace}.{Space}Respect{Space} 
-Else IfEqual key0, rtpscv;, Send {BackSpace}.{Space}Perspective{Space} 
-Else IfEqual key0, rtpv;, Send {BackSpace}.{Space}Private{Space} 
-Else IfEqual key0, rts;, Send {BackSpace}.{Space}Start{Space} 
-Else IfEqual key0, rtsbn;, Send {BackSpace}.{Space}Stubborn{Space} 
-Else IfEqual key0, rtscm;, Send {BackSpace}.{Space}Customer{Space} 
-Else IfEqual key0, rtsd;, Send {BackSpace}.{Space}Disastrous{Space} 
-Else IfEqual key0, rtsdc;, Send {BackSpace}.{Space}Distract{Space} 
-Else IfEqual key0, rtsdn;, Send {BackSpace}.{Space}Standard{Space} 
-Else IfEqual key0, rtsg;, Send {BackSpace}.{Space}Starting{Space} 
-Else IfEqual key0, rtsgh;, Send {BackSpace}.{Space}Straight{Space} 
-Else IfEqual key0, rtsm;, Send {BackSpace}.{Space}Stream{Space} 
-Else IfEqual key0, rtualb;, Send {BackSpace}.{Space}Brutal{Space} 
-Else IfEqual key0, rtualc;, Send {BackSpace}.{Space}Cultural{Space} 
-Else IfEqual key0, rtuh;, Send {BackSpace}.{Space}Hurt{Space} 
-Else IfEqual key0, rtuogh;, Send {BackSpace}.{Space}Through{Space} 
-Else IfEqual key0, rtun;, Send {BackSpace}.{Space}Turn{Space} 
-Else IfEqual key0, rtuops;, Send {BackSpace}.{Space}Support{Space} 
-Else IfEqual key0, rtus;, Send {BackSpace}.{Space}Trust{Space} 
-Else IfEqual key0, rtvn;, Send {BackSpace}.{Space}Narrative{Space} 
-Else IfEqual key0, rty;, Send {BackSpace}.{Space}Try{Space} 
-Else IfEqual key0, rtyos;, Send {BackSpace}.{Space}Story{Space} 
-Else IfEqual key0, rtypa;, Send {BackSpace}.{Space}Party{Space} 
-Else IfEqual key0, rtyul;, Send {BackSpace}.{Space}Truly{Space} 
-Else IfEqual key0, ru;, Send {BackSpace}.{Space}Your{Space} 
-Else IfEqual key0, ruioasv;, Send {BackSpace}.{Space}Various{Space} 
-Else IfEqual key0, ruiosc;, Send {BackSpace}.{Space}Curious{Space} 
-Else IfEqual key0, run;, Send {BackSpace}.{Space}Run{Space} 
-Else IfEqual key0, ruo;, Send {BackSpace}.{Space}Our{Space} 
-Else IfEqual key0, ruoc;, Send {BackSpace}.{Space}Occur{Space} 
-Else IfEqual key0, ruodgn;, Send {BackSpace}.{Space}Ground{Space} 
-Else IfEqual key0, ruoh;, Send {BackSpace}.{Space}Hour{Space} 
-Else IfEqual key0, ruopg;, Send {BackSpace}.{Space}Group{Space} 
-Else IfEqual key0, ruphc;, Send {BackSpace}.{Space}Purchase{Space} 
-Else IfEqual key0, rv;, Send {BackSpace}.{Space}Virtual Reality{Space} 
-Else IfEqual key0, ry;, Send {BackSpace}.{Space}Year{Space} 
-Else IfEqual key0, ryafkln;, Send {BackSpace}.{Space}Frankly{Space} 
-Else IfEqual key0, ryav;, Send {BackSpace}.{Space}Vary{Space} 
-Else IfEqual key0, ryos;, Send {BackSpace}.{Space}Sorry{Space} 
-Else IfEqual key0, rypcv;, Send {BackSpace}.{Space}Privacy{Space} 
-Else IfEqual key0, rys;, Send {BackSpace}.{Space}Years{Space} 
-Else IfEqual key0, ran;, Send {BackSpace}.{Space}Ran{Space} 
-Else IfEqual key0, rdcv;, Send {BackSpace}.{Space}Received{Space} 
-Else IfEqual key0, rjln;, Send {BackSpace}.{Space}Journal{Space} 
-Else IfEqual key0, ropa;, Send {BackSpace}.{Space}Approach{Space} 
-Else IfEqual key0, ropahc;, Send {BackSpace}.{Space}Approach{Space} 
-Else IfEqual key0, rpam;, Send {BackSpace}.{Space}Ramp{Space} 
-Else IfEqual key0, rpsv;, Send {BackSpace}.{Space}Previous{Space} 
-Else IfEqual key0, rsm;, Send {BackSpace}.{Space}Measure{Space} 
-Else IfEqual key0, rta;, Send {BackSpace}.{Space}Art{Space} 
-Else IfEqual key0, rtac;, Send {BackSpace}.{Space}Attract{Space} 
-Else IfEqual key0, rtdc;, Send {BackSpace}.{Space}Direct{Space} 
-Else IfEqual key0, rtdg;, Send {BackSpace}.{Space}Graduate{Space} 
-Else IfEqual key0, rtdnm;, Send {BackSpace}.{Space}Determine{Space} 
-Else IfEqual key0, rtf;, Send {BackSpace}.{Space}Feature{Space} 
-Else IfEqual key0, rtghb;, Send {BackSpace}.{Space}Brought{Space} 
-Else IfEqual key0, rtian;, Send {BackSpace}.{Space}Train{Space} 
-Else IfEqual key0, rtias;, Send {BackSpace}.{Space}Artist{Space} 
-Else IfEqual key0, rtipn;, Send {BackSpace}.{Space}Print{Space} 
-Else IfEqual key0, rtpl;, Send {BackSpace}.{Space}Partial{Space} 
-Else IfEqual key0, rtpm;, Send {BackSpace}.{Space}Promote{Space} 
-Else IfEqual key0, rtsdb;, Send {BackSpace}.{Space}Distribute{Space} 
-Else IfEqual key0, ruopd;, Send {BackSpace}.{Space}Proud{Space} 
-Else IfEqual key0, rtpn;, Send {BackSpace}.{Space}Pattern{Space} 
-Else IfEqual key0, rypm;, Send {BackSpace}.{Space}Primary{Space} 
-Return
-SENDTstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, ta;, Send {BackSpace}.{Space}At{Space} 
-Else IfEqual key0, tadh;, Send {BackSpace}.{Space}That'd{Space} 
-Else IfEqual key0, tisv;, Send {BackSpace}.{Space}Visit{Space} 
-Else IfEqual key0, tihn;, Send {BackSpace}.{Space}Thin{Space} 
-Else IfEqual key0, tpsln;, Send {BackSpace}.{Space}Pleasant{Space} 
-Else IfEqual key0, tadcv;, Send {BackSpace}.{Space}Advocate{Space} 
-Else IfEqual key0, tahm;, Send {BackSpace}.{Space}Math{Space} 
-Else IfEqual key0, tupg;, Send {BackSpace}.{Space}Putting{Space} 
-Else IfEqual key0, takn;, Send {BackSpace}.{Space}Tank{Space} 
-Else IfEqual key0, tglv;, Send {BackSpace}.{Space}Vegetable{Space} 
-Else IfEqual key0, tgvn;, Send {BackSpace}.{Space}Navigate{Space} 
-Else IfEqual key0, tiafh;, Send {BackSpace}.{Space}Faith{Space} 
-Else IfEqual key0, tipsl;, Send {BackSpace}.{Space}Split{Space} 
-Else IfEqual key0, tial;, Send {BackSpace}.{Space}Tail{Space} 
-Else IfEqual key0, tias;, Send {BackSpace}.{Space}Assist{Space} 
-Else IfEqual key0, tifghl;, Send {BackSpace}.{Space}Flight{Space} 
-Else IfEqual key0, tighm;, Send {BackSpace}.{Space}Might{Space} 
-Else IfEqual key0, tilcn;, Send {BackSpace}.{Space}Inoculate{Space} 
-Else IfEqual key0, tioflcn;, Send {BackSpace}.{Space}Conflict{Space} 
-Else IfEqual key0, tipan;, Send {BackSpace}.{Space}Paint{Space} 
-Else IfEqual key0, tipan;, Send {BackSpace}.{Space}Paint{Space} 
-Else IfEqual key0, tisv;, Send {BackSpace}.{Space}Visit{Space} 
-Else IfEqual key0, tohcb;, Send {BackSpace}.{Space}Botch{Space} 
-Else IfEqual key0, tohlc;, Send {BackSpace}.{Space}Cloth{Space} 
-Else IfEqual key0, topsg;, Send {BackSpace}.{Space}Stopping{Space} 
-Else IfEqual key0, tosd;, Send {BackSpace}.{Space}Stood{Space} 
-Else IfEqual key0, toshm;, Send {BackSpace}.{Space}Smooth{Space} 
-Else IfEqual key0, toshm;, Send {BackSpace}.{Space}Smooth{Space} 
-Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
-Else IfEqual key0, tpasnm;, Send {BackSpace}.{Space}Assumption{Space} 
-Else IfEqual key0, tpcn;, Send {BackSpace}.{Space}Patience{Space} 
-Else IfEqual key0, tpcvm;, Send {BackSpace}.{Space}Competitive{Space} 
-Else IfEqual key0, tphkc;, Send {BackSpace}.{Space}Ketchup{Space} 
-Else IfEqual key0, tpslc;, Send {BackSpace}.{Space}Telescope{Space} 
-Else IfEqual key0, tsdnm;, Send {BackSpace}.{Space}Disseminate{Space} 
-Else IfEqual key0, tsfc;, Send {BackSpace}.{Space}Suffocate{Space} 
-Else IfEqual key0, tshlb;, Send {BackSpace}.{Space}Bullshit{Space} 
-Else IfEqual key0, tuadl;, Send {BackSpace}.{Space}Adult{Space} 
-Else IfEqual key0, tuafl;, Send {BackSpace}.{Space}Fault{Space} 
-Else IfEqual key0, tuasg;, Send {BackSpace}.{Space}August{Space} 
-Else IfEqual key0, tuhn;, Send {BackSpace}.{Space}Hunt{Space} 
-Else IfEqual key0, tuin;, Send {BackSpace}.{Space}Unit{Space} 
-Else IfEqual key0, tuioacn;, Send {BackSpace}.{Space}Caution{Space} 
-Else IfEqual key0, tuipsd;, Send {BackSpace}.{Space}Stupid{Space} 
-Else IfEqual key0, tuiscn;, Send {BackSpace}.{Space}Succinct{Space} 
-Else IfEqual key0, tulz;, Send {BackSpace}.{Space}Utilize{Space} 
-Else IfEqual key0, tuoascm;, Send {BackSpace}.{Space}Accustom{Space} 
-Else IfEqual key0, tuocm;, Send {BackSpace}.{Space}Outcome{Space} 
-Else IfEqual key0, tuoslcn;, Send {BackSpace}.{Space}Consult{Space} 
-Else IfEqual key0, tupg;, Send {BackSpace}.{Space}Putting{Space} 
-Else IfEqual key0, tuskc;, Send {BackSpace}.{Space}Stuck{Space} 
-Else IfEqual key0, tyflc;, Send {BackSpace}.{Space}Facility{Space} 
-Else IfEqual key0, tuoghb;, Send {BackSpace}.{Space}Bought{Space} 
-Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 
-Else IfEqual key0, tpcn;, Send {BackSpace}.{Space}Patience{Space} 
-Else IfEqual key0, tpn;, Send {BackSpace}.{Space}Patient{Space} 
-Else IfEqual key0, tpcvm;, Send {BackSpace}.{Space}Competitive{Space} 
-Else IfEqual key0, tuaghc;, Send {BackSpace}.{Space}Caught{Space} 
-Else IfEqual key0, tpscnm;, Send {BackSpace}.{Space}Compensate{Space} 
-Else IfEqual key0, tfl;, Send {BackSpace}.{Space}Left{Space} 
-Else IfEqual key0, tuadl;, Send {BackSpace}.{Space}Adult{Space} 
-Else IfEqual key0, tsvn;, Send {BackSpace}.{Space}Sensitive{Space} 
-Else IfEqual key0, tgvm;, Send {BackSpace}.{Space}Government{Space} 
-Else IfEqual key0, todn;, Send {BackSpace}.{Space}Don't{Space} 
-Else IfEqual key0, tacm;, Send {BackSpace}.{Space}Automatic{Space} 
-Else IfEqual key0, tx;, Send {BackSpace}.{Space}Text{Space} 
-Else IfEqual key0, tahc;, Send {BackSpace}.{Space}Catch{Space} 
-Else IfEqual key0, tahcm;, Send {BackSpace}.{Space}Match{Space} 
-Else IfEqual key0, tas;, Send {BackSpace}.{Space}Sat{Space} 
-Else IfEqual key0, tadln;, Send {BackSpace}.{Space}Additional{Space} 
-Else IfEqual key0, tadn;, Send {BackSpace}.{Space}Addition{Space} 
-Else IfEqual key0, tdlv;, Send {BackSpace}.{Space}Validate{Space} 
-Else IfEqual key0, tidcn;, Send {BackSpace}.{Space}Indicate{Space} 
-Else IfEqual key0, tipalc;, Send {BackSpace}.{Space}Capital{Space} 
-Else IfEqual key0, tisdn;, Send {BackSpace}.{Space}Instead{Space} 
-Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 	
-Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
-Else IfEqual key0, tplnm;, Send {BackSpace}.{Space}Implement{Space} 
-Else IfEqual key0, tscnl;, Send {BackSpace}.{Space}Constantly{Space} 
-Else IfEqual key0, tsdcn;, Send {BackSpace}.{Space}Distance{Space} 
-Else IfEqual key0, tsfgcn;, Send {BackSpace}.{Space}Significant{Space} 
-Else IfEqual key0, tuipn;, Send {BackSpace}.{Space}Input{Space} 
-Else IfEqual key0, tydfn;, Send {BackSpace}.{Space}Identify{Space} 
-Else IfEqual key0, tyusd;, Send {BackSpace}.{Space}Study{Space} 
-Else IfEqual key0, tasc;, Send {BackSpace}.{Space}Cast{Space} 
-Else IfEqual key0, tadhn;, Send {BackSpace}.{Space}Hadn’T{Space} 
-Else IfEqual key0, tahl;, Send {BackSpace}.{Space}That’Ll{Space} 
-Else IfEqual key0, tasgn;, Send {BackSpace}.{Space}Against{Space} 
-Else IfEqual key0, tashkn;, Send {BackSpace}.{Space}Thanks{Space} 
-Else IfEqual key0, tbn;, Send {BackSpace}.{Space}Button{Space} 	
-Else IfEqual key0, tiac;, Send {BackSpace}.{Space}Attic{Space} 
-Else IfEqual key0, tiasn;, Send {BackSpace}.{Space}Instant{Space} 
-Else IfEqual key0, tidg;, Send {BackSpace}.{Space}Digit{Space} 
-Else IfEqual key0, tif;, Send {BackSpace}.{Space}Fit{Space} 
-Else IfEqual key0, tifg;, Send {BackSpace}.{Space}Gift{Space} 
-Else IfEqual key0, tifgh;, Send {BackSpace}.{Space}Fight{Space} 
-Else IfEqual key0, tihkc;, Send {BackSpace}.{Space}Thick{Space} 
-Else IfEqual key0, tilm;, Send {BackSpace}.{Space}Limit{Space} 
-Else IfEqual key0, tioacn;, Send {BackSpace}.{Space}Contain{Space} 
-Else IfEqual key0, tioghn;, Send {BackSpace}.{Space}Tonight{Space} 
-Else IfEqual key0, tionm;, Send {BackSpace}.{Space}Motion{Space} 
-Else IfEqual key0, tism;, Send {BackSpace}.{Space}Mist{Space} 
-Else IfEqual key0, tkn;, Send {BackSpace}.{Space}Think{Space} 
-Else IfEqual key0, toa;, Send {BackSpace}.{Space}Tattoo{Space} 
-Else IfEqual key0, toasc;, Send {BackSpace}.{Space}Coast{Space} 
-Else IfEqual key0, tof;, Send {BackSpace}.{Space}Foot{Space} 
-Else IfEqual key0, toghn;, Send {BackSpace}.{Space}Thong{Space} 
-Else IfEqual key0, tops;, Send {BackSpace}.{Space}Stop{Space} 
-Else IfEqual key0, tpdn;, Send {BackSpace}.{Space}Independent{Space} 
-Else IfEqual key0, tpl;, Send {BackSpace}.{Space}Pollute{Space} 
-Else IfEqual key0, tplcnm;, Send {BackSpace}.{Space}Implication{Space} 
-Else IfEqual key0, tplnm;, Send {BackSpace}.{Space}Implement{Space} 
-Else IfEqual key0, tpslcnm;, Send {BackSpace}.{Space}Implications{Space} 
-Else IfEqual key0, tpsm;, Send {BackSpace}.{Space}Symptom{Space} 
-Else IfEqual key0, trade;, Send {BackSpace}.{Space}Trade{Space} 
-Else IfEqual key0, tsbm;, Send {BackSpace}.{Space}Submit{Space} 
-Else IfEqual key0, tscbn;, Send {BackSpace}.{Space}Substance{Space} 
-Else IfEqual key0, tsfnm;, Send {BackSpace}.{Space}Manifest{Space} 
-Else IfEqual key0, tsgn;, Send {BackSpace}.{Space}Suggestion{Space} 
-Else IfEqual key0, tsk;, Send {BackSpace}.{Space}Takes{Space} 
-Else IfEqual key0, tsxn;, Send {BackSpace}.{Space}Extension{Space} 
-Else IfEqual key0, tuah;, Send {BackSpace}.{Space}Authorize{Space} 
-Else IfEqual key0, tuahcn;, Send {BackSpace}.{Space}Authentic{Space} 
-Else IfEqual key0, tuioanm;, Send {BackSpace}.{Space}Mountain{Space} 
-Else IfEqual key0, tuisln;, Send {BackSpace}.{Space}Insult{Space} 
-Else IfEqual key0, tulc;, Send {BackSpace}.{Space}Cult{Space} 
-Else IfEqual key0, tuosd;, Send {BackSpace}.{Space}Outside{Space} 
-Else IfEqual key0, tuosh;, Send {BackSpace}.{Space}South{Space} 
-Else IfEqual key0, tuosh;, Send {BackSpace}.{Space}Shout{Space} 
-Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Initiative{Space} 
-Else IfEqual key0, tvnm;, Send {BackSpace}.{Space}Motivation{Space} 
-Else IfEqual key0, typsm;, Send {BackSpace}.{Space}Symptom{Space} 
-Else IfEqual key0, tyuocn;, Send {BackSpace}.{Space}County{Space} 
-Else IfEqual key0, tdcn;, Send {BackSpace}.{Space}Condition{Space} 
-Else IfEqual key0, tdcn;, Send {BackSpace}.{Space}Candidate{Space} 
-Else IfEqual key0, tdcnm;, Send {BackSpace}.{Space}Document{Space} 
-Else IfEqual key0, tdxn;, Send {BackSpace}.{Space}Extend{Space} 
-Else IfEqual key0, tgn;, Send {BackSpace}.{Space}Negotiate{Space} 
-Else IfEqual key0, tidc;, Send {BackSpace}.{Space}Dict{Space} 
-Else IfEqual key0, tidfn;, Send {BackSpace}.{Space}Identify{Space} 
-Else IfEqual key0, tidm;, Send {BackSpace}.{Space}Immediate{Space} 
-Else IfEqual key0, tifl;, Send {BackSpace}.{Space}Lift{Space} 
-Else IfEqual key0, tiocm;, Send {BackSpace}.{Space}Commit{Space} 
-Else IfEqual key0, tiopc;, Send {BackSpace}.{Space}Topic{Space} 
-Else IfEqual key0, tip;, Send {BackSpace}.{Space}Tip{Space} 
-Else IfEqual key0, tips;, Send {BackSpace}.{Space}Tips{Space} 
-Else IfEqual key0, tisfh;, Send {BackSpace}.{Space}Shift{Space} 
-Else IfEqual key0, tisghl;, Send {BackSpace}.{Space}Slight{Space} 
-Else IfEqual key0, tisn;, Send {BackSpace}.{Space}Isn't{Space} 
-Else IfEqual key0, tlcm;, Send {BackSpace}.{Space}Climate{Space} 
-Else IfEqual key0, tln;, Send {BackSpace}.{Space}National{Space} 
-Else IfEqual key0, tocv;, Send {BackSpace}.{Space}Octave{Space} 
-Else IfEqual key0, tojcvb;, Send {BackSpace}.{Space}Objective{Space} 
-Else IfEqual key0, tpan;, Send {BackSpace}.{Space}Appoint{Space} 
-Else IfEqual key0, tpanm;, Send {BackSpace}.{Space}Appointment{Space} 
-Else IfEqual key0, tpcm;, Send {BackSpace}.{Space}Compete{Space} 
-Else IfEqual key0, tplc;, Send {BackSpace}.{Space}Politic{Space} 
-Else IfEqual key0, tplcnm;, Send {BackSpace}.{Space}Complement{Space} 
-Else IfEqual key0, tpshcn;, Send {BackSpace}.{Space}Snapchat{Space} 
-Else IfEqual key0, tpsn;, Send {BackSpace}.{Space}Position{Space} 
-Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Constant{Space} 
-Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Consistent{Space} 
-Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Constant{Space} 
-Else IfEqual key0, tscn;, Send {BackSpace}.{Space}Scientist{Space} 
-Else IfEqual key0, tsdcn;, Send {BackSpace}.{Space}Distance{Space} 
-Else IfEqual key0, tsdhn;, Send {BackSpace}.{Space}Thousand{Space} 
-Else IfEqual key0, tudc;, Send {BackSpace}.{Space}Duct{Space} 
-Else IfEqual key0, tuiosd;, Send {BackSpace}.{Space}Studio{Space} 
-Else IfEqual key0, tuis;, Send {BackSpace}.{Space}Suit{Space} 
-Else IfEqual key0, tuodb;, Send {BackSpace}.{Space}Doubt{Space} 
-Else IfEqual key0, tuodcn;, Send {BackSpace}.{Space}Conduct{Space} 
-Else IfEqual key0, tuokl;, Send {BackSpace}.{Space}Outlook{Space} 
-Else IfEqual key0, tush;, Send {BackSpace}.{Space}Shut{Space} 
-Else IfEqual key0, tvm;, Send {BackSpace}.{Space}Motive{Space} 
-Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Invite{Space} 
-Else IfEqual key0, tyb;, Send {BackSpace}.{Space}Beauty{Space} 
-Else IfEqual key0, tycn;, Send {BackSpace}.{Space}County{Space} 
-Else IfEqual key0, tyin;, Send {BackSpace}.{Space}Tiny{Space} 
-Else IfEqual key0, typac;, Send {BackSpace}.{Space}Capacity{Space} 
-Else IfEqual key0, tac;, Send {BackSpace}.{Space}Act{Space} 
-Else IfEqual key0, tflb;, Send {BackSpace}.{Space}Beautiful{Space} 
-Else IfEqual key0, tashn;, Send {BackSpace}.{Space}Hasn't{Space} 
-Else IfEqual key0, tflb;, Send {BackSpace}.{Space}Beautiful{Space} 
-Else IfEqual key0, tgvn;, Send {BackSpace}.{Space}Negative{Space} 
-Else IfEqual key0, tianm;, Send {BackSpace}.{Space}Maintain{Space} 
-Else IfEqual key0, til;, Send {BackSpace}.{Space}It'll{Space} 
-Else IfEqual key0, tipacm;, Send {BackSpace}.{Space}Impact{Space} 
-Else IfEqual key0, tosh;, Send {BackSpace}.{Space}Shot{Space} 
-Else IfEqual key0, tscm;, Send {BackSpace}.{Space}Costume{Space} 
-Else IfEqual key0, tsfcn;, Send {BackSpace}.{Space}Fantastic{Space} 
-Else IfEqual key0, tuioas;, Send {BackSpace}.{Space}Situation{Space} 
-Else IfEqual key0, tuioas;, Send {BackSpace}.{Space}Situation{Space} 
-Else IfEqual key0, tacn;, Send {BackSpace}.{Space}Can't{Space} 
-Else IfEqual key0, tad;, Send {BackSpace}.{Space}Data{Space} 
-Else IfEqual key0, tafc;, Send {BackSpace}.{Space}Fact{Space} 
-Else IfEqual key0, tagkl;, Send {BackSpace}.{Space}Talking{Space} 
-Else IfEqual key0, tagn;, Send {BackSpace}.{Space}Against{Space} 
-Else IfEqual key0, tah;, Send {BackSpace}.{Space}That{Space} 
-Else IfEqual key0, tahc;, Send {BackSpace}.{Space}Chat{Space} 
-Else IfEqual key0, tahkn;, Send {BackSpace}.{Space}Thank{Space} 
-Else IfEqual key0, tahn;, Send {BackSpace}.{Space}Than{Space} 
-Else IfEqual key0, takl;, Send {BackSpace}.{Space}Talk{Space} 
-Else IfEqual key0, talc;, Send {BackSpace}.{Space}Actually{Space} 
-Else IfEqual key0, tam;, Send {BackSpace}.{Space}Amount{Space} 
-Else IfEqual key0, tan;, Send {BackSpace}.{Space}Attention{Space} 
-Else IfEqual key0, tasdn;, Send {BackSpace}.{Space}Stand{Space} 
-Else IfEqual key0, tasf;, Send {BackSpace}.{Space}Fast{Space} 
-Else IfEqual key0, tash;, Send {BackSpace}.{Space}That's{Space} 
-Else IfEqual key0, taskc;, Send {BackSpace}.{Space}Stack{Space} 
-Else IfEqual key0, tasl;, Send {BackSpace}.{Space}Last{Space} 
-Else IfEqual key0, tbm;, Send {BackSpace}.{Space}Bottom{Space} 
-Else IfEqual key0, tc;, Send {BackSpace}.{Space}Content{Space} 
-Else IfEqual key0, tcm;, Send {BackSpace}.{Space}Community{Space} 
-Else IfEqual key0, tcn;, Send {BackSpace}.{Space}Continue{Space} 
-Else IfEqual key0, td;, Send {BackSpace}.{Space}Today{Space} 
-Else IfEqual key0, tdcmn;, Send {BackSpace}.{Space}Document{Space} 
-Else IfEqual key0, tdfcn;, Send {BackSpace}.{Space}Confident{Space} 
-Else IfEqual key0, tdgl;, Send {BackSpace}.{Space}Digital{Space} 
-Else IfEqual key0, tdl;, Send {BackSpace}.{Space}Detail{Space} 
-Else IfEqual key0, tdn;, Send {BackSpace}.{Space}Don't{Space} 
-Else IfEqual key0, tdx;, Send {BackSpace}.{Space}Excited{Space} 
-Else IfEqual key0, tf;, Send {BackSpace}.{Space}First{Space} 
-Else IfEqual key0, tfbn;, Send {BackSpace}.{Space}Benefit{Space} 
-Else IfEqual key0, tg;, Send {BackSpace}.{Space}Thing{Space} 
-Else IfEqual key0, tghlc;, Send {BackSpace}.{Space}Glitch{Space} 
-Else IfEqual key0, tgk;, Send {BackSpace}.{Space}Taking{Space} 
-Else IfEqual key0, tgk;, Send {BackSpace}.{Space}Taking{Space} 
-Else IfEqual key0, tgkl;, Send {BackSpace}.{Space}Talking{Space} 
-Else IfEqual key0, tgkl;, Send {BackSpace}.{Space}Talking{Space} 
-Else IfEqual key0, tgkn;, Send {BackSpace}.{Space}Thinking{Space} 
-Else IfEqual key0, tgm;, Send {BackSpace}.{Space}Meeting{Space} 
-Else IfEqual key0, tgnm;, Send {BackSpace}.{Space}Management{Space} 
-Else IfEqual key0, th;, Send {BackSpace}.{Space}This{Space} 
-Else IfEqual key0, thb;, Send {BackSpace}.{Space}To Be Honest{Space} 
-Else IfEqual key0, thkn;, Send {BackSpace}.{Space}Think{Space} 
-Else IfEqual key0, thvn;, Send {BackSpace}.{Space}Haven't{Space} 
-Else IfEqual key0, ti;, Send {BackSpace}.{Space}It{Space} 
-Else IfEqual key0, tiagh;, Send {BackSpace}.{Space}Aight{Space} 
-Else IfEqual key0, tialn;, Send {BackSpace}.{Space}Initial{Space} 
-Else IfEqual key0, tian;, Send {BackSpace}.{Space}Anti
-Else IfEqual key0, tib;, Send {BackSpace}.{Space}Bit{Space} 
-Else IfEqual key0, tid;, Send {BackSpace}.{Space}It'd{Space} 
-Else IfEqual key0, tidm;, Send {BackSpace}.{Space}Immediate{Space} 
-Else IfEqual key0, tidn;, Send {BackSpace}.{Space}Didn't{Space} 
-Else IfEqual key0, tigh;, Send {BackSpace}.{Space}Tight{Space} 
-Else IfEqual key0, tighl;, Send {BackSpace}.{Space}Light{Space} 
-Else IfEqual key0, tighn;, Send {BackSpace}.{Space}Night{Space} 
-Else IfEqual key0, tign;, Send {BackSpace}.{Space}Interesting{Space} 
-Else IfEqual key0, tih;, Send {BackSpace}.{Space}I Think{Space} 
-Else IfEqual key0, tihc;, Send {BackSpace}.{Space}Itch{Space} 
-Else IfEqual key0, tihkn;, Send {BackSpace}.{Space}Think{Space} 
-Else IfEqual key0, tiln;, Send {BackSpace}.{Space}Internal{Space} 
-Else IfEqual key0, tin;, Send {BackSpace}.{Space}Interest{Space} 
-Else IfEqual key0, tio;, Send {BackSpace}.{Space}In Terms Of{Space} 
-Else IfEqual key0, tioln;, Send {BackSpace}.{Space}International{Space} 
-Else IfEqual key0, tion;, Send {BackSpace}.{Space}Into{Space} 
-Else IfEqual key0, tiopsn;, Send {BackSpace}.{Space}Position{Space} 
-Else IfEqual key0, tis;, Send {BackSpace}.{Space}It's{Space} 
-Else IfEqual key0, tisdcn;, Send {BackSpace}.{Space}Distinct{Space} 
-Else IfEqual key0, tisgh;, Send {BackSpace}.{Space}Sight{Space} 
-Else IfEqual key0, tish;, Send {BackSpace}.{Space}This{Space} 
-Else IfEqual key0, tish;, Send {BackSpace}.{Space}This{Space} 
-Else IfEqual key0, tiskc;, Send {BackSpace}.{Space}Stick{Space} 
-Else IfEqual key0, tisl;, Send {BackSpace}.{Space}Still{Space} 
-Else IfEqual key0, tisn;, Send {BackSpace}.{Space}Instead{Space} 
-Else IfEqual key0, tivn;, Send {BackSpace}.{Space}Interview{Space} 
-Else IfEqual key0, tiz;, Send {BackSpace}.{Space}Ization
-Else IfEqual key0, tk;, Send {BackSpace}.{Space}Take{Space} 
-Else IfEqual key0, tkl;, Send {BackSpace}.{Space}Talk{Space} 
-Else IfEqual key0, tkm;, Send {BackSpace}.{Space}Market{Space} 
-Else IfEqual key0, tlb;, Send {BackSpace}.{Space}Built{Space} 
-Else IfEqual key0, tlcn;, Send {BackSpace}.{Space}Technical{Space} 
-Else IfEqual key0, tlnm;, Send {BackSpace}.{Space}Mental{Space} 
-Else IfEqual key0, tlxn;, Send {BackSpace}.{Space}Excellent{Space} 
-Else IfEqual key0, tm;, Send {BackSpace}.{Space}Time{Space} 
-Else IfEqual key0, tnm;, Send {BackSpace}.{Space}Minute{Space} 
-Else IfEqual key0, to;, Send {BackSpace}.{Space}To{Space} 
-Else IfEqual key0, to;, Send {BackSpace}.{Space}Too{Space} 
-Else IfEqual key0, toacn;, Send {BackSpace}.{Space}Contact{Space} 
-Else IfEqual key0, toahl;, Send {BackSpace}.{Space}Although{Space} 
-Else IfEqual key0, toal;, Send {BackSpace}.{Space}Total{Space} 
-Else IfEqual key0, tobm;, Send {BackSpace}.{Space}Bottom{Space} 
-Else IfEqual key0, tocn;, Send {BackSpace}.{Space}Contract{Space} 
-Else IfEqual key0, todl;, Send {BackSpace}.{Space}Told{Space} 
-Else IfEqual key0, todn;, Send {BackSpace}.{Space}Don't{Space} 
-Else IfEqual key0, tog;, Send {BackSpace}.{Space}Got{Space} 
-Else IfEqual key0, toh;, Send {BackSpace}.{Space}Though{Space} 
-Else IfEqual key0, tohb;, Send {BackSpace}.{Space}Both{Space} 
-Else IfEqual key0, tohnm;, Send {BackSpace}.{Space}Month{Space} 
-Else IfEqual key0, tok;, Send {BackSpace}.{Space}Took{Space} 
-Else IfEqual key0, tol;, Send {BackSpace}.{Space}Lot{Space} 
-Else IfEqual key0, ton;, Send {BackSpace}.{Space}Not{Space} 
-Else IfEqual key0, ton;, Send {BackSpace}.{Space}Not{Space} 
-Else IfEqual key0, top;, Send {BackSpace}.{Space}Top{Space} 
-Else IfEqual key0, topad;, Send {BackSpace}.{Space}Adopt{Space} 
-Else IfEqual key0, toph;, Send {BackSpace}.{Space}Photo{Space} 
-Else IfEqual key0, tops;, Send {BackSpace}.{Space}Stop{Space} 
-Else IfEqual key0, topzm;, Send {BackSpace}.{Space}Optimize{Space} 
-Else IfEqual key0, tosc;, Send {BackSpace}.{Space}Cost{Space} 
-Else IfEqual key0, tosl;, Send {BackSpace}.{Space}Lost{Space} 
-Else IfEqual key0, tosm;, Send {BackSpace}.{Space}Most{Space} 
-Else IfEqual key0, tp;, Send {BackSpace}.{Space}Point{Space} 
-Else IfEqual key0, tpaflm;, Send {BackSpace}.{Space}Platform{Space} 
-Else IfEqual key0, tpaln;, Send {BackSpace}.{Space}Plant{Space} 
-Else IfEqual key0, tpas;, Send {BackSpace}.{Space}Past{Space} 
-Else IfEqual key0, tpc;, Send {BackSpace}.{Space}Corporate{Space} 
-Else IfEqual key0, tpcnm;, Send {BackSpace}.{Space}Component{Space} 
-Else IfEqual key0, tpd;, Send {BackSpace}.{Space}Department{Space} 
-Else IfEqual key0, tplm;, Send {BackSpace}.{Space}Multiple{Space} 
-Else IfEqual key0, tpln;, Send {BackSpace}.{Space}Potential{Space} 
-Else IfEqual key0, tps;, Send {BackSpace}.{Space}Post{Space} 
-Else IfEqual key0, tpsn;, Send {BackSpace}.{Space}Postpone{Space} 
-Else IfEqual key0, tpsv;, Send {BackSpace}.{Space}Positive{Space} 
-Else IfEqual key0, ts;, Send {BackSpace}.{Space}Its{Space} 
-Else IfEqual key0, ts;, Send {BackSpace}.{Space}St
-Else IfEqual key0, tsdn;, Send {BackSpace}.{Space}Doesn't{Space} 
-Else IfEqual key0, tsfgn;, Send {BackSpace}.{Space}Significant{Space} 
-Else IfEqual key0, tsg;, Send {BackSpace}.{Space}Things{Space} 
-Else IfEqual key0, tsdhn;, Send {BackSpace}.{Space}Shouldn't{Space} 
-Else IfEqual key0, tskm;, Send {BackSpace}.{Space}Mistake{Space} 
-Else IfEqual key0, tsl;, Send {BackSpace}.{Space}List{Space} 
-Else IfEqual key0, tsln;, Send {BackSpace}.{Space}Listen{Space} 
-Else IfEqual key0, tslvm;, Send {BackSpace}.{Space}Themselves{Space} 
-Else IfEqual key0, tsm;, Send {BackSpace}.{Space}Sometimes{Space} 
-Else IfEqual key0, tsn;, Send {BackSpace}.{Space}Essentially{Space} 
-Else IfEqual key0, tua;, Send {BackSpace}.{Space}Uation
-Else IfEqual key0, tuagh;, Send {BackSpace}.{Space}Taught{Space} 
-Else IfEqual key0, tualc;, Send {BackSpace}.{Space}Actual{Space} 
-Else IfEqual key0, tub;, Send {BackSpace}.{Space}But{Space} 
-Else IfEqual key0, tuc;, Send {BackSpace}.{Space}Cut{Space} 
-Else IfEqual key0, tuiln;, Send {BackSpace}.{Space}Until{Space} 
-Else IfEqual key0, tuioasn;, Send {BackSpace}.{Space}Situation{Space} 
-Else IfEqual key0, tuipdlc;, Send {BackSpace}.{Space}Duplicate{Space} 
-Else IfEqual key0, tul;, Send {BackSpace}.{Space}Ultimately{Space} 
-Else IfEqual key0, tuo;, Send {BackSpace}.{Space}Out{Space} 
-Else IfEqual key0, tuoa;, Send {BackSpace}.{Space}Auto{Space} 
-Else IfEqual key0, tuoacn;, Send {BackSpace}.{Space}Account{Space} 
-Else IfEqual key0, tuobn;, Send {BackSpace}.{Space}Button{Space} 
-Else IfEqual key0, tuocn;, Send {BackSpace}.{Space}Count{Space} 
-Else IfEqual key0, tuohc;, Send {BackSpace}.{Space}Touch{Space} 
-Else IfEqual key0, tuohm;, Send {BackSpace}.{Space}Mouth{Space} 
-Else IfEqual key0, tuoscm;, Send {BackSpace}.{Space}Custom{Space} 
-Else IfEqual key0, tup;, Send {BackSpace}.{Space}Put{Space} 
-Else IfEqual key0, tusf;, Send {BackSpace}.{Space}Stuff{Space} 
-Else IfEqual key0, tusm;, Send {BackSpace}.{Space}Must{Space} 
-Else IfEqual key0, txc;, Send {BackSpace}.{Space}Context{Space} 
-Else IfEqual key0, ty;, Send {BackSpace}.{Space}Thank You{Space} 
-Else IfEqual key0, tyas;, Send {BackSpace}.{Space}Stay{Space} 
-Else IfEqual key0, tyaslv;, Send {BackSpace}.{Space}Vastly{Space} 
-Else IfEqual key0, tyd;, Send {BackSpace}.{Space}Today{Space} 
-Else IfEqual key0, tyiacv;, Send {BackSpace}.{Space}Activity{Space} 
-Else IfEqual key0, tyialb;, Send {BackSpace}.{Space}Ability{Space} 
-Else IfEqual key0, tyidn;, Send {BackSpace}.{Space}Identity{Space} 
-Else IfEqual key0, tyik;, Send {BackSpace}.{Space}Kitty{Space} 
-Else IfEqual key0, tyil;, Send {BackSpace}.{Space}Ility{Space} 
-Else IfEqual key0, tyilb;, Send {BackSpace}.{Space}Ibility{Space} 
-Else IfEqual key0, tyo;, Send {BackSpace}.{Space}Toy{Space} 
-Else IfEqual key0, tyoal;, Send {BackSpace}.{Space}Totally{Space} 
-Else IfEqual key0, typhlc;, Send {BackSpace}.{Space}Hypothetical{Space} 
-Else IfEqual key0, typlc;, Send {BackSpace}.{Space}Typical{Space} 
-Else IfEqual key0, tyvm;, Send {BackSpace}.{Space}Thank You Very Much{Space} 
-Else IfEqual key0, toaghc;, Send {BackSpace}.{Space}Got You.{Space} 
-Else IfEqual key0, tpah;, Send {BackSpace}.{Space}Path{Space} 
-Else IfEqual key0, tsc;, Send {BackSpace}.{Space}Society{Space} 
-Else IfEqual key0, tslvm;, Send {BackSpace}.{Space}Themselves{Space} 
-Else IfEqual key0, tuiasn;, Send {BackSpace}.{Space}Sustain{Space} 
-Else IfEqual key0, tuiosn;, Send {BackSpace}.{Space}Institution{Space} 
-Else IfEqual key0, tuogh;, Send {BackSpace}.{Space}Thought{Space} 
-Else IfEqual key0, tvn;, Send {BackSpace}.{Space}Native{Space} 
-Else IfEqual key0, tyic;, Send {BackSpace}.{Space}City{Space} 
-Return
-SENDYstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, yad;, Send {BackSpace}.{Space}Day{Space} 
-Else IfEqual key0, yugl;, Send {BackSpace}.{Space}Ugly{Space} 
-Else IfEqual key0, tysg;, Send {BackSpace}.{Space}Staying{Space} 
-Else IfEqual key0, eyagcn;, Send {BackSpace}.{Space}Agency{Space} 
-Else IfEqual key0, yadbn;, Send {BackSpace}.{Space}Anybody{Space} 
-Else IfEqual key0, ydgb;, Send {BackSpace}.{Space}Goodbye{Space} 
-Else IfEqual key0, ypg;, Send {BackSpace}.{Space}Paying{Space} 
- Else IfEqual key0, ydvn;, Send {BackSpace}.{Space}Vineyard{Space} 
-Else IfEqual key0, ycvn;, Send {BackSpace}.{Space}Convey{Space} 
-Else IfEqual key0, yfl;, Send {BackSpace}.{Space}Fly{Space} 
-Else IfEqual key0, yohl;, Send {BackSpace}.{Space}Holy{Space} 
-Else IfEqual key0, yoph;, Send {BackSpace}.{Space}Hypo
-Else IfEqual key0, ysln;, Send {BackSpace}.{Space}Analysis{Space} 
-Else IfEqual key0, yudb;, Send {BackSpace}.{Space}Buddy{Space} 
-Else IfEqual key0, yusg;, Send {BackSpace}.{Space}Guys{Space} 
-Else IfEqual key0, yab;, Send {BackSpace}.{Space}Baby{Space} 
-Else IfEqual key0, yoglcn;, Send {BackSpace}.{Space}Oncology{Space} 
-Else IfEqual key0, ypal;, Send {BackSpace}.{Space}Play{Space} 
-Else IfEqual key0, ysnm;, Send {BackSpace}.{Space}Mayonnaise{Space} 
-Else IfEqual key0, yujl;, Send {BackSpace}.{Space}July{Space} 
-Else IfEqual key0, yopc;, Send {BackSpace}.{Space}Copy{Space} 
-Else IfEqual key0, ypshcn;, Send {BackSpace}.{Space}Physician{Space} 
-Else IfEqual key0, yam;, Send {BackSpace}.{Space}May{Space} 
-Else IfEqual key0, yglcn;, Send {BackSpace}.{Space}Oncology{Space} 
-Else IfEqual key0, yoglcn;, Send {BackSpace}.{Space}Oncology{Space} 
-Else IfEqual key0, ydbn;, Send {BackSpace}.{Space}Beyond{Space} 
-Else IfEqual key0, yoj;, Send {BackSpace}.{Space}Joy{Space} 
-Else IfEqual key0, ypshlc;, Send {BackSpace}.{Space}Physical{Space} 
-Else IfEqual key0, yan;, Send {BackSpace}.{Space}Any{Space} 
-Else IfEqual key0, yanm;, Send {BackSpace}.{Space}Many{Space} 
-Else IfEqual key0, yas;, Send {BackSpace}.{Space}Say{Space} 
-Else IfEqual key0, yasg;, Send {BackSpace}.{Space}Saying{Space} 
-Else IfEqual key0, yb;, Send {BackSpace}.{Space}By{Space} 
-Else IfEqual key0, yd;, Send {BackSpace}.{Space}Yesterday{Space} 
-Else IfEqual key0, yfln;, Send {BackSpace}.{Space}Finally{Space} 
-Else IfEqual key0, yiadl;, Send {BackSpace}.{Space}Daily{Space} 
-Else IfEqual key0, yiaflm;, Send {BackSpace}.{Space}Family{Space} 
-Else IfEqual key0, yiasln;, Send {BackSpace}.{Space}Analysis{Space} 
-Else IfEqual key0, yif;, Send {BackSpace}.{Space}Ify{Space} 
-Else IfEqual key0, yk;, Send {BackSpace}.{Space}You Know{Space} 
-Else IfEqual key0, ym;, Send {BackSpace}.{Space}My{Space} 
-Else IfEqual key0, yoan;, Send {BackSpace}.{Space}Annoy{Space} 
-Else IfEqual key0, yoanm;, Send {BackSpace}.{Space}Anymore{Space} 
-Else IfEqual key0, yob;, Send {BackSpace}.{Space}Boy{Space} 
-Else IfEqual key0, yodb;, Send {BackSpace}.{Space}Body{Space} 
-Else IfEqual key0, yoln;, Send {BackSpace}.{Space}Only{Space} 
-Else IfEqual key0, ypa;, Send {BackSpace}.{Space}Pay{Space} 
-Else IfEqual key0, ypah;, Send {BackSpace}.{Space}Happy{Space} 
-Else IfEqual key0, ypal;, Send {BackSpace}.{Space}Play{Space} 
-Else IfEqual key0, ypcm;, Send {BackSpace}.{Space}Completely{Space} 
-Else IfEqual key0, ysda;, Send {BackSpace}.{Space}Days{Space} 
-Else IfEqual key0, ysg;, Send {BackSpace}.{Space}Saying{Space} 
-Else IfEqual key0, ysm;, Send {BackSpace}.{Space}Sym
-Else IfEqual key0, ysn;, Send {BackSpace}.{Space}Syn
-Else IfEqual key0, yuasl;, Send {BackSpace}.{Space}Usually{Space} 
-Else IfEqual key0, yub;, Send {BackSpace}.{Space}Buy{Space} 
-Else IfEqual key0, yug;, Send {BackSpace}.{Space}Guy{Space} 
-Else IfEqual key0, yuogn;, Send {BackSpace}.{Space}Young{Space} 
-Else IfEqual key0, yal;, Send {BackSpace}.{Space}Lay{Space} 
-Else IfEqual key0, yufn;, Send {BackSpace}.{Space}Funny{Space} 
-Else IfEqual key0, yusb;, Send {BackSpace}.{Space}Busy{Space} 
-Return
-SENDUstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, ua;, Send {BackSpace}.{Space}Au
-Else IfEqual key0, uab;, Send {BackSpace}.{Space}A Bunch{Space} 
-Else IfEqual key0, uahnm;, Send {BackSpace}.{Space}Human{Space} 
-Else IfEqual key0, uasdhbn;, Send {BackSpace}.{Space}Husband{Space} 
-Else IfEqual key0, uinm;, Send {BackSpace}.{Space}Minimum{Space} 
-Else IfEqual key0, uiolcn;, Send {BackSpace}.{Space}Council{Space} 
-Else IfEqual key0, uodbn;, Send {BackSpace}.{Space}Bound{Space} 
-Else IfEqual key0, uodc;, Send {BackSpace}.{Space}Docu
-Else IfEqual key0, uahlcn;, Send {BackSpace}.{Space}Launch{Space} 
-Else IfEqual key0, uashbn;, Send {BackSpace}.{Space}Husband{Space} 
-Else IfEqual key0, udh;, Send {BackSpace}.{Space}Duh{Space} 
-Else IfEqual key0, ugn;, Send {BackSpace}.{Space}Gun{Space} 
-Else IfEqual key0, uhcbn;, Send {BackSpace}.{Space}Bunch{Space} 
-Else IfEqual key0, uioac;, Send {BackSpace}.{Space}Caution{Space} 
-Else IfEqual key0, upbm;, Send {BackSpace}.{Space}Bump{Space} 
-Else IfEqual key0, uanm;, Send {BackSpace}.{Space}Manu{Space} 
-Else IfEqual key0, ufkc;, Send {BackSpace}.{Space}Fuck{Space} 
-Else IfEqual key0, uklc;, Send {BackSpace}.{Space}Luck{Space} 
-Else IfEqual key0, uisdc;, Send {BackSpace}.{Space}Discuss{Space} 
-Else IfEqual key0, usg;, Send {BackSpace}.{Space}Using{Space} 
-Else IfEqual key0, usgn;, Send {BackSpace}.{Space}Sung{Space} 
-Else IfEqual key0, ualbm;, Send {BackSpace}.{Space}Albums{Space} 
-Else IfEqual key0, uiosl;, Send {BackSpace}.{Space}Solution{Space} 
-Else IfEqual key0, uad;, Send {BackSpace}.{Space}Audience{Space} 
-Else IfEqual key0, uag;, Send {BackSpace}.{Space}Aug{Space} 
-Else IfEqual key0, uaghl;, Send {BackSpace}.{Space}Laugh{Space} 
-Else IfEqual key0, uagl;, Send {BackSpace}.{Space}Laugh{Space} 
-Else IfEqual key0, uahlcn;, Send {BackSpace}.{Space}Launch{Space} 
-Else IfEqual key0, uasl;, Send {BackSpace}.{Space}Usual{Space} 
-Else IfEqual key0, ucm;, Send {BackSpace}.{Space}Communicate{Space} 
-Else IfEqual key0, ud;, Send {BackSpace}.{Space}You'd{Space} 
-Else IfEqual key0, udn;, Send {BackSpace}.{Space}Understand{Space} 
-Else IfEqual key0, ufl;, Send {BackSpace}.{Space}Full{Space} 
-Else IfEqual key0, uhcm;, Send {BackSpace}.{Space}Much{Space} 
-Else IfEqual key0, uicm;, Send {BackSpace}.{Space}Communication{Space} 
-Else IfEqual key0, uiocm;, Send {BackSpace}.{Space}Communication{Space} 
-Else IfEqual key0, uidn;, Send {BackSpace}.{Space}Industry{Space} 
-Else IfEqual key0, uin;, Send {BackSpace}.{Space}Uni
-Else IfEqual key0, uiofcn;, Send {BackSpace}.{Space}Function{Space} 
-Else IfEqual key0, uios;, Send {BackSpace}.{Space}Ious
-Else IfEqual key0, uioscn;, Send {BackSpace}.{Space}Conscious{Space} 
-Else IfEqual key0, uioslcn;, Send {BackSpace}.{Space}Conclusion{Space} 
-Else IfEqual key0, uipdl;, Send {BackSpace}.{Space}Dupli{Space} 
-Else IfEqual key0, uiscm;, Send {BackSpace}.{Space}Music{Space} 
-Else IfEqual key0, uisn;, Send {BackSpace}.{Space}Insurance{Space} 
-Else IfEqual key0, uivn;, Send {BackSpace}.{Space}University{Space} 
-Else IfEqual key0, ul;, Send {BackSpace}.{Space}You'll{Space} 
-Else IfEqual key0, un;, Send {BackSpace}.{Space}Un
-Else IfEqual key0, unm;, Send {BackSpace}.{Space}Number{Space} 
-Else IfEqual key0, uo;, Send {BackSpace}.{Space}Ou
-Else IfEqual key0, uodfn;, Send {BackSpace}.{Space}Found{Space} 
-Else IfEqual key0, uodl;, Send {BackSpace}.{Space}Loud{Space} 
-Else IfEqual key0, uodlc;, Send {BackSpace}.{Space}Cloud{Space} 
-Else IfEqual key0, uogh;, Send {BackSpace}.{Space}Ough{Space} 
-Else IfEqual key0, uop;, Send {BackSpace}.{Space}Population{Space} 
-Else IfEqual key0, uopn;, Send {BackSpace}.{Space}Upon{Space} 
-Else IfEqual key0, uosdn;, Send {BackSpace}.{Space}Sound{Space} 
-Else IfEqual key0, uosfc;, Send {BackSpace}.{Space}Focus{Space} 
-Else IfEqual key0, uosm;, Send {BackSpace}.{Space}So Much{Space} 
-Else IfEqual key0, up;, Send {BackSpace}.{Space}Up{Space} 
-Else IfEqual key0, upascm;, Send {BackSpace}.{Space}Campus{Space} 
-Else IfEqual key0, upc;, Send {BackSpace}.{Space}Computer{Space} 
-Else IfEqual key0, upjm;, Send {BackSpace}.{Space}Jump{Space} 
-Else IfEqual key0, upl;, Send {BackSpace}.{Space}Pull{Space} 
-Else IfEqual key0, upsh;, Send {BackSpace}.{Space}Push{Space} 
-Else IfEqual key0, us;, Send {BackSpace}.{Space}Us{Space} 
-Else IfEqual key0, usb;, Send {BackSpace}.{Space}Sub
-Else IfEqual key0, usf;, Send {BackSpace}.{Space}Yourself{Space} 
-Else IfEqual key0, ushc;, Send {BackSpace}.{Space}Such{Space} 
-Else IfEqual key0, usn;, Send {BackSpace}.{Space}Sun{Space} 
-Else IfEqual key0, uv;, Send {BackSpace}.{Space}You've{Space} 
-Else IfEqual key0, udfn;, Send {BackSpace}.{Space}Fund{Space} 
-Else IfEqual key0, ufn;, Send {BackSpace}.{Space}Fun{Space} 
-Else IfEqual key0, usfl;, Send {BackSpace}.{Space}Yourself{Space} 
-Return
-SENDEstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, ea;, Send {BackSpace}.{Space}Ea	
-Else IfEqual key0, epalcb;, Send {BackSpace}.{Space}Capable{Space} 
-Else IfEqual key0, eriv;, Send {BackSpace}.{Space}River{Space} 
-Else IfEqual key0, eruipm;, Send {BackSpace}.{Space}Premium{Space} 
-Else IfEqual key0, etf;, Send {BackSpace}.{Space}Feet{Space} 
-Else IfEqual key0, ertypah;, Send {BackSpace}.{Space}Therapy{Space} 
-Else IfEqual key0, eriacm;, Send {BackSpace}.{Space}America{Space} 
-Else IfEqual key0, eruop;, Send {BackSpace}.{Space}Europe{Space} 
-Else IfEqual key0, eosln;, Send {BackSpace}.{Space}Lesson{Space} 
-Else IfEqual key0, epaln;, Send {BackSpace}.{Space}Plane{Space} 
-Else IfEqual key0, ealcn;, Send {BackSpace}.{Space}Cancel{Space} 
-Else IfEqual key0, epaslc;, Send {BackSpace}.{Space}Places{Space} 
-Else IfEqual key0, ealn;, Send {BackSpace}.{Space}Lane{Space} 
-Else IfEqual key0, etpasln;, Send {BackSpace}.{Space}Pleasant{Space} 
-Else IfEqual key0, eas;, Send {BackSpace}.{Space}Assess{Space} 
-Else IfEqual key0, eruips;, Send {BackSpace}.{Space}Surprise{Space} 
-Else IfEqual key0, easf;, Send {BackSpace}.{Space}Safety{Space} 
-Else IfEqual key0, efhc;, Send {BackSpace}.{Space}Chef{Space} 
-Else IfEqual key0, erualcn;, Send {BackSpace}.{Space}Nuclear{Space} 
-Else IfEqual key0, eialv;, Send {BackSpace}.{Space}Alive{Space} 
-Else IfEqual key0, eyiasl;, Send {BackSpace}.{Space}Easily{Space} 
-Else IfEqual key0, eiasn;, Send {BackSpace}.{Space}Insane{Space} 
-Else IfEqual key0, eifkn;, Send {BackSpace}.{Space}Knife{Space} 
-Else IfEqual key0, eihcn;, Send {BackSpace}.{Space}Niche{Space} 
-Else IfEqual key0, eihk;, Send {BackSpace}.{Space}Hike{Space} 
-Else IfEqual key0, eil;, Send {BackSpace}.{Space}Lie{Space} 
-Else IfEqual key0, eil;, Send {BackSpace}.{Space}Lie{Space} 
-Else IfEqual key0, eilcn;, Send {BackSpace}.{Space}Incline{Space} 
-Else IfEqual key0, eiocnm;, Send {BackSpace}.{Space}Economic{Space} 
-Else IfEqual key0, eiocnm;, Send {BackSpace}.{Space}Income{Space} 
-Else IfEqual key0, eiplcn;, Send {BackSpace}.{Space}Pencil{Space} 
-Else IfEqual key0, eisdl;, Send {BackSpace}.{Space}Slide{Space} 
-Else IfEqual key0, eiskvn;, Send {BackSpace}.{Space}Knives{Space} 
-Else IfEqual key0, eislm;, Send {BackSpace}.{Space}Smile{Space} 
-Else IfEqual key0, eisz;, Send {BackSpace}.{Space}Seize{Space} 
-Else IfEqual key0, ekn;, Send {BackSpace}.{Space}Knee{Space} 
-Else IfEqual key0, elb;, Send {BackSpace}.{Space}Bell{Space} 
-Else IfEqual key0, eoadb;, Send {BackSpace}.{Space}Adobe{Space} 
-Else IfEqual key0, eoaslm;, Send {BackSpace}.{Space}Molasses{Space} 
-Else IfEqual key0, eofc;, Send {BackSpace}.{Space}Coffee{Space} 
-Else IfEqual key0, eosdcn;, Send {BackSpace}.{Space}Condense{Space} 
-Else IfEqual key0, eosln;, Send {BackSpace}.{Space}Lesson{Space} 
-Else IfEqual key0, eosn;, Send {BackSpace}.{Space}Nose{Space} 
-Else IfEqual key0, epa;, Send {BackSpace}.{Space}Ape{Space} 
-Else IfEqual key0, epn;, Send {BackSpace}.{Space}Pen{Space} 
-Else IfEqual key0, epsl;, Send {BackSpace}.{Space}Spell{Space} 
-Else IfEqual key0, erab;, Send {BackSpace}.{Space}Bear{Space} 
-Else IfEqual key0, eradg;, Send {BackSpace}.{Space}Regard{Space} 
-Else IfEqual key0, eradlc;, Send {BackSpace}.{Space}Declare{Space} 
-Else IfEqual key0, eraf;, Send {BackSpace}.{Space}Fear{Space} 
-Else IfEqual key0, eraf;, Send {BackSpace}.{Space}Fear{Space} 
-Else IfEqual key0, eralx;, Send {BackSpace}.{Space}Relax{Space} 
-Else IfEqual key0, eras;, Send {BackSpace}.{Space}Erase{Space} 
-Else IfEqual key0, erdcbm;, Send {BackSpace}.{Space}December{Space} 
-Else IfEqual key0, erf;, Send {BackSpace}.{Space}Refer{Space} 
-Else IfEqual key0, erhc;, Send {BackSpace}.{Space}Cheer{Space} 
-Else IfEqual key0, erias;, Send {BackSpace}.{Space}Raise{Space} 
-Else IfEqual key0, eridb;, Send {BackSpace}.{Space}Bride{Space} 
-Else IfEqual key0, eridgb;, Send {BackSpace}.{Space}Bridge{Space} 
-Else IfEqual key0, eridl;, Send {BackSpace}.{Space}Riddle{Space} 
-Else IfEqual key0, erin;, Send {BackSpace}.{Space}Inner{Space} 
-Else IfEqual key0, eriopscm;, Send {BackSpace}.{Space}Comprise{Space} 
-Else IfEqual key0, eripscb;, Send {BackSpace}.{Space}Prescribe{Space} 
-Else IfEqual key0, erm;, Send {BackSpace}.{Space}Mere{Space} 
-Else IfEqual key0, ero;, Send {BackSpace}.{Space}Error{Space} 
-Else IfEqual key0, eroash;, Send {BackSpace}.{Space}Hoarse{Space} 
-Else IfEqual key0, erocm;, Send {BackSpace}.{Space}Commerce{Space} 
-Else IfEqual key0, erokb;, Send {BackSpace}.{Space}Broke{Space} 
-Else IfEqual key0, eros;, Send {BackSpace}.{Space}Rose{Space} 
-Else IfEqual key0, eroscn;, Send {BackSpace}.{Space}Censor{Space} 
-Else IfEqual key0, erovbnm;, Send {BackSpace}.{Space}November{Space} 
-Else IfEqual key0, erpas;, Send {BackSpace}.{Space}Spare{Space} 
-Else IfEqual key0, ertag;, Send {BackSpace}.{Space}Target{Space} 
-Else IfEqual key0, ertagn;, Send {BackSpace}.{Space}Generate{Space} 
-Else IfEqual key0, ertiacn;, Send {BackSpace}.{Space}Interact{Space} 
-Else IfEqual key0, ertiagc;, Send {BackSpace}.{Space}Cigarette{Space} 
-Else IfEqual key0, ertihn;, Send {BackSpace}.{Space}Inherent{Space} 
-Else IfEqual key0, ertion;, Send {BackSpace}.{Space}Orient{Space} 
-Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, ertoa;, Send {BackSpace}.{Space}Rotate{Space} 
-Else IfEqual key0, ertocb;, Send {BackSpace}.{Space}October{Space} 
-Else IfEqual key0, ertosk;, Send {BackSpace}.{Space}Stroke{Space} 
-Else IfEqual key0, ertpsbm;, Send {BackSpace}.{Space}September{Space} 
-Else IfEqual key0, ertuanm;, Send {BackSpace}.{Space}Remunerate{Space} 
-Else IfEqual key0, ertycm;, Send {BackSpace}.{Space}Cemetery{Space} 
-Else IfEqual key0, ertyop;, Send {BackSpace}.{Space}Property{Space} 
-Else IfEqual key0, erud;, Send {BackSpace}.{Space}Educator{Space} 
-Else IfEqual key0, erudbn;, Send {BackSpace}.{Space}Burden{Space} 
-Else IfEqual key0, eruin;, Send {BackSpace}.{Space}Urine{Space} 
-Else IfEqual key0, eruopcn;, Send {BackSpace}.{Space}Pronounce{Space} 
-Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Rescue{Space} 
-Else IfEqual key0, eruvn;, Send {BackSpace}.{Space}Revenue{Space} 
-Else IfEqual key0, eryoasc;, Send {BackSpace}.{Space}Accessory{Space} 
-Else IfEqual key0, eshcm;, Send {BackSpace}.{Space}Scheme{Space} 
-Else IfEqual key0, eslm;, Send {BackSpace}.{Space}Smell{Space} 
-Else IfEqual key0, etadn;, Send {BackSpace}.{Space}Attend{Space} 
-Else IfEqual key0, etagn;, Send {BackSpace}.{Space}Agent{Space} 
-Else IfEqual key0, etagn;, Send {BackSpace}.{Space}Tangent{Space} 
-Else IfEqual key0, etaln;, Send {BackSpace}.{Space}Talent{Space} 
-Else IfEqual key0, etanm;, Send {BackSpace}.{Space}Meant{Space} 
-Else IfEqual key0, etask;, Send {BackSpace}.{Space}Stake{Space} 
-Else IfEqual key0, etghln;, Send {BackSpace}.{Space}Length{Space} 
-Else IfEqual key0, etiahlcn;, Send {BackSpace}.{Space}Technical{Space} 
-Else IfEqual key0, etioanm;, Send {BackSpace}.{Space}Nominate{Space} 
-Else IfEqual key0, etiosn;, Send {BackSpace}.{Space}Tension{Space} 
-Else IfEqual key0, etiosn;, Send {BackSpace}.{Space}Tension{Space} 
-Else IfEqual key0, etolb;, Send {BackSpace}.{Space}Bottle{Space} 
-Else IfEqual key0, etolb;, Send {BackSpace}.{Space}Bottle{Space} 
-Else IfEqual key0, etoshlc;, Send {BackSpace}.{Space}Clothes{Space} 
-Else IfEqual key0, etpal;, Send {BackSpace}.{Space}Plate{Space} 
-Else IfEqual key0, etpasc;, Send {BackSpace}.{Space}Aspect{Space} 
-Else IfEqual key0, etps;, Send {BackSpace}.{Space}Steep{Space} 
-Else IfEqual key0, etscn;, Send {BackSpace}.{Space}Sentence{Space} 
-Else IfEqual key0, etub;, Send {BackSpace}.{Space}Tube{Space} 
-Else IfEqual key0, etuhc;, Send {BackSpace}.{Space}Chute{Space} 
-Else IfEqual key0, etum;, Send {BackSpace}.{Space}Mute{Space} 
-Else IfEqual key0, etuocm;, Send {BackSpace}.{Space}Outcome{Space} 
-Else IfEqual key0, etups;, Send {BackSpace}.{Space}Upset{Space} 
-Else IfEqual key0, etyoscm;, Send {BackSpace}.{Space}Ecosystem{Space} 
-Else IfEqual key0, eudgj;, Send {BackSpace}.{Space}Judge{Space} 
-Else IfEqual key0, eudgn;, Send {BackSpace}.{Space}Nudge{Space} 
-Else IfEqual key0, eujn;, Send {BackSpace}.{Space}June{Space} 
-Else IfEqual key0, eupsl;, Send {BackSpace}.{Space}Pulse{Space} 
-Else IfEqual key0, eyagcn;, Send {BackSpace}.{Space}Agency{Space} 
-Else IfEqual key0, eyp;, Send {BackSpace}.{Space}Yep{Space} 
-Else IfEqual key0, rtyl;, Send {BackSpace}.{Space}Reality{Space} 
-Else IfEqual key0, etanm;, Send {BackSpace}.{Space}Meant{Space} 
-Else IfEqual key0, easn;, Send {BackSpace}.{Space}Sane{Space} 
-Else IfEqual key0, eiasn;, Send {BackSpace}.{Space}Insane{Space} 
-Else IfEqual key0, epsd;, Send {BackSpace}.{Space}Sped{Space} 
-Else IfEqual key0, etun;, Send {BackSpace}.{Space}Tune{Space} 
-Else IfEqual key0, erofc;, Send {BackSpace}.{Space}Force{Space} 
-Else IfEqual key0, etioasc;, Send {BackSpace}.{Space}Associate{Space} 
-Else IfEqual key0, eionm;, Send {BackSpace}.{Space}Mention{Space} 
-Else IfEqual key0, eyh;, Send {BackSpace}.{Space}Hey{Space} 
-Else IfEqual key0, eyp;, Send {BackSpace}.{Space}Yep{Space} 
-Else IfEqual key0, eodcnm;, Send {BackSpace}.{Space}Commend{Space} 
-Else IfEqual key0, etisn;, Send {BackSpace}.{Space}Intense{Space} 
-Else IfEqual key0, eruios;, Send {BackSpace}.{Space}Capable{Space} 
-Else IfEqual key0, eualvb;, Send {BackSpace}.{Space}Valuable{Space} 
-Else IfEqual key0, etiagvn;, Send {BackSpace}.{Space}Navigate{Space} 
-Else IfEqual key0, erasc;, Send {BackSpace}.{Space}Scare{Space} 
-Else IfEqual key0, ertom;, Send {BackSpace}.{Space}Remote{Space} 
-Else IfEqual key0, ertlxn;, Send {BackSpace}.{Space}Internal{Space} 
-Else IfEqual key0, eropsc;, Send {BackSpace}.{Space}Process{Space} 
-Else IfEqual key0, eacbm;, Send {BackSpace}.{Space}Became{Space} 
-Else IfEqual key0, eaghlcn;, Send {BackSpace}.{Space}Challenge{Space} 
-Else IfEqual key0, etakn;, Send {BackSpace}.{Space}Taken{Space} 
-Else IfEqual key0, etpam;, Send {BackSpace}.{Space}Attempt{Space} 
-Else IfEqual key0, eivn;, Send {BackSpace}.{Space}Vein{Space} 
-Else IfEqual key0, erpash;, Send {BackSpace}.{Space}Phrase{Space} 
-Else IfEqual key0, ertpasn;, Send {BackSpace}.{Space}Transparent{Space} 
-Else IfEqual key0, ead;, Send {BackSpace}.{Space}Dead{Space} 
-Else IfEqual key0, eadhln;, Send {BackSpace}.{Space}Handle{Space} 
-Else IfEqual key0, eagbn;, Send {BackSpace}.{Space}Began{Space} 
-Else IfEqual key0, eashk;, Send {BackSpace}.{Space}Shake{Space} 
-Else IfEqual key0, edcvn;, Send {BackSpace}.{Space}Evidence{Space} 
-Else IfEqual key0, eiasd;, Send {BackSpace}.{Space}Disease{Space} 
-Else IfEqual key0, eiasl;, Send {BackSpace}.{Space}Aisle{Space} 
-Else IfEqual key0, eihlcv;, Send {BackSpace}.{Space}Vehicle{Space} 
-Else IfEqual key0, eilm;, Send {BackSpace}.{Space}Mile{Space} 
-Else IfEqual key0, eiom;, Send {BackSpace}.{Space}Emotion{Space} 
-Else IfEqual key0, eisdn;, Send {BackSpace}.{Space}Inside{Space} 
-Else IfEqual key0, eishn;, Send {BackSpace}.{Space}Shine{Space} 
-Else IfEqual key0, eislcn;, Send {BackSpace}.{Space}Silence{Space} 
-Else IfEqual key0, eakl;, Send {BackSpace}.{Space}Lake{Space} 
-Else IfEqual key0, eoaln;, Send {BackSpace}.{Space}Alone{Space} 
-Else IfEqual key0, eocvn;, Send {BackSpace}.{Space}Convene{Space} 
-Else IfEqual key0, eodgl;, Send {BackSpace}.{Space}Lodge{Space} 
-Else IfEqual key0, eolcn;, Send {BackSpace}.{Space}Clone{Space} 
-Else IfEqual key0, eolnm;, Send {BackSpace}.{Space}Lemon{Space} 
-Else IfEqual key0, eolnm;, Send {BackSpace}.{Space}Melon{Space} 
-Else IfEqual key0, eopk;, Send {BackSpace}.{Space}Poke{Space} 
-Else IfEqual key0, eoslv;, Send {BackSpace}.{Space}Solve{Space} 
-Else IfEqual key0, eoslv;, Send {BackSpace}.{Space}Solve{Space} 
-Else IfEqual key0, epahc;, Send {BackSpace}.{Space}Cheap{Space} 
-Else IfEqual key0, eradg;, Send {BackSpace}.{Space}Grade{Space} 
-Else IfEqual key0, erafm;, Send {BackSpace}.{Space}Frame{Space} 
-Else IfEqual key0, eraghc;, Send {BackSpace}.{Space}Charge{Space} 
-Else IfEqual key0, eragnm;, Send {BackSpace}.{Space}Manager{Space} 
-Else IfEqual key0, erc;, Send {BackSpace}.{Space}Rec Recognize{Space} 
-Else IfEqual key0, erdh;, Send {BackSpace}.{Space}Herd{Space} 
-Else IfEqual key0, ergcnm;, Send {BackSpace}.{Space}Emergency{Space} 
-Else IfEqual key0, ergm;, Send {BackSpace}.{Space}Merge{Space} 
-Else IfEqual key0, erial;, Send {BackSpace}.{Space}Earlier{Space} 
-Else IfEqual key0, erialcm;, Send {BackSpace}.{Space}Miracle{Space} 
-Else IfEqual key0, erif;, Send {BackSpace}.{Space}Fire{Space} 
-Else IfEqual key0, eriosn;, Send {BackSpace}.{Space}Senior{Space} 
-Else IfEqual key0, eripl;, Send {BackSpace}.{Space}Ripple{Space} 
-Else IfEqual key0, eriplcn;, Send {BackSpace}.{Space}Principle{Space} 
-Else IfEqual key0, eripsn;, Send {BackSpace}.{Space}Inspire{Space} 
-Else IfEqual key0, erlv;, Send {BackSpace}.{Space}Lever{Space} 
-Else IfEqual key0, eroc;, Send {BackSpace}.{Space}Core{Space} 
-Else IfEqual key0, eroc;, Send {BackSpace}.{Space}Core{Space} 
-Else IfEqual key0, eroh;, Send {BackSpace}.{Space}Hero{Space} 
-Else IfEqual key0, erohl;, Send {BackSpace}.{Space}Holler{Space} 
-Else IfEqual key0, erosc;, Send {BackSpace}.{Space}Score{Space} 
-Else IfEqual key0, eroslc;, Send {BackSpace}.{Space}Closer{Space} 
-Else IfEqual key0, erta;, Send {BackSpace}.{Space}Tear{Space} 
-Else IfEqual key0, ertad;, Send {BackSpace}.{Space}Trade{Space} 
-Else IfEqual key0, ertd;, Send {BackSpace}.{Space}Editor{Space} 
-Else IfEqual key0, ertihn;, Send {BackSpace}.{Space}Neither{Space} 
-Else IfEqual key0, ertilc;, Send {BackSpace}.{Space}Electric{Space} 
-Else IfEqual key0, ertiod;, Send {BackSpace}.{Space}Editor{Space} 
-Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, ertish;, Send {BackSpace}.{Space}Theirs{Space} 
-Else IfEqual key0, ertjc;, Send {BackSpace}.{Space}Reject{Space} 
-Else IfEqual key0, ertlc;, Send {BackSpace}.{Space}Electric{Space} 
-Else IfEqual key0, ertofgn;, Send {BackSpace}.{Space}Forgotten{Space} 
-Else IfEqual key0, ertpvn;, Send {BackSpace}.{Space}Prevent{Space} 
-Else IfEqual key0, ertuic;, Send {BackSpace}.{Space}Recruit{Space} 
-Else IfEqual key0, ertul;, Send {BackSpace}.{Space}Turtle{Space} 
-Else IfEqual key0, ertun;, Send {BackSpace}.{Space}Return{Space} 
-Else IfEqual key0, ertuo;, Send {BackSpace}.{Space}Route{Space} 
-Else IfEqual key0, eruag;, Send {BackSpace}.{Space}Argue{Space} 
-Else IfEqual key0, eruas;, Send {BackSpace}.{Space}Assure{Space} 
-Else IfEqual key0, erubm;, Send {BackSpace}.{Space}Bummer{Space} 
-Else IfEqual key0, eruoslcn;, Send {BackSpace}.{Space}Counselor{Space} 
-Else IfEqual key0, eruosvn;, Send {BackSpace}.{Space}Nervous{Space} 
-Else IfEqual key0, erusn;, Send {BackSpace}.{Space}Nurse{Space} 
-Else IfEqual key0, eshl;, Send {BackSpace}.{Space}Shell{Space} 
-Else IfEqual key0, etas;, Send {BackSpace}.{Space}State{Space} 
-Else IfEqual key0, etb;, Send {BackSpace}.{Space}Bet{Space} 
-Else IfEqual key0, etb;, Send {BackSpace}.{Space}Bet{Space} 
-Else IfEqual key0, etdn;, Send {BackSpace}.{Space}Tend{Space} 
-Else IfEqual key0, etfcn;, Send {BackSpace}.{Space}Efficient{Space} 
-Else IfEqual key0, etfcn;, Send {BackSpace}.{Space}Efficient{Space} 
-Else IfEqual key0, etihkcn;, Send {BackSpace}.{Space}Kitchen{Space} 
-Else IfEqual key0, etion;, Send {BackSpace}.{Space}Intention{Space} 
-Else IfEqual key0, etionm;, Send {BackSpace}.{Space}Emotion{Space} 
-Else IfEqual key0, etipdn;, Send {BackSpace}.{Space}Independent{Space} 
-Else IfEqual key0, etisln;, Send {BackSpace}.{Space}Nationalities{Space} 
-Else IfEqual key0, etlvt;, Send {BackSpace}.{Space}Evaluate{Space} 
-Else IfEqual key0, etop;, Send {BackSpace}.{Space}Poet{Space} 
-Else IfEqual key0, etpaln;, Send {BackSpace}.{Space}Planet{Space} 
-Else IfEqual key0, etpxm;, Send {BackSpace}.{Space}Exempt{Space} 
-Else IfEqual key0, etsg;, Send {BackSpace}.{Space}Setting{Space} 
-Else IfEqual key0, etsg;, Send {BackSpace}.{Space}Gets{Space} 
-Else IfEqual key0, etsln;, Send {BackSpace}.{Space}Essential{Space} 
-Else IfEqual key0, etualv;, Send {BackSpace}.{Space}Evaluate{Space} 
-Else IfEqual key0, etuascbn;, Send {BackSpace}.{Space}Substance{Space} 
-Else IfEqual key0, etuisn;, Send {BackSpace}.{Space}Institute{Space} 
-Else IfEqual key0, etypln;, Send {BackSpace}.{Space}Plenty{Space} 
-Else IfEqual key0, euag;, Send {BackSpace}.{Space}Gauge{Space} 
-Else IfEqual key0, euagv;, Send {BackSpace}.{Space}Vague{Space} 
-Else IfEqual key0, euasb;, Send {BackSpace}.{Space}Abuse{Space} 
-Else IfEqual key0, euh;, Send {BackSpace}.{Space}Hue{Space} 
-Else IfEqual key0, euiflcn;, Send {BackSpace}.{Space}Influence{Space} 
-Else IfEqual key0, euisdc;, Send {BackSpace}.{Space}Suicide{Space} 
-Else IfEqual key0, euoslcn;, Send {BackSpace}.{Space}Counsel{Space} 
-Else IfEqual key0, eupdl;, Send {BackSpace}.{Space}Puddle{Space} 
-Else IfEqual key0, ey;, Send {BackSpace}.{Space}Eye{Space} 
-Else IfEqual key0, eyadl;, Send {BackSpace}.{Space}Delay{Space} 
-Else IfEqual key0, eyiafc;, Send {BackSpace}.{Space}Efficacy{Space} 
-Else IfEqual key0, eyl;, Send {BackSpace}.{Space}Yell{Space} 
-Else IfEqual key0, eyocvn;, Send {BackSpace}.{Space}Convey{Space} 	
-Else IfEqual key0, erpisn;, Send {BackSpace}.{Space}Inspire{Space} 
-Else IfEqual key0, eopsk;, Send {BackSpace}.{Space}Spoke{Space} 
-Else IfEqual key0, epal;, Send {BackSpace}.{Space}Leap{Space} 
-Else IfEqual key0, epdxn;, Send {BackSpace}.{Space}Expend{Space} 
-Else IfEqual key0, eriav;, Send {BackSpace}.{Space}Arrive{Space} 
-Else IfEqual key0, erop;, Send {BackSpace}.{Space}Proper{Space} 
-Else IfEqual key0, erpdc;, Send {BackSpace}.{Space}Deprec{Space} 
-Else IfEqual key0, ertipn;, Send {BackSpace}.{Space}Interpret{Space} 
-Else IfEqual key0, ertuipn;, Send {BackSpace}.{Space}Interrupt{Space} 
-Else IfEqual key0, etialnm;, Send {BackSpace}.{Space}Eliminate{Space} 
-Else IfEqual key0, etiascn;, Send {BackSpace}.{Space}Instance{Space} 
-Else IfEqual key0, etiscn;, Send {BackSpace}.{Space}Scientist{Space} 
-Else IfEqual key0, etivn;, Send {BackSpace}.{Space}Invite{Space} 
-Else IfEqual key0, eruopd;, Send {BackSpace}.{Space}Produce{Space} 
-Else IfEqual key0, eacm;, Send {BackSpace}.{Space}Came{Space} 	
-Else IfEqual key0, eadcn;, Send {BackSpace}.{Space}Dance{Space} 	
-Else IfEqual key0, erudm;, Send {BackSpace}.{Space}Drummer{Space} 
-Else IfEqual key0, easfl;, Send {BackSpace}.{Space}False{Space} 
-Else IfEqual key0, easl;, Send {BackSpace}.{Space}Sale{Space} 
-Else IfEqual key0, easlc;, Send {BackSpace}.{Space}Scale{Space} 
-Else IfEqual key0, edg;, Send {BackSpace}.{Space}Edge{Space} 
-Else IfEqual key0, efb;, Send {BackSpace}.{Space}Beef{Space} 
-Else IfEqual key0, eicv;, Send {BackSpace}.{Space}Vice{Space} 
-Else IfEqual key0, eidv;, Send {BackSpace}.{Space}Dive{Space} 
-Else IfEqual key0, eign;, Send {BackSpace}.{Space}Engine{Space} 
-Else IfEqual key0, einm;, Send {BackSpace}.{Space}Mine{Space} 
-Else IfEqual key0, eiocvn;, Send {BackSpace}.{Space}Convince{Space} 
-Else IfEqual key0, eiosn;, Send {BackSpace}.{Space}Session{Space} 
-Else IfEqual key0, elc;, Send {BackSpace}.{Space}Cell{Space} 
-Else IfEqual key0, eohn;, Send {BackSpace}.{Space}Hone{Space} 
-Else IfEqual key0, eradm;, Send {BackSpace}.{Space}Dream{Space} 
-Else IfEqual key0, erasd;, Send {BackSpace}.{Space}Address{Space} 
-Else IfEqual key0, erdg;, Send {BackSpace}.{Space}Degree{Space} 
-Else IfEqual key0, ergcn;, Send {BackSpace}.{Space}Encourage{Space} 
-Else IfEqual key0, erih;, Send {BackSpace}.{Space}Hire{Space} 
-Else IfEqual key0, erilc;, Send {BackSpace}.{Space}Circle{Space} 
-Else IfEqual key0, erpscn;, Send {BackSpace}.{Space}Presence{Space} 
-Else IfEqual key0, erti;, Send {BackSpace}.{Space}Tire{Space} 
-Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, ertlcn;, Send {BackSpace}.{Space}Electronic{Space} 
-Else IfEqual key0, ertocn;, Send {BackSpace}.{Space}Concert{Space} 
-Else IfEqual key0, ertof;, Send {BackSpace}.{Space}Effort{Space} 
-Else IfEqual key0, ertopc;, Send {BackSpace}.{Space}Protect{Space} 
-Else IfEqual key0, ertpx;, Send {BackSpace}.{Space}Expert{Space} 
-Else IfEqual key0, ertuion;, Send {BackSpace}.{Space}Routine{Space} 
-Else IfEqual key0, ertuo;, Send {BackSpace}.{Space}Route{Space} 
-Else IfEqual key0, eruosc;, Send {BackSpace}.{Space}Course{Space} 
-Else IfEqual key0, eruosc;, Send {BackSpace}.{Space}Course{Space} 
-Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Secure{Space} 
-Else IfEqual key0, erusc;, Send {BackSpace}.{Space}Secure{Space} 
-Else IfEqual key0, eryl;, Send {BackSpace}.{Space}Rely{Space} 
-Else IfEqual key0, escn;, Send {BackSpace}.{Space}Scene{Space} 
-Else IfEqual key0, esg;, Send {BackSpace}.{Space}Seeing{Space} 
-Else IfEqual key0, etab;, Send {BackSpace}.{Space}Beat{Space} 
-Else IfEqual key0, etad;, Send {BackSpace}.{Space}Date{Space} 
-Else IfEqual key0, etad;, Send {BackSpace}.{Space}Date{Space} 
-Else IfEqual key0, etadh;, Send {BackSpace}.{Space}Death{Space} 
-Else IfEqual key0, etalm;, Send {BackSpace}.{Space}Metal{Space} 
-Else IfEqual key0, etfh;, Send {BackSpace}.{Space}Theft{Space} 
-Else IfEqual key0, etiadc;, Send {BackSpace}.{Space}Dictate{Space} 
-Else IfEqual key0, etin;, Send {BackSpace}.{Space}Intent{Space} 
-Else IfEqual key0, etiocm;, Send {BackSpace}.{Space}Committee{Space} 
-Else IfEqual key0, etivn;, Send {BackSpace}.{Space}Invent{Space} 
-Else IfEqual key0, etogn;, Send {BackSpace}.{Space}Gotten{Space} 
-Else IfEqual key0, etoscn;, Send {BackSpace}.{Space}Consent{Space} 
-Else IfEqual key0, etov;, Send {BackSpace}.{Space}Vote{Space} 
-Else IfEqual key0, etpxc;, Send {BackSpace}.{Space}Except{Space} 
-Else IfEqual key0, etupad;, Send {BackSpace}.{Space}Update{Space} 
-Else IfEqual key0, ety;, Send {BackSpace}.{Space}Yet{Space} 
-Else IfEqual key0, etyuab;, Send {BackSpace}.{Space}Beauty{Space} 
-Else IfEqual key0, euagln;, Send {BackSpace}.{Space}Language{Space} 
-Else IfEqual key0, euasm;, Send {BackSpace}.{Space}Assume{Space} 
-Else IfEqual key0, euisdc;, Send {BackSpace}.{Space}Suicide{Space} 
-Else IfEqual key0, eulb;, Send {BackSpace}.{Space}Blue{Space} 
-Else IfEqual key0, eunm;, Send {BackSpace}.{Space}Menu{Space} 
-Else IfEqual key0, eunm;, Send {BackSpace}.{Space}Menu{Space} 
-Else IfEqual key0, eupas;, Send {BackSpace}.{Space}Pause{Space} 
-Else IfEqual key0, eradcn;, Send {BackSpace}.{Space}Dancer{Space} 	
-Else IfEqual key0, eagn;, Send {BackSpace}.{Space}Engage{Space} 
-Else IfEqual key0, eiom;, Send {BackSpace}.{Space}Emotion{Space} 
-Else IfEqual key0, eoavb;, Send {BackSpace}.{Space}Above{Space} 
-Else IfEqual key0, eojk;, Send {BackSpace}.{Space}Joke{Space} 
-Else IfEqual key0, epd;, Send {BackSpace}.{Space}Deep{Space} 
-Else IfEqual key0, ergn;, Send {BackSpace}.{Space}Green{Space} 
-Else IfEqual key0, erianm;, Send {BackSpace}.{Space}Remain{Space} 
-Else IfEqual key0, eropv;, Send {BackSpace}.{Space}Prove{Space} 
-Else IfEqual key0, erpf;, Send {BackSpace}.{Space}Prefer{Space} 
-Else IfEqual key0, ertah;, Send {BackSpace}.{Space}Heart{Space} 
-Else IfEqual key0, ertahb;, Send {BackSpace}.{Space}Breathe{Space} 
-Else IfEqual key0, ertan;, Send {BackSpace}.{Space}Aren't{Space} 
-Else IfEqual key0, ertioa;, Send {BackSpace}.{Space}Iteration{Space} 
-Else IfEqual key0, ertioa;, Send {BackSpace}.{Space}Iteration{Space} 
-Else IfEqual key0, ertipac;, Send {BackSpace}.{Space}Practice{Space} 
-Else IfEqual key0, ertpan;, Send {BackSpace}.{Space}Parent{Space} 
-Else IfEqual key0, erygn;, Send {BackSpace}.{Space}Energy{Space} 
-Else IfEqual key0, esdn;, Send {BackSpace}.{Space}Send{Space} 
-Else IfEqual key0, etasg;, Send {BackSpace}.{Space}Stage{Space} 
-Else IfEqual key0, etasg;, Send {BackSpace}.{Space}Stage{Space} 
-Else IfEqual key0, etiops;, Send {BackSpace}.{Space}Opposite{Space} 
-Else IfEqual key0, etlnm;, Send {BackSpace}.{Space}Element{Space} 
-Else IfEqual key0, etolc;, Send {BackSpace}.{Space}Collect{Space} 
-Else IfEqual key0, eton;, Send {BackSpace}.{Space}Note{Space} 
-Else IfEqual key0, etuc;, Send {BackSpace}.{Space}Cute{Space} 
-Else IfEqual key0, etusg;, Send {BackSpace}.{Space}Suggest{Space} 
-Else IfEqual key0, etvn;, Send {BackSpace}.{Space}Event{Space} 
-Else IfEqual key0, etyhd;, Send {BackSpace}.{Space}They'd{Space} 
-Else IfEqual key0, etyhl;, Send {BackSpace}.{Space}Theyll{Space} 
-Else IfEqual key0, euasc;, Send {BackSpace}.{Space}Cause{Space} 
-Else IfEqual key0, euoacn;, Send {BackSpace}.{Space}Announce{Space} 
-Else IfEqual key0, eusdc;, Send {BackSpace}.{Space}Succeed{Space} 
-Else IfEqual key0, eusdc;, Send {BackSpace}.{Space}Succeed{Space} 
-Else IfEqual key0, eusln;, Send {BackSpace}.{Space}Unless{Space} 
-Else IfEqual key0, eyojn;, Send {BackSpace}.{Space}Enjoy{Space} 
-Else IfEqual key0, eps;, Send {BackSpace}.{Space}Especially{Space} 	
-Else IfEqual key0, eadh;, Send {BackSpace}.{Space}Head{Space} 		
-Else IfEqual key0, eadl;, Send {BackSpace}.{Space}Lead{Space} 	
-Else IfEqual key0, eadm;, Send {BackSpace}.{Space}Made{Space} 	
-Else IfEqual key0, eafc;, Send {BackSpace}.{Space}Face{Space} 	
-Else IfEqual key0, eaflm;, Send {BackSpace}.{Space}Female{Space} 	
-Else IfEqual key0, eafm;, Send {BackSpace}.{Space}Fame{Space} 	
-Else IfEqual key0, eag;, Send {BackSpace}.{Space}Age{Space} 	
-Else IfEqual key0, eaghcn;, Send {BackSpace}.{Space}Change{Space} 	
-Else IfEqual key0, eaghlcn;, Send {BackSpace}.{Space}Challenge{Space} 	
-Else IfEqual key0, eagm;, Send {BackSpace}.{Space}Game{Space} 	
-Else IfEqual key0, eagnm;, Send {BackSpace}.{Space}Manage{Space} 	
-Else IfEqual key0, eagv;, Send {BackSpace}.{Space}Gave{Space} 	
-Else IfEqual key0, eahc;, Send {BackSpace}.{Space}Each{Space} 	
-Else IfEqual key0, eahcn;, Send {BackSpace}.{Space}Chance{Space} 	
-Else IfEqual key0, eahl;, Send {BackSpace}.{Space}Heal{Space} 	
-Else IfEqual key0, eahv;, Send {BackSpace}.{Space}Have{Space} 	
-Else IfEqual key0, eakm;, Send {BackSpace}.{Space}Make{Space} 	
-Else IfEqual key0, ealb;, Send {BackSpace}.{Space}Able{Space} 	
-Else IfEqual key0, ealcn;, Send {BackSpace}.{Space}Clean{Space} 	
-Else IfEqual key0, ealm;, Send {BackSpace}.{Space}Male{Space} 	
-Else IfEqual key0, ealn;, Send {BackSpace}.{Space}Lean{Space} 	
-Else IfEqual key0, eanm;, Send {BackSpace}.{Space}Name{Space} 	
-Else IfEqual key0, easb;, Send {BackSpace}.{Space}Base{Space} 	
-Else IfEqual key0, easc;, Send {BackSpace}.{Space}Case{Space} 	
-Else IfEqual key0, easdk;, Send {BackSpace}.{Space}Asked{Space} 	
-Else IfEqual key0, easf;, Send {BackSpace}.{Space}Safe{Space} 	
-Else IfEqual key0, easkm;, Send {BackSpace}.{Space}Makes{Space} 	
-Else IfEqual key0, easm;, Send {BackSpace}.{Space}Same{Space} 	
-Else IfEqual key0, easv;, Send {BackSpace}.{Space}Save{Space} 	
-Else IfEqual key0, eb;, Send {BackSpace}.{Space}Be{Space} 	
-Else IfEqual key0, ecn;, Send {BackSpace}.{Space}Necessary{Space}
-Else IfEqual key0, edc;, Send {BackSpace}.{Space}Dec{Space} 	
-Else IfEqual key0, edf;, Send {BackSpace}.{Space}Definitely{Space} 	
-Else IfEqual key0, edl;, Send {BackSpace}.{Space}Led{Space} 	
-Else IfEqual key0, edn;, Send {BackSpace}.{Space}Need{Space} 	
-Else IfEqual key0, edn;, Send {BackSpace}.{Space}End{Space} 	
-Else IfEqual key0, edv;, Send {BackSpace}.{Space}Develop{Space} 	
-Else IfEqual key0, ef;, Send {BackSpace}.{Space}For Example{Space} 	
-Else IfEqual key0, eg;, Send {BackSpace}.{Space}Everything{Space} 	
-Else IfEqual key0, egb;, Send {BackSpace}.{Space}Being{Space} 	
-Else IfEqual key0, egl;, Send {BackSpace}.{Space}Leg{Space} 	
-Else IfEqual key0, eh;, Send {BackSpace}.{Space}He{Space} 	
-Else IfEqual key0, ehkc;, Send {BackSpace}.{Space}Check{Space} 	
-Else IfEqual key0, eiacvn;, Send {BackSpace}.{Space}Vaccine{Space} 	
-Else IfEqual key0, eiad;, Send {BackSpace}.{Space}Idea{Space} 	
-Else IfEqual key0, eiadm;, Send {BackSpace}.{Space}Media{Space} 	
-Else IfEqual key0, eiagnm;, Send {BackSpace}.{Space}Imagine{Space} 	
-Else IfEqual key0, eialm;, Send {BackSpace}.{Space}Email{Space} 	
-Else IfEqual key0, eic;, Send {BackSpace}.{Space}Ice{Space} 
-Else IfEqual key0, eicn;, Send {BackSpace}.{Space}Nice{Space} 	
-Else IfEqual key0, eid;, Send {BackSpace}.{Space}Ide	
-Else IfEqual key0, eidc;, Send {BackSpace}.{Space}Decide{Space} 	
-Else IfEqual key0, eidfl;, Send {BackSpace}.{Space}Field{Space} 	
-Else IfEqual key0, eidfl;, Send {BackSpace}.{Space}Field{Space} 	
-Else IfEqual key0, eidfn;, Send {BackSpace}.{Space}Define{Space} 	
-Else IfEqual key0, eidlm;, Send {BackSpace}.{Space}Middle{Space} 	
-Else IfEqual key0, eidn;, Send {BackSpace}.{Space}Indeed{Space} 	
-Else IfEqual key0, eifl;, Send {BackSpace}.{Space}Life{Space} 	
-Else IfEqual key0, eigbn;, Send {BackSpace}.{Space}Begin{Space} 	
-Else IfEqual key0, eigbn;, Send {BackSpace}.{Space}Beginning{Space}
-Else IfEqual key0, eilv;, Send {BackSpace}.{Space}Live{Space} 	
-Else IfEqual key0, eiocv;, Send {BackSpace}.{Space}Voice{Space} 	
-Else IfEqual key0, eiodv;, Send {BackSpace}.{Space}Video{Space} 	
-Else IfEqual key0, eiofc;, Send {BackSpace}.{Space}Office{Space} 	
-Else IfEqual key0, eiohc;, Send {BackSpace}.{Space}Choice{Space} 	
-Else IfEqual key0, eiolvn;, Send {BackSpace}.{Space}Involve{Space} 	
-Else IfEqual key0, eiosc;, Send {BackSpace}.{Space}Section{Space} 	
-Else IfEqual key0, eiosn;, Send {BackSpace}.{Space}Noise{Space} 	
-Else IfEqual key0, eip;, Send {BackSpace}.{Space}Pipe{Space} 	
-Else IfEqual key0, eipc;, Send {BackSpace}.{Space}Piece{Space} 	
-Else IfEqual key0, eiscn;, Send {BackSpace}.{Space}Since{Space} 	
-Else IfEqual key0, eisd;, Send {BackSpace}.{Space}Side{Space} 	
-Else IfEqual key0, eisgln;, Send {BackSpace}.{Space}Single{Space} 	
-Else IfEqual key0, eiv;, Send {BackSpace}.{Space}I've{Space}
-Else IfEqual key0, ekcn;, Send {BackSpace}.{Space}Neck{Space} 	
-Else IfEqual key0, elcn;, Send {BackSpace}.{Space}Necessarily{Space} 	
-Else IfEqual key0, elv;, Send {BackSpace}.{Space}Level{Space} 	
-Else IfEqual key0, em;, Send {BackSpace}.{Space}Me{Space} 	
-Else IfEqual key0, en;, Send {BackSpace}.{Space}En	
-Else IfEqual key0, en;, Send {BackSpace}.{Space}En	
-Else IfEqual key0, enm;, Send {BackSpace}.{Space}Men{Space} 	
-Else IfEqual key0, eoasn;, Send {BackSpace}.{Space}Season{Space} 	
-Else IfEqual key0, eoc;, Send {BackSpace}.{Space}Eco{Space} 	
-Else IfEqual key0, eocn;, Send {BackSpace}.{Space}Once{Space} 	
-Else IfEqual key0, eodc;, Send {BackSpace}.{Space}Code{Space} 	
-Else IfEqual key0, eodlm;, Send {BackSpace}.{Space}Model{Space} 	
-Else IfEqual key0, eodn;, Send {BackSpace}.{Space}Done{Space} 	
-Else IfEqual key0, eogn;, Send {BackSpace}.{Space}Enough{Space} 
-Else IfEqual key0, euoghn;, Send {BackSpace}.{Space}Gone{Space} 	
-Else IfEqual key0, eohl;, Send {BackSpace}.{Space}Hole{Space} 	
-Else IfEqual key0, eohm;, Send {BackSpace}.{Space}Home{Space} 	
-Else IfEqual key0, eolv;, Send {BackSpace}.{Space}Love{Space} 	
-Else IfEqual key0, eon;, Send {BackSpace}.{Space}One{Space} 	
-Else IfEqual key0, eop;, Send {BackSpace}.{Space}People{Space} 	
-Else IfEqual key0, eopdlv;, Send {BackSpace}.{Space}Develop{Space} 	
-Else IfEqual key0, eoph;, Send {BackSpace}.{Space}Hope{Space} 	
-Else IfEqual key0, eophn;, Send {BackSpace}.{Space}Phone{Space} 	
-Else IfEqual key0, eopn;, Send {BackSpace}.{Space}Open{Space} 	
-Else IfEqual key0, eops;, Send {BackSpace}.{Space}Pose{Space} 	
-Else IfEqual key0, eopshn;, Send {BackSpace}.{Space}Phones{Space} 	
-Else IfEqual key0, eosd;, Send {BackSpace}.{Space}Does{Space} 	
-Else IfEqual key0, eosg;, Send {BackSpace}.{Space}Goes{Space} 	
-Else IfEqual key0, eosh;, Send {BackSpace}.{Space}Shoe{Space} 	
-Else IfEqual key0, eoshc;, Send {BackSpace}.{Space}Chose{Space} 	
-Else IfEqual key0, eosl;, Send {BackSpace}.{Space}Lose{Space} 	
-Else IfEqual key0, eoslc;, Send {BackSpace}.{Space}Close{Space} 	
-Else IfEqual key0, eosm;, Send {BackSpace}.{Space}Some{Space} 	
-Else IfEqual key0, eov;, Send {BackSpace}.{Space}Everyone{Space} 	
-Else IfEqual key0, eozn;, Send {BackSpace}.{Space}Zone{Space} 	
-Else IfEqual key0, epac;, Send {BackSpace}.{Space}Pace{Space} 	
-Else IfEqual key0, epag;, Send {BackSpace}.{Space}Page{Space} 	
-Else IfEqual key0, epak;, Send {BackSpace}.{Space}Peak{Space} 	
-Else IfEqual key0, epalc;, Send {BackSpace}.{Space}Place{Space} 	
-Else IfEqual key0, epasc;, Send {BackSpace}.{Space}Space{Space} 	
-Else IfEqual key0, epash;, Send {BackSpace}.{Space}Shape{Space} 	
-Else IfEqual key0, epask;, Send {BackSpace}.{Space}Speak{Space} 	
-Else IfEqual key0, epasl;, Send {BackSpace}.{Space}Please{Space} 	
-Else IfEqual key0, epdn;, Send {BackSpace}.{Space}Depend{Space} 	
-Else IfEqual key0, ephl;, Send {BackSpace}.{Space}Help{Space} 	
-Else IfEqual key0, epk;, Send {BackSpace}.{Space}Keep{Space} 	
-Else IfEqual key0, epsc;, Send {BackSpace}.{Space}Spec{Space} 	
-Else IfEqual key0, epscl;, Send {BackSpace}.{Space}Specifically{Space} 	
-Else IfEqual key0, epsdn;, Send {BackSpace}.{Space}Spend{Space} 	
-Else IfEqual key0, epsh;, Send {BackSpace}.{Space}Sheep{Space} 	
-Else IfEqual key0, epsl;, Send {BackSpace}.{Space}Sleep{Space} 	
-Else IfEqual key0, epx;, Send {BackSpace}.{Space}Experience{Space}
-Else IfEqual key0, era;, Send {BackSpace}.{Space}Are{Space} 	
-Else IfEqual key0, erac;, Send {BackSpace}.{Space}Care{Space} 	
-Else IfEqual key0, eracm;, Send {BackSpace}.{Space}Camera{Space} 	
-Else IfEqual key0, eradfl;, Send {BackSpace}.{Space}Federal	
-Else IfEqual key0, eradh;, Send {BackSpace}.{Space}Heard{Space} 	
-Else IfEqual key0, erady;, Send {BackSpace}.{Space}Ready{Space} 	
-Else IfEqual key0, erag;, Send {BackSpace}.{Space}Agree{Space} 	
-Else IfEqual key0, eragh;, Send {BackSpace}.{Space}Hearing{Space} 	
-Else IfEqual key0, eragl;, Send {BackSpace}.{Space}Large{Space} 	
-Else IfEqual key0, eragn;, Send {BackSpace}.{Space}Range{Space} 	
-Else IfEqual key0, erah;, Send {BackSpace}.{Space}Hear{Space} 	
-Else IfEqual key0, erahc;, Send {BackSpace}.{Space}Reach{Space} 	
-Else IfEqual key0, erakb;, Send {BackSpace}.{Space}Break{Space} 	
-Else IfEqual key0, eral;, Send {BackSpace}.{Space}Real{Space} 	
-Else IfEqual key0, eralc;, Send {BackSpace}.{Space}Clear{Space} 	
-Else IfEqual key0, eraln;, Send {BackSpace}.{Space}Learn{Space} 	
-Else IfEqual key0, eran;, Send {BackSpace}.{Space}Near{Space} 	
-Else IfEqual key0, erash;, Send {BackSpace}.{Space}Share{Space} 	
-Else IfEqual key0, erashc;, Send {BackSpace}.{Space}Search{Space} 	
-Else IfEqual key0, erbm;, Send {BackSpace}.{Space}Member{Space} 	
-Else IfEqual key0, erf;, Send {BackSpace}.{Space}Free{Space} 	
-Else IfEqual key0, erh;, Send {BackSpace}.{Space}Her{Space} 	
-Else IfEqual key0, erias;, Send {BackSpace}.{Space}Raise{Space} 	
-Else IfEqual key0, eridfn;, Send {BackSpace}.{Space}Friend{Space} 	
-Else IfEqual key0, eridlv;, Send {BackSpace}.{Space}Deliver{Space} 	
-Else IfEqual key0, eridlv;, Send {BackSpace}.{Space}Deliver{Space} 	
-Else IfEqual key0, eridnm;, Send {BackSpace}.{Space}Remind{Space} 	
-Else IfEqual key0, eridv;, Send {BackSpace}.{Space}Derive{Space} 	
-Else IfEqual key0, erifb;, Send {BackSpace}.{Space}Brief{Space} 	
-Else IfEqual key0, erifn;, Send {BackSpace}.{Space}Infer{Space} 	
-Else IfEqual key0, erign;, Send {BackSpace}.{Space}Engineer{Space} 	
-Else IfEqual key0, eriogn;, Send {BackSpace}.{Space}Region{Space} 	
-Else IfEqual key0, eriopa;, Send {BackSpace}.{Space}Operation{Space} 	
-Else IfEqual key0, eriopdv;, Send {BackSpace}.{Space}Provide{Space} 	
-Else IfEqual key0, erioscn;, Send {BackSpace}.{Space}Scenario{Space} 	
-Else IfEqual key0, eriosdc;, Send {BackSpace}.{Space}Description{Space} 	
-Else IfEqual key0, eriovn;, Send {BackSpace}.{Space}Environment{Space} 	
-Else IfEqual key0, eripc;, Send {BackSpace}.{Space}Price{Space} 	
-Else IfEqual key0, eriscb;, Send {BackSpace}.{Space}Scribe{Space} 	
-Else IfEqual key0, erisdc;, Send {BackSpace}.{Space}Describe{Space} 	
-Else IfEqual key0, eroasn;, Send {BackSpace}.{Space}Reason{Space} 	
-Else IfEqual key0, erocn;, Send {BackSpace}.{Space}Concern{Space} 	
-Else IfEqual key0, erocv;, Send {BackSpace}.{Space}Cover{Space} 	
-Else IfEqual key0, erod;, Send {BackSpace}.{Space}Order{Space} 	
-Else IfEqual key0, erodc;, Send {BackSpace}.{Space}Record{Space} 	
-Else IfEqual key0, erof;, Send {BackSpace}.{Space}Offer{Space} 	
-Else IfEqual key0, erol;, Send {BackSpace}.{Space}Role{Space} 	
-Else IfEqual key0, eropacm;, Send {BackSpace}.{Space}Compare{Space} 	
-Else IfEqual key0, eropafcnm;, Send {BackSpace}.{Space}Performance{Space} 	
-Else IfEqual key0, eroplbm;, Send {BackSpace}.{Space}Problem{Space} 	
-Else IfEqual key0, eroplx;, Send {BackSpace}.{Space}Explore{Space} 	
-Else IfEqual key0, eropsg;, Send {BackSpace}.{Space}Progress{Space} 	
-Else IfEqual key0, eropsn;, Send {BackSpace}.{Space}Person{Space} 	
-Else IfEqual key0, erosh;, Send {BackSpace}.{Space}Horse{Space} 	
-Else IfEqual key0, erov;, Send {BackSpace}.{Space}Over{Space} 	
-Else IfEqual key0, erp;, Send {BackSpace}.{Space}Per{Space} 
-Else IfEqual key0, erpa;, Send {BackSpace}.{Space}Prepare{Space} 	
-Else IfEqual key0, erpalc;, Send {BackSpace}.{Space}Replace{Space} 	
-Else IfEqual key0, erps;, Send {BackSpace}.{Space}Press{Space} 	
-Else IfEqual key0, ers;, Send {BackSpace}.{Space}Res{Space} 	
-Else IfEqual key0, erscn;, Send {BackSpace}.{Space}Screen{Space} 	
-Else IfEqual key0, ersv;, Send {BackSpace}.{Space}Serve{Space} 	
-Else IfEqual key0, ert;, Send {BackSpace}.{Space}Tree{Space} 	
-Else IfEqual key0, erta;, Send {BackSpace}.{Space}Rate{Space} 	
-Else IfEqual key0, ertac;, Send {BackSpace}.{Space}React{Space} 	
-Else IfEqual key0, ertafh;, Send {BackSpace}.{Space}Father{Space} 	
-Else IfEqual key0, ertag;, Send {BackSpace}.{Space}Great{Space} 	
-Else IfEqual key0, ertahc;, Send {BackSpace}.{Space}Character{Space} 	
-Else IfEqual key0, ertal;, Send {BackSpace}.{Space}Later{Space} 	
-Else IfEqual key0, ertalcn;, Send {BackSpace}.{Space}Central{Space} 	
-Else IfEqual key0, ertam;, Send {BackSpace}.{Space}Matter{Space} 	
-Else IfEqual key0, ertax;, Send {BackSpace}.{Space}Extra	
-Else IfEqual key0, ertb;, Send {BackSpace}.{Space}Better{Space} 	
-Else IfEqual key0, ertcn;, Send {BackSpace}.{Space}Recent{Space} 	
-Else IfEqual key0, erth;, Send {BackSpace}.{Space}There{Space} 	
-Else IfEqual key0, erths;, Send {BackSpace}.{Space}There's{Space} 	
-Else IfEqual key0, ertiacn;, Send {BackSpace}.{Space}Certain{Space} 	
-Else IfEqual key0, ertiagn;, Send {BackSpace}.{Space}Integrate{Space} 	
-Else IfEqual key0, ertial;, Send {BackSpace}.{Space}Retail{Space} 	
-Else IfEqual key0, ertialcv;, Send {BackSpace}.{Space}Vertical{Space} 	
-Else IfEqual key0, ertialv;, Send {BackSpace}.{Space}Relative{Space} 	
-Else IfEqual key0, ertidc;, Send {BackSpace}.{Space}Credit{Space} 	
-Else IfEqual key0, ertifl;, Send {BackSpace}.{Space}Filter{Space} 	
-Else IfEqual key0, ertih;, Send {BackSpace}.{Space}Their{Space} 	
-Else IfEqual key0, ertin;, Send {BackSpace}.{Space}Inter	
-Else IfEqual key0, ertioadcn;, Send {BackSpace}.{Space}Coordinate{Space} 	
-Else IfEqual key0, ertipa;, Send {BackSpace}.{Space}Therapist{Space} 	
-Else IfEqual key0, ertipah;, Send {BackSpace}.{Space}Therapist{Space} 	
-Else IfEqual key0, ertipash;, Send {BackSpace}.{Space}Therapist{Space} 	
-Else IfEqual key0, ertiph;, Send {BackSpace}.{Space}Therapist{Space} 	
-Else IfEqual key0, ertis;, Send {BackSpace}.{Space}Sister{Space} 	
-Else IfEqual key0, ertl;, Send {BackSpace}.{Space}Letter{Space} 	
-Else IfEqual key0, ertm;, Send {BackSpace}.{Space}Term{Space} 	
-Else IfEqual key0, ertn;, Send {BackSpace}.{Space}Enter{Space} 	
-Else IfEqual key0, erto;, Send {BackSpace}.{Space}Tore{Space} 	
-Else IfEqual key0, ertoasg;, Send {BackSpace}.{Space}Storage{Space} 	
-Else IfEqual key0, ertoc;, Send {BackSpace}.{Space}Correct{Space} 	
-Else IfEqual key0, ertogh;, Send {BackSpace}.{Space}Together{Space} 	
-Else IfEqual key0, ertoh;, Send {BackSpace}.{Space}Other{Space} 	
-Else IfEqual key0, ertohb;, Send {BackSpace}.{Space}Bother{Space} 	
-Else IfEqual key0, ertohm;, Send {BackSpace}.{Space}Mother{Space} 	
-Else IfEqual key0, ertop;, Send {BackSpace}.{Space}Report{Space} 	
-Else IfEqual key0, ertos;, Send {BackSpace}.{Space}Store{Space} 	
-Else IfEqual key0, ertosn;, Send {BackSpace}.{Space}Testosterone{Space} 	
-Else IfEqual key0, ertpa;, Send {BackSpace}.{Space}Parate{Space} 	
-Else IfEqual key0, ertpan;, Send {BackSpace}.{Space}Partner{Space} 	
-Else IfEqual key0, ertpcn;, Send {BackSpace}.{Space}Percent{Space} 	
-Else IfEqual key0, ertpsn;, Send {BackSpace}.{Space}Present{Space} 	
-Else IfEqual key0, erts;, Send {BackSpace}.{Space}Rest{Space} 	
-Else IfEqual key0, ertsh;, Send {BackSpace}.{Space}There's{Space} 	
-Else IfEqual key0, ertu;, Send {BackSpace}.{Space}True{Space} 	
-Else IfEqual key0, ertuac;, Send {BackSpace}.{Space}Accurate{Space} 	
-Else IfEqual key0, ertuafcnm;, Send {BackSpace}.{Space}Manufacture{Space} 	
-Else IfEqual key0, ertuan;, Send {BackSpace}.{Space}Nature{Space} 	
-Else IfEqual key0, ertucn;, Send {BackSpace}.{Space}Current{Space} 	
-Else IfEqual key0, ertuf;, Send {BackSpace}.{Space}Future{Space} 	
-Else IfEqual key0, ertuipc;, Send {BackSpace}.{Space}Picture{Space} 	
-Else IfEqual key0, ertulc;, Send {BackSpace}.{Space}Culture{Space} 	
-Else IfEqual key0, ertusl;, Send {BackSpace}.{Space}Result{Space} 	
-Else IfEqual key0, ertvnm;, Send {BackSpace}.{Space}Environment{Space} 	
-Else IfEqual key0, ertxm;, Send {BackSpace}.{Space}Extreme{Space} 	
-Else IfEqual key0, ertyh;, Send {BackSpace}.{Space}They're{Space} 	
-Else IfEqual key0, ertyn;, Send {BackSpace}.{Space}Entry{Space} 	
-Else IfEqual key0, eru;, Send {BackSpace}.{Space}You're{Space} 	
-Else IfEqual key0, erudc;, Send {BackSpace}.{Space}Reduce{Space} 	
-Else IfEqual key0, erudn;, Send {BackSpace}.{Space}Under{Space} 	
-Else IfEqual key0, erul;, Send {BackSpace}.{Space}Rule{Space} 	
-Else IfEqual key0, eruops;, Send {BackSpace}.{Space}Purpose{Space} 	
-Else IfEqual key0, erups;, Send {BackSpace}.{Space}Super{Space} 	
-Else IfEqual key0, erus;, Send {BackSpace}.{Space}Sure{Space} 	
-Else IfEqual key0, erusfl;, Send {BackSpace}.{Space}Yourself{Space} 	
-Else IfEqual key0, erusm;, Send {BackSpace}.{Space}Summer{Space} 	
-Else IfEqual key0, erv;, Send {BackSpace}.{Space}Ever{Space} 	
-Else IfEqual key0, ervn;, Send {BackSpace}.{Space}Never{Space} 	
-Else IfEqual key0, ervn;, Send {BackSpace}.{Space}Never{Space} 	
-Else IfEqual key0, ery;, Send {BackSpace}.{Space}Every{Space} 	
-Else IfEqual key0, eryal;, Send {BackSpace}.{Space}Early{Space} 	
-Else IfEqual key0, eryogc;, Send {BackSpace}.{Space}Grocery{Space} 	
-Else IfEqual key0, eryph;, Send {BackSpace}.{Space}Hyper	
-Else IfEqual key0, eryusg;, Send {BackSpace}.{Space}Surgery{Space} 	
-Else IfEqual key0, eryv;, Send {BackSpace}.{Space}Every{Space} 	
-Else IfEqual key0, es;, Send {BackSpace}.{Space}See{Space} 	
-Else IfEqual key0, esc;, Send {BackSpace}.{Space}Second{Space} 	
-Else IfEqual key0, esdn;, Send {BackSpace}.{Space}Send{Space} 	
-Else IfEqual key0, esfl;, Send {BackSpace}.{Space}Self{Space} 	
-Else IfEqual key0, esh;, Send {BackSpace}.{Space}She{Space} 	
-Else IfEqual key0, esk;, Send {BackSpace}.{Space}Seek{Space} 	
-Else IfEqual key0, esl;, Send {BackSpace}.{Space}Else{Space}
-Else IfEqual key0, esm;, Send {BackSpace}.{Space}Seem{Space} 	
-Else IfEqual key0, esn;, Send {BackSpace}.{Space}Sense{Space} 	
-Else IfEqual key0, et;, Send {BackSpace}.{Space}Even Though{Space} 	
-Else IfEqual key0, eta;, Send {BackSpace}.{Space}Ate{Space} 	
-Else IfEqual key0, etadh;, Send {BackSpace}.{Space}Hated{Space} 	
-Else IfEqual key0, etadln;, Send {BackSpace}.{Space}Dental{Space} 	
-Else IfEqual key0, etafc;, Send {BackSpace}.{Space}Affect{Space} 	
-Else IfEqual key0, etaghc;, Send {BackSpace}.{Space}Teaching{Space} 	
-Else IfEqual key0, etah;, Send {BackSpace}.{Space}Hate{Space} 	
-Else IfEqual key0, etahc;, Send {BackSpace}.{Space}Teach{Space} 	
-Else IfEqual key0, etahl;, Send {BackSpace}.{Space}Health{Space} 	
-Else IfEqual key0, etak;, Send {BackSpace}.{Space}Take{Space} 	
-Else IfEqual key0, etal;, Send {BackSpace}.{Space}Late{Space} 	
-Else IfEqual key0, etalb;, Send {BackSpace}.{Space}Table{Space} 	
-Else IfEqual key0, etam;, Send {BackSpace}.{Space}Team{Space} 	
-Else IfEqual key0, etan;, Send {BackSpace}.{Space}Neat{Space} 	
-Else IfEqual key0, etas;, Send {BackSpace}.{Space}State{Space} 	
-Else IfEqual key0, etascn;, Send {BackSpace}.{Space}Stance{Space} 	
-Else IfEqual key0, etasl;, Send {BackSpace}.{Space}Least{Space} 	
-Else IfEqual key0, etaxc;, Send {BackSpace}.{Space}Exact{Space} 	
-Else IfEqual key0, etc;, Send {BackSpace}.{Space}Et Cetera{Space} 	
-Else IfEqual key0, etcn;, Send {BackSpace}.{Space}Cent{Space} 	
-Else IfEqual key0, etdn;, Send {BackSpace}.{Space}Tend{Space} 	
-Else IfEqual key0, etfc;, Send {BackSpace}.{Space}Effect{Space} 	
-Else IfEqual key0, etfl;, Send {BackSpace}.{Space}Felt{Space} 	
-Else IfEqual key0, etg;, Send {BackSpace}.{Space}Get{Space} 	
-Else IfEqual key0, etgv;, Send {BackSpace}.{Space}Everything{Space} 	
-Else IfEqual key0, eth;, Send {BackSpace}.{Space}The{Space} 	
-Else IfEqual key0, ethc;, Send {BackSpace}.{Space}Tech{Space} 	
-Else IfEqual key0, ethcn;, Send {BackSpace}.{Space}Technology{Space} 	
-Else IfEqual key0, ethm;, Send {BackSpace}.{Space}Them{Space} 	
-Else IfEqual key0, ethn;, Send {BackSpace}.{Space}Then{Space} 	
-Else IfEqual key0, etiacv;, Send {BackSpace}.{Space}Active{Space} 	
-Else IfEqual key0, etiav;, Send {BackSpace}.{Space}Ative	
-Else IfEqual key0, etiglcn;, Send {BackSpace}.{Space}Intelligence{Space} 	
-Else IfEqual key0, etigln;, Send {BackSpace}.{Space}Intelligent{Space} 	
-Else IfEqual key0, etihc;, Send {BackSpace}.{Space}Ethic{Space} 	
-Else IfEqual key0, etil;, Send {BackSpace}.{Space}Little{Space} 	
-Else IfEqual key0, etilcn;, Send {BackSpace}.{Space}Client{Space} 	
-Else IfEqual key0, etim;, Send {BackSpace}.{Space}Item{Space} 	
-Else IfEqual key0, etim;, Send {BackSpace}.{Space}Time{Space} 	
-Else IfEqual key0, etiocm;, Send {BackSpace}.{Space}Committee{Space} 	
-Else IfEqual key0, etiocn;, Send {BackSpace}.{Space}Notice{Space} 	
-Else IfEqual key0, etionm;, Send {BackSpace}.{Space}Mention{Space} 	
-Else IfEqual key0, etipan;, Send {BackSpace}.{Space}Patient{Space} 	
-Else IfEqual key0, etis;, Send {BackSpace}.{Space}Site{Space} 	
-Else IfEqual key0, etis;, Send {BackSpace}.{Space}Ities{Space} 	
-Else IfEqual key0, etism;, Send {BackSpace}.{Space}Times{Space} 	
-Else IfEqual key0, etisvn;, Send {BackSpace}.{Space}Invest{Space} 	
-Else IfEqual key0, etisx;, Send {BackSpace}.{Space}Exist{Space} 	
-Else IfEqual key0, etiv;, Send {BackSpace}.{Space}Tive{Space} 	
-Else IfEqual key0, etixc;, Send {BackSpace}.{Space}Excite{Space} 	
-Else IfEqual key0, etl;, Send {BackSpace}.{Space}Let{Space} 	
-Else IfEqual key0, etm;, Send {BackSpace}.{Space}Met{Space} 	
-Else IfEqual key0, etm;, Send {BackSpace}.{Space}Met{Space} 	
-Else IfEqual key0, etn;, Send {BackSpace}.{Space}Net{Space}
-Else IfEqual key0, etoalc;, Send {BackSpace}.{Space}Locate{Space} 	
-Else IfEqual key0, etocn;, Send {BackSpace}.{Space}Connect{Space} 	
-Else IfEqual key0, etocnm;, Send {BackSpace}.{Space}Comment{Space} 	
-Else IfEqual key0, etofn;, Send {BackSpace}.{Space}Often{Space} 	
-Else IfEqual key0, etogh;, Send {BackSpace}.{Space}Together{Space} 	
-Else IfEqual key0, etohl;, Send {BackSpace}.{Space}Hotel{Space} 	
-Else IfEqual key0, etojcb;, Send {BackSpace}.{Space}Object{Space} 	
-Else IfEqual key0, etonm;, Send {BackSpace}.{Space}Moment{Space} 	
-Else IfEqual key0, etopcn;, Send {BackSpace}.{Space}Concept{Space} 	
-Else IfEqual key0, etopkc;, Send {BackSpace}.{Space}Pocket{Space} 	
-Else IfEqual key0, etosh;, Send {BackSpace}.{Space}Those{Space} 	
-Else IfEqual key0, etoshn;, Send {BackSpace}.{Space}Honest{Space} 	
-Else IfEqual key0, etpac;, Send {BackSpace}.{Space}Accept{Space} 	
-Else IfEqual key0, etpdn;, Send {BackSpace}.{Space}Dependent{Space} 	
-Else IfEqual key0, etpk;, Send {BackSpace}.{Space}Kept{Space} 	
-Else IfEqual key0, etps;, Send {BackSpace}.{Space}Step{Space} 	
-Else IfEqual key0, etps;, Send {BackSpace}.{Space}Step{Space} 	
-Else IfEqual key0, etpsn;, Send {BackSpace}.{Space}Spent{Space} 	
-Else IfEqual key0, tpxc;, Send {BackSpace}.{Space}Expect{Space} 	
-Else IfEqual key0, ets;, Send {BackSpace}.{Space}Set{Space} 	
-Else IfEqual key0, etsb;, Send {BackSpace}.{Space}Best{Space} 	
-Else IfEqual key0, etsh;, Send {BackSpace}.{Space}These{Space} 	
-Else IfEqual key0, etshc;, Send {BackSpace}.{Space}Chest{Space} 	
-Else IfEqual key0, etshlb;, Send {BackSpace}.{Space}Establish{Space} 	
-Else IfEqual key0, etsl;, Send {BackSpace}.{Space}Let's{Space} 	
-Else IfEqual key0, etslc;, Send {BackSpace}.{Space}Select{Space} 	
-Else IfEqual key0, etsn;, Send {BackSpace}.{Space}Sent{Space} 
-Else IfEqual key0, etysln;, Send {BackSpace}.{Space}Sent{Space} 	
-Else IfEqual key0, etuadc;, Send {BackSpace}.{Space}Educate{Space} 	
-Else IfEqual key0, etuagnm;, Send {BackSpace}.{Space}Augment{Space} 	
-Else IfEqual key0, etuinm;, Send {BackSpace}.{Space}Minute{Space} 	
-Else IfEqual key0, etuipadlc;, Send {BackSpace}.{Space}Duplicate{Space} 	
-Else IfEqual key0, etuodcnm;, Send {BackSpace}.{Space}Document{Space} 	
-Else IfEqual key0, etusdn;, Send {BackSpace}.{Space}Student{Space} 	
-Else IfEqual key0, etuvn;, Send {BackSpace}.{Space}Eventually{Space} 	
-Else IfEqual key0, etx;, Send {BackSpace}.{Space}External{Space} 	
-Else IfEqual key0, etxn;, Send {BackSpace}.{Space}Next{Space} 	
-Else IfEqual key0, etyh;, Send {BackSpace}.{Space}They{Space} 	
-Else IfEqual key0, etyhv;, Send {BackSpace}.{Space}They've{Space} 	
-Else IfEqual key0, etyidn;, Send {BackSpace}.{Space}Identity{Space} 	
-Else IfEqual key0, etyoscm;, Send {BackSpace}.{Space}Ecosystem{Space} 	
-Else IfEqual key0, etyp;, Send {BackSpace}.{Space}Type{Space} 	
-Else IfEqual key0, etysl;, Send {BackSpace}.{Space}Style{Space} 	
-Else IfEqual key0, etysm;, Send {BackSpace}.{Space}System{Space} 	
-Else IfEqual key0, euaglc;, Send {BackSpace}.{Space}Colleague{Space} 	
-Else IfEqual key0, eualv;, Send {BackSpace}.{Space}Value{Space} 	
-Else IfEqual key0, eud;, Send {BackSpace}.{Space}Education{Space} 	
-Else IfEqual key0, eugh;, Send {BackSpace}.{Space}Huge{Space} 	
-Else IfEqual key0, euiadcn;, Send {BackSpace}.{Space}Audience{Space} 	
-Else IfEqual key0, euis;, Send {BackSpace}.{Space}Issue{Space} 	
-Else IfEqual key0, euops;, Send {BackSpace}.{Space}Suppose{Space} 	
-Else IfEqual key0, euosfcn;, Send {BackSpace}.{Space}Confuse{Space} 	
-Else IfEqual key0, euosh;, Send {BackSpace}.{Space}House{Space} 	
-Else IfEqual key0, eus;, Send {BackSpace}.{Space}Use{Space} 	
-Else IfEqual key0, eusc;, Send {BackSpace}.{Space}Success{Space} 	
-Else IfEqual key0, eusdn;, Send {BackSpace}.{Space}Sudden{Space} 	
-Else IfEqual key0, eusg;, Send {BackSpace}.{Space}Guess{Space} 	
-Else IfEqual key0, euv;, Send {BackSpace}.{Space}You've{Space} 	
-Else IfEqual key0, ev;, Send {BackSpace}.{Space}Ever{Space} 	
-Else IfEqual key0, evb;, Send {BackSpace}.{Space}Everybody{Space} 	
-Else IfEqual key0, evn;, Send {BackSpace}.{Space}Even{Space} 	
-Else IfEqual key0, ex;, Send {BackSpace}.{Space}Exactly{Space} 	
-Else IfEqual key0, ex;, Send {BackSpace}.{Space}Ex	
-Else IfEqual key0, exc;, Send {BackSpace}.{Space}Excellent{Space} 	
-Else IfEqual key0, eyalzn;, Send {BackSpace}.{Space}Analyze{Space} 	
-Else IfEqual key0, eyas;, Send {BackSpace}.{Space}Easy{Space} 	
-Else IfEqual key0, eyb;, Send {BackSpace}.{Space}Bye{Space} 	
-Else IfEqual key0, eyk;, Send {BackSpace}.{Space}Key{Space} 	
-Else IfEqual key0, eylc;, Send {BackSpace}.{Space}Cycle{Space} 	
-Else IfEqual key0, eyonm;, Send {BackSpace}.{Space}Money{Space} 	
-Else IfEqual key0, eys;, Send {BackSpace}.{Space}Yes{Space} 	
-Else IfEqual key0, eysflm;, Send {BackSpace}.{Space}Myself{Space} 	
-Else IfEqual key0, eysflm;, Send {BackSpace}.{Space}Myself{Space} 	
-Else IfEqual key0, eyv;, Send {BackSpace}.{Space}Every{Space} 
-Else IfEqual key0, ealbm;, Send {BackSpace}.{Space}Blame{Space} 
-Else IfEqual key0, easl;, Send {BackSpace}.{Space}Lease{Space} 
-Else IfEqual key0, edkc;, Send {BackSpace}.{Space}Deck{Space} 
-Else IfEqual key0, eranm;, Send {BackSpace}.{Space}Manner{Space} 
-Else IfEqual key0, erfl;, Send {BackSpace}.{Space}Freelance{Space} 
-Else IfEqual key0, eriopd;, Send {BackSpace}.{Space}Period{Space} 
-Else IfEqual key0, eripx;, Send {BackSpace}.{Space}Expire{Space} 
-Else IfEqual key0, erpdc;, Send {BackSpace}.{Space}Precede{Space} 
-Else IfEqual key0, ertian;, Send {BackSpace}.{Space}Entertain{Space} 
-Else IfEqual key0, etid;, Send {BackSpace}.{Space}Edit{Space} 
-Else IfEqual key0, etlc;, Send {BackSpace}.{Space}Elect{Space} 
-Else IfEqual key0, euidg;, Send {BackSpace}.{Space}Guide{Space} 
-Else IfEqual key0, euign;, Send {BackSpace}.{Space}Genuine{Space} 
-Else IfEqual key0, eyaglc;, Send {BackSpace}.{Space}Legacy{Space} 	
-Return
-SENDOstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, oa;, Send {BackSpace}.{Space}Anyone{Space} 
-Else IfEqual key0, oan;, Send {BackSpace}.{Space}Anyone{Space} 
-Else IfEqual key0, oadl;, Send {BackSpace}.{Space}Load{Space} 
-Else IfEqual key0, oagnm;, Send {BackSpace}.{Space}Among{Space} 
-Else IfEqual key0, odfl;, Send {BackSpace}.{Space}Fold{Space} 
-Else IfEqual key0, ogm;, Send {BackSpace}.{Space}Oh My God.{Space} 
-Else IfEqual key0, oahlc;, Send {BackSpace}.{Space}Alcohol{Space} 
-Else IfEqual key0, odgl;, Send {BackSpace}.{Space}Gold{Space} 
-Else IfEqual key0, odlb;, Send {BackSpace}.{Space}Bold{Space} 
-Else IfEqual key0, odlc;, Send {BackSpace}.{Space}Cold{Space} 
-Else IfEqual key0, ofkl;, Send {BackSpace}.{Space}Folk{Space} 
-Else IfEqual key0, ogl;, Send {BackSpace}.{Space}Log{Space} 
-Else IfEqual key0, ozm;, Send {BackSpace}.{Space}Zoom{Space} 
-Else IfEqual key0, omsgh;, Send {BackSpace}.{Space}Oh My Gosh.{Space} 
-Else IfEqual key0, osgh;, Send {BackSpace}.{Space}Gosh{Space} 
-Else IfEqual key0, osn;, Send {BackSpace}.{Space}Soon{Space} 
-Else IfEqual key0, oaln;, Send {BackSpace}.{Space}Loan{Space} 
-Else IfEqual key0, obm;, Send {BackSpace}.{Space}Bomb{Space} 
-Else IfEqual key0, oshkc;, Send {BackSpace}.{Space}Shock{Space} 
-Else IfEqual key0, oxb;, Send {BackSpace}.{Space}Box{Space} 
-Else IfEqual key0, oag;, Send {BackSpace}.{Space}Ago{Space} 
-Else IfEqual key0, osn;, Send {BackSpace}.{Space}Son{Space} 
-Else IfEqual key0, oagl;, Send {BackSpace}.{Space}Goal{Space} 
-Else IfEqual key0, oagln;, Send {BackSpace}.{Space}Along{Space} 
-Else IfEqual key0, oagn;, Send {BackSpace}.{Space}Going To{Space} 
-Else IfEqual key0, oasl;, Send {BackSpace}.{Space}Also{Space} 
-Else IfEqual key0, oc;, Send {BackSpace}.{Space}Could{Space} 
-Else IfEqual key0, ocm;, Send {BackSpace}.{Space}Com
-Else IfEqual key0, ocn;, Send {BackSpace}.{Space}Con
-Else IfEqual key0, ocnm;, Send {BackSpace}.{Space}Common{Space} 
-Else IfEqual key0, od;, Send {BackSpace}.{Space}Do{Space} 
-Else IfEqual key0, odc;, Send {BackSpace}.{Space}Document{Space} 
-Else IfEqual key0, odf;, Send {BackSpace}.{Space}Food{Space} 
-Else IfEqual key0, odg;, Send {BackSpace}.{Space}Doing{Space} 
-Else IfEqual key0, odhl;, Send {BackSpace}.{Space}Hold{Space} 
-Else IfEqual key0, odl;, Send {BackSpace}.{Space}Old{Space} 
-Else IfEqual key0, of;, Send {BackSpace}.{Space}Of{Space} 
-Else IfEqual key0, ofc;, Send {BackSpace}.{Space}Of Course{Space} 
-Else IfEqual key0, ofc;, Send {BackSpace}.{Space}Of Course{Space} 
-Else IfEqual key0, ofcn;, Send {BackSpace}.{Space}Confirm{Space} 
-Else IfEqual key0, ofn;, Send {BackSpace}.{Space}Information{Space} 
-Else IfEqual key0, og;, Send {BackSpace}.{Space}Go{Space} 
-Else IfEqual key0, ogln;, Send {BackSpace}.{Space}Long{Space} 
-Else IfEqual key0, oglv;, Send {BackSpace}.{Space}Loving{Space} 
-Else IfEqual key0, ogn;, Send {BackSpace}.{Space}Gone{Space} 
-Else IfEqual key0, ohm;, Send {BackSpace}.{Space}Homo
-Else IfEqual key0, ojb;, Send {BackSpace}.{Space}Job{Space} 
-Else IfEqual key0, ok;, Send {BackSpace}.{Space}Kind Of{Space} 
-Else IfEqual key0, okb;, Send {BackSpace}.{Space}Book{Space} 
-Else IfEqual key0, okc;, Send {BackSpace}.{Space}Cook{Space} 
-Else IfEqual key0, okl;, Send {BackSpace}.{Space}Look{Space} 
-Else IfEqual key0, oklc;, Send {BackSpace}.{Space}Lock{Space} 
-Else IfEqual key0, oln;, Send {BackSpace}.{Space}Online{Space} 
-Else IfEqual key0, on;, Send {BackSpace}.{Space}On{Space} 
-Else IfEqual key0, onm;, Send {BackSpace}.{Space}Moon{Space} 
-Else IfEqual key0, op;, Send {BackSpace}.{Space}Opportunity{Space} 
-Else IfEqual key0, opn;, Send {BackSpace}.{Space}Open{Space} 
-Else IfEqual key0, ops;, Send {BackSpace}.{Space}Opportunities{Space} 
-Else IfEqual key0, opsh;, Send {BackSpace}.{Space}Shop{Space} 
-Else IfEqual key0, os;, Send {BackSpace}.{Space}So{Space} 
-Else IfEqual key0, osf;, Send {BackSpace}.{Space}Sort Of{Space} 
-Else IfEqual key0, osfkl;, Send {BackSpace}.{Space}Folks{Space} 
-Else IfEqual key0, osgn;, Send {BackSpace}.{Space}Song{Space} 
-Else IfEqual key0, oshlc;, Send {BackSpace}.{Space}School{Space} 
-Else IfEqual key0, osm;, Send {BackSpace}.{Space}Someone{Space} 
-Else IfEqual key0, osn;, Send {BackSpace}.{Space}Soon{Space} 
-Else IfEqual key0, ovb;, Send {BackSpace}.{Space}Obviously{Space} 
-Else IfEqual key0, oalc;, Send {BackSpace}.{Space}Local{Space} 
-Else IfEqual key0, oflc;, Send {BackSpace}.{Space}Official{Space} 
-Else IfEqual key0, oh;, Send {BackSpace}.{Space}Oh,{Space} 
-Else IfEqual key0, osdl;, Send {BackSpace}.{Space}Sold{Space} 
-Return
-SENDPstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, PAC;, Send {BackSpace}.{Space}Cap{Space} 
-Else IfEqual key0, pk;, Send {BackSpace}.{Space}Keep{Space} 	
-Else IfEqual key0, updg;, Send {BackSpace}.{Space}Pudding{Space} 		
-Else IfEqual key0, psfc;, Send {BackSpace}.{Space}Specific{Space} 
-Else IfEqual key0, pfhl;, Send {BackSpace}.{Space}Helpful{Space} 
-Else IfEqual key0, phl;, Send {BackSpace}.{Space}Helpful{Space} 
-Else IfEqual key0, pakc;, Send {BackSpace}.{Space}Pack{Space} 
-Else IfEqual key0, pam;, Send {BackSpace}.{Space}Map{Space} 
-Else IfEqual key0, pasm;, Send {BackSpace}.{Space}Spam{Space} 
-Else IfEqual key0, pgk;, Send {BackSpace}.{Space}Package{Space} 
-Else IfEqual key0, pk;, Send {BackSpace}.{Space}Keep{Space} 
-Else IfEqual key0, pal;, Send {BackSpace}.{Space}Application{Space} 
-Else IfEqual key0, pb;, Send {BackSpace}.{Space}Possible{Space} 
-Else IfEqual key0, pag;, Send {BackSpace}.{Space}Gap{Space} 
-Else IfEqual key0, pasl;, Send {BackSpace}.{Space}Applies{Space} 
-Else IfEqual key0, pcnm;, Send {BackSpace}.{Space}Companion{Space} 
-Else IfEqual key0, pdxn;, Send {BackSpace}.{Space}Expand{Space} 
-Else IfEqual key0, pgk;, Send {BackSpace}.{Space}Package{Space} 
-Else IfEqual key0, plcnm;, Send {BackSpace}.{Space}Complain{Space} 
-Else IfEqual key0, plcnm;, Send {BackSpace}.{Space}Complain{Space} 
-Else IfEqual key0, psdn;, Send {BackSpace}.{Space}Dispense{Space} 
-Else IfEqual key0, psxvn;, Send {BackSpace}.{Space}Expansive{Space} 
-Else IfEqual key0, pa;, Send {BackSpace}.{Space}App{Space} 
-Else IfEqual key0, paglz;, Send {BackSpace}.{Space}Apologize{Space} 
-Else IfEqual key0, palcm;, Send {BackSpace}.{Space}Accomplish{Space} 
-Else IfEqual key0, pashlcm;, Send {BackSpace}.{Space}Accomplish{Space} 
-Else IfEqual key0, psk;, Send {BackSpace}.{Space}Speak{Space} 
-Else IfEqual key0, pslbm;, Send {BackSpace}.{Space}Impossible{Space} 
-Else IfEqual key0, psx;, Send {BackSpace}.{Space}Expose{Space} 
-Else IfEqual key0, paln;, Send {BackSpace}.{Space}Plan{Space} 
-Else IfEqual key0, pas;, Send {BackSpace}.{Space}Pass{Space} 
-Else IfEqual key0, pfh;, Send {BackSpace}.{Space}Hopefully{Space} 
-Else IfEqual key0, ph;, Send {BackSpace}.{Space}Hope{Space} 
-Else IfEqual key0, pslc;, Send {BackSpace}.{Space}Special{Space} 
-Else IfEqual key0, pcm;, Send {BackSpace}.{Space}Company{Space} 
-Else IfEqual key0, pdcm;, Send {BackSpace}.{Space}Pandemic{Space} 
-Else IfEqual key0, pf;, Send {BackSpace}.{Space}Perfect{Space} 
-Else IfEqual key0, pfh;, Send {BackSpace}.{Space}Hopefully{Space} 
-Else IfEqual key0, pg;, Send {BackSpace}.{Space}Page{Space} 
-Else IfEqual key0, pgh;, Send {BackSpace}.{Space}Happening{Space} 
-Else IfEqual key0, pglb;, Send {BackSpace}.{Space}Publishing{Space} 
-Else IfEqual key0, phn;, Send {BackSpace}.{Space}Happen{Space} 
-Else IfEqual key0, pjm;, Send {BackSpace}.{Space}Jump{Space} 
-Else IfEqual key0, pl;, Send {BackSpace}.{Space}People{Space} 
-Else IfEqual key0, plb;, Send {BackSpace}.{Space}Possibly{Space} 
-Else IfEqual key0, plc;, Send {BackSpace}.{Space}Couple{Space} 
-Else IfEqual key0, plcb;, Send {BackSpace}.{Space}Public{Space} 
-Else IfEqual key0, plcm;, Send {BackSpace}.{Space}Complete{Space} 
-Else IfEqual key0, plxm;, Send {BackSpace}.{Space}Example{Space} 
-Else IfEqual key0, plxn;, Send {BackSpace}.{Space}Explain{Space} 
-Else IfEqual key0, pn;, Send {BackSpace}.{Space}No Problem{Space} 
-Else IfEqual key0, ps;, Send {BackSpace}.{Space}Specifically{Space} 
-Else IfEqual key0, pscm;, Send {BackSpace}.{Space}Companies{Space} 
-Else IfEqual key0, psd;, Send {BackSpace}.{Space}Speed{Space} 
-Else IfEqual key0, psh;, Send {BackSpace}.{Space}Hospital{Space} 
-Else IfEqual key0, psl;, Send {BackSpace}.{Space}Please{Space} 
-Else IfEqual key0, pslb;, Send {BackSpace}.{Space}Possible{Space} 
-Else IfEqual key0, pslm;, Send {BackSpace}.{Space}Simple{Space} 
-Else IfEqual key0, psn;, Send {BackSpace}.{Space}Passion{Space} 
-Else IfEqual key0, px;, Send {BackSpace}.{Space}Experience{Space} 
-Else IfEqual key0, pshlb;, Send {BackSpace}.{Space}Publish{Space} 
-Return
-SENDAstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0% 
-IfEqual key0, ab;, Send {BackSpace}.{Space}About{Space} 
-Else IfEqual key0, adv;, Send {BackSpace}.{Space}Avoid{Space} 
-Else IfEqual key0, adcvn;, Send {BackSpace}.{Space}Advance{Space} 
-Else IfEqual key0, askc;, Send {BackSpace}.{Space}Sack{Space} 
-Else IfEqual key0, abn;, Send {BackSpace}.{Space}Banana{Space} 
-Else IfEqual key0, afv;, Send {BackSpace}.{Space}Favorite{Space} 
-Else IfEqual key0, ac;, Send {BackSpace}.{Space}Actually{Space} 
-Else IfEqual key0, adgl;, Send {BackSpace}.{Space}Glad{Space} 
-Else IfEqual key0, adbn;, Send {BackSpace}.{Space}Band{Space} 
-Else IfEqual key0, adln;, Send {BackSpace}.{Space}Land{Space} 
-Else IfEqual key0, adnm;, Send {BackSpace}.{Space}Damn{Space} 
-Else IfEqual key0, aghn;, Send {BackSpace}.{Space}Hang{Space} 
-Else IfEqual key0, agkbn;, Send {BackSpace}.{Space}Banking{Space} 
-Else IfEqual key0, alcm;, Send {BackSpace}.{Space}Calm{Space} 
-Else IfEqual key0, ascn;, Send {BackSpace}.{Space}Scan{Space} 
-Else IfEqual key0, asdhn;, Send {BackSpace}.{Space}Hands{Space} 
-Else IfEqual key0, asdnm;, Send {BackSpace}.{Space}Admission{Space} 
-Else IfEqual key0, adcm;, Send {BackSpace}.{Space}Academic{Space} 
-Else IfEqual key0, adcm;, Send {BackSpace}.{Space}Academic{Space} 
-Else IfEqual key0, adcv;, Send {BackSpace}.{Space}Advice{Space} 
-Else IfEqual key0, adcv;, Send {BackSpace}.{Space}Advice{Space} 
-Else IfEqual key0, adm;, Send {BackSpace}.{Space}Mad{Space} 
-Else IfEqual key0, adv;, Send {BackSpace}.{Space}Advertise{Space} 
-Else IfEqual key0, agcn;, Send {BackSpace}.{Space}Agency{Space} 
-Else IfEqual key0, agnm;, Send {BackSpace}.{Space}Among{Space} 
-Else IfEqual key0, ahkc;, Send {BackSpace}.{Space}Hack{Space} 
-Else IfEqual key0, ahl;, Send {BackSpace}.{Space}Hall{Space} 
-Else IfEqual key0, aln;, Send {BackSpace}.{Space}Alone{Space} 
-Else IfEqual key0, asd;, Send {BackSpace}.{Space}Ads{Space} 
-Else IfEqual key0, asdv;, Send {BackSpace}.{Space}Advise{Space} 
-Else IfEqual key0, ashc;, Send {BackSpace}.{Space}Cash{Space} 
-Else IfEqual key0, asm;, Send {BackSpace}.{Space}Assume{Space} 
-Else IfEqual key0, agv;, Send {BackSpace}.{Space}Average{Space} 
-Else IfEqual key0, ahcv;, Send {BackSpace}.{Space}Achieve{Space} 
-Else IfEqual key0, aklcb;, Send {BackSpace}.{Space}Black{Space} 
-Else IfEqual key0, avb;, Send {BackSpace}.{Space}Above{Space} 
-Else IfEqual key0, acn;, Send {BackSpace}.{Space}Can{Space} 
-Else IfEqual key0, adgcn;, Send {BackSpace}.{Space}Dancing{Space} 	
-Else IfEqual key0, adb;, Send {BackSpace}.{Space}Anybody{Space} 
-Else IfEqual key0, adf;, Send {BackSpace}.{Space}Afterwards{Space} 
-Else IfEqual key0, adgc;, Send {BackSpace}.{Space}According{Space} 
-Else IfEqual key0, adh;, Send {BackSpace}.{Space}Had{Space} 
-Else IfEqual key0, adhn;, Send {BackSpace}.{Space}Hand{Space} 
-Else IfEqual key0, adl;, Send {BackSpace}.{Space}Already{Space} 
-Else IfEqual key0, af;, Send {BackSpace}.{Space}After{Space} 
-Else IfEqual key0, afg;, Send {BackSpace}.{Space}Affecting{Space} 
-Else IfEqual key0, afhl;, Send {BackSpace}.{Space}Half{Space} 
-Else IfEqual key0, afl;, Send {BackSpace}.{Space}Fall{Space} 
-Else IfEqual key0, ag;, Send {BackSpace}.{Space}Anything{Space} 
-Else IfEqual key0, agm;, Send {BackSpace}.{Space}Amazing{Space} 
-Else IfEqual key0, agn;, Send {BackSpace}.{Space}Again{Space} 
-Else IfEqual key0, akcb;, Send {BackSpace}.{Space}Back{Space} 
-Else IfEqual key0, al;, Send {BackSpace}.{Space}All{Space} 
-Else IfEqual key0, alb;, Send {BackSpace}.{Space}Lab{Space} 
-Else IfEqual key0, alc;, Send {BackSpace}.{Space}Call{Space} 
-Else IfEqual key0, alm;, Send {BackSpace}.{Space}Almost{Space} 
-Else IfEqual key0, alvb;, Send {BackSpace}.{Space}Available{Space} 
-Else IfEqual key0, am;, Send {BackSpace}.{Space}Am{Space} 
-Else IfEqual key0, an;, Send {BackSpace}.{Space}An{Space} 
-Else IfEqual key0, anm;, Send {BackSpace}.{Space}Man{Space} 
-Else IfEqual key0, as;, Send {BackSpace}.{Space}As{Space} 
-Else IfEqual key0, asb;, Send {BackSpace}.{Space}Absolutely{Space} 
-Else IfEqual key0, asdk;, Send {BackSpace}.{Space}Asked{Space} 
-Else IfEqual key0, asgl;, Send {BackSpace}.{Space}Glass{Space} 
-Else IfEqual key0, ash;, Send {BackSpace}.{Space}Has{Space} 
-Else IfEqual key0, ashl;, Send {BackSpace}.{Space}Lash{Space} 
-Else IfEqual key0, ask;, Send {BackSpace}.{Space}Ask{Space} 
-Else IfEqual key0, aslc;, Send {BackSpace}.{Space}Class{Space} 
-Else IfEqual key0, aslm;, Send {BackSpace}.{Space}Small{Space} 
-Else IfEqual key0, akbn;, Send {BackSpace}.{Space}Bank{Space} 
-Else IfEqual key0, asn;, Send {BackSpace}.{Space}Answer{Space} 
-Else IfEqual key0, axv;, Send {BackSpace}.{Space}Vaccine{Space} 
-Else IfEqual key0, azm;, Send {BackSpace}.{Space}Amazon{Space} 
-Else IfEqual key0, ad;, Send {BackSpace}.{Space}Ad{Space} 
-Return
-SENDSstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, sbn;, Send {BackSpace}.{Space}Business{Space} 
-Else IfEqual key0, scb;, Send {BackSpace}.{Space}Basic{Space} 
-Else IfEqual key0, shm;, Send {BackSpace}.{Space}Somehow{Space} 
-Else IfEqual key0, sdhlc;, Send {BackSpace}.{Space}Schedule{Space} 
-Else IfEqual key0, sz;, Send {BackSpace}.{Space}Size{Space} 
-Else IfEqual key0, scm;, Send {BackSpace}.{Space}Comes{Space} 
-Else IfEqual key0, sdb;, Send {BackSpace}.{Space}Besides{Space} 
-Else IfEqual key0, sdhbn;, Send {BackSpace}.{Space}Husband{Space} 
-Else IfEqual key0, sdn;, Send {BackSpace}.{Space}Inside{Space} 
-Else IfEqual key0, shl;, Send {BackSpace}.{Space}She'll{Space} 
-Else IfEqual key0, slvb;, Send {BackSpace}.{Space}Visible{Space} 
-Else IfEqual key0, sd;, Send {BackSpace}.{Space}Somebody{Space} 
-Else IfEqual key0, scnm;, Send {BackSpace}.{Space}Consume{Space} 
-Else IfEqual key0, slcn;, Send {BackSpace}.{Space}License{Space} 
-Else IfEqual key0, sln;, Send {BackSpace}.{Space}Lesson{Space} 
-Else IfEqual key0, snm;, Send {BackSpace}.{Space}Mission{Space} 
-Else IfEqual key0, snm;, Send {BackSpace}.{Space}Mission{Space} 
-Else IfEqual key0, svm;, Send {BackSpace}.{Space}Massive{Space} 
-Else IfEqual key0, svn;, Send {BackSpace}.{Space}Vision{Space} 
-Else IfEqual key0, sdc;, Send {BackSpace}.{Space}Describe{Space} 
-Else IfEqual key0, sfcn;, Send {BackSpace}.{Space}Confuse{Space} 
-Else IfEqual key0, shn;, Send {BackSpace}.{Space}Hasn't{Space} 
-Else IfEqual key0, sdcn;, Send {BackSpace}.{Space}Decision{Space} 
-Else IfEqual key0, sdgn;, Send {BackSpace}.{Space}Design{Space} 
-Else IfEqual key0, sdlcm;, Send {BackSpace}.{Space}Social Media{Space} 
-Else IfEqual key0, sf;, Send {BackSpace}.{Space}For Sure.{Space} 
-Else IfEqual key0, sfgcn;, Send {BackSpace}.{Space}Significant{Space} 
-Else IfEqual key0, sflm;, Send {BackSpace}.{Space}Myself{Space} 
-Else IfEqual key0, sg;, Send {BackSpace}.{Space}Something{Space} 
-Else IfEqual key0, sgm;, Send {BackSpace}.{Space}Message{Space} 
-Else IfEqual key0, sh;, Send {BackSpace}.{Space}Should{Space} 
-Else IfEqual key0, sdhn;, Send {BackSpace}.{Space}Shouldn't{Space} 
-Else IfEqual key0, shn;, Send {BackSpace}.{Space}Shouldn't{Space} 
-Else IfEqual key0, sh;, Send {BackSpace}.{Space}Should{Space} 
-Else IfEqual key0, sl;, Send {BackSpace}.{Space}Sell{Space} 
-Else IfEqual key0, slc;, Send {BackSpace}.{Space}Social{Space} 
-Else IfEqual key0, slcb;, Send {BackSpace}.{Space}Basically{Space} 
-Else IfEqual key0, slp;, Send {BackSpace}.{Space}Sleep{Space} 
-Else IfEqual key0, slv;, Send {BackSpace}.{Space}Visual{Space} 
-Else IfEqual key0, sm;, Send {BackSpace}.{Space}Some{Space} 
-Else IfEqual key0, sn;, Send {BackSpace}.{Space}Seen{Space} 
-Else IfEqual key0, srcv;, Send {BackSpace}.{Space}Service{Space} 
-Else IfEqual key0, st;, Send {BackSpace}.{Space}Street{Space} 
-Else IfEqual key0, sv;, Send {BackSpace}.{Space}Versus{Space} 
-Else IfEqual key0, sxcvl;, Send {BackSpace}.{Space}Exclusive{Space} 
-Return
-SENDDstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, dbn;, Send {BackSpace}.{Space}Nobody{Space} 
-Else IfEqual key0, dcm;, Send {BackSpace}.{Space}Command{Space} 
-Else IfEqual key0, dhln;, Send {BackSpace}.{Space}Handle{Space} 
-Else IfEqual key0, dnm;, Send {BackSpace}.{Space}Domain{Space} 
-Else IfEqual key0, dhln;, Send {BackSpace}.{Space}Handle{Space} 
-Else IfEqual key0, dghln;, Send {BackSpace}.{Space}Handling{Space} 
-Else IfEqual key0, dcn;, Send {BackSpace}.{Space}Couldn't{Space} 
-Else IfEqual key0, dcn;, Send {BackSpace}.{Space}Candid{Space} 
-Else IfEqual key0, dcnm;, Send {BackSpace}.{Space}Medicine{Space} 
-Else IfEqual key0, dhn;, Send {BackSpace}.{Space}Hadn't{Space} 
-Else IfEqual key0, dlcn;, Send {BackSpace}.{Space}Include{Space} 
-Else IfEqual key0, dcv;, Send {BackSpace}.{Space}Device{Space} 
-Else IfEqual key0, dfkb;, Send {BackSpace}.{Space}Feedback{Space} 
-Else IfEqual key0, dfn;, Send {BackSpace}.{Space}Found{Space} 
-Else IfEqual key0, dg;, Send {BackSpace}.{Space}Good{Space} 
-Else IfEqual key0, dgb;, Send {BackSpace}.{Space}Background{Space} 
-Else IfEqual key0, dglb;, Send {BackSpace}.{Space}Building{Space} 
-Else IfEqual key0, dgm;, Send {BackSpace}.{Space}Damage{Space} 
-Else IfEqual key0, dgn;, Send {BackSpace}.{Space}Ground{Space} 
-Else IfEqual key0, dhbn;, Send {BackSpace}.{Space}Behind{Space} 
-Else IfEqual key0, dl;, Send {BackSpace}.{Space}Deal{Space} 
-Else IfEqual key0, dlb;, Send {BackSpace}.{Space}Build{Space} 
-Else IfEqual key0, dlcbn;, Send {BackSpace}.{Space}Incredible{Space} 
-Else IfEqual key0, dlcm;, Send {BackSpace}.{Space}Medical{Space} 
-Else IfEqual key0, dlcm;, Send {BackSpace}.{Space}Medical{Space} 
-Else IfEqual key0, dm;, Send {BackSpace}.{Space}Made{Space} 
-Else IfEqual key0, dn;, Send {BackSpace}.{Space}Done{Space} 
-Else IfEqual key0, drg;, Send {BackSpace}.{Space}During,{Space} 
-Else IfEqual key0, dv;, Send {BackSpace}.{Space}Everyday{Space} 
-Else IfEqual key0, dvm;, Send {BackSpace}.{Space}Development{Space} 
-Else IfEqual key0, dx;, Send {BackSpace}.{Space}Excited{Space} 
-Return
-SENDFstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0% 
-IfEqual key0, fb;, Send {BackSpace}.{Space}Before{Space} 
-Else IfEqual key0, fcm;, Send {BackSpace}.{Space}Comfortable{Space} 
-Else IfEqual key0, fcn;, Send {BackSpace}.{Space}Finance{Space} 
-Else IfEqual key0, flb;, Send {BackSpace}.{Space}Belief{Space} 
-Else IfEqual key0, flcbn;, Send {BackSpace}.{Space}Beneficial{Space} 
-Else IfEqual key0, fh;, Send {BackSpace}.{Space}Helpful{Space} 
-Else IfEqual key0, fgl;, Send {BackSpace}.{Space}Feeling{Space} 	
-Else IfEqual key0, fl;, Send {BackSpace}.{Space}Feel{Space} 
-Else IfEqual key0, flcn;, Send {BackSpace}.{Space}Financial{Space} 
-Else IfEqual key0, fln;, Send {BackSpace}.{Space}Final{Space} 
-Else IfEqual key0, fn;, Send {BackSpace}.{Space}Fine{Space} 
-Return
-SENDGstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, gb;, Send {BackSpace}.{Space}Being{Space} 
-Else IfEqual key0, gc;, Send {BackSpace}.{Space}Coming{Space} 
-Else IfEqual key0, gen;, Send {BackSpace}.{Space}General{Space} 
-Else IfEqual key0, ghcn;, Send {BackSpace}.{Space}Change{Space} 
-Else IfEqual key0, glbn;, Send {BackSpace}.{Space}Belong{Space} 
-Else IfEqual key0, gcm;, Send {BackSpace}.{Space}Magic{Space} 
-Else IfEqual key0, gh;, Send {BackSpace}.{Space}Having{Space} 
-Else IfEqual key0, gkl;, Send {BackSpace}.{Space}Looking{Space} 
-Else IfEqual key0, ghlcn;, Send {BackSpace}.{Space}Challenge{Space} 
-Else IfEqual key0, gkm;, Send {BackSpace}.{Space}Making{Space} 
-Else IfEqual key0, gl;, Send {BackSpace}.{Space}Learning{Space} 
-Else IfEqual key0, glc;, Send {BackSpace}.{Space}College{Space} 
-Else IfEqual key0, gln;, Send {BackSpace}.{Space}General{Space} 
-Else IfEqual key0, glv;, Send {BackSpace}.{Space}Leaving{Space} 
-Else IfEqual key0, gf;, Send {BackSpace}.{Space}Girlfriend{Space} 
-Else IfEqual key0, gvn;, Send {BackSpace}.{Space}Given{Space} 
-Else IfEqual key0, gm;, Send {BackSpace}.{Space}Making{Space} 
-Else IfEqual key0, gn;, Send {BackSpace}.{Space}Nothing{Space} 
-Else IfEqual key0, gnm;, Send {BackSpace}.{Space}Manage{Space} 
-Else IfEqual key0, gv;, Send {BackSpace}.{Space}Give{Space} 
-Else IfEqual key0, gv;, Send {BackSpace}.{Space}Very Good{Space} 
-Else IfEqual key0, gvm;, Send {BackSpace}.{Space}Moving{Space} 
-Else IfEqual key0, gx;, Send {BackSpace}.{Space}Exciting{Space} 
-Else IfEqual key0, gznm;, Send {BackSpace}.{Space}Magazine{Space} 
-Return
-SENDHstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, hc;, Send {BackSpace}.{Space}Choice{Space} 
-Else IfEqual key0, hkcn;, Send {BackSpace}.{Space}Chicken{Space} 
-Else IfEqual key0, hl;, Send {BackSpace}.{Space}He'll{Space} 
-Else IfEqual key0, hlcv;, Send {BackSpace}.{Space}Vehicle{Space} 
- Else IfEqual key0, hm;, Send {BackSpace}.{Space}Mm-hmm.{Space} 
-Else IfEqual key0, hv;, Send {BackSpace}.{Space}Have{Space} 
-Else IfEqual key0, hcnm;, Send {BackSpace}.{Space}Machine{Space} 
-Else IfEqual key0, hlcn;, Send {BackSpace}.{Space}Channel{Space} 
-Return
-
-SENDIstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0% 
-IfEqual key0, ia;, Send {BackSpace}.{Space}Ai
-Else IfEqual key0, idfc;, Send {BackSpace}.{Space}Difficult{Space} 
-Else IfEqual key0, idm;, Send {BackSpace}.{Space}Mid{Space} 
-Else IfEqual key0, iahcn;, Send {BackSpace}.{Space}China{Space} 
-Else IfEqual key0, ias;, Send {BackSpace}.{Space}Asia{Space} 
-Else IfEqual key0, ialnm;, Send {BackSpace}.{Space}Animal{Space} 
-Else IfEqual key0, iahcn;, Send {BackSpace}.{Space}Chain{Space} 
-Else IfEqual key0, iam;, Send {BackSpace}.{Space}Aim{Space} 
-Else IfEqual key0, iasl;, Send {BackSpace}.{Space}Sail{Space} 
-Else IfEqual key0, iav;, Send {BackSpace}.{Space}Via{Space} 
-Else IfEqual key0, igkln;, Send {BackSpace}.{Space}Inkling{Space} 
-Else IfEqual key0, iol;, Send {BackSpace}.{Space}Oil{Space} 
-Else IfEqual key0, iolbm;, Send {BackSpace}.{Space}Limbo{Space} 
-Else IfEqual key0, iphc;, Send {BackSpace}.{Space}Chip{Space} 
-Else IfEqual key0, ipl;, Send {BackSpace}.{Space}Pill{Space} 
-Else IfEqual key0, ipsn;, Send {BackSpace}.{Space}Spin{Space} 
-Else IfEqual key0, iskl;, Send {BackSpace}.{Space}Skill{Space} 
-Else IfEqual key0, ixm;, Send {BackSpace}.{Space}Mix{Space} 
-Else IfEqual key0, iafl;, Send {BackSpace}.{Space}Fail{Space} 
-Else IfEqual key0, ipslbm;, Send {BackSpace}.{Space}Impossible{Space} 
-Else IfEqual key0, ioadv;, Send {BackSpace}.{Space}Avoid{Space} 
-Else IfEqual key0, iadc;, Send {BackSpace}.{Space}Acid{Space} 
-Else IfEqual key0, iagcm;, Send {BackSpace}.{Space}Magic{Space} 
-Else IfEqual key0, idg;, Send {BackSpace}.{Space}Dig{Space} 
-Else IfEqual key0, iflcn;, Send {BackSpace}.{Space}Influence{Space} 
-Else IfEqual key0, ikc;, Send {BackSpace}.{Space}Kick{Space} 
-Else IfEqual key0, ikn;, Send {BackSpace}.{Space}Ink{Space} 
-Else IfEqual key0, inm;, Send {BackSpace}.{Space}Mini{Space} 
-Else IfEqual key0, ioadnm;, Send {BackSpace}.{Space}Domain{Space} 
-Else IfEqual key0, iodb;, Send {BackSpace}.{Space}Biodegradable{Space} 
-Else IfEqual key0, iodv;, Send {BackSpace}.{Space}Void{Space} 
-Else IfEqual key0, iom;, Send {BackSpace}.{Space}In My Opinion{Space} 
-Else IfEqual key0, iosdl;, Send {BackSpace}.{Space}Solid{Space} 
-Else IfEqual key0, ips;, Send {BackSpace}.{Space}Piss{Space} 
-Else IfEqual key0, ipsgl;, Send {BackSpace}.{Space}Slipping{Space} 
-Else IfEqual key0, ipsl;, Send {BackSpace}.{Space}Slip{Space} 
-Else IfEqual key0, ipsl;, Send {BackSpace}.{Space}Slip{Space} 
-Else IfEqual key0, iajl;, Send {BackSpace}.{Space}Jail{Space} 
-Else IfEqual key0, iagn;, Send {BackSpace}.{Space}Gain{Space} 
-Else IfEqual key0, ib;, Send {BackSpace}.{Space}No{Space} 
-Else IfEqual key0, iadlv;, Send {BackSpace}.{Space}Valid{Space} 
-Else IfEqual key0, ioan;, Send {BackSpace}.{Space}Nation{Space} 
-Else IfEqual key0, ishcm;, Send {BackSpace}.{Space}Schism{Space} 
-Else IfEqual key0, iasb;, Send {BackSpace}.{Space}Basis{Space} 
-Else IfEqual key0, iaslc;, Send {BackSpace}.{Space}Classic{Space} 
-Else IfEqual key0, ihcn;, Send {BackSpace}.{Space}Inch{Space} 
-Else IfEqual key0, ikl;, Send {BackSpace}.{Space}Kill{Space} 
-Else IfEqual key0, ilcn;, Send {BackSpace}.{Space}Clinic{Space} 
-Else IfEqual key0, iofn;, Send {BackSpace}.{Space}Info{Space} 
-Else IfEqual key0, iphn;, Send {BackSpace}.{Space}Iphone{Space} 
-Else IfEqual key0, iskn;, Send {BackSpace}.{Space}Skin{Space} 
-Else IfEqual key0, ism;, Send {BackSpace}.{Space}Miss{Space} 
-Else IfEqual key0, iadnm;, Send {BackSpace}.{Space}Admin{Space} 
-Else IfEqual key0, iasdnm;, Send {BackSpace}.{Space}Administrator{Space} 
-Else IfEqual key0, igm;, Send {BackSpace}.{Space}Image{Space} 
-Else IfEqual key0, ikln;, Send {BackSpace}.{Space}Link{Space} 
-Else IfEqual key0, ioadnm;, Send {BackSpace}.{Space}Administration{Space} 
-Else IfEqual key0, isn;, Send {BackSpace}.{Space}Isn't{Space} 
-Else IfEqual key0, ialcm;, Send {BackSpace}.{Space}Claim{Space} 
-Else IfEqual key0, ianm;, Send {BackSpace}.{Space}Main{Space} 
-Else IfEqual key0, iasd;, Send {BackSpace}.{Space}Said{Space} 
-Else IfEqual key0, id;, Send {BackSpace}.{Space}Did{Space} 
-Else IfEqual key0, idf;, Send {BackSpace}.{Space}Different{Space} 
-Else IfEqual key0, idfn;, Send {BackSpace}.{Space}Find{Space} 
-Else IfEqual key0, idhlc;, Send {BackSpace}.{Space}Child{Space} 
-Else IfEqual key0, idk;, Send {BackSpace}.{Space}I Don't Know{Space} 
-Else IfEqual key0, idkn;, Send {BackSpace}.{Space}Kind{Space} 
-Else IfEqual key0, idn;, Send {BackSpace}.{Space}Individual{Space} 
-Else IfEqual key0, idnm;, Send {BackSpace}.{Space}Mind{Space} 
-Else IfEqual key0, if;, Send {BackSpace}.{Space}If{Space} 
-Else IfEqual key0, ifl;, Send {BackSpace}.{Space}Fill{Space} 
-Else IfEqual key0, ifx;, Send {BackSpace}.{Space}Fix{Space} 
-Else IfEqual key0, ig;, Send {BackSpace}.{Space}I Guess{Space} 
-Else IfEqual key0, igb;, Send {BackSpace}.{Space}Big{Space} 
-Else IfEqual key0, igh;, Send {BackSpace}.{Space}High{Space} 
-Else IfEqual key0, iglv;, Send {BackSpace}.{Space}Living{Space} 
-Else IfEqual key0, ihl;, Send {BackSpace}.{Space}Hill{Space} 
-Else IfEqual key0, ihm;, Send {BackSpace}.{Space}Him{Space} 
-Else IfEqual key0, ik;, Send {BackSpace}.{Space}I Know{Space} 
-Else IfEqual key0, iklbn;, Send {BackSpace}.{Space}Blink{Space} 
-Else IfEqual key0, iklc;, Send {BackSpace}.{Space}Click{Space} 
-Else IfEqual key0, iklm;, Send {BackSpace}.{Space}Milk{Space} 
-Else IfEqual key0, il;, Send {BackSpace}.{Space}I'll{Space} 
-Else IfEqual key0, ilv;, Send {BackSpace}.{Space}Live{Space} 
-Else IfEqual key0, im;, Send {BackSpace}.{Space}I'm{Space} 
-Else IfEqual key0, in;, Send {BackSpace}.{Space}In{Space} 
-Else IfEqual key0, in;, Send {BackSpace}.{Space}In{Space} 
-Else IfEqual key0, ioac;, Send {BackSpace}.{Space}Action{Space} 
-Else IfEqual key0, ioalc;, Send {BackSpace}.{Space}Location{Space} 
-Else IfEqual key0, iojn;, Send {BackSpace}.{Space}Join{Space}
-Else IfEqual key0, ionm;, Send {BackSpace}.{Space}Omni
-Else IfEqual key0, iop;, Send {BackSpace}.{Space}Option{Space} 
-Else IfEqual key0, iopn;, Send {BackSpace}.{Space}Opinion{Space} 
-Else IfEqual key0, iosn;, Send {BackSpace}.{Space}Ision{Space} 
-Else IfEqual key0, ipad;, Send {BackSpace}.{Space}Paid{Space} 
-Else IfEqual key0, ipafn;, Send {BackSpace}.{Space}Painful{Space} 
-Else IfEqual key0, ipan;, Send {BackSpace}.{Space}Pain{Space} 
-Else IfEqual key0, ipfl;, Send {BackSpace}.{Space}Flip{Space} 
-Else IfEqual key0, ipg;, Send {BackSpace}.{Space}Pig{Space} 
-Else IfEqual key0, ipkc;, Send {BackSpace}.{Space}Pick{Space} 
-Else IfEqual key0, ipm;, Send {BackSpace}.{Space}Important{Space} 
-Else IfEqual key0, ipsk;, Send {BackSpace}.{Space}Skip{Space} 
-Else IfEqual key0, is;, Send {BackSpace}.{Space}Is{Space} 
-Else IfEqual key0, isd;, Send {BackSpace}.{Space}Dis
-Else IfEqual key0, isdk;, Send {BackSpace}.{Space}Kids{Space} 
-Else IfEqual key0, isfhn;, Send {BackSpace}.{Space}Finish{Space} 
-Else IfEqual key0, isg;, Send {BackSpace}.{Space}Significant{Space} 
-Else IfEqual key0, isgn;, Send {BackSpace}.{Space}Sign{Space} 
-Else IfEqual key0, ish;, Send {BackSpace}.{Space}His{Space} 
-Else IfEqual key0, iskc;, Send {BackSpace}.{Space}Sick{Space} 
-Else IfEqual key0, ism;, Send {BackSpace}.{Space}Mis
-Else IfEqual key0, iflm;, Send {BackSpace}.{Space}Film{Space} 
-Return
-SENDLstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0% 
-IfEqual key0, lb;, Send {BackSpace}.{Space}Little Bit{Space} 
-Else IfEqual key0, lc;, Send {BackSpace}.{Space}Cool{Space} 
-Else IfEqual key0, lcbn;, Send {BackSpace}.{Space}Balance{Space} 
-Else IfEqual key0, lnm;, Send {BackSpace}.{Space}Manual{Space} 
-Else IfEqual key0, lvm;, Send {BackSpace}.{Space}Volume{Space} 
-Else IfEqual key0, lcn;, Send {BackSpace}.{Space}Clinical{Space} 
-Else IfEqual key0, lcbn;, Send {BackSpace}.{Space}Balance{Space} 
-Else IfEqual key0, lcm;, Send {BackSpace}.{Space}Molecule{Space} 
-Else IfEqual key0, ln;, Send {BackSpace}.{Space}Line{Space} 
-Else IfEqual key0, lv;, Send {BackSpace}.{Space}Leave{Space} 
-Else IfEqual key0, lvb;, Send {BackSpace}.{Space}Believe{Space} 
-Else IfEqual key0, lx;, Send {BackSpace}.{Space}Exactly{Space} 
-Else IfEqual key0, lxcn;, Send {BackSpace}.{Space}Excellence{Space} 
-Return
-SENDXstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, xc;, Send {BackSpace}.{Space}Executive{Space} 
-Else IfEqual key0, xnm;, Send {BackSpace}.{Space}Examine{Space} 
-Else IfEqual key0, xnm;, Send {BackSpace}.{Space}Expect{Space} 
-Return
-SENDVstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0% 
-IfEqual key0, vm;, Send {BackSpace}.{Space}Move{Space} 
-Else IfEqual key0, vn;, Send {BackSpace}.{Space}Even{Space} 
-Return
-SENDBstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, bm;, Send {BackSpace}.{Space}Maybe{Space} 
-Else IfEqual key0, bf;, Send {BackSpace}.{Space}Boyfriend{Space} 
-Else IfEqual key0, bn;, Send {BackSpace}.{Space}Been{Space} 
-Else IfEqual key0, bsc;, Send {BackSpace}.{Space}Basic{Space} 
-Else IfEqual key0, bscl;, Send {BackSpace}.{Space}Basically{Space} 
-Return
-SENDCstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, cb;, Send {BackSpace}.{Space}Because{Space} 
-Else IfEqual key0, cbm;, Send {BackSpace}.{Space}Become{Space} 
-Else IfEqual key0, cm;, Send {BackSpace}.{Space}Come{Space} 
-Else IfEqual key0, dfcn;, Send {BackSpace}.{Space}Confidence{Space} 
-Else IfEqual key0, cbnm;, Send {BackSpace}.{Space}Combine{Space} 
-Else IfEqual key0, cmg;, Send {BackSpace}.{Space}Coming{Space} 
-Else IfEqual key0, cn;, Send {BackSpace}.{Space}Can{Space} 
-Else IfEqual key0, cnm;, Send {BackSpace}.{Space}Common{Space} 
-Else IfEqual key0, cvn;, Send {BackSpace}.{Space}Conversation{Space} 
-Return
-SENDKstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, kl;, Send {BackSpace}.{Space}Look{Space} 
-Else IfEqual key0, kln;, Send {BackSpace}.{Space}Knowledge{Space} 
-Else IfEqual key0, km;, Send {BackSpace}.{Space}Make{Space} 
-Else IfEqual key0, kn;, Send {BackSpace}.{Space}Know{Space} 
-Return
-SENDJstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- Return
-SENDZstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, zm;, Send {BackSpace}.{Space}Zoom{Space} 
-
-Return
-SENDMstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
- 
-
-Return
-SENDNstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-
- 
-IfEqual key0, nm;, Send {BackSpace}.{Space}Mean{Space} 
-Return
-SENDDOTstart:
- SentTick = %A_TickCount%, 
- SentKeys = %key0%
-IfEqual key0, udn.;, Send {BackSpace}.{Space}Understood{Space} 
-Else IfEqual key0, werth.;, Send {BackSpace}.{Space}Threw{Space} 
-Else IfEqual key0, rsv.;, Send {BackSpace}.{Space}Verse{Space} 
-Else IfEqual key0, onm.;, Send {BackSpace}.{Space}Moon{Space} 
-Else IfEqual key0, rsv';, Send {BackSpace}.{Space}Verse{Space} 
-Else IfEqual key0, tasl.;, Send {BackSpace}.{Space}Salt{Space} 
-Else IfEqual key0, ertah.;, Send {BackSpace}.{Space}Earth{Space} 
-Else IfEqual key0, us.;, Send {BackSpace}.{Space}United States{Space} 
-Else IfEqual key0, uosdn.;, Send {BackSpace}.{Space}Sounds{Space} 
-Else IfEqual key0, tasl.;, Send {BackSpace}.{Space}Last{Space} 
-Else IfEqual key0, epsd.;, Send {BackSpace}.{Space}Speed{Space} 
-Else IfEqual key0, iadn.;, Send {BackSpace}.{Space}Indian{Space} 
-Else IfEqual key0, eas.;, Send {BackSpace}.{Space}Sea{Space} 
-Else IfEqual key0, tisl.;, Send {BackSpace}.{Space}List{Space} 
-Else IfEqual key0, eragn.;, Send {BackSpace}.{Space}Arrange{Space} 
-Else IfEqual key0, erp';, Send {BackSpace}.{Space}Pepper{Space} 
-Else IfEqual key0, epa.;, Send {BackSpace}.{Space}Pea{Space} 
-Else IfEqual key0, eadh.;, Send {BackSpace}.{Space}Ahead{Space} 
-Else IfEqual key0, ajn.;, Send {BackSpace}.{Space}January{Space} 
-Else IfEqual key0, edc.;, Send {BackSpace}.{Space}December{Space} 
-Else IfEqual key0, efb.;, Send {BackSpace}.{Space}February{Space} 
-Else IfEqual key0, erign.;, Send {BackSpace}.{Space}Reign{Space} 
-Else IfEqual key0, erin.;, Send {BackSpace}.{Space}Rein{Space} 
-Else IfEqual key0, eros.;, Send {BackSpace}.{Space}Sore{Space} 
-Else IfEqual key0, ersv.;, Send {BackSpace}.{Space}Severe{Space} 
-Else IfEqual key0, ertihn.;, Send {BackSpace}.{Space}Inherit{Space} 
-Else IfEqual key0, eryal.;, Send {BackSpace}.{Space}Relay{Space} 
-Else IfEqual key0, etask.;, Send {BackSpace}.{Space}Steak{Space} 
-Else IfEqual key0, ethm.;, Send {BackSpace}.{Space}Theme{Space} 
-Else IfEqual key0, etivn.;, Send {BackSpace}.{Space}Invent{Space} 
-Else IfEqual key0, etps.;, Send {BackSpace}.{Space}September{Space} 
-Else IfEqual key0, etups.;, Send {BackSpace}.{Space}Setup{Space} 
-Else IfEqual key0, eus.;, Send {BackSpace}.{Space}Sue{Space} 
-Else IfEqual key0, iskn.;, Send {BackSpace}.{Space}Sink{Space} 
-Else IfEqual key0, ovn.;, Send {BackSpace}.{Space}November{Space} 
-Else IfEqual key0, rahcm.;, Send {BackSpace}.{Space}March{Space} 
-Else IfEqual key0, udn.;, Send {BackSpace}.{Space}Understood{Space} 
-Else IfEqual key0, wra.;, Send {BackSpace}.{Space}Raw{Space} 
-Else IfEqual key0, tian';, Send {BackSpace}.{Space}Ain’T{Space} 
-Else IfEqual key0, yam.;, Send {BackSpace}.{Space}May{Space} 
-Else IfEqual key0, adh.;, Send {BackSpace}.{Space}Dah{Space} 
-Else IfEqual key0, uag.;, Send {BackSpace}.{Space}August{Space} 
-Else IfEqual key0, tush.;, Send {BackSpace}.{Space}Thus{Space} 
-Else IfEqual key0, toc.;, Send {BackSpace}.{Space}October{Space} 
-Else IfEqual key0, tsfcn.;, Send {BackSpace}.{Space}Fascinate{Space} 
-Else IfEqual key0, ertial.;, Send {BackSpace}.{Space}Literal{Space}
-Else IfEqual key0, iofn.;, Send {BackSpace}.{Space}Information{Space} 
-Else IfEqual key0, rpdc.;, Send {BackSpace}.{Space}Procedure{Space} 
-Else IfEqual key0, asd.;, Send {BackSpace}.{Space}Sad{Space} 
-Else IfEqual key0, rpgm.;, Send {BackSpace}.{Space}Programmer{Space} 
-Else IfEqual key0, etas';, Send {BackSpace}.{Space}East{Space} 
-Else IfEqual key0, epasc.;, Send {BackSpace}.{Space}Escape{Space} 
-Else IfEqual key0, alb.;, Send {BackSpace}.{Space}Ball{Space} 
-Else IfEqual key0, wton';, Send {BackSpace}.{Space}Won't{Space} 
-Else IfEqual key0, ok';, Send {BackSpace}.{Space}Okay{Space} 
-Else IfEqual key0, epsl.;, Send {BackSpace}.{Space}Spell{Space} 
-Else IfEqual key0, eops.;, Send {BackSpace}.{Space}Oppose{Space} 
-Else IfEqual key0, erias.;, Send {BackSpace}.{Space}Easier{Space} 
-Else IfEqual key0, tkn.;, Send {BackSpace}.{Space}Taken{Space} 
-Else IfEqual key0, erashc.;, Send {BackSpace}.{Space}Research{Space} 
-Else IfEqual key0, flcn.;, Send {BackSpace}.{Space}Influence{Space} 
-Else IfEqual key0, lcn.;, Send {BackSpace}.{Space}Council{Space} 
-Else IfEqual key0, tnm.;, Send {BackSpace}.{Space}Mountain{Space} 
-Else IfEqual key0, ef.;, Send {BackSpace}.{Space}Fee{Space} 
-Else IfEqual key0, rplcn.;, Send {BackSpace}.{Space}Principal{Space} 
-Else IfEqual key0, etam.;, Send {BackSpace}.{Space}Meat{Space} 
-Else IfEqual key0, ogl.;, Send {BackSpace}.{Space}Logging{Space} 
-Else IfEqual key0, ozm.;, Send {BackSpace}.{Space}Zoom{Space} 
-Else IfEqual key0, qrts.;, Send {BackSpace}.{Space}Squirt{Space} 
-Else IfEqual key0, ram.;, Send {BackSpace}.{Space}Ram{Space} 
-Else IfEqual key0, rdg.;, Send {BackSpace}.{Space}Grade{Space} 
-Else IfEqual key0, flcn.;, Send {BackSpace}.{Space}Influence{Space} 
-Else IfEqual key0, rgnm.;, Send {BackSpace}.{Space}Manager{Space} 
-Else IfEqual key0, rslv.;, Send {BackSpace}.{Space}Resolve{Space} 
-Else IfEqual key0, rsvn.;, Send {BackSpace}.{Space}Nervous{Space} 
-Else IfEqual key0, rtfg.;, Send {BackSpace}.{Space}Forgot{Space} 
-Else IfEqual key0, rtsg.;, Send {BackSpace}.{Space}String{Space} 
-Else IfEqual key0, wal.;, Send {BackSpace}.{Space}Wall{Space} 
-Else IfEqual key0, ruos.;, Send {BackSpace}.{Space}Sour{Space} 
-Else IfEqual key0, slcn.;, Send {BackSpace}.{Space}Silence{Space} 
-Else IfEqual key0, slv.;, Send {BackSpace}.{Space}Solve{Space} 
-Else IfEqual key0, tac.;, Send {BackSpace}.{Space}Cat{Space} 
-Else IfEqual key0, tcn.;, Send {BackSpace}.{Space}Contain{Space} 
-Else IfEqual key0, tian.;, Send {BackSpace}.{Space}Taint{Space} 
-Else IfEqual key0, wo.;, Send {BackSpace}.{Space}Wow{Space} 
-Else IfEqual key0, yas.;, Send {BackSpace}.{Space}Says{Space} 
-Else IfEqual key0, ypal.;, Send {BackSpace}.{Space}Apply{Space} 
-Else IfEqual key0, ghcn.;, Send {BackSpace}.{Space}Changing{Space} 
-Else IfEqual key0, in.;, Send {BackSpace}.{Space}In
-Else IfEqual key0, idk.;, Send {BackSpace}.{Space}Kid{Space} 
-Else IfEqual key0, gln.;, Send {BackSpace}.{Space}Language Lng.{Space} 
-Else IfEqual key0, eshl.;, Send {BackSpace}.{Space}She'll{Space}
-Else IfEqual key0, etsg.;, Send {BackSpace}.{Space}Settings{Space} 
-Else IfEqual key0, esc.;, Send {BackSpace}.{Space}Escape{Space} 
-Else IfEqual key0, ergm.;, Send {BackSpace}.{Space}Emerge{Space} 
-Else IfEqual key0, rtuogh.;, Send {BackSpace}.{Space}Thorough{Space}
- Else IfEqual key0, wto';, Send {BackSpace}.{Space}Two{Space} 
-Else IfEqual key0, epal.;, Send {BackSpace}.{Space}Appeal{Space}
-Else IfEqual key0, eiasl.;, Send {BackSpace}.{Space}Liaise{Space} 
-Else IfEqual key0, erakb.;, Send {BackSpace}.{Space}Brake{Space} 
- Else IfEqual key0, tvm.;, Send {BackSpace}.{Space}Motivate{Space} 
-Else IfEqual key0, era.;, Send {BackSpace}.{Space}Rear{Space} 
-Else IfEqual key0, rtdc.;, Send {BackSpace}.{Space}Direct{Space} 
-Else IfEqual key0, era';, Send {BackSpace}.{Space}Era{Space} 
-Else IfEqual key0, tuogh.;, Send {BackSpace}.{Space}Ought{Space} 
- Else IfEqual key0, hm.;, Send {BackSpace}.{Space}Mm-Mmm.{Space} 
- Else IfEqual key0, esl.;, Send {BackSpace}.{Space}Less{Space} 
- Else IfEqual key0, etan.;, Send {BackSpace}.{Space}Tenant{Space} 
-Else IfEqual key0, rtfh.;, Send {BackSpace}.{Space}Further{Space} 
- Else IfEqual key0, tivn.;, Send {BackSpace}.{Space}Invite{Space} 
- Else IfEqual key0, esdn.;, Send {BackSpace}.{Space}Dense{Space} 
-Else IfEqual key0, erias;, Send {BackSpace}.{Space}Easier{Space} 
-Else IfEqual key0, rtln.;, Send {BackSpace}.{Space}Natural{Space} 
-Else IfEqual key0, .ertpsn;, Send {BackSpace}.{Space}Represent{Space} 
-Else IfEqual key0, erf.;, Send {BackSpace}.{Space}Refer{Space} 
-Else IfEqual key0, etsh.;, Send {BackSpace}.{Space}Sheet{Space} 
-Else IfEqual key0, on.;, Send {BackSpace}.{Space}Non{Space} 
-Else IfEqual key0, rtipn.;, Send {BackSpace}.{Space}Interrupt{Space} 
-Else IfEqual key0, tas.;, Send {BackSpace}.{Space}Asset{Space} 
-Else IfEqual key0, scnm.;, Send {BackSpace}.{Space}Musician{Space} 
- Else IfEqual key0, tgvn.;, Send {BackSpace}.{Space}Vintage{Space} 
- Else IfEqual key0, rtsg.;, Send {BackSpace}.{Space}Register{Space} 
- Else IfEqual key0, eivn.;, Send {BackSpace}.{Space}Vine{Space} 
- Else IfEqual key0, etas.;, Send {BackSpace}.{Space}Taste{Space} 
-Else IfEqual key0, etsn.;, Send {BackSpace}.{Space}Nest{Space} 
- Else IfEqual key0, tan.;, Send{BackSpace} ant{Space} 
- Else IfEqual key0, eon.;, Send {BackSpace}.{Space}None{Space} 	
- Else IfEqual key0, apl.;, Send {BackSpace}.{Space}Appeal{Space} 
- Else IfEqual key0, eis.;, Send{BackSpace}{BackSpace} ies{Space} 	
-Else IfEqual key0, asb.;, Send {BackSpace}.{Space}Bass{Space} 
-Else IfEqual key0, dlb.;, Send {BackSpace}.{Space}Double{Space} 
-Else IfEqual key0, eag.;, Send{BackSpace} age{Space} 
-Else IfEqual key0, ecn.;, Send{BackSpace} ence{Space} 
-Else IfEqual key0, erta.;, Send {BackSpace}.{Space}Treat{Space} 
-Else IfEqual key0, ertcn.;, Send {BackSpace}.{Space}Center{Space} 
-Else IfEqual key0, eta.;, Send {BackSpace}.{Space}Eat{Space} 
-Else IfEqual key0, ipsh.;, Send {BackSpace}.{Space}Ship{Space} 
-Else IfEqual key0, rpsf.;, Send {BackSpace}.{Space}Professor{Space} 
-Else IfEqual key0, rtg.;, Send {BackSpace}.{Space}Guitar{Space} 
-Else IfEqual key0, rtlb.;, Send {BackSpace}.{Space}Terrible{Space} 
-Else IfEqual key0, rtpa.;, Send {BackSpace}.{Space}Appropriate{Space} 
-Else IfEqual key0, rtpc.;, Send {BackSpace}.{Space}Participate{Space} 
-Else IfEqual key0, rtpn.;, Send {BackSpace}.{Space}Partner{Space} 
-Else IfEqual key0, rtuh.;, Send {BackSpace}.{Space}Truth{Space} 
-Else IfEqual key0, tgn.;, Send {BackSpace}.{Space}Negotiation{Space} 
-Else IfEqual key0, tidn.;, Send {BackSpace}.{Space}Identity{Space} 
-Else IfEqual key0, tih.;, Send {BackSpace}.{Space}Hit{Space} 
-Else IfEqual key0, tplc.;, Send {BackSpace}.{Space}Political{Space} 
-Else IfEqual key0, tsn.;, Send {BackSpace}.{Space}Situation{Space} 
-Else IfEqual key0, ty.;, Send {BackSpace}.{Space}Youtube{Space} 
-Else IfEqual key0, wn.;, Send {BackSpace}.{Space}No Worries.{Space} 
- Else IfEqual key0, adb.;, Send {BackSpace}.{Space}Bad{Space} 
- Else IfEqual key0, asb.;, Send {BackSpace}.{Space}Bass{Space} 
-Else IfEqual key0, efl.;, Send {BackSpace}.{Space}Fell{Space} 
-Else IfEqual key0, eifv.;, Send {BackSpace}.{Space}Five{Space} 
-Else IfEqual key0, ein.;, Send {BackSpace}.{Space}Nine{Space} 
-Else IfEqual key0, eiv.;, Send{BackSpace} ive{Space} 
-Else IfEqual key0, em.;, Send {BackSpace}.{Space}Em{Space} 
-Else IfEqual key0, eran.;, Send {BackSpace}.{Space}Earn{Space} 
-Else IfEqual key0, erth.;, Send {BackSpace}.{Space}Three{Space} 
-Else IfEqual key0, esh.;, Send {BackSpace}.{Space}He's{Space} 
-Else IfEqual key0, esvn.;, Send {BackSpace}.{Space}Seven{Space} 
-Else IfEqual key0, etigh.;, Send {BackSpace}.{Space}Eight{Space} 
-Else IfEqual key0, eton.;, Send {BackSpace}.{Space}Tone{Space} 
-Else IfEqual key0, isx.;, Send {BackSpace}.{Space}Six{Space} 
-Else IfEqual key0, rpa.;, Send {BackSpace}.{Space}Appear{Space} 
-Else IfEqual key0, ruof.;, Send {BackSpace}.{Space}Four{Space} 
-Else IfEqual key0, til.;, Send {BackSpace}.{Space}Till{Space} 
-Else IfEqual key0, tosh.;, Send {BackSpace}.{Space}Shoot{Space} 
-Else IfEqual key0, wto.;, Send {BackSpace}.{Space}Two{Space} 
- Else IfEqual key0, rtos.;, Send {BackSpace}.{Space}Sort Of{Space} 
- Else IfEqual key0, og.;, Send {BackSpace}.{Space}Going{Space} 
- Else IfEqual key0, tish.;, Send {BackSpace}.{Space}Shit{Space} 
- Else IfEqual key0, tm.;, Send {BackSpace}.{Space}Might{Space} 
- Else IfEqual key0, idf.;, Send {BackSpace}.{Space}Difficult{Space} 
- Else IfEqual key0, tdn.;, Send {BackSpace}.{Space}Didn't{Space} 
- Else IfEqual key0, tidn.;, Send {BackSpace}.{Space}Didn't{Space} 
- Else IfEqual key0, er.;, Send {BackSpace}.{Space}Re
- Else IfEqual key0, erp.;, Send {BackSpace}.{Space}Pre
- Else IfEqual key0, em.;, Send {BackSpace}.{Space}Them{Space} 
- Else IfEqual key0, ig.;, Send {BackSpace}.{Space}Instagram{Space} 
- Else IfEqual key0, fb.;, Send {BackSpace}.{Space}Facebook{Space} 
- Else IfEqual key0, gl.;, Send {BackSpace}.{Space}Google{Space} 
- Else IfEqual key0, id.;, Send {BackSpace}.{Space}I'd{Space} 
- Else IfEqual key0, ok.;, Send {BackSpace}.{Space}Okay{Space} 
- Else IfEqual key0, sm.;, Send {BackSpace}.{Space}So Much{Space} 
- Else IfEqual key0, etc.;, Send {BackSpace}.{Space}Technology{Space} 
- Else IfEqual key0, th.;, Send {BackSpace}.{Space}Th{Space} 
- Else IfEqual key0, tsh.;, Send {BackSpace}.{Space}That's{Space} 
- Else IfEqual key0, ev.;, Send {BackSpace}.{Space}Ve{Space} 
- Else IfEqual key0, c.;, Send {BackSpace}.{Space}See{Space} 
- Else IfEqual key0, u.;, Send {BackSpace}.{Space}You{Space} 
- Else IfEqual key0, n.;, Send {BackSpace}.{Space}And{Space} 
- Else IfEqual key0, t.;, Send {BackSpace}.{Space}The{Space} 
- Else IfEqual key0, y.;, Send {BackSpace}.{Space}Yeah{Space} 
- Else IfEqual key0, b.;, Send {BackSpace}.{Space}But{Space} 
- Else IfEqual key0, tion.;, Send {BackSpace}.{Space}Ition{Space} 
- Else IfEqual key0, w.;, Send {BackSpace}.{Space}With{Space} 
- Else IfEqual key0, p.;, Send {BackSpace}.{Space}Pretty{Space} 
- Else IfEqual key0, k.;, Send {BackSpace}.{Space}Know{Space} 
- Else IfEqual key0, q.;, Send {BackSpace}.{Space}Quick{Space} 
- Else IfEqual key0, g.;, Send {BackSpace}.{Space}Great{Space} 
- Else IfEqual key0, l.;, Send {BackSpace}.{Space}Like{Space} 
- Else IfEqual key0, r.;, Send {BackSpace}.{Space}Really{Space} 
- Else IfEqual key0, sh.;, Send {BackSpace}.{Space}Sh{Space} 
- Else IfEqual key0, j.;, Send {BackSpace}.{Space}Just{Space} 
- Else IfEqual key0, m.;, Send {BackSpace}.{Space}Much{Space} 
- Else IfEqual key0, e.;, Send {BackSpace}.{Space}Even{Space} 
- Else IfEqual key0, d.;, Send {BackSpace}.{Space}Ed{Space} 
- Else IfEqual key0, f.;, Send {BackSpace}.{Space}For{Space} 
- Else IfEqual key0, v.;, Send {BackSpace}.{Space}Very{Space} 
- Else IfEqual key0, io.;, Send{BackSpace}{BackSpace} tion{Space} 
- Else IfEqual key0, th.;, Send {BackSpace}.{Space}Th{Space} 
- Else IfEqual key0, hc.;, Send {BackSpace}.{Space}Ch{Space} 
- Else IfEqual key0, to.;, Send {BackSpace}.{Space}Too{Space} 
- Else IfEqual key0, tuagh.;, Send {BackSpace}.{Space}Aught{Space} 
- Else IfEqual key0, ocn.;, Send {BackSpace}.{Space}Con{Space} 
- Else IfEqual key0, era.;, Send {BackSpace}.{Space}Are{Space} 
- Else IfEqual key0, gc.;, Send {BackSpace}.{Space}Seeing{Space} 
- Else IfEqual key0, wya.;, Send {BackSpace}.{Space}Away{Space} 
- Else IfEqual key0, was.;, Send {BackSpace}.{Space}Saw{Space} 
- Else IfEqual key0, 3.;, Send {BackSpace}.{Space}Three{Space} 
- Else IfEqual key0, 1.;, Send {BackSpace}.{Space}One{Space} 
- Else IfEqual key0, 2.;, Send {BackSpace}.{Space}Two{Space} 
- Else IfEqual key0, 4.;, Send {BackSpace}.{Space}Four{Space} 
- Else IfEqual key0, 5.;, Send {BackSpace}.{Space}Five{Space} 
- Else IfEqual key0, ex.;, Send {BackSpace}.{Space}Exact{Space} 
- Else IfEqual key0, 6.;, Send {BackSpace}.{Space}Six{Space} 
- Else IfEqual key0, 7.;, Send {BackSpace}.{Space}Seven{Space} 
- Else IfEqual key0, 8.;, Send {BackSpace}.{Space}Eight{Space} 
- Else IfEqual key0, 9.;, Send {BackSpace}.{Space}Nine{Space} 
- Else IfEqual key0, 0.;, Send {BackSpace}.{Space}10,{Space} 
- Else IfEqual key0, woh.;, Send {BackSpace}.{Space}Who{Space} 
- Else IfEqual key0, etl.;, Send {BackSpace}.{Space}Tell{Space}   
- Else IfEqual key0, erts.;, Send {BackSpace}.{Space}Stress{Space} 
- Else IfEqual key0, st.;, Send {BackSpace}.{Space}St{Space} 
- Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post{Space} 
- Else IfEqual key0, tis.;, Send {BackSpace}.{Space}Sit{Space} 
- Else IfEqual key0, ashl.;, Send {BackSpace}.{Space}Shall{Space} 
- Else IfEqual key0, esd.;, Send {BackSpace}.{Space}Seed{Space} 
- Else IfEqual key0, was.;, Send {BackSpace}.{Space}Saw{Space} 
- Else IfEqual key0, won.;, Send {BackSpace}.{Space}Own{Space} 
- Else IfEqual key0, on.;, Send {BackSpace}.{Space}On{Space} 
- Else IfEqual key0, etfl.;, Send {BackSpace}.{Space}Left{Space} 
- Else IfEqual key0, wtah.;, Send {BackSpace}.{Space}Thaw{Space} 
- Else IfEqual key0, of.;, Send {BackSpace}.{Space}Off{Space} 
- Else IfEqual key0, eanm.;, Send {BackSpace}.{Space}Name{Space} 
- Else IfEqual key0, eilv.;, Send {BackSpace}.{Space}Evil{Space} 
- Else IfEqual key0, epk.;, Send {BackSpace}.{Space}Peek{Space} 
- Else IfEqual key0, rtuh.;, Send {BackSpace}.{Space}Hurt{Space} 
- Else IfEqual key0, toh.;, Send {BackSpace}.{Space}Hot{Space} 
- Else IfEqual key0, ish.;, Send {BackSpace}.{Space}Ish{Space} 
- Else IfEqual key0, erh.;, Send {BackSpace}.{Space}Here{Space} 
- Else IfEqual key0, og.;, Send {BackSpace}.{Space}Original{Space} 
- Else IfEqual key0, ed.;, Send {BackSpace}.{Space}De
- Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post
- Else IfEqual key0, ism.;, Send {BackSpace}.{Space}Mis{Space} 
- Else IfEqual key0, al.;, Send{BackSpace} al{Space} 
- Else IfEqual key0, s.;, Send{BackSpace} s{Space} 
- Else IfEqual key0, esn.;, Send{BackSpace} ness{Space} 
- Else IfEqual key0, i.;, Send {BackSpace}.{Space}I{Space} 
- Else IfEqual key0, a.;, Send {BackSpace}.{Space}A{Space} 
- Else IfEqual key0, ufl.;, Send{BackSpace} ful{Space} 
- Else IfEqual key0, er.;, Send {BackSpace}.{Space}Re
- Else IfEqual key0, toh.;, Send {BackSpace}.{Space}Oth{Space} 
- Else IfEqual key0, ton.;, Send {BackSpace}.{Space}Ton{Space} 
-Else IfEqual key0, yal.;, Send{BackSpace} ally{Space} 
-Else IfEqual key0, able.;, Send {BackSpace}.{Space}Able
-Else IfEqual key0, ua.;, Send {BackSpace}.{Space}Ua 
-Else IfEqual key0, edn.;, Send {BackSpace}.{Space}End{Space} 
-Else IfEqual key0, er.;, Send{BackSpace} er
-Else IfEqual key0, etm.;, Send {BackSpace}.{Space}Meet{Space} 
-Else IfEqual key0, etg.;, Send {BackSpace}.{Space}Getting{Space} 
-Else IfEqual key0, al.;, Send{BackSpace} al
-Else IfEqual key0, tops.;, Send {BackSpace}.{Space}Post{Space} 
-Else IfEqual key0, eag.;, Send {BackSpace}.{Space}Age
-Else IfEqual key0, ertih.;, Send {BackSpace}.{Space}Either{Space} 
-Else IfEqual key0, gv.;, Send {BackSpace}.{Space}Giving{Space} 
-Else IfEqual key0, erashc.;, Send {BackSpace}.{Space}Research{Space} 
-Else IfEqual key0, edf.;, Send {BackSpace}.{Space}Feed{Space} 
-Else IfEqual key0, eoshc.;, Send {BackSpace}.{Space}Choose{Space} 
-Else IfEqual key0, eigbn.;, Send {BackSpace}.{Space}Beginning{Space} 
-Else IfEqual key0, opsh.;, Send {BackSpace}.{Space}Shops{Space} 
-Else IfEqual key0, esm.;, Send {BackSpace}.{Space}Seems{Space} 
-Else IfEqual key0, ertal.;, Send {BackSpace}.{Space}Relate{Space} 
-Else IfEqual key0, etis.;, Send{BackSpace} ities{Space} 
-Else IfEqual key0, tol.;, Send {BackSpace}.{Space}Tool{Space} 
-Else IfEqual key0, tasf.;, Send {BackSpace}.{Space}Staff{Space} 
-Else IfEqual key0, sn.;, Send {BackSpace}.{Space}Season{Space} 
- Else IfEqual key0, isgn.;, Send {BackSpace}.{Space}Sing{Space} 
- Else IfEqual key0, erpa.;, Send {BackSpace}.{Space}Paper{Space} 
- Else IfEqual key0, es.;, Send{BackSpace} es{Space} 
-Else IfEqual key0, epsdn.;, Send {BackSpace}.{Space}Depends{Space} 
-Else IfEqual key0, rtlc.;, Send {BackSpace}.{Space}Critical{Space} 
-Else IfEqual key0, ertpsn.;, Send {BackSpace}.{Space}Represent{Space} 
-Else IfEqual key0, oagln.;, Send {BackSpace}.{Space}Analog{Space} 
-Else IfEqual key0, ral.;, Send {BackSpace}.{Space}Lar
-Else IfEqual key0, tahc.;, Send {BackSpace}.{Space}Attach{Space} 
-Else IfEqual key0, ertpan.;, Send {BackSpace}.{Space}Parent{Space} 
-Else IfEqual key0, igh.;, Send {BackSpace}.{Space}Igh{Space} 
-Else IfEqual key0, ets.;, Send {BackSpace}.{Space}Test{Space} 	
-Else IfEqual key0, etsn.;, Send {BackSpace}.{Space}Sent{Space} 
-Else IfEqual key0, esfl.;, Send {BackSpace}.{Space}Self{Space} 
-Else IfEqual key0, epal.;, Send {BackSpace}.{Space}Apple{Space} 
-Else IfEqual key0, eiscn.;, Send {BackSpace}.{Space}Science{Space} 
-Else IfEqual key0, rtlv.;, Send {BackSpace}.{Space}Virtual{Space} 
-Else IfEqual key0, ts.;, Send {BackSpace}.{Space}Street{Space} 
-Else IfEqual key0, odg.;, Send {BackSpace}.{Space}Dog{Space} 
-Else IfEqual key0, ertin.;, Send {BackSpace}.{Space}Internet{Space} 
-Else IfEqual key0, rtpcn.;, Send {BackSpace}.{Space}Corporation{Space} 
-Else IfEqual key0, werti.;, Send {BackSpace}.{Space}Twitter{Space} 
-Else IfEqual key0, erac.;, Send {BackSpace}.{Space}Race{Space} 
-Else IfEqual key0, erus.;, Send {BackSpace}.{Space}User{Space} 
-Else IfEqual key0, rac.;, Send {BackSpace}.{Space}Car{Space} 
-Else IfEqual key0, roadb.;, Send {BackSpace}.{Space}Broad{Space} 
-Else IfEqual key0, wera.;, Send {BackSpace}.{Space}Aware{Space} 
-Else IfEqual key0, wrtoh.;, Send {BackSpace}.{Space}Worth{Space} 
-Else IfEqual key0, ertafh.;, Send {BackSpace}.{Space}Farther{Space} 
-Else IfEqual key0, ypal.;, Send {BackSpace}.{Space}Apply{Space} 
-Else IfEqual key0, rtpc.;, Send {BackSpace}.{Space}Capture{Space} 
-Else IfEqual key0, erups.;, Send {BackSpace}.{Space}Pressure{Space} 
-Else IfEqual key0, esl.;, Send {BackSpace}.{Space}Sell{Space} 
-Else IfEqual key0, eifl.;, Send {BackSpace}.{Space}File{Space} 
-Else IfEqual key0, weak.;, Send {BackSpace}.{Space}Wake{Space} 
-Else IfEqual key0, deadl.;, Send {BackSpace}.{Space}Lead{Space} 
- Else IfEqual key0, wer';, Send {BackSpace}.{Space}We're{Space} 
- Else IfEqual key0, esh';, Send {BackSpace}.{Space}He's{Space} 
- Else IfEqual key0, id';, Send {BackSpace}.{Space}I'd{Space} 
- Else IfEqual key0, yal';, Send {BackSpace}.{Space}Y'all{Space} 
- Else IfEqual key0, wosh';, Send {BackSpace}.{Space}Who's{Space} 
- Else IfEqual key0, tid`'`n;, Send {BackSpace}.{Space}Didn't{Space} 
- Else IfEqual key0, ts';, Send {BackSpace}.{Space}That's{Space}
-Else IfEqual key0, ad.;, Send {BackSpace}.{Space}Add{Space} 
-Else IfEqual key0, easc.;, Send {BackSpace}.{Space}Access{Space} 
-Else IfEqual key0, eolv.;, Send {BackSpace}.{Space}Evolve{Space} 
-Else IfEqual key0, epash.;, Send {BackSpace}.{Space}Phase{Space} 
-Else IfEqual key0, ertal.;, Send {BackSpace}.{Space}Alter{Space} 
-Else IfEqual key0, fl.;, Send {BackSpace}.{Space}Full{Space} 
-Else IfEqual key0, til.;, Send {BackSpace}.{Space}It'll{Space} 
-Else IfEqual key0, til';, Send {BackSpace}.{Space}It'll{Space} 
-Else IfEqual key0, tpln.;, Send {BackSpace}.{Space}Population{Space} 
-Else IfEqual key0, vm.;, Send {BackSpace}.{Space}Movie{Space}
-Return  
