@@ -9,12 +9,10 @@ SetKeyDelay -1
 BlockInput Send
 $^.:: Send, {Backspace}.{Space}   
 $^,:: Send, {Backspace},{Space}
-Low = ``1234567890-=qwertyuiop[]\asdfghjkl`'zxcvbnm,./;
-Shft= ~!@#$`%^&*()_+QWERTYUIOP{}|ASDFGHJKL`"ZXCVBNM<>?:
-$^.:: Send, {Backspace}.{Space}   
-$^,:: Send, {Backspace},{Space}
 $+^1:: Send, {BackSpace}!{Space}
 $+^?:: Send, {BackSpace}?{Space}
+Low = ``1234567890-=qwertyuiop[]\asdfghjkl`'zxcvbnm,./;
+Shft= ~!@#$`%^&*()_+QWERTYUIOP{}|ASDFGHJKL`"ZXCVBNM<>?:
 KeySet = ``1234567890-=qwertyuiop[]\asdfghjkl`'zxcvbnm,./;
 Loop Parse, KeySet
 {
