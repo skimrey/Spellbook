@@ -33,4 +33,4 @@ $+^w:: Send ^w
 ^,:: Send, {Backspace},{Space}
 +^1:: Send, {BackSpace}!{Space}
 +^?:: Send, {BackSpace}?{Space}
-$2:: Send, {Space}
+
