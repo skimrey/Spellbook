@@ -29,3 +29,7 @@ sleep, 50
 RETURN
 $^d::Send "
 $+^w:: Send ^w
+^.:: Send, {Backspace}.{Space}   
+^,:: Send, {Backspace},{Space}
++^1:: Send, {BackSpace}!{Space}
++^?:: Send, {BackSpace}?{Space}
