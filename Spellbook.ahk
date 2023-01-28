@@ -3115,7 +3115,7 @@ Else if (key0 = "eras" or key0 = "eras;" or key0 = "ERAS")
 Else if (key0 = "erdcbm" or key0 = "erdcbm;" or key0 = "ERDCBM")
     str = December{Space}
 Else if (key0 = "erf" or key0 = "erf;" or key0 = "ERF")
-    str = refer{Space}
+    str = free{Space}
 Else if (key0 = "erhc" or key0 = "erhc;" or key0 = "ERHC")
     str = cheer{Space}
 Else if (key0 = "erias" or key0 = "erias;" or key0 = "ERIAS")
