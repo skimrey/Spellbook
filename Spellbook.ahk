@@ -253,57 +253,57 @@ IfInString, key0, M
 If InStr(key0, ";") 
 {
          if (key0 = "q;")
-         Send {BackSpace}{BackSpace}q
+         Send {BackSpace}{BackSpace}q{Space}
          Else if (key0 = "w;")
-         Send {BackSpace}{BackSpace}w
+         Send {BackSpace}{BackSpace}w{Space}
          Else if (key0 = "e;")
-         Send {BackSpace}{BackSpace}e
+         Send {BackSpace}{BackSpace}e{Space}
          Else if (key0 = "r;")
-         Send {BackSpace}{BackSpace}r
+         Send {BackSpace}{BackSpace}r{Space}
          Else if (key0 = "t;")
-         Send {BackSpace}{BackSpace}t
+         Send {BackSpace}{BackSpace}t{Space}
          Else if (key0 = "y;")
-         Send {BackSpace}{BackSpace}y
+         Send {BackSpace}{BackSpace}y{Space}
          Else if (key0 = "u;")
-         Send {BackSpace}{BackSpace}u
+         Send {BackSpace}{BackSpace}u{Space}
          Else if (key0 = "i;")
-         Send {BackSpace}{BackSpace}i
+         Send {BackSpace}{BackSpace}i{Space}
          Else if (key0 = "o;")
-         Send {BackSpace}{BackSpace}o
+         Send {BackSpace}{BackSpace}o{Space}
          Else if (key0 = "p;")
-         Send {BackSpace}{BackSpace}p
+         Send {BackSpace}{BackSpace}p{Space}
          Else if (key0 = "a;")
-         Send {BackSpace}{BackSpace}a
+         Send {BackSpace}{BackSpace}a{Space}
          Else if (key0 = "s;")
-         Send {BackSpace}{BackSpace}s
+         Send {BackSpace}{BackSpace}s{Space}
          Else if (key0 = "d;")
-         Send {BackSpace}{BackSpace}d
+         Send {BackSpace}{BackSpace}d{Space}
          Else if (key0 = "f;")
-         Send {BackSpace}{BackSpace}f
+         Send {BackSpace}{BackSpace}f{Space}
          Else if (key0 = "g;")
-         Send {BackSpace}{BackSpace}g
+         Send {BackSpace}{BackSpace}g{Space}
          Else if (key0 = "h;")
-         Send {BackSpace}{BackSpace}h
+         Send {BackSpace}{BackSpace}h{Space}
          Else if (key0 = "j;")
-         Send {BackSpace}{BackSpace}j
+         Send {BackSpace}{BackSpace}j{Space}
          Else if (key0 = "k;")
-         Send {BackSpace}{BackSpace}k
+         Send {BackSpace}{BackSpace}k{Space}
          Else if (key0 = "l;")
-         Send {BackSpace}{BackSpace}l
+         Send {BackSpace}{BackSpace}l{Space}
          Else if (key0 = "z;")
-         Send {BackSpace}{BackSpace}z
+         Send {BackSpace}{BackSpace}z{Space}
          Else if (key0 = "x;")
-         Send {BackSpace}{BackSpace}x
+         Send {BackSpace}{BackSpace}x{Space}
          Else if (key0 = "c;")
-         Send {BackSpace}{BackSpace}c
+         Send {BackSpace}{BackSpace}c{Space}
          Else if (key0 = "v;")
-         Send {BackSpace}{BackSpace}v
+         Send {BackSpace}{BackSpace}v{Space}
          Else if (key0 = "b;")
-         Send {BackSpace}{BackSpace}b
+         Send {BackSpace}{BackSpace}b{Space}
          Else if (key0 = "n;")
-         Send {BackSpace}{BackSpace}n
+         Send {BackSpace}{BackSpace}n{Space}
          Else if (key0 = "m;")
-         Send {BackSpace}{BackSpace}m
+         Send {BackSpace}{BackSpace}m{Space}
          Else
          {
             str := RegExReplace(str, "^(.)", "$T1")
