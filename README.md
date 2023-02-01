@@ -31,7 +31,9 @@ single letter . - this sends the most common word beginning with the letter
 
 single letter / - backspace letter space
 
-single letter - backspace backspace letter space
+single letter ; - - backspace backspace letter space
+
+shift works like shift, capitalizes word
 
 Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc), company (cmp), department (dpt), amazing (amg), communicate (cmu)
 
