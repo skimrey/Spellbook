@@ -23,6 +23,16 @@ Logic Outline
 
 Full Words: Just hit the letters in the word! how (how), their (their)
 
+; - modifier for starting sentence. period, space, capital
+
+. , ' / - modifiers for accessing alternate spellings
+
+single letter . - this sends the most common word beginning with the letter
+
+single letter / - backspace letter space
+
+single letter - backspace backspace letter space
+
 Fewest Letters to Generate Unique Memorable Identifer: conversation (cnv), executive (xc), company (cmp), department (dpt), amazing (amg), communicate (cmu)
 
 Subtracted Vowels Unless Vowel is First Letter or First Letter Makes Vowel Sound (Words without vowels that sound/look close enough): multiple (mltpl -> mltp), again (agn), examine (xmn), relation (rltn), compensate (cmpnst), cool (cl)
