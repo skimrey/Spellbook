@@ -10,12 +10,11 @@ Requires Autohotkey which is a free program for scripting Windows automation (ke
 
 This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and alternate keyboard took me longer to learn than generating spellings based on how words are spelled (crazy, right?). There is also the massive benefit of being able to casually type single letters and chords interchangeably with greater ease than a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes. Please use it and build on it!
 
-If you disagree on the spellings I've chosen or observe some of the many holes in entries, please fork the repository and share what you've come up with that works better!
+If you disagree on the spellings I've chosen or observe some of the many holes, please fork the repository and share what you've come up with that works better!
 
 Technical Stuff and Rules
 - Please Read Laszlo's post at the top
-The only addiition I made to the code beyond my words is I branched the SENDs using first letters to avoid hitting the recursion limit and keep things neater. Starting at line 83 you can see how each word is checked to see what letter it begins with (the QWERTY spelling, not the word/chord (jump = upjm)). When adding words, they must be put in the corresponding "chapter." SENDDOT is used for words containing . 
--  There is a chunk at line 72 which determines what time period in ms your inputs are chunked by, which will impact single letter typing speed and chord ease inversely.
+
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
 Logic Outline
