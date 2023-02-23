@@ -17,6 +17,17 @@ Technical Stuff and Rules
 
 - Definitions are entered using the keys in QWERTY order, and then Send ____ If you look at the script, the syntax is fairly clear.
 
+- CTRL + F for these lines to modify the time window that defines a chord vs a single character, how long between subsequent presses to count as a single chord
+     Else {                              ; NO KEY CHANGE keys == key0
+      if (keys = ""
+       or A_TickCount - KeyTick  < 20  and keyn = 0
+       or A_TickCount - SentTick < 360 and keyn = 1
+       or A_TickCount - SentTick < 37 and keyn > 1)
+         Return
+      keyn++
+      GoTo SEND
+      
+
 Logic Outline
 - Please reference this article for more comprehensive theory https://griffonagedotcom.wordpress.com/2018/11/20/shorthand-on-the-qwerty-keyboard-1875-1917/
 
