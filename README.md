@@ -1,4 +1,4 @@
-# stenotypy AKA Spellbook
+# Spellbook
 
 Sick of typing every letter serially like a schmuck? You've come to the right place. Words at once is how we think about our language, so it's how we should output it digitally as well.
 
