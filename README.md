@@ -6,9 +6,9 @@ QWERTY+ chord dictionary based on https://www.autohotkey.com/board/topic/6426-ch
 
 Requires Autohotkey which is a free program for scripting Windows automation (keystrokes, mouse movements, etc) https://www.autohotkey.com/ Simply download autohotkey and then launch Spellbook.ahk which is available here.
 
-- Please note some keyboards will not completely work based on their matrix (certain keyboards only register a few keys at a time). Mechanical keyboards are recommended, but my laptop keyboard works surprisingly well (not perfectly) so YMMV
+- Mechanical keyboards are best. Otherwise you may have a cap on character count or only certain amounts of letters per row/column at a time due to key matrices.
 
-This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and new keyboard were actually taking me longer to learn than generating my own spellings for a layout that was intuitive to me. There is also the massive benefit of being able to casually type single letters and chords interchangeably much more easily than with a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes. Please use it and build on it if it makes any sense to you or build your own!
+This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and alternate keyboard took me longer to learn than generating spellings based on how words are spelled (crazy, right?). There is also the massive benefit of being able to casually type single letters and chords interchangeably with greater ease than a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes. Please use it and build on it!
 
 If you disagree on the spellings I've chosen or observe some of the many holes in entries, please fork the repository and share what you've come up with that works better!
 
