@@ -1,6 +1,6 @@
 ; Dictionary and tweaks by Solomon Kimrey, initial code from Laszlo https://www.autohotkey.com/board/topic/6426-chording-keyboard-strings-sent-at-key-combinations/
 #MaxThreadsPerHotkey 10
-#MaxThreadsBuffer ON
+#MaxThreadsBuffer ONv
 #MaxHotkeysPerInterval 999
 #UseHook
 StringCaseSense On

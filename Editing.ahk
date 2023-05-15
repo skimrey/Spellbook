@@ -1,3 +1,8 @@
+$2:: Send, {Space}
+$^2:: Send, {F3}{F3}{F3}{F3}{F3}
+$^3:: Send, {F4}{F4}{F4}{F4}{F4}
+$^+,:: Send, ^.
+$^+.:: Send, ^,
 $MButton:: Send, ?
 $+MButton:: Send, {Return}
 $XButton1:: Send, .
@@ -8,7 +13,7 @@ $^MButton:: Send, {Return}{Return}
 $^XButton1:: Send, ...
 $^XButton2:: Send, '   
 $+XButton1:: Send, -
-^w::                                                                 
+$^w::                                                                 
  Send ^c
 sleep, 50
 StringUpper Clipboard, Clipboard
@@ -29,8 +34,15 @@ sleep, 50
 RETURN
 $^d::Send "
 $+^w:: Send ^w
-^.:: Send, {Backspace}.{Space}   
-^,:: Send, {Backspace},{Space}
-+^1:: Send, {BackSpace}!{Space}
-+^?:: Send, {BackSpace}?{Space}
-
+$^.:: Send, {Backspace}.{Space}   
+$^,:: Send, {Backspace},{Space}
+$+^1:: Send, {BackSpace}!{Space}
+$+^?:: Send, {BackSpace}?{Space}
+$^Tab::                                                                 
+ Send ^c
+sleep, 50
+ StringUpper Clipboard, Clipboard
+ StringReplace , Clipboard, Clipboard, %A_Space%,,All
+ Send %Clipboard%
+RETURN
+$Space:: Send, 2
