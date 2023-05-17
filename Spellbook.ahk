@@ -3010,6 +3010,8 @@ SENDE:
     str = ea
 Else if (key0 = "epalcb" or key0 = "epalcb;" or key0 = "EPALCB")
     str = capable{Space}
+Else if (key0 = "edhl" or key0 = "edhl;" or key0 = "EDHL")
+    str = held{Space}
 Else if (key0 = "eriv" or key0 = "eriv;" or key0 = "ERIV")
     str = river{Space}
 Else if (key0 = "eruipm" or key0 = "eruipm;" or key0 = "ERUIPM")
