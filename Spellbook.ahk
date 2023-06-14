@@ -429,7 +429,7 @@ If (key0 = "qerf" or key0 = "qerf;" or key0 = "QERF")
 Else if (key0 = "qerfn" or key0 = "qerfn;" or key0 = "QERFN")
     str = frequent{Space}
 Else if (key0 = "qerui" or key0 = "qerui;" or key0 = "QERUI")
-    str = queue{Space}
+    str = require{Space}
 Else if (key0 = "qeu" or key0 = "qeu;" or key0 = "QEU")
     str = queue{Space}
 Else if (key0 = "qrac" or key0 = "qrac;" or key0 = "QRAC")
