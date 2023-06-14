@@ -3043,7 +3043,7 @@ Else if (key0 = "eas" or key0 = "eas;" or key0 = "EAS")
 Else if (key0 = "eruips" or key0 = "eruips;" or key0 = "ERUIPS")
     str = surprise{Space}
 Else if (key0 = "easf" or key0 = "easf;" or key0 = "EASF")
-    str = safety{Space}
+    str = safe{Space}
 Else if (key0 = "efhc" or key0 = "efhc;" or key0 = "EFHC")
     str = chef{Space}
 Else if (key0 = "erualcn" or key0 = "erualcn;" or key0 = "ERUALCN")
@@ -5688,6 +5688,8 @@ If (key0 = "r'" or key0 = "r';" or key0 = "R'")
     str = {BackSpace}r{Space}
 Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
     str = understood{Space}
+Else if (key0 = "ty." or key0 = "ty.;" or key0 = "ty>")
+    str = {BackSpace}ty{Space}
 Else if (key0 = "werth." or key0 = "werth.;" or key0 = "WERTH>")
     str = threw{Space}
 Else if (key0 = "eiosn." or key0 = "eiosn.;" or key0 = "EIOSN>")
