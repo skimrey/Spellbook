@@ -1965,6 +1965,8 @@ Else if (key0 = "tadh" or key0 = "tadh;" or key0 = "TADH")
     str = that'd{Space}
 Else if (key0 = "tisv" or key0 = "tisv;" or key0 = "TISV")
     str = visit{Space}
+Else if (key0 = "tuoab" or key0 = "tuoab;" or key0 = "TUOAB")
+    str = about{Space}
 Else if (key0 = "tihn" or key0 = "tihn;" or key0 = "TIHN")
     str = thin{Space}
 Else if (key0 = "tpsln" or key0 = "tpsln;" or key0 = "TPSLN")
@@ -3287,7 +3289,7 @@ Else if (key0 = "eodcnm" or key0 = "eodcnm;" or key0 = "EODCNM")
 Else if (key0 = "etisn" or key0 = "etisn;" or key0 = "ETISN")
     str = intense{Space}
 Else if (key0 = "eruios" or key0 = "eruios;" or key0 = "ERUIOS")
-    str = capable{Space}
+    str = serious{Space}
 Else if (key0 = "eualvb" or key0 = "eualvb;" or key0 = "EUALVB")
     str = valuable{Space}
 Else if (key0 = "etiagvn" or key0 = "etiagvn;" or key0 = "ETIAGVN")
