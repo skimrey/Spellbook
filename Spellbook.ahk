@@ -1175,7 +1175,7 @@ Else if (key0 = "rpagh" or key0 = "rpagh;" or key0 = "RPAGH")
 Else if (key0 = "rpaghc" or key0 = "rpaghc;" or key0 = "RPAGHC")
     str = graphic{Space}
 Else if (key0 = "rpg" or key0 = "rpg;" or key0 = "RPG")
-    str = grp group{Space}
+    str = group{Space}
 Else if (key0 = "rplcn" or key0 = "rplcn;" or key0 = "RPLCN")
     str = principle{Space}
 Else if (key0 = "rpscnm" or key0 = "rpscnm;" or key0 = "RPSCNM")
