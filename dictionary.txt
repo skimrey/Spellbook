@@ -445,7 +445,7 @@
  cnfr - conference{Space}
  flvr - flavor{Space}
  frm - firm{Space}
- rg - regard{Space}
+ gr - gear{Space}
  ncrg - encourage{Space}
  rgl - regular{Space}
  lvrg - leverage{Space}
@@ -3275,7 +3275,6 @@ ealcn. - clean{Space}
 eidv. - divide{Space}
 eipsc. - species{Space}
 erag. - rage{Space}
-rg. - gear{Space}
 erag/ - garage{Space}
 eridn. - diner{Space}
 erpsv. - persevere{Space}
