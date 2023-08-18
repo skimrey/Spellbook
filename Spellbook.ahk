@@ -328,10 +328,14 @@ If (key0 = "ets/" or key0 = "ets/;" or key0 = "ETS?")
     str = {BackSpace}est{Space}
 Else if (key0 = "era/" or key0 = "era/;" or key0 = "ERA?")
     str = ear{Space}
+Else if (key0 = "tion/" or key0 = "tion/;" or key0 = "TION?")
+    str = {BackSpace}{BackSpace}ition{Space}
 Else if (key0 = "q/" or key0 = "q/;" or key0 = "Q?")
     str = {BackSpace}q{Space}
 Else if (key0 = "w/" or key0 = "w/;" or key0 = "W?")
     str = {BackSpace}w{Space}
+Else if (key0 = "ure/" or key0 = "ure/;" or key0 = "URE/")
+    str = {backspace}{backspace}ure{Space}
 Else if (key0 = "e/" or key0 = "e/;" or key0 = "E?")
     str = {BackSpace}e{Space}
 Else if (key0 = "r/" or key0 = "r/;" or key0 = "R?")
@@ -388,6 +392,8 @@ Else if (key0 = "ertal/" or key0 = "ertal/;" or key0 = "ERTAL?")
     str = latter{Space}
 Else if (key0 = "erts/" or key0 = "erts/;" or key0 = "ERTS?")
     str = steer{Space}
+Else if (key0 = "erag/" or key0 = "erag/;" or key0 = "ERAG?")
+    str = garage{Space}
 Else if (key0 = "tosh/" or key0 = "tosh/;" or key0 = "TOSH?")
     str = host{Space}
 Else if (key0 = "erp/" or key0 = "erp/;" or key0 = "ERP?")
@@ -501,6 +507,26 @@ SENDW:
     str = as well{Space}
 Else if (key0 = "wrhv" or key0 = "wrhv;" or key0 = "WRHV")
     str = however{Space}
+Else if (key0 = "wertin" or key0 = "wertin;" or key0 = "WERTIN")
+    str = winter{Space}
+Else if (key0 = "wetas" or key0 = "wetas;" or key0 = "WETAS")
+    str = waste{Space}
+Else if (key0 = "wiph" or key0 = "wiph;" or key0 = "WIPH")
+    str = whip{Space}
+Else if (key0 = "wran" or key0 = "wran;" or key0 = "WRAN")
+    str = warn{Space}
+Else if (key0 = "wrn" or key0 = "wrn;" or key0 = "WRN")
+    str = narrow{Space}
+Else if (key0 = "wro" or key0 = "wro;" or key0 = "WRO")
+    str = row{Space}
+Else if (key0 = "wroa" or key0 = "wroa;" or key0 = "WROA")
+    str = arrow{Space}
+Else if (key0 = "wroan" or key0 = "wroan;" or key0 = "WROAN")
+    str = narrow{Space}
+Else if (key0 = "wrobn" or key0 = "wrobn;" or key0 = "WROBN")
+    str = brown{Space}
+Else if (key0 = "wtuoal" or key0 = "wtuoal;" or key0 = "WTUOAL")
+    str = outlaw{Space}
 Else if (key0 = "wtn" or key0 = "wtn;" or key0 = "WTN")
     str = won't{Space}
 Else if (key0 = "werhvn" or key0 = "werhvn;" or key0 = "WERHVN")
@@ -910,6 +936,146 @@ Else if (key0 = "ruioasv" or key0 = "ruioasv;" or key0 = "RUIOASV")
     str = saviour{Space}
 Else if (key0 = "rtyph" or key0 = "rtyph;" or key0 = "RTYPH")
     str = therapy{Space}
+Else if (key0 = "radgn" or key0 = "radgn;" or key0 = "RADGN")
+    str = grand{Space}
+Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
+    str = dark{Space}
+Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
+    str = dark{Space}
+Else if (key0 = "rahc" or key0 = "rahc;" or key0 = "RAHC")
+    str = char{Space}
+Else if (key0 = "rdv" or key0 = "rdv;" or key0 = "RDV")
+    str = drive{Space}
+Else if (key0 = "rfgn" or key0 = "rfgn;" or key0 = "RFGN")
+    str = finger{Space}
+Else if (key0 = "rglabn" or key0 = "rglabn;" or key0 = "RGLABN")
+    str = aboriginal{Space}
+Else if (key0 = "rgnm" or key0 = "rgnm;" or key0 = "RGNM")
+    str = migraine{Space}
+Else if (key0 = "riab" or key0 = "riab;" or key0 = "RIAB")
+    str = rabbi{Space}
+Else if (key0 = "riadf" or key0 = "riadf;" or key0 = "RIADF")
+    str = afraid{Space}
+Else if (key0 = "rialcnm" or key0 = "rialcnm;" or key0 = "RIALCNM")
+    str = criminal{Space}
+Else if (key0 = "rian" or key0 = "rian;" or key0 = "RIAN")
+    str = rain{Space}
+Else if (key0 = "rian" or key0 = "rian;" or key0 = "RIAN")
+    str = rain{Space}
+Else if (key0 = "ridg" or key0 = "ridg;" or key0 = "RIDG")
+    str = grid{Space}
+Else if (key0 = "rifac" or key0 = "rifac;" or key0 = "RIFAC")
+    str = africa{Space}
+Else if (key0 = "rio" or key0 = "rio;" or key0 = "RIO")
+    str = {backspace}ior{Space}
+Else if (key0 = "riofc" or key0 = "riofc;" or key0 = "RIOFC")
+    str = friction{Space}
+Else if (key0 = "riopsn" or key0 = "riopsn;" or key0 = "RIOPSN")
+    str = prison{Space}
+Else if (key0 = "riopsnm" or key0 = "riopsnm;" or key0 = "RIOPSNM")
+    str = imprison{Space}
+Else if (key0 = "ripg" or key0 = "ripg;" or key0 = "RIPG")
+    str = grip{Space}
+Else if (key0 = "ripsgn" or key0 = "ripsgn;" or key0 = "RIPSGN")
+    str = spring{Space}
+Else if (key0 = "ripsgn" or key0 = "ripsgn;" or key0 = "RIPSGN")
+    str = spring{Space}
+Else if (key0 = "rlcnm" or key0 = "rlcnm;" or key0 = "RLCNM")
+    str = criminal{Space}
+Else if (key0 = "rlvb" or key0 = "rlvb;" or key0 = "RLVB")
+    str = variable vrbl{Space}
+Else if (key0 = "rlvb" or key0 = "rlvb;" or key0 = "RLVB")
+    str = variable{Space}
+Else if (key0 = "rlvbn" or key0 = "rlvbn;" or key0 = "RLVBN")
+    str = vulnerable{Space}
+Else if (key0 = "roagn" or key0 = "roagn;" or key0 = "ROAGN")
+    str = organ{Space}
+Else if (key0 = "rodm" or key0 = "rodm;" or key0 = "RODM")
+    str = dorm{Space}
+Else if (key0 = "rofg" or key0 = "rofg;" or key0 = "ROFG")
+    str = frog{Space}
+Else if (key0 = "rofl" or key0 = "rofl;" or key0 = "ROFL")
+    str = floor{Space}
+Else if (key0 = "ropf" or key0 = "ropf;" or key0 = "ROPF")
+    str = proof{Space}
+Else if (key0 = "rpash" or key0 = "rpash;" or key0 = "RPASH")
+    str = sharp{Space}
+Else if (key0 = "rpsgn" or key0 = "rpsgn;" or key0 = "RPSGN")
+    str = passenger{Space}
+Else if (key0 = "rpz" or key0 = "rpz;" or key0 = "RPZ")
+    str = prize{Space}
+Else if (key0 = "rsdv" or key0 = "rsdv;" or key0 = "RSDV")
+    str = diverse{Space}
+Else if (key0 = "rtg" or key0 = "rtg;" or key0 = "RTG")
+    str = guitar{Space}
+Else if (key0 = "rtgcn" or key0 = "rtgcn;" or key0 = "RTGCN")
+    str = congregate{Space}
+Else if (key0 = "rtgl" or key0 = "rtgl;" or key0 = "RTGL")
+    str = regulate{Space}
+Else if (key0 = "rthlzn" or key0 = "rthlzn;" or key0 = "RTHLZN")
+    str = horizontal{Space}
+Else if (key0 = "rtid" or key0 = "rtid;" or key0 = "RTID")
+    str = dirt{Space}
+Else if (key0 = "rtid" or key0 = "rtid;" or key0 = "RTID")
+    str = dirt{Space}
+Else if (key0 = "rtiob" or key0 = "rtiob;" or key0 = "RTIOB")
+    str = orbit{Space}
+Else if (key0 = "rtiofcn" or key0 = "rtiofcn;" or key0 = "RTIOFCN")
+    str = friction{Space}
+Else if (key0 = "rtiopm" or key0 = "rtiopm;" or key0 = "RTIOPM")
+    str = import{Space}
+Else if (key0 = "rtiopm" or key0 = "rtiopm;" or key0 = "RTIOPM")
+    str = import{Space}
+Else if (key0 = "rtipascn" or key0 = "rtipascn;" or key0 = "RTIPASCN")
+    str = transcript{Space}
+Else if (key0 = "rtips" or key0 = "rtips;" or key0 = "RTIPS")
+    str = strip{Space}
+Else if (key0 = "rtlcv" or key0 = "rtlcv;" or key0 = "RTLCV")
+    str = vertical{Space}
+Else if (key0 = "rtopal" or key0 = "rtopal;" or key0 = "RTOPAL")
+    str = portal{Space}
+Else if (key0 = "rtopas" or key0 = "rtopas;" or key0 = "RTOPAS")
+    str = pastor{Space}
+Else if (key0 = "rtpcn" or key0 = "rtpcn;" or key0 = "RTPCN")
+    str = counterpart{Space}
+Else if (key0 = "rtphcnm" or key0 = "rtphcnm;" or key0 = "RTPHCNM")
+    str = anthropomorphic{Space}
+Else if (key0 = "rtsc" or key0 = "rtsc;" or key0 = "RTSC")
+    str = structure{Space}
+Else if (key0 = "rtsc" or key0 = "rtsc;" or key0 = "RTSC")
+    str = secret{Space}
+Else if (key0 = "rtscb" or key0 = "rtscb;" or key0 = "RTSCB")
+    str = subtract{Space}
+Else if (key0 = "rtscn" or key0 = "rtscn;" or key0 = "RTSCN")
+    str = countries{Space}
+Else if (key0 = "rtsda" or key0 = "rtsda;" or key0 = "RTSDA")
+    str = asteroid{Space}
+Else if (key0 = "rtshc" or key0 = "rtshc;" or key0 = "RTSHC")
+    str = stretch{Space}
+Else if (key0 = "rtuiga" or key0 = "rtuiga;" or key0 = "RTUIGA")
+    str = guitar{Space}
+Else if (key0 = "rtuoc" or key0 = "rtuoc;" or key0 = "RTUOC")
+    str = court{Space}
+Else if (key0 = "rtyid" or key0 = "rtyid;" or key0 = "RTYID")
+    str = dirty{Space}
+Else if (key0 = "rtyid" or key0 = "rtyid;" or key0 = "RTYID")
+    str = dirty{Space}
+Else if (key0 = "rtyplxn" or key0 = "rtyplxn;" or key0 = "RTYPLXN")
+    str = explanatory{Space}
+Else if (key0 = "rual" or key0 = "rual;" or key0 = "RUAL")
+    str = rural{Space}
+Else if (key0 = "ruhc" or key0 = "ruhc;" or key0 = "RUHC")
+    str = church{Space}
+Else if (key0 = "ryiaf" or key0 = "ryiaf;" or key0 = "RYIAF")
+    str = fairy{Space}
+Else if (key0 = "ryoacnm" or key0 = "ryoacnm;" or key0 = "RYOACNM")
+    str = acronym{Space}
+Else if (key0 = "rysdnm" or key0 = "rysdnm;" or key0 = "RYSDNM")
+    str = syndrome{Space}
+Else if (key0 = "ryub" or key0 = "ryub;" or key0 = "RYUB")
+    str = bury{Space}
+Else if (key0 = "ryuijn" or key0 = "ryuijn;" or key0 = "RYUIJN")
+    str = injury{Space}
 Else if (key0 = "rtdlnm" or key0 = "rtdlnm;" or key0 = "RTDLNM")
     str = detrimental{Space}
 Else if (key0 = "rtdln" or key0 = "rtdln;" or key0 = "RTDLN")
@@ -1965,6 +2131,86 @@ Else if (key0 = "tadh" or key0 = "tadh;" or key0 = "TADH")
     str = that'd{Space}
 Else if (key0 = "tisv" or key0 = "tisv;" or key0 = "TISV")
     str = visit{Space}
+Else if (key0 = "tadgvn" or key0 = "tadgvn;" or key0 = "TADGVN")
+    str = advantage{Space}
+Else if (key0 = "tafl" or key0 = "tafl;" or key0 = "TAFL")
+    str = flat{Space}
+Else if (key0 = "tal" or key0 = "tal;" or key0 = "TAL")
+    str = tall{Space}
+Else if (key0 = "taskl" or key0 = "taskl;" or key0 = "TASKL")
+    str = stalk{Space}
+Else if (key0 = "tasv" or key0 = "tasv;" or key0 = "TASV")
+    str = vast{Space}
+Else if (key0 = "tdvn" or key0 = "tdvn;" or key0 = "TDVN")
+    str = divinity{Space}
+Else if (key0 = "tfcn" or key0 = "tfcn;" or key0 = "TFCN")
+    str = notification{Space}
+Else if (key0 = "tflcn" or key0 = "tflcn;" or key0 = "TFLCN")
+    str = conflict{Space}
+Else if (key0 = "thbn" or key0 = "thbn;" or key0 = "THBN")
+    str = beneath{Space}
+Else if (key0 = "tiab" or key0 = "tiab;" or key0 = "TIAB")
+    str = bait{Space}
+Else if (key0 = "tiagn" or key0 = "tiagn;" or key0 = "TIAGN")
+    str = giant{Space}
+Else if (key0 = "tialcn" or key0 = "tialcn;" or key0 = "TIALCN")
+    str = atlantic{Space}
+Else if (key0 = "tiasc" or key0 = "tiasc;" or key0 = "TIASC")
+    str = statistic{Space}
+Else if (key0 = "tiasln" or key0 = "tiasln;" or key0 = "TIASLN")
+    str = install{Space}
+Else if (key0 = "tihcb" or key0 = "tihcb;" or key0 = "TIHCB")
+    str = bitch{Space}
+Else if (key0 = "tikc" or key0 = "tikc;" or key0 = "TIKC")
+    str = tick{Space}
+Else if (key0 = "tiod" or key0 = "tiod;" or key0 = "TIOD")
+    str = idiot{Space}
+Else if (key0 = "tipaslc" or key0 = "tipaslc;" or key0 = "TIPASLC")
+    str = plastic{Space}
+Else if (key0 = "tiscn" or key0 = "tiscn;" or key0 = "TISCN")
+    str = instance{Space}
+Else if (key0 = "toafl" or key0 = "toafl;" or key0 = "TOAFL")
+    str = float{Space}
+Else if (key0 = "tofn" or key0 = "tofn;" or key0 = "TOFN")
+    str = font{Space}
+Else if (key0 = "tokc" or key0 = "tokc;" or key0 = "TOKC")
+    str = tock{Space}
+Else if (key0 = "toskc" or key0 = "toskc;" or key0 = "TOSKC")
+    str = stock{Space}
+Else if (key0 = "tpad" or key0 = "tpad;" or key0 = "TPAD")
+    str = adapt{Space}
+Else if (key0 = "tpasm" or key0 = "tpasm;" or key0 = "TPASM")
+    str = stamp{Space}
+Else if (key0 = "tplnm" or key0 = "tplnm;" or key0 = "TPLNM")
+    str = implement{Space}
+Else if (key0 = "tpsd" or key0 = "tpsd;" or key0 = "TPSD")
+    str = despite{Space}
+Else if (key0 = "tpsgh" or key0 = "tpsgh;" or key0 = "TPSGH")
+    str = spaghetti{Space}
+Else if (key0 = "tpslc" or key0 = "tpslc;" or key0 = "TPSLC")
+    str = plastic{Space}
+Else if (key0 = "tpslcb" or key0 = "tpslcb;" or key0 = "TPSLCB")
+    str = susceptible{Space}
+Else if (key0 = "tsgvn" or key0 = "tsgvn;" or key0 = "TSGVN")
+    str = investigate{Space}
+Else if (key0 = "tshlb" or key0 = "tshlb;" or key0 = "TSHLB")
+    str = establish{Space}
+Else if (key0 = "tslc" or key0 = "tslc;" or key0 = "TSLC")
+    str = statistical{Space}
+Else if (key0 = "tuilb" or key0 = "tuilb;" or key0 = "TUILB")
+    str = built{Space}
+Else if (key0 = "tun" or key0 = "tun;" or key0 = "TUN")
+    str = nut{Space}
+Else if (key0 = "tuohc" or key0 = "tuohc;" or key0 = "TUOHC")
+    str = touch{Space}
+Else if (key0 = "tuosh" or key0 = "tuosh;" or key0 = "TUOSH")
+    str = shout{Space}
+Else if (key0 = "tyipac" or key0 = "tyipac;" or key0 = "TYIPAC")
+    str = capacity{Space}
+Else if (key0 = "typlm" or key0 = "typlm;" or key0 = "TYPLM")
+    str = multiply{Space}
+Else if (key0 = "tplcm" or key0 = "tplcm;" or key0 = "tPLCM")
+    str = complete{Space}
 Else if (key0 = "tuoab" or key0 = "tuoab;" or key0 = "TUOAB")
     str = about{Space}
 Else if (key0 = "tihn" or key0 = "tihn;" or key0 = "TIHN")
@@ -2718,6 +2964,16 @@ SENDY:
     str = {BackSpace}acy{Space}
 Else if (key0 = "yad" or key0 = "yad;" or key0 = "YAD")
     str = day{Space}
+Else if (key0 = "yaslvn" or key0 = "yaslvn;" or key0 = "YASLVN")
+    str = sylvan{Space}
+Else if (key0 = "ydl" or key0 = "ydl;" or key0 = "YDL")
+    str = yield{Space}
+Else if (key0 = "yisl" or key0 = "yisl;" or key0 = "YISL")
+    str = silly{Space}
+Else if (key0 = "ysk" or key0 = "ysk;" or key0 = "YSK")
+    str = sky{Space}
+Else if (key0 = "yup" or key0 = "yup;" or key0 = "YUP")
+    str = yup{Space}
 Else if (key0 = "yugl" or key0 = "yugl;" or key0 = "YUGL")
     str = ugly{Space}
 Else if (key0 = "tysg" or key0 = "tysg;" or key0 = "TYSG")
@@ -2857,6 +3113,44 @@ SENDU:
     str = au
 Else if (key0 = "uab" or key0 = "uab;" or key0 = "UAB")
     str = a bunch{Space}
+Else if (key0 = "uion" or key0 = "uion;" or key0 = "UION")
+    str = union{Space}
+Else if (key0 = "uiosl" or key0 = "uiosl;" or key0 = "UIOSL")
+    str = solution{Space}
+Else if (key0 = "ukcb" or key0 = "ukcb;" or key0 = "UKCB")
+    str = buck{Space}
+Else if (key0 = "uoasfm" or key0 = "uoasfm;" or key0 = "UOASFM")
+    str = famous{Space}
+Else if (key0 = "uodbn" or key0 = "uodbn;" or key0 = "UODBN")
+    str = bound{Space}
+Else if (key0 = "uohc" or key0 = "uohc;" or key0 = "UOHC")
+    str = ouch{Space}
+Else if (key0 = "uosbn" or key0 = "uosbn;" or key0 = "UOSBN")
+    str = bonus{Space}
+Else if (key0 = "upsl" or key0 = "upsl;" or key0 = "UPSL")
+    str = plus{Space}
+Else if (key0 = "usdk" or key0 = "usdk;" or key0 = "USDK")
+    str = dusk{Space}
+Else if (key0 = "ush" or key0 = "ush;" or key0 = "USH")
+    str = hush{Space}
+Else if (key0 = "uskc" or key0 = "uskc;" or key0 = "USKC")
+    str = suck{Space}
+Else if (key0 = "uion" or key0 = "uion;" or key0 = "UION")
+    str = union{Space}
+Else if (key0 = "uiosl" or key0 = "uiosl;" or key0 = "UIOSL")
+    str = solution{Space}
+Else if (key0 = "ukcb" or key0 = "ukcb;" or key0 = "UKCB")
+    str = buck{Space}
+Else if (key0 = "uoasfm" or key0 = "uoasfm;" or key0 = "UOASFM")
+    str = famous{Space}
+Else if (key0 = "uodbn" or key0 = "uodbn;" or key0 = "UODBN")
+    str = bound{Space}
+Else if (key0 = "uohc" or key0 = "uohc;" or key0 = "UOHC")
+    str = ouch{Space}
+Else if (key0 = "uosbn" or key0 = "uosbn;" or key0 = "UOSBN")
+    str = bonus{Space}
+Else if (key0 = "upsl" or key0 = "upsl;" or key0 = "UPSL")
+    str = plus{Space}
 Else if (key0 = "uahnm" or key0 = "uahnm;" or key0 = "UAHNM")
     str = human{Space}
 Else if (key0 = "uasdhbn" or key0 = "uasdhbn;" or key0 = "UASDHBN")
@@ -3012,6 +3306,184 @@ SENDE:
     str = ea
 Else if (key0 = "epalcb" or key0 = "epalcb;" or key0 = "EPALCB")
     str = capable{Space}
+Else if (key0 = "eashc" or key0 = "eashc;" or key0 = "EASHC")
+    str = chase{Space}
+Else if (key0 = "eashm" or key0 = "eashm;" or key0 = "EASHM")
+    str = shame{Space}
+Else if (key0 = "edlbn" or key0 = "edlbn;" or key0 = "EDLBN")
+    str = blend{Space}
+Else if (key0 = "eialxcm" or key0 = "eialxcm;" or key0 = "EIALXCM")
+    str = exclaim{Space}
+Else if (key0 = "eidcvn" or key0 = "eidcvn;" or key0 = "EIDCVN")
+    str = evidence{Space}
+Else if (key0 = "eidh" or key0 = "eidh;" or key0 = "EIDH")
+    str = hide{Space}
+Else if (key0 = "eidh" or key0 = "eidh;" or key0 = "EIDH")
+    str = hide{Space}
+Else if (key0 = "eidxn" or key0 = "eidxn;" or key0 = "EIDXN")
+    str = index{Space}
+Else if (key0 = "eipsc" or key0 = "eipsc;" or key0 = "EIPSC")
+    str = spice{Space}
+Else if (key0 = "eisdl" or key0 = "eisdl;" or key0 = "EISDL")
+    str = slide{Space}
+Else if (key0 = "eisghln" or key0 = "eisghln;" or key0 = "EISGHLN")
+    str = english{Space}
+Else if (key0 = "eoacn" or key0 = "eoacn;" or key0 = "EOACN")
+    str = ocean{Space}
+Else if (key0 = "eoacn" or key0 = "eoacn;" or key0 = "EOACN")
+    str = ocean{Space}
+Else if (key0 = "eohkc" or key0 = "eohkc;" or key0 = "EOHKC")
+    str = choke{Space}
+Else if (key0 = "eolvn" or key0 = "eolvn;" or key0 = "EOLVN")
+    str = novel{Space}
+Else if (key0 = "eopaslc" or key0 = "eopaslc;" or key0 = "EOPASLC")
+    str = collapse{Space}
+Else if (key0 = "eopm" or key0 = "eopm;" or key0 = "EOPM")
+    str = poem{Space}
+Else if (key0 = "eopscm" or key0 = "eopscm;" or key0 = "EOPSCM")
+    str = compose{Space}
+Else if (key0 = "eoshv" or key0 = "eoshv;" or key0 = "EOSHV")
+    str = shove{Space}
+Else if (key0 = "eovn" or key0 = "eovn;" or key0 = "EOVN")
+    str = oven{Space}
+Else if (key0 = "epadn" or key0 = "epadn;" or key0 = "EPADN")
+    str = append{Space}
+Else if (key0 = "epaln" or key0 = "epaln;" or key0 = "EPALN")
+    str = plane{Space}
+Else if (key0 = "epaslm" or key0 = "epaslm;" or key0 = "EPASLM")
+    str = sample{Space}
+Else if (key0 = "epl" or key0 = "epl;" or key0 = "EPL")
+    str = peel{Space}
+Else if (key0 = "epshl" or key0 = "epshl;" or key0 = "EPSHL")
+    str = helps{Space}
+Else if (key0 = "erd" or key0 = "erd;" or key0 = "ERD")
+    str = red{Space}
+Else if (key0 = "eriacm" or key0 = "eriacm;" or key0 = "ERIACM")
+    str = america{Space}
+Else if (key0 = "eriagnm" or key0 = "eriagnm;" or key0 = "ERIAGNM")
+    str = migraine{Space}
+Else if (key0 = "erid" or key0 = "erid;" or key0 = "ERID")
+    str = ride{Space}
+Else if (key0 = "eridcn" or key0 = "eridcn;" or key0 = "ERIDCN")
+    str = discern{Space}
+Else if (key0 = "eridn" or key0 = "eridn;" or key0 = "ERIDN")
+    str = dinner{Space}
+Else if (key0 = "erifgn" or key0 = "erifgn;" or key0 = "ERIFGN")
+    str = finger{Space}
+Else if (key0 = "eripz" or key0 = "eripz;" or key0 = "ERIPZ")
+    str = prize{Space}
+Else if (key0 = "eriscn" or key0 = "eriscn;" or key0 = "ERISCN")
+    str = sincere{Space}
+Else if (key0 = "erisdv" or key0 = "erisdv;" or key0 = "ERISDV")
+    str = diverse{Space}
+Else if (key0 = "erohc" or key0 = "erohc;" or key0 = "EROHC")
+    str = chore{Space}
+Else if (key0 = "erpsv" or key0 = "erpsv;" or key0 = "ERPSV")
+    str = preserve{Space}
+Else if (key0 = "ersfh" or key0 = "ersfh;" or key0 = "ERSFH")
+    str = fresh{Space}
+Else if (key0 = "ertab" or key0 = "ertab;" or key0 = "ERTAB")
+    str = batter{Space}
+Else if (key0 = "ertalc" or key0 = "ertalc;" or key0 = "ERTALC")
+    str = accelerate{Space}
+Else if (key0 = "ertalc" or key0 = "ertalc;" or key0 = "ERTALC")
+    str = accelerate{Space}
+Else if (key0 = "ertib" or key0 = "ertib;" or key0 = "ERTIB")
+    str = tribe{Space}
+Else if (key0 = "erticm" or key0 = "erticm;" or key0 = "ERTICM")
+    str = metric{Space}
+Else if (key0 = "erticn" or key0 = "erticn;" or key0 = "ERTICN")
+    str = eccentric{Space}
+Else if (key0 = "ertisn" or key0 = "ertisn;" or key0 = "ERTISN")
+    str = insert{Space}
+Else if (key0 = "ertlacn" or key0 = "ertlacn;" or key0 = "ERTLACN")
+    str = central{Space}
+Else if (key0 = "ertsc" or key0 = "ertsc;" or key0 = "ERTSC")
+    str = secret{Space}
+Else if (key0 = "ertshc" or key0 = "ertshc;" or key0 = "ERTSHC")
+    str = stretch{Space}
+Else if (key0 = "ertuac" or key0 = "ertuac;" or key0 = "ERTUAC")
+    str = creature{Space}
+Else if (key0 = "ertugl" or key0 = "ertugl;" or key0 = "ERTUGL")
+    str = regulate{Space}
+Else if (key0 = "ertuocn" or key0 = "ertuocn;" or key0 = "ERTUOCN")
+    str = counter{Space}
+Else if (key0 = "ertyab" or key0 = "ertyab;" or key0 = "ERTYAB")
+    str = battery{Space}
+Else if (key0 = "erug" or key0 = "erug;" or key0 = "ERUG")
+    str = urge{Space}
+Else if (key0 = "eruisc" or key0 = "eruisc;" or key0 = "ERUISC")
+    str = cruise{Space}
+Else if (key0 = "eruop" or key0 = "eruop;" or key0 = "ERUOP")
+    str = europe{Space}
+Else if (key0 = "erusm" or key0 = "erusm;" or key0 = "ERUSM")
+    str = summer{Space}
+Else if (key0 = "erypl" or key0 = "erypl;" or key0 = "ERYPL")
+    str = reply{Space}
+Else if (key0 = "esdk" or key0 = "esdk;" or key0 = "ESDK")
+    str = desk{Space}
+Else if (key0 = "etadgvn" or key0 = "etadgvn;" or key0 = "ETADGVN")
+    str = advantage{Space}
+Else if (key0 = "etag" or key0 = "etag;" or key0 = "ETAG")
+    str = gate{Space}
+Else if (key0 = "etahbn" or key0 = "etahbn;" or key0 = "ETAHBN")
+    str = beneath{Space}
+Else if (key0 = "etascn" or key0 = "etascn;" or key0 = "ETASCN")
+    str = stance{Space}
+Else if (key0 = "etdl" or key0 = "etdl;" or key0 = "ETDL")
+    str = delete{Space}
+Else if (key0 = "etiacn" or key0 = "etiacn;" or key0 = "ETIACN")
+    str = ancient{Space}
+Else if (key0 = "etiasgvn" or key0 = "etiasgvn;" or key0 = "ETIASGVN")
+    str = investigate{Space}
+Else if (key0 = "etiashlb" or key0 = "etiashlb;" or key0 = "ETIASHLB")
+    str = establish{Space}
+Else if (key0 = "etib" or key0 = "etib;" or key0 = "ETIB")
+    str = bite{Space}
+Else if (key0 = "etick" or key0 = "etick;" or key0 = "ETICK")
+    str = ticket{Space}
+Else if (key0 = "etid" or key0 = "etid;" or key0 = "ETID")
+    str = diet{Space}
+Else if (key0 = "etioasc" or key0 = "etioasc;" or key0 = "ETIOASC")
+    str = associate{Space}
+Else if (key0 = "etiopzmt" or key0 = "etiopzmt;" or key0 = "ETIOPZMT")
+    str = optimize{Space}
+Else if (key0 = "etiplnm" or key0 = "etiplnm;" or key0 = "ETIPLNM")
+    str = implement{Space}
+Else if (key0 = "etips" or key0 = "etips;" or key0 = "ETIPS")
+    str = spite{Space}
+Else if (key0 = "etipsd" or key0 = "etipsd;" or key0 = "ETIPSD")
+    str = despite{Space}
+Else if (key0 = "etlvn" or key0 = "etlvn;" or key0 = "ETLVN")
+    str = evolution{Space}
+Else if (key0 = "eto" or key0 = "eto;" or key0 = "ETO")
+    str = toe{Space}
+Else if (key0 = "etocm" or key0 = "etocm;" or key0 = "ETOCM")
+    str = comet{Space}
+Else if (key0 = "etodhm" or key0 = "etodhm;" or key0 = "ETODHM")
+    str = method{Space}
+Else if (key0 = "etpdh" or key0 = "etpdh;" or key0 = "ETPDH")
+    str = depth{Space}
+Else if (key0 = "etpdh" or key0 = "etpdh;" or key0 = "ETPDH")
+    str = depth{Space}
+Else if (key0 = "etshkc" or key0 = "etshkc;" or key0 = "ETSHKC")
+    str = sketch{Space}
+Else if (key0 = "etualc" or key0 = "etualc;" or key0 = "ETUALC")
+    str = calculate{Space}
+Else if (key0 = "etuin" or key0 = "etuin;" or key0 = "ETUIN")
+    str = unite{Space}
+Else if (key0 = "euagl" or key0 = "euagl;" or key0 = "EUAGL")
+    str = league{Space}
+Else if (key0 = "euosm" or key0 = "euosm;" or key0 = "EUOSM")
+    str = mouse{Space}
+Else if (key0 = "eupgln" or key0 = "eupgln;" or key0 = "EUPGLN")
+    str = plunge{Space}
+Else if (key0 = "eyidl" or key0 = "eyidl;" or key0 = "EYIDL")
+    str = yield{Space}
+Else if (key0 = "eyoplm" or key0 = "eyoplm;" or key0 = "EYOPLM")
+    str = employ{Space}
+Else if (key0 = "eyplm" or key0 = "eyplm;" or key0 = "EYPLM")
+    str = employ{Space}
 Else if (key0 = "edhl" or key0 = "edhl;" or key0 = "EDHL")
     str = held{Space}
 Else if (key0 = "eriv" or key0 = "eriv;" or key0 = "ERIV")
@@ -4617,6 +5089,10 @@ SENDO:
     str = anyone{Space}
 Else if (key0 = "oan" or key0 = "oan;" or key0 = "OAN")
     str = anyone{Space}
+Else if (key0 = "oafm" or key0 = "oafm;" or key0 = "OAFM")
+    str = foam{Space}
+Else if (key0 = "osl" or key0 = "osl;" or key0 = "OSL")
+    str = loss{Space}
 Else if (key0 = "oadl" or key0 = "oadl;" or key0 = "OADL")
     str = load{Space}
 Else if (key0 = "oagnm" or key0 = "oagnm;" or key0 = "OAGNM")
@@ -4766,6 +5242,22 @@ SENDP:
     str = cap{Space}
 Else if (key0 = "pk" or key0 = "pk;" or key0 = "PK")
     str = keep{Space}
+Else if (key0 = "pasn" or key0 = "pasn;" or key0 = "PASN")
+    str = span{Space}
+Else if (key0 = "pgln" or key0 = "pgln;" or key0 = "PGLN")
+    str = plunge{Space}
+Else if (key0 = "phlnm" or key0 = "phlnm;" or key0 = "PHLNM")
+    str = phenomenal{Space}
+Else if (key0 = "phnm" or key0 = "phnm;" or key0 = "PHNM")
+    str = phenomenon{Space}
+Else if (key0 = "plcm" or key0 = "plcm;" or key0 = "PLCM")
+    str = compile{Space}
+Else if (key0 = "plcnm" or key0 = "plcnm;" or key0 = "PLCNM")
+    str = compliance{Space}
+Else if (key0 = "psc" or key0 = "psc;" or key0 = "PSC")
+    str = species{Space}
+Else if (key0 = "pslc" or key0 = "pslc;" or key0 = "PSLC")
+    str = collapse{Space}
 Else if (key0 = "updg" or key0 = "updg;" or key0 = "UPDG")
     str = pudding{Space}
 Else if (key0 = "psfc" or key0 = "psfc;" or key0 = "PSFC")
@@ -4856,8 +5348,6 @@ Else if (key0 = "plc" or key0 = "plc;" or key0 = "PLC")
     str = couple{Space}
 Else if (key0 = "plcb" or key0 = "plcb;" or key0 = "PLCB")
     str = public{Space}
-Else if (key0 = "plcm" or key0 = "plcm;" or key0 = "PLCM")
-    str = complete{Space}
 Else if (key0 = "plxm" or key0 = "plxm;" or key0 = "PLXM")
     str = example{Space}
 Else if (key0 = "plxn" or key0 = "plxn;" or key0 = "PLXN")
@@ -4893,6 +5383,16 @@ SENDA:
     str = about{Space}
 Else if (key0 = "adv" or key0 = "adv;" or key0 = "ADV")
     str = avoid{Space}
+Else if (key0 = "adlbm" or key0 = "adlbm;" or key0 = "ADLBM")
+    str = lambda{Space}
+Else if (key0 = "agb" or key0 = "agb;" or key0 = "AGB")
+    str = bag{Space}
+Else if (key0 = "ahklc" or key0 = "ahklc;" or key0 = "AHKLC")
+    str = chalk{Space}
+Else if (key0 = "asfkl" or key0 = "asfkl;" or key0 = "ASFKL")
+    str = flask{Space}
+Else if (key0 = "asg" or key0 = "asg;" or key0 = "ASG")
+    str = gas{Space}
 Else if (key0 = "adcvn" or key0 = "adcvn;" or key0 = "ADCVN")
     str = advance{Space}
 Else if (key0 = "askc" or key0 = "askc;" or key0 = "ASKC")
@@ -5048,6 +5548,14 @@ SENDS:
     str = business{Space}
 Else if (key0 = "scb" or key0 = "scb;" or key0 = "SCB")
     str = basic{Space}
+Else if (key0 = "sdvn" or key0 = "sdvn;" or key0 = "SDVN")
+    str = division{Space}
+Else if (key0 = "sfm" or key0 = "sfm;" or key0 = "SFM")
+    str = famous{Space}
+Else if (key0 = "sghln" or key0 = "sghln;" or key0 = "SGHLN")
+    str = english{Space}
+Else if (key0 = "shlab" or key0 = "shlab;" or key0 = "SHLAB")
+    str = abolish{Space}
 Else if (key0 = "shm" or key0 = "shm;" or key0 = "SHM")
     str = somehow{Space}
 Else if (key0 = "sdhlc" or key0 = "sdhlc;" or key0 = "SDHLC")
@@ -5145,6 +5653,12 @@ SENDD:
     str = nobody{Space}
 Else if (key0 = "dcm" or key0 = "dcm;" or key0 = "DCM")
     str = command{Space}
+Else if (key0 = "dcvn" or key0 = "dcvn;" or key0 = "DCVN")
+    str = evidence{Space}
+Else if (key0 = "dfgl" or key0 = "dfgl;" or key0 = "DFGL")
+    str = fledgling{Space}
+Else if (key0 = "dlbn" or key0 = "dlbn;" or key0 = "DLBN")
+    str = blend{Space}
 Else if (key0 = "dhln" or key0 = "dhln;" or key0 = "DHLN")
     str = handle{Space}
 Else if (key0 = "dnm" or key0 = "dnm;" or key0 = "DNM")
@@ -5212,6 +5726,8 @@ if (key0 = "fb" or key0 = "fb;" or key0 = "FB")
     str = before{Space}
 Else if (key0 = "fcm" or key0 = "fcm;" or key0 = "FCM")
     str = comfortable{Space}
+Else if (key0 = "frst" or key0 = "frst;" or key0 = "FRST")
+    str = forest{Space}
 Else if (key0 = "fcn" or key0 = "fcn;" or key0 = "FCN")
     str = finance{Space}
 Else if (key0 = "flb" or key0 = "flb;" or key0 = "FLB")
@@ -5290,6 +5806,8 @@ SENDH:
    SentKeys = %key0%
  if (key0 = "hc" or key0 = "hc;" or key0 = "HC")
     str = choice{Space}
+Else if (key0 = "hvb" or key0 = "hvb;" or key0 = "HVB")
+    str = behave{Space}
 Else if (key0 = "hkcn" or key0 = "hkcn;" or key0 = "HKCN")
     str = chicken{Space}
 Else if (key0 = "hl" or key0 = "hl;" or key0 = "HL")
@@ -5315,6 +5833,40 @@ Else if (key0 = "idfc" or key0 = "idfc;" or key0 = "IDFC")
     str = difficult{Space}
 Else if (key0 = "idm" or key0 = "idm;" or key0 = "IDM")
     str = mid{Space}
+Else if (key0 = "iacbn" or key0 = "iacbn;" or key0 = "IACBN")
+    str = cabin{Space}
+Else if (key0 = "ial" or key0 = "ial;" or key0 = "IAL")
+    str = {backspace}ial{Space}
+Else if (key0 = "ialcn" or key0 = "ialcn;" or key0 = "IALCN")
+    str = clinical{Space}
+Else if (key0 = "ialm" or key0 = "ialm;" or key0 = "IALM")
+    str = mail{Space}
+Else if (key0 = "ialn" or key0 = "ialn;" or key0 = "IALN")
+    str = nail{Space}
+Else if (key0 = "iasb" or key0 = "iasb;" or key0 = "IASB")
+    str = bias{Space}
+Else if (key0 = "iasflc" or key0 = "iasflc;" or key0 = "IASFLC")
+    str = fascial{Space}
+Else if (key0 = "ilb" or key0 = "ilb;" or key0 = "ILB")
+    str = bill{Space}
+Else if (key0 = "ilcbm" or key0 = "ilcbm;" or key0 = "ILCBM")
+    str = climb{Space}
+Else if (key0 = "iogbn" or key0 = "iogbn;" or key0 = "IOGBN")
+    str = bingo{Space}
+Else if (key0 = "iopsn" or key0 = "iopsn;" or key0 = "IOPSN")
+    str = poison{Space}
+Else if (key0 = "iosdvn" or key0 = "iosdvn;" or key0 = "IOSDVN")
+    str = division{Space}
+Else if (key0 = "ipafc" or key0 = "ipafc;" or key0 = "IPAFC")
+    str = pacific{Space}
+Else if (key0 = "isa" or key0 = "isa;" or key0 = "ISA")
+    str = asia{Space}
+Else if (key0 = "isdh" or key0 = "isdh;" or key0 = "ISDH")
+    str = dish{Space}
+Else if (key0 = "isdh" or key0 = "isdh;" or key0 = "ISDH")
+    str = dish{Space}
+Else if (key0 = "isdkn" or key0 = "isdkn;" or key0 = "ISDKN")
+    str = kinds{Space}
 Else if (key0 = "iahcn" or key0 = "iahcn;" or key0 = "IAHCN")
     str = China{Space}
 Else if (key0 = "ias" or key0 = "ias;" or key0 = "IAS")
@@ -5560,6 +6112,10 @@ if (key0 = "lb" or key0 = "lb;" or key0 = "LB")
     str = little bit{Space}
 Else if (key0 = "lc" or key0 = "lc;" or key0 = "LC")
     str = cool{Space}
+Else if (key0 = "lcnm" or key0 = "lcnm;" or key0 = "LCNM")
+    str = column{Space}
+Else if (key0 = "lxcm" or key0 = "lxcm;" or key0 = "LXCM")
+    str = exclaim{Space}
 Else if (key0 = "lcbn" or key0 = "lcbn;" or key0 = "LCBN")
     str = balance{Space}
 Else if (key0 = "lnm" or key0 = "lnm;" or key0 = "LNM")
@@ -5567,7 +6123,7 @@ Else if (key0 = "lnm" or key0 = "lnm;" or key0 = "LNM")
 Else if (key0 = "lvm" or key0 = "lvm;" or key0 = "LVM")
     str = volume{Space}
 Else if (key0 = "lcn" or key0 = "lcn;" or key0 = "LCN")
-    str = clinical{Space}
+    str = clean{Space}
 Else if (key0 = "lcbn" or key0 = "lcbn;" or key0 = "LCBN")
     str = balance{Space}
 Else if (key0 = "lcm" or key0 = "lcm;" or key0 = "LCM")
@@ -5690,6 +6246,68 @@ If (key0 = "r'" or key0 = "r';" or key0 = "R'")
     str = {BackSpace}r{Space}
 Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
     str = understood{Space}
+Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL.")
+    str = alter{Space}
+Else if (key0 = "rg." or key0 = "rg.;" or key0 = "RG>")
+    str = gear{Space}
+Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM.")
+    str = flame{Space}
+Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN.")
+    str = clean{Space}
+Else if (key0 = "erag." or key0 = "erag.;" or key0 = "ERAG.")
+    str = rage{Space}
+Else if (key0 = "eidv." or key0 = "eidv.;" or key0 = "EIDV.")
+    str = divide{Space}
+Else if (key0 = "etal." or key0 = "etal.;" or key0 = "ETAL.")
+    str = tale{Space}
+Else if (key0 = "erpsv." or key0 = "erpsv.;" or key0 = "ERPSV.")
+    str = persevere{Space}
+Else if (key0 = "rtlcn." or key0 = "rtlcn.;" or key0 = "RTLCN.")
+    str = central{Space}
+Else if (key0 = "etid." or key0 = "etid.;" or key0 = "ETID.")
+    str = tide{Space}
+Else if (key0 = "etiscn." or key0 = "etiscn.;" or key0 = "ETISCN.")
+    str = insect{Space}
+Else if (key0 = "eridn." or key0 = "eridn.;" or key0 = "ERIDN.")
+    str = diner{Space}
+Else if (key0 = "od." or key0 = "od.;" or key0 = "OD.")
+    str = odd{Space}
+Else if (key0 = "uohc." or key0 = "uohc.;" or key0 = "UOHC.")
+    str = couch{Space}
+Else if (key0 = "wdan." or key0 = "wdan.;" or key0 = "WDAN.")
+    str = dawn{Space}
+Else if (key0 = "tihn." or key0 = "tihn.;" or key0 = "TIHN.")
+    str = hint{Space}
+Else if (key0 = "wton." or key0 = "wton.;" or key0 = "WTON.")
+    str = town{Space}
+Else if (key0 = "yil." or key0 = "yil.;" or key0 = "YIL.")
+    str = {backspace}{backspace}ily{Space}
+Else if (key0 = "wetas." or key0 = "wetas.;" or key0 = "WETAS.")
+    str = sweat{Space}
+Else if (key0 = "tpc." or key0 = "tpc.;" or key0 = "TPC.")
+    str = capacity{Space}
+Else if (key0 = "tlsn." or key0 = "tlsn.;" or key0 = "TLSN.")
+    str = solution{Space}
+Else if (key0 = "euasc." or key0 = "euasc.;" or key0 = "EUASC.")
+    str = sauce{Space}
+Else if (key0 = "rtlvn." or key0 = "rtlvn.;" or key0 = "RTLVN.")
+    str = revolution{Space}
+Else if (key0 = "tasc." or key0 = "tasc.;" or key0 = "TASC.")
+    str = associate{Space}
+Else if (key0 = "rtuogh." or key0 = "rtuogh.;" or key0 = "RTUOGH.")
+    str = thorough{Space}
+Else if (key0 = "rohn." or key0 = "rohn.;" or key0 = "ROHN.")
+    str = horn{Space}
+Else if (key0 = "rsdcn." or key0 = "rsdcn.;" or key0 = "RSDCN.")
+    str = discern{Space}
+Else if (key0 = "rio." or key0 = "rio.;" or key0 = "RIO.")
+    str = {backspace}{backspace}ior{Space}
+Else if (key0 = "osn." or key0 = "osn.;" or key0 = "OSN.")
+    str = son{Space}
+Else if (key0 = "ial." or key0 = "ial.;" or key0 = "IAL.")
+    str = {backspace}{backspace}ial{Space}
+Else if (key0 = "eipsc." or key0 = "eipsc.;" or key0 = "EIPSC.")
+    str = species{Space}
 Else if (key0 = "ty." or key0 = "ty.;" or key0 = "ty>")
     str = {BackSpace}ty{Space}
 Else if (key0 = "werth." or key0 = "werth.;" or key0 = "WERTH>")
@@ -6119,7 +6737,7 @@ Else if (key0 = "y." or key0 = "y.;" or key0 = "Y>")
 Else if (key0 = "b." or key0 = "b.;" or key0 = "B>")
     str = but{Space}
 Else if (key0 = "tion." or key0 = "tion.;" or key0 = "TION>")
-    str = ition{Space}
+    str = {BackSpace}ition{Space}
 Else if (key0 = "w." or key0 = "w.;" or key0 = "W>")
     str = with{Space}
 Else if (key0 = "p." or key0 = "p.;" or key0 = "P>")
