@@ -6281,7 +6281,7 @@ Else if (key0 = "wdan." or key0 = "wdan.;" or key0 = "WDAN.")
 Else if (key0 = "tihn." or key0 = "tihn.;" or key0 = "TIHN.")
     str = hint{Space}
 Else if (key0 = "wton." or key0 = "wton.;" or key0 = "WTON.")
-    str = town{Space}
+    str = won't{Space}
 Else if (key0 = "yil." or key0 = "yil.;" or key0 = "YIL.")
     str = {backspace}{backspace}ily{Space}
 Else if (key0 = "wetas." or key0 = "wetas.;" or key0 = "WETAS.")
