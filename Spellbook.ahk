@@ -983,8 +983,6 @@ Else if (key0 = "ripsgn" or key0 = "ripsgn;" or key0 = "RIPSGN")
 Else if (key0 = "rlcnm" or key0 = "rlcnm;" or key0 = "RLCNM")
     str = criminal{Space}
 Else if (key0 = "rlvb" or key0 = "rlvb;" or key0 = "RLVB")
-    str = variable vrbl{Space}
-Else if (key0 = "rlvb" or key0 = "rlvb;" or key0 = "RLVB")
     str = variable{Space}
 Else if (key0 = "rlvbn" or key0 = "rlvbn;" or key0 = "RLVBN")
     str = vulnerable{Space}
