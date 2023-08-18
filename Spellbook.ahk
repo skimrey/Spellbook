@@ -1495,7 +1495,7 @@ Else if (key0 = "rflv" or key0 = "rflv;" or key0 = "RFLV")
 Else if (key0 = "rfm" or key0 = "rfm;" or key0 = "RFM")
     str = firm{Space}
 Else if (key0 = "rg" or key0 = "rg;" or key0 = "RG")
-    str = regard{Space}
+    str = gear{Space}
 Else if (key0 = "rgcn" or key0 = "rgcn;" or key0 = "RGCN")
     str = encourage{Space}
 Else if (key0 = "rgl" or key0 = "rgl;" or key0 = "RGL")
@@ -6250,8 +6250,6 @@ Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
     str = understood{Space}
 Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL.")
     str = alter{Space}
-Else if (key0 = "rg." or key0 = "rg.;" or key0 = "RG>")
-    str = gear{Space}
 Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM.")
     str = flame{Space}
 Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN.")
