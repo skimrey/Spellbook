@@ -2565,6 +2565,8 @@ Else if (key0 = "tyin" or key0 = "tyin;" or key0 = "TYIN")
     str = tiny{Space}
 Else if (key0 = "typac" or key0 = "typac;" or key0 = "TYPAC")
     str = capacity{Space}
+Else if (key0 = "typc" or key0 = "typc;" or key0 = "TYPC")
+    str = capacity{Space}
 Else if (key0 = "tac" or key0 = "tac;" or key0 = "TAC")
     str = act{Space}
 Else if (key0 = "tflb" or key0 = "tflb;" or key0 = "TFLB")
