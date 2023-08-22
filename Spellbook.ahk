@@ -1005,7 +1005,7 @@ Else if (key0 = "rpz" or key0 = "rpz;" or key0 = "RPZ")
 Else if (key0 = "rsdv" or key0 = "rsdv;" or key0 = "RSDV")
     str = diverse{Space}
 Else if (key0 = "rtg" or key0 = "rtg;" or key0 = "RTG")
-    str = guitar{Space}
+    str = trying{Space}
 Else if (key0 = "rtgcn" or key0 = "rtgcn;" or key0 = "RTGCN")
     str = congregate{Space}
 Else if (key0 = "rtgl" or key0 = "rtgl;" or key0 = "RTGL")
@@ -1050,8 +1050,6 @@ Else if (key0 = "rtsda" or key0 = "rtsda;" or key0 = "RTSDA")
     str = asteroid{Space}
 Else if (key0 = "rtshc" or key0 = "rtshc;" or key0 = "RTSHC")
     str = stretch{Space}
-Else if (key0 = "rtuiga" or key0 = "rtuiga;" or key0 = "RTUIGA")
-    str = guitar{Space}
 Else if (key0 = "rtuoc" or key0 = "rtuoc;" or key0 = "RTUOC")
     str = court{Space}
 Else if (key0 = "rtyid" or key0 = "rtyid;" or key0 = "RTYID")
@@ -1083,7 +1081,7 @@ Else if (key0 = "ryc" or key0 = "ryc;" or key0 = "RYC")
 Else if (key0 = "rtpsdn" or key0 = "rtpsdn;" or key0 = "RTPSDN")
     str = president{Space}
 Else if (key0 = "rtuiag" or key0 = "rtuiag;" or key0 = "RTUIAG")
-    str = guitar
+    str = guitar{Space}
 Else if (key0 = "rtip" or key0 = "rtip;" or key0 = "RTIP")
     str = trip{Space}
 Else if (key0 = "ruosh" or key0 = "ruosh;" or key0 = "RUOSH")
