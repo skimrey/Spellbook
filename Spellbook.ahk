@@ -6573,7 +6573,7 @@ Else if (key0 = "eru." or key0 = "eru.;" or key0 = "ERU>")
 Else if (key0 = "etsh." or key0 = "etsh.;" or key0 = "ETSH>")
     str = sheet{Space}
 Else if (key0 = "on." or key0 = "on.;" or key0 = "ON>")
-    str = non{Space}
+    str = no{Space}
 Else if (key0 = "rtipn." or key0 = "rtipn.;" or key0 = "RTIPN>")
     str = interrupt{Space}
 Else if (key0 = "tas." or key0 = "tas.;" or key0 = "TAS>")
