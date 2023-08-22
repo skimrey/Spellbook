@@ -8,9 +8,9 @@ Requires Autohotkey which is a free program for scripting Windows automation (ke
 
 Mechanical keyboards are best. Otherwise you may have a cap on character count or only certain amounts of letters per row/column at a time due to key matrices.
 
-**Formatting Google Sheet: https://docs.google.com/spreadsheets/d/17YKyU0r6uJQZS2O3WcbopYCI5au4ueC6Ibu241bXTAI/edit?usp=sharing**
-
 This is a dictionary I built for myself to work faster and with less fatigue as a transcriptionist. It has many full spellings, common abbreviations, and shortcuts for common words. I found stenography fascinating, but thought that the phonetic spelling concept and alternate keyboard took me longer to learn than generating spellings based on how words are spelled (crazy, right?). There is also the massive benefit of being able to casually type single letters and chords interchangeably with greater ease than a stenographic keyboard, allowing for a smoother learning curve and simple compensation for library holes. Please use it and build on it!
+
+**Formatting Google Sheet: https://docs.google.com/spreadsheets/d/17YKyU0r6uJQZS2O3WcbopYCI5au4ueC6Ibu241bXTAI/edit?usp=sharing**
 
 If you disagree on the spellings I've chosen or observe some of the many holes, please fork the repository and share what you've come up with that works better!
 
