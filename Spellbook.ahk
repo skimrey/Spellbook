@@ -6244,6 +6244,8 @@ If (key0 = "r'" or key0 = "r';" or key0 = "R'")
     str = {BackSpace}r{Space}
 Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
     str = understood{Space}
+Else if (key0 = "yc." or key0 = "yc.;" or key0 = "YC>")
+    str = {BackSpace}{BackSpace}cy{Space}
 Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL.")
     str = alter{Space}
 Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM.")
