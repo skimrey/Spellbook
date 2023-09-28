@@ -3113,6 +3113,8 @@ Else if (key0 = "uab" or key0 = "uab;" or key0 = "UAB")
     str = a bunch{Space}
 Else if (key0 = "uion" or key0 = "uion;" or key0 = "UION")
     str = union{Space}
+Else if (key0 = "uas" or key0 = "uas;" or key0 = "UAS")
+    str = Australia{Space}
 Else if (key0 = "uiosl" or key0 = "uiosl;" or key0 = "UIOSL")
     str = solution{Space}
 Else if (key0 = "ukcb" or key0 = "ukcb;" or key0 = "UKCB")
@@ -3892,8 +3894,6 @@ Else if (key0 = "ertilc" or key0 = "ertilc;" or key0 = "ERTILC")
     str = electric{Space}
 Else if (key0 = "ertiod" or key0 = "ertiod;" or key0 = "ERTIOD")
     str = editor{Space}
-Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
-    str = practice{Space}
 Else if (key0 = "ertipac" or key0 = "ertipac;" or key0 = "ERTIPAC")
     str = practice{Space}
 Else if (key0 = "ertish" or key0 = "ertish;" or key0 = "ERTISH")
