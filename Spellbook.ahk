@@ -4413,7 +4413,7 @@ Else if (key0 = "eodn" or key0 = "eodn;" or key0 = "EODN")
 Else if (key0 = "eogn" or key0 = "eogn;" or key0 = "EOGN")
     str = enough{Space}
 Else if (key0 = "euoghn" or key0 = "euoghn;" or key0 = "EUOGHN")
-    str = gone{Space}
+    str = enough{Space}
 Else if (key0 = "eohl" or key0 = "eohl;" or key0 = "EOHL")
     str = hole{Space}
 Else if (key0 = "eohm" or key0 = "eohm;" or key0 = "EOHM")
