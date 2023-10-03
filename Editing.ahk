@@ -21,7 +21,7 @@ StringUpper Clipboard, Clipboard
 RETURN
 ^g:: ^d
 ^9:: Send, 9
-$9:: {Backspace}s{Space}
+$9:: Send, {Backspace}s{Space}
 ^e::                                                                 
  Send ^c
 sleep, 50
