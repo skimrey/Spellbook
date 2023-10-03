@@ -4411,7 +4411,7 @@ Else if (key0 = "eodlm" or key0 = "eodlm;" or key0 = "EODLM")
 Else if (key0 = "eodn" or key0 = "eodn;" or key0 = "EODN")
     str = done{Space}
 Else if (key0 = "eogn" or key0 = "eogn;" or key0 = "EOGN")
-    str = enough{Space}
+    str = gone{Space}
 Else if (key0 = "euoghn" or key0 = "euoghn;" or key0 = "EUOGHN")
     str = enough{Space}
 Else if (key0 = "eohl" or key0 = "eohl;" or key0 = "EOHL")
