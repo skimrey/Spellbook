@@ -20,6 +20,8 @@ StringUpper Clipboard, Clipboard
  Send %Clipboard%
 RETURN
 ^g:: ^d
+^9:: Send, 9
+$9:: {Backspace}s{Space}
 ^e::                                                                 
  Send ^c
 sleep, 50
