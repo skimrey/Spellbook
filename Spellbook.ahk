@@ -4415,7 +4415,7 @@ Else if (key0 = "eogn" or key0 = "eogn;" or key0 = "EOGN")
 Else if (key0 = "euoghn" or key0 = "euoghn;" or key0 = "EUOGHN")
     str = enough{Space}
 Else if (key0 = "eohl" or key0 = "eohl;" or key0 = "EOHL")
-    str = hole{Space}
+    str = hello{Space}
 Else if (key0 = "eohm" or key0 = "eohm;" or key0 = "EOHM")
     str = home{Space}
 Else if (key0 = "eolv" or key0 = "eolv;" or key0 = "EOLV")
@@ -6246,65 +6246,67 @@ Else if (key0 = "udn." or key0 = "udn.;" or key0 = "UDN>")
     str = understood{Space}
 Else if (key0 = "yc." or key0 = "yc.;" or key0 = "YC>")
     str = {BackSpace}{BackSpace}cy{Space}
-Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL.")
+Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL>")
     str = alter{Space}
-Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM.")
+Else if (key0 = "eohl." or key0 = "eohl.;" or key0 = "EOHL>")
+    str = hole{Space}
+Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM>")
     str = flame{Space}
-Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN.")
+Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN>")
     str = clean{Space}
-Else if (key0 = "erag." or key0 = "erag.;" or key0 = "ERAG.")
+Else if (key0 = "erag." or key0 = "erag.;" or key0 = "ERAG>")
     str = rage{Space}
-Else if (key0 = "eidv." or key0 = "eidv.;" or key0 = "EIDV.")
+Else if (key0 = "eidv." or key0 = "eidv.;" or key0 = "EIDV>")
     str = divide{Space}
-Else if (key0 = "etal." or key0 = "etal.;" or key0 = "ETAL.")
+Else if (key0 = "etal." or key0 = "etal.;" or key0 = "ETAL>")
     str = tale{Space}
-Else if (key0 = "erpsv." or key0 = "erpsv.;" or key0 = "ERPSV.")
+Else if (key0 = "erpsv." or key0 = "erpsv.;" or key0 = "ERPSV>")
     str = persevere{Space}
-Else if (key0 = "rtlcn." or key0 = "rtlcn.;" or key0 = "RTLCN.")
+Else if (key0 = "rtlcn." or key0 = "rtlcn.;" or key0 = "RTLCN>")
     str = central{Space}
-Else if (key0 = "etid." or key0 = "etid.;" or key0 = "ETID.")
+Else if (key0 = "etid." or key0 = "etid.;" or key0 = "ETID>")
     str = tide{Space}
-Else if (key0 = "etiscn." or key0 = "etiscn.;" or key0 = "ETISCN.")
+Else if (key0 = "etiscn." or key0 = "etiscn.;" or key0 = "ETISCN>")
     str = insect{Space}
-Else if (key0 = "eridn." or key0 = "eridn.;" or key0 = "ERIDN.")
+Else if (key0 = "eridn." or key0 = "eridn.;" or key0 = "ERIDN>")
     str = diner{Space}
-Else if (key0 = "od." or key0 = "od.;" or key0 = "OD.")
+Else if (key0 = "od." or key0 = "od.;" or key0 = "OD>")
     str = odd{Space}
-Else if (key0 = "uohc." or key0 = "uohc.;" or key0 = "UOHC.")
+Else if (key0 = "uohc." or key0 = "uohc.;" or key0 = "UOHC>")
     str = couch{Space}
-Else if (key0 = "wdan." or key0 = "wdan.;" or key0 = "WDAN.")
+Else if (key0 = "wdan." or key0 = "wdan.;" or key0 = "WDAN>")
     str = dawn{Space}
-Else if (key0 = "tihn." or key0 = "tihn.;" or key0 = "TIHN.")
+Else if (key0 = "tihn." or key0 = "tihn.;" or key0 = "TIHN>")
     str = hint{Space}
-Else if (key0 = "wton." or key0 = "wton.;" or key0 = "WTON.")
+Else if (key0 = "wton." or key0 = "wton.;" or key0 = "WTON>")
     str = won't{Space}
-Else if (key0 = "yil." or key0 = "yil.;" or key0 = "YIL.")
+Else if (key0 = "yil." or key0 = "yil.;" or key0 = "YIL>")
     str = {backspace}{backspace}ily{Space}
-Else if (key0 = "wetas." or key0 = "wetas.;" or key0 = "WETAS.")
+Else if (key0 = "wetas." or key0 = "wetas.;" or key0 = "WETAS>")
     str = sweat{Space}
-Else if (key0 = "tpc." or key0 = "tpc.;" or key0 = "TPC.")
+Else if (key0 = "tpc." or key0 = "tpc.;" or key0 = "TPC>")
     str = capacity{Space}
-Else if (key0 = "tlsn." or key0 = "tlsn.;" or key0 = "TLSN.")
+Else if (key0 = "tlsn." or key0 = "tlsn.;" or key0 = "TLSN>")
     str = solution{Space}
-Else if (key0 = "euasc." or key0 = "euasc.;" or key0 = "EUASC.")
+Else if (key0 = "euasc." or key0 = "euasc.;" or key0 = "EUASC>")
     str = sauce{Space}
-Else if (key0 = "rtlvn." or key0 = "rtlvn.;" or key0 = "RTLVN.")
+Else if (key0 = "rtlvn." or key0 = "rtlvn.;" or key0 = "RTLVN>")
     str = revolution{Space}
-Else if (key0 = "tasc." or key0 = "tasc.;" or key0 = "TASC.")
+Else if (key0 = "tasc." or key0 = "tasc.;" or key0 = "TASC>")
     str = associate{Space}
-Else if (key0 = "rtuogh." or key0 = "rtuogh.;" or key0 = "RTUOGH.")
+Else if (key0 = "rtuogh." or key0 = "rtuogh.;" or key0 = "RTUOGH>")
     str = thorough{Space}
-Else if (key0 = "rohn." or key0 = "rohn.;" or key0 = "ROHN.")
+Else if (key0 = "rohn." or key0 = "rohn.;" or key0 = "ROHN>")
     str = horn{Space}
-Else if (key0 = "rsdcn." or key0 = "rsdcn.;" or key0 = "RSDCN.")
+Else if (key0 = "rsdcn." or key0 = "rsdcn.;" or key0 = "RSDCN>")
     str = discern{Space}
-Else if (key0 = "rio." or key0 = "rio.;" or key0 = "RIO.")
+Else if (key0 = "rio." or key0 = "rio.;" or key0 = "RIO>")
     str = {backspace}{backspace}ior{Space}
-Else if (key0 = "osn." or key0 = "osn.;" or key0 = "OSN.")
+Else if (key0 = "osn." or key0 = "osn.;" or key0 = "OSN>")
     str = son{Space}
-Else if (key0 = "ial." or key0 = "ial.;" or key0 = "IAL.")
+Else if (key0 = "ial." or key0 = "ial.;" or key0 = "IAL>")
     str = {backspace}{backspace}ial{Space}
-Else if (key0 = "eipsc." or key0 = "eipsc.;" or key0 = "EIPSC.")
+Else if (key0 = "eipsc." or key0 = "eipsc.;" or key0 = "EIPSC>")
     str = species{Space}
 Else if (key0 = "ty." or key0 = "ty.;" or key0 = "ty>")
     str = {BackSpace}ty{Space}
