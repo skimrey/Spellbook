@@ -3308,6 +3308,8 @@ Else if (key0 = "epalcb" or key0 = "epalcb;" or key0 = "EPALCB")
     str = capable{Space}
 Else if (key0 = "eashc" or key0 = "eashc;" or key0 = "EASHC")
     str = chase{Space}
+Else if (key0 = "etiasm" or key0 = "etiasm;" or key0 = "ETIASM")
+    str = estimate{Space}
 Else if (key0 = "eashm" or key0 = "eashm;" or key0 = "EASHM")
     str = shame{Space}
 Else if (key0 = "edlbn" or key0 = "edlbn;" or key0 = "EDLBN")
@@ -5089,6 +5091,8 @@ Else if (key0 = "oan" or key0 = "oan;" or key0 = "OAN")
     str = anyone{Space}
 Else if (key0 = "oafm" or key0 = "oafm;" or key0 = "OAFM")
     str = foam{Space}
+Else if (key0 = "oslnm" or key0 = "oslnm;" or key0 = "OSLNM")
+    str = Solomon{Space}
 Else if (key0 = "osl" or key0 = "osl;" or key0 = "OSL")
     str = loss{Space}
 Else if (key0 = "oadl" or key0 = "oadl;" or key0 = "OADL")
@@ -5833,6 +5837,8 @@ Else if (key0 = "idm" or key0 = "idm;" or key0 = "IDM")
     str = mid{Space}
 Else if (key0 = "iacbn" or key0 = "iacbn;" or key0 = "IACBN")
     str = cabin{Space}
+Else if (key0 = "ioaghc" or key0 = "ioaghc;" or key0 = "IOAGHC")
+    str = Chicago{Space}
 Else if (key0 = "ial" or key0 = "ial;" or key0 = "IAL")
     str = {backspace}ial{Space}
 Else if (key0 = "ialcn" or key0 = "ialcn;" or key0 = "IALCN")
