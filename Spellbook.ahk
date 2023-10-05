@@ -4637,7 +4637,7 @@ Else if (key0 = "ertalcn" or key0 = "ertalcn;" or key0 = "ERTALCN")
 Else if (key0 = "ertam" or key0 = "ertam;" or key0 = "ERTAM")
     str = matter{Space}
 Else if (key0 = "ertax" or key0 = "ertax;" or key0 = "ERTAX")
-    str = extra
+    str = extra{Space}
 Else if (key0 = "ertb" or key0 = "ertb;" or key0 = "ERTB")
     str = better{Space}
 Else if (key0 = "ertcn" or key0 = "ertcn;" or key0 = "ERTCN")
