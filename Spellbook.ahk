@@ -938,6 +938,8 @@ Else if (key0 = "rtyph" or key0 = "rtyph;" or key0 = "RTYPH")
     str = therapy{Space}
 Else if (key0 = "radgn" or key0 = "radgn;" or key0 = "RADGN")
     str = grand{Space}
+Else if (key0 = "rtlbn" or key0 = "rtlbn;" or key0 = "RTLBN")
+    str = brilliant{Space}
 Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
     str = dark{Space}
 Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
