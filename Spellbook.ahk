@@ -5450,7 +5450,7 @@ Else if (key0 = "ahl" or key0 = "ahl;" or key0 = "AHL")
 Else if (key0 = "aln" or key0 = "aln;" or key0 = "ALN")
     str = alone{Space}
 Else if (key0 = "asd" or key0 = "asd;" or key0 = "ASD")
-    str = ads{Space}
+    str = sad{Space}
 Else if (key0 = "asdv" or key0 = "asdv;" or key0 = "ASDV")
     str = advise{Space}
 Else if (key0 = "ashc" or key0 = "ashc;" or key0 = "ASHC")
