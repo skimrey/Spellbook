@@ -3849,7 +3849,7 @@ Else if (key0 = "eraghc" or key0 = "eraghc;" or key0 = "ERAGHC")
 Else if (key0 = "eragnm" or key0 = "eragnm;" or key0 = "ERAGNM")
     str = manager{Space}
 Else if (key0 = "erc" or key0 = "erc;" or key0 = "ERC")
-    str = rec recognize{Space}
+    str = recognize{Space}
 Else if (key0 = "erdh" or key0 = "erdh;" or key0 = "ERDH")
     str = herd{Space}
 Else if (key0 = "ergcnm" or key0 = "ergcnm;" or key0 = "ERGCNM")
