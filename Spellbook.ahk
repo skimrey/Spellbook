@@ -936,6 +936,8 @@ Else if (key0 = "ruioasv" or key0 = "ruioasv;" or key0 = "RUIOASV")
     str = saviour{Space}
 Else if (key0 = "rtyph" or key0 = "rtyph;" or key0 = "RTYPH")
     str = therapy{Space}
+Else if (key0 = "rtypm" or key0 = "rtypm;" or key0 = "RTYPM")
+    str = temporary{Space}
 Else if (key0 = "radgn" or key0 = "radgn;" or key0 = "RADGN")
     str = grand{Space}
 Else if (key0 = "rtlbn" or key0 = "rtlbn;" or key0 = "RTLBN")
@@ -3312,6 +3314,8 @@ Else if (key0 = "eashc" or key0 = "eashc;" or key0 = "EASHC")
     str = chase{Space}
 Else if (key0 = "etiasm" or key0 = "etiasm;" or key0 = "ETIASM")
     str = estimate{Space}
+Else if (key0 = "etpm" or key0 = "etpm;" or key0 = "ETPM")
+    str = temperature{Space}
 Else if (key0 = "eashm" or key0 = "eashm;" or key0 = "EASHM")
     str = shame{Space}
 Else if (key0 = "edlbn" or key0 = "edlbn;" or key0 = "EDLBN")
