@@ -2944,6 +2944,8 @@ Else if (key0 = "toaghc" or key0 = "toaghc;" or key0 = "TOAGHC")
 Else if (key0 = "tpah" or key0 = "tpah;" or key0 = "TPAH")
     str = path{Space}
 Else if (key0 = "tsc" or key0 = "tsc;" or key0 = "TSC")
+    str = cautious{Space}
+Else if (key0 = "tysc" or key0 = "tysc;" or key0 = "TYSC")
     str = society{Space}
 Else if (key0 = "tslvm" or key0 = "tslvm;" or key0 = "TSLVM")
     str = themselves{Space}
