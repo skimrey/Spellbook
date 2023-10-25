@@ -942,6 +942,8 @@ Else if (key0 = "radgn" or key0 = "radgn;" or key0 = "RADGN")
     str = grand{Space}
 Else if (key0 = "rtlbn" or key0 = "rtlbn;" or key0 = "RTLBN")
     str = brilliant{Space}
+Else if (key0 = "rtyl" or key0 = "rtyl;" or key0 = "RTYL")
+    str = reality{Space}
 Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
     str = dark{Space}
 Else if (key0 = "radk" or key0 = "radk;" or key0 = "RADK")
@@ -3742,8 +3744,6 @@ Else if (key0 = "eyagcn" or key0 = "eyagcn;" or key0 = "EYAGCN")
     str = agency{Space}
 Else if (key0 = "eyp" or key0 = "eyp;" or key0 = "EYP")
     str = yep{Space}
-Else if (key0 = "rtyl" or key0 = "rtyl;" or key0 = "RTYL")
-    str = reality{Space}
 Else if (key0 = "etanm" or key0 = "etanm;" or key0 = "ETANM")
     str = meant{Space}
 Else if (key0 = "easn" or key0 = "easn;" or key0 = "EASN")
