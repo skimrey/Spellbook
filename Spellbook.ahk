@@ -971,7 +971,7 @@ Else if (key0 = "rian" or key0 = "rian;" or key0 = "RIAN")
 Else if (key0 = "ridg" or key0 = "ridg;" or key0 = "RIDG")
     str = grid{Space}
 Else if (key0 = "rifac" or key0 = "rifac;" or key0 = "RIFAC")
-    str = africa{Space}
+    str = Africa{Space}
 Else if (key0 = "rio" or key0 = "rio;" or key0 = "RIO")
     str = {backspace}ior{Space}
 Else if (key0 = "riofc" or key0 = "riofc;" or key0 = "RIOFC")
@@ -3371,7 +3371,7 @@ Else if (key0 = "epshl" or key0 = "epshl;" or key0 = "EPSHL")
 Else if (key0 = "erd" or key0 = "erd;" or key0 = "ERD")
     str = red{Space}
 Else if (key0 = "eriacm" or key0 = "eriacm;" or key0 = "ERIACM")
-    str = america{Space}
+    str = America{Space}
 Else if (key0 = "eriagnm" or key0 = "eriagnm;" or key0 = "ERIAGNM")
     str = migraine{Space}
 Else if (key0 = "erid" or key0 = "erid;" or key0 = "ERID")
@@ -3427,7 +3427,7 @@ Else if (key0 = "erug" or key0 = "erug;" or key0 = "ERUG")
 Else if (key0 = "eruisc" or key0 = "eruisc;" or key0 = "ERUISC")
     str = cruise{Space}
 Else if (key0 = "eruop" or key0 = "eruop;" or key0 = "ERUOP")
-    str = europe{Space}
+    str = Europe{Space}
 Else if (key0 = "erusm" or key0 = "erusm;" or key0 = "ERUSM")
     str = summer{Space}
 Else if (key0 = "erypl" or key0 = "erypl;" or key0 = "ERYPL")
@@ -5872,7 +5872,7 @@ Else if (key0 = "iosdvn" or key0 = "iosdvn;" or key0 = "IOSDVN")
 Else if (key0 = "ipafc" or key0 = "ipafc;" or key0 = "IPAFC")
     str = pacific{Space}
 Else if (key0 = "isa" or key0 = "isa;" or key0 = "ISA")
-    str = asia{Space}
+    str = Asia{Space}
 Else if (key0 = "isdh" or key0 = "isdh;" or key0 = "ISDH")
     str = dish{Space}
 Else if (key0 = "isdh" or key0 = "isdh;" or key0 = "ISDH")
@@ -5881,8 +5881,6 @@ Else if (key0 = "isdkn" or key0 = "isdkn;" or key0 = "ISDKN")
     str = kinds{Space}
 Else if (key0 = "iahcn" or key0 = "iahcn;" or key0 = "IAHCN")
     str = China{Space}
-Else if (key0 = "ias" or key0 = "ias;" or key0 = "IAS")
-    str = Asia{Space}
 Else if (key0 = "ialnm" or key0 = "ialnm;" or key0 = "IALNM")
     str = animal{Space}
 Else if (key0 = "iahcn" or key0 = "iahcn;" or key0 = "IAHCN")
