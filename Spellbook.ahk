@@ -6262,6 +6262,8 @@ Else if (key0 = "artl." or key0 = "artl.;" or key0 = "ARTL>")
     str = alter{Space}
 Else if (key0 = "eohl." or key0 = "eohl.;" or key0 = "EOHL>")
     str = hole{Space}
+Else if (key0 = "eyb." or key0 = "eyb.;" or key0 = "EYB>")
+    str = Bye-bye.{Space}
 Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM>")
     str = flame{Space}
 Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN>")
