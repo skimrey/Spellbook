@@ -3717,7 +3717,7 @@ Else if (key0 = "etpal" or key0 = "etpal;" or key0 = "ETPAL")
 Else if (key0 = "etpasc" or key0 = "etpasc;" or key0 = "ETPASC")
     str = aspect{Space}
 Else if (key0 = "etps" or key0 = "etps;" or key0 = "ETPS")
-    str = steep{Space}
+    str = step{Space}
 Else if (key0 = "etscn" or key0 = "etscn;" or key0 = "ETSCN")
     str = sentence{Space}
 Else if (key0 = "etub" or key0 = "etub;" or key0 = "ETUB")
@@ -5665,6 +5665,8 @@ Else if (key0 = "dcm" or key0 = "dcm;" or key0 = "DCM")
     str = command{Space}
 Else if (key0 = "dcvn" or key0 = "dcvn;" or key0 = "DCVN")
     str = evidence{Space}
+Else if (key0 = "dkb" or key0 = "dkb;" or key0 = "DKB")
+    str = keyboard{Space}
 Else if (key0 = "dfgl" or key0 = "dfgl;" or key0 = "DFGL")
     str = fledgling{Space}
 Else if (key0 = "dlbn" or key0 = "dlbn;" or key0 = "DLBN")
@@ -6390,6 +6392,8 @@ Else if (key0 = "etivn." or key0 = "etivn.;" or key0 = "ETIVN>")
     str = invent{Space}
 Else if (key0 = "etps." or key0 = "etps.;" or key0 = "ETPS>")
     str = September{Space}
+Else if (key0 = "etps," or key0 = "etps,;" or key0 = "ETPS<")
+    str = steep{Space}
 Else if (key0 = "etups." or key0 = "etups.;" or key0 = "ETUPS>")
     str = setup{Space}
 Else if (key0 = "eus." or key0 = "eus.;" or key0 = "EUS>")
