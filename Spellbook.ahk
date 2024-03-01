@@ -444,6 +444,8 @@ Else if (key0 = "qrts" or key0 = "qrts;" or key0 = "QRTS")
     str = request{Space}
 Else if (key0 = "qetui" or key0 = "qetui;" or key0 = "QETUI")
     str = quiet{Space}
+Else if (key0 = "qrcn" or key0 = "qrcn;" or key0 = "QRCN")
+    str = conquer{Space}
 Else if (key0 = "qeuin" or key0 = "qeuin;" or key0 = "QEUIN")
     str = unique{Space}
 Else if (key0 = "qel" or key0 = "qel;" or key0 = "QEL")
@@ -5737,7 +5739,7 @@ SENDF:
 if (key0 = "fb" or key0 = "fb;" or key0 = "FB")
     str = before{Space}
 Else if (key0 = "fcm" or key0 = "fcm;" or key0 = "FCM")
-    str = comfortable{Space}
+    str = comfort{Space}
 Else if (key0 = "frst" or key0 = "frst;" or key0 = "FRST")
     str = forest{Space}
 Else if (key0 = "fcn" or key0 = "fcn;" or key0 = "FCN")
@@ -6266,6 +6268,8 @@ Else if (key0 = "eohl." or key0 = "eohl.;" or key0 = "EOHL>")
     str = hole{Space}
 Else if (key0 = "eyb." or key0 = "eyb.;" or key0 = "EYB>")
     str = Bye-bye.{Space}
+Else if (key0 = "eyb." or key0 = "eyb.;" or key0 = "EYB>")
+    str = Bye-bye.{Space}
 Else if (key0 = "eaflm." or key0 = "eaflm.;" or key0 = "EAFLM>")
     str = flame{Space}
 Else if (key0 = "ealcn." or key0 = "ealcn.;" or key0 = "EALCN>")
@@ -6527,7 +6531,7 @@ Else if (key0 = "in." or key0 = "in.;" or key0 = "IN>")
 Else if (key0 = "idk." or key0 = "idk.;" or key0 = "IDK>")
     str = kid{Space}
 Else if (key0 = "gln." or key0 = "gln.;" or key0 = "GLN>")
-    str = language lng.{Space}
+    str = language{Space}
 Else if (key0 = "eshl." or key0 = "eshl.;" or key0 = "ESHL>")
     str = she'll{Space}
 Else if (key0 = "e'v" or key0 = "e'v;" or key0 = "E'V")
