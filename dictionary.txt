@@ -99,7 +99,7 @@
  weigh - weigh{Space}
  wise - wise{Space}
  whose - whose{Space}
- swoeh - swore{Space}
+ weros - swore{Space}
  weathr - weather{Space}
  weight - weight{Space}
  west - west{Space}
