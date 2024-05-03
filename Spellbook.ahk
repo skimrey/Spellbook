@@ -4761,7 +4761,7 @@ Else if (key0 = "eruops" or key0 = "eruops;" or key0 = "ERUOPS")
 Else if (key0 = "erups" or key0 = "erups;" or key0 = "ERUPS")
     str = super{Space}
 Else if (key0 = "erus" or key0 = "erus;" or key0 = "ERUS")
-    str = sure{Space}
+    str = user{Space}
 Else if (key0 = "erusfl" or key0 = "erusfl;" or key0 = "ERUSFL")
     str = yourself{Space}
 Else if (key0 = "erusm" or key0 = "erusm;" or key0 = "ERUSM")
