@@ -659,7 +659,7 @@ Else if (key0 = "weis" or key0 = "weis;" or key0 = "WEIS")
     str = wise{Space}
 Else if (key0 = "weosh" or key0 = "weosh;" or key0 = "WEOSH")
     str = whose{Space}
-Else if (key0 = "weosh" or key0 = "weosh;" or key0 = "WEOSH")
+Else if (key0 = "weros" or key0 = "weros;" or key0 = "WEROS")
     str = swore{Space}
 Else if (key0 = "wertah" or key0 = "wertah;" or key0 = "WERTAH")
     str = weather{Space}
