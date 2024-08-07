@@ -938,6 +938,8 @@ Else if (key0 = "ruioasv" or key0 = "ruioasv;" or key0 = "RUIOASV")
     str = saviour{Space}
 Else if (key0 = "rtyph" or key0 = "rtyph;" or key0 = "RTYPH")
     str = therapy{Space}
+Else if (key0 = "ridlcbn" or key0 = "ridlcbn;" or key0 = "RIDLCBN")
+    str = incredible{Space}
 Else if (key0 = "rtypm" or key0 = "rtypm;" or key0 = "RTYPM")
     str = temporary{Space}
 Else if (key0 = "radgn" or key0 = "radgn;" or key0 = "RADGN")

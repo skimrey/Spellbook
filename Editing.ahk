@@ -13,7 +13,7 @@ $^MButton:: Send, {Return}{Return}
 $^XButton1:: Send, ...
 $^XButton2:: Send, '   
 $+XButton1:: Send, -
-$^w::                                                                 
+$^w::                                           
  Send ^c
 sleep, 50
 StringUpper Clipboard, Clipboard
